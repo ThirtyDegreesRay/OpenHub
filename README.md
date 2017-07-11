@@ -1,5 +1,5 @@
 # OpenHub 
-Android client for GitHub.
+OpenHub is an android client for GitHub.
 
 ## License
     Copyright 2017 ThirtyDegreesRay
