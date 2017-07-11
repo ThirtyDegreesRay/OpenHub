@@ -1,4 +1,4 @@
-#OpenHub
+#OpenHub 
 An android client for GitHub.
 
 ##License
