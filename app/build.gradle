@@ -1,14 +1,15 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    compileSdkVersion COMPILE_SDK_VERSION as int
+    buildToolsVersion BUILD_TOOLS_VERSION
     defaultConfig {
         applicationId "com.thirtydegreesray.openhub"
-        minSdkVersion 14
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion MIN_SDK_VERSION as int
+        targetSdkVersion TARGET_SDK_VERSION as int
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -24,8 +25,47 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support:design:26.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    compile "com.android.support:appcompat-v7:${ANDROID_SUPPORT_VERSION}"
+    compile "com.android.support:recyclerview-v7:${ANDROID_SUPPORT_VERSION}"
+    compile "com.android.support:design:${ANDROID_SUPPORT_VERSION}"
+    compile "com.android.support.constraint:constraint-layout:${CONSTRAINT_VERSION}"
+
     testCompile 'junit:junit:4.12'
+
+    compile "com.thirtydegreesray:dataautoaccess:${DATAAUTOACCESS_VERSION}"
+    apt "com.thirtydegreesray:dataautoaccess-compiler:${DATAAUTOACCESS_VERSION}"
+
+    compile "com.jakewharton:butterknife:${BUTTERKNIFE_VERSION}"
+    apt "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_VERSION}"
+
+    compile "com.yanzhenjie:andserver:${ANDSERVER_VERSION}"
+
+    //数据库工具
+    compile "org.greenrobot:greendao:${GREEN_DAO_VERSION}"
+    //事件总线
+    compile "org.greenrobot:eventbus:${EVENT_BUS_VERSION}"
+    //文件下载
+    compile "com.liulishuo.filedownloader:library:${FILE_DOWNLOADER_VERSION}"
+    //日志
+    compile "com.orhanobut:logger:${LOGGER_VERSION}"
+
+    //RxJava
+    compile "io.reactivex:rxjava:${RXJAVA_VERSION}"
+    compile "io.reactivex:rxandroid:${RXJAVA_VERSION}"
+
+    //Type-safe HTTP client for Android and Java by Square, Inc.
+    compile "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
+    compile "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
+    compile "com.squareup.retrofit2:adapter-rxjava:${RETROFIT_VERSION}"
+
+    //dagger依赖注入
+    compile "com.google.dagger:dagger:${DAGGER_VERSION}"
+    apt "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+
+    //Android6.0以上权限获取工具
+    //PermissionsDispatcher provides a simple annotation-based API to handle runtime permissions in Android Marshmallow.
+//            androidApt: 'com.neenbedankt.gradle.plugins:android-apt:1.8',
+    compile "com.github.hotchemi:permissionsdispatcher:${PERMISSIONS_DISPATCHER_VERSION}"
+    apt "com.github.hotchemi:permissionsdispatcher-processor:${PERMISSIONS_DISPATCHER_VERSION}"
 }

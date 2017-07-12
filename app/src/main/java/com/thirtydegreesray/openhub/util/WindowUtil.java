@@ -1,0 +1,90 @@
+/*
+ *    Copyright 2017 ThirtyDegressRay
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
+package com.thirtydegreesray.openhub.util;
+
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Rect;
+
+/**
+ * 手机窗口工具类
+ */
+public class WindowUtil {
+
+    /**
+     * 屏幕宽度
+     */
+    public static int screenWidth = 0;
+
+    /**
+     * 屏幕高度
+     */
+    public static int screenHeight = 0;
+
+    /** 
+     * 根据手机的分辨率从 dp 的单位 转成为 px(像素) 
+     */  
+    public static int dipToPx(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;  
+        return (int) (dpValue * scale + 0.5f);  
+    }  
+  
+    /** 
+     * 根据手机的分辨率从 px(像素) 的单位 转成为 dp 
+     */  
+    public static int pxToDip(Context context, float pxValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;  
+        return (int) (pxValue / scale + 0.5f);  
+    }
+
+    /**
+     *
+     * @param activity
+     * @return
+     */
+    public static int getStatusHeight(Activity activity){
+        int statusHeight = 0;
+        Rect localRect = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(localRect);
+        statusHeight = localRect.top;
+        if (0 == statusHeight){
+            Class<?> localClass;
+            try {
+                localClass = Class.forName("com.android.internal.R$dimen");
+                Object localObject = localClass.newInstance();
+                int i5 = Integer.parseInt(localClass.getField("status_bar_height").get(localObject).toString());
+                statusHeight = activity.getResources().getDimensionPixelSize(i5);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            } catch (SecurityException e) {
+                e.printStackTrace();
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            }
+        }
+        return statusHeight;
+    }
+}
+ 
