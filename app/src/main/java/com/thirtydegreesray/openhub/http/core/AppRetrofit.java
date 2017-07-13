@@ -19,7 +19,7 @@ package com.thirtydegreesray.openhub.http.core;
 import android.util.Log;
 
 import com.thirtydegreesray.openhub.AppApplication;
-import com.thirtydegreesray.openhub.http.HttpConfig;
+import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.util.FileUtil;
 import com.thirtydegreesray.openhub.util.StringUtil;
 
@@ -95,9 +95,9 @@ public class AppRetrofit {
     }
 
     private void createRetrofit(String baseUrl) {
-        int timeOut = HttpConfig.HTTP_TIME_OUT;
+        int timeOut = AppConfig.HTTP_TIME_OUT;
         Cache cache = new Cache(FileUtil.getHttpImageCacheDir(AppApplication.get()),
-                HttpConfig.MAX_CACHE_SIZE);
+                AppConfig.MAX_CACHE_SIZE);
 
         SSLSocketFactory sslSocketFactory = null;
         try {
@@ -111,8 +111,8 @@ public class AppRetrofit {
                 .addInterceptor(new BaseInterceptor())
                 .addNetworkInterceptor(new NetworkBaseInterceptor())
                 .cache(cache)
-                .sslSocketFactory(sslSocketFactory)
-                .hostnameVerifier(new UnSafeHostnameVerifier())
+//                .sslSocketFactory(sslSocketFactory)
+//                .hostnameVerifier(new UnSafeHostnameVerifier())
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()

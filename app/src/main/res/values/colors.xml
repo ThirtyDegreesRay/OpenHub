@@ -6,5 +6,6 @@
 
     <color name="color_line">#D3D3D3</color>
 
+    <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFF</color>
 </resources>

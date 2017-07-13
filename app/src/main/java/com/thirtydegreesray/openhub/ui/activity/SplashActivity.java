@@ -34,9 +34,11 @@ import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 
 public class SplashActivity extends BaseActivity<SplashPresenter> implements ISplashContract.View {
 
+    private final int REQUEST_ACCESS_TOKEN = 1;
+
     @Override
     public void showMainPage() {
-        finish();
+        delayFinish();
         startActivity(new Intent(getActivity(), MainActivity.class));
     }
 
@@ -68,7 +70,8 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
      */
     @Override
     protected void initActivity() {
-        mPresenter.login();
+//        mPresenter.login();
+        startActivityForResult(new Intent(getActivity(), LoginActivity.class), REQUEST_ACCESS_TOKEN);
     }
 
     /**
@@ -78,6 +81,32 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
      */
     @Override
     protected void initView(Bundle savedInstanceState) {
+
+    }
+
+    /**
+     * Dispatch incoming result to the correct fragment.
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+            case REQUEST_ACCESS_TOKEN:
+                if(resultCode == RESULT_OK){
+                    String accessToken = data.getStringExtra("accessToken");
+                    //save token
+//                    showShortToast(accessToken);
+                    showMainPage();
+                }
+                break;
+            default:
+                break;
+        }
 
     }
 }

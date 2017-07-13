@@ -35,6 +35,16 @@ import rx.Observable;
 
 public interface AppsService {
 
+    @POST("login/oauth/access_token")
+    @Headers("Accept: application/json")
+    Observable<ResponseBody> getAccessToken(
+            @Query("client_id") String clientId,
+            @Query("client_secret") String clientSecret,
+            @Query("code") String code,
+            @Query("state") String state
+    );
+
+
     @POST("main/debug")
     Observable<ResponseBody> loginDebug(
             @Query("usr") String user,

@@ -267,4 +267,17 @@ public abstract class BaseActivity<P extends BasePresenter>
     protected String getResuceString(int strId) {
         return getResources().getString(strId);
     }
+
+    protected void delayFinish(){
+        delayFinish(1000);
+    }
+
+    protected void delayFinish(int mills){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        }, mills);
+    }
 }

@@ -14,22 +14,33 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.inject.component;
+package com.thirtydegreesray.openhub.mvp.contract;
 
-import com.thirtydegreesray.openhub.inject.ActivityScope;
-import com.thirtydegreesray.openhub.inject.module.ActivityModule;
-import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
-import com.thirtydegreesray.openhub.ui.activity.SplashActivity;
-
-import dagger.Component;
+import com.thirtydegreesray.openhub.db.DaoSession;
+import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 
 /**
- * ActivityComponent
- * Created by YuYunHao on 2016/8/30 14:56
+ * Created on 2017/7/12.
+ *
+ * @author ThirtyDegreesRay
  */
-@ActivityScope
-@Component(modules = ActivityModule.class, dependencies = AppComponent.class)
-public interface ActivityComponent {
-    void inject(SplashActivity activity);
-    void inject(LoginActivity activity);
+
+public interface ILoginContract {
+
+    interface View extends IBaseView{
+        void onGetTokenSuccess(String token);
+    }
+
+    abstract class Presenter extends BasePresenter<ILoginContract.View>{
+
+        public Presenter(DaoSession daoSession) {
+            super(daoSession);
+        }
+
+        public abstract void getToken(String code, String state);
+
+        public abstract String getOAuth2Url();
+
+    }
+
 }

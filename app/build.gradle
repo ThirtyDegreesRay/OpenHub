@@ -18,6 +18,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+
 }
 
 dependencies {
@@ -38,8 +45,6 @@ dependencies {
 
     compile "com.jakewharton:butterknife:${BUTTERKNIFE_VERSION}"
     apt "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_VERSION}"
-
-    compile "com.yanzhenjie:andserver:${ANDSERVER_VERSION}"
 
     //数据库工具
     compile "org.greenrobot:greendao:${GREEN_DAO_VERSION}"
@@ -68,4 +73,7 @@ dependencies {
 //            androidApt: 'com.neenbedankt.gradle.plugins:android-apt:1.8',
     compile "com.github.hotchemi:permissionsdispatcher:${PERMISSIONS_DISPATCHER_VERSION}"
     apt "com.github.hotchemi:permissionsdispatcher-processor:${PERMISSIONS_DISPATCHER_VERSION}"
+
+    //Retrolambda: Use Lambdas on Java 7
+//    compile "net.orfjackal.retrolambda:retrolambda:${RETROLAMBDA_VERSION}"
 }

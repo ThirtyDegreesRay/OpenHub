@@ -22,7 +22,7 @@ import android.support.annotation.StringRes;
 
 import com.thirtydegreesray.openhub.db.DaoSession;
 import com.thirtydegreesray.openhub.http.AppsService;
-import com.thirtydegreesray.openhub.http.HttpConfig;
+import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.http.core.AppRetrofit;
 import com.thirtydegreesray.openhub.http.core.HttpSubscriber;
 import com.thirtydegreesray.openhub.http.error.HttpError;
@@ -80,7 +80,7 @@ public class BasePresenter<V extends IBaseView> {
      * @return Retrofit
      */
     protected AppsService getAPPSService() {
-        return AppRetrofit.getInstance().getRetrofit(HttpConfig.SERVER_BASE_URL)
+        return AppRetrofit.getInstance().getRetrofit(AppConfig.SERVER_BASE_URL)
                 .create(AppsService.class);
     }
 

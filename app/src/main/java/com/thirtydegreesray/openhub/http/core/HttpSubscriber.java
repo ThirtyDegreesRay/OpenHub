@@ -20,8 +20,7 @@ import android.os.Handler;
 
 import com.thirtydegreesray.openhub.http.error.HttpError;
 import com.thirtydegreesray.openhub.http.error.HttpErrorCode;
-import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
-import com.thirtydegreesray.openhub.util.CheckNet;
+import com.thirtydegreesray.openhub.util.NetHelper;
 
 import rx.Subscriber;
 
@@ -63,7 +62,7 @@ public class HttpSubscriber<T> extends Subscriber<T> {
     @Override
     public void onStart() {
         super.onStart();
-        if (!CheckNet.getNetEnabled(BaseActivity.getCurActivity())) {
+        if (!NetHelper.getInstance().getNetEnabled()) {
             onError(new HttpError("网络未连接！", HttpErrorCode.NET_UNABLE));
             unsubscribe();
         }
