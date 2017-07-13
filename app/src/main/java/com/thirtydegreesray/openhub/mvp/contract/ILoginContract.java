@@ -28,7 +28,7 @@ import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 public interface ILoginContract {
 
     interface View extends IBaseView{
-        void onGetTokenSuccess(String token);
+        void onGetTokenSuccess(String token, String scope, int expireIn);
     }
 
     abstract class Presenter extends BasePresenter<ILoginContract.View>{

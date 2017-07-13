@@ -19,6 +19,7 @@ package com.thirtydegreesray.openhub.inject.module;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.thirtydegreesray.openhub.AppApplication;
+import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.db.DaoMaster;
 import com.thirtydegreesray.openhub.db.DaoSession;
 
@@ -29,11 +30,10 @@ import dagger.Provides;
 
 /**
  * AppModule
- * Created by YuYunHao on 2016/8/30 13:52
+ * Created by ThirtyDegreesRay on 2016/8/30 13:52
  */
 @Module
 public class AppModule {
-    private static final String DB_NAME = "sutong.db";
 
     private AppApplication application;
 
@@ -50,7 +50,7 @@ public class AppModule {
     @Provides
     @Singleton
     public DaoSession provideDaoSession() {
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(application, DB_NAME, null);
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(application, AppConfig.DB_NAME, null);
         SQLiteDatabase db = helper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(db);
         DaoSession daoSession = daoMaster.newSession();

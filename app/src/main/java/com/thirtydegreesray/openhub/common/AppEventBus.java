@@ -20,7 +20,7 @@ import org.greenrobot.eventbus.EventBus;
 
 /**
  * 事件总线
- * Created by YuYunHao on 2016/8/22 14:55
+ * Created by ThirtyDegreesRay on 2016/8/22 14:55
  */
 
 public class AppEventBus {

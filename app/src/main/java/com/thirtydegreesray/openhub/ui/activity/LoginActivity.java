@@ -53,9 +53,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
     private Handler handler;
 
     @Override
-    public void onGetTokenSuccess(String token) {
+    public void onGetTokenSuccess(String token, String scope, int expireIn) {
         Intent intent = new Intent();
         intent.putExtra("accessToken", token);
+        intent.putExtra("scope", scope);
+        intent.putExtra("expireIn", expireIn);
         setResult(RESULT_OK, intent);
         finish();
     }
@@ -112,7 +114,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
         webView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if(url.startsWith(AppConfig.OPENHUB_HOME)){
+                if(url.startsWith(AppConfig.AUTH_HOME)){
                     Message message = new Message();
                     message.obj = url;
                     handler.sendMessage(message);

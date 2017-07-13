@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * activity管理
  * Created on 2016/10/9.
  *
- * @author YuYunhao
+ * @author ThirtyDegreesRay
  */
 
 public class ActivitiesManager {
@@ -61,7 +61,6 @@ public class ActivitiesManager {
         }
         activities.clear();
     }
-
 
     public void finishActivity(Activity activity, int layerNum, boolean refreshPage){
         for (int i = activities.size() - 1, j = 0; i >= 0; i--) {

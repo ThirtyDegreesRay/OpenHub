@@ -19,7 +19,7 @@ package com.thirtydegreesray.openhub.http.error;
 /**
  * Created on 2016/10/19.
  *
- * @author YuYunhao
+ * @author ThirtyDegreesRay
  */
 
 public class HttpErrorCode {

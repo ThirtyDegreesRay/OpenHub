@@ -22,13 +22,14 @@ import com.thirtydegreesray.openhub.http.error.HttpError;
 import com.thirtydegreesray.openhub.http.error.HttpErrorCode;
 import com.thirtydegreesray.openhub.util.NetHelper;
 
+import retrofit2.Response;
 import rx.Subscriber;
 
 /**
  * 网络请求订阅者，处理网络请求的返回，判断数据有效性，同时处理网络请求异常情况<br>
- * Created by YuYunHao on 2016/7/15 11:19
+ * Created by ThirtyDegreesRay on 2016/7/15 11:19
  */
-public class HttpSubscriber<T> extends Subscriber<T> {
+public class HttpSubscriber<T, R extends Response<T>> extends Subscriber<R> {
 
     private HttpObserver<T> mObserver;
     private Handler mHandler;
@@ -54,9 +55,9 @@ public class HttpSubscriber<T> extends Subscriber<T> {
     }
 
     @Override
-    public void onNext(T t) {
+    public void onNext(R r) {
         if (mObserver != null)
-            mObserver.onSuccess(t);
+            mObserver.onSuccess(new HttpResponse<>(r));
     }
 
     @Override

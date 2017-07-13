@@ -21,7 +21,7 @@ import android.content.DialogInterface;
 
 /**
  * BaseView
- * Created by YuYunHao on 2016/7/13 18:01
+ * Created by ThirtyDegreesRay on 2016/7/13 18:01
  */
 public interface IBaseView {
 

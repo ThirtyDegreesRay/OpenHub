@@ -19,11 +19,13 @@ package com.thirtydegreesray.openhub.http.core;
 import android.app.AlertDialog;
 import android.support.annotation.NonNull;
 
+import retrofit2.Response;
+
 /**
  * 网络请求开始时显示dialog，结束取消dialog
- * Created by YuYunHao on 2016/7/15 11:24
+ * Created by ThirtyDegreesRay on 2016/7/15 11:24
  */
-public class HttpProgressSubscriber<T> extends HttpSubscriber<T> {
+public class HttpProgressSubscriber<T, R extends Response<T>> extends HttpSubscriber<T, R> {
 
     /**
      * 网络请求dialog

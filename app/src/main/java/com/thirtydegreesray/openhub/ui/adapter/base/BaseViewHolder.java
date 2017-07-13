@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 
 /**
  * BasicViewHolder
- * Created by YuYunHao on 2016/7/27 20:20
+ * Created by ThirtyDegreesRay on 2016/7/27 20:20
  */
 public class BaseViewHolder extends RecyclerView.ViewHolder{
 

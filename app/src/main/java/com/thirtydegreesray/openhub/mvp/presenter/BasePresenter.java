@@ -20,10 +20,13 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 
+import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.db.DaoSession;
 import com.thirtydegreesray.openhub.http.AppsService;
-import com.thirtydegreesray.openhub.AppConfig;
+import com.thirtydegreesray.openhub.http.AuthService;
 import com.thirtydegreesray.openhub.http.core.AppRetrofit;
+import com.thirtydegreesray.openhub.http.core.HttpObserver;
+import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.http.core.HttpSubscriber;
 import com.thirtydegreesray.openhub.http.error.HttpError;
 import com.thirtydegreesray.openhub.http.error.HttpErrorCode;
@@ -36,6 +39,7 @@ import java.io.IOException;
 import java.net.SocketTimeoutException;
 
 import okhttp3.ResponseBody;
+import retrofit2.Response;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -43,7 +47,7 @@ import rx.schedulers.Schedulers;
 
 /**
  * BasePresenter
- * Created by YuYunHao on 2016/7/13 18:01
+ * Created by ThirtyDegreesRay on 2016/7/13 18:01
  */
 public class BasePresenter<V extends IBaseView> {
 
@@ -80,8 +84,15 @@ public class BasePresenter<V extends IBaseView> {
      * @return Retrofit
      */
     protected AppsService getAPPSService() {
-        return AppRetrofit.getInstance().getRetrofit(AppConfig.SERVER_BASE_URL)
+        return AppRetrofit.getInstance()
+                .getRetrofit(AppConfig.GITHUB_API_BASE_URL)
                 .create(AppsService.class);
+    }
+
+    protected AuthService getAuthService() {
+        return AppRetrofit.getInstance()
+                .getRetrofit(AppConfig.GITHUB_BASE_URL)
+                .create(AuthService.class);
     }
 
     /**
@@ -104,6 +115,10 @@ public class BasePresenter<V extends IBaseView> {
 
     }
 
+    public interface IObservableCreator<T, R extends Response<T>>{
+        Observable<R> createObservable(boolean forceNetWork);
+    }
+
     /**
      * 一般的rx http请求执行
      *
@@ -111,8 +126,8 @@ public class BasePresenter<V extends IBaseView> {
      * @param subscriber null 表明不管数据回调
      * @param <T>
      */
-    protected <T extends ResponseBody> void generalRxHttpExecute(
-            Observable<T> observable, HttpSubscriber<T> subscriber) {
+    protected <T, R extends Response<T>> void generalRxHttpExecute(
+            Observable<R> observable, HttpSubscriber<T, R> subscriber) {
         if (subscriber != null) {
             observable.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -120,9 +135,43 @@ public class BasePresenter<V extends IBaseView> {
         } else {
             observable.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new HttpSubscriber<>());
+                    .subscribe(new HttpSubscriber<T, R>());
         }
     }
+
+    protected <T, R extends Response<T>> void generalRxHttpExecute(
+            IObservableCreator<T, R> observableCreator, HttpObserver<T> httpObserver) {
+        generalRxHttpExecute(observableCreator, httpObserver, false);
+    }
+
+    protected <T, R extends Response<T>> void generalRxHttpExecute(
+            final IObservableCreator<T, R> observableCreator, final HttpObserver<T> httpObserver,
+            final boolean readCacheFirst) {
+
+        final HttpObserver<T> tempObserver = new HttpObserver<T>() {
+            @Override
+            public void onError(Throwable error) {
+                httpObserver.onError(error);
+            }
+
+            @Override
+            public void onSuccess(HttpResponse<T> response) {
+                if(readCacheFirst && response.isFromCache()){
+                    generalRxHttpExecute(observableCreator.createObservable(true),
+                            getHttpSubscriber(this));
+                }
+                httpObserver.onSuccess(response);
+            }
+        };
+        generalRxHttpExecute(observableCreator.createObservable(false),
+                getHttpSubscriber(tempObserver));
+    }
+
+    private <T> HttpSubscriber getHttpSubscriber(
+            HttpObserver<T> httpObserver){
+        return new HttpSubscriber<>(httpObserver);
+    }
+
 
     protected void showShortToast(String message) {
         if (mView != null) {

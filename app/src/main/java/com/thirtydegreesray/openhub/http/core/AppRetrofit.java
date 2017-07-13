@@ -43,6 +43,7 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManagerFactory;
 
 import okhttp3.Cache;
+import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -53,7 +54,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Retrofit 网络请求
- * Created by YuYunHao on 2016/7/15 11:39
+ * Created by ThirtyDegreesRay on 2016/7/15 11:39
  */
 public class AppRetrofit {
 
@@ -140,6 +141,13 @@ public class AppRetrofit {
             Request request = chain.request();
             Log.d(TAG, request.url().toString());
 
+            String forceNetWork = request.header("forceNetWork");
+            if(forceNetWork.equals("true")){
+                request = request.newBuilder()
+                        .cacheControl(CacheControl.FORCE_NETWORK)
+                        .build();
+            }
+
 //            String requestCacheControl = request.cacheControl().toString();
             //可缓存且无网络状态下取从缓存中取
 //            if (!StringUtil.isBlank(requestCacheControl) &&
@@ -182,7 +190,6 @@ public class AppRetrofit {
             }
             //设置缓存策略
             else {
-
                 Response res = originalResponse.newBuilder()
                         .header("Cache-Control", requestCacheControl)
                         //纠正服务器时间，服务器时间出错时可能会导致缓存处理出错

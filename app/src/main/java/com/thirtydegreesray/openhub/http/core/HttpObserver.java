@@ -17,7 +17,7 @@
 package com.thirtydegreesray.openhub.http.core;
 
 /**
- * Created by YuYunHao on 2016/7/15 14:45
+ * Created by ThirtyDegreesRay on 2016/7/15 14:45
  */
 public interface HttpObserver <T> {
 
@@ -29,8 +29,8 @@ public interface HttpObserver <T> {
 
     /**
      * success
-     * @param t
+     * @param response
      */
-    void onSuccess(T t);
+    void onSuccess(HttpResponse<T> response);
 
 }

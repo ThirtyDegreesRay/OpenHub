@@ -20,6 +20,7 @@ import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -30,18 +31,16 @@ import rx.Observable;
  * apps请求service
  * Created on 2016/10/19.
  *
- * @author YuYunhao
+ * @author ThirtyDegreesRay
  */
 
 public interface AppsService {
 
-    @POST("login/oauth/access_token")
-    @Headers("Accept: application/json")
-    Observable<ResponseBody> getAccessToken(
-            @Query("client_id") String clientId,
-            @Query("client_secret") String clientSecret,
-            @Query("code") String code,
-            @Query("state") String state
+    @GET("user")
+    @Headers("Cache-Control: public, max-age=600")
+    Observable<retrofit2.Response<Object>> getUser(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Query("access_token") String accessToken
     );
 
 

@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 /**
  * 适配器基类
- * Created by YuYunHao on 2016/7/27 19:49
+ * Created by ThirtyDegreesRay on 2016/7/27 19:49
  */
 public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends Object> extends RecyclerView.Adapter<VH>{
 

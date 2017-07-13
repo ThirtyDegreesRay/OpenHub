@@ -14,22 +14,29 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.inject.component;
+package com.thirtydegreesray.openhub.http;
 
-import com.thirtydegreesray.openhub.inject.ActivityScope;
-import com.thirtydegreesray.openhub.inject.module.ActivityModule;
-import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
-import com.thirtydegreesray.openhub.ui.activity.SplashActivity;
-
-import dagger.Component;
+import retrofit2.Response;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
+import retrofit2.http.Query;
+import rx.Observable;
 
 /**
- * ActivityComponent
- * Created by ThirtyDegreesRay on 2016/8/30 14:56
+ * Created on 2017/7/13.
+ *
+ * @author ThirtyDegreesRay
  */
-@ActivityScope
-@Component(modules = ActivityModule.class, dependencies = AppComponent.class)
-public interface ActivityComponent {
-    void inject(SplashActivity activity);
-    void inject(LoginActivity activity);
+
+public interface AuthService {
+
+    @POST("login/oauth/access_token")
+    @Headers("Accept: application/json")
+    Observable<Response<Object>> getAccessToken(
+            @Query("client_id") String clientId,
+            @Query("client_secret") String clientSecret,
+            @Query("code") String code,
+            @Query("state") String state
+    );
+
 }

@@ -24,7 +24,7 @@ import dagger.Provides;
 
 /**
  * ActivityModule
- * Created by YuYunHao on 2016/8/30 14:53
+ * Created by ThirtyDegreesRay on 2016/8/30 14:53
  */
 @Module
 public class ActivityModule {

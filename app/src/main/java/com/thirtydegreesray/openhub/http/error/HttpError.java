@@ -20,7 +20,7 @@ package com.thirtydegreesray.openhub.http.error;
  * 网络请求错误
  * Created on 2016/10/19.
  *
- * @author YuYunhao
+ * @author ThirtyDegreesRay
  */
 
 public class HttpError extends Error {

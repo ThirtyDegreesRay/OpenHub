@@ -16,12 +16,20 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
-import android.os.Handler;
-
+import com.thirtydegreesray.openhub.db.AuthUser;
+import com.thirtydegreesray.openhub.db.AuthUserDao;
 import com.thirtydegreesray.openhub.db.DaoSession;
+import com.thirtydegreesray.openhub.http.core.HttpObserver;
+import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.ISplashContract;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.inject.Inject;
+
+import retrofit2.Response;
+import rx.Observable;
 
 /**
  * Created on 2017/7/12.
@@ -31,18 +39,90 @@ import javax.inject.Inject;
 
 public class SplashPresenter extends ISplashContract.Presenter {
 
+    private final String TAG = "SplashPresenter";
+
     @Inject
     public SplashPresenter(DaoSession daoSession) {
         super(daoSession);
     }
 
     @Override
-    public void login() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mView.showMainPage();
+    public void getUser() {
+        AuthUserDao authUserDao = daoSession.getAuthUserDao();
+        List<AuthUser> users = authUserDao.loadAll();
+        AuthUser selectedUser = null;
+        for(AuthUser user : users){
+            if(user.getSelected() && !user.isExpired()){
+                selectedUser = user;
+                break;
             }
-        }, 1500);
+        }
+
+        if(selectedUser == null && users.size() > 0){
+            for(AuthUser user : users){
+                if(user.isExpired()){
+                    authUserDao.delete(user);
+                }else{
+                    selectedUser = user;
+                    selectedUser.setSelected(true);
+                    authUserDao.update(selectedUser);
+                }
+            }
+        }
+
+        if(selectedUser != null){
+            getUserInfo(selectedUser.getAccessToken());
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    mView.showMainPage();
+//                }
+//            }, 1500);
+        } else {
+            mView.showOAuth2Page();
+        }
+
     }
+
+    @Override
+    public void saveAccessToken(String accessToken, String scope, int expireIn) {
+        AuthUser authUser = new AuthUser();
+        authUser.setSelected(true);
+        authUser.setScope(scope);
+        authUser.setExpireIn(expireIn);
+        authUser.setAuthTime(new Date());
+        authUser.setAccessToken(accessToken);
+        daoSession.getAuthUserDao().insert(authUser);
+    }
+
+    private void getUserInfo(final String accessToken){
+
+        HttpObserver<Object> httpObserver =
+                new HttpObserver<Object>() {
+                    @Override
+                    public void onError(Throwable error) {
+                        mView.showShortToast(getErrorTip(error));
+                    }
+
+                    @Override
+                    public void onSuccess(HttpResponse<Object> response) {
+                        if(response.isFromNetWork()){
+                            mView.showShortToast("From NetWork");
+                        }else if(response.isFromCache()){
+                            mView.showShortToast("From Cache");
+                        }else{
+                            mView.showShortToast("No Date");
+                        }
+                    }
+                };
+        generalRxHttpExecute(new IObservableCreator<Object, Response<Object>>() {
+
+            @Override
+            public Observable<Response<Object>> createObservable(boolean forceNetWork) {
+                return getAPPSService().getUser(forceNetWork, accessToken);
+            }
+        }, httpObserver, true);
+
+    }
+
 }

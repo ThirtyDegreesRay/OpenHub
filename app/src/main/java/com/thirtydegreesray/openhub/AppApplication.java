@@ -27,7 +27,7 @@ import com.thirtydegreesray.openhub.util.NetHelper;
 
 /**
  * AppApplication
- * Created by YuYunHao on 2016/7/13 14:01
+ * Created by ThirtyDegreesRay on 2016/7/13 14:01
  */
 public class AppApplication extends Application {
 

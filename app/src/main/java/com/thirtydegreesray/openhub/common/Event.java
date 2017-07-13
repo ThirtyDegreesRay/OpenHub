@@ -18,7 +18,7 @@ package com.thirtydegreesray.openhub.common;
 
 /**
  * 事件
- * Created by YuYunHao on 2016/8/22 14:32
+ * Created by ThirtyDegreesRay on 2016/8/22 14:32
  */
 
 public class Event {

@@ -26,7 +26,7 @@ import com.thirtydegreesray.openhub.common.Event;
 import com.thirtydegreesray.openhub.util.NetHelper;
 
 /**
- * Created by YuYunHao on 2016/8/25 16:07
+ * Created by ThirtyDegreesRay on 2016/8/25 16:07
  */
 
 public class NetBroadcastReceiver extends BroadcastReceiver {

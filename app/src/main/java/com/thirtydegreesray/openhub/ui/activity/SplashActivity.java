@@ -42,6 +42,11 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
         startActivity(new Intent(getActivity(), MainActivity.class));
     }
 
+    @Override
+    public void showOAuth2Page() {
+        startActivityForResult(new Intent(getActivity(), LoginActivity.class), REQUEST_ACCESS_TOKEN);
+    }
+
     /**
      * 依赖注入的入口
      *
@@ -70,8 +75,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
      */
     @Override
     protected void initActivity() {
-//        mPresenter.login();
-        startActivityForResult(new Intent(getActivity(), LoginActivity.class), REQUEST_ACCESS_TOKEN);
+        mPresenter.getUser();
     }
 
     /**
@@ -99,9 +103,11 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
             case REQUEST_ACCESS_TOKEN:
                 if(resultCode == RESULT_OK){
                     String accessToken = data.getStringExtra("accessToken");
+                    String scope = data.getStringExtra("scope");
+                    int expireIn = data.getIntExtra("expireIn", 0);
                     //save token
-//                    showShortToast(accessToken);
-                    showMainPage();
+                    mPresenter.saveAccessToken(accessToken, scope, expireIn);
+                    mPresenter.getUser();
                 }
                 break;
             default:

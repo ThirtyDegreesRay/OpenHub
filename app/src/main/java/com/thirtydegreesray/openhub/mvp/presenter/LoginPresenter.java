@@ -20,6 +20,7 @@ import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.db.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpProgressSubscriber;
+import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.ILoginContract;
 
 import org.json.JSONException;
@@ -29,7 +30,7 @@ import java.util.UUID;
 
 import javax.inject.Inject;
 
-import okhttp3.ResponseBody;
+import retrofit2.Response;
 import rx.Observable;
 
 /**
@@ -47,25 +48,28 @@ public class LoginPresenter extends ILoginContract.Presenter {
 
     @Override
     public void getToken(String code, String state) {
-        Observable<ResponseBody> observable =
-                getAPPSService().getAccessToken(AppConfig.OPENHUB_CLIENT_ID,
+        Observable<Response<Object>> observable =
+                getAuthService().getAccessToken(AppConfig.OPENHUB_CLIENT_ID,
                         AppConfig.OPENHUB_CLIENT_SECRET, code, state);
-        HttpProgressSubscriber<ResponseBody> subscriber =
+
+        HttpProgressSubscriber<Object, Response<Object>> subscriber =
                 new HttpProgressSubscriber<>(
                         mView.getProgressDialog(getLoadTip()),
-                        new HttpObserver<ResponseBody>() {
+                        new HttpObserver<Object>() {
                             @Override
                             public void onError(Throwable error) {
                                 mView.showShortToast(error.getMessage());
                             }
 
                             @Override
-                            public void onSuccess(ResponseBody responseBody) {
-                                String jsonString = getStringFromBody(responseBody);
+                            public void onSuccess(HttpResponse<Object> response) {
+                                String jsonString = (String) response.body();
                                 try {
                                     JSONObject jsonObject = new JSONObject(jsonString);
                                     String accessToken = jsonObject.getString("access_token");
-                                    mView.onGetTokenSuccess(accessToken);
+                                    String scope = jsonObject.getString("scope");
+                                    int expireIn = 5184000;
+                                    mView.onGetTokenSuccess(accessToken, scope, expireIn);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -80,7 +84,7 @@ public class LoginPresenter extends ILoginContract.Presenter {
         String randomState = UUID.randomUUID().toString();
         return AppConfig.OAUTH2_URL +
                 "?client_id=" + AppConfig.OPENHUB_CLIENT_ID +
-                "&scope=" + AppConfig.AUTH_SCOPE +
+                "&scope=" + AppConfig.OAUTH2_SCOPE +
                 "&state=" + randomState;
     }
 }

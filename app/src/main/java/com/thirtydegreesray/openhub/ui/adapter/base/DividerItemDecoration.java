@@ -30,7 +30,7 @@ import com.thirtydegreesray.openhub.R;
  * RecycleView分割线
  * Created on 16/9/21.
  *
- * @author YuYunhao
+ * @author ThirtyDegreesRay
  */
 
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {

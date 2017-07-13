@@ -23,21 +23,21 @@ import org.greenrobot.greendao.generator.Schema;
 public class AppDaoGenerator {
     public static void main(String[] args) throws Exception {
         Schema rootSchema = new Schema(1, "com.thirtydegreesray.openhub.db");
+        addAuthUser(rootSchema);
         new DaoGenerator().generateAll(rootSchema, "app/src/main/java");
-    }
-
-    private static void addConfig(Schema schema){
-        Entity entity = schema.addEntity("AppConfig");
-        entity.addStringProperty("baseUrl");
     }
 
     /**
      * 添加user表
      * @param schema
      */
-    private static void addUser(Schema schema){
-        Entity entity = schema.addEntity("User");
-        entity.addStringProperty("userId").primaryKey();
-        entity.addStringProperty("password");
+    private static void addAuthUser(Schema schema){
+        Entity entity = schema.addEntity("AuthUser");
+        entity.addStringProperty("accessToken").primaryKey().notNull();
+        entity.addStringProperty("userId");
+        entity.addDateProperty("authTime").notNull();
+        entity.addIntProperty("expireIn").notNull();
+        entity.addStringProperty("scope").notNull();
+        entity.addBooleanProperty("selected").notNull();
     }
 }

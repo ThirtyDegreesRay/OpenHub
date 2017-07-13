@@ -29,6 +29,8 @@ public interface ISplashContract{
 
     interface View extends IBaseView{
         void showMainPage();
+
+        void showOAuth2Page();
     }
 
     abstract class Presenter extends BasePresenter<ISplashContract.View>{
@@ -37,7 +39,10 @@ public interface ISplashContract{
             super(daoSession);
         }
 
-        public abstract void login();
+        public abstract void getUser();
+
+        public abstract void saveAccessToken(String accessToken, String scope, int expireIn);
+
     }
 
 }

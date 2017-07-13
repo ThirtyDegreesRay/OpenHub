@@ -44,7 +44,7 @@ import butterknife.ButterKnife;
 
 /**
  * This is base activity to set some common things.
- * Created by YuYunHao on 2016/7/13 18:13
+ * Created by ThirtyDegreesRay on 2016/7/13 18:13
  */
 public abstract class BaseActivity<P extends BasePresenter>
         extends AppCompatActivity implements IBaseView {

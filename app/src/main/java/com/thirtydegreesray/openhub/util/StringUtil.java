@@ -18,7 +18,7 @@ package com.thirtydegreesray.openhub.util;
 
 /**
  * StringUtil
- * Created by YuYunHao on 2016/7/14 16:18
+ * Created by ThirtyDegreesRay on 2016/7/14 16:18
  */
 public class StringUtil {
 

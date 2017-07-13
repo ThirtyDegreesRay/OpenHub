@@ -19,26 +19,34 @@ package com.thirtydegreesray.openhub;
 /**
  * Created on 2016/11/23.
  *
- * @author YuYunhao
+ * @author ThirtyDegreesRay
  */
 
 public class AppConfig {
 
-    public final static String SERVER_BASE_URL = "https://www.github.com/";
+    public final static String GITHUB_BASE_URL = "https://github.com/";
+
+    public final static String GITHUB_API_BASE_URL = "https://api.github.com/";
 
     public final static int HTTP_TIME_OUT = 10 * 1000;
 
     public final static int MAX_CACHE_SIZE = 3 * 1024 * 1024;
+
+    public final static String DB_NAME = "OpenHub.db";
+
 
 
     public final static String OPENHUB_CLIENT_ID = "2a2f29517239a22ad850";
 
     public final static String OPENHUB_CLIENT_SECRET = "d16d28be9f7da6a92112a7c1e9671aef421eb8bf";
 
-    public final static String AUTH_SCOPE = "user,repo,gist,notifications";
+    public final static String OAUTH2_SCOPE = "user,repo,gist,notifications";
 
-    public final static String OAUTH2_URL = SERVER_BASE_URL.concat("login/oauth/authorize");
 
-    public final static String OPENHUB_HOME = "https://github.com/ThirtyDegreesRay/OpenHub";
+    public final static String OAUTH2_URL = GITHUB_BASE_URL + "login/oauth/authorize";
+
+    public final static String AUTH_HOME = GITHUB_BASE_URL + "ThirtyDegreesRay";
+
+    public final static String OPENHUB_HOME = AUTH_HOME + "/OpenHub";
 
 }

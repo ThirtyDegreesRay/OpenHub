@@ -26,7 +26,7 @@ import dagger.Component;
 
 /**
  * AppComponent
- * Created by YuYunHao on 2016/8/30 14:08
+ * Created by ThirtyDegreesRay on 2016/8/30 14:08
  */
 @Singleton
 @Component(modules = {AppModule.class})
