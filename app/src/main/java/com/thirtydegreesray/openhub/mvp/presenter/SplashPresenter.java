@@ -16,12 +16,14 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
+import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.db.AuthUser;
 import com.thirtydegreesray.openhub.db.AuthUserDao;
 import com.thirtydegreesray.openhub.db.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.ISplashContract;
+import com.thirtydegreesray.openhub.mvp.model.User;
 
 import java.util.Date;
 import java.util.List;
@@ -40,6 +42,8 @@ import rx.Observable;
 public class SplashPresenter extends ISplashContract.Presenter {
 
     private final String TAG = "SplashPresenter";
+
+    private AuthUser authUser ;
 
     @Inject
     public SplashPresenter(DaoSession daoSession) {
@@ -72,12 +76,6 @@ public class SplashPresenter extends ISplashContract.Presenter {
 
         if(selectedUser != null){
             getUserInfo(selectedUser.getAccessToken());
-//            new Handler().postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    mView.showMainPage();
-//                }
-//            }, 1500);
         } else {
             mView.showOAuth2Page();
         }
@@ -93,32 +91,35 @@ public class SplashPresenter extends ISplashContract.Presenter {
         authUser.setAuthTime(new Date());
         authUser.setAccessToken(accessToken);
         daoSession.getAuthUserDao().insert(authUser);
+        this.authUser = authUser;
     }
 
     private void getUserInfo(final String accessToken){
 
-        HttpObserver<Object> httpObserver = new HttpObserver<Object>() {
+        HttpObserver<User> httpObserver = new HttpObserver<User>() {
                     @Override
                     public void onError(Throwable error) {
                         mView.showShortToast(error.getMessage());
                     }
 
                     @Override
-                    public void onSuccess(HttpResponse<Object> response) {
-                        if(response.isFromNetWork()){
-                            mView.showShortToast("From NetWork");
-                        }else if(response.isFromCache()){
-                            mView.showShortToast("From Cache");
+                    public void onSuccess(HttpResponse<User> response) {
+                        AppData.getInstance().setLoginUser(response.body());
+                        if(authUser != null){
+                            authUser.setUserId(response.body().getLogin());
+                            daoSession.getAuthUserDao().insert(authUser);
                         }
+                        mView.showMainPage();
+
                     }
                 };
 
-        generalRxHttpExecute(new IObservableCreator<Object, Response<Object>>() {
+        generalRxHttpExecute(new IObservableCreator<User, Response<User>>() {
             @Override
-            public Observable<Response<Object>> createObservable(boolean forceNetWork) {
+            public Observable<Response<User>> createObservable(boolean forceNetWork) {
                 return getAPPSService().getUser(forceNetWork, accessToken);
             }
-        }, httpObserver, true);
+        }, httpObserver, false);
 
     }
 

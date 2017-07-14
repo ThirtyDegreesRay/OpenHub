@@ -18,9 +18,8 @@ package com.thirtydegreesray.openhub.ui.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -28,11 +27,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.mvp.model.User;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +65,20 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        ImageView avatar = navigationView.getHeaderView(0).findViewById(R.id.avatar);
+        TextView name = (TextView) navigationView.getHeaderView(0).findViewById(R.id.name);
+        TextView mail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.mail);
+
+        User loginUser = AppData.getInstance().getLoginUser();
+        Picasso.with(this)
+                .load(loginUser.getAvatarUrl())
+                .into(avatar);
+        name.setText(loginUser.getLogin());
+        mail.setText(loginUser.getBio());
+
+
     }
 
     @Override

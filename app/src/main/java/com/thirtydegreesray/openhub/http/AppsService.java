@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.http;
 
+import com.thirtydegreesray.openhub.mvp.model.User;
+
 import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -37,7 +39,7 @@ import rx.Observable;
 public interface AppsService {
 
     @GET("user")
-    Observable<retrofit2.Response<Object>> getUser(
+    Observable<retrofit2.Response<User>> getUser(
             @Header("forceNetWork") boolean forceNetWork,
             @Query("access_token") String accessToken
     );

@@ -74,6 +74,8 @@ dependencies {
     compile "com.github.hotchemi:permissionsdispatcher:${PERMISSIONS_DISPATCHER_VERSION}"
     apt "com.github.hotchemi:permissionsdispatcher-processor:${PERMISSIONS_DISPATCHER_VERSION}"
 
+    compile "com.squareup.picasso:picasso:${PICASSO_VERSION}"
+
     //Retrolambda: Use Lambdas on Java 7
 //    compile "net.orfjackal.retrolambda:retrolambda:${RETROLAMBDA_VERSION}"
 }
