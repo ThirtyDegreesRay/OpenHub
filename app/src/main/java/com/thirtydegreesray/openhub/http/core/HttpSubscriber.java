@@ -27,8 +27,6 @@ public class HttpSubscriber<T, R extends Response<T>> extends Subscriber<R> {
 
     private HttpObserver<T> mObserver;
 
-    private final int ON_ERROR = 0;
-
     public HttpSubscriber() {
     }
 
@@ -56,9 +54,5 @@ public class HttpSubscriber<T, R extends Response<T>> extends Subscriber<R> {
     @Override
     public void onStart() {
         super.onStart();
-//        if (!NetHelper.getInstance().getNetEnabled()) {
-//            onError(new HttpError("网络未连接！", HttpErrorCode.NET_UNABLE));
-//            unsubscribe();
-//        }
     }
 }
