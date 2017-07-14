@@ -27,12 +27,8 @@ public class HttpError extends Error {
 
     private int errorCode = -1;
 
-    public HttpError(String message) {
-        super(message);
-    }
-
-    public HttpError(String message, int errorCode) {
-        super(message);
+    public HttpError(int errorCode) {
+        super(HttpErrorCode.getErrorMsg(errorCode));
         this.errorCode = errorCode;
     }
 

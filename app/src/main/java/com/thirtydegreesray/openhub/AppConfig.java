@@ -28,9 +28,11 @@ public class AppConfig {
 
     public final static String GITHUB_API_BASE_URL = "https://api.github.com/";
 
-    public final static int HTTP_TIME_OUT = 10 * 1000;
+    public final static int HTTP_TIME_OUT = 8 * 1000;
 
-    public final static int MAX_CACHE_SIZE = 3 * 1024 * 1024;
+    public final static int MAX_CACHE_SIZE = 8 * 1024 * 1024;
+
+    public final static int CACHE_MAX_AGE = 4 * 7 * 24 * 60 * 60;
 
     public final static String DB_NAME = "OpenHub.db";
 

@@ -16,6 +16,14 @@
 
 package com.thirtydegreesray.openhub.http.error;
 
+import android.support.annotation.StringRes;
+
+import com.thirtydegreesray.openhub.AppApplication;
+import com.thirtydegreesray.openhub.R;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created on 2016/10/19.
  *
@@ -25,9 +33,22 @@ package com.thirtydegreesray.openhub.http.error;
 public class HttpErrorCode {
 
     /**
-     * 网络不可用
+     * No cache and network available.
      */
-    public final static int NET_UNABLE = 0;
+    public final static int NO_CACHE_AND_NETWORK = 0;
 
+    private final static Map<Integer, String> ERROR_MSG_MAP = new HashMap<>();
+
+    static{
+        ERROR_MSG_MAP.put(NO_CACHE_AND_NETWORK, getString(R.string.no_cache_and_network));
+    }
+
+    public static String getErrorMsg(int errorCode){
+        return ERROR_MSG_MAP.get(errorCode);
+    }
+
+    private static String getString(@StringRes int resId){
+        return AppApplication.get().getResources().getString(resId);
+    }
 
 }

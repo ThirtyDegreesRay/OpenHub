@@ -37,7 +37,6 @@ import rx.Observable;
 public interface AppsService {
 
     @GET("user")
-    @Headers("Cache-Control: public, max-age=600")
     Observable<retrofit2.Response<Object>> getUser(
             @Header("forceNetWork") boolean forceNetWork,
             @Query("access_token") String accessToken

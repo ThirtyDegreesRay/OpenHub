@@ -16,12 +16,6 @@
 
 package com.thirtydegreesray.openhub.http.core;
 
-import android.os.Handler;
-
-import com.thirtydegreesray.openhub.http.error.HttpError;
-import com.thirtydegreesray.openhub.http.error.HttpErrorCode;
-import com.thirtydegreesray.openhub.util.NetHelper;
-
 import retrofit2.Response;
 import rx.Subscriber;
 
@@ -32,7 +26,6 @@ import rx.Subscriber;
 public class HttpSubscriber<T, R extends Response<T>> extends Subscriber<R> {
 
     private HttpObserver<T> mObserver;
-    private Handler mHandler;
 
     private final int ON_ERROR = 0;
 
@@ -63,9 +56,9 @@ public class HttpSubscriber<T, R extends Response<T>> extends Subscriber<R> {
     @Override
     public void onStart() {
         super.onStart();
-        if (!NetHelper.getInstance().getNetEnabled()) {
-            onError(new HttpError("网络未连接！", HttpErrorCode.NET_UNABLE));
-            unsubscribe();
-        }
+//        if (!NetHelper.getInstance().getNetEnabled()) {
+//            onError(new HttpError("网络未连接！", HttpErrorCode.NET_UNABLE));
+//            unsubscribe();
+//        }
     }
 }

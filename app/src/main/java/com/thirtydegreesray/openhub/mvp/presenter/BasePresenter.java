@@ -19,6 +19,7 @@ package com.thirtydegreesray.openhub.mvp.presenter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
+import android.util.Log;
 
 import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.db.DaoSession;
@@ -31,14 +32,13 @@ import com.thirtydegreesray.openhub.http.core.HttpSubscriber;
 import com.thirtydegreesray.openhub.http.error.HttpError;
 import com.thirtydegreesray.openhub.http.error.HttpErrorCode;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseView;
+import com.thirtydegreesray.openhub.util.NetHelper;
 import com.thirtydegreesray.openhub.util.StringUtil;
 
 import org.apache.http.conn.ConnectTimeoutException;
 
-import java.io.IOException;
 import java.net.SocketTimeoutException;
 
-import okhttp3.ResponseBody;
 import retrofit2.Response;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -50,6 +50,8 @@ import rx.schedulers.Schedulers;
  * Created by ThirtyDegreesRay on 2016/7/13 18:01
  */
 public class BasePresenter<V extends IBaseView> {
+
+    private final String TAG = "BasePresenter";
 
     //View
     protected V mView;
@@ -156,15 +158,23 @@ public class BasePresenter<V extends IBaseView> {
 
             @Override
             public void onSuccess(HttpResponse<T> response) {
-                if(readCacheFirst && response.isFromCache()){
-                    generalRxHttpExecute(observableCreator.createObservable(true),
-                            getHttpSubscriber(this));
+                Log.i(TAG, "get data ok:" + System.currentTimeMillis());
+                Log.i(TAG, "data:" + response.body());
+                if(response.isSuccessful()){
+                    if(readCacheFirst && response.isFromCache()
+                            && NetHelper.getInstance().getNetEnabled()){
+                        generalRxHttpExecute(observableCreator.createObservable(true),
+                                getHttpSubscriber(this));
+                    }
+                    httpObserver.onSuccess(response);
+                }else{
+                    httpObserver.onError(new HttpError(HttpErrorCode.NO_CACHE_AND_NETWORK));
                 }
-                httpObserver.onSuccess(response);
             }
         };
         generalRxHttpExecute(observableCreator.createObservable(false),
                 getHttpSubscriber(tempObserver));
+        Log.i(TAG, "get cache start:" + System.currentTimeMillis());
     }
 
     private <T> HttpSubscriber getHttpSubscriber(
@@ -173,23 +183,8 @@ public class BasePresenter<V extends IBaseView> {
     }
 
 
-    protected void showShortToast(String message) {
-        if (mView != null) {
-            mView.showShortToast(message);
-        }
-    }
-
-    protected String getStringFromBody(ResponseBody responseBody) {
-        try {
-            return responseBody.string();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     protected String getLoadTip() {
-        return "加载中...";
+        return "loading...";
     }
 
     /**
@@ -219,21 +214,9 @@ public class BasePresenter<V extends IBaseView> {
         return getErrorTip(error, null);
     }
 
-    protected boolean isNetUnable(Throwable error) {
-        if (error instanceof HttpError) {
-            if(((HttpError) error).getErrorCode() == HttpErrorCode.NET_UNABLE){
-                return true;
-            }
-        }
-        return false;
-    }
-
     protected String getStringFromResource(@StringRes int resId){
         return getContext().getResources().getString(resId);
     }
 
-    protected interface CheckListener {
-        void onOK();
-    }
 
 }

@@ -21,6 +21,7 @@ import android.util.Log;
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.util.FileUtil;
+import com.thirtydegreesray.openhub.util.NetHelper;
 import com.thirtydegreesray.openhub.util.StringUtil;
 
 import java.io.IOException;
@@ -135,31 +136,26 @@ public class AppRetrofit {
     /**
      * 拦截器
      */
-    static class BaseInterceptor implements Interceptor {
+    private class BaseInterceptor implements Interceptor {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
             Log.d(TAG, request.url().toString());
 
+            //第二次请求，强制使用网络请求
             String forceNetWork = request.header("forceNetWork");
             if(forceNetWork.equals("true")){
                 request = request.newBuilder()
                         .cacheControl(CacheControl.FORCE_NETWORK)
                         .build();
             }
-
-//            String requestCacheControl = request.cacheControl().toString();
-            //可缓存且无网络状态下取从缓存中取
-//            if (!StringUtil.isBlank(requestCacheControl) &&
-//                    !CheckNet.getNetEnabled(BaseActivity.getCurActivity())) {
-//                request = request.newBuilder()
-//                        .cacheControl(CacheControl.FORCE_CACHE)
-//                        .build();
-//            }
-
-//            request = request.newBuilder()
-//                    .addHeader("JSESSIONID", HttpConfig.SESSION_ID)
-//                    .build();
+            //有forceNetWork且无网络状态下取从缓存中取
+            else if (!StringUtil.isBlank(forceNetWork) &&
+                    !NetHelper.getInstance().getNetEnabled()) {
+                request = request.newBuilder()
+                        .cacheControl(CacheControl.FORCE_CACHE)
+                        .build();
+            }
 
             return chain.proceed(request);
         }
@@ -168,7 +164,7 @@ public class AppRetrofit {
     /**
      * 网络请求拦截器
      */
-    static class NetworkBaseInterceptor implements Interceptor {
+    private class NetworkBaseInterceptor implements Interceptor {
         @Override
         public Response intercept(Chain chain) throws IOException {
 
@@ -185,6 +181,12 @@ public class AppRetrofit {
 //            //不设置缓存策略
 //            else
 
+            //有forceNetWork时，强制更改缓存策略
+            String forceNetWork = request.header("forceNetWork");
+            if(!StringUtil.isBlank(forceNetWork)){
+                requestCacheControl = getCacheString();
+            }
+
             if (StringUtil.isBlank(requestCacheControl)) {
                 return originalResponse;
             }
@@ -193,7 +195,7 @@ public class AppRetrofit {
                 Response res = originalResponse.newBuilder()
                         .header("Cache-Control", requestCacheControl)
                         //纠正服务器时间，服务器时间出错时可能会导致缓存处理出错
-                        .header("Date", getGMTTime())
+//                        .header("Date", getGMTTime())
                         .removeHeader("Pragma")
                         .build();
                 return res;
@@ -205,9 +207,13 @@ public class AppRetrofit {
     private static String getGMTTime(){
         Date date = new Date();
         DateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.ENGLISH);
-        format.setTimeZone(TimeZone.getTimeZone("GMT"));
+        format.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         String gmtTime = format.format(date);
         return gmtTime;
+    }
+
+    public static String getCacheString(){
+        return "public, max-age=" + AppConfig.CACHE_MAX_AGE;
     }
 
     private class UnSafeHostnameVerifier implements HostnameVerifier {

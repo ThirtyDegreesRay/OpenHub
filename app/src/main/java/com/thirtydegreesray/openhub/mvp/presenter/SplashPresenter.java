@@ -97,11 +97,10 @@ public class SplashPresenter extends ISplashContract.Presenter {
 
     private void getUserInfo(final String accessToken){
 
-        HttpObserver<Object> httpObserver =
-                new HttpObserver<Object>() {
+        HttpObserver<Object> httpObserver = new HttpObserver<Object>() {
                     @Override
                     public void onError(Throwable error) {
-                        mView.showShortToast(getErrorTip(error));
+                        mView.showShortToast(error.getMessage());
                     }
 
                     @Override
@@ -110,13 +109,11 @@ public class SplashPresenter extends ISplashContract.Presenter {
                             mView.showShortToast("From NetWork");
                         }else if(response.isFromCache()){
                             mView.showShortToast("From Cache");
-                        }else{
-                            mView.showShortToast("No Date");
                         }
                     }
                 };
-        generalRxHttpExecute(new IObservableCreator<Object, Response<Object>>() {
 
+        generalRxHttpExecute(new IObservableCreator<Object, Response<Object>>() {
             @Override
             public Observable<Response<Object>> createObservable(boolean forceNetWork) {
                 return getAPPSService().getUser(forceNetWork, accessToken);
