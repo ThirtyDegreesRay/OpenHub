@@ -23,7 +23,7 @@
     android:gravity="center"
     android:background="@color/white">
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
         android:src="@mipmap/logo_big"/>
 </LinearLayout>
