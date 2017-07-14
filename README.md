@@ -1,6 +1,8 @@
 # OpenHub 
 An android client for GitHub.
 
+![OpenHubLogo](https://github.com/ThirtyDegreesRay/OpenHub/blob/master/app/src/main/res/mipmap-xxhdpi/logo_big.png)
+
 ## License
     Copyright 2017 ThirtyDegreesRay
     
