@@ -6,6 +6,27 @@
 
     <string name="action_settings">Settings</string>
 
+    <!-- menu -->
+    <string name="profile">Profile</string>
+    <string name="notifications">Notifications</string>
+    <string name="news">News</string>
+    <string name="issues">Issues</string>
+
+    <string name="repositories">Repositories</string>
+    <string name="owned">Owned</string>
+    <string name="starred">Starred</string>
+    <string name="trending">Trending</string>
+    <string name="explore">Explore</string>
+
+    <string name="info_and_repositories">Info &#038; Preferences</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+
+
     <string name="no_cache_and_network">No cache and network available.</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>

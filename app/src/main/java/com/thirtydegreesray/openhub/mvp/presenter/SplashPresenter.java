@@ -107,7 +107,7 @@ public class SplashPresenter extends ISplashContract.Presenter {
                         AppData.getInstance().setLoginUser(response.body());
                         if(authUser != null){
                             authUser.setUserId(response.body().getLogin());
-                            daoSession.getAuthUserDao().insert(authUser);
+                            daoSession.getAuthUserDao().update(authUser);
                         }
                         mView.showMainPage();
 

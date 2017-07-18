@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~    Copyright 2014 ThirtyDegressRay
+  ~    Copyright 2017 ThirtyDegressRay
   ~
   ~    Licensed under the Apache License, Version 2.0 (the "License");
   ~    you may not use this file except in compliance with the License.
@@ -19,33 +19,56 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import"/>
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_menu_person"
+            android:title="@string/profile"/>
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery"/>
+            android:id="@+id/nav_notifications"
+            android:icon="@drawable/ic_menu_notifications"
+            android:title="@string/notifications"/>
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow"/>
+            android:id="@+id/nav_news"
+            android:icon="@drawable/ic_menu_news"
+            android:title="@string/news"/>
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools"/>
+            android:id="@+id/nav_issues"
+            android:icon="@drawable/ic_menu_issues"
+            android:title="@string/issues"/>
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/repositories">
+        <menu >
+            <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/nav_owned"
+                android:icon="@drawable/ic_menu_owned"
+                android:title="@string/owned"/>
+            <item
+                android:id="@+id/nav_starred"
+                android:icon="@drawable/ic_menu_star"
+                android:title="@string/starred"/>
+            <item
+                android:id="@+id/nav_trending"
+                android:icon="@drawable/ic_menu_trending"
+                android:title="@string/trending"/>
+            <item
+                android:id="@+id/nav_explore"
+                android:icon="@drawable/ic_menu_explore"
+                android:title="@string/explore"/>
+            </group>
+        </menu>
+    </item>
+    <item android:title="@string/info_and_repositories">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share"/>
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_menu_settings"
+                android:title="@string/settings"/>
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send"/>
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_menu_about"
+                android:title="@string/about"/>
+
         </menu>
     </item>
 

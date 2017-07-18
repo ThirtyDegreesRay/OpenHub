@@ -22,9 +22,7 @@ import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpProgressSubscriber;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.ILoginContract;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.thirtydegreesray.openhub.mvp.model.AccessToken;
 
 import java.util.UUID;
 
@@ -48,31 +46,27 @@ public class LoginPresenter extends ILoginContract.Presenter {
 
     @Override
     public void getToken(String code, String state) {
-        Observable<Response<Object>> observable =
+        getAuthService();
+        Observable<Response<AccessToken>> observable =
                 getAuthService().getAccessToken(AppConfig.OPENHUB_CLIENT_ID,
                         AppConfig.OPENHUB_CLIENT_SECRET, code, state);
 
-        HttpProgressSubscriber<Object, Response<Object>> subscriber =
+        HttpProgressSubscriber<AccessToken, Response<AccessToken>> subscriber =
                 new HttpProgressSubscriber<>(
                         mView.getProgressDialog(getLoadTip()),
-                        new HttpObserver<Object>() {
+                        new HttpObserver<AccessToken>() {
                             @Override
                             public void onError(Throwable error) {
                                 mView.showShortToast(error.getMessage());
                             }
 
                             @Override
-                            public void onSuccess(HttpResponse<Object> response) {
-                                String jsonString = (String) response.body();
-                                try {
-                                    JSONObject jsonObject = new JSONObject(jsonString);
-                                    String accessToken = jsonObject.getString("access_token");
-                                    String scope = jsonObject.getString("scope");
-                                    int expireIn = 5184000;
-                                    mView.onGetTokenSuccess(accessToken, scope, expireIn);
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
+                            public void onSuccess(HttpResponse<AccessToken> response) {
+                                AccessToken token = response.body();
+                                String accessToken = token.getAccessToken();
+                                String scope = token.getScope();
+                                int expireIn = 5184000;
+                                mView.onGetTokenSuccess(accessToken, scope, expireIn);
                             }
                         }
                 );

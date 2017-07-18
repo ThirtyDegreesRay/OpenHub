@@ -38,7 +38,6 @@ dependencies {
     compile "com.android.support:design:${ANDROID_SUPPORT_VERSION}"
     compile "com.android.support.constraint:constraint-layout:${CONSTRAINT_VERSION}"
 
-    testCompile 'junit:junit:4.12'
 
     compile "com.thirtydegreesray:dataautoaccess:${DATAAUTOACCESS_VERSION}"
     apt "com.thirtydegreesray:dataautoaccess-compiler:${DATAAUTOACCESS_VERSION}"
@@ -76,6 +75,10 @@ dependencies {
 
     compile "com.squareup.picasso:picasso:${PICASSO_VERSION}"
 
+    compile "com.makeramen:roundedimageview:${ROUNDED_IMAGEVIEW_VERSION}"
+
     //Retrolambda: Use Lambdas on Java 7
 //    compile "net.orfjackal.retrolambda:retrolambda:${RETROLAMBDA_VERSION}"
+    compile 'com.android.support:support-v4:26.+'
+    testCompile 'junit:junit:4.12'
 }

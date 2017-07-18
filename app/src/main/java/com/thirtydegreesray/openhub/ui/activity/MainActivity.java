@@ -23,7 +23,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,17 +33,54 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.inject.component.AppComponent;
+import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
+import com.thirtydegreesray.openhub.mvp.contract.IMainContract;
 import com.thirtydegreesray.openhub.mvp.model.User;
+import com.thirtydegreesray.openhub.mvp.presenter.MainPresenter;
+import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity<MainPresenter>
+        implements NavigationView.OnNavigationItemSelectedListener, IMainContract.View {
 
-
-
+    /**
+     * 依赖注入的入口
+     *
+     * @param appComponent appComponent
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected void setupActivityComponent(AppComponent appComponent) {
+        DaggerActivityComponent.builder()
+                .appComponent(appComponent)
+                .build()
+                .inject(this);
+    }
+
+    /**
+     * 获取ContentView id
+     *
+     * @return
+     */
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_main;
+    }
+
+    /**
+     * 初始化activity
+     */
+    @Override
+    protected void initActivity() {
+
+    }
+
+    /**
+     * 初始化view
+     *
+     * @param savedInstanceState
+     */
+    @Override
+    protected void initView(Bundle savedInstanceState) {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -77,8 +113,6 @@ public class MainActivity extends AppCompatActivity
                 .into(avatar);
         name.setText(loginUser.getLogin());
         mail.setText(loginUser.getBio());
-
-
     }
 
     @Override
@@ -119,19 +153,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

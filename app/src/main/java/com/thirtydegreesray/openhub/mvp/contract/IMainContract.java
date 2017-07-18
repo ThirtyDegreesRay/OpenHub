@@ -14,31 +14,29 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.http;
+package com.thirtydegreesray.openhub.mvp.contract;
 
-import com.thirtydegreesray.openhub.mvp.model.AccessToken;
-
-import retrofit2.Response;
-import retrofit2.http.Headers;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
-import rx.Observable;
+import com.thirtydegreesray.openhub.db.DaoSession;
+import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 
 /**
- * Created on 2017/7/13.
+ * Created on 2017/7/18.
  *
  * @author ThirtyDegreesRay
  */
 
-public interface AuthService {
+public interface IMainContract {
 
-    @POST("login/oauth/access_token")
-    @Headers("Accept: application/json")
-    Observable<Response<AccessToken>> getAccessToken(
-            @Query("client_id") String clientId,
-            @Query("client_secret") String clientSecret,
-            @Query("code") String code,
-            @Query("state") String state
-    );
+    interface View extends IBaseView{
+
+    }
+
+    abstract class Presenter extends BasePresenter<IMainContract.View>{
+
+        public Presenter(DaoSession daoSession) {
+            super(daoSession);
+        }
+
+    }
 
 }

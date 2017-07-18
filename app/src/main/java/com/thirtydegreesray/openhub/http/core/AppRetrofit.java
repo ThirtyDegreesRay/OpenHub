@@ -25,10 +25,6 @@ import com.thirtydegreesray.openhub.util.NetHelper;
 import com.thirtydegreesray.openhub.util.StringUtil;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.security.KeyStore;
-import java.security.SecureRandom;
-import java.security.cert.CertificateFactory;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,12 +32,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManagerFactory;
 
 import okhttp3.Cache;
 import okhttp3.CacheControl;
@@ -101,12 +91,12 @@ public class AppRetrofit {
         Cache cache = new Cache(FileUtil.getHttpImageCacheDir(AppApplication.get()),
                 AppConfig.MAX_CACHE_SIZE);
 
-        SSLSocketFactory sslSocketFactory = null;
-        try {
-            sslSocketFactory = getSLLSocketFactoryByCer(AppApplication.get().getAssets().open("cer/test.cer"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        SSLSocketFactory sslSocketFactory = null;
+//        try {
+//            sslSocketFactory = getSLLSocketFactoryByCer(AppApplication.get().getAssets().open("cer/test.cer"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(timeOut, TimeUnit.MILLISECONDS)
@@ -144,7 +134,7 @@ public class AppRetrofit {
 
             //第二次请求，强制使用网络请求
             String forceNetWork = request.header("forceNetWork");
-            if(forceNetWork.equals("true")){
+            if("true".equals(forceNetWork)){
                 request = request.newBuilder()
                         .cacheControl(CacheControl.FORCE_NETWORK)
                         .build();
@@ -216,52 +206,52 @@ public class AppRetrofit {
         return "public, max-age=" + AppConfig.CACHE_MAX_AGE;
     }
 
-    private class UnSafeHostnameVerifier implements HostnameVerifier {
-
-        @Override
-        public boolean verify(String hostname, SSLSession session) {
-            return true;
-        }
-    }
-
-    private SSLSocketFactory getSLLSocketFactoryByCer(InputStream... certificates) {
-        try
-        {
-            CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
-            KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            keyStore.load(null);
-            int index = 0;
-            for (InputStream certificate : certificates)
-            {
-                String certificateAlias = Integer.toString(index++);
-                keyStore.setCertificateEntry(certificateAlias, certificateFactory.generateCertificate(certificate));
-
-                try
-                {
-                    if (certificate != null)
-                        certificate.close();
-                } catch (IOException e)
-                {
-                }
-            }
-
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-
-            TrustManagerFactory trustManagerFactory =
-                    TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-
-            trustManagerFactory.init(keyStore);
-            sslContext.init
-                    (
-                            null,
-                            trustManagerFactory.getTrustManagers(),
-                            new SecureRandom()
-                    );
-            return sslContext.getSocketFactory();
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    private class UnSafeHostnameVerifier implements HostnameVerifier {
+//
+//        @Override
+//        public boolean verify(String hostname, SSLSession session) {
+//            return true;
+//        }
+//    }
+//
+//    private SSLSocketFactory getSLLSocketFactoryByCer(InputStream... certificates) {
+//        try
+//        {
+//            CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
+//            KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+//            keyStore.load(null);
+//            int index = 0;
+//            for (InputStream certificate : certificates)
+//            {
+//                String certificateAlias = Integer.toString(index++);
+//                keyStore.setCertificateEntry(certificateAlias, certificateFactory.generateCertificate(certificate));
+//
+//                try
+//                {
+//                    if (certificate != null)
+//                        certificate.close();
+//                } catch (IOException e)
+//                {
+//                }
+//            }
+//
+//            SSLContext sslContext = SSLContext.getInstance("TLS");
+//
+//            TrustManagerFactory trustManagerFactory =
+//                    TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+//
+//            trustManagerFactory.init(keyStore);
+//            sslContext.init
+//                    (
+//                            null,
+//                            trustManagerFactory.getTrustManagers(),
+//                            new SecureRandom()
+//                    );
+//            return sslContext.getSocketFactory();
+//        } catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 }

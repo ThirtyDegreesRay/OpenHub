@@ -114,7 +114,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
         webView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if(url.startsWith(AppConfig.AUTH_HOME)){
+                if(url.startsWith(AppConfig.OAUTH2_CALLBACK_URL)){
                     Message message = new Message();
                     message.obj = url;
                     handler.sendMessage(message);

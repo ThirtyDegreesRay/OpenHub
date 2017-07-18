@@ -14,31 +14,39 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.http;
+package com.thirtydegreesray.openhub.mvp.model;
 
-import com.thirtydegreesray.openhub.mvp.model.AccessToken;
-
-import retrofit2.Response;
-import retrofit2.http.Headers;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
-import rx.Observable;
+import com.google.gson.annotations.SerializedName;
 
 /**
- * Created on 2017/7/13.
+ * Created on 2017/7/14.
  *
  * @author ThirtyDegreesRay
  */
 
-public interface AuthService {
+public class AccessToken {
 
-    @POST("login/oauth/access_token")
-    @Headers("Accept: application/json")
-    Observable<Response<AccessToken>> getAccessToken(
-            @Query("client_id") String clientId,
-            @Query("client_secret") String clientSecret,
-            @Query("code") String code,
-            @Query("state") String state
-    );
+    @SerializedName("access_token")
+    private String accessToken;
 
+    private String scope;
+
+    public AccessToken() {
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
 }
