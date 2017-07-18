@@ -20,6 +20,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -27,6 +29,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,9 +42,21 @@ import com.thirtydegreesray.openhub.mvp.contract.IMainContract;
 import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.mvp.presenter.MainPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
+import com.thirtydegreesray.openhub.ui.fragment.ProfileFragment;
+import com.thirtydegreesray.openhub.ui.fragment.TrendingFragment;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity<MainPresenter>
         implements NavigationView.OnNavigationItemSelectedListener, IMainContract.View {
+
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.tab_layout) TabLayout tabLayout;
+    @BindView(R.id.frame_layout_content) FrameLayout frameLayoutContent;
+    @BindView(R.id.fab) FloatingActionButton fab;
+    @BindView(R.id.nav_view) NavigationView navView;
+    @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
 
     /**
      * 依赖注入的入口
@@ -81,10 +96,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
      */
     @Override
     protected void initView(Bundle savedInstanceState) {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,19 +107,19 @@ public class MainActivity extends BaseActivity<MainPresenter>
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
+        navView.setNavigationItemSelectedListener(this);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        navView.setCheckedItem(R.id.nav_profile);
+        loadFragment("nav_profile");
 
 
-        ImageView avatar = navigationView.getHeaderView(0).findViewById(R.id.avatar);
-        TextView name = (TextView) navigationView.getHeaderView(0).findViewById(R.id.name);
-        TextView mail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.mail);
+        ImageView avatar = navView.getHeaderView(0).findViewById(R.id.avatar);
+        TextView name =  navView.getHeaderView(0).findViewById(R.id.name);
+        TextView mail =  navView.getHeaderView(0).findViewById(R.id.mail);
 
         User loginUser = AppData.getInstance().getLoginUser();
         Picasso.with(this)
@@ -153,10 +167,67 @@ public class MainActivity extends BaseActivity<MainPresenter>
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        switch (id){
+            case R.id.nav_profile:
+                loadFragment("nav_profile");
+                break;
+            case R.id.nav_notifications:
+                loadFragment("nav_notifications");
+                break;
+            case R.id.nav_news:
+                loadFragment("nav_news");
+                break;
+            case R.id.nav_issues:
+                loadFragment("nav_issues");
+                break;
 
+            case R.id.nav_owned:
+                loadFragment("nav_owned");
+                break;
+            case R.id.nav_starred:
+                loadFragment("nav_starred");
+                break;
+            case R.id.nav_trending:
+                TrendingFragment fragment = new TrendingFragment();
+                fragment.setTabLayout(tabLayout);
+                loadFragment(fragment);
+//                loadFragment("nav_trending");
+                break;
+            case R.id.nav_explore:
+                loadFragment("nav_explore");
+                break;
+
+            case R.id.nav_settings:
+                loadFragment("nav_settings");
+                break;
+            case R.id.nav_about:
+                loadFragment("nav_about");
+                break;
+            default:
+                break;
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void loadFragment(String name){
+        ProfileFragment fragment =  new ProfileFragment();
+        fragment.setName(name);
+        loadFragment(fragment);
+    }
+
+    private void loadFragment(Fragment fragment){
+        if(fragment instanceof TrendingFragment){
+            tabLayout.setVisibility(View.VISIBLE);
+        }else{
+            tabLayout.setVisibility(View.GONE);
+        }
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frame_layout_content, fragment)
+                .commit();
+    }
+
 }
