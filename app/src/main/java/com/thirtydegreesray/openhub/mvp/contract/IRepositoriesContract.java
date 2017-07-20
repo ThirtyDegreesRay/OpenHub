@@ -14,15 +14,14 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.mvp.presenter;
+package com.thirtydegreesray.openhub.mvp.contract;
 
 import com.thirtydegreesray.openhub.db.DaoSession;
-import com.thirtydegreesray.openhub.mvp.contract.ILanguageTrendingContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
+import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
+import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 
 import java.util.ArrayList;
-
-import javax.inject.Inject;
 
 /**
  * Created on 2017/7/18.
@@ -30,23 +29,28 @@ import javax.inject.Inject;
  * @author ThirtyDegreesRay
  */
 
-public class LanguageTrendingPresenter extends ILanguageTrendingContract.Presenter {
+public interface IRepositoriesContract {
 
-    @Inject
-    public LanguageTrendingPresenter(DaoSession daoSession) {
-        super(daoSession);
+    interface View extends IBaseView{
+
+        void showRepositories(ArrayList<Repository> repositoryList);
+
+        void showLoadingView();
+
+        void hideLoadingView();
+
+        void showLoadError(String errorMsg);
+
     }
 
-    @Override
-    public void loadRepositories(String language) {
-        ArrayList<Repository> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++){
-            Repository repository = new Repository();
-            repository.setName(language + "-" + i);
-            list.add(repository);
+    abstract class Presenter extends BasePresenter<IRepositoriesContract.View>{
+
+        public Presenter(DaoSession daoSession) {
+            super(daoSession);
         }
-        mView.showRepositories(list);
-    }
 
+        public abstract void loadRepositories(RepositoriesFragment.RepositoriesType repositoriesType
+                , String language, boolean isReLoad);
+    }
 
 }

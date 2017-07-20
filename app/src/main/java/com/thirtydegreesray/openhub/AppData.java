@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub;
 
+import com.thirtydegreesray.openhub.db.AuthUser;
 import com.thirtydegreesray.openhub.mvp.model.User;
 
 /**
@@ -36,13 +37,22 @@ public class AppData {
         return InstanceHolder.instance;
     }
 
-    private User loginUser;
+    private User loginedUser;
+    private AuthUser authUser;
 
-    public User getLoginUser() {
-        return loginUser;
+    public User getLoginedUser() {
+        return loginedUser;
     }
 
-    public void setLoginUser(User loginUser) {
-        this.loginUser = loginUser;
+    public void setLoginedUser(User loginedUser) {
+        this.loginedUser = loginedUser;
+    }
+
+    public AuthUser getAuthUser() {
+        return authUser;
+    }
+
+    public void setAuthUser(AuthUser authUser) {
+        this.authUser = authUser;
     }
 }

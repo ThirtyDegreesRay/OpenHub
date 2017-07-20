@@ -24,9 +24,7 @@
 
 
     <string name="no_cache_and_network">No cache and network available.</string>
-
-    <string name="title_activity_fullscreen">FullscreenActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="tap_to_retry">Tap to retry.</string>
+    <string name="no_repositories">No repositories.</string>
 
 </resources>

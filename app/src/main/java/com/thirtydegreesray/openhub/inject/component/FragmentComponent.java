@@ -16,10 +16,10 @@
 
 package com.thirtydegreesray.openhub.inject.component;
 
-import com.thirtydegreesray.openhub.inject.ActivityScope;
+import com.thirtydegreesray.openhub.inject.FragmentScope;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
-import com.thirtydegreesray.openhub.ui.fragment.LanguageTrendingFragment;
 import com.thirtydegreesray.openhub.ui.fragment.ProfileFragment;
+import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.TrendingFragment;
 
 import dagger.Component;
@@ -30,10 +30,10 @@ import dagger.Component;
  * @author ThirtyDegreesRay
  */
 
-@ActivityScope
+@FragmentScope
 @Component(modules = FragmentModule.class, dependencies = AppComponent.class)
 public interface FragmentComponent {
     void inject(ProfileFragment fragment);
     void inject(TrendingFragment fragment);
-    void inject(LanguageTrendingFragment fragment);
+    void inject(RepositoriesFragment fragment);
 }

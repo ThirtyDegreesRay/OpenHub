@@ -20,6 +20,7 @@ import android.util.Log;
 
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.AppConfig;
+import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.util.FileUtil;
 import com.thirtydegreesray.openhub.util.NetHelper;
 import com.thirtydegreesray.openhub.util.StringUtil;
@@ -130,6 +131,17 @@ public class AppRetrofit {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
+
+            //add access token
+            String url = request.url().toString();
+            if(AppData.getInstance().getAuthUser() != null){
+                String tokenKey = "access_token=" + AppData.getInstance().getAuthUser().getAccessToken();
+                String splitChar =  url.contains("?") ? "&" : "?";
+                url = url.concat(splitChar).concat(tokenKey);
+                request = request.newBuilder()
+                        .url(url)
+                        .build();
+            }
             Log.d(TAG, request.url().toString());
 
             //第二次请求，强制使用网络请求

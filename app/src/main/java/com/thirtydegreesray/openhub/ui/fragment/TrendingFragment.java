@@ -26,6 +26,7 @@ import android.support.v4.view.ViewPager;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
+import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.ITrendingContract;
 import com.thirtydegreesray.openhub.mvp.presenter.TrendingPresenter;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
@@ -66,6 +67,7 @@ public class TrendingFragment extends BaseFragment<TrendingPresenter>
     protected void setupFragmentComponent(AppComponent appComponent) {
         DaggerFragmentComponent.builder()
                 .appComponent(appComponent)
+                .fragmentModule(new FragmentModule(this))
                 .build()
                 .inject(this);
     }
@@ -113,7 +115,9 @@ public class TrendingFragment extends BaseFragment<TrendingPresenter>
 
         @Override
         public Fragment getItem(int position) {
-            return new LanguageTrendingFragment().setLanguage(mLanguageList.get(position));
+            return new RepositoriesFragment()
+                    .setRepositoriesType(RepositoriesFragment.RepositoriesType.TRENDING)
+                    .setLanguage(mLanguageList.get(position));
         }
 
         @Override

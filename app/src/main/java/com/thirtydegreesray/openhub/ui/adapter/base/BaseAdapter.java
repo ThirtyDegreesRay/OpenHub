@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub.ui.adapter.base;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.RecyclerView;
@@ -23,8 +24,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 
 import java.util.ArrayList;
 
@@ -49,10 +48,10 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
     /**
      * 关联的activity
      */
-    protected BaseActivity mActivity;
+    protected Context mContext;
 
-    public BaseAdapter(BaseActivity activity){
-        mActivity = activity;
+    public BaseAdapter(Context context){
+        mContext = context;
         handler = getHandler();
     }
 
@@ -192,7 +191,7 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
     }
 
     protected void showShortToast(String msg){
-        Toast.makeText(mActivity, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
     }
 
 }

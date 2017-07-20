@@ -14,39 +14,24 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.inject.module;
+package com.thirtydegreesray.openhub.inject;
 
-import android.content.Context;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
 
-import com.thirtydegreesray.openhub.inject.FragmentScope;
-import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
+import javax.inject.Scope;
 
-import dagger.Module;
-import dagger.Provides;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * Created on 2017/7/18.
+ * Fragment 生命周期
+ * Created on 2017/7/20.
  *
  * @author ThirtyDegreesRay
  */
-@Module
-public class FragmentModule {
 
-    private BaseFragment mFragment;
-
-    public FragmentModule(BaseFragment fragment) {
-        mFragment = fragment;
-    }
-
-    @Provides
-    @FragmentScope
-    public BaseFragment provideFragment(){
-        return mFragment;
-    }
-
-    @Provides
-    @FragmentScope
-    public Context provideContext(){
-        return mFragment.getActivity();
-    }
+@Documented
+@Scope
+@Retention(RUNTIME)
+public @interface FragmentScope {
 }

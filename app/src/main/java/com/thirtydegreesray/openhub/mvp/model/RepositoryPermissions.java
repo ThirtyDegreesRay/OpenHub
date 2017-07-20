@@ -14,33 +14,45 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.mvp.contract;
-
-import com.thirtydegreesray.openhub.db.DaoSession;
-import com.thirtydegreesray.openhub.mvp.model.Repository;
-import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
-
-import java.util.ArrayList;
+package com.thirtydegreesray.openhub.mvp.model;
 
 /**
- * Created on 2017/7/18.
+ * Created on 2017/7/19.
  *
  * @author ThirtyDegreesRay
  */
 
-public interface ILanguageTrendingContract {
+public class RepositoryPermissions {
 
-    interface View extends IBaseView{
-        void showRepositories(ArrayList<Repository> repositoryList);
+    private boolean admin;
+    private boolean push;
+    private boolean pull;
+
+    public RepositoryPermissions() {
+
     }
 
-    abstract class Presenter extends BasePresenter<ILanguageTrendingContract.View>{
-
-        public Presenter(DaoSession daoSession) {
-            super(daoSession);
-        }
-
-        public abstract void loadRepositories(String language);
+    public boolean isAdmin() {
+        return admin;
     }
 
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public boolean isPush() {
+        return push;
+    }
+
+    public void setPush(boolean push) {
+        this.push = push;
+    }
+
+    public boolean isPull() {
+        return pull;
+    }
+
+    public void setPull(boolean pull) {
+        this.pull = pull;
+    }
 }

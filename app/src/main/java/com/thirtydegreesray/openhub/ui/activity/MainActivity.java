@@ -17,6 +17,7 @@
 package com.thirtydegreesray.openhub.ui.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -43,10 +44,10 @@ import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.mvp.presenter.MainPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.fragment.ProfileFragment;
+import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.TrendingFragment;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity<MainPresenter>
         implements NavigationView.OnNavigationItemSelectedListener, IMainContract.View {
@@ -121,7 +122,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         TextView name =  navView.getHeaderView(0).findViewById(R.id.name);
         TextView mail =  navView.getHeaderView(0).findViewById(R.id.mail);
 
-        User loginUser = AppData.getInstance().getLoginUser();
+        User loginUser = AppData.getInstance().getLoginedUser();
         Picasso.with(this)
                 .load(loginUser.getAvatarUrl())
                 .into(avatar);
@@ -182,19 +183,18 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 break;
 
             case R.id.nav_owned:
-                loadFragment("nav_owned");
+                loadRepositoriesFragment(RepositoriesFragment.RepositoriesType.OWNED);
                 break;
             case R.id.nav_starred:
-                loadFragment("nav_starred");
+                loadRepositoriesFragment(RepositoriesFragment.RepositoriesType.STARRED);
                 break;
             case R.id.nav_trending:
                 TrendingFragment fragment = new TrendingFragment();
                 fragment.setTabLayout(tabLayout);
                 loadFragment(fragment);
-//                loadFragment("nav_trending");
                 break;
             case R.id.nav_explore:
-                loadFragment("nav_explore");
+                loadRepositoriesFragment(RepositoriesFragment.RepositoriesType.EXPLORE);
                 break;
 
             case R.id.nav_settings:
@@ -218,16 +218,33 @@ public class MainActivity extends BaseActivity<MainPresenter>
         loadFragment(fragment);
     }
 
+    private void loadRepositoriesFragment(RepositoriesFragment.RepositoriesType repositoriesType){
+        RepositoriesFragment repositoriesFragment = new RepositoriesFragment();
+        repositoriesFragment.setRepositoriesType(repositoriesType);
+        loadFragment(repositoriesFragment);
+    }
+
+
     private void loadFragment(Fragment fragment){
         if(fragment instanceof TrendingFragment){
+            setToolbarScrollAble(true);
             tabLayout.setVisibility(View.VISIBLE);
         }else{
+            setToolbarScrollAble(false);
             tabLayout.setVisibility(View.GONE);
         }
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.frame_layout_content, fragment)
                 .commit();
+    }
+
+    private void setToolbarScrollAble(boolean scrollAble){
+        int flags = scrollAble ? (AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+                | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS) : 0;
+        AppBarLayout.LayoutParams layoutParams = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+        layoutParams.setScrollFlags(flags);
+        toolbar.setLayoutParams(layoutParams);
     }
 
 }

@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
+import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IProfileContract;
 import com.thirtydegreesray.openhub.mvp.presenter.ProfilePresenter;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
@@ -59,6 +60,7 @@ public class ProfileFragment extends BaseFragment<ProfilePresenter>
     protected void setupFragmentComponent(AppComponent appComponent) {
         DaggerFragmentComponent.builder()
                 .appComponent(appComponent)
+                .fragmentModule(new FragmentModule(this))
                 .build()
                 .inject(this);
     }

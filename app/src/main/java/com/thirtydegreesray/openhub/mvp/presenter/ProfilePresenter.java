@@ -36,7 +36,16 @@ public class ProfilePresenter extends IProfileContract.Presenter {
 
     @Override
     public void loadContent(String name) {
-        mView.showContent(name + "(From Presenter)");
+//        mView.showContent(getContent(name));
+        mView.showContent(name);
+    }
+
+    private String getContent(String name){
+        StringBuffer stringBuffer = new StringBuffer();
+        for(int i = 0; i < 200; i++){
+            stringBuffer.append(name).append("-").append(i).append(" ");
+        }
+        return stringBuffer.toString();
     }
 
 }

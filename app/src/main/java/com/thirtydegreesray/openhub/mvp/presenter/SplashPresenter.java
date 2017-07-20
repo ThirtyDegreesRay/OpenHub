@@ -75,6 +75,7 @@ public class SplashPresenter extends ISplashContract.Presenter {
         }
 
         if(selectedUser != null){
+            AppData.getInstance().setAuthUser(selectedUser);
             getUserInfo(selectedUser.getAccessToken());
         } else {
             mView.showOAuth2Page();
@@ -104,7 +105,7 @@ public class SplashPresenter extends ISplashContract.Presenter {
 
                     @Override
                     public void onSuccess(HttpResponse<User> response) {
-                        AppData.getInstance().setLoginUser(response.body());
+                        AppData.getInstance().setLoginedUser(response.body());
                         if(authUser != null){
                             authUser.setUserId(response.body().getLogin());
                             daoSession.getAuthUserDao().update(authUser);
@@ -117,7 +118,7 @@ public class SplashPresenter extends ISplashContract.Presenter {
         generalRxHttpExecute(new IObservableCreator<User, Response<User>>() {
             @Override
             public Observable<Response<User>> createObservable(boolean forceNetWork) {
-                return getAPPSService().getUser(forceNetWork, accessToken);
+                return getAPPSService().getUser(forceNetWork, "");
             }
         }, httpObserver, false);
 

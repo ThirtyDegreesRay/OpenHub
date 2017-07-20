@@ -170,9 +170,10 @@ public class BasePresenter<V extends IBaseView> {
                 }else{
                     httpObserver.onError(new HttpError(HttpErrorCode.NO_CACHE_AND_NETWORK));
                 }
+
             }
         };
-        generalRxHttpExecute(observableCreator.createObservable(false),
+        generalRxHttpExecute(observableCreator.createObservable(!readCacheFirst),
                 getHttpSubscriber(tempObserver));
         Log.i(TAG, "get cache start:" + System.currentTimeMillis());
     }
@@ -185,6 +186,11 @@ public class BasePresenter<V extends IBaseView> {
 
     protected String getLoadTip() {
         return "loading...";
+    }
+
+    protected boolean isLastResponse(HttpResponse response){
+        return response.isFromNetWork() ||
+                !NetHelper.getInstance().getNetEnabled();
     }
 
     /**

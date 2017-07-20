@@ -17,21 +17,18 @@
 package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
-import com.thirtydegreesray.openhub.mvp.contract.ILanguageTrendingContract;
+import com.thirtydegreesray.openhub.inject.module.FragmentModule;
+import com.thirtydegreesray.openhub.mvp.contract.IRepositoriesContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
-import com.thirtydegreesray.openhub.mvp.presenter.LanguageTrendingPresenter;
+import com.thirtydegreesray.openhub.mvp.presenter.RepositoriesPresenter;
 import com.thirtydegreesray.openhub.ui.adapter.RepositoriesAdapter;
-import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
+import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
 
 import java.util.ArrayList;
-
-import butterknife.BindView;
 
 /**
  * Created on 2017/7/18.
@@ -39,14 +36,23 @@ import butterknife.BindView;
  * @author ThirtyDegreesRay
  */
 
-public class LanguageTrendingFragment extends BaseFragment<LanguageTrendingPresenter>
-            implements ILanguageTrendingContract.View{
+public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, RepositoriesAdapter>
+            implements IRepositoriesContract.View{
+
+    public enum RepositoriesType{
+        OWNED, STARRED, TRENDING, EXPLORE
+    }
+
+    private RepositoriesType repositoriesType;
 
     private String language;
-    @BindView(R.id.recycler_view) RecyclerView recyclerView;
-    private RepositoriesAdapter adapter;
 
-    public LanguageTrendingFragment setLanguage(String language) {
+    public RepositoriesFragment setRepositoriesType(RepositoriesType repositoriesType) {
+        this.repositoriesType = repositoriesType;
+        return this;
+    }
+
+    public RepositoriesFragment setLanguage(String language) {
         this.language = language;
         return this;
     }
@@ -58,6 +64,21 @@ public class LanguageTrendingFragment extends BaseFragment<LanguageTrendingPrese
     }
 
     @Override
+    public void showLoadingView() {
+        refreshLayout.setRefreshing(true);
+    }
+
+    @Override
+    public void hideLoadingView() {
+        refreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void showLoadError(String errorMsg) {
+        setErrorTip(errorMsg);
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_repositories;
     }
@@ -66,17 +87,25 @@ public class LanguageTrendingFragment extends BaseFragment<LanguageTrendingPrese
     protected void setupFragmentComponent(AppComponent appComponent) {
         DaggerFragmentComponent.builder()
                 .appComponent(appComponent)
+                .fragmentModule(new FragmentModule(this))
                 .build()
                 .inject(this);
     }
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-        adapter = new RepositoriesAdapter(null);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(adapter);
+        super.initFragment(savedInstanceState);
+        mPresenter.loadRepositories(repositoriesType, language, false);
+    }
 
-        mPresenter.loadRepositories(language);
+    @Override
+    protected void reLoadData() {
+        mPresenter.loadRepositories(repositoriesType, language, true);
+    }
+
+    @Override
+    protected String getEmptyTip() {
+        return getString(R.string.no_repositories);
     }
 
 }

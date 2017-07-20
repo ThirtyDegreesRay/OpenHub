@@ -16,14 +16,18 @@
 
 package com.thirtydegreesray.openhub.ui.adapter;
 
+import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
-import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -35,9 +39,9 @@ import butterknife.BindView;
 
 public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHolder, Repository> {
 
-
-    public RepositoriesAdapter(BaseActivity activity) {
-        super(activity);
+    @Inject
+    public RepositoriesAdapter(Context context) {
+        super(context);
     }
 
     @Override
@@ -51,9 +55,14 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
         return holder;
     }
 
-    public class ViewHolder extends BaseViewHolder{
+    public class ViewHolder extends BaseViewHolder {
 
-        @BindView(R.id.name) TextView name;
+        @BindView(R.id.iv_user_avatar) ImageView ivUserAvatar;
+        @BindView(R.id.tv_repo_name) TextView tvRepoName;
+        @BindView(R.id.tv_repo_description) TextView tvRepoDescription;
+        @BindView(R.id.tv_star_num) TextView tvStarNum;
+        @BindView(R.id.tv_fork_num) TextView tvForkNum;
+        @BindView(R.id.tv_owner_name) TextView tvOwnerName;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -63,6 +72,15 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
-        holder.name.setText(mData.get(position).getName());
+        Repository repository = mData.get(position);
+        holder.tvRepoName.setText(repository.getName());
+        holder.tvRepoDescription.setText(repository.getDescription());
+        holder.tvStarNum.setText(String.valueOf(repository.getStargazersCount()));
+        holder.tvForkNum.setText(String.valueOf(repository.getForksCount()));
+        holder.tvOwnerName.setText(repository.getOwner().getLogin());
+        Picasso.with(mContext)
+                .load(repository.getOwner().getAvatarUrl())
+                .into(holder.ivUserAvatar);
+
     }
 }
