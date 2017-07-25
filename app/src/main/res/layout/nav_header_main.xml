@@ -35,8 +35,7 @@
         android:layout_height="60dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:src="@mipmap/logo"
-        app:riv_corner_radius="3dip"
-        app:riv_oval="false"/>
+        app:riv_oval="true"/>
 
     <TextView
         android:id="@+id/name"

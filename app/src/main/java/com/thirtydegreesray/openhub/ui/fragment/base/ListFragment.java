@@ -57,6 +57,7 @@ public abstract class ListFragment <P extends BasePresenter, A extends BaseAdapt
     @Override
     protected void initFragment(Bundle savedInstanceState) {
         refreshLayout.setOnRefreshListener(this);
+        refreshLayout.setColorSchemeResources(R.color.colorPrimary);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter.setOnItemLongClickListener(this);

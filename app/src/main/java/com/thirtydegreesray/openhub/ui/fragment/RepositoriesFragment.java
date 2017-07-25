@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.thirtydegreesray.openhub.R;
@@ -25,6 +26,7 @@ import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IRepositoriesContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.RepositoriesPresenter;
+import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.adapter.RepositoriesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
 
@@ -93,7 +95,7 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     }
 
     @Override
-    protected void initFragment(Bundle savedInstanceState) {
+    protected void initFragment(Bundle savedInstanceState){
         super.initFragment(savedInstanceState);
         mPresenter.loadRepositories(repositoriesType, language, false);
     }
@@ -108,4 +110,9 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
         return getString(R.string.no_repositories);
     }
 
+    @Override
+    public void onItemClick(int position) {
+        super.onItemClick(position);
+        startActivity(new Intent(getActivity(), RepositoryActivity.class));
+    }
 }

@@ -17,6 +17,7 @@
 package com.thirtydegreesray.openhub;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
@@ -42,11 +43,18 @@ public class AppApplication extends Application {
         super.onCreate();
         application = this;
         //init application
+        long startTime = System.currentTimeMillis();
+        Log.i(TAG, "startTime:" + startTime);
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
+        Log.i(TAG, "dagger ok:" + (System.currentTimeMillis() - startTime));
+        startTime = System.currentTimeMillis();
         initLogger();
+        Log.i(TAG, "logger ok:" + (System.currentTimeMillis() - startTime));
+        startTime = System.currentTimeMillis();
         NetHelper.getInstance().init(this);
+        Log.i(TAG, "net ok:" + (System.currentTimeMillis() - startTime));
 
     }
 

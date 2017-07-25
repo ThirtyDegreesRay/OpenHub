@@ -28,7 +28,7 @@ public class AppConfig {
 
     public final static String GITHUB_API_BASE_URL = "https://api.github.com/";
 
-    public final static int HTTP_TIME_OUT = 8 * 1000;
+    public final static int HTTP_TIME_OUT = 16 * 1000;
 
     public final static int MAX_CACHE_SIZE = 8 * 1024 * 1024;
 

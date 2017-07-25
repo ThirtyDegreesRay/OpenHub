@@ -80,6 +80,7 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
         holder.tvOwnerName.setText(repository.getOwner().getLogin());
         Picasso.with(mContext)
                 .load(repository.getOwner().getAvatarUrl())
+                .placeholder(R.mipmap.logo)
                 .into(holder.ivUserAvatar);
 
     }
