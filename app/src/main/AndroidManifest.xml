@@ -20,14 +20,18 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
-    <application
+    <!--
         android:name=".AppApplication"
+        android:theme="@style/AppTheme"
+    -->
+    <application
+
         android:allowBackup="true"
         android:icon="@mipmap/logo_white"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logo_white"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        >
         <receiver android:name=".service.NetBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
@@ -37,11 +41,11 @@
         <activity
             android:name=".ui.activity.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
         </activity>
         <activity
             android:name=".ui.activity.MainActivity"
@@ -57,6 +61,16 @@
             android:name=".ui.activity.RepositoryActivity"
             android:label="@string/title_activity_repository"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ui.activity.SimpleActivity"
+            android:label="SimpleActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

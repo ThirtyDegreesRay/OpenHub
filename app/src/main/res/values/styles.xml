@@ -32,7 +32,7 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
-    <style name="DividerLine" >
+    <style name="DividerLine">
         <item name="android:background">@android:color/darker_gray</item>
     </style>
 

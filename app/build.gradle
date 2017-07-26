@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
+//apply plugin: 'android-apt'
 
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
@@ -20,8 +20,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 
@@ -41,10 +41,10 @@ dependencies {
 
 
     compile "com.thirtydegreesray:dataautoaccess:${DATAAUTOACCESS_VERSION}"
-    apt "com.thirtydegreesray:dataautoaccess-compiler:${DATAAUTOACCESS_VERSION}"
+    annotationProcessor  "com.thirtydegreesray:dataautoaccess-compiler:${DATAAUTOACCESS_VERSION}"
 
     compile "com.jakewharton:butterknife:${BUTTERKNIFE_VERSION}"
-    apt "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_VERSION}"
+    annotationProcessor  "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_VERSION}"
 
     //数据库工具
     compile "org.greenrobot:greendao:${GREEN_DAO_VERSION}"
@@ -66,13 +66,13 @@ dependencies {
 
     //dagger依赖注入
     compile "com.google.dagger:dagger:${DAGGER_VERSION}"
-    apt "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+    annotationProcessor  "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
 
     //Android6.0以上权限获取工具
     //PermissionsDispatcher provides a simple annotation-based API to handle runtime permissions in Android Marshmallow.
 //            androidApt: 'com.neenbedankt.gradle.plugins:android-apt:1.8',
     compile "com.github.hotchemi:permissionsdispatcher:${PERMISSIONS_DISPATCHER_VERSION}"
-    apt "com.github.hotchemi:permissionsdispatcher-processor:${PERMISSIONS_DISPATCHER_VERSION}"
+    annotationProcessor  "com.github.hotchemi:permissionsdispatcher-processor:${PERMISSIONS_DISPATCHER_VERSION}"
 
     compile "com.squareup.picasso:picasso:${PICASSO_VERSION}"
 

@@ -28,7 +28,7 @@ public class AppDaoGenerator {
     }
 
     /**
-     * 添加user表
+     * add use
      * @param schema
      */
     private static void addAuthUser(Schema schema){
