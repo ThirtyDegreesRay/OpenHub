@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.util;
 
+import android.support.annotation.Nullable;
+
 /**
  * StringUtil
  * Created by ThirtyDegreesRay on 2016/7/14 16:18
@@ -29,7 +31,7 @@ public class StringUtil {
      *            String 要比较的字符串
      * @return boolean
      */
-    public static boolean isBlank(String str) {
+    public static boolean isBlank(@Nullable String str) {
         boolean b = true;
         if (null == str) {
             return b;

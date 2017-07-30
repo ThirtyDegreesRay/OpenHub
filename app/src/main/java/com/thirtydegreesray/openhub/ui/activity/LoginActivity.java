@@ -20,6 +20,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -48,7 +50,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
 
     private final String TAG = "LoginActivity";
 
-    @BindView(R.id.web_view) WebView webView;
+    @Nullable @BindView(R.id.web_view) WebView webView;
 
     private Handler handler;
 
@@ -92,7 +94,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
     protected void initActivity() {
         handler = new Handler(){
             @Override
-            public void handleMessage(Message msg) {
+            public void handleMessage(@NonNull Message msg) {
                 super.handleMessage(msg);
                 String url = (String) msg.obj;
                 Map<String, String> params = HttpUtil.getParams(url);
@@ -113,7 +115,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient(){
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            public boolean shouldOverrideUrlLoading(@NonNull WebView view, @NonNull String url) {
                 if(url.startsWith(AppConfig.OAUTH2_CALLBACK_URL)){
                     Message message = new Message();
                     message.obj = url;

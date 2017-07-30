@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
+import android.support.annotation.NonNull;
+
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.db.AuthUser;
 import com.thirtydegreesray.openhub.db.AuthUserDao;
@@ -99,12 +101,12 @@ public class SplashPresenter extends ISplashContract.Presenter {
 
         HttpObserver<User> httpObserver = new HttpObserver<User>() {
                     @Override
-                    public void onError(Throwable error) {
+                    public void onError(@NonNull Throwable error) {
                         mView.showShortToast(error.getMessage());
                     }
 
                     @Override
-                    public void onSuccess(HttpResponse<User> response) {
+                    public void onSuccess(@NonNull HttpResponse<User> response) {
                         AppData.getInstance().setLoginedUser(response.body());
                         if(authUser != null){
                             authUser.setUserId(response.body().getLogin());

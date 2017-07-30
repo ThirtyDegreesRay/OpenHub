@@ -2,6 +2,8 @@ package com.thirtydegreesray.openhub.db;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.Property;
@@ -31,16 +33,16 @@ public class AuthUserDao extends AbstractDao<AuthUser, String> {
     };
 
 
-    public AuthUserDao(DaoConfig config) {
+    public AuthUserDao(@NonNull DaoConfig config) {
         super(config);
     }
     
-    public AuthUserDao(DaoConfig config, DaoSession daoSession) {
+    public AuthUserDao(@NonNull DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
     }
 
     /** Creates the underlying database table. */
-    public static void createTable(Database db, boolean ifNotExists) {
+    public static void createTable(@NonNull Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"AUTH_USER\" (" + //
                 "\"ACCESS_TOKEN\" TEXT PRIMARY KEY NOT NULL ," + // 0: accessToken
@@ -52,13 +54,13 @@ public class AuthUserDao extends AbstractDao<AuthUser, String> {
     }
 
     /** Drops the underlying database table. */
-    public static void dropTable(Database db, boolean ifExists) {
+    public static void dropTable(@NonNull Database db, boolean ifExists) {
         String sql = "DROP TABLE " + (ifExists ? "IF EXISTS " : "") + "\"AUTH_USER\"";
         db.execSQL(sql);
     }
 
     @Override
-    protected final void bindValues(DatabaseStatement stmt, AuthUser entity) {
+    protected final void bindValues(@NonNull DatabaseStatement stmt, @NonNull AuthUser entity) {
         stmt.clearBindings();
         stmt.bindString(1, entity.getAccessToken());
  
@@ -73,7 +75,7 @@ public class AuthUserDao extends AbstractDao<AuthUser, String> {
     }
 
     @Override
-    protected final void bindValues(SQLiteStatement stmt, AuthUser entity) {
+    protected final void bindValues(@NonNull SQLiteStatement stmt, @NonNull AuthUser entity) {
         stmt.clearBindings();
         stmt.bindString(1, entity.getAccessToken());
  
@@ -88,12 +90,13 @@ public class AuthUserDao extends AbstractDao<AuthUser, String> {
     }
 
     @Override
-    public String readKey(Cursor cursor, int offset) {
+    public String readKey(@NonNull Cursor cursor, int offset) {
         return cursor.getString(offset + 0);
     }    
 
+    @NonNull
     @Override
-    public AuthUser readEntity(Cursor cursor, int offset) {
+    public AuthUser readEntity(@NonNull Cursor cursor, int offset) {
         AuthUser entity = new AuthUser( //
             cursor.getString(offset + 0), // accessToken
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // userId
@@ -106,7 +109,7 @@ public class AuthUserDao extends AbstractDao<AuthUser, String> {
     }
      
     @Override
-    public void readEntity(Cursor cursor, AuthUser entity, int offset) {
+    public void readEntity(@NonNull Cursor cursor, @NonNull AuthUser entity, int offset) {
         entity.setAccessToken(cursor.getString(offset + 0));
         entity.setUserId(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setAuthTime(new java.util.Date(cursor.getLong(offset + 2)));
@@ -116,12 +119,13 @@ public class AuthUserDao extends AbstractDao<AuthUser, String> {
      }
     
     @Override
-    protected final String updateKeyAfterInsert(AuthUser entity, long rowId) {
+    protected final String updateKeyAfterInsert(@NonNull AuthUser entity, long rowId) {
         return entity.getAccessToken();
     }
     
+    @Nullable
     @Override
-    public String getKey(AuthUser entity) {
+    public String getKey(@Nullable AuthUser entity) {
         if(entity != null) {
             return entity.getAccessToken();
         } else {

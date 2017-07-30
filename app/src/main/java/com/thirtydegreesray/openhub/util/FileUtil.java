@@ -18,6 +18,8 @@ package com.thirtydegreesray.openhub.util;
 
 import android.content.Context;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Base64;
 
 import java.io.File;
@@ -42,7 +44,8 @@ public class FileUtil {
      * @param dirName 文件夹名称
      * @return 缓存文件夹
      */
-    public static File getCacheDir(Context context, String dirName) {
+    @Nullable
+    public static File getCacheDir(@NonNull Context context, @NonNull String dirName) {
         File rootDir = context.getExternalCacheDir();
         File cacheFile = new File(rootDir, dirName);
         if (!cacheFile.exists()) {
@@ -57,7 +60,8 @@ public class FileUtil {
      * @param context 上下文
      * @return 音频缓存文件夹
      */
-    public static File getAudioCacheDir(Context context) {
+    @Nullable
+    public static File getAudioCacheDir(@NonNull Context context) {
         return getCacheDir(context, AUDIO_CACHE_DIR_NAME);
     }
 
@@ -67,7 +71,8 @@ public class FileUtil {
      * @param context 上下文
      * @return 图片缓存文件夹
      */
-    public static File getSignImageCacheDir(Context context) {
+    @Nullable
+    public static File getSignImageCacheDir(@NonNull Context context) {
         return getCacheDir(context, SIGN_IMAGE_CACHE_DIR_NAME);
     }
 
@@ -76,7 +81,8 @@ public class FileUtil {
      * @param context 上下文
      * @return 网络请求缓存文件夹
      */
-    public static File getHttpImageCacheDir(Context context) {
+    @Nullable
+    public static File getHttpImageCacheDir(@NonNull Context context) {
         return getCacheDir(context, HTTP_CACHE_DIR_NAME);
     }
 
@@ -93,7 +99,7 @@ public class FileUtil {
      * 将文件转化为字节数组字符串，并对其进行Base64编码处理
      * @return
      */
-    public static String encodeBase64File(String path) throws Exception {
+    public static String encodeBase64File(@NonNull String path) throws Exception {
         File file = new File(path);
         FileInputStream inputFile = new FileInputStream(file);
         byte[] buffer = new byte[(int)file.length()];

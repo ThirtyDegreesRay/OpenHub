@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
+import android.support.annotation.NonNull;
+
 import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.db.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
@@ -56,12 +58,12 @@ public class LoginPresenter extends ILoginContract.Presenter {
                         mView.getProgressDialog(getLoadTip()),
                         new HttpObserver<AccessToken>() {
                             @Override
-                            public void onError(Throwable error) {
+                            public void onError(@NonNull Throwable error) {
                                 mView.showShortToast(error.getMessage());
                             }
 
                             @Override
-                            public void onSuccess(HttpResponse<AccessToken> response) {
+                            public void onSuccess(@NonNull HttpResponse<AccessToken> response) {
                                 AccessToken token = response.body();
                                 String accessToken = token.getAccessToken();
                                 String scope = token.getScope();
@@ -73,6 +75,7 @@ public class LoginPresenter extends ILoginContract.Presenter {
         generalRxHttpExecute(observable, subscriber);
     }
 
+    @NonNull
     @Override
     public String getOAuth2Url() {
         String randomState = UUID.randomUUID().toString();

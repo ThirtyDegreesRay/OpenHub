@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub;
 
+import android.support.annotation.NonNull;
+
 import com.thirtydegreesray.openhub.db.AuthUser;
 import com.thirtydegreesray.openhub.mvp.model.User;
 
@@ -30,9 +32,10 @@ public class AppData {
     private AppData(){}
 
     private static class InstanceHolder{
-        static AppData instance = new AppData();
+        @NonNull static AppData instance = new AppData();
     }
 
+    @NonNull
     public static AppData getInstance(){
         return InstanceHolder.instance;
     }

@@ -17,6 +17,8 @@
 package com.thirtydegreesray.openhub.ui.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -52,12 +54,12 @@ import butterknife.BindView;
 public class MainActivity extends BaseActivity<MainPresenter>
         implements NavigationView.OnNavigationItemSelectedListener, IMainContract.View {
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.tab_layout) TabLayout tabLayout;
-    @BindView(R.id.frame_layout_content) FrameLayout frameLayoutContent;
-    @BindView(R.id.fab) FloatingActionButton fab;
-    @BindView(R.id.nav_view) NavigationView navView;
-    @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
+    @Nullable @BindView(R.id.toolbar) Toolbar toolbar;
+    @Nullable @BindView(R.id.tab_layout) TabLayout tabLayout;
+    @Nullable @BindView(R.id.frame_layout_content) FrameLayout frameLayoutContent;
+    @Nullable @BindView(R.id.fab) FloatingActionButton fab;
+    @Nullable @BindView(R.id.nav_view) NavigationView navView;
+    @Nullable @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
 
     /**
      * 依赖注入的入口
@@ -102,7 +104,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(@NonNull View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -148,7 +150,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.

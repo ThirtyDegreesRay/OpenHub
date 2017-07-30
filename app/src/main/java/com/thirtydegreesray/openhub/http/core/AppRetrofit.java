@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub.http.core;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.thirtydegreesray.openhub.AppApplication;
@@ -60,6 +61,7 @@ public class AppRetrofit {
         private final static AppRetrofit instance = new AppRetrofit();
     }
 
+    @NonNull
     public static AppRetrofit getInstance() {
         return SingletonHolder.instance;
     }
@@ -87,7 +89,7 @@ public class AppRetrofit {
 //                .build();
     }
 
-    private void createRetrofit(String baseUrl) {
+    private void createRetrofit(@NonNull String baseUrl) {
         int timeOut = AppConfig.HTTP_TIME_OUT;
         Cache cache = new Cache(FileUtil.getHttpImageCacheDir(AppApplication.get()),
                 AppConfig.MAX_CACHE_SIZE);
@@ -117,7 +119,7 @@ public class AppRetrofit {
         retrofitMap.put(baseUrl, retrofit);
     }
 
-    public Retrofit getRetrofit(String baseUrl) {
+    public Retrofit getRetrofit(@NonNull String baseUrl) {
         if (!retrofitMap.containsKey(baseUrl)) {
             createRetrofit(baseUrl);
         }
@@ -129,7 +131,7 @@ public class AppRetrofit {
      */
     private class BaseInterceptor implements Interceptor {
         @Override
-        public Response intercept(Chain chain) throws IOException {
+        public Response intercept(@NonNull Chain chain) throws IOException {
             Request request = chain.request();
 
             //add access token
@@ -168,7 +170,7 @@ public class AppRetrofit {
      */
     private class NetworkBaseInterceptor implements Interceptor {
         @Override
-        public Response intercept(Chain chain) throws IOException {
+        public Response intercept(@NonNull Chain chain) throws IOException {
 
             Request request = chain.request();
             Response originalResponse = chain.proceed(request);

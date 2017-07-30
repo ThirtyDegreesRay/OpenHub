@@ -18,6 +18,7 @@ package com.thirtydegreesray.openhub.mvp.presenter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.util.Log;
 
@@ -54,7 +55,7 @@ public class BasePresenter<V extends IBaseView> {
     private final String TAG = "BasePresenter";
 
     //View
-    protected V mView;
+    @Nullable protected V mView;
     //db Dao
     protected DaoSession daoSession;
 
@@ -102,6 +103,7 @@ public class BasePresenter<V extends IBaseView> {
      *
      * @return
      */
+    @Nullable
     protected Context getContext() {
         if (mView instanceof Context) {
             return (Context) mView;
@@ -129,7 +131,7 @@ public class BasePresenter<V extends IBaseView> {
      * @param <T>
      */
     protected <T, R extends Response<T>> void generalRxHttpExecute(
-            Observable<R> observable, HttpSubscriber<T, R> subscriber) {
+            @NonNull Observable<R> observable, @Nullable HttpSubscriber<T, R> subscriber) {
         if (subscriber != null) {
             observable.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -142,12 +144,12 @@ public class BasePresenter<V extends IBaseView> {
     }
 
     protected <T, R extends Response<T>> void generalRxHttpExecute(
-            IObservableCreator<T, R> observableCreator, HttpObserver<T> httpObserver) {
+            @NonNull IObservableCreator<T, R> observableCreator, @NonNull HttpObserver<T> httpObserver) {
         generalRxHttpExecute(observableCreator, httpObserver, false);
     }
 
     protected <T, R extends Response<T>> void generalRxHttpExecute(
-            final IObservableCreator<T, R> observableCreator, final HttpObserver<T> httpObserver,
+            @NonNull final IObservableCreator<T, R> observableCreator, @NonNull final HttpObserver<T> httpObserver,
             final boolean readCacheFirst) {
 
         final HttpObserver<T> tempObserver = new HttpObserver<T>() {
@@ -157,7 +159,7 @@ public class BasePresenter<V extends IBaseView> {
             }
 
             @Override
-            public void onSuccess(HttpResponse<T> response) {
+            public void onSuccess(@NonNull HttpResponse<T> response) {
                 Log.i(TAG, "get data ok:" + System.currentTimeMillis());
                 Log.i(TAG, "data:" + response.body());
                 if(response.isSuccessful()){
@@ -184,11 +186,12 @@ public class BasePresenter<V extends IBaseView> {
     }
 
 
+    @NonNull
     protected String getLoadTip() {
         return "loading...";
     }
 
-    protected boolean isLastResponse(HttpResponse response){
+    protected boolean isLastResponse(@NonNull HttpResponse response){
         return response.isFromNetWork() ||
                 !NetHelper.getInstance().getNetEnabled();
     }
@@ -199,6 +202,7 @@ public class BasePresenter<V extends IBaseView> {
      * @param typeInfo
      * @return
      */
+    @NonNull
     protected String getErrorTip(Throwable error, String typeInfo) {
         String errorTip = null;
         if (error instanceof SocketTimeoutException
@@ -216,10 +220,12 @@ public class BasePresenter<V extends IBaseView> {
      * @param error
      * @return
      */
+    @NonNull
     protected String getErrorTip(Throwable error) {
         return getErrorTip(error, null);
     }
 
+    @NonNull
     protected String getStringFromResource(@StringRes int resId){
         return getContext().getResources().getString(resId);
     }

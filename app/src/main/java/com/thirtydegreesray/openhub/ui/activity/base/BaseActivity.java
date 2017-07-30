@@ -22,6 +22,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -169,7 +170,7 @@ public abstract class BaseActivity<P extends BasePresenter>
                 .setCancelable(true)
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(@NonNull DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 })
@@ -186,7 +187,7 @@ public abstract class BaseActivity<P extends BasePresenter>
                 .setPositiveButton(confirmText, confirmListener)
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(@NonNull DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 })
@@ -207,10 +208,12 @@ public abstract class BaseActivity<P extends BasePresenter>
     }
 
 
+    @NonNull
     protected BaseActivity getActivity() {
         return this;
     }
 
+    @NonNull
     protected AppApplication getAppApplication() {
         return (AppApplication) getApplication();
     }
@@ -264,6 +267,7 @@ public abstract class BaseActivity<P extends BasePresenter>
      * @param strId
      * @see [类、类#方法、类#成员]
      */
+    @NonNull
     protected String getResuceString(int strId) {
         return getResources().getString(strId);
     }

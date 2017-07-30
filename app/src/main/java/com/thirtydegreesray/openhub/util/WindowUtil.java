@@ -19,6 +19,7 @@ package com.thirtydegreesray.openhub.util;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
 
 /**
  * 手机窗口工具类
@@ -38,7 +39,7 @@ public class WindowUtil {
     /** 
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素) 
      */  
-    public static int dipToPx(Context context, float dpValue) {
+    public static int dipToPx(@NonNull Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;  
         return (int) (dpValue * scale + 0.5f);  
     }  
@@ -46,7 +47,7 @@ public class WindowUtil {
     /** 
      * 根据手机的分辨率从 px(像素) 的单位 转成为 dp 
      */  
-    public static int pxToDip(Context context, float pxValue) {
+    public static int pxToDip(@NonNull Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;  
         return (int) (pxValue / scale + 0.5f);  
     }
@@ -56,7 +57,7 @@ public class WindowUtil {
      * @param activity
      * @return
      */
-    public static int getStatusHeight(Activity activity){
+    public static int getStatusHeight(@NonNull Activity activity){
         int statusHeight = 0;
         Rect localRect = new Rect();
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(localRect);

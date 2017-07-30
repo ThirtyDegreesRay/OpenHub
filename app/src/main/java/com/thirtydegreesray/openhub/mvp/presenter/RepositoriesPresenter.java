@@ -16,6 +16,9 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.db.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
@@ -48,7 +51,7 @@ public class RepositoriesPresenter extends IRepositoriesContract.Presenter {
     }
 
     @Override
-    public void loadRepositories(RepositoriesFragment.RepositoriesType repositoriesType,
+    public void loadRepositories(@NonNull RepositoriesFragment.RepositoriesType repositoriesType,
                                  String language, boolean isReLoad) {
         mRepositoriesType = repositoriesType;
         mLanguage = language;
@@ -60,6 +63,7 @@ public class RepositoriesPresenter extends IRepositoriesContract.Presenter {
 
     }
 
+    @NonNull
     private ArrayList<Repository> getLanguageRepTest(String language) {
         ArrayList<Repository> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -78,13 +82,13 @@ public class RepositoriesPresenter extends IRepositoriesContract.Presenter {
 
         HttpObserver<ArrayList<Repository>> httpObserver = new HttpObserver<ArrayList<Repository>>() {
             @Override
-            public void onError(Throwable error) {
+            public void onError(@NonNull Throwable error) {
                 mView.showLoadError(error.getMessage());
                 mView.hideLoadingView();
             }
 
             @Override
-            public void onSuccess(HttpResponse<ArrayList<Repository>> response) {
+            public void onSuccess(@NonNull HttpResponse<ArrayList<Repository>> response) {
                 mView.showRepositories(response.body());
                 mView.hideLoadingView();
 //                if(isLastResponse(response)){
@@ -95,6 +99,7 @@ public class RepositoriesPresenter extends IRepositoriesContract.Presenter {
 
         generalRxHttpExecute(new IObservableCreator<ArrayList<Repository>,
                 Response<ArrayList<Repository>>>() {
+            @Nullable
             @Override
             public Observable<Response<ArrayList<Repository>>> createObservable(boolean forceNetWork) {
                 return getObservable(forceNetWork);

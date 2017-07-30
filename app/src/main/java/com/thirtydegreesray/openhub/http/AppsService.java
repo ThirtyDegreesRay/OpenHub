@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.http;
 
+import android.support.annotation.NonNull;
+
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.User;
 
@@ -44,24 +46,28 @@ public interface AppsService {
 
     String USERS_START = "s/";
 
+    @NonNull
     @GET("user{user}")
     Observable<retrofit2.Response<User>> getUser(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("user") String user
     );
 
+    @NonNull
     @GET("user{user}/starred")
     Observable<retrofit2.Response<ArrayList<Repository>>> getUserStarred(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("user") String user
     );
 
+    @NonNull
     @GET("user{user}/repos")
     Observable<retrofit2.Response<ArrayList<Repository>>> getUserRepos(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("user") String user
     );
 
+    @NonNull
     @POST("main/debug")
     Observable<ResponseBody> loginDebug(
             @Query("usr") String user,
@@ -76,6 +82,7 @@ public interface AppsService {
      * @param endTime   结束时间，不包含当天的日程
      * @return
      */
+    @NonNull
     @GET("schedule/querySchedule")
     Observable<ResponseBody> getScheduleEvent(
             @Query("uuid") String userId,
@@ -88,6 +95,7 @@ public interface AppsService {
      *
      * @return
      */
+    @NonNull
     @GET("contact/getAllOz")
     @Headers("Cache-Control: public, max-age=600")
     Observable<ResponseBody> getAllOrg();
@@ -100,6 +108,7 @@ public interface AppsService {
      * @param requestData
      * @return
      */
+    @NonNull
     @POST("schedule/addSchedule")
     @FormUrlEncoded
     Observable<ResponseBody> addScheduleEvent(
@@ -115,6 +124,7 @@ public interface AppsService {
      * @param requestData
      * @return
      */
+    @NonNull
     @POST("schedule/updateSchedule")
     @FormUrlEncoded
     Observable<ResponseBody> updateScheduleEvent(
@@ -128,6 +138,7 @@ public interface AppsService {
      * @param eventId
      * @return
      */
+    @NonNull
     @GET("schedule/delSchedule")
     Observable<ResponseBody> deleteScheduleEvent(
             @Query("id") String eventId
@@ -138,6 +149,7 @@ public interface AppsService {
      * @param eventId
      * @return
      */
+    @NonNull
     @GET("schedule/queryDetail")
     Observable<ResponseBody> getScheduleEventById(
             @Query("id") String eventId
@@ -152,6 +164,7 @@ public interface AppsService {
      * @param entityId
      * @return
      */
+    @NonNull
     @POST("signImg/tjqm")
     @FormUrlEncoded
     Observable<ResponseBody> submitSignature(
@@ -163,6 +176,7 @@ public interface AppsService {
     );
 
 
+    @NonNull
     @GET
     Observable<ResponseBody> downloadFile(
             @Url String fileUrl

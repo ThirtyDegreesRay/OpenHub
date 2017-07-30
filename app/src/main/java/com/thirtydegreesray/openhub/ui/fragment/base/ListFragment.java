@@ -17,6 +17,8 @@
 package com.thirtydegreesray.openhub.ui.fragment.base;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -46,13 +48,13 @@ public abstract class ListFragment <P extends BasePresenter, A extends BaseAdapt
         SwipeRefreshLayout.OnRefreshListener,
         View.OnClickListener{
 
-    @BindView(R.id.refresh_layout) protected SwipeRefreshLayout refreshLayout;
-    @BindView(R.id.recycler_view) protected RecyclerView recyclerView;
+    @Nullable @BindView(R.id.refresh_layout) protected SwipeRefreshLayout refreshLayout;
+    @Nullable @BindView(R.id.recycler_view) protected RecyclerView recyclerView;
     @Inject protected A adapter;
     private RecyclerView.AdapterDataObserver observer;
 
-    @BindView(R.id.lay_tip) LinearLayout layTip;
-    @BindView(R.id.tv_tip) TextView tvTip;
+    @Nullable @BindView(R.id.lay_tip) LinearLayout layTip;
+    @Nullable @BindView(R.id.tv_tip) TextView tvTip;
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
@@ -103,7 +105,7 @@ public abstract class ListFragment <P extends BasePresenter, A extends BaseAdapt
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(@NonNull View view) {
         if(view.getId() == R.id.lay_tip){
             refreshLayout.setVisibility(View.VISIBLE);
             layTip.setVisibility(View.GONE);

@@ -17,6 +17,8 @@
 package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
@@ -38,7 +40,7 @@ import butterknife.BindView;
 public class ProfileFragment extends BaseFragment<ProfilePresenter>
             implements IProfileContract.View{
 
-    @BindView(R.id.name) TextView tvName;
+    @Nullable @BindView(R.id.name) TextView tvName;
 
     private String name ;
 
@@ -46,6 +48,7 @@ public class ProfileFragment extends BaseFragment<ProfilePresenter>
 
     }
 
+    @NonNull
     public ProfileFragment setName(String name) {
         this.name = name;
         return this;

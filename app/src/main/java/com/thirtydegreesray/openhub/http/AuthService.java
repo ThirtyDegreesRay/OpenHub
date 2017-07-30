@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.http;
 
+import android.support.annotation.NonNull;
+
 import com.thirtydegreesray.openhub.mvp.model.AccessToken;
 
 import retrofit2.Response;
@@ -32,6 +34,7 @@ import rx.Observable;
 
 public interface AuthService {
 
+    @NonNull
     @POST("login/oauth/access_token")
     @Headers("Accept: application/json")
     Observable<Response<AccessToken>> getAccessToken(

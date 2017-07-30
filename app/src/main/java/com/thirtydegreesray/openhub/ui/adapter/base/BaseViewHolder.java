@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub.ui.adapter.base;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -27,7 +28,7 @@ import butterknife.ButterKnife;
  */
 public class BaseViewHolder extends RecyclerView.ViewHolder{
 
-    public BaseViewHolder(View itemView) {
+    public BaseViewHolder(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }

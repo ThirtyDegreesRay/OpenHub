@@ -19,6 +19,7 @@ package com.thirtydegreesray.openhub.ui.adapter.base;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,7 +81,7 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
     }
 
     @Override
-    public VH onCreateViewHolder(ViewGroup parent, int viewType) {
+    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(getLayoutId(viewType), parent, false);
         VH viewHolder = getViewHolder(itemView, viewType);
@@ -88,7 +89,7 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
     }
 
     @Override
-    public void onBindViewHolder(VH holder, final int position) {
+    public void onBindViewHolder(@NonNull VH holder, final int position) {
 
         if(mOnItemClickListener != null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -164,7 +165,7 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
     private Handler getHandler(){
         return new Handler(){
             @Override
-            public void handleMessage(Message msg) {
+            public void handleMessage(@NonNull Message msg) {
                 super.handleMessage(msg);
                 switch (msg.what){
                     case 0:

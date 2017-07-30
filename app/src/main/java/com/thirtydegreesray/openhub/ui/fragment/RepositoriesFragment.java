@@ -18,6 +18,7 @@ package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
@@ -49,11 +50,13 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
 
     private String language;
 
+    @NonNull
     public RepositoriesFragment setRepositoriesType(RepositoriesType repositoriesType) {
         this.repositoriesType = repositoriesType;
         return this;
     }
 
+    @NonNull
     public RepositoriesFragment setLanguage(String language) {
         this.language = language;
         return this;

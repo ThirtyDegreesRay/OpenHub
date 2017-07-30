@@ -17,6 +17,7 @@
 package com.thirtydegreesray.openhub.inject.module;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.AppConfig;
@@ -47,6 +48,7 @@ public class AppModule {
         return application;
     }
 
+    @NonNull
     @Provides
     @Singleton
     public DaoSession provideDaoSession() {

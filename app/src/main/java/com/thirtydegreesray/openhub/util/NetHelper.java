@@ -19,6 +19,7 @@ package com.thirtydegreesray.openhub.util;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 /**
@@ -34,7 +35,8 @@ public class NetHelper {
 		private final static NetHelper instance = new NetHelper();
 	}
 
-	public static NetHelper getInstance(){
+	@NonNull
+    public static NetHelper getInstance(){
 		return SingleInstanceHolder.instance;
 	}
 
@@ -84,7 +86,8 @@ public class NetHelper {
 	 * 网络是否可用
 	 * @return
      */
-	public Boolean getNetEnabled(){
+	@NonNull
+    public Boolean getNetEnabled(){
 		return mCurNetStatus == TYPE_MOBILE || mCurNetStatus == TYPE_WIFI;
 	}
 
@@ -92,7 +95,8 @@ public class NetHelper {
 	 * 是否处于移动网络状态
 	 * @return
      */
-	public Boolean isMobileStatus(){
+	@NonNull
+    public Boolean isMobileStatus(){
 		return mCurNetStatus == TYPE_MOBILE;
 	}
 

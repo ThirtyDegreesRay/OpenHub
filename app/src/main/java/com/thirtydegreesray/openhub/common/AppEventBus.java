@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.common;
 
+import android.support.annotation.NonNull;
+
 import org.greenrobot.eventbus.EventBus;
 
 /**
@@ -33,6 +35,7 @@ public class AppEventBus {
         private final static AppEventBus instance = new AppEventBus();
     }
 
+    @NonNull
     public static AppEventBus getInstance(){
         return SingletonHolder.instance;
     }

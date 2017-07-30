@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub.util;
 
+import android.support.annotation.NonNull;
 import android.util.Base64;
 
 import javax.crypto.Cipher;
@@ -35,7 +36,7 @@ public class AESEncrypting {
 	 * @param input 加密字符串
 	 * @return
 	 */
-	public static String encrypt(String input){
+	public static String encrypt(@NonNull String input){
 		return encrypt(input, DEFAULT_KEY);
 	}
 
@@ -54,7 +55,7 @@ public class AESEncrypting {
 	 * @param key 密钥,密钥必须是16位的
 	 * @return
 	 */
-	public static String encrypt(String input, String key){
+	public static String encrypt(@NonNull String input, @NonNull String key){
 	  byte[] crypted = null;
 	  try{
 		  SecretKeySpec skey = new SecretKeySpec(key.getBytes(), "AES");
@@ -73,7 +74,7 @@ public class AESEncrypting {
 	 * @param key 密钥,密钥必须是16位的
 	 * @return
 	 */
-	public static String decrypt(String input, String key){
+	public static String decrypt(String input, @NonNull String key){
 	    byte[] output = null;
 	    try{
 	      SecretKeySpec skey = new SecretKeySpec(key.getBytes(), "AES");

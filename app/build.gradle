@@ -33,6 +33,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    implementation "com.android.support:support-annotations:${ANDROID_SUPPORT_VERSION}"
+
     compile "com.android.support:appcompat-v7:${ANDROID_SUPPORT_VERSION}"
     compile "com.android.support:recyclerview-v7:${ANDROID_SUPPORT_VERSION}"
     compile "com.android.support:design:${ANDROID_SUPPORT_VERSION}"
@@ -82,4 +84,5 @@ dependencies {
 //    compile "net.orfjackal.retrolambda:retrolambda:${RETROLAMBDA_VERSION}"
     compile 'com.android.support:support-v4:26.+'
     testCompile 'junit:junit:4.12'
+
 }

@@ -17,6 +17,7 @@
 package com.thirtydegreesray.openhub;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 
@@ -32,13 +33,14 @@ import java.util.ArrayList;
 public class ActivitiesManager {
 
     private static class SingletonHolder{
-        private static ActivitiesManager instance = new ActivitiesManager();
+        @NonNull private static ActivitiesManager instance = new ActivitiesManager();
     }
 
     private ActivitiesManager(){
         activities = new ArrayList<>();
     }
 
+    @NonNull
     public static ActivitiesManager getInstance(){
         return SingletonHolder.instance;
     }
@@ -62,7 +64,7 @@ public class ActivitiesManager {
         activities.clear();
     }
 
-    public void finishActivity(Activity activity, int layerNum, boolean refreshPage){
+    public void finishActivity(@NonNull Activity activity, int layerNum, boolean refreshPage){
         for (int i = activities.size() - 1, j = 0; i >= 0; i--) {
             if(activity.equals(activities.get(i)) || ( j > 0 && j < layerNum )){
                 activities.get(i).finish();

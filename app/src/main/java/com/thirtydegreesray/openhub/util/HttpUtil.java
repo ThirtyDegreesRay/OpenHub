@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.util;
 
+import android.support.annotation.NonNull;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +29,8 @@ import java.util.Map;
 
 public class HttpUtil {
 
-    public static Map<String, String> getParams(String url){
+    @NonNull
+    public static Map<String, String> getParams(@NonNull String url){
         Map<String, String> map = new HashMap<>();
         if(!StringUtil.isBlank(url) && url.contains("?")){
             String paramsStr = url.substring(url.indexOf("?") + 1);

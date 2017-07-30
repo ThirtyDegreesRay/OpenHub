@@ -17,6 +17,7 @@
 package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -45,7 +46,7 @@ import butterknife.BindView;
 public class TrendingFragment extends BaseFragment<TrendingPresenter>
         implements ITrendingContract.View {
 
-    @BindView(R.id.view_pager) ViewPager viewPager;
+    @Nullable @BindView(R.id.view_pager) ViewPager viewPager;
     private TabLayout tabLayout;
 
     private final List<String> languageList = Arrays.asList(

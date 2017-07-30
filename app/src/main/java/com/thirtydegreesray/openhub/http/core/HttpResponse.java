@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.http.core;
 
+import android.support.annotation.Nullable;
+
 import retrofit2.Response;
 
 /**
@@ -44,7 +46,7 @@ public class HttpResponse <T extends Object> {
         return  isResponseEnable(oriResponse.raw().networkResponse());
     }
 
-    private boolean isResponseEnable(okhttp3.Response response){
+    private boolean isResponseEnable(@Nullable okhttp3.Response response){
         return response != null && response.code() == 200;
     }
 

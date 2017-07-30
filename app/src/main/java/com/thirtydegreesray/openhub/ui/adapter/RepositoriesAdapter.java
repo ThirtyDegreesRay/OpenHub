@@ -17,6 +17,8 @@
 package com.thirtydegreesray.openhub.ui.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -49,28 +51,29 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
         return R.layout.layout_item_repository;
     }
 
+    @NonNull
     @Override
-    protected ViewHolder getViewHolder(View itemView, int viewType) {
+    protected ViewHolder getViewHolder(@NonNull View itemView, int viewType) {
         ViewHolder holder = new ViewHolder(itemView);
         return holder;
     }
 
     public class ViewHolder extends BaseViewHolder {
 
-        @BindView(R.id.iv_user_avatar) ImageView ivUserAvatar;
-        @BindView(R.id.tv_repo_name) TextView tvRepoName;
-        @BindView(R.id.tv_repo_description) TextView tvRepoDescription;
-        @BindView(R.id.tv_star_num) TextView tvStarNum;
-        @BindView(R.id.tv_fork_num) TextView tvForkNum;
-        @BindView(R.id.tv_owner_name) TextView tvOwnerName;
+        @Nullable @BindView(R.id.iv_user_avatar) ImageView ivUserAvatar;
+        @Nullable @BindView(R.id.tv_repo_name) TextView tvRepoName;
+        @Nullable @BindView(R.id.tv_repo_description) TextView tvRepoDescription;
+        @Nullable @BindView(R.id.tv_star_num) TextView tvStarNum;
+        @Nullable @BindView(R.id.tv_fork_num) TextView tvForkNum;
+        @Nullable @BindView(R.id.tv_owner_name) TextView tvOwnerName;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         Repository repository = mData.get(position);
         holder.tvRepoName.setText(repository.getName());
