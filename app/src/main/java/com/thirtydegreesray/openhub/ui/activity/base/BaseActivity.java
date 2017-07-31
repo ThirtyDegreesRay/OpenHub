@@ -31,9 +31,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
-import com.thirtydegreesray.openhub.ActivitiesManager;
 import com.thirtydegreesray.openhub.AppApplication;
-import com.thirtydegreesray.openhub.db.DaoSession;
+import com.thirtydegreesray.openhub.AppData;
+import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseView;
 import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
@@ -60,10 +60,11 @@ public abstract class BaseActivity<P extends BasePresenter>
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        curActivity = getActivity();
         isAlive = true;
-        ActivitiesManager.getInstance().addActivity(this);
         DataAutoAccess.getData(this, savedInstanceState);
+        if(savedInstanceState != null && AppData.INSTANCE.getAuthUser() == null){
+            DataAutoAccess.getData(AppData.INSTANCE, savedInstanceState);
+        }
 
         setContentView(getContentView());
         getScreenSize();
@@ -80,6 +81,9 @@ public abstract class BaseActivity<P extends BasePresenter>
         super.onSaveInstanceState(outState);
         //系统由于内存不足而杀死activity，此时保存数据
         DataAutoAccess.saveData(this, outState);
+        if(curActivity.equals(this)){
+            DataAutoAccess.saveData(AppData.INSTANCE, outState);
+        }
     }
 
     @Override
@@ -123,7 +127,6 @@ public abstract class BaseActivity<P extends BasePresenter>
     protected void onDestroy() {
         super.onDestroy();
         mPresenter.detachView();
-        ActivitiesManager.getInstance().removeActivity(this);
         isAlive = false;
     }
 

@@ -16,9 +16,7 @@
 
 package com.thirtydegreesray.openhub;
 
-import android.support.annotation.NonNull;
-
-import com.thirtydegreesray.openhub.db.AuthUser;
+import com.thirtydegreesray.openhub.dao.AuthUser;
 import com.thirtydegreesray.openhub.mvp.model.User;
 
 /**
@@ -27,21 +25,14 @@ import com.thirtydegreesray.openhub.mvp.model.User;
  * @author ThirtyDegreesRay
  */
 
-public class AppData {
+public enum  AppData {
+    INSTANCE;
 
-    private AppData(){}
+//    @AutoAccess(dataName = "appData_loginedUser") User loginedUser;
+//    @AutoAccess(dataName = "appData_authUser") AuthUser authUser;
 
-    private static class InstanceHolder{
-        @NonNull static AppData instance = new AppData();
-    }
-
-    @NonNull
-    public static AppData getInstance(){
-        return InstanceHolder.instance;
-    }
-
-    private User loginedUser;
-    private AuthUser authUser;
+    User loginedUser;
+    AuthUser authUser;
 
     public User getLoginedUser() {
         return loginedUser;

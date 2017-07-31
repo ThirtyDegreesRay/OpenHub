@@ -20,7 +20,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.thirtydegreesray.openhub.AppData;
-import com.thirtydegreesray.openhub.db.DaoSession;
+import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.IRepositoriesContract;
@@ -109,7 +109,7 @@ public class RepositoriesPresenter extends IRepositoriesContract.Presenter {
     }
 
     private Observable<Response<ArrayList<Repository>>> getObservable(boolean forceNetWork){
-        String loginedUser = AppData.getInstance().getLoginedUser().getLogin();
+        String loginedUser = AppData.INSTANCE.getLoginedUser().getLogin();
         switch (mRepositoriesType){
             case OWNED:
                 return getAPPSService().getUserRepos(forceNetWork, "");

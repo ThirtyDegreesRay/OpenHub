@@ -17,7 +17,7 @@
 package com.thirtydegreesray.openhub.inject.component;
 
 import com.thirtydegreesray.openhub.AppApplication;
-import com.thirtydegreesray.openhub.db.DaoSession;
+import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.inject.module.AppModule;
 
 import javax.inject.Singleton;

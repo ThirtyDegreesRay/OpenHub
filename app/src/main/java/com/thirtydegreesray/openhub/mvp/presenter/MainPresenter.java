@@ -16,7 +16,7 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
-import com.thirtydegreesray.openhub.db.DaoSession;
+import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.mvp.contract.IMainContract;
 
 import javax.inject.Inject;

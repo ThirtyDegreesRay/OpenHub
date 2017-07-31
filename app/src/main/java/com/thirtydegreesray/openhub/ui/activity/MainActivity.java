@@ -18,7 +18,6 @@ package com.thirtydegreesray.openhub.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -54,12 +53,12 @@ import butterknife.BindView;
 public class MainActivity extends BaseActivity<MainPresenter>
         implements NavigationView.OnNavigationItemSelectedListener, IMainContract.View {
 
-    @Nullable @BindView(R.id.toolbar) Toolbar toolbar;
-    @Nullable @BindView(R.id.tab_layout) TabLayout tabLayout;
-    @Nullable @BindView(R.id.frame_layout_content) FrameLayout frameLayoutContent;
-    @Nullable @BindView(R.id.fab) FloatingActionButton fab;
-    @Nullable @BindView(R.id.nav_view) NavigationView navView;
-    @Nullable @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.tab_layout) TabLayout tabLayout;
+    @BindView(R.id.frame_layout_content) FrameLayout frameLayoutContent;
+    @BindView(R.id.fab) FloatingActionButton fab;
+    @BindView(R.id.nav_view) NavigationView navView;
+    @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
 
     /**
      * 依赖注入的入口
@@ -120,11 +119,11 @@ public class MainActivity extends BaseActivity<MainPresenter>
         loadFragment("nav_profile");
 
 
-        ImageView avatar = navView.getHeaderView(0).findViewById(R.id.avatar);
-        TextView name =  navView.getHeaderView(0).findViewById(R.id.name);
-        TextView mail =  navView.getHeaderView(0).findViewById(R.id.mail);
+        ImageView avatar = (ImageView) navView.getHeaderView(0).findViewById(R.id.avatar);
+        TextView name = (TextView) navView.getHeaderView(0).findViewById(R.id.name);
+        TextView mail = (TextView) navView.getHeaderView(0).findViewById(R.id.mail);
 
-        User loginUser = AppData.getInstance().getLoginedUser();
+        User loginUser = AppData.INSTANCE.getLoginedUser();
         Picasso.with(this)
                 .load(loginUser.getAvatarUrl())
                 .into(avatar);
@@ -170,19 +169,19 @@ public class MainActivity extends BaseActivity<MainPresenter>
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        switch (id){
+        switch (id) {
             case R.id.nav_profile:
                 loadFragment("nav_profile");
                 break;
-            case R.id.nav_notifications:
-                loadFragment("nav_notifications");
-                break;
+//            case R.id.nav_notifications:
+//                loadFragment("nav_notifications");
+//                break;
             case R.id.nav_news:
                 loadFragment("nav_news");
                 break;
-            case R.id.nav_issues:
-                loadFragment("nav_issues");
-                break;
+//            case R.id.nav_issues:
+//                loadFragment("nav_issues");
+//                break;
 
             case R.id.nav_owned:
                 loadRepositoriesFragment(RepositoriesFragment.RepositoriesType.OWNED);
@@ -195,9 +194,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 fragment.setTabLayout(tabLayout);
                 loadFragment(fragment);
                 break;
-            case R.id.nav_explore:
-                loadRepositoriesFragment(RepositoriesFragment.RepositoriesType.EXPLORE);
-                break;
+//            case R.id.nav_explore:
+//                loadRepositoriesFragment(RepositoriesFragment.RepositoriesType.EXPLORE);
+//                break;
 
             case R.id.nav_settings:
                 loadFragment("nav_settings");
@@ -214,24 +213,24 @@ public class MainActivity extends BaseActivity<MainPresenter>
         return true;
     }
 
-    private void loadFragment(String name){
-        ProfileFragment fragment =  new ProfileFragment();
+    private void loadFragment(String name) {
+        ProfileFragment fragment = new ProfileFragment();
         fragment.setName(name);
         loadFragment(fragment);
     }
 
-    private void loadRepositoriesFragment(RepositoriesFragment.RepositoriesType repositoriesType){
+    private void loadRepositoriesFragment(RepositoriesFragment.RepositoriesType repositoriesType) {
         RepositoriesFragment repositoriesFragment = new RepositoriesFragment();
         repositoriesFragment.setRepositoriesType(repositoriesType);
         loadFragment(repositoriesFragment);
     }
 
 
-    private void loadFragment(Fragment fragment){
-        if(fragment instanceof TrendingFragment){
+    private void loadFragment(Fragment fragment) {
+        if (fragment instanceof TrendingFragment) {
             setToolbarScrollAble(true);
             tabLayout.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             setToolbarScrollAble(false);
             tabLayout.setVisibility(View.GONE);
         }
@@ -241,7 +240,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 .commit();
     }
 
-    private void setToolbarScrollAble(boolean scrollAble){
+    private void setToolbarScrollAble(boolean scrollAble) {
         int flags = scrollAble ? (AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
                 | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS) : 0;
         AppBarLayout.LayoutParams layoutParams = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();

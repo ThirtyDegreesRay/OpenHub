@@ -21,8 +21,8 @@ import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.AppConfig;
-import com.thirtydegreesray.openhub.db.DaoMaster;
-import com.thirtydegreesray.openhub.db.DaoSession;
+import com.thirtydegreesray.openhub.dao.DaoMaster;
+import com.thirtydegreesray.openhub.dao.DaoSession;
 
 import javax.inject.Singleton;
 

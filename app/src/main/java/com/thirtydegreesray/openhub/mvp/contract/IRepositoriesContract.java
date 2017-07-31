@@ -16,7 +16,7 @@
 
 package com.thirtydegreesray.openhub.mvp.contract;
 
-import com.thirtydegreesray.openhub.db.DaoSession;
+import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;

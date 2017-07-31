@@ -34,9 +34,8 @@ public class AppApplication extends Application {
 
     private final String TAG = "AppApplication";
 
-    private AppComponent mAppComponent;
-
     private static AppApplication application;
+    private AppComponent mAppComponent;
 
     @Override
     public void onCreate() {
@@ -55,7 +54,6 @@ public class AppApplication extends Application {
         startTime = System.currentTimeMillis();
         NetHelper.getInstance().init(this);
         Log.i(TAG, "net ok:" + (System.currentTimeMillis() - startTime));
-
     }
 
     public static AppApplication get(){

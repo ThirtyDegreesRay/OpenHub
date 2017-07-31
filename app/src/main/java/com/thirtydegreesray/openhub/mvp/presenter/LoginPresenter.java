@@ -19,7 +19,7 @@ package com.thirtydegreesray.openhub.mvp.presenter;
 import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.AppConfig;
-import com.thirtydegreesray.openhub.db.DaoSession;
+import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpProgressSubscriber;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;

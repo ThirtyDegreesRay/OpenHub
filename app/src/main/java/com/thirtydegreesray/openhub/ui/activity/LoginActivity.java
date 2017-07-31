@@ -127,6 +127,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
                 return true;
             }
         });
-        webView.loadUrl(mPresenter.getOAuth2Url());
+//        webView.loadUrl(mPresenter.getOAuth2Url());
     }
 }

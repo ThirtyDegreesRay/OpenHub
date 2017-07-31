@@ -1,4 +1,4 @@
-package com.thirtydegreesray.openhub.db;
+package com.thirtydegreesray.openhub.dao;
 
 import org.greenrobot.greendao.annotation.*;
 
@@ -12,7 +12,6 @@ public class AuthUser {
     @Id
     @NotNull
     private String accessToken;
-    private String userId;
 
     @NotNull
     private java.util.Date authTime;
@@ -21,6 +20,11 @@ public class AuthUser {
     @NotNull
     private String scope;
     private boolean selected;
+
+    @NotNull
+    private String loginId;
+    private String name;
+    private String avatar;
 
     @Generated
     public AuthUser() {
@@ -31,13 +35,15 @@ public class AuthUser {
     }
 
     @Generated
-    public AuthUser(String accessToken, String userId, java.util.Date authTime, int expireIn, String scope, boolean selected) {
+    public AuthUser(String accessToken, java.util.Date authTime, int expireIn, String scope, boolean selected, String loginId, String name, String avatar) {
         this.accessToken = accessToken;
-        this.userId = userId;
         this.authTime = authTime;
         this.expireIn = expireIn;
         this.scope = scope;
         this.selected = selected;
+        this.loginId = loginId;
+        this.name = name;
+        this.avatar = avatar;
     }
 
     @NotNull
@@ -48,14 +54,6 @@ public class AuthUser {
     /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setAccessToken(@NotNull String accessToken) {
         this.accessToken = accessToken;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     @NotNull
@@ -92,6 +90,32 @@ public class AuthUser {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
+    }
+
+    @NotNull
+    public String getLoginId() {
+        return loginId;
+    }
+
+    /** Not-null value; ensure this value is available before it is saved to the database. */
+    public void setLoginId(@NotNull String loginId) {
+        this.loginId = loginId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public boolean isExpired(){

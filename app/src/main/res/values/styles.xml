@@ -1,5 +1,5 @@
 <!--
-  ~    Copyright 2014 ThirtyDegressRay
+  ~    Copyright 2017 ThirtyDegressRay
   ~
   ~    Licensed under the Apache License, Version 2.0 (the "License");
   ~    you may not use this file except in compliance with the License.
@@ -23,9 +23,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.WhiteStateBar" parent="AppTheme.NoActionBar">
+        <item name="android:statusBarColor">@color/material_light_white</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
@@ -46,8 +50,8 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!--<item name="android:statusBarColor">@color/transparent</item>-->
+    <style name="SplashTheme" parent="AppTheme.NoActionBar">
+        <item name="android:statusBarColor">@color/transparent</item>
         <!--<item name="android:windowLightStatusBar" tools:targetApi="m">true</item>-->
         <item name="android:windowBackground">@drawable/splash_screen_drawable</item>
         <!--<item name="icon_color">@color/white</item> &lt;!&ndash; to display the icons properly since this theme is the default &ndash;&gt;-->

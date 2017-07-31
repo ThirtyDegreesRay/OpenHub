@@ -1,9 +1,8 @@
-package com.thirtydegreesray.openhub.db;
+package com.thirtydegreesray.openhub.dao;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.greenrobot.greendao.AbstractDaoMaster;
@@ -34,7 +33,6 @@ public class DaoMaster extends AbstractDaoMaster {
      * WARNING: Drops all table on Upgrade! Use only during development.
      * Convenience method using a {@link DevOpenHelper}.
      */
-    @NonNull
     public static DaoSession newDevSession(Context context, String name) {
         Database db = new DevOpenHelper(context, name).getWritableDb();
         DaoMaster daoMaster = new DaoMaster(db);
@@ -50,12 +48,10 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(AuthUserDao.class);
     }
 
-    @NonNull
     public DaoSession newSession() {
         return new DaoSession(db, IdentityScopeType.Session, daoConfigMap);
     }
 
-    @NonNull
     public DaoSession newSession(IdentityScopeType type) {
         return new DaoSession(db, type, daoConfigMap);
     }

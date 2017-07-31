@@ -5,14 +5,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-alpha8'
-//        classpath 'com.android.tools.build:gradle:2.3.3'
-
-//        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-
-        //for Retrolambda
-//        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
-
+//        classpath 'com.android.tools.build:gradle:3.0.0-alpha7'
+        classpath 'com.android.tools.build:gradle:2.3.3'
     }
 }
 

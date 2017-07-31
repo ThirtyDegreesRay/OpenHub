@@ -136,8 +136,8 @@ public class AppRetrofit {
 
             //add access token
             String url = request.url().toString();
-            if(AppData.getInstance().getAuthUser() != null){
-                String tokenKey = "access_token=" + AppData.getInstance().getAuthUser().getAccessToken();
+            if(AppData.INSTANCE.getAuthUser() != null){
+                String tokenKey = "access_token=" + AppData.INSTANCE.getAuthUser().getAccessToken();
                 String splitChar =  url.contains("?") ? "&" : "?";
                 url = url.concat(splitChar).concat(tokenKey);
                 request = request.newBuilder()

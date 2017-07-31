@@ -6,6 +6,10 @@
 
     <string name="action_settings">Settings</string>
 
+    <!-- login -->
+    <string name="user_name">UserName</string>
+    <string name="password">Password</string>
+
     <!-- menu -->
     <string name="profile">Profile</string>
     <string name="notifications">Notifications</string>

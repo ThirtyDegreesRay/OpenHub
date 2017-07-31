@@ -16,7 +16,7 @@
 
 package com.thirtydegreesray.openhub.mvp.contract;
 
-import com.thirtydegreesray.openhub.db.DaoSession;
+import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 
 /**
@@ -30,7 +30,7 @@ public interface ISplashContract{
     interface View extends IBaseView{
         void showMainPage();
 
-        void showOAuth2Page();
+        void showLoginPage();
     }
 
     abstract class Presenter extends BasePresenter<ISplashContract.View>{

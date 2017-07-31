@@ -21,8 +21,8 @@ import org.greenrobot.greendao.generator.Entity;
 import org.greenrobot.greendao.generator.Schema;
 
 public class AppDaoGenerator {
-    public static void main(String[] args) throws Exception {
-        Schema rootSchema = new Schema(1, "com.thirtydegreesray.openhub.db");
+    public static void main(String...args) throws Exception {
+        Schema rootSchema = new Schema(1, "com.thirtydegreesray.openhub.dao");
         addAuthUser(rootSchema);
         new DaoGenerator().generateAll(rootSchema, "app/src/main/java");
     }
@@ -34,10 +34,13 @@ public class AppDaoGenerator {
     private static void addAuthUser(Schema schema){
         Entity entity = schema.addEntity("AuthUser");
         entity.addStringProperty("accessToken").primaryKey().notNull();
-        entity.addStringProperty("userId");
         entity.addDateProperty("authTime").notNull();
         entity.addIntProperty("expireIn").notNull();
         entity.addStringProperty("scope").notNull();
         entity.addBooleanProperty("selected").notNull();
+
+        entity.addStringProperty("loginId").notNull();
+        entity.addStringProperty("name");
+        entity.addStringProperty("avatar");
     }
 }

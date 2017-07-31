@@ -23,7 +23,7 @@ import android.support.annotation.StringRes;
 import android.util.Log;
 
 import com.thirtydegreesray.openhub.AppConfig;
-import com.thirtydegreesray.openhub.db.DaoSession;
+import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.AppsService;
 import com.thirtydegreesray.openhub.http.AuthService;
 import com.thirtydegreesray.openhub.http.core.AppRetrofit;
@@ -229,6 +229,5 @@ public class BasePresenter<V extends IBaseView> {
     protected String getStringFromResource(@StringRes int resId){
         return getContext().getResources().getString(resId);
     }
-
 
 }

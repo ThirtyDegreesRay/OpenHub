@@ -46,7 +46,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
     }
 
     @Override
-    public void showOAuth2Page() {
+    public void showLoginPage() {
         startActivityForResult(new Intent(getActivity(), LoginActivity.class), REQUEST_ACCESS_TOKEN);
     }
 

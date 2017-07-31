@@ -19,9 +19,9 @@ package com.thirtydegreesray.openhub.mvp.presenter;
 import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.AppData;
-import com.thirtydegreesray.openhub.db.AuthUser;
-import com.thirtydegreesray.openhub.db.AuthUserDao;
-import com.thirtydegreesray.openhub.db.DaoSession;
+import com.thirtydegreesray.openhub.dao.AuthUser;
+import com.thirtydegreesray.openhub.dao.AuthUserDao;
+import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.ISplashContract;
@@ -45,7 +45,7 @@ public class SplashPresenter extends ISplashContract.Presenter {
 
     private final String TAG = "SplashPresenter";
 
-    private AuthUser authUser ;
+    private AuthUser authUser;
 
     @Inject
     public SplashPresenter(DaoSession daoSession) {
@@ -55,32 +55,24 @@ public class SplashPresenter extends ISplashContract.Presenter {
     @Override
     public void getUser() {
         AuthUserDao authUserDao = daoSession.getAuthUserDao();
-        List<AuthUser> users = authUserDao.loadAll();
-        AuthUser selectedUser = null;
-        for(AuthUser user : users){
-            if(user.getSelected() && !user.isExpired()){
-                selectedUser = user;
-                break;
-            }
+
+        List<AuthUser> users = authUserDao.queryBuilder()
+                .where(AuthUserDao.Properties.Selected.eq(true))
+                .limit(1)
+                .list();
+
+        AuthUser selectedUser = users != null && users.size() > 0 ? users.get(0) : null;
+
+        if (selectedUser != null && selectedUser.isExpired()) {
+            authUserDao.delete(selectedUser);
+            selectedUser = null;
         }
 
-        if(selectedUser == null && users.size() > 0){
-            for(AuthUser user : users){
-                if(user.isExpired()){
-                    authUserDao.delete(user);
-                }else{
-                    selectedUser = user;
-                    selectedUser.setSelected(true);
-                    authUserDao.update(selectedUser);
-                }
-            }
-        }
-
-        if(selectedUser != null){
-            AppData.getInstance().setAuthUser(selectedUser);
+        if (selectedUser != null) {
+            AppData.INSTANCE.setAuthUser(selectedUser);
             getUserInfo(selectedUser.getAccessToken());
         } else {
-            mView.showOAuth2Page();
+            mView.showLoginPage();
         }
 
     }
@@ -97,25 +89,24 @@ public class SplashPresenter extends ISplashContract.Presenter {
         this.authUser = authUser;
     }
 
-    private void getUserInfo(final String accessToken){
+    private void getUserInfo(final String accessToken) {
 
         HttpObserver<User> httpObserver = new HttpObserver<User>() {
-                    @Override
-                    public void onError(@NonNull Throwable error) {
-                        mView.showShortToast(error.getMessage());
-                    }
+            @Override
+            public void onError(@NonNull Throwable error) {
+                mView.showShortToast(error.getMessage());
+            }
 
-                    @Override
-                    public void onSuccess(@NonNull HttpResponse<User> response) {
-                        AppData.getInstance().setLoginedUser(response.body());
-                        if(authUser != null){
-                            authUser.setUserId(response.body().getLogin());
-                            daoSession.getAuthUserDao().update(authUser);
-                        }
-                        mView.showMainPage();
-
-                    }
-                };
+            @Override
+            public void onSuccess(@NonNull HttpResponse<User> response) {
+                AppData.INSTANCE.setLoginedUser(response.body());
+                if (authUser != null) {
+                    authUser.setLoginId(response.body().getLogin());
+                    daoSession.getAuthUserDao().update(authUser);
+                }
+                mView.showMainPage();
+            }
+        };
 
         generalRxHttpExecute(new IObservableCreator<User, Response<User>>() {
             @Override
