@@ -9,6 +9,11 @@
     <!-- login -->
     <string name="user_name">UserName</string>
     <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="login_in_browser">LOGIN IN BROWSER</string>
+    <string name="oauth_tip">Login using your default browser(OAuth)</string>
+    <string name="user_name_warning">Invalid user name!</string>
+    <string name="password_warning">Invalid password!</string>
 
     <!-- menu -->
     <string name="profile">Profile</string>

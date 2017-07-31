@@ -21,12 +21,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.util.Log;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
+import android.view.View;
 
-import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
@@ -34,10 +32,13 @@ import com.thirtydegreesray.openhub.mvp.contract.ILoginContract;
 import com.thirtydegreesray.openhub.mvp.presenter.LoginPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.util.HttpUtil;
+import com.thirtydegreesray.openhub.util.StringUtil;
+import com.unstoppable.submitbuttonview.SubmitButton;
 
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created on 2017/7/12.
@@ -49,8 +50,14 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
         implements ILoginContract.View {
 
     private final String TAG = "LoginActivity";
+    @BindView(R.id.user_name_et) TextInputEditText userNameEt;
+    @BindView(R.id.user_name_layout) TextInputLayout userNameLayout;
+    @BindView(R.id.password_et) TextInputEditText passwordEt;
+    @BindView(R.id.password_layout) TextInputLayout passwordLayout;
+    @BindView(R.id.login_bn) SubmitButton loginBn;
 
-    @Nullable @BindView(R.id.web_view) WebView webView;
+    private String userName;
+    private String password;
 
     private Handler handler;
 
@@ -92,7 +99,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
      */
     @Override
     protected void initActivity() {
-        handler = new Handler(){
+        handler = new Handler() {
             @Override
             public void handleMessage(@NonNull Message msg) {
                 super.handleMessage(msg);
@@ -112,21 +119,63 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
      */
     @Override
     protected void initView(Bundle savedInstanceState) {
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.setWebViewClient(new WebViewClient(){
+
+        loginBn.setOnResultEndListener(new SubmitButton.OnResultEndListener() {
             @Override
-            public boolean shouldOverrideUrlLoading(@NonNull WebView view, @NonNull String url) {
-                if(url.startsWith(AppConfig.OAUTH2_CALLBACK_URL)){
-                    Message message = new Message();
-                    message.obj = url;
-                    handler.sendMessage(message);
-                } else {
-                    view.loadUrl(url);
-                }
-                Log.i(TAG, "shouldOverrideUrlLoading:" + url);
-                return true;
+            public void onResultEnd() {
+
             }
         });
+
+//        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public boolean shouldOverrideUrlLoading(@NonNull WebView view, @NonNull String url) {
+//                if (url.startsWith(AppConfig.OAUTH2_CALLBACK_URL)) {
+//                    Message message = new Message();
+//                    message.obj = url;
+//                    handler.sendMessage(message);
+//                } else {
+//                    view.loadUrl(url);
+//                }
+//                Log.i(TAG, "shouldOverrideUrlLoading:" + url);
+//                return true;
+//            }
+//        });
 //        webView.loadUrl(mPresenter.getOAuth2Url());
+    }
+
+    @OnClick({R.id.login_bn, R.id.oauth_login_bn})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.login_bn:
+                if(loginCheck()){
+                    loginBn.reset();
+                }else{
+                    loginBn.reset();
+                }
+                break;
+            case R.id.oauth_login_bn:
+                break;
+        }
+    }
+
+    private boolean loginCheck(){
+        boolean valid = true;
+        userName = userNameEt.getText().toString();
+        password = passwordEt.getText().toString();
+        if(StringUtil.isBlank(userName)){
+            valid = false;
+            userNameLayout.setError(getString(R.string.user_name_warning));
+        }else{
+            userNameLayout.setErrorEnabled(false);
+        }
+        if(StringUtil.isBlank(password)){
+            valid = false;
+            passwordLayout.setError(getString(R.string.password_warning));
+        }else{
+            passwordLayout.setErrorEnabled(false);
+        }
+        return valid;
     }
 }

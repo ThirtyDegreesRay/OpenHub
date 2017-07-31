@@ -9,7 +9,7 @@
     <dimen name="app_bar_height">200dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
-    <dimen name="divider_width">0.8dp</dimen>
+    <dimen name="divider_width">0.6dp</dimen>
 
 
     <dimen name="spacing_micro">4dp</dimen>
