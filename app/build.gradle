@@ -10,6 +10,7 @@ android {
         versionCode VERSION_CODE as int
         versionName VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -35,7 +36,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
 
 //    implementation "com.android.support:support-annotations:${ANDROID_SUPPORT_VERSION}"
 
@@ -46,10 +46,10 @@ dependencies {
     compile "com.android.support.constraint:constraint-layout:${CONSTRAINT_VERSION}"
 
     compile "com.thirtydegreesray:dataautoaccess:${DATAAUTOACCESS_VERSION}"
-    annotationProcessor  "com.thirtydegreesray:dataautoaccess-compiler:${DATAAUTOACCESS_VERSION}"
+    annotationProcessor "com.thirtydegreesray:dataautoaccess-compiler:${DATAAUTOACCESS_VERSION}"
 
     compile "com.jakewharton:butterknife:${BUTTERKNIFE_VERSION}"
-    annotationProcessor  "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_VERSION}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_VERSION}"
 
     //数据库工具
     compile "org.greenrobot:greendao:${GREEN_DAO_VERSION}"
@@ -71,13 +71,13 @@ dependencies {
 
     //dagger依赖注入
     compile "com.google.dagger:dagger:${DAGGER_VERSION}"
-    annotationProcessor  "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
 
     //Android6.0以上权限获取工具
     //PermissionsDispatcher provides a simple annotation-based API to handle runtime permissions in Android Marshmallow.
 //            androidApt: 'com.neenbedankt.gradle.plugins:android-apt:1.8',
     compile "com.github.hotchemi:permissionsdispatcher:${PERMISSIONS_DISPATCHER_VERSION}"
-    annotationProcessor  "com.github.hotchemi:permissionsdispatcher-processor:${PERMISSIONS_DISPATCHER_VERSION}"
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:${PERMISSIONS_DISPATCHER_VERSION}"
 
     compile "com.squareup.picasso:picasso:${PICASSO_VERSION}"
 
@@ -87,4 +87,7 @@ dependencies {
     compile "com.github.daniel-stoneuk:material-about-library:${MATERIAL_ABOUT_VERSION}"
     compile "com.unstoppable:submitbutton:${SUBMIT_BUTTON_VERSION}"
 
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:support-vector-drawable:25.3.1'
+    testCompile 'junit:junit:4.12'
 }

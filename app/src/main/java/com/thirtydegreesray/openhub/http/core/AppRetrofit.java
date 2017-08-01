@@ -17,14 +17,14 @@
 package com.thirtydegreesray.openhub.http.core;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.AppConfig;
-import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.util.FileUtil;
 import com.thirtydegreesray.openhub.util.NetHelper;
-import com.thirtydegreesray.openhub.util.StringUtil;
+import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -49,65 +49,24 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Retrofit 网络请求
  * Created by ThirtyDegreesRay on 2016/7/15 11:39
  */
-public class AppRetrofit {
+public enum  AppRetrofit {
+    INSTANCE;
 
-    private static final String TAG = "AppRetrofit";
+    private final String TAG = "AppRetrofit";
 
-    private AppRetrofit() {
-        retrofitMap = new HashMap<>();
-    }
-
-    public static class SingletonHolder {
-        private final static AppRetrofit instance = new AppRetrofit();
-    }
-
-    @NonNull
-    public static AppRetrofit getInstance() {
-        return SingletonHolder.instance;
-    }
-
-    private HashMap<String, Retrofit> retrofitMap;
-
-    /**
-     * 初始化
-     */
-    private void init() {
-//        Cache cache = new Cache(getCacheFile(), MyConfiguration.MAX_CACHE_SIZE);
-//        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-//                .connectTimeout(MyConfiguration.OUTER_NET_TIME_OUT, TimeUnit.MILLISECONDS)
-//                .cache(cache)
-//                .addInterceptor(new BaseInterceptor())
-//                .addNetworkInterceptor(new NetworkBaseInterceptor())
-//                .build();
-//
-//        String baseUrl = "http://" + MyConfiguration.wIp + ":" + MyConfiguration.wPort;
-//        retrofit = new Retrofit.Builder()
-//                .baseUrl(baseUrl)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-//                .client(okHttpClient)
-//                .build();
-    }
+    private HashMap<String, Retrofit> retrofitMap = new HashMap<>();
+    private String token;
 
     private void createRetrofit(@NonNull String baseUrl) {
         int timeOut = AppConfig.HTTP_TIME_OUT;
         Cache cache = new Cache(FileUtil.getHttpImageCacheDir(AppApplication.get()),
                 AppConfig.MAX_CACHE_SIZE);
 
-//        SSLSocketFactory sslSocketFactory = null;
-//        try {
-//            sslSocketFactory = getSLLSocketFactoryByCer(AppApplication.get().getAssets().open("cer/test.cer"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(timeOut, TimeUnit.MILLISECONDS)
                 .addInterceptor(new BaseInterceptor())
                 .addNetworkInterceptor(new NetworkBaseInterceptor())
                 .cache(cache)
-//                .sslSocketFactory(sslSocketFactory)
-//                .hostnameVerifier(new UnSafeHostnameVerifier())
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -119,7 +78,8 @@ public class AppRetrofit {
         retrofitMap.put(baseUrl, retrofit);
     }
 
-    public Retrofit getRetrofit(@NonNull String baseUrl) {
+    public Retrofit getRetrofit(@NonNull String baseUrl, @Nullable String token) {
+        this.token = token;
         if (!retrofitMap.containsKey(baseUrl)) {
             createRetrofit(baseUrl);
         }
@@ -136,11 +96,10 @@ public class AppRetrofit {
 
             //add access token
             String url = request.url().toString();
-            if(AppData.INSTANCE.getAuthUser() != null){
-                String tokenKey = "access_token=" + AppData.INSTANCE.getAuthUser().getAccessToken();
-                String splitChar =  url.contains("?") ? "&" : "?";
-                url = url.concat(splitChar).concat(tokenKey);
+            if(!StringUtils.isBlank(token)){
+                String auth = token.startsWith("Basic") ? token : "token " + token;
                 request = request.newBuilder()
+                        .addHeader("Authorization", auth)
                         .url(url)
                         .build();
             }
@@ -154,7 +113,7 @@ public class AppRetrofit {
                         .build();
             }
             //有forceNetWork且无网络状态下取从缓存中取
-            else if (!StringUtil.isBlank(forceNetWork) &&
+            else if (!StringUtils.isBlank(forceNetWork) &&
                     !NetHelper.getInstance().getNetEnabled()) {
                 request = request.newBuilder()
                         .cacheControl(CacheControl.FORCE_CACHE)
@@ -187,11 +146,11 @@ public class AppRetrofit {
 
             //有forceNetWork时，强制更改缓存策略
             String forceNetWork = request.header("forceNetWork");
-            if(!StringUtil.isBlank(forceNetWork)){
+            if(!StringUtils.isBlank(forceNetWork)){
                 requestCacheControl = getCacheString();
             }
 
-            if (StringUtil.isBlank(requestCacheControl)) {
+            if (StringUtils.isBlank(requestCacheControl)) {
                 return originalResponse;
             }
             //设置缓存策略
@@ -220,52 +179,4 @@ public class AppRetrofit {
         return "public, max-age=" + AppConfig.CACHE_MAX_AGE;
     }
 
-//    private class UnSafeHostnameVerifier implements HostnameVerifier {
-//
-//        @Override
-//        public boolean verify(String hostname, SSLSession session) {
-//            return true;
-//        }
-//    }
-//
-//    private SSLSocketFactory getSLLSocketFactoryByCer(InputStream... certificates) {
-//        try
-//        {
-//            CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
-//            KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
-//            keyStore.load(null);
-//            int index = 0;
-//            for (InputStream certificate : certificates)
-//            {
-//                String certificateAlias = Integer.toString(index++);
-//                keyStore.setCertificateEntry(certificateAlias, certificateFactory.generateCertificate(certificate));
-//
-//                try
-//                {
-//                    if (certificate != null)
-//                        certificate.close();
-//                } catch (IOException e)
-//                {
-//                }
-//            }
-//
-//            SSLContext sslContext = SSLContext.getInstance("TLS");
-//
-//            TrustManagerFactory trustManagerFactory =
-//                    TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-//
-//            trustManagerFactory.init(keyStore);
-//            sslContext.init
-//                    (
-//                            null,
-//                            trustManagerFactory.getTrustManagers(),
-//                            new SecureRandom()
-//                    );
-//            return sslContext.getSocketFactory();
-//        } catch (Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
 }

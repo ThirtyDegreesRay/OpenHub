@@ -16,13 +16,17 @@
 
 package com.thirtydegreesray.openhub.util;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * StringUtil
  * Created by ThirtyDegreesRay on 2016/7/14 16:18
  */
-public class StringUtil {
+public class StringUtils {
 
     /**
      * 如果字符串等于null、空白字符(“”)、空格(“ ”)则返回true,否则返回false
@@ -42,6 +46,30 @@ public class StringUtil {
             b = false;
         }
         return b;
+    }
+
+    public static List<String> stringToList(@NonNull String str, @NonNull String separator){
+        List<String> list = null;
+        if(!str.contains(separator)){
+            return list;
+        }
+        String[] strs = str.split(separator);
+        list = Arrays.asList(strs);
+        return list;
+    }
+
+    public static String listToString(@NonNull List<String> list, @NonNull String separator){
+        StringBuilder stringBuilder = new StringBuilder("");
+        if(list.size() == 0 || isBlank(separator)){
+            return stringBuilder.toString();
+        }
+        for(int i = 0; i < list.size(); i++){
+            stringBuilder.append(list.get(i));
+            if(i != list.size() - 1){
+                stringBuilder.append(separator);
+            }
+        }
+        return stringBuilder.toString();
     }
 
 }

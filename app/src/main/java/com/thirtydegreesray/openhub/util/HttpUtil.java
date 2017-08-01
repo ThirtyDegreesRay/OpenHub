@@ -32,7 +32,7 @@ public class HttpUtil {
     @NonNull
     public static Map<String, String> getParams(@NonNull String url){
         Map<String, String> map = new HashMap<>();
-        if(!StringUtil.isBlank(url) && url.contains("?")){
+        if(!StringUtils.isBlank(url) && url.contains("?")){
             String paramsStr = url.substring(url.indexOf("?") + 1);
             String[] params = paramsStr.split("&");
             for(int i = 0; i < params.length; i++){

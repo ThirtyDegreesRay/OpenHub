@@ -109,14 +109,14 @@ public class RepositoriesPresenter extends IRepositoriesContract.Presenter {
     }
 
     private Observable<Response<ArrayList<Repository>>> getObservable(boolean forceNetWork){
-        String loginedUser = AppData.INSTANCE.getLoginedUser().getLogin();
+        String loginedUser = AppData.INSTANCE.getLoggedUser().getLogin();
         switch (mRepositoriesType){
             case OWNED:
-                return getAPPSService().getUserRepos(forceNetWork, "");
+                return getRepoService().getUserRepos(forceNetWork, "");
             case STARRED:
             case TRENDING:
             case EXPLORE:
-                return getAPPSService().getUserStarred(forceNetWork, "");
+                return getRepoService().getUserStarred(forceNetWork, "");
             default:
                 return null;
         }

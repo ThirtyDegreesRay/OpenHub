@@ -53,4 +53,6 @@ public class AppConfig {
 
     public final static String OAUTH2_CALLBACK_URL = "https://github.com/ThirtyDegreesRay/OpenHub/CallBack";
 
+    public final static String REDIRECT_URL = "https://github.com/ThirtyDegreesRay/OpenHub/CallBack";
+
 }

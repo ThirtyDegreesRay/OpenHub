@@ -123,7 +123,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         TextView name = (TextView) navView.getHeaderView(0).findViewById(R.id.name);
         TextView mail = (TextView) navView.getHeaderView(0).findViewById(R.id.mail);
 
-        User loginUser = AppData.INSTANCE.getLoginedUser();
+        User loginUser = AppData.INSTANCE.getLoggedUser();
         Picasso.with(this)
                 .load(loginUser.getAvatarUrl())
                 .into(avatar);

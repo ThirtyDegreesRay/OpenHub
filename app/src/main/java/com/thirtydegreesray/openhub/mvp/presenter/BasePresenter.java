@@ -23,9 +23,11 @@ import android.support.annotation.StringRes;
 import android.util.Log;
 
 import com.thirtydegreesray.openhub.AppConfig;
+import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.dao.DaoSession;
-import com.thirtydegreesray.openhub.http.AppsService;
-import com.thirtydegreesray.openhub.http.AuthService;
+import com.thirtydegreesray.openhub.http.LoginService;
+import com.thirtydegreesray.openhub.http.RepoService;
+import com.thirtydegreesray.openhub.http.UserService;
 import com.thirtydegreesray.openhub.http.core.AppRetrofit;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
@@ -34,7 +36,7 @@ import com.thirtydegreesray.openhub.http.error.HttpError;
 import com.thirtydegreesray.openhub.http.error.HttpErrorCode;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseView;
 import com.thirtydegreesray.openhub.util.NetHelper;
-import com.thirtydegreesray.openhub.util.StringUtil;
+import com.thirtydegreesray.openhub.util.StringUtils;
 
 import org.apache.http.conn.ConnectTimeoutException;
 
@@ -55,7 +57,7 @@ public class BasePresenter<V extends IBaseView> {
     private final String TAG = "BasePresenter";
 
     //View
-    @Nullable protected V mView;
+    protected V mView;
     //db Dao
     protected DaoSession daoSession;
 
@@ -68,8 +70,7 @@ public class BasePresenter<V extends IBaseView> {
      *
      * @param view
      */
-    @NonNull
-    public void attachView(V view) {
+    public void attachView(@NonNull V view) {
         mView = view;
         onViewAttached();
     }
@@ -86,16 +87,34 @@ public class BasePresenter<V extends IBaseView> {
      *
      * @return Retrofit
      */
-    protected AppsService getAPPSService() {
-        return AppRetrofit.getInstance()
-                .getRetrofit(AppConfig.GITHUB_API_BASE_URL)
-                .create(AppsService.class);
+
+    protected LoginService getLoginService() {
+        return AppRetrofit.INSTANCE
+                .getRetrofit(AppConfig.GITHUB_BASE_URL, null)
+                .create(LoginService.class);
     }
 
-    protected AuthService getAuthService() {
-        return AppRetrofit.getInstance()
-                .getRetrofit(AppConfig.GITHUB_BASE_URL)
-                .create(AuthService.class);
+    protected LoginService getLoginService(String token) {
+        return AppRetrofit.INSTANCE
+                .getRetrofit(AppConfig.GITHUB_API_BASE_URL, token)
+                .create(LoginService.class);
+    }
+
+    protected UserService getUserService(String token) {
+        return AppRetrofit.INSTANCE
+                .getRetrofit(AppConfig.GITHUB_API_BASE_URL, token)
+                .create(UserService.class);
+    }
+
+    protected UserService getUserService() {
+        return getUserService(AppData.INSTANCE.getAuthUser().getAccessToken());
+    }
+
+    protected RepoService getRepoService() {
+        return AppRetrofit.INSTANCE
+                .getRetrofit(AppConfig.GITHUB_API_BASE_URL,
+                        AppData.INSTANCE.getAuthUser().getAccessToken())
+                .create(RepoService.class);
     }
 
     /**
@@ -213,7 +232,7 @@ public class BasePresenter<V extends IBaseView> {
         } else {
             errorTip = "网络异常，请检查网络后重试！";
         }
-        return StringUtil.isBlank(typeInfo) ? errorTip : typeInfo + "，" + errorTip;
+        return StringUtils.isBlank(typeInfo) ? errorTip : typeInfo + "，" + errorTip;
     }
     /**
      * 获取error提示

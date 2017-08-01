@@ -18,19 +18,12 @@ package com.thirtydegreesray.openhub.http;
 
 import android.support.annotation.NonNull;
 
-import com.thirtydegreesray.openhub.mvp.model.Repository;
-import com.thirtydegreesray.openhub.mvp.model.User;
-
-import java.util.ArrayList;
-
 import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
 import rx.Observable;
@@ -42,30 +35,7 @@ import rx.Observable;
  * @author ThirtyDegreesRay
  */
 
-public interface AppsService {
-
-    String USERS_START = "s/";
-
-    @NonNull
-    @GET("user{user}")
-    Observable<retrofit2.Response<User>> getUser(
-            @Header("forceNetWork") boolean forceNetWork,
-            @Path("user") String user
-    );
-
-    @NonNull
-    @GET("user{user}/starred")
-    Observable<retrofit2.Response<ArrayList<Repository>>> getUserStarred(
-            @Header("forceNetWork") boolean forceNetWork,
-            @Path("user") String user
-    );
-
-    @NonNull
-    @GET("user{user}/repos")
-    Observable<retrofit2.Response<ArrayList<Repository>>> getUserRepos(
-            @Header("forceNetWork") boolean forceNetWork,
-            @Path("user") String user
-    );
+public interface AppService {
 
     @NonNull
     @POST("main/debug")

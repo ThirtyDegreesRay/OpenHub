@@ -14,39 +14,30 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.mvp.model;
+package com.thirtydegreesray.openhub.http;
 
-import com.google.gson.annotations.SerializedName;
+import com.thirtydegreesray.openhub.mvp.model.User;
+
+import retrofit2.Response;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Path;
+import rx.Observable;
 
 /**
- * Created on 2017/7/14.
+ * Created on 2017/8/1.
  *
  * @author ThirtyDegreesRay
  */
 
-public class AccessToken {
+public interface UserService {
 
-    @SerializedName("access_token")
-    private String accessToken;
+    String USERS_START = "s/";
 
-    private String scope;
+    @GET("user{user}")
+    Observable<Response<User>> getUser(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("user") String user
+    );
 
-    public AccessToken() {
-    }
-
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
-    public String getScope() {
-        return scope;
-    }
-
-    public void setScope(String scope) {
-        this.scope = scope;
-    }
 }

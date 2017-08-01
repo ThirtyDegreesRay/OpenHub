@@ -99,7 +99,7 @@ public class SplashPresenter extends ISplashContract.Presenter {
 
             @Override
             public void onSuccess(@NonNull HttpResponse<User> response) {
-                AppData.INSTANCE.setLoginedUser(response.body());
+                AppData.INSTANCE.setLoggedUser(response.body());
                 if (authUser != null) {
                     authUser.setLoginId(response.body().getLogin());
                     daoSession.getAuthUserDao().update(authUser);
@@ -111,7 +111,7 @@ public class SplashPresenter extends ISplashContract.Presenter {
         generalRxHttpExecute(new IObservableCreator<User, Response<User>>() {
             @Override
             public Observable<Response<User>> createObservable(boolean forceNetWork) {
-                return getAPPSService().getUser(forceNetWork, "");
+                return getUserService().getUser(forceNetWork, "");
             }
         }, httpObserver, false);
 

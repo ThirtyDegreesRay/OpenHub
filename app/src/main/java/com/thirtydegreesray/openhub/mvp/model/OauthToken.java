@@ -14,26 +14,39 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.ui.activity;
+package com.thirtydegreesray.openhub.mvp.model;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-
-import com.thirtydegreesray.openhub.R;
+import com.google.gson.annotations.SerializedName;
 
 /**
- * Created on 2017/7/26.
+ * Created on 2017/7/14.
  *
  * @author ThirtyDegreesRay
  */
 
-public class SimpleActivity extends Activity {
+public class OauthToken {
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_simple);
+    @SerializedName("access_token")
+    private String accessToken;
 
+    private String scope;
+
+    public OauthToken() {
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
     }
 }

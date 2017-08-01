@@ -22,6 +22,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -65,10 +66,13 @@ public abstract class BaseActivity<P extends BasePresenter>
         if(savedInstanceState != null && AppData.INSTANCE.getAuthUser() == null){
             DataAutoAccess.getData(AppData.INSTANCE, savedInstanceState);
         }
-
-        setContentView(getContentView());
         getScreenSize();
-        ButterKnife.bind(getActivity());
+
+        if(getContentView() != 0){
+            setContentView(getContentView());
+            ButterKnife.bind(getActivity());
+        }
+
         setupActivityComponent(getAppComponent());
         mPresenter.attachView(this);
 
@@ -101,6 +105,7 @@ public abstract class BaseActivity<P extends BasePresenter>
      * 获取ContentView id
      * @return
      */
+    @Nullable @LayoutRes
     protected abstract int getContentView();
 
     /**

@@ -20,7 +20,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
-import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
 import com.thirtydegreesray.openhub.mvp.contract.ISplashContract;
@@ -70,7 +69,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
      */
     @Override
     protected int getContentView() {
-        return R.layout.activity_splash;
+        return 0;
     }
 
     /**
@@ -105,12 +104,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
         switch (requestCode){
             case REQUEST_ACCESS_TOKEN:
                 if(resultCode == RESULT_OK){
-                    String accessToken = data.getStringExtra("accessToken");
-                    String scope = data.getStringExtra("scope");
-                    int expireIn = data.getIntExtra("expireIn", 0);
-                    //save token
-                    mPresenter.saveAccessToken(accessToken, scope, expireIn);
-                    mPresenter.getUser();
+                    showMainPage();
                 }
                 break;
             default:

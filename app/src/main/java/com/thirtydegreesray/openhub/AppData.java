@@ -28,18 +28,18 @@ import com.thirtydegreesray.openhub.mvp.model.User;
 public enum  AppData {
     INSTANCE;
 
-//    @AutoAccess(dataName = "appData_loginedUser") User loginedUser;
+//    @AutoAccess(dataName = "appData_loginedUser") User loggedUser;
 //    @AutoAccess(dataName = "appData_authUser") AuthUser authUser;
 
-    User loginedUser;
+    User loggedUser;
     AuthUser authUser;
 
-    public User getLoginedUser() {
-        return loginedUser;
+    public User getLoggedUser() {
+        return loggedUser;
     }
 
-    public void setLoginedUser(User loginedUser) {
-        this.loginedUser = loginedUser;
+    public void setLoggedUser(User loggedUser) {
+        this.loggedUser = loggedUser;
     }
 
     public AuthUser getAuthUser() {
