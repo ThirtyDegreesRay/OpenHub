@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -199,7 +200,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
 //                break;
 
             case R.id.nav_settings:
-                loadFragment("nav_settings");
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+//                loadFragment("nav_settings");
                 break;
             case R.id.nav_about:
                 loadFragment("nav_about");

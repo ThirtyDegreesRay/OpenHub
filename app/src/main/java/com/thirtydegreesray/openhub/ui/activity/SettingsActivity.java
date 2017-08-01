@@ -16,14 +16,49 @@
 
 package com.thirtydegreesray.openhub.ui.activity;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
+import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.inject.component.AppComponent;
+import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
+import com.thirtydegreesray.openhub.inject.module.ActivityModule;
+import com.thirtydegreesray.openhub.mvp.contract.ISettingsContract;
+import com.thirtydegreesray.openhub.mvp.presenter.SettingsPresenter;
+import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
+
 /**
  * Created on 2017/8/1.
  *
  * @author ThirtyDegreesRay
  */
 
-public class SettingsActivity {
+public class SettingsActivity extends BaseActivity<SettingsPresenter>
+        implements ISettingsContract.View{
 
 
+    @Override
+    protected void setupActivityComponent(AppComponent appComponent) {
+        DaggerActivityComponent.builder()
+                .appComponent(appComponent)
+                .activityModule(new ActivityModule(getActivity()))
+                .build()
+                .inject(this);
+    }
 
+    @Nullable
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_settings;
+    }
+
+    @Override
+    protected void initActivity() {
+
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        setToolbarIcon(R.drawable.ic_arrow_back);
+    }
 }

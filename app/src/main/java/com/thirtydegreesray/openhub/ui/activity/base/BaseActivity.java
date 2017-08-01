@@ -21,6 +21,7 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -134,6 +135,14 @@ public abstract class BaseActivity<P extends BasePresenter>
         mPresenter.detachView();
         isAlive = false;
     }
+
+    protected void setToolbarIcon(@DrawableRes int res) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeAsUpIndicator(res);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
 
     @Override
     public void showProgressDialog(String content) {
