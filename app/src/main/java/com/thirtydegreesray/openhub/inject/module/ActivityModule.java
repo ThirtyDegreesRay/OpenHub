@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.inject.module;
 
+import android.content.Context;
+
 import com.thirtydegreesray.openhub.inject.ActivityScope;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 
@@ -38,6 +40,12 @@ public class ActivityModule {
     @Provides
     @ActivityScope
     public BaseActivity provideActivity(){
+        return mActivity;
+    }
+
+    @Provides
+    @ActivityScope
+    public Context provideContext(){
         return mActivity;
     }
 

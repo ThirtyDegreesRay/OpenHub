@@ -4,8 +4,6 @@
     <color name="colorPrimaryDark">@color/material_indigo_700</color>
     <color name="colorAccent">@color/material_blue_accent_700</color>
 
-    <color name="color_line">#D3D3D3</color>
-
     <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFF</color>
 
@@ -117,6 +115,7 @@
     <color name="material_green_accent_400">#00E676</color>
     <color name="material_green_accent_700">#00C853</color>
     <color name="material_grey_200">#EEEEEE</color>
+    <color name="material_grey_350">#D0D0D0</color>
     <color name="material_grey_400">#BDBDBD</color>
     <color name="material_grey_500">#9E9E9E</color>
     <color name="material_grey_700">#616161</color>

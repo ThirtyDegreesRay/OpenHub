@@ -25,8 +25,13 @@ import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
 import com.thirtydegreesray.openhub.inject.module.ActivityModule;
 import com.thirtydegreesray.openhub.mvp.contract.ISettingsContract;
+import com.thirtydegreesray.openhub.mvp.model.SettingModel;
 import com.thirtydegreesray.openhub.mvp.presenter.SettingsPresenter;
-import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
+import com.thirtydegreesray.openhub.ui.activity.base.ListActivity;
+import com.thirtydegreesray.openhub.ui.adapter.SettingsAdapter;
+import com.thirtydegreesray.openhub.ui.adapter.base.DividerItemDecoration;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 
@@ -36,11 +41,10 @@ import butterknife.BindView;
  * @author ThirtyDegreesRay
  */
 
-public class SettingsActivity extends BaseActivity<SettingsPresenter>
+public class SettingsActivity extends ListActivity<SettingsPresenter, SettingsAdapter>
         implements ISettingsContract.View{
 
     @BindView(R.id.toolbar) Toolbar toolbar;
-
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
@@ -58,14 +62,22 @@ public class SettingsActivity extends BaseActivity<SettingsPresenter>
     }
 
     @Override
-    protected void initActivity() {
-
-    }
-
-    @Override
     protected void initView(Bundle savedInstanceState) {
-        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setToolbarIcon(R.drawable.ic_arrow_back);
+        super.initView(savedInstanceState);
+        setToolbarBackEnable();
+
+        recyclerView.addItemDecoration(
+                new DividerItemDecoration(getApplication(), DividerItemDecoration.VERTICAL_LIST));
+
+        ArrayList<SettingModel> settingList = new ArrayList<>();
+        settingList.add(new SettingModel(R.drawable.ic_menu_person, "Person"));
+        settingList.add(new SettingModel(R.drawable.ic_menu_star, "Star")
+                .setSwitchEnable(true)
+                .setSwitchChecked(true));
+        settingList.add(new SettingModel(R.drawable.ic_menu_explore, getString(R.string.language)));
+        settingList.add(new SettingModel(R.drawable.ic_logout, getString(R.string.logout), "click to logout"));
+
+        adapter.setData(settingList);
+        adapter.notifyDataSetChanged();
     }
 }

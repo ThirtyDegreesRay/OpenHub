@@ -18,6 +18,7 @@ package com.thirtydegreesray.openhub.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -41,6 +42,7 @@ import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
+import com.thirtydegreesray.openhub.inject.module.ActivityModule;
 import com.thirtydegreesray.openhub.mvp.contract.IMainContract;
 import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.mvp.presenter.MainPresenter;
@@ -70,6 +72,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
     protected void setupActivityComponent(AppComponent appComponent) {
         DaggerActivityComponent.builder()
                 .appComponent(appComponent)
+                .activityModule(new ActivityModule(getActivity()))
                 .build()
                 .inject(this);
     }
@@ -85,22 +88,13 @@ public class MainActivity extends BaseActivity<MainPresenter>
     }
 
     /**
-     * 初始化activity
-     */
-    @Override
-    protected void initActivity() {
-
-    }
-
-    /**
      * 初始化view
      *
      * @param savedInstanceState
      */
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setSupportActionBar(toolbar);
-
+        super.initView(savedInstanceState);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,8 +194,13 @@ public class MainActivity extends BaseActivity<MainPresenter>
 //                break;
 
             case R.id.nav_settings:
-                startActivity(new Intent(getActivity(), SettingsActivity.class));
-//                loadFragment("nav_settings");
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(getActivity(), SettingsActivity.class));
+                    }
+                }, 250);
+
                 break;
             case R.id.nav_about:
                 loadFragment("nav_about");

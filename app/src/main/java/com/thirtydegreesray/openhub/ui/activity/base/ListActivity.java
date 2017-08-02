@@ -45,6 +45,7 @@ public abstract class ListActivity <P extends BasePresenter, A extends BaseAdapt
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter.setOnItemLongClickListener(this);
         adapter.setOnItemClickListener(this);

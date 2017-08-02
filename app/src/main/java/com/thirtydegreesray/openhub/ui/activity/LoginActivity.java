@@ -29,6 +29,7 @@ import android.widget.TextView;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
+import com.thirtydegreesray.openhub.inject.module.ActivityModule;
 import com.thirtydegreesray.openhub.mvp.contract.ILoginContract;
 import com.thirtydegreesray.openhub.mvp.model.BasicToken;
 import com.thirtydegreesray.openhub.mvp.presenter.LoginPresenter;
@@ -103,6 +104,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
     protected void setupActivityComponent(AppComponent appComponent) {
         DaggerActivityComponent.builder()
                 .appComponent(appComponent)
+                .activityModule(new ActivityModule(getActivity()))
                 .build()
                 .inject(this);
     }
@@ -117,11 +119,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
         return R.layout.activity_login;
     }
 
-    /**
-     * 初始化activity
-     */
-    @Override
-    protected void initActivity() {
 //        handler = new Handler() {
 //            @Override
 //            public void handleMessage(@NonNull Message msg) {
@@ -133,7 +130,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
 //                mPresenter.getToken(code, state);
 //            }
 //        };
-    }
 
     /**
      * 初始化view
@@ -142,7 +138,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
      */
     @Override
     protected void initView(Bundle savedInstanceState) {
-
+        super.initView(savedInstanceState);
         loginBn.setOnResultEndListener(new SubmitButton.OnResultEndListener() {
             @Override
             public void onResultEnd() {

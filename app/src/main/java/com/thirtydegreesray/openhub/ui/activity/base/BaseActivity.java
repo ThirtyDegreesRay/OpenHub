@@ -21,13 +21,14 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.DrawableRes;
+import android.support.annotation.CallSuper;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Display;
 import android.view.View;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ import android.widget.Toast;
 import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.AppData;
+import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseView;
@@ -43,6 +45,7 @@ import com.thirtydegreesray.openhub.util.WindowUtil;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -58,6 +61,8 @@ public abstract class BaseActivity<P extends BasePresenter>
     private static BaseActivity curActivity;
 
     protected boolean isAlive = true;
+
+    @BindView(R.id.toolbar) Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -112,11 +117,19 @@ public abstract class BaseActivity<P extends BasePresenter>
     /**
      * 初始化activity
      */
-    protected abstract void initActivity();
+    @CallSuper
+    protected void initActivity(){
+
+    }
     /**
      * 初始化view
      */
-    protected abstract void initView(Bundle savedInstanceState);
+    @CallSuper
+    protected void initView(Bundle savedInstanceState){
+        if(toolbar != null){
+            setSupportActionBar(toolbar);
+        }
+    }
 
     @Override
     protected void onResume() {
@@ -136,9 +149,8 @@ public abstract class BaseActivity<P extends BasePresenter>
         isAlive = false;
     }
 
-    protected void setToolbarIcon(@DrawableRes int res) {
+    protected void setToolbarBackEnable() {
         if (getSupportActionBar() != null) {
-//            getSupportActionBar().setHomeAsUpIndicator(res);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }

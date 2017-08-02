@@ -22,6 +22,7 @@ import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
+import com.thirtydegreesray.openhub.inject.module.ActivityModule;
 import com.thirtydegreesray.openhub.mvp.contract.ISplashContract;
 import com.thirtydegreesray.openhub.mvp.presenter.SplashPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
@@ -58,6 +59,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
     protected void setupActivityComponent(AppComponent appComponent) {
         DaggerActivityComponent.builder()
                 .appComponent(appComponent)
+                .activityModule(new ActivityModule(getActivity()))
                 .build()
                 .inject(this);
     }
@@ -77,6 +79,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
      */
     @Override
     protected void initActivity() {
+        super.initActivity();
         mPresenter.getUser();
     }
 
@@ -87,7 +90,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
      */
     @Override
     protected void initView(Bundle savedInstanceState) {
-
+        super.initView(savedInstanceState);
     }
 
     /**
