@@ -18,6 +18,7 @@ package com.thirtydegreesray.openhub.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
@@ -27,6 +28,8 @@ import com.thirtydegreesray.openhub.mvp.contract.ISettingsContract;
 import com.thirtydegreesray.openhub.mvp.presenter.SettingsPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 
+import butterknife.BindView;
+
 /**
  * Created on 2017/8/1.
  *
@@ -35,6 +38,8 @@ import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 
 public class SettingsActivity extends BaseActivity<SettingsPresenter>
         implements ISettingsContract.View{
+
+    @BindView(R.id.toolbar) Toolbar toolbar;
 
 
     @Override
@@ -59,6 +64,8 @@ public class SettingsActivity extends BaseActivity<SettingsPresenter>
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setToolbarIcon(R.drawable.ic_arrow_back);
     }
 }

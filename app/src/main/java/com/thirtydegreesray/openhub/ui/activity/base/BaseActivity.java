@@ -138,7 +138,7 @@ public abstract class BaseActivity<P extends BasePresenter>
 
     protected void setToolbarIcon(@DrawableRes int res) {
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeAsUpIndicator(res);
+//            getSupportActionBar().setHomeAsUpIndicator(res);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
