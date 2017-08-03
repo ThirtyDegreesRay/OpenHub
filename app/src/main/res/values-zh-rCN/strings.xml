@@ -23,22 +23,22 @@
     <string name="action_settings">设置</string>
 
     <!-- login -->
-    <string name="user_name">UserName</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
+    <string name="user_name">用户名</string>
+    <string name="password">密码</string>
+    <string name="login">登录</string>
     <string name="login_in_browser">LOGIN IN BROWSER</string>
     <string name="oauth_tip">Login using your default browser(OAuth)</string>
-    <string name="user_name_warning">Invalid user name!</string>
-    <string name="password_warning">Invalid password!</string>
+    <string name="user_name_warning">用户名不可用！</string>
+    <string name="password_warning">密码不可用！</string>
 
     <!-- menu -->
-    <string name="profile">个人</string>
+    <string name="profile">主页</string>
     <string name="notifications">提醒</string>
     <string name="news">动态</string>
     <string name="issues">问题</string>
 
     <string name="repositories">仓库</string>
-    <string name="owned">Owned</string>
+    <string name="owned">我的</string>
     <string name="starred">星标</string>
     <string name="trending">趋势</string>
     <string name="explore">搜索</string>
