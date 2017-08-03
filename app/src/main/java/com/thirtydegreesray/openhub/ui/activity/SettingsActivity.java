@@ -16,24 +16,18 @@
 
 package com.thirtydegreesray.openhub.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
 import com.thirtydegreesray.openhub.inject.module.ActivityModule;
 import com.thirtydegreesray.openhub.mvp.contract.ISettingsContract;
-import com.thirtydegreesray.openhub.mvp.model.SettingModel;
 import com.thirtydegreesray.openhub.mvp.presenter.SettingsPresenter;
-import com.thirtydegreesray.openhub.ui.activity.base.ListActivity;
-import com.thirtydegreesray.openhub.ui.adapter.SettingsAdapter;
-import com.thirtydegreesray.openhub.ui.adapter.base.DividerItemDecoration;
-
-import java.util.ArrayList;
-
-import butterknife.BindView;
+import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
+import com.thirtydegreesray.openhub.ui.fragment.SettingsFragment;
 
 /**
  * Created on 2017/8/1.
@@ -41,10 +35,9 @@ import butterknife.BindView;
  * @author ThirtyDegreesRay
  */
 
-public class SettingsActivity extends ListActivity<SettingsPresenter, SettingsAdapter>
-        implements ISettingsContract.View{
-
-    @BindView(R.id.toolbar) Toolbar toolbar;
+public class SettingsActivity extends BaseActivity<SettingsPresenter>
+        implements ISettingsContract.View ,
+        SettingsFragment.SettingsCallBack{
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
@@ -65,19 +58,23 @@ public class SettingsActivity extends ListActivity<SettingsPresenter, SettingsAd
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         setToolbarBackEnable();
+        if(savedInstanceState == null){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.settings_container, new SettingsFragment())
+                    .commit();
+        }
+    }
 
-        recyclerView.addItemDecoration(
-                new DividerItemDecoration(getApplication(), DividerItemDecoration.VERTICAL_LIST));
+    @Override
+    public void onLogout() {
+        mPresenter.logout();
+    }
 
-        ArrayList<SettingModel> settingList = new ArrayList<>();
-        settingList.add(new SettingModel(R.drawable.ic_menu_person, "Person"));
-        settingList.add(new SettingModel(R.drawable.ic_menu_star, "Star")
-                .setSwitchEnable(true)
-                .setSwitchChecked(true));
-        settingList.add(new SettingModel(R.drawable.ic_menu_explore, getString(R.string.language)));
-        settingList.add(new SettingModel(R.drawable.ic_logout, getString(R.string.logout), "click to logout"));
-
-        adapter.setData(settingList);
-        adapter.notifyDataSetChanged();
+    @Override
+    public void showLoginPage() {
+        finishAffinity();
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
     }
 }

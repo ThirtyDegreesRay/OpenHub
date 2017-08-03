@@ -80,6 +80,10 @@ public class SettingModel {
         return this;
     }
 
+    public void toggleSwitch(){
+        this.switchChecked = !switchChecked;
+    }
+
     public boolean isSwitchEnable() {
         return switchEnable;
     }

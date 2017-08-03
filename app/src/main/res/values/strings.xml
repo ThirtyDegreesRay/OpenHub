@@ -41,6 +41,9 @@
     <!-- Strings related to Settings -->
 
     <!-- settings -->
+    <string name="choose_theme">Choose Theme</string>
+    <string name="cache_controller">Cache Controller</string>
+    <string name="cache_controller_desc">Load cache first if cache available, then load from network.</string>
     <string name="language">Language</string>
     <string name="logout">Logout</string>
 

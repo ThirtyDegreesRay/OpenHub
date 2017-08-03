@@ -30,6 +30,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Display;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseView;
 import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
+import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.WindowUtil;
 
 import javax.inject.Inject;
@@ -62,10 +64,11 @@ public abstract class BaseActivity<P extends BasePresenter>
 
     protected boolean isAlive = true;
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.toolbar) @Nullable protected Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        AppHelper.updateAppLanguage(getActivity());
         super.onCreate(savedInstanceState);
         isAlive = true;
         DataAutoAccess.getData(this, savedInstanceState);
@@ -94,6 +97,7 @@ public abstract class BaseActivity<P extends BasePresenter>
         if(curActivity.equals(this)){
             DataAutoAccess.saveData(AppData.INSTANCE, outState);
         }
+
     }
 
     @Override
@@ -153,6 +157,19 @@ public abstract class BaseActivity<P extends BasePresenter>
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            finishActivity();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void finishActivity(){
+        finish();
     }
 
 

@@ -52,6 +52,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
         implements ILoginContract.View {
 
     private final String TAG = "LoginActivity";
+
     @BindView(R.id.user_name_et) TextInputEditText userNameEt;
     @BindView(R.id.user_name_layout) TextInputLayout userNameLayout;
     @BindView(R.id.password_et) TextInputEditText passwordEt;
@@ -90,9 +91,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
 
     @Override
     public void onLoginComplete() {
-        Intent intent = new Intent();
-        setResult(RESULT_OK, intent);
-        finish();
+        delayFinish();
+        startActivity(new Intent(getActivity(), MainActivity.class));
     }
 
     /**

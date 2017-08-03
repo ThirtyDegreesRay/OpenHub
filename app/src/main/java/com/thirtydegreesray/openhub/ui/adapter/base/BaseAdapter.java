@@ -26,6 +26,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.thirtydegreesray.openhub.R;
+
 import java.util.ArrayList;
 
 
@@ -33,7 +35,9 @@ import java.util.ArrayList;
  * 适配器基类
  * Created by ThirtyDegreesRay on 2016/7/27 19:49
  */
-public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends Object> extends RecyclerView.Adapter<VH>{
+public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends Object>
+        extends RecyclerView.Adapter<VH>
+        implements View.OnClickListener, View.OnLongClickListener{
 
     //item点击回调
     private OnItemClickListener mOnItemClickListener;
@@ -50,6 +54,8 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
      * 关联的activity
      */
     protected Context mContext;
+
+    protected final int TAG_POSITION = R.id.position_tag;
 
     public BaseAdapter(Context context){
         mContext = context;
@@ -91,28 +97,14 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
     @Override
     public void onBindViewHolder(@NonNull VH holder, final int position) {
 
-        if(mOnItemClickListener != null){
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        holder.itemView.setTag(TAG_POSITION, position);
 
-                }
-            });
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mOnItemClickListener.onItemClick(position);
-                }
-            });
+        if(mOnItemClickListener != null){
+            holder.itemView.setOnClickListener(this);
         }
 
         if(mOnItemLongClickListener != null){
-            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    return mOnItemLongClickListener.onItemLongClick(position);
-                }
-            });
+            holder.itemView.setOnLongClickListener(this);
         }
 
     }
@@ -193,6 +185,20 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
 
     protected void showShortToast(String msg){
         Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClick(View v) {
+        mOnItemClickListener.onItemClick(getPositionByView(v));
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        return mOnItemLongClickListener.onItemLongClick(getPositionByView(v));
+    }
+
+    protected int getPositionByView(View view){
+        return (int) view.getTag(TAG_POSITION);
     }
 
 }

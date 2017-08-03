@@ -28,7 +28,7 @@ import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 public interface ISettingsContract {
 
     interface View extends IBaseView{
-
+        void showLoginPage();
     }
 
     abstract class Presenter extends BasePresenter<ISettingsContract.View>{
@@ -36,6 +36,8 @@ public interface ISettingsContract {
         public Presenter(DaoSession daoSession) {
             super(daoSession);
         }
+
+        public abstract void logout();
     }
 
 }

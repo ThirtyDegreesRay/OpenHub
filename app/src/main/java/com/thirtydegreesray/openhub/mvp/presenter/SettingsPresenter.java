@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
+import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.mvp.contract.ISettingsContract;
 
@@ -32,6 +33,14 @@ public class SettingsPresenter extends ISettingsContract.Presenter {
     @Inject
     public SettingsPresenter(DaoSession daoSession) {
         super(daoSession);
+    }
+
+    @Override
+    public void logout() {
+        daoSession.getAuthUserDao().delete(AppData.INSTANCE.getAuthUser());
+        AppData.INSTANCE.setAuthUser(null);
+        AppData.INSTANCE.setLoggedUser(null);
+        mView.showLoginPage();
     }
 
 }

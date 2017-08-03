@@ -42,9 +42,15 @@ import butterknife.BindView;
 
 public class SettingsAdapter extends BaseAdapter<SettingsAdapter.ViewHolder, SettingModel> {
 
+    private ItemEventListener itemEventListener;
+
     @Inject
     public SettingsAdapter(Context context) {
         super(context);
+    }
+
+    public void setItemEventListener(@NonNull ItemEventListener itemEventListener) {
+        this.itemEventListener = itemEventListener;
     }
 
     @Override
@@ -53,19 +59,20 @@ public class SettingsAdapter extends BaseAdapter<SettingsAdapter.ViewHolder, Set
     }
 
     @Override
-    protected ViewHolder getViewHolder(View itemView, int viewType) {
+    protected ViewHolder getViewHolder(final View itemView, int viewType) {
         ViewHolder viewHolder = new ViewHolder(itemView);
         viewHolder.switchBn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+                int position = (int) buttonView.getTag(TAG_POSITION);
+                itemEventListener.onSwitchCheckedChanged(position, isChecked);
             }
         });
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         SettingModel model = mData.get(position);
         holder.iconImage.setImageResource(model.getIconResId());
@@ -76,6 +83,7 @@ public class SettingsAdapter extends BaseAdapter<SettingsAdapter.ViewHolder, Set
             holder.descText.setVisibility(View.VISIBLE);
             holder.descText.setText(model.getDesc());
         }
+        holder.switchBn.setTag(TAG_POSITION, position);
         holder.switchBn.setVisibility(model.isSwitchEnable() ? View.VISIBLE : View.GONE);
         holder.switchBn.setChecked(model.isSwitchChecked());
     }
@@ -90,6 +98,10 @@ public class SettingsAdapter extends BaseAdapter<SettingsAdapter.ViewHolder, Set
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }
+    }
+
+    public interface ItemEventListener{
+        void onSwitchCheckedChanged(int position, boolean isChecked);
     }
 
 }

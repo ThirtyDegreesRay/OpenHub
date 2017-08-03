@@ -37,7 +37,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
 
     private final String TAG = "SplashActivity";
 
-    private final int REQUEST_ACCESS_TOKEN = 1;
+//    private final int REQUEST_ACCESS_TOKEN = 1;
 
     @Override
     public void showMainPage() {
@@ -47,7 +47,8 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
 
     @Override
     public void showLoginPage() {
-        startActivityForResult(new Intent(getActivity(), LoginActivity.class), REQUEST_ACCESS_TOKEN);
+        delayFinish();
+        startActivity(new Intent(getActivity(), LoginActivity.class));
     }
 
     /**
@@ -105,11 +106,11 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode){
-            case REQUEST_ACCESS_TOKEN:
-                if(resultCode == RESULT_OK){
-                    showMainPage();
-                }
-                break;
+//            case REQUEST_ACCESS_TOKEN:
+//                if(resultCode == RESULT_OK){
+//                    showMainPage();
+//                }
+//                break;
             default:
                 break;
         }

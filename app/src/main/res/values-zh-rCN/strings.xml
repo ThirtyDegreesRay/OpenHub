@@ -1,0 +1,66 @@
+<!--
+  ~    Copyright 2017 ThirtyDegressRay
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+
+<resources>
+    <string name="app_name">OpenHub</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">设置</string>
+
+    <!-- login -->
+    <string name="user_name">UserName</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="login_in_browser">LOGIN IN BROWSER</string>
+    <string name="oauth_tip">Login using your default browser(OAuth)</string>
+    <string name="user_name_warning">Invalid user name!</string>
+    <string name="password_warning">Invalid password!</string>
+
+    <!-- menu -->
+    <string name="profile">个人</string>
+    <string name="notifications">提醒</string>
+    <string name="news">动态</string>
+    <string name="issues">问题</string>
+
+    <string name="repositories">仓库</string>
+    <string name="owned">Owned</string>
+    <string name="starred">星标</string>
+    <string name="trending">趋势</string>
+    <string name="explore">搜索</string>
+
+    <string name="info_and_repositories">信息 &#038; 偏好</string>
+    <string name="settings">设置</string>
+    <string name="about">关于</string>
+
+
+    <string name="no_cache_and_network">No cache and network available.</string>
+    <string name="tap_to_retry">Tap to retry.</string>
+    <string name="no_repositories">No repositories.</string>
+    <string name="title_activity_repository">OpenHub</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- settings -->
+    <string name="choose_theme">选择主题</string>
+    <string name="cache_controller">缓存控制</string>
+    <string name="cache_controller_desc">如果缓存可用，先加载缓存，然后从网络加载。</string>
+    <string name="language">语言</string>
+    <string name="logout">登出</string>
+
+</resources>

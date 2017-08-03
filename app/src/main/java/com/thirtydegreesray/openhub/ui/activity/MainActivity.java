@@ -30,7 +30,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -136,47 +135,30 @@ public class MainActivity extends BaseActivity<MainPresenter>
         }
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+    public boolean onNavigationItemSelected(final MenuItem item) {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                onNavItemSelected(item);
+            }
+        }, 250);
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+    private void onNavItemSelected(MenuItem item){
         int id = item.getItemId();
 
         switch (id) {
             case R.id.nav_profile:
                 loadFragment("nav_profile");
                 break;
-//            case R.id.nav_notifications:
-//                loadFragment("nav_notifications");
-//                break;
             case R.id.nav_news:
                 loadFragment("nav_news");
                 break;
-//            case R.id.nav_issues:
-//                loadFragment("nav_issues");
-//                break;
 
             case R.id.nav_owned:
                 loadRepositoriesFragment(RepositoriesFragment.RepositoriesType.OWNED);
@@ -189,18 +171,11 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 fragment.setTabLayout(tabLayout);
                 loadFragment(fragment);
                 break;
-//            case R.id.nav_explore:
-//                loadRepositoriesFragment(RepositoriesFragment.RepositoriesType.EXPLORE);
-//                break;
 
             case R.id.nav_settings:
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        startActivity(new Intent(getActivity(), SettingsActivity.class));
-                    }
-                }, 250);
-
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+//                SettingsFragment settingsFragment = new SettingsFragment();
+//                loadFragment(settingsFragment);
                 break;
             case R.id.nav_about:
                 loadFragment("nav_about");
@@ -208,10 +183,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
             default:
                 break;
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     private void loadFragment(String name) {

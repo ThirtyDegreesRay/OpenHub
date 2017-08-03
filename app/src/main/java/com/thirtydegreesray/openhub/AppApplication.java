@@ -47,13 +47,10 @@ public class AppApplication extends Application {
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
-        Log.i(TAG, "dagger ok:" + (System.currentTimeMillis() - startTime));
         startTime = System.currentTimeMillis();
         initLogger();
-        Log.i(TAG, "logger ok:" + (System.currentTimeMillis() - startTime));
-        startTime = System.currentTimeMillis();
         NetHelper.getInstance().init(this);
-        Log.i(TAG, "net ok:" + (System.currentTimeMillis() - startTime));
+        Log.i(TAG, "application ok:" + (System.currentTimeMillis() - startTime));
     }
 
     public static AppApplication get(){

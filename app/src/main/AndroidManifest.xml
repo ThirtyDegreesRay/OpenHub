@@ -51,6 +51,7 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
@@ -80,6 +81,7 @@
         <activity
             android:name=".ui.activity.SettingsActivity"
             android:screenOrientation="portrait"
+            android:label="@string/settings"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
