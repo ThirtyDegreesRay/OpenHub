@@ -77,4 +77,5 @@ public class SettingsActivity extends BaseActivity<SettingsPresenter>
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
     }
+
 }

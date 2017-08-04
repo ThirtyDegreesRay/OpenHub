@@ -92,6 +92,8 @@ dependencies {
     compile "com.github.GrenderG:Toasty:${TOASTY_VERSION}"
     compile "com.github.daniel-stoneuk:material-about-library:${MATERIAL_ABOUT_VERSION}"
     compile "com.unstoppable:submitbutton:${SUBMIT_BUTTON_VERSION}"
-//    compile "com.afollestad.material-dialogs:core:${MATERIAL_DIALOG_VERSION}"
+
+    compile "com.afollestad.material-dialogs:core:${MATERIAL_DIALOG_VERSION}"
+    compile "com.afollestad.material-dialogs:commons:${MATERIAL_DIALOG_VERSION}"
 
 }

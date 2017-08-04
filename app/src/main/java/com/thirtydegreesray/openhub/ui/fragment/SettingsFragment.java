@@ -20,12 +20,16 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.ui.activity.MainActivity;
+import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
+import com.thirtydegreesray.openhub.ui.widget.colorChooser.ColorChooserDialog;
 import com.thirtydegreesray.openhub.util.PrefHelper;
 
 import java.util.Arrays;
@@ -39,7 +43,18 @@ import java.util.List;
 
 public class SettingsFragment extends PreferenceFragmentCompat
         implements Preference.OnPreferenceChangeListener,
-        Preference.OnPreferenceClickListener{
+        Preference.OnPreferenceClickListener,
+        ColorChooserDialog.ColorCallback{
+
+    @Override
+    public void onColorSelection(@NonNull ColorChooserDialog dialog, @ColorInt int selectedColor) {
+
+    }
+
+    @Override
+    public void onColorChooserDismissed(@NonNull ColorChooserDialog dialog) {
+
+    }
 
     public interface SettingsCallBack{
         void onLogout();
@@ -82,7 +97,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
     public boolean onPreferenceClick(Preference preference) {
         switch (preference.getKey()){
             case PrefHelper.THEME:
-
+                showThemeChooser();
                 return true;
             case PrefHelper.LANGUAGE:
                 showLanguageList();
@@ -94,12 +109,20 @@ public class SettingsFragment extends PreferenceFragmentCompat
         return false;
     }
 
+    private void showThemeChooser(){
+        ColorChooserDialog dialog =
+        new ColorChooserDialog.Builder(((BaseActivity)getContext()), this, R.string.choose_theme)
+                .titleSub(R.string.choose_theme)
+                .accentMode(true)
+                .show();
+    }
+
     private void showLanguageList(){
         final List<String> valueList
-                = Arrays.asList(getResources().getStringArray(R.array.language_value_array));
+                = Arrays.asList(getResources().getStringArray(R.array.language_id_array));
         String language = PrefHelper.getLanguage();
         int index = valueList.indexOf(language);
-        new AlertDialog.Builder(getContext())
+        AlertDialog dialog = new AlertDialog.Builder(getContext())
                 .setTitle(R.string.language)
                 .setSingleChoiceItems(R.array.language_array, index,
                         new DialogInterface.OnClickListener() {
@@ -116,6 +139,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
                     }
                 })
                 .show();
+
     }
 
 }

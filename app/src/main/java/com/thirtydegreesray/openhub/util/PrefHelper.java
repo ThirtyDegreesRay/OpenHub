@@ -24,6 +24,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.thirtydegreesray.openhub.AppApplication;
+import com.thirtydegreesray.openhub.R;
 
 /**
  * Created on 2017/8/3.
@@ -34,6 +35,7 @@ import com.thirtydegreesray.openhub.AppApplication;
 public class PrefHelper {
 
     public final static String THEME = "theme";
+    public final static String ACCENT_COLOR = "accentColor";
     public final static String CACHE_FIRST_ENABLE = "cacheFirstEnable";
     public final static String LANGUAGE = "language";
     public final static String LOGOUT = "logout";
@@ -71,6 +73,12 @@ public class PrefHelper {
     public static String getLanguage(){
         String language = getDefaultSp(AppApplication.get()).getString(LANGUAGE, "en");
         return language;
+    }
+
+    public static int getAccentColor(){
+        int defaultColor = AppApplication.get().getResources().getColor(R.color.material_blue_accent_700);
+        int accentColor = getDefaultSp(AppApplication.get()).getInt(ACCENT_COLOR, defaultColor);
+        return accentColor;
     }
 
     public static SharedPreferences getDefaultSp(Context context){

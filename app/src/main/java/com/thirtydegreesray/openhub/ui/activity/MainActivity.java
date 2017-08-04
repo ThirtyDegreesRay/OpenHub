@@ -121,7 +121,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         Picasso.with(this)
                 .load(loginUser.getAvatarUrl())
                 .into(avatar);
-        name.setText(loginUser.getLogin());
+        name.setText(loginUser.getName());
         mail.setText(loginUser.getBio());
     }
 

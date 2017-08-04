@@ -42,9 +42,29 @@
 
     <!-- settings -->
     <string name="choose_theme">Choose Theme</string>
+    <string name="theme_accent_color">Theme Accent Color</string>
     <string name="cache_controller">Cache Controller</string>
     <string name="cache_controller_desc">Load cache first if cache available, then load from network.</string>
     <string name="language">Language</string>
     <string name="logout">Logout</string>
+
+    <!-- colors -->
+    <string name="light_blue">Light Blue</string>
+    <string name="blue">Blue</string>
+    <string name="indigo">Indigo</string>
+    <string name="orange">Orange</string>
+    <string name="yellow">Yellow</string>
+    <string name="amber">Amber</string>
+    <string name="grey">Grey</string>
+    <string name="brown">Brown</string>
+
+    <string name="cyan">Cyan</string>
+    <string name="teal">Teal</string>
+    <string name="lime">Lime</string>
+    <string name="green">Green</string>
+    <string name="pink">Pink</string>
+    <string name="red">Red</string>
+    <string name="purple">Purple</string>
+    <string name="deep_purple">Deep Purple</string>
 
 </resources>

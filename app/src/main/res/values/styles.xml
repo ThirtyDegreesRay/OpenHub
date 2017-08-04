@@ -17,12 +17,28 @@
 <resources>
 
     <!-- Base application theme. -->
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <!--<item name="android:windowBackground">@color/material_light_white</item>-->
+        <!--<item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>-->
+        <!--<item name="android:textColorPrimary">@color/light_text_color_primary</item>-->
+        <!--<item name="android:textColorSecondary">@color/light_text_color_secondary</item>-->
+        <!--<item name="android:textColorTertiary">@color/material_grey_700</item>-->
+        <!--<item name="icon_color">@color/material_light_black</item>-->
+    <!--</style>-->
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/night_color_primary</item>
+        <item name="colorPrimaryDark">@color/night_color_primary_dark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/material_light_white</item>
+        <item name="android:windowBackground">@color/night_color_window_background</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="android:textColorPrimary">@color/material_light_white</item>
+        <item name="android:textColorSecondary">@color/material_grey_500</item>
+        <item name="android:textColorTertiary">@color/material_grey_200</item>
+        <item name="icon_color">@color/material_light_white</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="AppTheme">
