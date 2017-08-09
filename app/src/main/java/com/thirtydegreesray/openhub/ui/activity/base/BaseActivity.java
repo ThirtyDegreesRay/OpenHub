@@ -43,6 +43,7 @@ import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseView;
 import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 import com.thirtydegreesray.openhub.util.AppHelper;
+import com.thirtydegreesray.openhub.util.ThemeEngine;
 import com.thirtydegreesray.openhub.util.WindowUtil;
 
 import javax.inject.Inject;
@@ -68,6 +69,7 @@ public abstract class BaseActivity<P extends BasePresenter>
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        ThemeEngine.apply(this);
         AppHelper.updateAppLanguage(getActivity());
         super.onCreate(savedInstanceState);
         isAlive = true;

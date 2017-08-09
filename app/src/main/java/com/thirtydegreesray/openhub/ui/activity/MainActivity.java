@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -48,7 +49,10 @@ import com.thirtydegreesray.openhub.mvp.presenter.MainPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.fragment.ProfileFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
-import com.thirtydegreesray.openhub.ui.fragment.TrendingFragment;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -62,6 +66,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @BindView(R.id.nav_view) NavigationView navView;
     @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
 
+    private final Map<Integer, String> TAG_MAP = new HashMap<>();
+
     /**
      * 依赖注入的入口
      *
@@ -74,6 +80,14 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 .activityModule(new ActivityModule(getActivity()))
                 .build()
                 .inject(this);
+    }
+
+    @Override
+    protected void initActivity() {
+        super.initActivity();
+        TAG_MAP.put(R.id.nav_profile, ProfileFragment.class.getSimpleName());
+        TAG_MAP.put(R.id.nav_owned, RepositoriesFragment.RepositoriesType.OWNED.name());
+        TAG_MAP.put(R.id.nav_starred, RepositoriesFragment.RepositoriesType.STARRED.name());
     }
 
     /**
@@ -109,8 +123,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
         toggle.syncState();
         navView.setNavigationItemSelectedListener(this);
 
-        navView.setCheckedItem(R.id.nav_profile);
-        loadFragment("nav_profile");
+        navView.setCheckedItem(R.id.nav_starred);
+        loadFragment(R.id.nav_starred);
 
 
         ImageView avatar = (ImageView) navView.getHeaderView(0).findViewById(R.id.avatar);
@@ -123,6 +137,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 .into(avatar);
         name.setText(loginUser.getName());
         mail.setText(loginUser.getBio());
+
+        tabLayout.setVisibility(View.GONE);
     }
 
     @Override
@@ -152,64 +168,134 @@ public class MainActivity extends BaseActivity<MainPresenter>
     private void onNavItemSelected(MenuItem item){
         int id = item.getItemId();
 
+
+        //TODO
         switch (id) {
-            case R.id.nav_profile:
-                loadFragment("nav_profile");
-                break;
+
             case R.id.nav_news:
-                loadFragment("nav_news");
+//                loadFragment("nav_news");
                 break;
 
+            case R.id.nav_profile:
             case R.id.nav_owned:
-                loadRepositoriesFragment(RepositoriesFragment.RepositoriesType.OWNED);
-                break;
             case R.id.nav_starred:
-                loadRepositoriesFragment(RepositoriesFragment.RepositoriesType.STARRED);
+                loadFragment(id);
                 break;
+
             case R.id.nav_trending:
-                TrendingFragment fragment = new TrendingFragment();
-                fragment.setTabLayout(tabLayout);
-                loadFragment(fragment);
+//                TrendingFragment fragment = new TrendingFragment();
+//                fragment.setTabLayout(tabLayout);
+//                loadFragment(fragment);
                 break;
 
             case R.id.nav_settings:
                 startActivity(new Intent(getActivity(), SettingsActivity.class));
-//                SettingsFragment settingsFragment = new SettingsFragment();
-//                loadFragment(settingsFragment);
                 break;
             case R.id.nav_about:
-                loadFragment("nav_about");
+//                loadFragment("nav_about");
                 break;
             default:
                 break;
         }
     }
 
-    private void loadFragment(String name) {
-        ProfileFragment fragment = new ProfileFragment();
-        fragment.setName(name);
-        loadFragment(fragment);
-    }
-
-    private void loadRepositoriesFragment(RepositoriesFragment.RepositoriesType repositoriesType) {
-        RepositoriesFragment repositoriesFragment = new RepositoriesFragment();
-        repositoriesFragment.setRepositoriesType(repositoriesType);
-        loadFragment(repositoriesFragment);
-    }
-
-
-    private void loadFragment(Fragment fragment) {
-        if (fragment instanceof TrendingFragment) {
-            setToolbarScrollAble(true);
-            tabLayout.setVisibility(View.VISIBLE);
-        } else {
-            setToolbarScrollAble(false);
-            tabLayout.setVisibility(View.GONE);
+    private void loadFragment(int itemId) {
+        String fragmentTag = TAG_MAP.get(itemId);
+        Fragment showFragment = getSupportFragmentManager().findFragmentByTag(fragmentTag);
+        boolean isExist = true;
+        if(showFragment == null){
+            isExist = false;
+            showFragment = getFragment(itemId);
         }
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.frame_layout_content, fragment)
-                .commit();
+        if(showFragment.isVisible()){
+            return ;
+        }
+
+        Fragment visibleFragment = getVisibleFragment();
+        if(isExist){
+            showAndHideFragment(showFragment, visibleFragment);
+        }else{
+            addAndHideFragment(showFragment, visibleFragment, fragmentTag);
+        }
+    }
+
+//    private void loadRepositoriesFragment(RepositoriesFragment.RepositoriesType repositoriesType) {
+//        RepositoriesFragment repositoriesFragment = new RepositoriesFragment();
+//        repositoriesFragment.setRepositoriesType(repositoriesType);
+//        loadFragment(repositoriesFragment);
+//    }
+
+
+//    private void loadFragment(Fragment fragment) {
+//        if (fragment instanceof TrendingFragment) {
+//            setToolbarScrollAble(true);
+//            tabLayout.setVisibility(View.VISIBLE);
+//        } else {
+//            setToolbarScrollAble(false);
+//            tabLayout.setVisibility(View.GONE);
+//        }
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.frame_layout_content, fragment)
+//                .commit();
+//    }
+
+
+    @NonNull
+    private Fragment getFragment(int itemId){
+        switch (itemId){
+            case R.id.nav_profile:
+                return new ProfileFragment().setName("nav_profile");
+            case R.id.nav_owned:
+                return RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.OWNED);
+            case R.id.nav_starred:
+                return RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED);
+        }
+        return new ProfileFragment().setName("nav_profile");
+    }
+
+    private Fragment getVisibleFragment(){
+        List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
+        if(fragmentList != null ){
+            for(Fragment fragment : fragmentList){
+                if(fragment != null && fragment.isVisible()){
+                    return fragment;
+                }
+            }
+        }
+        return null;
+    }
+
+    private void showAndHideFragment(@NonNull Fragment showFragment, @Nullable Fragment hideFragment){
+        if(hideFragment == null){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .show(showFragment)
+                    .commit();
+        }else{
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .show(showFragment)
+                    .hide(hideFragment)
+                    .commit();
+        }
+
+    }
+
+    private void addAndHideFragment(@NonNull Fragment showFragment,
+                                    @Nullable Fragment hideFragment, @NonNull String addTag){
+        if(hideFragment == null){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.frame_layout_content, showFragment, addTag)
+                    .commit();
+        }else{
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.frame_layout_content, showFragment, addTag)
+                    .hide(hideFragment)
+                    .commit();
+        }
     }
 
     private void setToolbarScrollAble(boolean scrollAble) {

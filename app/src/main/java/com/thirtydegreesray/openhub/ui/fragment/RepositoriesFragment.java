@@ -46,6 +46,10 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
         OWNED, STARRED, TRENDING, EXPLORE
     }
 
+    public static RepositoriesFragment create(RepositoriesType repositoriesType){
+        return new RepositoriesFragment().setRepositoriesType(repositoriesType);
+    }
+
     private RepositoriesType repositoriesType;
 
     private String language;

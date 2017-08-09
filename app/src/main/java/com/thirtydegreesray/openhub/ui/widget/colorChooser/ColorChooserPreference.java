@@ -25,10 +25,12 @@ import android.support.v7.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.afollestad.materialdialogs.Theme;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.util.PrefHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created on 2017/8/4.
@@ -40,6 +42,8 @@ public class ColorChooserPreference extends Preference implements ColorChooserDi
 
     private ColorChooserDialog colorChooserDialog;
     private View colorView;
+    private ColorChooserCallback colorChooserCallback;
+    private int oriColor;
 
     public ColorChooserPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
@@ -61,6 +65,10 @@ public class ColorChooserPreference extends Preference implements ColorChooserDi
         init();
     }
 
+    public void setColorChooserCallback(ColorChooserCallback colorChooserCallback) {
+        this.colorChooserCallback = colorChooserCallback;
+    }
+
     private void init(){
         setWidgetLayoutResource(R.layout.preference_widget_color);
     }
@@ -70,17 +78,18 @@ public class ColorChooserPreference extends Preference implements ColorChooserDi
         super.onBindViewHolder(holder);
         colorView = holder.findViewById(R.id.color_view);
         colorView.setBackgroundResource(R.drawable.shape_circle);
-        colorView.getBackground().setColorFilter(PrefHelper.getAccentColor(), PorterDuff.Mode.SRC_IN);
+        colorView.getBackground().setColorFilter(getSelectedColor(), PorterDuff.Mode.SRC_IN);
     }
 
     @Override
     protected void onClick() {
         super.onClick();
+        oriColor = getSelectedColor();
         colorChooserDialog = new ColorChooserDialog
                 .Builder(BaseActivity.getCurActivity(), this, R.string.theme_accent_color)
                 .titleSub(R.string.choose_theme)
                 .customColors(getAccentColors(), null)
-                .preselect(PrefHelper.getAccentColor())
+                .preselect(oriColor)
                 .customButton(0)
                 .accentMode(true)
                 .show();
@@ -88,8 +97,11 @@ public class ColorChooserPreference extends Preference implements ColorChooserDi
 
     @Override
     public void onColorSelection(@NonNull ColorChooserDialog dialog, @ColorInt int selectedColor) {
-        PrefHelper.set(PrefHelper.ACCENT_COLOR, selectedColor);
+        PrefHelper.set(PrefHelper.ACCENT_COLOR, getColorIndex(selectedColor));
         colorView.getBackground().setColorFilter(selectedColor, PorterDuff.Mode.SRC_IN);
+        if(colorChooserCallback != null && oriColor != selectedColor){
+            colorChooserCallback.onColorChanged(oriColor, selectedColor);
+        }
     }
 
     @Override
@@ -101,5 +113,30 @@ public class ColorChooserPreference extends Preference implements ColorChooserDi
     private int[] getAccentColors(){
         int[] colorsResId = getContext().getResources().getIntArray(R.array.accent_color_array);
         return colorsResId;
+    }
+
+    private int getColorByIndex(int index){
+        return getColorList().get(index);
+    }
+
+    private int getColorIndex(int color){
+        return getColorList().indexOf(color);
+    }
+
+    private int getSelectedColor(){
+        return getColorByIndex(PrefHelper.getAccentColor());
+    }
+
+    private List<Integer> getColorList(){
+        int[] colorsResId = getContext().getResources().getIntArray(R.array.accent_color_array);
+        List<Integer> list = new ArrayList<>();
+        for(int i = 0; i < colorsResId.length; i++){
+            list.add(colorsResId[i]);
+        }
+        return list;
+    }
+
+    public interface ColorChooserCallback {
+        void onColorChanged(@ColorInt int oriColor, @ColorInt int selectedColor);
     }
 }

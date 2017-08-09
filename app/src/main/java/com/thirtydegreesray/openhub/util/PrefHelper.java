@@ -24,7 +24,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.thirtydegreesray.openhub.AppApplication;
-import com.thirtydegreesray.openhub.R;
 
 /**
  * Created on 2017/8/3.
@@ -33,6 +32,30 @@ import com.thirtydegreesray.openhub.R;
  */
 
 public class PrefHelper {
+
+    public final static int LIGHT = 0;
+    public final static int DARK = 1;
+
+    public final static int LIGHT_BLUE = 0;
+    public final static int BLUE = 1;
+    public final static int INDIGO = 2;
+    public final static int ORANGE = 3;
+
+    public final static int YELLOW = 4;
+    public final static int AMBER = 5;
+    public final static int GREY = 6;
+    public final static int BROWN = 7;
+
+    public final static int CYAN = 8;
+    public final static int TEAL = 9;
+    public final static int LIME = 10;
+    public final static int GREEN = 11;
+
+    public final static int PINK = 12;
+    public final static int RED = 13;
+    public final static int PURPLE = 14;
+    public final static int DEEP_PURPLE = 15;
+
 
     public final static String THEME = "theme";
     public final static String ACCENT_COLOR = "accentColor";
@@ -70,14 +93,18 @@ public class PrefHelper {
         getDefaultSp(AppApplication.get()).edit().remove(key).apply();
     }
 
+    public static int getTheme(){
+        int theme = getDefaultSp(AppApplication.get()).getInt(THEME, 0);
+        return theme;
+    }
+
     public static String getLanguage(){
         String language = getDefaultSp(AppApplication.get()).getString(LANGUAGE, "en");
         return language;
     }
 
     public static int getAccentColor(){
-        int defaultColor = AppApplication.get().getResources().getColor(R.color.material_blue_accent_700);
-        int accentColor = getDefaultSp(AppApplication.get()).getInt(ACCENT_COLOR, defaultColor);
+        int accentColor = getDefaultSp(AppApplication.get()).getInt(ACCENT_COLOR, 2);
         return accentColor;
     }
 

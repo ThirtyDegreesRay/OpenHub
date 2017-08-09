@@ -21,15 +21,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.util.Log;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.ui.activity.MainActivity;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
-import com.thirtydegreesray.openhub.ui.widget.colorChooser.ColorChooserDialog;
+import com.thirtydegreesray.openhub.ui.widget.colorChooser.ColorChooserPreference;
 import com.thirtydegreesray.openhub.util.PrefHelper;
 
 import java.util.Arrays;
@@ -44,16 +44,11 @@ import java.util.List;
 public class SettingsFragment extends PreferenceFragmentCompat
         implements Preference.OnPreferenceChangeListener,
         Preference.OnPreferenceClickListener,
-        ColorChooserDialog.ColorCallback{
+        ColorChooserPreference.ColorChooserCallback{
 
     @Override
-    public void onColorSelection(@NonNull ColorChooserDialog dialog, @ColorInt int selectedColor) {
-
-    }
-
-    @Override
-    public void onColorChooserDismissed(@NonNull ColorChooserDialog dialog) {
-
+    public void onColorChanged(@ColorInt int oriColor, @ColorInt int selectedColor) {
+        recreateMain();
     }
 
     public interface SettingsCallBack{
@@ -81,6 +76,8 @@ public class SettingsFragment extends PreferenceFragmentCompat
         findPreference(PrefHelper.LANGUAGE).setOnPreferenceClickListener(this);
         findPreference(PrefHelper.LOGOUT).setOnPreferenceClickListener(this);
         findPreference(PrefHelper.CACHE_FIRST_ENABLE).setOnPreferenceChangeListener(this);
+        ((ColorChooserPreference)findPreference(PrefHelper.ACCENT_COLOR))
+                .setColorChooserCallback(this);
     }
 
     @Override
@@ -110,10 +107,19 @@ public class SettingsFragment extends PreferenceFragmentCompat
     }
 
     private void showThemeChooser(){
-        ColorChooserDialog dialog =
-        new ColorChooserDialog.Builder(((BaseActivity)getContext()), this, R.string.choose_theme)
-                .titleSub(R.string.choose_theme)
-                .accentMode(true)
+        final List<String> valueList
+                = Arrays.asList(getResources().getStringArray(R.array.theme_array));
+        int theme = PrefHelper.getTheme();
+        AlertDialog dialog = new AlertDialog.Builder(getContext())
+                .setTitle(R.string.choose_theme)
+                .setSingleChoiceItems(R.array.theme_array, theme, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        PrefHelper.set(PrefHelper.THEME, which);
+                        recreateMain();
+                    }
+                })
                 .show();
     }
 
@@ -122,24 +128,30 @@ public class SettingsFragment extends PreferenceFragmentCompat
                 = Arrays.asList(getResources().getStringArray(R.array.language_id_array));
         String language = PrefHelper.getLanguage();
         int index = valueList.indexOf(language);
-        AlertDialog dialog = new AlertDialog.Builder(getContext())
+
+        if(getContext() instanceof BaseActivity){
+            Log.d("TAG" , "");
+        }
+
+        AlertDialog dialog = new AlertDialog.Builder(getContext(), R.style.DialogThemeLight_Amber)
                 .setTitle(R.string.language)
-                .setSingleChoiceItems(R.array.language_array, index,
-                        new DialogInterface.OnClickListener() {
+                .setSingleChoiceItems(R.array.language_array, index, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         PrefHelper.set(PrefHelper.LANGUAGE, valueList.get(which));
-
-                        getActivity().finish();
-
-                        Intent intent = new Intent(getContext(), MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        getActivity().startActivity(intent);
+                        recreateMain();
                     }
                 })
                 .show();
+    }
 
+    private void recreateMain(){
+        getActivity().finish();
+
+        Intent intent = new Intent(getContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        getActivity().startActivity(intent);
     }
 
 }

@@ -16,40 +16,6 @@
 
 <resources>
 
-    <!-- Base application theme. -->
-    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
-        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
-        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
-        <!--<item name="colorAccent">@color/colorAccent</item>-->
-        <!--<item name="android:windowBackground">@color/material_light_white</item>-->
-        <!--<item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>-->
-        <!--<item name="android:textColorPrimary">@color/light_text_color_primary</item>-->
-        <!--<item name="android:textColorSecondary">@color/light_text_color_secondary</item>-->
-        <!--<item name="android:textColorTertiary">@color/material_grey_700</item>-->
-        <!--<item name="icon_color">@color/material_light_black</item>-->
-    <!--</style>-->
-
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/night_color_primary</item>
-        <item name="colorPrimaryDark">@color/night_color_primary_dark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/night_color_window_background</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
-        <item name="android:textColorPrimary">@color/material_light_white</item>
-        <item name="android:textColorSecondary">@color/material_grey_500</item>
-        <item name="android:textColorTertiary">@color/material_grey_200</item>
-        <item name="icon_color">@color/material_light_white</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar" parent="AppTheme">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar.WhiteStateBar" parent="AppTheme.NoActionBar">
-        <item name="android:statusBarColor">@color/material_light_white</item>
-    </style>
-
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
@@ -68,11 +34,13 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <style name="SplashTheme" parent="AppTheme.NoActionBar">
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:statusBarColor">@color/transparent</item>
         <!--<item name="android:windowLightStatusBar" tools:targetApi="m">true</item>-->
         <item name="android:windowBackground">@drawable/splash_screen_drawable</item>
         <!--<item name="icon_color">@color/white</item> &lt;!&ndash; to display the icons properly since this theme is the default &ndash;&gt;-->
     </style>
+
+
 
 </resources>

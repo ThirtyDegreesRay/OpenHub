@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text="OpenHub"
                 android:textSize="15sp"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="?colorAccent"/>
             <TextView
                 android:id="@+id/tv_repo_description"
                 android:layout_width="match_parent"

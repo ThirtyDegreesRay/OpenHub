@@ -52,14 +52,14 @@
             android:name=".ui.activity.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/ThemeLight.Indigo">
         </activity>
         <activity
             android:name=".ui.activity.LoginActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/ThemeLight.Indigo">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
 
@@ -75,14 +75,14 @@
             android:name=".ui.activity.RepositoryActivity"
             android:label="@string/title_activity_repository"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/ThemeLight.Indigo">
         </activity>
 
         <activity
             android:name=".ui.activity.SettingsActivity"
             android:screenOrientation="portrait"
             android:label="@string/settings"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/ThemeLight.Indigo">
         </activity>
 
     </application>

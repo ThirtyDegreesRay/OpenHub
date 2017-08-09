@@ -44,4 +44,9 @@
         <item >@color/material_deep_purple_accent_700</item>
     </array>
 
+    <array name="theme_array">
+        <item >Light</item>
+        <item >Dark</item>
+    </array>
+
 </resources>
