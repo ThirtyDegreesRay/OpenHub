@@ -17,31 +17,88 @@
 package com.thirtydegreesray.openhub.ui.activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.inject.component.AppComponent;
+import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
+import com.thirtydegreesray.openhub.inject.module.ActivityModule;
+import com.thirtydegreesray.openhub.mvp.presenter.RepositoryPresenter;
+import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
+import com.thirtydegreesray.openhub.ui.adapter.RepoPagerAdapter;
 
-public class RepositoryActivity extends AppCompatActivity {
+import java.util.Arrays;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+
+/**
+ * Created by ThirtyDegreesRay on 2017/8/9 21:39:20
+ */
+
+public class RepositoryActivity extends BaseActivity<RepositoryPresenter> {
+
+    public enum RepositoryPage {
+        INFO,
+        FILES,
+        COMMITS
+    }
+
+    private List<RepositoryPage> pageList = Arrays.asList(
+            RepositoryPage.INFO,
+            RepositoryPage.FILES,
+            RepositoryPage.COMMITS
+    );
+    private List<String> pageTitleList;
+
+    @BindView(R.id.view_pager) ViewPager viewPager;
+    @BindView(R.id.tab_layout)  TabLayout tabLayout;
+
+    @Inject RepoPagerAdapter pagerAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_repository);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(@NonNull View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+    protected void initActivity() {
+        super.initActivity();
+        pageTitleList = Arrays.asList(
+                getString(R.string.info),
+                getString(R.string.files),
+                getString(R.string.commits)
+        );
+        pagerAdapter.setPagerList(pageList);
+        pagerAdapter.setTitleList(pageTitleList);
     }
+
+    @Override
+    protected void setupActivityComponent(AppComponent appComponent) {
+        DaggerActivityComponent.builder()
+                .appComponent(appComponent)
+                .activityModule(new ActivityModule(getActivity()))
+                .build()
+                .inject(this);
+    }
+
+    @Nullable
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_repository;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
+        tabLayout.setVisibility(View.VISIBLE);
+        viewPager.setAdapter(pagerAdapter);
+
+        tabLayout.setupWithViewPager(viewPager);
+
+        toolbar.setTitle("Repository");
+        setToolbarBackEnable();
+
+    }
+
 }

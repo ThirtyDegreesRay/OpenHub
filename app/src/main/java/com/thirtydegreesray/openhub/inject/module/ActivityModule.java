@@ -17,6 +17,7 @@
 package com.thirtydegreesray.openhub.inject.module;
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
 
 import com.thirtydegreesray.openhub.inject.ActivityScope;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
@@ -47,6 +48,12 @@ public class ActivityModule {
     @ActivityScope
     public Context provideContext(){
         return mActivity;
+    }
+
+    @Provides
+    @ActivityScope
+    public FragmentManager provideFragmentManager(){
+        return mActivity.getSupportFragmentManager();
     }
 
 }

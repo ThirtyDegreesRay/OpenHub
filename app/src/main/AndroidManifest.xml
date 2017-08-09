@@ -72,7 +72,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.RepositoryActivity"
+            android:name=".ui.activity.UserActivity"
             android:label="@string/title_activity_repository"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeLight.Indigo">
@@ -82,6 +82,12 @@
             android:name=".ui.activity.SettingsActivity"
             android:screenOrientation="portrait"
             android:label="@string/settings"
+            android:theme="@style/ThemeLight.Indigo">
+        </activity>
+
+        <activity
+            android:name=".ui.activity.RepositoryActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ThemeLight.Indigo">
         </activity>
 

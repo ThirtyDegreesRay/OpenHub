@@ -125,6 +125,8 @@ public class TrendingFragment extends BaseFragment<TrendingPresenter>
         public int getCount() {
             return mLanguageList.size();
         }
+
+
     }
 
 }

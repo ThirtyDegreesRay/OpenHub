@@ -67,4 +67,9 @@
     <string name="purple">Purple</string>
     <string name="deep_purple">Deep Purple</string>
 
+    <!-- Repository -->
+    <string name="info">INFO</string>
+    <string name="files">FILES</string>
+    <string name="commits">COMMITS</string>
+
 </resources>
