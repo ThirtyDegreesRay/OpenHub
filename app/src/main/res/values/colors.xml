@@ -13,6 +13,7 @@
     <color name="night_color_primary">#2D3035</color>
     <color name="night_color_primary_dark">#26282C</color>
     <color name="night_color_window_background">#22252A</color>
+    <color name="night_color_card_background">#2D3035</color>
 
     <color name="light_text_color_primary">#212121</color>
     <color name="light_text_color_secondary">#757575</color>
@@ -169,7 +170,8 @@
     <color name="material_light_green_accent_200">#B2FF59</color>
     <color name="material_light_green_accent_400">#76FF03</color>
     <color name="material_light_green_accent_700">#64DD17</color>
-    <color name="material_light_white">#eeeeee</color>
+    <color name="material_light_white">#EEEEEE</color>
+    <color name="material_white">#FFFFFF</color>
     <color name="material_lime_100">#F0F4C3</color>
     <color name="material_lime_200">#E6EE9C</color>
     <color name="material_lime_300">#DCE775</color>

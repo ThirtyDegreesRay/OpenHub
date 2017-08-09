@@ -26,5 +26,6 @@
     </declare-styleable>
 
     <attr name="icon_color" format="color|reference"/>
+    <attr name="card_background" format="color|reference"/>
 
 </resources>

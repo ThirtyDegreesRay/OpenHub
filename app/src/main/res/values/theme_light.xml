@@ -27,6 +27,7 @@
         <item name="android:textColorSecondary">@color/light_text_color_secondary</item>
         <item name="android:textColorTertiary">@color/material_grey_700</item>
         <item name="icon_color">@color/material_light_black</item>
+        <item name="card_background">@color/material_white</item>
     </style>
 
     <style name="DialogThemeLight" parent="Theme.AppCompat.Light.Dialog.Alert">

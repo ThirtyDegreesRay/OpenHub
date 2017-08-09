@@ -24,9 +24,9 @@
     android:layout_marginRight="14dp"
     android:layout_marginTop="7dp"
     android:layout_marginBottom="7dp"
-    android:background="@android:color/white"
+    android:background="?card_background"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardBackgroundColor="@android:color/white"
+    app:cardBackgroundColor="?card_background"
     app:cardCornerRadius="10dp">
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                 android:maxLines="4"
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp"
-                android:textColor="@color/black_light"/>
+                android:textColor="?android:textColorPrimary"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,16 +72,17 @@
                     android:orientation="horizontal"
                     android:layout_weight="2"
                     android:gravity="center_vertical">
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:layout_width="12dp"
                         android:layout_height="12dp"
-                        android:src="@drawable/ic_menu_star"
-                        android:tint="@android:color/darker_gray"/>
+                        app:srcCompat="@drawable/ic_menu_star"
+                        android:tint="?android:textColorSecondary"/>
                     <TextView
                         android:id="@+id/tv_star_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
+                        android:textColor="?android:textColorSecondary"
                         android:text="1123"
                         android:layout_marginLeft="5dp"/>
                 </LinearLayout>
@@ -91,16 +92,17 @@
                     android:orientation="horizontal"
                     android:layout_weight="2"
                     android:gravity="center_vertical">
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:layout_width="12dp"
                         android:layout_height="12dp"
-                        android:src="@drawable/ic_fork"
-                        android:tint="@android:color/darker_gray"/>
+                        app:srcCompat="@drawable/ic_fork"
+                        android:tint="?android:textColorSecondary"/>
                     <TextView
                         android:id="@+id/tv_fork_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
+                        android:textColor="?android:textColorSecondary"
                         android:text="1123"
                         android:layout_marginLeft="5dp"/>
                 </LinearLayout>
@@ -110,16 +112,17 @@
                     android:orientation="horizontal"
                     android:layout_weight="3.5"
                     android:gravity="center_vertical">
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:layout_width="12dp"
                         android:layout_height="12dp"
-                        android:src="@drawable/ic_menu_person"
-                        android:tint="@android:color/darker_gray"/>
+                        app:srcCompat="@drawable/ic_menu_person"
+                        android:tint="?android:textColorSecondary"/>
                     <TextView
                         android:id="@+id/tv_owner_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
+                        android:textColor="?android:textColorSecondary"
                         android:text="ThirtyDegreesRay"
                         android:layout_marginLeft="5dp"/>
                 </LinearLayout>

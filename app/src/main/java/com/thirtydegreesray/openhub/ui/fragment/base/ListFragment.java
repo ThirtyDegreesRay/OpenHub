@@ -29,6 +29,7 @@ import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseView;
 import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
+import com.thirtydegreesray.openhub.util.ViewHelper;
 
 import javax.inject.Inject;
 
@@ -58,7 +59,12 @@ public abstract class ListFragment <P extends BasePresenter, A extends BaseAdapt
     @Override
     protected void initFragment(Bundle savedInstanceState) {
         refreshLayout.setOnRefreshListener(this);
-        refreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        int[] colors = new int[]{
+                ViewHelper.getAccentColor(getContext()),
+                ViewHelper.getPrimaryColor(getContext()),
+                ViewHelper.getPrimaryDarkColor(getContext())
+        };
+        refreshLayout.setColorSchemeColors(colors);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter.setOnItemLongClickListener(this);
