@@ -34,7 +34,8 @@
         android:layout_margin="@dimen/spacing_normal"
         android:minHeight="350dp"
         android:minWidth="250dp"
-        app:cardElevation="@dimen/spacing_large">
+        app:cardElevation="@dimen/spacing_large"
+        android:background="?card_background">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,7 +56,8 @@
                 android:orientation="vertical"
                 android:paddingRight="@dimen/spacing_normal"
                 android:paddingLeft="@dimen/spacing_normal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:background="?card_background">
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/user_name_layout"

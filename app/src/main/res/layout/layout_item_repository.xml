@@ -20,10 +20,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="14dp"
-    android:layout_marginRight="14dp"
-    android:layout_marginTop="7dp"
-    android:layout_marginBottom="7dp"
+    android:layout_marginLeft="@dimen/spacing_large"
+    android:layout_marginRight="@dimen/spacing_large"
+    android:layout_marginTop="@dimen/spacing_small"
+    android:layout_marginBottom="@dimen/spacing_small"
     android:background="?card_background"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardBackgroundColor="?card_background"
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="@dimen/spacing_normal">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_user_avatar"
@@ -44,23 +44,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="7dp">
+            android:paddingStart="@dimen/spacing_normal">
             <TextView
                 android:id="@+id/tv_repo_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="OpenHub"
-                android:textSize="15sp"
+                android:textSize="@dimen/text_normal"
                 android:textColor="?colorAccent"/>
             <TextView
                 android:id="@+id/tv_repo_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="OpenHub description"
-                android:textSize="14sp"
+                android:textSize="@dimen/text_small"
                 android:maxLines="4"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"
+                android:paddingTop="@dimen/spacing_micro"
+                android:paddingBottom="@dimen/spacing_micro"
                 android:textColor="?android:textColorPrimary"/>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -81,10 +81,10 @@
                         android:id="@+id/tv_star_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/text_micro"
                         android:textColor="?android:textColorSecondary"
                         android:text="1123"
-                        android:layout_marginLeft="5dp"/>
+                        android:layout_marginStart="@dimen/spacing_micro"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -101,10 +101,10 @@
                         android:id="@+id/tv_fork_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/text_micro"
                         android:textColor="?android:textColorSecondary"
                         android:text="1123"
-                        android:layout_marginLeft="5dp"/>
+                        android:layout_marginLeft="@dimen/spacing_micro"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -121,10 +121,10 @@
                         android:id="@+id/tv_owner_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/text_micro"
                         android:textColor="?android:textColorSecondary"
                         android:text="ThirtyDegreesRay"
-                        android:layout_marginLeft="5dp"/>
+                        android:layout_marginLeft="@dimen/spacing_micro"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

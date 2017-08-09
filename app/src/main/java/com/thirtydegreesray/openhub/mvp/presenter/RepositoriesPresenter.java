@@ -91,9 +91,6 @@ public class RepositoriesPresenter extends IRepositoriesContract.Presenter {
             public void onSuccess(@NonNull HttpResponse<ArrayList<Repository>> response) {
                 mView.showRepositories(response.body());
                 mView.hideLoadingView();
-//                if(isLastResponse(response)){
-//                    mView.hideLoadingView();
-//                }
             }
         };
 

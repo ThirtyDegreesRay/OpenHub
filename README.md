@@ -1,5 +1,5 @@
 # OpenHub 
-The best android client of GitHub.
+An android client of GitHub.
 
 ![OpenHub](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/openhub.png)
 

@@ -62,9 +62,6 @@ dependencies {
     //事件总线
     compile "org.greenrobot:eventbus:${EVENT_BUS_VERSION}"
     //文件下载
-    compile "com.liulishuo.filedownloader:library:${FILE_DOWNLOADER_VERSION}"
-    //日志
-    compile "com.orhanobut:logger:${LOGGER_VERSION}"
 
     //RxJava
     compile "io.reactivex:rxjava:${RXJAVA_VERSION}"

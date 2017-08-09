@@ -19,8 +19,6 @@ package com.thirtydegreesray.openhub;
 import android.app.Application;
 import android.util.Log;
 
-import com.orhanobut.logger.LogLevel;
-import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerAppComponent;
 import com.thirtydegreesray.openhub.inject.module.AppModule;
@@ -48,7 +46,6 @@ public class AppApplication extends Application {
                 .appModule(new AppModule(this))
                 .build();
         startTime = System.currentTimeMillis();
-        initLogger();
         NetHelper.getInstance().init(this);
         Log.i(TAG, "application ok:" + (System.currentTimeMillis() - startTime));
     }
@@ -59,14 +56,6 @@ public class AppApplication extends Application {
 
     public AppComponent getAppComponent(){
         return mAppComponent;
-    }
-
-    private void initLogger() {
-        Logger.init("APP")                    // default PRETTYLOGGER or use just init()
-                .methodCount(2)                 // default 2
-                .hideThreadInfo()               // default shown
-                .logLevel(LogLevel.FULL)        // default LogLevel.FULL
-                .methodOffset(0);               // default 0
     }
 
 }

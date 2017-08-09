@@ -108,6 +108,10 @@ public class PrefHelper {
         return accentColor;
     }
 
+    public static boolean isCacheFirstEnable(){
+        return getDefaultSp(AppApplication.get()).getBoolean(CACHE_FIRST_ENABLE, true);
+    }
+
     public static SharedPreferences getDefaultSp(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context);
     }

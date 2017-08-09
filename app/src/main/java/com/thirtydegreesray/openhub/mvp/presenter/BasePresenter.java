@@ -20,7 +20,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
-import android.util.Log;
 
 import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.AppData;
@@ -35,7 +34,9 @@ import com.thirtydegreesray.openhub.http.core.HttpSubscriber;
 import com.thirtydegreesray.openhub.http.error.HttpError;
 import com.thirtydegreesray.openhub.http.error.HttpErrorCode;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseView;
+import com.thirtydegreesray.openhub.util.Logger;
 import com.thirtydegreesray.openhub.util.NetHelper;
+import com.thirtydegreesray.openhub.util.PrefHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import org.apache.http.conn.ConnectTimeoutException;
@@ -179,8 +180,8 @@ public class BasePresenter<V extends IBaseView> {
 
             @Override
             public void onSuccess(@NonNull HttpResponse<T> response) {
-                Log.i(TAG, "get data ok:" + System.currentTimeMillis());
-                Log.i(TAG, "data:" + response.body());
+                Logger.d(TAG, "get data ok:" + System.currentTimeMillis());
+                Logger.d(TAG, "data:" + response.body());
                 if(response.isSuccessful()){
                     if(readCacheFirst && response.isFromCache()
                             && NetHelper.getInstance().getNetEnabled()){
@@ -194,9 +195,11 @@ public class BasePresenter<V extends IBaseView> {
 
             }
         };
-        generalRxHttpExecute(observableCreator.createObservable(!readCacheFirst),
+
+        boolean cacheFirstEnable = PrefHelper.isCacheFirstEnable();
+        generalRxHttpExecute(observableCreator.createObservable(!cacheFirstEnable || !readCacheFirst),
                 getHttpSubscriber(tempObserver));
-        Log.i(TAG, "get cache start:" + System.currentTimeMillis());
+        Logger.d(TAG, "get date start:" + System.currentTimeMillis());
     }
 
     private <T> HttpSubscriber getHttpSubscriber(
