@@ -21,8 +21,10 @@ import com.thirtydegreesray.openhub.mvp.model.Repository;
 import java.util.ArrayList;
 
 import retrofit2.Response;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import rx.Observable;
 
@@ -34,16 +36,49 @@ import rx.Observable;
 
 public interface RepoService {
 
+    /**
+     * List repositories being starred
+     */
     @GET("user{user}/starred")
-    Observable<Response<ArrayList<Repository>>> getUserStarred(
+    Observable<Response<ArrayList<Repository>>> getStarredRepos(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("user") String user
     );
 
+    /**
+     * List user repositories
+     */
     @GET("user{user}/repos")
     Observable<retrofit2.Response<ArrayList<Repository>>> getUserRepos(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("user") String user
+    );
+
+    /**
+     * Check if you are starring a repository
+     */
+    @GET("user/starred/{owner}/{repo}")
+    Observable<Response<Object>> checkRepoStarred(
+            @Path("owner") String owner,
+            @Path("repo") String repo
+    );
+
+    /**
+     * Star a repository
+     */
+    @PUT("user/starred/{owner}/{repo}")
+    Observable<Response<Object>> starRepo(
+            @Path("owner") String owner,
+            @Path("repo") String repo
+    );
+
+    /**
+     * Unstar a repository
+     */
+    @DELETE("user/starred/{owner}/{repo}")
+    Observable<Response<Object>> unstarRepo(
+            @Path("owner") String owner,
+            @Path("repo") String repo
     );
 
 }

@@ -21,6 +21,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewPagerAdapter;
+import com.thirtydegreesray.openhub.ui.fragment.ProfileFragment;
 
 import javax.inject.Inject;
 
@@ -37,7 +38,7 @@ public class RepoPagerAdapter extends BaseViewPagerAdapter<RepositoryActivity.Re
 
     @Override
     public Fragment getItem(int position) {
-        return null;
+        return new ProfileFragment().setName("repo");
     }
 
 }

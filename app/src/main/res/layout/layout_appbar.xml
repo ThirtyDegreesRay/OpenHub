@@ -35,8 +35,8 @@
         app:tabTextAppearance="@style/TextAppearance.Design.Tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabMode="scrollable"
-        app:tabMaxWidth="110dp"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
         android:visibility="gone"/>
 
 </android.support.design.widget.AppBarLayout>

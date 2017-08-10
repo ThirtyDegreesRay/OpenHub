@@ -28,6 +28,8 @@
         <item name="android:textColorTertiary">@color/material_grey_700</item>
         <item name="icon_color">@color/material_light_black</item>
         <item name="card_background">@color/material_white</item>
+        <item name="title_color">@color/material_light_white</item>
+        <item name="subtitle_color">@color/material_grey_350</item>
     </style>
 
     <style name="DialogThemeLight" parent="Theme.AppCompat.Light.Dialog.Alert">

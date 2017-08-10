@@ -70,6 +70,10 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
         mData = data;
     }
 
+    public ArrayList<D> getData() {
+        return mData;
+    }
+
     /**
      * 设置item点击事件
      * @param onItemClickListener

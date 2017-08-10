@@ -16,6 +16,9 @@
 
 package com.thirtydegreesray.openhub.mvp.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
@@ -26,7 +29,7 @@ import java.util.Date;
  * @author ThirtyDegreesRay
  */
 
-public class Repository {
+public class Repository implements Parcelable {
 
     private int id;
     private String name;
@@ -243,4 +246,77 @@ public class Repository {
     public void setPermissions(RepositoryPermissions permissions) {
         this.permissions = permissions;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.fullName);
+        dest.writeByte(this.repPrivate ? (byte) 1 : (byte) 0);
+        dest.writeString(this.htmlUrl);
+        dest.writeString(this.description);
+        dest.writeString(this.language);
+        dest.writeParcelable(this.owner, flags);
+        dest.writeString(this.defaultBranch);
+        dest.writeLong(this.createdAt != null ? this.createdAt.getTime() : -1);
+        dest.writeLong(this.updatedAt != null ? this.updatedAt.getTime() : -1);
+        dest.writeLong(this.pushedAt != null ? this.pushedAt.getTime() : -1);
+        dest.writeString(this.gitUrl);
+        dest.writeString(this.sshUrl);
+        dest.writeString(this.cloneUrl);
+        dest.writeString(this.svnUrl);
+        dest.writeInt(this.size);
+        dest.writeInt(this.stargazersCount);
+        dest.writeInt(this.watchersCount);
+        dest.writeInt(this.forksCount);
+        dest.writeInt(this.openIssuesCount);
+        dest.writeByte(this.fork ? (byte) 1 : (byte) 0);
+        dest.writeParcelable(this.permissions, flags);
+    }
+
+    protected Repository(Parcel in) {
+        this.id = in.readInt();
+        this.name = in.readString();
+        this.fullName = in.readString();
+        this.repPrivate = in.readByte() != 0;
+        this.htmlUrl = in.readString();
+        this.description = in.readString();
+        this.language = in.readString();
+        this.owner = in.readParcelable(User.class.getClassLoader());
+        this.defaultBranch = in.readString();
+        long tmpCreatedAt = in.readLong();
+        this.createdAt = tmpCreatedAt == -1 ? null : new Date(tmpCreatedAt);
+        long tmpUpdatedAt = in.readLong();
+        this.updatedAt = tmpUpdatedAt == -1 ? null : new Date(tmpUpdatedAt);
+        long tmpPushedAt = in.readLong();
+        this.pushedAt = tmpPushedAt == -1 ? null : new Date(tmpPushedAt);
+        this.gitUrl = in.readString();
+        this.sshUrl = in.readString();
+        this.cloneUrl = in.readString();
+        this.svnUrl = in.readString();
+        this.size = in.readInt();
+        this.stargazersCount = in.readInt();
+        this.watchersCount = in.readInt();
+        this.forksCount = in.readInt();
+        this.openIssuesCount = in.readInt();
+        this.fork = in.readByte() != 0;
+        this.permissions = in.readParcelable(RepositoryPermissions.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<Repository> CREATOR = new Parcelable.Creator<Repository>() {
+        @Override
+        public Repository createFromParcel(Parcel source) {
+            return new Repository(source);
+        }
+
+        @Override
+        public Repository[] newArray(int size) {
+            return new Repository[size];
+        }
+    };
 }

@@ -21,6 +21,7 @@ import android.support.annotation.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * StringUtil
@@ -70,6 +71,16 @@ public class StringUtils {
             }
         }
         return stringBuilder.toString();
+    }
+
+    public static String getSizeString(int size){
+        if(size < 1024){
+            return String.format(Locale.getDefault(), "%d KB", size);
+        }else if(size < 1024 * 1024){
+            float sizeM = size / 1024f;
+            return String.format(Locale.getDefault(), "%.2f MB", sizeM);
+        }
+        return null;
     }
 
 }

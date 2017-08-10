@@ -16,22 +16,30 @@
 
 package com.thirtydegreesray.openhub.ui.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 
+import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
 import com.thirtydegreesray.openhub.inject.module.ActivityModule;
+import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.RepositoryPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.adapter.RepoPagerAdapter;
+import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -42,6 +50,18 @@ import butterknife.BindView;
  */
 
 public class RepositoryActivity extends BaseActivity<RepositoryPresenter> {
+
+    public static void show(@NonNull Activity activity, @NonNull String repoUrl){
+        Intent intent = new Intent(activity, RepositoryActivity.class);
+        intent.putExtra("repoUrl", repoUrl);
+        activity.startActivity(intent);
+    }
+
+    public static void show(@NonNull Activity activity, @NonNull Repository repository){
+        Intent intent = new Intent(activity, RepositoryActivity.class);
+        intent.putExtra("repository", repository);
+        activity.startActivity(intent);
+    }
 
     public enum RepositoryPage {
         INFO,
@@ -55,6 +75,9 @@ public class RepositoryActivity extends BaseActivity<RepositoryPresenter> {
             RepositoryPage.COMMITS
     );
     private List<String> pageTitleList;
+
+    @AutoAccess(dataName = "repository") Repository repository;
+    @AutoAccess(dataName = "repoUrl") String repoUrl;
 
     @BindView(R.id.view_pager) ViewPager viewPager;
     @BindView(R.id.tab_layout)  TabLayout tabLayout;
@@ -95,8 +118,16 @@ public class RepositoryActivity extends BaseActivity<RepositoryPresenter> {
         viewPager.setAdapter(pagerAdapter);
 
         tabLayout.setupWithViewPager(viewPager);
+        toolbar.setTitleTextAppearance(getActivity(), R.style.Toolbar_TitleText);
+        toolbar.setSubtitleTextAppearance(getActivity(), R.style.Toolbar_Subtitle);
 
-        toolbar.setTitle("Repository");
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null){
+            actionBar.setTitle(repository.getFullName());
+            actionBar.setSubtitle(String.format(Locale.getDefault(),
+                    "%s %s", repository.getLanguage(),
+                    StringUtils.getSizeString(repository.getSize())));
+        }
         setToolbarBackEnable();
 
     }

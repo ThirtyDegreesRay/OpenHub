@@ -113,7 +113,7 @@ public class RepositoriesPresenter extends IRepositoriesContract.Presenter {
             case STARRED:
             case TRENDING:
             case EXPLORE:
-                return getRepoService().getUserStarred(forceNetWork, "");
+                return getRepoService().getStarredRepos(forceNetWork, "");
             default:
                 return null;
         }

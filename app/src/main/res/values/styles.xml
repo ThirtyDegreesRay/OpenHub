@@ -41,6 +41,14 @@
         <!--<item name="icon_color">@color/white</item> &lt;!&ndash; to display the icons properly since this theme is the default &ndash;&gt;-->
     </style>
 
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/text_normal</item>
+        <item name="android:textColor">?title_color</item>
+    </style>
 
+    <style name="Toolbar.Subtitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+        <item name="android:textSize">@dimen/text_micro</item>
+        <item name="android:textColor">?subtitle_color</item>
+    </style>
 
 </resources>

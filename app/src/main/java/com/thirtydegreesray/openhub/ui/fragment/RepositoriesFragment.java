@@ -16,7 +16,6 @@
 
 package com.thirtydegreesray.openhub.ui.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
@@ -120,6 +119,6 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     @Override
     public void onItemClick(int position) {
         super.onItemClick(position);
-        startActivity(new Intent(getActivity(), RepositoryActivity.class));
+        RepositoryActivity.show(getActivity(), adapter.getData().get(position));
     }
 }
