@@ -16,9 +16,6 @@
 
 package com.thirtydegreesray.openhub.mvp.contract;
 
-import com.thirtydegreesray.openhub.dao.DaoSession;
-import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
-
 /**
  * Created on 2017/7/12.
  *
@@ -27,21 +24,17 @@ import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 
 public interface ISplashContract{
 
-    interface View extends IBaseView{
+    interface View extends IBaseContract.View{
         void showMainPage();
 
         void showLoginPage();
     }
 
-    abstract class Presenter extends BasePresenter<ISplashContract.View>{
+    interface Presenter extends IBaseContract.Presenter<ISplashContract.View>{
 
-        public Presenter(DaoSession daoSession) {
-            super(daoSession);
-        }
+        void getUser();
 
-        public abstract void getUser();
-
-        public abstract void saveAccessToken(String accessToken, String scope, int expireIn);
+        void saveAccessToken(String accessToken, String scope, int expireIn);
 
     }
 

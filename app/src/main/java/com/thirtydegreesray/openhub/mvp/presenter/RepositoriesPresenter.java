@@ -40,7 +40,8 @@ import rx.Observable;
  * @author ThirtyDegreesRay
  */
 
-public class RepositoriesPresenter extends IRepositoriesContract.Presenter {
+public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.View>
+        implements IRepositoriesContract.Presenter{
 
     private RepositoriesFragment.RepositoriesType mRepositoriesType;
     private String mLanguage;

@@ -41,7 +41,8 @@ import rx.Observable;
  * @author ThirtyDegreesRay
  */
 
-public class SplashPresenter extends ISplashContract.Presenter {
+public class SplashPresenter extends BasePresenter<ISplashContract.View>
+        implements ISplashContract.Presenter{
 
     private final String TAG = "SplashPresenter";
 

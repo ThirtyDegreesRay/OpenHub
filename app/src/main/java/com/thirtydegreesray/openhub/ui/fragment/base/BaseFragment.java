@@ -32,7 +32,7 @@ import android.widget.Toast;
 import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
-import com.thirtydegreesray.openhub.mvp.contract.IBaseView;
+import com.thirtydegreesray.openhub.mvp.contract.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 
 import javax.inject.Inject;
@@ -47,7 +47,7 @@ import butterknife.Unbinder;
  */
 
 public abstract class BaseFragment<P extends BasePresenter>
-        extends Fragment implements IBaseView {
+        extends Fragment implements IBaseContract.View {
 
     @Inject
     protected P mPresenter;

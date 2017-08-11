@@ -33,7 +33,7 @@ import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.http.core.HttpSubscriber;
 import com.thirtydegreesray.openhub.http.error.HttpError;
 import com.thirtydegreesray.openhub.http.error.HttpErrorCode;
-import com.thirtydegreesray.openhub.mvp.contract.IBaseView;
+import com.thirtydegreesray.openhub.mvp.contract.IBaseContract;
 import com.thirtydegreesray.openhub.util.Logger;
 import com.thirtydegreesray.openhub.util.NetHelper;
 import com.thirtydegreesray.openhub.util.PrefHelper;
@@ -53,7 +53,7 @@ import rx.schedulers.Schedulers;
  * BasePresenter
  * Created by ThirtyDegreesRay on 2016/7/13 18:01
  */
-public class BasePresenter<V extends IBaseView> {
+public class BasePresenter<V extends IBaseContract.View> implements IBaseContract.Presenter<V> {
 
     private final String TAG = "BasePresenter";
 
@@ -71,6 +71,7 @@ public class BasePresenter<V extends IBaseView> {
      *
      * @param view
      */
+    @Override
     public void attachView(@NonNull V view) {
         mView = view;
         onViewAttached();
@@ -79,6 +80,7 @@ public class BasePresenter<V extends IBaseView> {
     /**
      * 取消View绑定
      */
+    @Override
     public void detachView() {
         mView = null;
     }
@@ -124,7 +126,8 @@ public class BasePresenter<V extends IBaseView> {
      * @return
      */
     @Nullable
-    protected Context getContext() {
+    @Override
+    public Context getContext() {
         if (mView instanceof Context) {
             return (Context) mView;
         } else {

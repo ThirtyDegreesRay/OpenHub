@@ -49,7 +49,8 @@ import rx.Observable;
  * @author ThirtyDegreesRay
  */
 
-public class LoginPresenter extends ILoginContract.Presenter {
+public class LoginPresenter extends BasePresenter<ILoginContract.View>
+        implements ILoginContract.Presenter {
 
     @Inject
     public LoginPresenter(DaoSession daoSession) {

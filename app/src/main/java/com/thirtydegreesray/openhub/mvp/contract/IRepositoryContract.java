@@ -16,24 +16,17 @@
 
 package com.thirtydegreesray.openhub.mvp.contract;
 
-import com.thirtydegreesray.openhub.dao.DaoSession;
-import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
-
 /**
  * Created by ThirtyDegreesRay on 2017/8/9 21:40:25
  */
 
 public interface IRepositoryContract {
 
-    interface View extends IBaseView{
+    interface View extends IBaseContract.View{
 
     }
 
-    abstract class Presenter extends BasePresenter<IRepositoryContract.View>{
-
-        public Presenter(DaoSession daoSession) {
-            super(daoSession);
-        }
+    interface Presenter extends IBaseContract.Presenter<IRepositoryContract.View>{
 
     }
 

@@ -27,7 +27,8 @@ import javax.inject.Inject;
  * @author ThirtyDegreesRay
  */
 
-public class TrendingPresenter extends ITrendingContract.Presenter {
+public class TrendingPresenter extends BasePresenter<ITrendingContract.View>
+        implements ITrendingContract.Presenter{
 
     @Inject
     public TrendingPresenter(DaoSession daoSession) {

@@ -27,7 +27,8 @@ import javax.inject.Inject;
  * @author ThirtyDegreesRay
  */
 
-public class MainPresenter extends IMainContract.Presenter {
+public class MainPresenter extends BasePresenter<IMainContract.View>
+        implements IMainContract.Presenter{
 
     @Inject
     public MainPresenter(DaoSession daoSession) {

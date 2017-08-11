@@ -18,9 +18,7 @@ package com.thirtydegreesray.openhub.mvp.contract;
 
 import android.content.Intent;
 
-import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.mvp.model.BasicToken;
-import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 
 /**
  * Created on 2017/7/12.
@@ -30,7 +28,7 @@ import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 
 public interface ILoginContract {
 
-    interface View extends IBaseView{
+    interface View extends IBaseContract.View{
 
         void onGetTokenSuccess(BasicToken basicToken);
 
@@ -40,21 +38,17 @@ public interface ILoginContract {
 
     }
 
-    abstract class Presenter extends BasePresenter<ILoginContract.View>{
+    interface Presenter extends IBaseContract.Presenter<ILoginContract.View>{
 
-        public Presenter(DaoSession daoSession) {
-            super(daoSession);
-        }
+        void getToken(String code, String state);
 
-        public abstract void getToken(String code, String state);
+        String getOAuth2Url();
 
-        public abstract String getOAuth2Url();
+        void basicLogin(String userName, String password);
 
-        public abstract void basicLogin(String userName, String password);
+        void handleOauth(Intent intent);
 
-        public abstract void handleOauth(Intent intent);
-
-        public abstract void getUserInfo(BasicToken basicToken);
+        void getUserInfo(BasicToken basicToken);
 
     }
 

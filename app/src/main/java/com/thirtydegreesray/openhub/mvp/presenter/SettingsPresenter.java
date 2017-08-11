@@ -28,7 +28,8 @@ import javax.inject.Inject;
  * @author ThirtyDegreesRay
  */
 
-public class SettingsPresenter extends ISettingsContract.Presenter {
+public class SettingsPresenter extends BasePresenter<ISettingsContract.View>
+        implements ISettingsContract.Presenter{
 
     @Inject
     public SettingsPresenter(DaoSession daoSession) {

@@ -27,7 +27,8 @@ import javax.inject.Inject;
  * @author ThirtyDegreesRay
  */
 
-public class ProfilePresenter extends IProfileContract.Presenter {
+public class ProfilePresenter extends BasePresenter<IProfileContract.View>
+        implements IProfileContract.Presenter{
 
     @Inject
     public ProfilePresenter(DaoSession daoSession) {

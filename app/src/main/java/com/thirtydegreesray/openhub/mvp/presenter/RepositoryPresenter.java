@@ -25,7 +25,8 @@ import javax.inject.Inject;
  * Created by ThirtyDegreesRay on 2017/8/9 21:42:47
  */
 
-public class RepositoryPresenter extends IRepositoryContract.Presenter {
+public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
+        implements IRepositoryContract.Presenter{
 
     @Inject
     public RepositoryPresenter(DaoSession daoSession) {

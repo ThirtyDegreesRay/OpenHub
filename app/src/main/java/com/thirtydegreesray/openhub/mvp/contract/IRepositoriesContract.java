@@ -16,9 +16,7 @@
 
 package com.thirtydegreesray.openhub.mvp.contract;
 
-import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
-import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 
 import java.util.ArrayList;
@@ -31,7 +29,7 @@ import java.util.ArrayList;
 
 public interface IRepositoriesContract {
 
-    interface View extends IBaseView{
+    interface View extends IBaseContract.View {
 
         void showRepositories(ArrayList<Repository> repositoryList);
 
@@ -43,13 +41,9 @@ public interface IRepositoriesContract {
 
     }
 
-    abstract class Presenter extends BasePresenter<IRepositoriesContract.View>{
+    interface Presenter extends IBaseContract.Presenter<IRepositoriesContract.View> {
 
-        public Presenter(DaoSession daoSession) {
-            super(daoSession);
-        }
-
-        public abstract void loadRepositories(RepositoriesFragment.RepositoriesType repositoriesType
+        void loadRepositories(RepositoriesFragment.RepositoriesType repositoriesType
                 , String language, boolean isReLoad);
     }
 

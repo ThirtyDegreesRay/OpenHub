@@ -40,7 +40,7 @@ import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
-import com.thirtydegreesray.openhub.mvp.contract.IBaseView;
+import com.thirtydegreesray.openhub.mvp.contract.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.ThemeEngine;
@@ -56,7 +56,7 @@ import butterknife.ButterKnife;
  * Created by ThirtyDegreesRay on 2016/7/13 18:13
  */
 public abstract class BaseActivity<P extends BasePresenter>
-        extends AppCompatActivity implements IBaseView,
+        extends AppCompatActivity implements IBaseContract.View,
         Toolbar.OnMenuItemClickListener{
 
     @Inject
