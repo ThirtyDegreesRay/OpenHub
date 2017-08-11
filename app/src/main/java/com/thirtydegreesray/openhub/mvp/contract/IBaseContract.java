@@ -19,6 +19,7 @@ package com.thirtydegreesray.openhub.mvp.contract;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -71,6 +72,10 @@ public interface IBaseContract {
     }
 
     interface Presenter<V extends IBaseContract.View>{
+
+        void onSaveInstanceState(Bundle outState);
+
+        void onRestoreInstanceState(Bundle outState);
 
         void attachView(@NonNull V view);
 

@@ -23,7 +23,7 @@ import rx.Subscriber;
  * 网络请求订阅者，处理网络请求的返回，判断数据有效性，同时处理网络请求异常情况<br>
  * Created by ThirtyDegreesRay on 2016/7/15 11:19
  */
-public class HttpSubscriber<T, R extends Response<T>> extends Subscriber<R> {
+public class HttpSubscriber<T> extends Subscriber<Response<T>> {
 
     private HttpObserver<T> mObserver;
 
@@ -46,7 +46,7 @@ public class HttpSubscriber<T, R extends Response<T>> extends Subscriber<R> {
     }
 
     @Override
-    public void onNext(R r) {
+    public void onNext(Response<T> r) {
         if (mObserver != null)
             mObserver.onSuccess(new HttpResponse<>(r));
     }

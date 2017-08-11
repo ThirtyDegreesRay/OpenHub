@@ -167,9 +167,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     private void onNavItemSelected(MenuItem item){
         int id = item.getItemId();
-
-
-        //TODO
         switch (id) {
 
             case R.id.nav_news:

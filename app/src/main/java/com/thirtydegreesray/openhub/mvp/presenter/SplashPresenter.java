@@ -109,7 +109,7 @@ public class SplashPresenter extends BasePresenter<ISplashContract.View>
             }
         };
 
-        generalRxHttpExecute(new IObservableCreator<User, Response<User>>() {
+        generalRxHttpExecute(new IObservableCreator<User>() {
             @Override
             public Observable<Response<User>> createObservable(boolean forceNetWork) {
                 return getUserService().getUser(forceNetWork, "");

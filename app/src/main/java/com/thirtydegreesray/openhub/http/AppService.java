@@ -25,7 +25,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
-import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -143,13 +142,6 @@ public interface AppService {
             @Field("fileName") String fileName,
             @Field("unitId") String unitId,
             @Field("entityId") String entityId
-    );
-
-
-    @NonNull
-    @GET
-    Observable<ResponseBody> downloadFile(
-            @Url String fileUrl
     );
 
 }

@@ -16,13 +16,20 @@
 
 package com.thirtydegreesray.openhub.util;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.support.annotation.NonNull;
 
+import com.thirtydegreesray.openhub.AppApplication;
+import com.thirtydegreesray.openhub.R;
+
 import java.util.Locale;
+
+import es.dmoral.toasty.Toasty;
 
 /**
  * Created on 2017/8/3.
@@ -73,6 +80,18 @@ public class AppHelper {
             locale = new Locale(language);
         }
         return locale;
+    }
+
+    public static void copyToClipboard(@NonNull Context context, @NonNull String uri) {
+        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText(context.getString(R.string.app_name), uri);
+        clipboard.setPrimaryClip(clip);
+        Toasty.success(AppApplication.get(), context.getString(R.string.success_copied)).show();
+    }
+
+    public static boolean isNightMode(){
+        int theme = PrefHelper.getTheme();
+        return theme == PrefHelper.DARK ;
     }
 
 }

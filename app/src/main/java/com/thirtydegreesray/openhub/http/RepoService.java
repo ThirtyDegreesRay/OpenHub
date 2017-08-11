@@ -16,16 +16,21 @@
 
 package com.thirtydegreesray.openhub.http;
 
+import android.support.annotation.NonNull;
+
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 
 import java.util.ArrayList;
 
+import okhttp3.ResponseBody;
 import retrofit2.Response;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -80,5 +85,9 @@ public interface RepoService {
             @Path("owner") String owner,
             @Path("repo") String repo
     );
+
+    @NonNull
+    @GET @Headers("Accept: application/vnd.github.html")
+    Observable<Response<ResponseBody>> getFileAsHtmlStream(@Url String url);
 
 }

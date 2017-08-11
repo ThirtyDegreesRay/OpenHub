@@ -81,4 +81,6 @@
     <string name="fork">Fork</string>
     <string name="unfork">Unfork</string>
 
+    <string name="success_copied">Copied</string>
+
 </resources>

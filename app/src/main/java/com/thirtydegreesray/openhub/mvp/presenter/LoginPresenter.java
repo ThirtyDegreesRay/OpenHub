@@ -63,7 +63,7 @@ public class LoginPresenter extends BasePresenter<ILoginContract.View>
                 getLoginService().getAccessToken(AppConfig.OPENHUB_CLIENT_ID,
                         AppConfig.OPENHUB_CLIENT_SECRET, code, state);
 
-        HttpProgressSubscriber<OauthToken, Response<OauthToken>> subscriber =
+        HttpProgressSubscriber<OauthToken> subscriber =
                 new HttpProgressSubscriber<>(
                         mView.getProgressDialog(getLoadTip()),
                         new HttpObserver<OauthToken>() {
@@ -102,7 +102,7 @@ public class LoginPresenter extends BasePresenter<ILoginContract.View>
         String token = Credentials.basic(userName, password);
         Observable<Response<BasicToken>> observable =
                 getLoginService(token).authorizations(authRequestModel);
-        HttpProgressSubscriber<BasicToken, Response<BasicToken>> subscriber =
+        HttpProgressSubscriber<BasicToken> subscriber =
                 new HttpProgressSubscriber<>(
                         mView.getProgressDialog(getLoadTip()),
                         new HttpObserver<BasicToken>() {
@@ -152,7 +152,7 @@ public class LoginPresenter extends BasePresenter<ILoginContract.View>
             }
         };
 
-        generalRxHttpExecute(new IObservableCreator<User, Response<User>>() {
+        generalRxHttpExecute(new IObservableCreator<User>() {
             @Override
             public Observable<Response<User>> createObservable(boolean forceNetWork) {
                 return getUserService(basicToken.getToken()).getUser(forceNetWork, "");

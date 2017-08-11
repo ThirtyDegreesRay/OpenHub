@@ -95,8 +95,7 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
             }
         };
 
-        generalRxHttpExecute(new IObservableCreator<ArrayList<Repository>,
-                Response<ArrayList<Repository>>>() {
+        generalRxHttpExecute(new IObservableCreator<ArrayList<Repository>>() {
             @Nullable
             @Override
             public Observable<Response<ArrayList<Repository>>> createObservable(boolean forceNetWork) {

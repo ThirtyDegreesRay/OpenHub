@@ -41,7 +41,6 @@ import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseContract;
-import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.ThemeEngine;
 import com.thirtydegreesray.openhub.util.WindowUtil;
@@ -55,7 +54,7 @@ import butterknife.ButterKnife;
  * This is base activity to set some common things.
  * Created by ThirtyDegreesRay on 2016/7/13 18:13
  */
-public abstract class BaseActivity<P extends BasePresenter>
+public abstract class BaseActivity<P extends IBaseContract.Presenter>
         extends AppCompatActivity implements IBaseContract.View,
         Toolbar.OnMenuItemClickListener{
 
@@ -74,7 +73,9 @@ public abstract class BaseActivity<P extends BasePresenter>
         AppHelper.updateAppLanguage(getActivity());
         super.onCreate(savedInstanceState);
         isAlive = true;
+        setupActivityComponent(getAppComponent());
         DataAutoAccess.getData(this, savedInstanceState);
+        mPresenter.onRestoreInstanceState(savedInstanceState);
         if(savedInstanceState != null && AppData.INSTANCE.getAuthUser() == null){
             DataAutoAccess.getData(AppData.INSTANCE, savedInstanceState);
         }
@@ -85,7 +86,7 @@ public abstract class BaseActivity<P extends BasePresenter>
             ButterKnife.bind(getActivity());
         }
 
-        setupActivityComponent(getAppComponent());
+
         mPresenter.attachView(this);
 
         initActivity();
@@ -97,6 +98,7 @@ public abstract class BaseActivity<P extends BasePresenter>
         super.onSaveInstanceState(outState);
         //系统由于内存不足而杀死activity，此时保存数据
         DataAutoAccess.saveData(this, outState);
+        mPresenter.onSaveInstanceState(outState);
         if(curActivity.equals(this)){
             DataAutoAccess.saveData(AppData.INSTANCE, outState);
         }

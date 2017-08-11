@@ -17,10 +17,12 @@
 package com.thirtydegreesray.openhub.mvp.presenter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 
+import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
 import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.dao.DaoSession;
@@ -66,10 +68,21 @@ public class BasePresenter<V extends IBaseContract.View> implements IBaseContrac
         this.daoSession = daoSession;
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        DataAutoAccess.saveData(this, outState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle outState) {
+        if(outState == null) return ;
+        DataAutoAccess.getData(this, outState);
+    }
+
     /**
      * 绑定View
      *
-     * @param view
+     * @param view view
      */
     @Override
     public void attachView(@NonNull V view) {
@@ -142,8 +155,8 @@ public class BasePresenter<V extends IBaseContract.View> implements IBaseContrac
 
     }
 
-    public interface IObservableCreator<T, R extends Response<T>>{
-        Observable<R> createObservable(boolean forceNetWork);
+    protected interface IObservableCreator<T>{
+        Observable<Response<T>> createObservable(boolean forceNetWork);
     }
 
     /**
@@ -153,8 +166,8 @@ public class BasePresenter<V extends IBaseContract.View> implements IBaseContrac
      * @param subscriber null 表明不管数据回调
      * @param <T>
      */
-    protected <T, R extends Response<T>> void generalRxHttpExecute(
-            @NonNull Observable<R> observable, @Nullable HttpSubscriber<T, R> subscriber) {
+    protected <T> void generalRxHttpExecute(
+            @NonNull Observable<Response<T>> observable, @Nullable HttpSubscriber<T> subscriber) {
         if (subscriber != null) {
             observable.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -162,17 +175,17 @@ public class BasePresenter<V extends IBaseContract.View> implements IBaseContrac
         } else {
             observable.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new HttpSubscriber<T, R>());
+                    .subscribe(new HttpSubscriber<T>());
         }
     }
 
-    protected <T, R extends Response<T>> void generalRxHttpExecute(
-            @NonNull IObservableCreator<T, R> observableCreator, @NonNull HttpObserver<T> httpObserver) {
+    protected <T> void generalRxHttpExecute(@NonNull IObservableCreator<T> observableCreator
+            , @NonNull HttpObserver<T> httpObserver) {
         generalRxHttpExecute(observableCreator, httpObserver, false);
     }
 
-    protected <T, R extends Response<T>> void generalRxHttpExecute(
-            @NonNull final IObservableCreator<T, R> observableCreator, @NonNull final HttpObserver<T> httpObserver,
+    protected <T> void generalRxHttpExecute(@NonNull final IObservableCreator<T> observableCreator
+            , @NonNull final HttpObserver<T> httpObserver,
             final boolean readCacheFirst) {
 
         final HttpObserver<T> tempObserver = new HttpObserver<T>() {
@@ -205,8 +218,7 @@ public class BasePresenter<V extends IBaseContract.View> implements IBaseContrac
         Logger.d(TAG, "get date start:" + System.currentTimeMillis());
     }
 
-    private <T> HttpSubscriber getHttpSubscriber(
-            HttpObserver<T> httpObserver){
+    private <T> HttpSubscriber<T> getHttpSubscriber(HttpObserver<T> httpObserver){
         return new HttpSubscriber<>(httpObserver);
     }
 

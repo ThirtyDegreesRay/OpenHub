@@ -52,4 +52,5 @@ public abstract class BaseViewPagerAdapter<M extends Object> extends FragmentSta
     public CharSequence getPageTitle(int position) {
         return mTitleList != null ? mTitleList.get(position) : super.getPageTitle(position);
     }
+
 }

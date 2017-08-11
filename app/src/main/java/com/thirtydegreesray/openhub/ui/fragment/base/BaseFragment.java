@@ -33,7 +33,6 @@ import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseContract;
-import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 
 import javax.inject.Inject;
 
@@ -46,7 +45,7 @@ import butterknife.Unbinder;
  * @author ThirtyDegreesRay
  */
 
-public abstract class BaseFragment<P extends BasePresenter>
+public abstract class BaseFragment<P extends IBaseContract.Presenter>
         extends Fragment implements IBaseContract.View {
 
     @Inject
@@ -69,6 +68,7 @@ public abstract class BaseFragment<P extends BasePresenter>
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        //TODO the time to load view, the time to save and restore data(Fragment & Presenter)
         View fragmentView = inflater.inflate(getLayoutId(), container, false);
         unbinder = ButterKnife.bind(this, fragmentView);
         setupFragmentComponent(getAppComponent());

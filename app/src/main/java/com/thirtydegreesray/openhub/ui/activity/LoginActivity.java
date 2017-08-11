@@ -51,7 +51,7 @@ import es.dmoral.toasty.Toasty;
 public class LoginActivity extends BaseActivity<LoginPresenter>
         implements ILoginContract.View {
 
-    private final String TAG = "LoginActivity";
+    private final String TAG = LoginActivity.class.getSimpleName();
 
     @BindView(R.id.user_name_et) TextInputEditText userNameEt;
     @BindView(R.id.user_name_layout) TextInputLayout userNameLayout;
@@ -119,18 +119,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
         return R.layout.activity_login;
     }
 
-//        handler = new Handler() {
-//            @Override
-//            public void handleMessage(@NonNull Message msg) {
-//                super.handleMessage(msg);
-//                String url = (String) msg.obj;
-//                Map<String, String> params = HttpUtil.getParams(url);
-//                String code = params.get("code");
-//                String state = params.get("state");
-//                mPresenter.getToken(code, state);
-//            }
-//        };
-
     /**
      * 初始化view
      *
@@ -160,22 +148,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
             }
         });
 
-//        webView.getSettings().setJavaScriptEnabled(true);
-//        webView.setWebViewClient(new WebViewClient() {
-//            @Override
-//            public boolean shouldOverrideUrlLoading(@NonNull WebView view, @NonNull String url) {
-//                if (url.startsWith(AppConfig.OAUTH2_CALLBACK_URL)) {
-//                    Message message = new Message();
-//                    message.obj = url;
-//                    handler.sendMessage(message);
-//                } else {
-//                    view.loadUrl(url);
-//                }
-//                Log.i(TAG, "shouldOverrideUrlLoading:" + url);
-//                return true;
-//            }
-//        });
-//        webView.loadUrl(mPresenter.getOAuth2Url());
     }
 
 

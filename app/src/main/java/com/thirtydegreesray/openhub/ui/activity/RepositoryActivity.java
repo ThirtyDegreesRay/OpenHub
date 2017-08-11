@@ -96,6 +96,7 @@ public class RepositoryActivity extends BaseActivity<RepositoryPresenter> {
         );
         pagerAdapter.setPagerList(pageList);
         pagerAdapter.setTitleList(pageTitleList);
+        pagerAdapter.setRepository(repository);
     }
 
     @Override

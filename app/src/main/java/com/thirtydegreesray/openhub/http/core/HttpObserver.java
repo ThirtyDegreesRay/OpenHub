@@ -19,8 +19,7 @@ package com.thirtydegreesray.openhub.http.core;
 /**
  * Created by ThirtyDegreesRay on 2016/7/15 14:45
  */
-public interface HttpObserver <T> {
-
+public interface HttpObserver<T> {
     /**
      * Error
      * @param error
@@ -32,5 +31,4 @@ public interface HttpObserver <T> {
      * @param response
      */
     void onSuccess(HttpResponse<T> response);
-
 }
