@@ -24,6 +24,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
@@ -112,6 +114,12 @@ public class RepositoryActivity extends BaseActivity<RepositoryPresenter> {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_repository, menu);
+        return true;
+    }
+
+    @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         tabLayout.setVisibility(View.VISIBLE);
@@ -132,4 +140,28 @@ public class RepositoryActivity extends BaseActivity<RepositoryPresenter> {
 
     }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_star:
+
+                return true;
+            case R.id.action_share:
+
+                return true;
+            case R.id.action_open_in_browser:
+
+                return true;
+            case R.id.action_copy_url:
+
+                return true;
+            case R.id.action_watch:
+
+                return true;
+            case R.id.action_fork:
+
+                return true;
+        }
+        return super.onMenuItemClick(item);
+    }
 }

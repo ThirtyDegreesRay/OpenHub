@@ -4,7 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+
 
     <!-- onLoginClick -->
     <string name="user_name">UserName</string>
@@ -71,5 +71,14 @@
     <string name="info">INFO</string>
     <string name="files">FILES</string>
     <string name="commits">COMMITS</string>
+
+    <string name="star">Star</string>
+    <string name="share">Share</string>
+    <string name="open_in_browser">Open in browser</string>
+    <string name="copy_url">Copy URL</string>
+    <string name="watch">Watch</string>
+    <string name="unwatch">Unwatch</string>
+    <string name="fork">Fork</string>
+    <string name="unfork">Unfork</string>
 
 </resources>

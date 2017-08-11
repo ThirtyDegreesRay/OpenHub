@@ -17,150 +17,194 @@
 
 <resources>
 
+    <color name="dark_color_primary">#2D3035</color>
+    <color name="dark_color_primary_dark">#26282C</color>
+    <color name="dark_color_accent">@color/material_amber_accent_700</color>
+    <color name="dark_color_window_background">#22252A</color>
+    <color name="dark_text_color_primary">@color/material_light_white</color>
+    <color name="dark_text_color_secondary">@color/material_grey_500</color>
+    <color name="dark_icon_color">@color/material_light_white</color>
+    <color name="dark_card_background">#2D3035</color>
+    <color name="dark_title_color">@color/material_light_white</color>
+    <color name="dark_subtitle_color">@color/material_grey_500</color>
+
     <style name="ThemeDark" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/night_color_primary</item>
-        <item name="colorPrimaryDark">@color/night_color_primary_dark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/night_color_window_background</item>
+        <item name="colorPrimary">@color/dark_color_primary</item>
+        <item name="colorPrimaryDark">@color/dark_color_primary_dark</item>
+        <item name="colorAccent">@color/dark_color_accent</item>
+        <item name="android:windowBackground">@color/dark_color_window_background</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
-        <item name="android:textColorPrimary">@color/material_light_white</item>
-        <item name="android:textColorSecondary">@color/material_grey_500</item>
+        <item name="android:textColorPrimary">@color/dark_text_color_primary</item>
+        <item name="android:textColorSecondary">@color/dark_text_color_secondary</item>
         <item name="android:textColorTertiary">@color/material_grey_200</item>
-        <item name="icon_color">@color/material_light_white</item>
-        <item name="card_background">@color/night_color_card_background</item>
-        <item name="title_color">@color/material_light_white</item>
-        <item name="subtitle_color">@color/material_grey_500</item>
+        <item name="icon_color">@color/dark_icon_color</item>
+        <item name="card_background">@color/dark_card_background</item>
+        <item name="title_color">@color/dark_title_color</item>
+        <item name="subtitle_color">@color/dark_subtitle_color</item>
+        <item name="popup_theme">@style/PopupThemeDark</item>
+        <item name="appbar_theme">@style/AppbarThemeDark</item>
     </style>
 
     <style name="DialogThemeDark" parent="Theme.AppCompat.Dialog.Alert">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="icon_color">@color/material_light_white</item>
-        <item name="colorPrimary">@color/night_color_primary</item>
-        <item name="colorPrimaryDark">@color/night_color_primary_dark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/night_color_window_background</item>
+        <item name="icon_color">@color/dark_icon_color</item>
+        <item name="colorPrimary">@color/dark_color_primary</item>
+        <item name="colorPrimaryDark">@color/dark_color_primary_dark</item>
+        <item name="colorAccent">@color/dark_color_accent</item>
+        <item name="android:windowBackground">@color/dark_color_window_background</item>
     </style>
 
-    <style name="ThemeDark.LightBlue" parent="ThemeDark" >
+    <style name="AppbarThemeDark" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    </style>
+
+    <style name="PopupThemeDark" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:colorBackground">@color/dark_color_window_background</item>
+    </style>
+
+    <style name="ThemeDark.LightBlue" parent="ThemeDark">
         <item name="colorAccent">@color/material_light_blue_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.LightBlue</item>
     </style>
-    <style name="ThemeDark.Blue" parent="ThemeDark" >
+
+    <style name="ThemeDark.Blue" parent="ThemeDark">
         <item name="colorAccent">@color/material_blue_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Blue</item>
     </style>
-    <style name="ThemeDark.Indigo" parent="ThemeDark" >
+
+    <style name="ThemeDark.Indigo" parent="ThemeDark">
         <item name="colorAccent">@color/material_indigo_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Indigo</item>
     </style>
-    <style name="ThemeDark.Orange" parent="ThemeDark" >
+
+    <style name="ThemeDark.Orange" parent="ThemeDark">
         <item name="colorAccent">@color/material_orange_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Orange</item>
     </style>
 
-    <style name="ThemeDark.Yellow" parent="ThemeDark" >
+    <style name="ThemeDark.Yellow" parent="ThemeDark">
         <item name="colorAccent">@color/material_yellow_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Yellow</item>
     </style>
-    <style name="ThemeDark.Amber" parent="ThemeDark" >
+
+    <style name="ThemeDark.Amber" parent="ThemeDark">
         <item name="colorAccent">@color/material_amber_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Amber</item>
     </style>
-    <style name="ThemeDark.Grey" parent="ThemeDark" >
+
+    <style name="ThemeDark.Grey" parent="ThemeDark">
         <item name="colorAccent">@color/material_grey_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Grey</item>
     </style>
-    <style name="ThemeDark.Brown" parent="ThemeDark" >
+
+    <style name="ThemeDark.Brown" parent="ThemeDark">
         <item name="colorAccent">@color/material_brown_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Brown</item>
     </style>
 
-    <style name="ThemeDark.Cyan" parent="ThemeDark" >
+    <style name="ThemeDark.Cyan" parent="ThemeDark">
         <item name="colorAccent">@color/material_cyan_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Cyan</item>
     </style>
-    <style name="ThemeDark.Teal" parent="ThemeDark" >
+
+    <style name="ThemeDark.Teal" parent="ThemeDark">
         <item name="colorAccent">@color/material_teal_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Teal</item>
     </style>
-    <style name="ThemeDark.Lime" parent="ThemeDark" >
+
+    <style name="ThemeDark.Lime" parent="ThemeDark">
         <item name="colorAccent">@color/material_lime_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Lime</item>
     </style>
-    <style name="ThemeDark.Green" parent="ThemeDark" >
+
+    <style name="ThemeDark.Green" parent="ThemeDark">
         <item name="colorAccent">@color/material_green_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Green</item>
     </style>
 
-    <style name="ThemeDark.Pink" parent="ThemeDark" >
+    <style name="ThemeDark.Pink" parent="ThemeDark">
         <item name="colorAccent">@color/material_pink_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Pink</item>
     </style>
-    <style name="ThemeDark.Red" parent="ThemeDark" >
+
+    <style name="ThemeDark.Red" parent="ThemeDark">
         <item name="colorAccent">@color/material_red_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Red</item>
     </style>
-    <style name="ThemeDark.Purple" parent="ThemeDark" >
+
+    <style name="ThemeDark.Purple" parent="ThemeDark">
         <item name="colorAccent">@color/material_purple_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Purple</item>
     </style>
-    <style name="ThemeDark.DeepPurple" parent="ThemeDark" >
+
+    <style name="ThemeDark.DeepPurple" parent="ThemeDark">
         <item name="colorAccent">@color/material_deep_purple_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.DeepPurple</item>
     </style>
 
 
-
-    <style name="DialogThemeDark.LightBlue" parent="DialogThemeDark" >
+    <style name="DialogThemeDark.LightBlue" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_light_blue_accent_700</item>
     </style>
-    <style name="DialogThemeDark.Blue" parent="DialogThemeDark" >
+
+    <style name="DialogThemeDark.Blue" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_blue_accent_700</item>
     </style>
-    <style name="DialogThemeDark.Indigo" parent="DialogThemeDark" >
+
+    <style name="DialogThemeDark.Indigo" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_indigo_accent_700</item>
     </style>
-    <style name="DialogThemeDark.Orange" parent="DialogThemeDark" >
+
+    <style name="DialogThemeDark.Orange" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_orange_accent_700</item>
     </style>
 
-    <style name="DialogThemeDark.Yellow" parent="DialogThemeDark" >
+    <style name="DialogThemeDark.Yellow" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_yellow_accent_700</item>
     </style>
-    <style name="DialogThemeDark.Amber" parent="DialogThemeDark" >
+
+    <style name="DialogThemeDark.Amber" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_amber_accent_700</item>
     </style>
-    <style name="DialogThemeDark.Grey" parent="DialogThemeDark" >
+
+    <style name="DialogThemeDark.Grey" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_grey_700</item>
     </style>
-    <style name="DialogThemeDark.Brown" parent="DialogThemeDark" >
+
+    <style name="DialogThemeDark.Brown" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_brown_700</item>
     </style>
 
-    <style name="DialogThemeDark.Cyan" parent="DialogThemeDark" >
+    <style name="DialogThemeDark.Cyan" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_cyan_accent_700</item>
     </style>
-    <style name="DialogThemeDark.Teal" parent="DialogThemeDark" >
+
+    <style name="DialogThemeDark.Teal" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_teal_accent_700</item>
     </style>
-    <style name="DialogThemeDark.Lime" parent="DialogThemeDark" >
+
+    <style name="DialogThemeDark.Lime" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_lime_accent_700</item>
     </style>
-    <style name="DialogThemeDark.Green" parent="DialogThemeDark" >
+
+    <style name="DialogThemeDark.Green" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_green_accent_700</item>
     </style>
 
-    <style name="DialogThemeDark.Pink" parent="DialogThemeDark" >
+    <style name="DialogThemeDark.Pink" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_pink_accent_700</item>
     </style>
-    <style name="DialogThemeDark.Red" parent="DialogThemeDark" >
+
+    <style name="DialogThemeDark.Red" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_red_accent_700</item>
     </style>
-    <style name="DialogThemeDark.Purple" parent="DialogThemeDark" >
+
+    <style name="DialogThemeDark.Purple" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_purple_accent_700</item>
     </style>
-    <style name="DialogThemeDark.DeepPurple" parent="DialogThemeDark" >
+
+    <style name="DialogThemeDark.DeepPurple" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_deep_purple_accent_700</item>
     </style>
 

@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="colorPrimary">@color/material_indigo_500</color>
-    <color name="colorPrimaryDark">@color/material_indigo_700</color>
-    <color name="colorAccent">@color/material_blue_accent_700</color>
 
     <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFF</color>
 
     <color name="black_overlay">#66000000</color>
     <color name="black_light">#212121</color>
-
-    <color name="night_color_primary">#2D3035</color>
-    <color name="night_color_primary_dark">#26282C</color>
-    <color name="night_color_window_background">#22252A</color>
-    <color name="night_color_card_background">#2D3035</color>
-
-    <color name="light_text_color_primary">#212121</color>
-    <color name="light_text_color_secondary">#757575</color>
 
     <color name="material_amber_100">#FFECB3</color>
     <color name="material_amber_200">#FFE082</color>

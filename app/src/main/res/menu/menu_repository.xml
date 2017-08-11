@@ -19,8 +19,28 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="com.thirtydegreesray.openhub.ui.activity.UserActivity">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:id="@+id/action_star"
+        android:title="@string/star"
+        android:icon="@drawable/ic_star_title"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_share"
+        android:title="@string/share"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_open_in_browser"
+        android:title="@string/open_in_browser"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_copy_url"
+        android:title="@string/copy_url"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_watch"
+        android:title="@string/watch"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_fork"
+        android:title="@string/fork"
         app:showAsAction="never"/>
 </menu>

@@ -56,7 +56,8 @@ import butterknife.ButterKnife;
  * Created by ThirtyDegreesRay on 2016/7/13 18:13
  */
 public abstract class BaseActivity<P extends BasePresenter>
-        extends AppCompatActivity implements IBaseView {
+        extends AppCompatActivity implements IBaseView,
+        Toolbar.OnMenuItemClickListener{
 
     @Inject
     protected P mPresenter;
@@ -134,6 +135,7 @@ public abstract class BaseActivity<P extends BasePresenter>
     protected void initView(Bundle savedInstanceState){
         if(toolbar != null){
             setSupportActionBar(toolbar);
+            toolbar.setOnMenuItemClickListener(this);
         }
     }
 
@@ -168,6 +170,11 @@ public abstract class BaseActivity<P extends BasePresenter>
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
     }
 
     public void finishActivity(){

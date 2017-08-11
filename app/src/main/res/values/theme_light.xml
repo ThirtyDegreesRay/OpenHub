@@ -17,29 +17,50 @@
 
 <resources>
 
+    <color name="light_color_primary">@color/material_indigo_500</color>
+    <color name="light_color_primary_dark">@color/material_indigo_700</color>
+    <color name="light_color_accent">@color/material_indigo_accent_700</color>
+    <color name="light_window_background">@color/material_light_white</color>
+    <color name="light_icon_color">@color/material_light_black</color>
+    <color name="light_card_background">@color/material_white</color>
+    <color name="light_title_color">@color/material_light_white</color>
+    <color name="light_subtitle_color">@color/material_grey_350</color>
+    <color name="light_text_color_primary">#212121</color>
+    <color name="light_text_color_secondary">#757575</color>
+
     <style name="ThemeLight" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/material_light_white</item>
+        <item name="colorPrimary">@color/light_color_primary</item>
+        <item name="colorPrimaryDark">@color/light_color_primary_dark</item>
+        <item name="colorAccent">@color/light_color_accent</item>
+        <item name="android:windowBackground">@color/light_window_background</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="android:textColorPrimary">@color/light_text_color_primary</item>
         <item name="android:textColorSecondary">@color/light_text_color_secondary</item>
         <item name="android:textColorTertiary">@color/material_grey_700</item>
-        <item name="icon_color">@color/material_light_black</item>
-        <item name="card_background">@color/material_white</item>
-        <item name="title_color">@color/material_light_white</item>
-        <item name="subtitle_color">@color/material_grey_350</item>
+        <item name="icon_color">@color/light_icon_color</item>
+        <item name="card_background">@color/light_card_background</item>
+        <item name="title_color">@color/light_title_color</item>
+        <item name="subtitle_color">@color/light_subtitle_color</item>
+        <item name="popup_theme">@style/PopupThemeLight</item>
+        <item name="appbar_theme">@style/AppbarThemeLight</item>
     </style>
 
     <style name="DialogThemeLight" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="icon_color">@color/material_light_black</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/material_light_white</item>
+        <item name="icon_color">@color/light_icon_color</item>
+        <item name="colorPrimary">@color/light_color_primary</item>
+        <item name="colorPrimaryDark">@color/light_color_primary_dark</item>
+        <item name="colorAccent">@color/light_color_accent</item>
+        <item name="android:windowBackground">@color/light_window_background</item>
+    </style>
+
+    <style name="AppbarThemeLight" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    </style>
+
+    <style name="PopupThemeLight" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:colorBackground">@color/light_window_background</item>
     </style>
 
     <style name="ThemeLight.LightBlue" parent="ThemeLight" >
