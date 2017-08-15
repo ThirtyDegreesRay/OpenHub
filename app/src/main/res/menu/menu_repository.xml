@@ -24,6 +24,11 @@
         android:icon="@drawable/ic_star_title"
         app:showAsAction="ifRoom"/>
     <item
+        android:id="@+id/action_branch"
+        android:title="@string/branch_tip"
+        android:icon="@drawable/ic_branch_title"
+        app:showAsAction="ifRoom"/>
+    <item
         android:id="@+id/action_share"
         android:title="@string/share"
         app:showAsAction="never"/>

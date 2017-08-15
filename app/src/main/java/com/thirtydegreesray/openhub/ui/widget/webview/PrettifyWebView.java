@@ -41,7 +41,7 @@ import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewHelper;
 
 
-public class PrettifyWebView extends NestedWebView {
+public class PrettifyWebView extends WebView {
     private OnContentChangedListener onContentChangedListener;
     private boolean interceptTouch;
     private boolean enableNestedScrolling;

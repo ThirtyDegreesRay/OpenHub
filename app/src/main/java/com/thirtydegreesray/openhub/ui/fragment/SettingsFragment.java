@@ -133,7 +133,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
             Log.d("TAG" , "");
         }
 
-        AlertDialog dialog = new AlertDialog.Builder(getContext(), R.style.DialogThemeLight_Amber)
+        new AlertDialog.Builder(getContext(), R.style.DialogThemeLight_Amber)
                 .setTitle(R.string.language)
                 .setSingleChoiceItems(R.array.language_array, index, new DialogInterface.OnClickListener() {
                     @Override

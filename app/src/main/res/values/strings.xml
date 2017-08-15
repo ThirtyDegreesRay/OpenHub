@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OpenHub</string>
+    <string name="app_name" translatable="false">OpenHub</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -73,6 +73,7 @@
     <string name="commits">COMMITS</string>
 
     <string name="star">Star</string>
+    <string name="branch_tip">Branches or tags</string>
     <string name="share">Share</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="copy_url">Copy URL</string>
@@ -82,5 +83,14 @@
     <string name="unfork">Unfork</string>
 
     <string name="success_copied">Copied</string>
+
+    <string name="stargazers">Stargazers</string>
+    <string name="forks">Froks</string>
+    <string name="watchers">Watchers</string>
+    <string name="readme">README</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="select_branch">Select branch or tag</string>
+
 
 </resources>

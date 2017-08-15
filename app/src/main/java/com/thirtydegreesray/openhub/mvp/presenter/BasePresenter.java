@@ -18,6 +18,7 @@ package com.thirtydegreesray.openhub.mvp.presenter;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -55,7 +56,7 @@ import rx.schedulers.Schedulers;
  * BasePresenter
  * Created by ThirtyDegreesRay on 2016/7/13 18:01
  */
-public class BasePresenter<V extends IBaseContract.View> implements IBaseContract.Presenter<V> {
+public abstract class BasePresenter<V extends IBaseContract.View> implements IBaseContract.Presenter<V> {
 
     private final String TAG = "BasePresenter";
 
@@ -151,7 +152,8 @@ public class BasePresenter<V extends IBaseContract.View> implements IBaseContrac
     /**
      * presenter和view绑定成功
      */
-    protected void onViewAttached() {
+    @CallSuper
+    protected void onViewAttached(){
 
     }
 

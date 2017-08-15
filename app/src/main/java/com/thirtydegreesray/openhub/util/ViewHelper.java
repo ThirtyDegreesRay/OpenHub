@@ -23,6 +23,7 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
@@ -77,12 +78,24 @@ public class ViewHelper {
         return getColorAttr(context, R.attr.card_background);
     }
 
+    public static Drawable getSelectableItemBackground(@NonNull Context context) {
+        return getDrawableAttr(context, android.R.attr.selectableItemBackground);
+    }
+
     @ColorInt private static int getColorAttr(@NonNull Context context, int attr) {
         Resources.Theme theme = context.getTheme();
         TypedArray typedArray = theme.obtainStyledAttributes(new int[]{attr});
         final int color = typedArray.getColor(0, Color.LTGRAY);
         typedArray.recycle();
         return color;
+    }
+
+    private static Drawable getDrawableAttr(@NonNull Context context, int attr) {
+        Resources.Theme theme = context.getTheme();
+        TypedArray typedArray = theme.obtainStyledAttributes(new int[]{attr});
+        final Drawable drawable = typedArray.getDrawable(0);
+        typedArray.recycle();
+        return drawable;
     }
 
     public static int toPx(@NonNull Context context, int dp) {

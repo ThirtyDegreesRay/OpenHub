@@ -26,6 +26,7 @@ import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -45,6 +46,8 @@ import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.ThemeEngine;
 import com.thirtydegreesray.openhub.util.WindowUtil;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -54,7 +57,8 @@ import butterknife.ButterKnife;
  * This is base activity to set some common things.
  * Created by ThirtyDegreesRay on 2016/7/13 18:13
  */
-public abstract class BaseActivity<P extends IBaseContract.Presenter>
+public abstract class
+BaseActivity<P extends IBaseContract.Presenter>
         extends AppCompatActivity implements IBaseContract.View,
         Toolbar.OnMenuItemClickListener{
 
@@ -75,7 +79,8 @@ public abstract class BaseActivity<P extends IBaseContract.Presenter>
         isAlive = true;
         setupActivityComponent(getAppComponent());
         DataAutoAccess.getData(this, savedInstanceState);
-        mPresenter.onRestoreInstanceState(savedInstanceState);
+        mPresenter.onRestoreInstanceState(savedInstanceState == null ?
+                getIntent().getExtras() : savedInstanceState);
         if(savedInstanceState != null && AppData.INSTANCE.getAuthUser() == null){
             DataAutoAccess.getData(AppData.INSTANCE, savedInstanceState);
         }
@@ -86,11 +91,9 @@ public abstract class BaseActivity<P extends IBaseContract.Presenter>
             ButterKnife.bind(getActivity());
         }
 
-
-        mPresenter.attachView(this);
-
         initActivity();
         initView(savedInstanceState);
+        mPresenter.attachView(this);
     }
 
     @Override
@@ -181,6 +184,18 @@ public abstract class BaseActivity<P extends IBaseContract.Presenter>
 
     public void finishActivity(){
         finish();
+    }
+
+    protected Fragment getVisibleFragment(){
+        List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
+        if(fragmentList != null ){
+            for(Fragment fragment : fragmentList){
+                if(fragment != null && fragment.isVisible()){
+                    return fragment;
+                }
+            }
+        }
+        return null;
     }
 
 

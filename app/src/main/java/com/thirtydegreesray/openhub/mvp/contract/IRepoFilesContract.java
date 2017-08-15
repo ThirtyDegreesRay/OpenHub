@@ -16,24 +16,25 @@
 
 package com.thirtydegreesray.openhub.mvp.contract;
 
-import com.thirtydegreesray.openhub.mvp.model.Branch;
+import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 
 import java.util.ArrayList;
 
 /**
- * Created by ThirtyDegreesRay on 2017/8/9 21:40:25
+ * Created by ThirtyDegreesRay on 2017/8/14 16:02:28
  */
 
-public interface IRepositoryContract {
+public interface IRepoFilesContract {
 
     interface View extends IBaseContract.View{
-        void showRepo(Repository repo);
-        void showBranchesAndTags(ArrayList<Branch> list, Branch curBranch);
+        void showFiles(ArrayList<FileModel> files);
+        void showLoading();
+        void hideLoading();
     }
 
-    interface Presenter extends IBaseContract.Presenter<IRepositoryContract.View>{
-        void loadBranchesAndTags();
+    interface Presenter extends IBaseContract.Presenter<IRepoFilesContract.View>{
+        void loadFiles(Repository repo, String branch, String path, boolean isReload);
     }
 
 }

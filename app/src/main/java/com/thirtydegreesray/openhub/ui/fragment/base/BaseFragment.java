@@ -46,7 +46,7 @@ import butterknife.Unbinder;
  */
 
 public abstract class BaseFragment<P extends IBaseContract.Presenter>
-        extends Fragment implements IBaseContract.View {
+        extends Fragment implements IBaseContract.View{
 
     @Inject
     protected P mPresenter;
@@ -192,4 +192,5 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
                 })
                 .show();
     }
+
 }

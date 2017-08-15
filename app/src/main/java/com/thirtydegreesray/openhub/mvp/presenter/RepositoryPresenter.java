@@ -16,21 +16,95 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
+import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.dao.DaoSession;
+import com.thirtydegreesray.openhub.http.core.HttpObserver;
+import com.thirtydegreesray.openhub.http.core.HttpProgressSubscriber;
+import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.IRepositoryContract;
+import com.thirtydegreesray.openhub.mvp.model.Branch;
+import com.thirtydegreesray.openhub.mvp.model.Repository;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
+
+import retrofit2.Response;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/9 21:42:47
  */
 
 public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
-        implements IRepositoryContract.Presenter{
+        implements IRepositoryContract.Presenter {
+
+    @AutoAccess(dataName = "repository") Repository repository;
+    @AutoAccess(dataName = "repoUrl") String repoUrl;
+
+    private ArrayList<Branch> branches;
+    private Branch curBranch;
 
     @Inject
     public RepositoryPresenter(DaoSession daoSession) {
         super(daoSession);
     }
 
+    @Override
+    protected void onViewAttached() {
+        super.onViewAttached();
+        if (repository != null) {
+            curBranch = new Branch(repository.getDefaultBranch());
+            mView.showRepo(repository);
+        } else {
+            //TODO load by repo url
+        }
+    }
+
+    @Override
+    public void loadBranchesAndTags() {
+        if(branches != null){
+            mView.showBranchesAndTags(branches, curBranch);
+            return;
+        }
+        HttpProgressSubscriber<ArrayList<Branch>> httpProgressSubscriber =
+                new HttpProgressSubscriber<>(
+                        mView.getProgressDialog(getLoadTip()),
+                        new HttpObserver<ArrayList<Branch>>() {
+                            @Override
+                            public void onError(Throwable error) {
+                                mView.showShortToast(error.getMessage());
+                            }
+
+                            @Override
+                            public void onSuccess(HttpResponse<ArrayList<Branch>> response) {
+                                setTags(response.body());
+                                branches.addAll(response.body());
+                                mView.showBranchesAndTags(branches, curBranch);
+                            }
+                        }
+                );
+        getRepoService().getBranches(repository.getOwner().getLogin(), repository.getName())
+                .flatMap(new Func1<Response<ArrayList<Branch>>, Observable<Response<ArrayList<Branch>>>>() {
+                    @Override
+                    public Observable<Response<ArrayList<Branch>>> call(
+                            Response<ArrayList<Branch>> arrayListResponse) {
+                        branches = arrayListResponse.body();
+                        return getRepoService().getTags(repository.getOwner().getLogin(),
+                                repository.getName());
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(httpProgressSubscriber);
+    }
+
+    private void setTags(ArrayList<Branch> list){
+        for(Branch branch : list){
+            branch.setBranch(false);
+        }
+    }
 }

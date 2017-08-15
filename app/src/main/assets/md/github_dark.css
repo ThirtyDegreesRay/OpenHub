@@ -7,9 +7,9 @@ body {
     color: #ccc;
 }
 
-a {
-    color: #00E5FF !important;
-}
+#a {
+#    color: #00E5FF !important;
+#}
 
 body::before {
     display: table;

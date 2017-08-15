@@ -88,7 +88,7 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_repositories;
+        return R.layout.fragment_list;
     }
 
     @Override

@@ -18,6 +18,8 @@ package com.thirtydegreesray.openhub.http;
 
 import android.support.annotation.NonNull;
 
+import com.thirtydegreesray.openhub.mvp.model.Branch;
+import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 import rx.Observable;
 
@@ -88,6 +91,29 @@ public interface RepoService {
 
     @NonNull
     @GET @Headers("Accept: application/vnd.github.html")
-    Observable<Response<ResponseBody>> getFileAsHtmlStream(@Url String url);
+    Observable<Response<ResponseBody>> getFileAsHtmlStream(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Url String url
+    );
+
+    @GET("repos/{owner}/{repo}/contents/{path}")
+    Observable<Response<ArrayList<FileModel>>> getRepoFiles(
+            @Path(value = "owner") String owner,
+            @Path(value = "repo") String repo,
+            @Path(value = "path", encoded = true) String path,
+            @Query("ref") String branch
+    );
+
+    @GET("repos/{owner}/{repo}/branches")
+    Observable<Response<ArrayList<Branch>>> getBranches(
+            @Path(value = "owner") String owner,
+            @Path(value = "repo") String repo
+    );
+
+    @GET("repos/{owner}/{repo}/tags")
+    Observable<Response<ArrayList<Branch>>> getTags(
+            @Path(value = "owner") String owner,
+            @Path(value = "repo") String repo
+    );
 
 }

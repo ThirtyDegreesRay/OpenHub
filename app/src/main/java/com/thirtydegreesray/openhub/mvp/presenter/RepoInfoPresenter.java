@@ -44,9 +44,15 @@ public class RepoInfoPresenter extends BasePresenter<IRepoInfoContract.View>
     }
 
     @Override
+    protected void onViewAttached() {
+
+    }
+
+    @Override
     public void loadReadMe(final Repository repo) {
         final String readmeFileUrl = AppConfig.GITHUB_API_BASE_URL + "repos/" + repo.getFullName()
                 + "/" + "readme";
+        final String baseUrl = AppConfig.GITHUB_BASE_URL + repo.getFullName();
 
         HttpObserver<ResponseBody> httpObserver = new HttpObserver<ResponseBody>() {
             @Override
@@ -57,7 +63,7 @@ public class RepoInfoPresenter extends BasePresenter<IRepoInfoContract.View>
             @Override
             public void onSuccess(HttpResponse<ResponseBody> response) {
                 try {
-                    mView.showReadMe(response.body().string(), readmeFileUrl);
+                    mView.showReadMe(response.body().string(), baseUrl);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -66,9 +72,9 @@ public class RepoInfoPresenter extends BasePresenter<IRepoInfoContract.View>
         generalRxHttpExecute(new IObservableCreator<ResponseBody>() {
             @Override
             public Observable<Response<ResponseBody>> createObservable(boolean forceNetWork) {
-                return getRepoService().getFileAsHtmlStream(readmeFileUrl);
+                return getRepoService().getFileAsHtmlStream(forceNetWork, readmeFileUrl);
             }
-        }, httpObserver, false);
+        }, httpObserver, true);
 
     }
 }

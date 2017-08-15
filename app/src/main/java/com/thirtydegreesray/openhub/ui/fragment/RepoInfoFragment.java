@@ -17,6 +17,14 @@
 package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
+import android.view.View;
+import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
@@ -27,17 +35,30 @@ import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.RepoInfoPresenter;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.ui.widget.webview.PrettifyWebView;
+import com.thirtydegreesray.openhub.util.StringUtils;
+import com.thirtydegreesray.openhub.util.ViewHelper;
+
+import java.util.Locale;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/11 11:35:39
  */
 
 public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
-        implements IRepoInfoContract.View{
+        implements IRepoInfoContract.View {
 
-    public static RepoInfoFragment create(Repository repository){
+    @BindView(R.id.repo_title_text) TextView repoTitleText;
+    @BindView(R.id.repo_desc_text) TextView repoDescText;
+    @BindView(R.id.repo_code_text) TextView repoCodeText;
+    @BindView(R.id.issues_num_text) TextView issuesNumText;
+    @BindView(R.id.stargazers_num_text) TextView stargazersNumText;
+    @BindView(R.id.forks_num_text) TextView forksNumText;
+    @BindView(R.id.watchers_num_text) TextView watchersNumText;
+
+    public static RepoInfoFragment create(Repository repository) {
         return new RepoInfoFragment().setRepository(repository);
     }
 
@@ -67,10 +88,50 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
     @Override
     protected void initFragment(Bundle savedInstanceState) {
         mPresenter.loadReadMe(repository);
+        issuesNumText.setText(String.valueOf(repository.getOpenIssuesCount()));
+        stargazersNumText.setText(String.valueOf(repository.getStargazersCount()));
+        forksNumText.setText(String.valueOf(repository.getForksCount()));
+        watchersNumText.setText(String.valueOf(repository.getWatchersCount()));
+        repoDescText.setText(repository.getDescription());
+        repoCodeText.setText(String.format(Locale.getDefault(), "Language %s, size %s",
+                repository.getLanguage(), StringUtils.getSizeString(repository.getSize() * 1024)));
+
+        String fullName = repository.getFullName();
+        SpannableStringBuilder spannable = new SpannableStringBuilder(fullName);
+        spannable.setSpan(new ForegroundColorSpan(ViewHelper.getAccentColor(getContext())),
+                0, fullName.indexOf("/"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                showShortToast("name click");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint ds) {
+
+            }
+        }, 0, fullName.indexOf("/"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        repoTitleText.setMovementMethod(LinkMovementMethod.getInstance());
+        repoTitleText.setText(spannable);
+
     }
 
     @Override
     public void showReadMe(String source, String baseUrl) {
         webView.setGithubContent(source, baseUrl);
+    }
+
+    @OnClick({R.id.issues_lay, R.id.stargazers_lay, R.id.froks_lay, R.id.watchers_lay})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.issues_lay:
+                break;
+            case R.id.stargazers_lay:
+                break;
+            case R.id.froks_lay:
+                break;
+            case R.id.watchers_lay:
+                break;
+        }
     }
 }

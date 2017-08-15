@@ -51,7 +51,6 @@ import com.thirtydegreesray.openhub.ui.fragment.ProfileFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -249,18 +248,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 return RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED);
         }
         return new ProfileFragment().setName("nav_profile");
-    }
-
-    private Fragment getVisibleFragment(){
-        List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
-        if(fragmentList != null ){
-            for(Fragment fragment : fragmentList){
-                if(fragment != null && fragment.isVisible()){
-                    return fragment;
-                }
-            }
-        }
-        return null;
     }
 
     private void showAndHideFragment(@NonNull Fragment showFragment, @Nullable Fragment hideFragment){
