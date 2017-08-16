@@ -39,22 +39,22 @@ public class Logger {
 
     public static void d(@NonNull String tag, @Nullable Object msg){
         if(!DEBUG) return;
-        Log.d(TAG, msg != null ? msg.toString() : "LOG MSG IS NULL!");
+        Log.d(tag, msg != null ? msg.toString() : "LOG MSG IS NULL!");
     }
 
     public static void i(@NonNull String tag, @Nullable Object msg){
         if(!DEBUG) return;
-        Log.i(TAG, msg != null ? msg.toString() : "LOG MSG IS NULL!");
+        Log.i(tag, msg != null ? msg.toString() : "LOG MSG IS NULL!");
     }
 
     public static void w(@NonNull String tag, @Nullable Object msg){
         if(!DEBUG) return;
-        Log.w(TAG, msg != null ? msg.toString() : "LOG MSG IS NULL!");
+        Log.w(tag, msg != null ? msg.toString() : "LOG MSG IS NULL!");
     }
 
     public static void e(@NonNull String tag, @Nullable Object msg){
         if(!DEBUG) return;
-        Log.e(TAG, msg != null ? msg.toString() : "LOG MSG IS NULL!");
+        Log.e(tag, msg != null ? msg.toString() : "LOG MSG IS NULL!");
     }
 
     public static void d(@Nullable Object text) {

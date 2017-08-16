@@ -91,6 +91,12 @@
             android:theme="@style/ThemeLight.Indigo">
         </activity>
 
+        <activity
+            android:name=".ui.activity.UserListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeLight.Indigo">
+        </activity>
+
     </application>
 
 </manifest>

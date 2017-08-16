@@ -44,11 +44,6 @@ public class RepoInfoPresenter extends BasePresenter<IRepoInfoContract.View>
     }
 
     @Override
-    protected void onViewAttached() {
-
-    }
-
-    @Override
     public void loadReadMe(final Repository repo) {
         final String readmeFileUrl = AppConfig.GITHUB_API_BASE_URL + "repos/" + repo.getFullName()
                 + "/" + "readme";

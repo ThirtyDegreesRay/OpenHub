@@ -24,7 +24,7 @@
     <include layout="@layout/layout_appbar"/>
 
     <FrameLayout
-        android:id="@+id/settings_container"
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

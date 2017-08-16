@@ -21,6 +21,7 @@ import android.support.annotation.NonNull;
 import com.thirtydegreesray.openhub.mvp.model.Branch;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
+import com.thirtydegreesray.openhub.mvp.model.User;
 
 import java.util.ArrayList;
 
@@ -98,22 +99,37 @@ public interface RepoService {
 
     @GET("repos/{owner}/{repo}/contents/{path}")
     Observable<Response<ArrayList<FileModel>>> getRepoFiles(
-            @Path(value = "owner") String owner,
-            @Path(value = "repo") String repo,
+            @Path("owner") String owner,
+            @Path("repo") String repo,
             @Path(value = "path", encoded = true) String path,
             @Query("ref") String branch
     );
 
     @GET("repos/{owner}/{repo}/branches")
     Observable<Response<ArrayList<Branch>>> getBranches(
-            @Path(value = "owner") String owner,
-            @Path(value = "repo") String repo
+            @Path("owner") String owner,
+            @Path("repo") String repo
     );
 
     @GET("repos/{owner}/{repo}/tags")
     Observable<Response<ArrayList<Branch>>> getTags(
-            @Path(value = "owner") String owner,
-            @Path(value = "repo") String repo
+            @Path("owner") String owner,
+            @Path("repo") String repo
     );
+
+    @GET("repos/{owner}/{repo}/stargazers")
+    Observable<Response<ArrayList<User>>> getStargazers(
+            @Path(value = "owner") String owner,
+            @Path(value = "repo") String repo,
+            @Query("page") int page
+    );
+
+    @GET("repos/{owner}/{repo}/watchers")
+    Observable<Response<ArrayList<User>>> getWatchers(
+            @Path("owner") String owner,
+            @Path("repo") String repo,
+            @Query("page") int page
+    );
+
 
 }

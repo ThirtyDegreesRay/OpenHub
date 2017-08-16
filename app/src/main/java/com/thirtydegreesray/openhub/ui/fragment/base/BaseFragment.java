@@ -17,6 +17,7 @@
 package com.thirtydegreesray.openhub.ui.fragment.base;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -33,6 +34,7 @@ import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseContract;
+import com.thirtydegreesray.openhub.util.Logger;
 
 import javax.inject.Inject;
 
@@ -47,6 +49,8 @@ import butterknife.Unbinder;
 
 public abstract class BaseFragment<P extends IBaseContract.Presenter>
         extends Fragment implements IBaseContract.View{
+
+    private final String TAG = BaseFragment.class.getSimpleName();
 
     @Inject
     protected P mPresenter;
@@ -68,6 +72,7 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        Logger.d(TAG, getClass().getSimpleName() + " onCreateView");
         //TODO the time to load view, the time to save and restore data(Fragment & Presenter)
         View fragmentView = inflater.inflate(getLayoutId(), container, false);
         unbinder = ButterKnife.bind(this, fragmentView);
@@ -81,33 +86,39 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Logger.d(TAG, getClass().getSimpleName() + " onCreate");
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Logger.d(TAG, getClass().getSimpleName() + " onViewCreated");
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Logger.d(TAG, getClass().getSimpleName() + " onActivityCreated");
     }
 
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
         DataAutoAccess.getData(this, savedInstanceState);
+        Logger.d(TAG, getClass().getSimpleName() + " onViewStateRestored");
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         DataAutoAccess.saveData(this, outState);
+        Logger.d(TAG, getClass().getSimpleName() + " onSaveInstanceState");
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        Logger.d(TAG, getClass().getSimpleName() + " onResume");
     }
 
     @Override
@@ -115,8 +126,44 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
         super.onDestroyView();
         unbinder.unbind();
         mPresenter.detachView();
+        Logger.d(TAG, getClass().getSimpleName() + " onDestroyView");
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Logger.d(TAG, getClass().getSimpleName() + " onAttach");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Logger.d(TAG, getClass().getSimpleName() + " onStart");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Logger.d(TAG, getClass().getSimpleName() + " onPause");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Logger.d(TAG, getClass().getSimpleName() + " onStop");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Logger.d(TAG, getClass().getSimpleName() + " onDestroy");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Logger.d(TAG, getClass().getSimpleName() + " onDetach");
+    }
 
     protected AppApplication getAppApplication() {
         return AppApplication.get();

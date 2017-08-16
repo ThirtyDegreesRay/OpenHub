@@ -79,8 +79,10 @@ BaseActivity<P extends IBaseContract.Presenter>
         isAlive = true;
         setupActivityComponent(getAppComponent());
         DataAutoAccess.getData(this, savedInstanceState);
-        mPresenter.onRestoreInstanceState(savedInstanceState == null ?
-                getIntent().getExtras() : savedInstanceState);
+        if(mPresenter != null) {
+            mPresenter.onRestoreInstanceState(savedInstanceState == null ?
+                    getIntent().getExtras() : savedInstanceState);
+        }
         if(savedInstanceState != null && AppData.INSTANCE.getAuthUser() == null){
             DataAutoAccess.getData(AppData.INSTANCE, savedInstanceState);
         }
@@ -93,7 +95,7 @@ BaseActivity<P extends IBaseContract.Presenter>
 
         initActivity();
         initView(savedInstanceState);
-        mPresenter.attachView(this);
+        if(mPresenter != null) mPresenter.attachView(this);
     }
 
     @Override
@@ -158,7 +160,7 @@ BaseActivity<P extends IBaseContract.Presenter>
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mPresenter.detachView();
+        if(mPresenter != null) mPresenter.detachView();
         isAlive = false;
     }
 

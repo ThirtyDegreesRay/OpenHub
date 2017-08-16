@@ -23,6 +23,7 @@ import com.thirtydegreesray.openhub.ui.fragment.RepoFilesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoInfoFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.TrendingFragment;
+import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
 
 import dagger.Component;
 
@@ -40,4 +41,5 @@ public interface FragmentComponent {
     void inject(RepositoriesFragment fragment);
     void inject(RepoInfoFragment fragment);
     void inject(RepoFilesFragment fragment);
+    void inject(UserListFragment fragment);
 }

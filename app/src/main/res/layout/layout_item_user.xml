@@ -6,11 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="@dimen/spacing_small"
-    android:paddingBottom="@dimen/spacing_small">
+    android:paddingBottom="@dimen/spacing_small"
+    android:paddingStart="@dimen/spacing_large"
+    android:paddingEnd="@dimen/spacing_large"
+    android:gravity="center_vertical"
+    android:background="?android:selectableItemBackground">
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/avatar"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:src="@mipmap/logo"
         app:riv_oval="true"/>
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:textSize="@dimen/text_normal"
+        android:textColor="?android:textColorPrimary"
+        android:text="ThirtyDegreesRay"/>
 </LinearLayout>

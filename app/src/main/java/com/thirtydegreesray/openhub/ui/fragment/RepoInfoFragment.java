@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.ui.fragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -33,6 +35,7 @@ import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IRepoInfoContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.RepoInfoPresenter;
+import com.thirtydegreesray.openhub.ui.activity.UserListActivity;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.ui.widget.webview.PrettifyWebView;
 import com.thirtydegreesray.openhub.util.StringUtils;
@@ -65,6 +68,11 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
     @BindView(R.id.prettify_web_view) PrettifyWebView webView;
 
     private Repository repository;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
 
     public RepoInfoFragment setRepository(Repository repository) {
         this.repository = repository;
@@ -127,6 +135,7 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
             case R.id.issues_lay:
                 break;
             case R.id.stargazers_lay:
+                startActivity(new Intent(getActivity(), UserListActivity.class));
                 break;
             case R.id.froks_lay:
                 break;

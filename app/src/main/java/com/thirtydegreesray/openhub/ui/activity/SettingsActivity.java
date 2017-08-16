@@ -51,7 +51,7 @@ public class SettingsActivity extends BaseActivity<SettingsPresenter>
     @Nullable
     @Override
     protected int getContentView() {
-        return R.layout.activity_settings;
+        return R.layout.activity_single_fragment;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class SettingsActivity extends BaseActivity<SettingsPresenter>
         if(savedInstanceState == null){
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.settings_container, new SettingsFragment())
+                    .replace(R.id.container, new SettingsFragment())
                     .commit();
         }
     }
