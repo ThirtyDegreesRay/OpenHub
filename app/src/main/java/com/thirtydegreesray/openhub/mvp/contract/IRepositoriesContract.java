@@ -33,10 +33,6 @@ public interface IRepositoriesContract {
 
         void showRepositories(ArrayList<Repository> repositoryList);
 
-        void showLoadingView();
-
-        void hideLoadingView();
-
         void showLoadError(String errorMsg);
 
     }
@@ -44,7 +40,7 @@ public interface IRepositoriesContract {
     interface Presenter extends IBaseContract.Presenter<IRepositoriesContract.View> {
 
         void loadRepositories(RepositoriesFragment.RepositoriesType repositoriesType
-                , String language, boolean isReLoad);
+                , String language, boolean isReLoad, int page);
     }
 
 }

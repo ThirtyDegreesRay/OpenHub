@@ -73,19 +73,21 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         Logger.d(TAG, getClass().getSimpleName() + " onCreateView");
-        //TODO the time to load view, the time to save and restore data(Fragment & Presenter)
         View fragmentView = inflater.inflate(getLayoutId(), container, false);
         unbinder = ButterKnife.bind(this, fragmentView);
-        setupFragmentComponent(getAppComponent());
-        mPresenter.attachView(this);
         initFragment(savedInstanceState);
-
+        mPresenter.onViewInitialized();
         return fragmentView;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setupFragmentComponent(getAppComponent());
+        mPresenter.attachView(this);
+        DataAutoAccess.getData(this, savedInstanceState);
+        mPresenter.onRestoreInstanceState(getArguments());
+        mPresenter.onRestoreInstanceState(savedInstanceState);
         Logger.d(TAG, getClass().getSimpleName() + " onCreate");
     }
 
@@ -104,7 +106,6 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
-        DataAutoAccess.getData(this, savedInstanceState);
         Logger.d(TAG, getClass().getSimpleName() + " onViewStateRestored");
     }
 
@@ -112,6 +113,7 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         DataAutoAccess.saveData(this, outState);
+        mPresenter.onSaveInstanceState(outState);
         Logger.d(TAG, getClass().getSimpleName() + " onSaveInstanceState");
     }
 
@@ -171,6 +173,16 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
 
     protected AppComponent getAppComponent(){
         return getAppApplication().getAppComponent();
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
     }
 
     @Override

@@ -14,30 +14,24 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.common;
+package com.thirtydegreesray.openhub.mvp.contract;
 
-import org.greenrobot.eventbus.EventBus;
+import android.support.annotation.NonNull;
 
 /**
- * 事件总线
- * Created by ThirtyDegreesRay on 2016/8/22 14:55
+ * Created by ThirtyDegreesRay on 2017/8/19 15:57:16
  */
 
-public enum  AppEventBus {
-    INSTANCE;
+public interface IViewerContract {
 
-    AppEventBus(){
-        init();
+    interface View extends IBaseContract.View{
+        void loadImageUrl(@NonNull String url);
+        void loadMdText(@NonNull String text, @NonNull String baseUrl);
+        void loadCode(@NonNull String text);
     }
 
-    private EventBus eventBus ;
-
-    private void init(){
-        eventBus = EventBus.builder()
-                .installDefaultEventBus();
+    interface Presenter extends IBaseContract.Presenter<IViewerContract.View>{
+        void load(boolean isReload);
     }
 
-    public EventBus getEventBus() {
-        return eventBus;
-    }
 }

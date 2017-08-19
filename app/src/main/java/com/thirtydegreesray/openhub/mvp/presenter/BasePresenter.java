@@ -45,9 +45,11 @@ import com.thirtydegreesray.openhub.util.StringUtils;
 import org.apache.http.conn.ConnectTimeoutException;
 
 import java.net.SocketTimeoutException;
+import java.util.ArrayList;
 
 import retrofit2.Response;
 import rx.Observable;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -65,8 +67,11 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
     //db Dao
     protected DaoSession daoSession;
 
+    private ArrayList<Subscriber<?>> subscribers;
+
     public BasePresenter(DaoSession daoSession) {
         this.daoSession = daoSession;
+        subscribers = new ArrayList<>();
     }
 
     @Override
@@ -97,6 +102,18 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
     @Override
     public void detachView() {
         mView = null;
+        //view 取消绑定时，把请求取消订阅
+        for(Subscriber subscriber : subscribers){
+            if(subscriber != null && !subscriber.isUnsubscribed()){
+                subscriber.unsubscribe();
+                Logger.d(TAG, "unsubscribe:" + subscriber.toString());
+            }
+        }
+    }
+
+    @Override
+    public void onViewInitialized() {
+
     }
 
     /**
@@ -171,6 +188,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
     protected <T> void generalRxHttpExecute(
             @NonNull Observable<Response<T>> observable, @Nullable HttpSubscriber<T> subscriber) {
         if (subscriber != null) {
+            subscribers.add(subscriber);
             observable.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(subscriber);
@@ -265,8 +283,11 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
     }
 
     @NonNull
-    protected String getStringFromResource(@StringRes int resId){
-        return getContext().getResources().getString(resId);
+    protected String getString(@StringRes int resId){
+        if(getContext() != null){
+            return getContext().getResources().getString(resId);
+        }
+        return null;
     }
 
 }

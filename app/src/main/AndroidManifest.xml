@@ -88,11 +88,18 @@
         <activity
             android:name=".ui.activity.RepositoryActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/ThemeLight.Indigo">
+            android:theme="@style/ThemeLight.Indigo"
+            android:label="@string/repository">
         </activity>
 
         <activity
             android:name=".ui.activity.UserListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeLight.Indigo">
+        </activity>
+
+        <activity
+            android:name=".ui.activity.ViewerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeLight.Indigo">
         </activity>

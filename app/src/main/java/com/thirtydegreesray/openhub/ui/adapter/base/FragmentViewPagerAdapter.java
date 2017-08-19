@@ -52,7 +52,7 @@ public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return mPagerList.size();
+        return mPagerList == null ? 0 : mPagerList.size();
     }
 
     @Override

@@ -48,25 +48,27 @@ public interface RepoService {
     /**
      * List repositories being starred
      */
-    @GET("user{user}/starred")
+    @NonNull @GET("user{user}/starred")
     Observable<Response<ArrayList<Repository>>> getStarredRepos(
             @Header("forceNetWork") boolean forceNetWork,
-            @Path("user") String user
+            @Path("user") String user,
+            @Query("page") int page
     );
 
     /**
      * List user repositories
      */
-    @GET("user{user}/repos")
+    @NonNull @GET("user{user}/repos")
     Observable<retrofit2.Response<ArrayList<Repository>>> getUserRepos(
             @Header("forceNetWork") boolean forceNetWork,
-            @Path("user") String user
+            @Path("user") String user,
+            @Query("page") int page
     );
 
     /**
      * Check if you are starring a repository
      */
-    @GET("user/starred/{owner}/{repo}")
+    @NonNull @GET("user/starred/{owner}/{repo}")
     Observable<Response<Object>> checkRepoStarred(
             @Path("owner") String owner,
             @Path("repo") String repo
@@ -75,7 +77,7 @@ public interface RepoService {
     /**
      * Star a repository
      */
-    @PUT("user/starred/{owner}/{repo}")
+    @NonNull @PUT("user/starred/{owner}/{repo}")
     Observable<Response<Object>> starRepo(
             @Path("owner") String owner,
             @Path("repo") String repo
@@ -84,20 +86,25 @@ public interface RepoService {
     /**
      * Unstar a repository
      */
-    @DELETE("user/starred/{owner}/{repo}")
+    @NonNull @DELETE("user/starred/{owner}/{repo}")
     Observable<Response<Object>> unstarRepo(
             @Path("owner") String owner,
             @Path("repo") String repo
     );
 
-    @NonNull
-    @GET @Headers("Accept: application/vnd.github.html")
+    @NonNull @GET @Headers("Accept: application/vnd.github.html")
     Observable<Response<ResponseBody>> getFileAsHtmlStream(
             @Header("forceNetWork") boolean forceNetWork,
             @Url String url
     );
 
-    @GET("repos/{owner}/{repo}/contents/{path}")
+    @NonNull @GET @Headers("Accept: application/vnd.github.VERSION.raw")
+    Observable<Response<ResponseBody>> getFileAsStream(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Url String url
+    );
+
+    @NonNull @GET("repos/{owner}/{repo}/contents/{path}")
     Observable<Response<ArrayList<FileModel>>> getRepoFiles(
             @Path("owner") String owner,
             @Path("repo") String repo,
@@ -105,31 +112,39 @@ public interface RepoService {
             @Query("ref") String branch
     );
 
-    @GET("repos/{owner}/{repo}/branches")
+    @NonNull @GET("repos/{owner}/{repo}/branches")
     Observable<Response<ArrayList<Branch>>> getBranches(
             @Path("owner") String owner,
             @Path("repo") String repo
     );
 
-    @GET("repos/{owner}/{repo}/tags")
+    @NonNull @GET("repos/{owner}/{repo}/tags")
     Observable<Response<ArrayList<Branch>>> getTags(
             @Path("owner") String owner,
             @Path("repo") String repo
     );
 
-    @GET("repos/{owner}/{repo}/stargazers")
+    @NonNull @GET("repos/{owner}/{repo}/stargazers")
     Observable<Response<ArrayList<User>>> getStargazers(
+            @Header("forceNetWork") boolean forceNetWork,
             @Path(value = "owner") String owner,
             @Path(value = "repo") String repo,
             @Query("page") int page
     );
 
-    @GET("repos/{owner}/{repo}/watchers")
+    @NonNull @GET("repos/{owner}/{repo}/subscribers")
     Observable<Response<ArrayList<User>>> getWatchers(
+            @Header("forceNetWork") boolean forceNetWork,
             @Path("owner") String owner,
             @Path("repo") String repo,
             @Query("page") int page
     );
 
+    @NonNull @GET("repos/{owner}/{repo}")
+    Observable<Response<Repository>> getRepoInfo(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("owner") String owner,
+            @Path("repo") String repo
+    );
 
 }

@@ -25,11 +25,12 @@ import com.thirtydegreesray.openhub.mvp.model.Repository;
 public interface IRepoInfoContract {
 
     interface View extends IBaseContract.View{
+        void showRepoInfo(Repository repository);
         void showReadMe(String content, String baseUrl);
     }
 
     interface Presenter extends IBaseContract.Presenter<IRepoInfoContract.View>{
-        void loadReadMe(Repository repository);
+        void loadReadMe();
     }
 
 }

@@ -29,24 +29,8 @@ import java.util.Locale;
  */
 public class StringUtils {
 
-    /**
-     * 如果字符串等于null、空白字符(“”)、空格(“ ”)则返回true,否则返回false
-     *
-     * @param str
-     *            String 要比较的字符串
-     * @return boolean
-     */
     public static boolean isBlank(@Nullable String str) {
-        boolean b = true;
-        if (null == str) {
-            return b;
-        }
-
-        str = str.trim(); // 去掉空格
-        if (!str.equals("")) { // 如果不等于“”空字符则返回值为false
-            b = false;
-        }
-        return b;
+        return str == null || str.trim().equals("");
     }
 
     public static List<String> stringToList(@NonNull String str, @NonNull String separator){

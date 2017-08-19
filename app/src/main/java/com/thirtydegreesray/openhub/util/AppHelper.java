@@ -19,8 +19,10 @@ package com.thirtydegreesray.openhub.util;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 
@@ -82,6 +84,11 @@ public class AppHelper {
         return locale;
     }
 
+    public static boolean isNightMode(){
+        int theme = PrefHelper.getTheme();
+        return theme == PrefHelper.DARK ;
+    }
+
     public static void copyToClipboard(@NonNull Context context, @NonNull String uri) {
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText(context.getString(R.string.app_name), uri);
@@ -89,9 +96,18 @@ public class AppHelper {
         Toasty.success(AppApplication.get(), context.getString(R.string.success_copied)).show();
     }
 
-    public static boolean isNightMode(){
-        int theme = PrefHelper.getTheme();
-        return theme == PrefHelper.DARK ;
+    public static void openInBrowser(@NonNull Context context, @NonNull String url){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        context.startActivity(intent);
+    }
+
+    public static void shareText(@NonNull Context context, @NonNull String text) {
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, text);
+        shareIntent.setType("text/plain");
+        context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share_to)));
     }
 
 }

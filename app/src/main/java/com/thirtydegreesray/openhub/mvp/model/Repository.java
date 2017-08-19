@@ -56,6 +56,7 @@ public class Repository implements Parcelable {
     @SerializedName("watchers_count") private int watchersCount ;
     @SerializedName("forks_count") private int forksCount ;
     @SerializedName("open_issues_count") private int openIssuesCount ;
+    @SerializedName("subscribers_count") private int subscribersCount ;
 
     private boolean fork;
     private RepositoryPermissions permissions;
@@ -247,6 +248,14 @@ public class Repository implements Parcelable {
         this.permissions = permissions;
     }
 
+    public int getSubscribersCount() {
+        return subscribersCount;
+    }
+
+    public void setSubscribersCount(int subscribersCount) {
+        this.subscribersCount = subscribersCount;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -275,6 +284,7 @@ public class Repository implements Parcelable {
         dest.writeInt(this.watchersCount);
         dest.writeInt(this.forksCount);
         dest.writeInt(this.openIssuesCount);
+        dest.writeInt(this.subscribersCount);
         dest.writeByte(this.fork ? (byte) 1 : (byte) 0);
         dest.writeParcelable(this.permissions, flags);
     }
@@ -304,6 +314,7 @@ public class Repository implements Parcelable {
         this.watchersCount = in.readInt();
         this.forksCount = in.readInt();
         this.openIssuesCount = in.readInt();
+        this.subscribersCount = in.readInt();
         this.fork = in.readByte() != 0;
         this.permissions = in.readParcelable(RepositoryPermissions.class.getClassLoader());
     }

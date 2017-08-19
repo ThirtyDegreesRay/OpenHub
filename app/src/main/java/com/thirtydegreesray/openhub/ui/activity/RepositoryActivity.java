@@ -22,7 +22,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,6 +30,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.common.AppEventBus;
+import com.thirtydegreesray.openhub.common.Event;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
 import com.thirtydegreesray.openhub.inject.module.ActivityModule;
@@ -42,6 +43,7 @@ import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.BranchesAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
+import com.thirtydegreesray.openhub.util.AppHelper;
 
 import java.util.ArrayList;
 
@@ -97,7 +99,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
     }
 
     @Override
-    public boolean onMenuItemClick(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_star:
 
@@ -106,13 +108,13 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                 mPresenter.loadBranchesAndTags();
                 return true;
             case R.id.action_share:
-
+                AppHelper.shareText(getActivity(), mPresenter.getRepository().getHtmlUrl());
                 return true;
             case R.id.action_open_in_browser:
-
+                AppHelper.openInBrowser(getActivity(), mPresenter.getRepository().getHtmlUrl());
                 return true;
             case R.id.action_copy_url:
-
+                AppHelper.copyToClipboard(getActivity(), mPresenter.getRepository().getHtmlUrl());
                 return true;
             case R.id.action_watch:
 
@@ -121,20 +123,20 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
 
                 return true;
         }
-        return super.onMenuItemClick(item);
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void showRepo(Repository repo) {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(repo.getFullName());
-            actionBar.setSubtitle(repo.getDefaultBranch());
+        setToolbarTiltle(repo.getFullName(), repo.getDefaultBranch());
+        if(pagerAdapter.getCount() == 0){
+            pagerAdapter.setPagerList(FragmentPagerModel.createRepoPagerList(getActivity(), repo));
+            tabLayout.setVisibility(View.VISIBLE);
+            tabLayout.setupWithViewPager(viewPager);
+            viewPager.setAdapter(pagerAdapter);
+        } else {
+            AppEventBus.INSTANCE.getEventBus().post(new Event.RepoInfoUpdatedEvent(repo));
         }
-        pagerAdapter.setPagerList(FragmentPagerModel.createRepoPagerList(getActivity(), repo));
-        tabLayout.setVisibility(View.VISIBLE);
-        tabLayout.setupWithViewPager(viewPager);
-        viewPager.setAdapter(pagerAdapter);
     }
 
     @Override

@@ -60,7 +60,7 @@ public class UsersAdapter extends BaseAdapter<UsersAdapter.ViewHolder, User> {
                 .load(mData.get(position).getAvatarUrl())
                 .placeholder(R.mipmap.logo)
                 .into(holder.avatar);
-        holder.name.setText(mData.get(position).getName());
+        holder.name.setText(mData.get(position).getLogin());
     }
 
     class ViewHolder extends BaseViewHolder {

@@ -39,7 +39,7 @@ public class NetBroadcastReceiver extends BroadcastReceiver {
             int preNetStatus = NetHelper.getInstance().getNetStatus();
             NetHelper.getInstance().checkNet();
             int curNetStatus = NetHelper.getInstance().getNetStatus();
-            AppEventBus.getInstance().getEventBus().post(new Event.NetChangedEvent(preNetStatus, curNetStatus));
+            AppEventBus.INSTANCE.getEventBus().post(new Event.NetChangedEvent(preNetStatus, curNetStatus));
         }
     }
 

@@ -16,12 +16,20 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
+import android.support.annotation.NonNull;
+
+import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppConfig;
+import com.thirtydegreesray.openhub.common.AppEventBus;
+import com.thirtydegreesray.openhub.common.Event;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.IRepoInfoContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
+import com.thirtydegreesray.openhub.util.StringUtils;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.io.IOException;
 
@@ -37,17 +45,43 @@ import rx.Observable;
 
 public class RepoInfoPresenter extends BasePresenter<IRepoInfoContract.View>
         implements IRepoInfoContract.Presenter{
-    
+
+    @AutoAccess Repository repository;
+    @AutoAccess String readmeSource;
+
+    @Override
+    public void attachView(@NonNull IRepoInfoContract.View view) {
+        super.attachView(view);
+        AppEventBus.INSTANCE.getEventBus().register(this);
+    }
+
+    @Override
+    public void detachView() {
+        super.detachView();
+        AppEventBus.INSTANCE.getEventBus().unregister(this);
+    }
+
     @Inject
     public RepoInfoPresenter(DaoSession daoSession) {
         super(daoSession);
     }
 
     @Override
-    public void loadReadMe(final Repository repo) {
-        final String readmeFileUrl = AppConfig.GITHUB_API_BASE_URL + "repos/" + repo.getFullName()
+    public void onViewInitialized() {
+        super.onViewInitialized();
+        mView.showRepoInfo(repository);
+    }
+
+    @Override
+    public void loadReadMe() {
+        final String readmeFileUrl = AppConfig.GITHUB_API_BASE_URL + "repos/" + repository.getFullName()
                 + "/" + "readme";
-        final String baseUrl = AppConfig.GITHUB_BASE_URL + repo.getFullName();
+        final String baseUrl = AppConfig.GITHUB_BASE_URL + repository.getFullName();
+
+        if(!StringUtils.isBlank(readmeSource)){
+            mView.showReadMe(readmeSource, baseUrl);
+            return;
+        }
 
         HttpObserver<ResponseBody> httpObserver = new HttpObserver<ResponseBody>() {
             @Override
@@ -58,7 +92,8 @@ public class RepoInfoPresenter extends BasePresenter<IRepoInfoContract.View>
             @Override
             public void onSuccess(HttpResponse<ResponseBody> response) {
                 try {
-                    mView.showReadMe(response.body().string(), baseUrl);
+                    readmeSource = response.body().string();
+                    mView.showReadMe(readmeSource, baseUrl);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -72,4 +107,15 @@ public class RepoInfoPresenter extends BasePresenter<IRepoInfoContract.View>
         }, httpObserver, true);
 
     }
+
+    public Repository getRepository() {
+        return repository;
+    }
+
+    @Subscribe
+    public void onRepoInfoUpdated(Event.RepoInfoUpdatedEvent event){
+        this.repository = event.repository;
+        mView.showRepoInfo(repository);
+    }
+
 }

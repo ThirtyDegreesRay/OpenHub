@@ -22,7 +22,6 @@ import android.support.v7.widget.RecyclerView;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseContract;
-import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 
 import javax.inject.Inject;
@@ -35,7 +34,7 @@ import butterknife.BindView;
  * @author ThirtyDegreesRay
  */
 
-public abstract class ListActivity <P extends BasePresenter, A extends BaseAdapter>
+public abstract class ListActivity <P extends IBaseContract.Presenter, A extends BaseAdapter>
         extends BaseActivity<P> implements IBaseContract.View,
         BaseAdapter.OnItemClickListener,
         BaseAdapter.OnItemLongClickListener {

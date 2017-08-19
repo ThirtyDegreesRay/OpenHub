@@ -27,6 +27,7 @@ import com.thirtydegreesray.openhub.mvp.contract.IRepoFilesContract;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.RepoFilesPresenter;
+import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.RepoFilesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
@@ -90,7 +91,7 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
     }
 
     @Override
-    protected void reLoadData() {
+    protected void onReLoadData() {
         mPresenter.loadFiles(repo, repo.getDefaultBranch(), curPath, true);
     }
 
@@ -106,6 +107,8 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
         if(model.isDir()){
             curPath = model.getPath();
             mPresenter.loadFiles(repo, repo.getDefaultBranch(), curPath, false);
+        }else{
+            ViewerActivity.show(getActivity(), model.getUrl(), model.getHtmlUrl());
         }
     }
 

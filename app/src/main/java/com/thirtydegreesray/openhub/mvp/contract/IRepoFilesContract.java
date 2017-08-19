@@ -29,8 +29,6 @@ public interface IRepoFilesContract {
 
     interface View extends IBaseContract.View{
         void showFiles(ArrayList<FileModel> files);
-        void showLoading();
-        void hideLoading();
     }
 
     interface Presenter extends IBaseContract.Presenter<IRepoFilesContract.View>{

@@ -15,29 +15,21 @@
   ~    limitations under the License.
   -->
 
-<android.support.design.widget.AppBarLayout
-    android:id="@+id/app_bar"
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:theme="?appbar_theme">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:popupTheme="?popup_theme"
-        app:layout_scrollFlags="scroll|enterAlways"/>
+        android:layout_height="match_parent">
+        <com.thirtydegreesray.openhub.ui.widget.webview.PrettifyWebView
+            android:id="@+id/prettify_web_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tab_layout"
-        app:tabTextAppearance="@style/TextAppearance.Design.Tab"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabMode="fixed"
-        app:tabGravity="fill"
-        android:visibility="gone"/>
-
-</android.support.design.widget.AppBarLayout>
+</LinearLayout>

@@ -144,7 +144,6 @@ public class GithubHelper {
         return "<style>\n" +
                 "body .highlight pre, body pre {\n" +
 //                "background-color: " + primaryColor + " !important;\n" +
-                //FIXME
 //                (PrefGetter.getThemeType(context) == PrefGetter.AMLOD ? "border: solid 1px " + accentColor + " !important;\n" : "") +
                 "" + "\n" +
                 "}\n" +

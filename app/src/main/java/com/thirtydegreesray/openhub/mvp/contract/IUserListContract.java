@@ -16,6 +16,10 @@
 
 package com.thirtydegreesray.openhub.mvp.contract;
 
+import com.thirtydegreesray.openhub.mvp.model.User;
+
+import java.util.ArrayList;
+
 /**
  * Created by ThirtyDegreesRay on 2017/8/16 17:18:05
  */
@@ -23,11 +27,11 @@ package com.thirtydegreesray.openhub.mvp.contract;
 public interface IUserListContract {
 
     interface View extends IBaseContract.View{
-
+        void showUsers(ArrayList<User> users);
     }
 
     interface Presenter extends IBaseContract.Presenter<IUserListContract.View>{
-
+        void loadUsers(int page, boolean isReload);
     }
 
 }

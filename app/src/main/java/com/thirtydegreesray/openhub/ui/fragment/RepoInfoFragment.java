@@ -17,7 +17,6 @@
 package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -38,6 +37,7 @@ import com.thirtydegreesray.openhub.mvp.presenter.RepoInfoPresenter;
 import com.thirtydegreesray.openhub.ui.activity.UserListActivity;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.ui.widget.webview.PrettifyWebView;
+import com.thirtydegreesray.openhub.util.BundleBuilder;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewHelper;
 
@@ -62,21 +62,16 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
     @BindView(R.id.watchers_num_text) TextView watchersNumText;
 
     public static RepoInfoFragment create(Repository repository) {
-        return new RepoInfoFragment().setRepository(repository);
+        RepoInfoFragment fragment = new RepoInfoFragment();
+        fragment.setArguments(BundleBuilder.builder().put("repository", repository).build());
+        return fragment;
     }
 
     @BindView(R.id.prettify_web_view) PrettifyWebView webView;
 
-    private Repository repository;
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-    }
-
-    public RepoInfoFragment setRepository(Repository repository) {
-        this.repository = repository;
-        return this;
     }
 
     @Override
@@ -95,11 +90,15 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-        mPresenter.loadReadMe(repository);
+        mPresenter.loadReadMe();
+    }
+
+    @Override
+    public void showRepoInfo(Repository repository) {
         issuesNumText.setText(String.valueOf(repository.getOpenIssuesCount()));
         stargazersNumText.setText(String.valueOf(repository.getStargazersCount()));
         forksNumText.setText(String.valueOf(repository.getForksCount()));
-        watchersNumText.setText(String.valueOf(repository.getWatchersCount()));
+        watchersNumText.setText(String.valueOf(repository.getSubscribersCount()));
         repoDescText.setText(repository.getDescription());
         repoCodeText.setText(String.format(Locale.getDefault(), "Language %s, size %s",
                 repository.getLanguage(), StringUtils.getSizeString(repository.getSize() * 1024)));
@@ -121,7 +120,6 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         }, 0, fullName.indexOf("/"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         repoTitleText.setMovementMethod(LinkMovementMethod.getInstance());
         repoTitleText.setText(spannable);
-
     }
 
     @Override
@@ -135,12 +133,18 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
             case R.id.issues_lay:
                 break;
             case R.id.stargazers_lay:
-                startActivity(new Intent(getActivity(), UserListActivity.class));
+                UserListActivity.show(getActivity(), UserListFragment.UserListType.STARGAZERS,
+                        mPresenter.getRepository().getOwner().getLogin(),
+                        mPresenter.getRepository().getName());
                 break;
             case R.id.froks_lay:
                 break;
             case R.id.watchers_lay:
+                UserListActivity.show(getActivity(), UserListFragment.UserListType.WATCHERS,
+                        mPresenter.getRepository().getOwner().getLogin(),
+                        mPresenter.getRepository().getName());
                 break;
         }
     }
+
 }

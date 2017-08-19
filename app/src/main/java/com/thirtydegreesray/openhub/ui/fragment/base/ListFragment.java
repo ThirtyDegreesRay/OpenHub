@@ -27,7 +27,6 @@ import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseContract;
-import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.util.ViewHelper;
 
@@ -41,7 +40,7 @@ import butterknife.BindView;
  * @author ThirtyDegreesRay
  */
 
-public abstract class ListFragment <P extends BasePresenter, A extends BaseAdapter>
+public abstract class ListFragment <P extends IBaseContract.Presenter, A extends BaseAdapter>
         extends BaseFragment<P> implements IBaseContract.View,
         BaseAdapter.OnItemClickListener,
         BaseAdapter.OnItemLongClickListener,
@@ -56,15 +55,17 @@ public abstract class ListFragment <P extends BasePresenter, A extends BaseAdapt
     @BindView(R.id.lay_tip) LinearLayout layTip;
     @BindView(R.id.tv_tip) TextView tvTip;
 
+    private int curPage = 1;
+
+    private boolean loadMoreEnable = false;
+    private boolean canLoadMore = false;
+    private boolean isLoading = false;
+    private final int DEFAULT_PAGE_SIZE = 30;
+
     @Override
     protected void initFragment(Bundle savedInstanceState) {
         refreshLayout.setOnRefreshListener(this);
-        int[] colors = new int[]{
-                ViewHelper.getAccentColor(getContext()),
-                ViewHelper.getPrimaryColor(getContext()),
-                ViewHelper.getPrimaryDarkColor(getContext())
-        };
-        refreshLayout.setColorSchemeColors(colors);
+        refreshLayout.setColorSchemeColors(ViewHelper.getRefreshLayoutColors(getContext()));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter.setOnItemLongClickListener(this);
@@ -87,10 +88,34 @@ public abstract class ListFragment <P extends BasePresenter, A extends BaseAdapt
                 } else {
                     refreshLayout.setVisibility(View.VISIBLE);
                     layTip.setVisibility(View.GONE);
+                    if(loadMoreEnable){
+                        canLoadMore = itemCount % getPagerSize() == 0 ;
+                        curPage = itemCount % getPagerSize() == 0 ?
+                                itemCount / getPagerSize() : (itemCount / getPagerSize()) + 1;
+                    }
                 }
             }
         };
         adapter.registerAdapterDataObserver(observer);
+        recyclerView.setOnScrollListener(new ScrollListener());
+
+    }
+
+    private class ScrollListener extends RecyclerView.OnScrollListener{
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            if(!loadMoreEnable || !canLoadMore || isLoading) return;
+            RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+            //only LinearLayoutManager can find last visible
+            if(layoutManager instanceof LinearLayoutManager){
+                LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
+                int lastPosition = linearManager.findLastVisibleItemPosition();
+                if(lastPosition == adapter.getItemCount() - 1){
+                    onLoadMore(curPage + 1);
+                }
+            }
+        }
     }
 
     @Override
@@ -106,7 +131,7 @@ public abstract class ListFragment <P extends BasePresenter, A extends BaseAdapt
     @Override
     public void onRefresh() {
         refreshLayout.setRefreshing(true);
-        reLoadData();
+        onReLoadData();
     }
 
     @Override
@@ -115,7 +140,7 @@ public abstract class ListFragment <P extends BasePresenter, A extends BaseAdapt
             refreshLayout.setVisibility(View.VISIBLE);
             layTip.setVisibility(View.GONE);
             refreshLayout.setRefreshing(true);
-            reLoadData();
+            onReLoadData();
         }
     }
 
@@ -125,8 +150,40 @@ public abstract class ListFragment <P extends BasePresenter, A extends BaseAdapt
         tvTip.setText(errorTip);
     }
 
-    protected abstract void reLoadData();
+    /**
+     * load more switch
+     * @param loadMoreEnable flag
+     */
+    public void setLoadMoreEnable(boolean loadMoreEnable) {
+        this.loadMoreEnable = loadMoreEnable;
+    }
+
+    public int getCurPage() {
+        return curPage;
+    }
+
+    @Override
+    public void showLoading() {
+        isLoading = true;
+        refreshLayout.setRefreshing(true);
+    }
+
+    @Override
+    public void hideLoading() {
+        isLoading = false;
+        refreshLayout.setRefreshing(false);
+    }
+
+    protected abstract void onReLoadData();
 
     protected abstract String getEmptyTip();
+
+    protected int getPagerSize(){
+        return DEFAULT_PAGE_SIZE;
+    }
+
+    protected void onLoadMore(int page){
+
+    }
 
 }

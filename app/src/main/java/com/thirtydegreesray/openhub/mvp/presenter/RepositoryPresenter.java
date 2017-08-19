@@ -54,11 +54,12 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
     }
 
     @Override
-    protected void onViewAttached() {
-        super.onViewAttached();
+    public void onViewInitialized() {
+        super.onViewInitialized();
         if (repository != null) {
             curBranch = new Branch(repository.getDefaultBranch());
             mView.showRepo(repository);
+            getRepoInfo(repository.getOwner().getLogin(), repository.getName(), false);
         } else {
             //TODO load by repo url
         }
@@ -66,7 +67,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
 
     @Override
     public void loadBranchesAndTags() {
-        if(branches != null){
+        if (branches != null) {
             mView.showBranchesAndTags(branches, curBranch);
             return;
         }
@@ -102,9 +103,41 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
                 .subscribe(httpProgressSubscriber);
     }
 
-    private void setTags(ArrayList<Branch> list){
-        for(Branch branch : list){
+    private void setTags(ArrayList<Branch> list) {
+        for (Branch branch : list) {
             branch.setBranch(false);
         }
+    }
+
+    private void getRepoInfo(final String owner, final String repoName, final boolean isShowLoading) {
+        if(isShowLoading) mView.getProgressDialog(getLoadTip()).show();
+        HttpObserver<Repository> httpObserver =
+                new HttpObserver<Repository>() {
+                    @Override
+                    public void onError(Throwable error) {
+                        if(isShowLoading) mView.getProgressDialog(getLoadTip()).cancel();
+                        mView.showShortToast(error.getMessage());
+                    }
+
+                    @Override
+                    public void onSuccess(HttpResponse<Repository> response) {
+                        if(isShowLoading) mView.getProgressDialog(getLoadTip()).cancel();
+                        repository = response.body();
+                        mView.showRepo(repository);
+                    }
+                };
+
+        generalRxHttpExecute(new IObservableCreator<Repository>() {
+            @Override
+            public Observable<Response<Repository>> createObservable(boolean forceNetWork) {
+                return getRepoService().getRepoInfo(forceNetWork, owner, repoName);
+            }
+        }, httpObserver, true);
+
+    }
+
+
+    public Repository getRepository() {
+        return repository;
     }
 }

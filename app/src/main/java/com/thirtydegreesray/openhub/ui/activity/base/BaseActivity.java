@@ -59,8 +59,7 @@ import butterknife.ButterKnife;
  */
 public abstract class
 BaseActivity<P extends IBaseContract.Presenter>
-        extends AppCompatActivity implements IBaseContract.View,
-        Toolbar.OnMenuItemClickListener{
+        extends AppCompatActivity implements IBaseContract.View{
 
     @Inject
     protected P mPresenter;
@@ -82,6 +81,7 @@ BaseActivity<P extends IBaseContract.Presenter>
         if(mPresenter != null) {
             mPresenter.onRestoreInstanceState(savedInstanceState == null ?
                     getIntent().getExtras() : savedInstanceState);
+            mPresenter.attachView(this);
         }
         if(savedInstanceState != null && AppData.INSTANCE.getAuthUser() == null){
             DataAutoAccess.getData(AppData.INSTANCE, savedInstanceState);
@@ -95,7 +95,8 @@ BaseActivity<P extends IBaseContract.Presenter>
 
         initActivity();
         initView(savedInstanceState);
-        if(mPresenter != null) mPresenter.attachView(this);
+        if(mPresenter != null) mPresenter.onViewInitialized();
+
     }
 
     @Override
@@ -103,7 +104,7 @@ BaseActivity<P extends IBaseContract.Presenter>
         super.onSaveInstanceState(outState);
         //系统由于内存不足而杀死activity，此时保存数据
         DataAutoAccess.saveData(this, outState);
-        mPresenter.onSaveInstanceState(outState);
+        if(mPresenter != null) mPresenter.onSaveInstanceState(outState);
         if(curActivity.equals(this)){
             DataAutoAccess.saveData(AppData.INSTANCE, outState);
         }
@@ -142,7 +143,6 @@ BaseActivity<P extends IBaseContract.Presenter>
     protected void initView(Bundle savedInstanceState){
         if(toolbar != null){
             setSupportActionBar(toolbar);
-            toolbar.setOnMenuItemClickListener(this);
         }
     }
 
@@ -170,6 +170,19 @@ BaseActivity<P extends IBaseContract.Presenter>
         }
     }
 
+    protected void setToolbarTiltle(String title) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        }
+    }
+
+    protected void setToolbarTiltle(String title, String subTitle) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+            getSupportActionBar().setSubtitle(subTitle);
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == android.R.id.home){
@@ -177,11 +190,6 @@ BaseActivity<P extends IBaseContract.Presenter>
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        return false;
     }
 
     public void finishActivity(){
@@ -200,6 +208,15 @@ BaseActivity<P extends IBaseContract.Presenter>
         return null;
     }
 
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
 
     @Override
     public void showProgressDialog(String content) {

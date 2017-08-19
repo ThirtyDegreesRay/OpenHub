@@ -16,15 +16,20 @@
 
 package com.thirtydegreesray.openhub.ui.fragment;
 
+import android.os.Bundle;
+
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IUserListContract;
+import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.mvp.presenter.UserListPresenter;
 import com.thirtydegreesray.openhub.ui.adapter.UsersAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
+
+import java.util.ArrayList;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/16 17:40:20
@@ -64,8 +69,15 @@ public class UserListFragment extends ListFragment<UserListPresenter, UsersAdapt
     }
 
     @Override
-    protected void reLoadData() {
+    protected void initFragment(Bundle savedInstanceState) {
+        super.initFragment(savedInstanceState);
+        setLoadMoreEnable(true);
+        mPresenter.loadUsers(getCurPage(), false);
+    }
 
+    @Override
+    protected void onReLoadData() {
+        mPresenter.loadUsers(1, true);
     }
 
     @Override
@@ -73,4 +85,15 @@ public class UserListFragment extends ListFragment<UserListPresenter, UsersAdapt
         return null;
     }
 
+    @Override
+    public void showUsers(ArrayList<User> users) {
+        adapter.setData(users);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onLoadMore(int page) {
+        super.onLoadMore(page);
+        mPresenter.loadUsers(page, false);
+    }
 }

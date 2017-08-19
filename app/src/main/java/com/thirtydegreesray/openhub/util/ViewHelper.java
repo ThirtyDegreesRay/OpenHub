@@ -98,6 +98,14 @@ public class ViewHelper {
         return drawable;
     }
 
+    public static int[] getRefreshLayoutColors(Context context){
+        return new int[]{
+                ViewHelper.getAccentColor(context),
+                ViewHelper.getPrimaryColor(context),
+                ViewHelper.getPrimaryDarkColor(context)
+        };
+    }
+
     public static int toPx(@NonNull Context context, int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, dp, context.getResources().getDisplayMetrics());
     }

@@ -72,16 +72,6 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     }
 
     @Override
-    public void showLoadingView() {
-        refreshLayout.setRefreshing(true);
-    }
-
-    @Override
-    public void hideLoadingView() {
-        refreshLayout.setRefreshing(false);
-    }
-
-    @Override
     public void showLoadError(String errorMsg) {
         setErrorTip(errorMsg);
     }
@@ -103,12 +93,13 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     @Override
     protected void initFragment(Bundle savedInstanceState){
         super.initFragment(savedInstanceState);
-        mPresenter.loadRepositories(repositoriesType, language, false);
+        setLoadMoreEnable(true);
+        mPresenter.loadRepositories(repositoriesType, language, false, getCurPage());
     }
 
     @Override
-    protected void reLoadData() {
-        mPresenter.loadRepositories(repositoriesType, language, true);
+    protected void onReLoadData() {
+        mPresenter.loadRepositories(repositoriesType, language, true, 1);
     }
 
     @Override
@@ -120,5 +111,11 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     public void onItemClick(int position) {
         super.onItemClick(position);
         RepositoryActivity.show(getActivity(), adapter.getData().get(position));
+    }
+
+    @Override
+    protected void onLoadMore(int page) {
+        super.onLoadMore(page);
+        mPresenter.loadRepositories(repositoriesType, language, false, page);
     }
 }

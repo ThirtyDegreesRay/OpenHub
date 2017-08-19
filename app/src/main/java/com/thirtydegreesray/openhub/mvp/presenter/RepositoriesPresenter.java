@@ -46,6 +46,8 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
     private RepositoriesFragment.RepositoriesType mRepositoriesType;
     private String mLanguage;
 
+    private ArrayList<Repository> repos;
+
     @Inject
     public RepositoriesPresenter(DaoSession daoSession) {
         super(daoSession);
@@ -53,13 +55,13 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
 
     @Override
     public void loadRepositories(@NonNull RepositoriesFragment.RepositoriesType repositoriesType,
-                                 String language, boolean isReLoad) {
+                                 String language, boolean isReLoad, int page) {
         mRepositoriesType = repositoriesType;
         mLanguage = language;
         if (repositoriesType.equals(RepositoriesFragment.RepositoriesType.TRENDING)) {
             mView.showRepositories(getLanguageRepTest(language));
         } else {
-            loadRepositories(isReLoad);
+            loadRepositories(isReLoad, page);
         }
 
     }
@@ -75,23 +77,28 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
         return list;
     }
 
-    private void loadRepositories(boolean isReLoad) {
-        mView.showLoadingView();
+    private void loadRepositories(final boolean isReLoad, final int page) {
+        mView.showLoading();
 
-        boolean readCacheFirst = !isReLoad &&
+        final boolean readCacheFirst = !isReLoad && page == 1 &&
                 !mRepositoriesType.equals(RepositoriesFragment.RepositoriesType.EXPLORE);
 
         HttpObserver<ArrayList<Repository>> httpObserver = new HttpObserver<ArrayList<Repository>>() {
             @Override
             public void onError(@NonNull Throwable error) {
+                mView.hideLoading();
                 mView.showLoadError(error.getMessage());
-                mView.hideLoadingView();
             }
 
             @Override
             public void onSuccess(@NonNull HttpResponse<ArrayList<Repository>> response) {
-                mView.showRepositories(response.body());
-                mView.hideLoadingView();
+                mView.hideLoading();
+                if (isReLoad || readCacheFirst || repos == null) {
+                    repos = response.body();
+                }else{
+                    repos.addAll(response.body());
+                }
+                mView.showRepositories(repos);
             }
         };
 
@@ -99,21 +106,21 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
             @Nullable
             @Override
             public Observable<Response<ArrayList<Repository>>> createObservable(boolean forceNetWork) {
-                return getObservable(forceNetWork);
+                return getObservable(forceNetWork, page);
             }
         }, httpObserver, readCacheFirst);
 
     }
 
-    private Observable<Response<ArrayList<Repository>>> getObservable(boolean forceNetWork){
+    private Observable<Response<ArrayList<Repository>>> getObservable(boolean forceNetWork, int page){
         String loginedUser = AppData.INSTANCE.getLoggedUser().getLogin();
         switch (mRepositoriesType){
             case OWNED:
-                return getRepoService().getUserRepos(forceNetWork, "");
+                return getRepoService().getUserRepos(forceNetWork, "", page);
             case STARRED:
             case TRENDING:
             case EXPLORE:
-                return getRepoService().getStarredRepos(forceNetWork, "");
+                return getRepoService().getStarredRepos(forceNetWork, "", page);
             default:
                 return null;
         }

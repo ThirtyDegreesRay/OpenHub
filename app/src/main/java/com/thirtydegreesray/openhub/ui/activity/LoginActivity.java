@@ -17,7 +17,6 @@
 package com.thirtydegreesray.openhub.ui.activity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TextInputEditText;
@@ -34,6 +33,7 @@ import com.thirtydegreesray.openhub.mvp.contract.ILoginContract;
 import com.thirtydegreesray.openhub.mvp.model.BasicToken;
 import com.thirtydegreesray.openhub.mvp.presenter.LoginPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
+import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewUtils;
 import com.unstoppable.submitbuttonview.SubmitButton;
@@ -153,10 +153,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
 
     @OnClick(R.id.oauth_login_bn)
     public void onOauthLoginClick(){
-        String oauthUrl = mPresenter.getOAuth2Url();
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(oauthUrl));
-        startActivity(intent);
+        AppHelper.openInBrowser(getActivity(), mPresenter.getOAuth2Url());
     }
 
     @OnClick(R.id.login_bn)

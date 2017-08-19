@@ -69,6 +69,10 @@ public interface IBaseContract {
 
         void showConfirmDialog(String msn, String title, String confirmText
                 , DialogInterface.OnClickListener confirmListener);
+
+        void showLoading();
+
+        void hideLoading();
     }
 
     interface Presenter<V extends IBaseContract.View>{
@@ -80,6 +84,11 @@ public interface IBaseContract {
         void attachView(@NonNull V view);
 
         void detachView();
+
+        /**
+         * view initialized, you can init view data
+         */
+        void onViewInitialized();
 
         @Nullable Context getContext();
     }

@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.common;
 
+import com.thirtydegreesray.openhub.mvp.model.Repository;
+
 /**
  * 事件
  * Created by ThirtyDegreesRay on 2016/8/22 14:32
@@ -46,6 +48,14 @@ public class Event {
 
         public ServerStatusChangedEvent(int serverStatus) {
             this.serverStatus = serverStatus;
+        }
+    }
+
+    public static class RepoInfoUpdatedEvent{
+        public Repository repository;
+
+        public RepoInfoUpdatedEvent(Repository repository) {
+            this.repository = repository;
         }
     }
 
