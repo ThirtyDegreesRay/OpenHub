@@ -115,12 +115,14 @@ public class CodeWebView extends WebView {
         loadData(html, "text/html", null);
     }
 
+    //FIXME 背景、链接点击、链接颜色
     public void setMdSource(@NonNull String source, @NonNull String baseUrl) {
         if (StringUtils.isBlank(source)) return;
         String page = HtmlHelper.generateMdHtml(source, baseUrl, AppHelper.isNightMode());
         loadMd(page);
     }
 
+    //FIXME 背景、换行
     public void setCodeSource(@NonNull String source, boolean wrap, @Nullable String extension) {
         if (StringUtils.isBlank(source)) return;
         WebSettings settings = getSettings();
