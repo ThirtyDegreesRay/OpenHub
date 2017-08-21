@@ -30,9 +30,10 @@ import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IViewerContract;
+import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.mvp.presenter.ViewerPresenter;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
-import com.thirtydegreesray.openhub.ui.widget.webview.PrettifyWebView;
+import com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewHelper;
@@ -45,18 +46,18 @@ import butterknife.BindView;
 
 public class ViewerFragment extends BaseFragment<ViewerPresenter>
         implements IViewerContract.View,
-        PrettifyWebView.OnContentChangedListener,
-        SwipeRefreshLayout.OnRefreshListener{
+        SwipeRefreshLayout.OnRefreshListener,
+        CodeWebView.ContentChangedListener{
 
-    @BindView(R.id.prettify_web_view) PrettifyWebView webView;
+    @BindView(R.id.web_view) CodeWebView webView;
     @BindView(R.id.refresh_layout) SwipeRefreshLayout refreshLayout;
 
     @AutoAccess boolean wrap = false;
 
     @NonNull
-    public static ViewerFragment create(Context context, String url, String htmlUrl) {
+    public static ViewerFragment create(@NonNull Context context, @NonNull FileModel fileModel) {
         ViewerFragment fragment = new ViewerFragment();
-        fragment.setArguments(BundleBuilder.builder().put("url", url).put("htmlUrl", htmlUrl).build());
+        fragment.setArguments(BundleBuilder.builder().put("fileModel", fileModel).build());
         return fragment;
     }
 
@@ -103,7 +104,7 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
         if(item.getItemId() == R.id.action_wrap_lines){
             item.setChecked(!item.isChecked());
             wrap = item.isChecked();
-            loadCode(mPresenter.getDownloadSource());
+            loadCode(mPresenter.getDownloadSource(), mPresenter.getExtension());
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -112,19 +113,19 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     @Override
     public void loadImageUrl(@NonNull String url) {
         webView.loadImage(url);
-        webView.setOnContentChangedListener(this);
+        webView.setContentChangedListener(this);
     }
 
     @Override
     public void loadMdText(@NonNull String text, @NonNull String baseUrl) {
-        webView.setGithubContent(text, baseUrl);
-        webView.setOnContentChangedListener(this);
+        webView.setMdSource(text, baseUrl);
+        webView.setContentChangedListener(this);
     }
 
     @Override
-    public void loadCode(@NonNull String text) {
-        webView.setSource(text, wrap);
-        webView.setOnContentChangedListener(this);
+    public void loadCode(@NonNull String text, @Nullable String extension) {
+        webView.setCodeSource(text, wrap, extension);
+        webView.setContentChangedListener(this);
         getActivity().invalidateOptionsMenu();
     }
 
@@ -141,6 +142,11 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     }
 
     @Override
+    public void onRefresh() {
+        mPresenter.load(true);
+    }
+
+    @Override
     public void onContentChanged(int progress) {
 
     }
@@ -148,10 +154,5 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     @Override
     public void onScrollChanged(boolean reachedTop, int scroll) {
 
-    }
-
-    @Override
-    public void onRefresh() {
-        mPresenter.load(true);
     }
 }

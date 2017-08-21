@@ -73,4 +73,9 @@ public class MarkdownHelper {
         return false;
     }
 
+    public static String getExtension(@Nullable String name) {
+        if (StringUtils.isBlank(name)) return null;
+        return MimeTypeMap.getFileExtensionFromUrl(name);
+    }
+
 }

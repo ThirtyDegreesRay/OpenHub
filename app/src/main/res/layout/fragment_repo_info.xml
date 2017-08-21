@@ -193,11 +193,11 @@
                     android:textSize="@dimen/text_large"
                     android:layout_marginBottom="@dimen/spacing_micro"
                     android:layout_marginStart="@dimen/spacing_normal"/>
-                <com.thirtydegreesray.openhub.ui.widget.webview.PrettifyWebView
-                    android:id="@+id/prettify_web_view"
+                <com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView
+                    android:id="@+id/web_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:webview_background="?card_background"/>
+                    android:layout_height="wrap_content"/>
+                <!--app:webview_background="?card_background"-->
             </LinearLayout>
 
         </android.support.v7.widget.CardView>

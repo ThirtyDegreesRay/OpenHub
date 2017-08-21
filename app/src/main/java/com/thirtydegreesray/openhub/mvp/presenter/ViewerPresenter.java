@@ -22,6 +22,7 @@ import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.IViewerContract;
+import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.util.MarkdownHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
@@ -40,8 +41,7 @@ import rx.Observable;
 public class ViewerPresenter extends BasePresenter<IViewerContract.View>
         implements IViewerContract.Presenter{
 
-    @AutoAccess String url;
-    @AutoAccess String htmlUrl;
+    @AutoAccess FileModel fileModel;
     private String downloadSource;
 
     @Inject
@@ -57,6 +57,8 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
 
     @Override
     public void load(boolean isReload) {
+        final String url = fileModel.getUrl();
+        final String htmlUrl = fileModel.getHtmlUrl();
         if(StringUtils.isBlank(url) || StringUtils.isBlank(htmlUrl)){
             mView.showShortToast(getString(R.string.url_invalid));
             mView.hideLoading();
@@ -70,7 +72,7 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
         }
 
         if(MarkdownHelper.isImage(url)){
-            mView.loadImageUrl(url);
+            mView.loadImageUrl(fileModel.getDownloadUrl());
             mView.hideLoading();
             return;
         }
@@ -91,7 +93,7 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
                             if(MarkdownHelper.isMarkdown(url)){
                                 mView.loadMdText(downloadSource, htmlUrl);
                             }else{
-                                mView.loadCode(downloadSource);
+                                mView.loadCode(downloadSource, getExtension());
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -105,16 +107,21 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
                         getRepoService().getFileAsHtmlStream(forceNetWork, url) :
                         getRepoService().getFileAsStream(forceNetWork, url);
             }
-        }, httpObserver, !isReload);
+        }, httpObserver, false);
         mView.showLoading();
     }
 
     public boolean isCode(){
-        return !MarkdownHelper.isArchive(url) && !MarkdownHelper.isImage(url) &&
-                !MarkdownHelper.isMarkdown(url);
+        return !MarkdownHelper.isArchive(fileModel.getUrl()) &&
+                !MarkdownHelper.isImage(fileModel.getUrl()) &&
+                !MarkdownHelper.isMarkdown(fileModel.getUrl());
     }
 
     public String getDownloadSource() {
         return downloadSource;
+    }
+
+    public String getExtension(){
+        return MarkdownHelper.getExtension(fileModel.getUrl());
     }
 }

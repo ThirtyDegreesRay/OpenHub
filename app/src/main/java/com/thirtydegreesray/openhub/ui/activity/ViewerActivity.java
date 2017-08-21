@@ -27,6 +27,7 @@ import android.view.MenuItem;
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
+import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.fragment.ViewerFragment;
 import com.thirtydegreesray.openhub.util.AppHelper;
@@ -39,14 +40,13 @@ import com.thirtydegreesray.openhub.util.StringUtils;
 
 public class ViewerActivity extends BaseActivity {
 
-    public static void show(@NonNull Context context, String url, String htmlUrl){
+    public static void show(@NonNull Context context, @NonNull FileModel fileModel){
         Intent intent = new Intent(context, ViewerActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("url", url).put("htmlUrl", htmlUrl).build());
+        intent.putExtras(BundleBuilder.builder().put("fileModel", fileModel).build());
         context.startActivity(intent);
     }
 
-    @AutoAccess String url;
-    @AutoAccess String htmlUrl;
+    @AutoAccess FileModel fileModel;
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
@@ -69,10 +69,10 @@ public class ViewerActivity extends BaseActivity {
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         setToolbarBackEnable();
-        String title = htmlUrl.substring(htmlUrl.lastIndexOf("/") + 1 , htmlUrl.length());
+        String title = fileModel.getName();
         setToolbarTiltle(title);
 
-        ViewerFragment fragment = ViewerFragment.create(getActivity(), url, htmlUrl);
+        ViewerFragment fragment = ViewerFragment.create(getActivity(), fileModel);
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.container, fragment)
@@ -81,6 +81,7 @@ public class ViewerActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        String htmlUrl = fileModel.getHtmlUrl();
         if(StringUtils.isBlank(htmlUrl)) return true;
         switch (item.getItemId()) {
             case R.id.action_open_in_browser:

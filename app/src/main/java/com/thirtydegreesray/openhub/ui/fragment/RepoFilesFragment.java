@@ -108,7 +108,7 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
             curPath = model.getPath();
             mPresenter.loadFiles(repo, repo.getDefaultBranch(), curPath, false);
         }else{
-            ViewerActivity.show(getActivity(), model.getUrl(), model.getHtmlUrl());
+            ViewerActivity.show(getActivity(), model);
         }
     }
 

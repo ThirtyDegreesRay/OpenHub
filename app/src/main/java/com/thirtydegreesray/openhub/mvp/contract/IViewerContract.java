@@ -17,6 +17,7 @@
 package com.thirtydegreesray.openhub.mvp.contract;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/19 15:57:16
@@ -27,7 +28,7 @@ public interface IViewerContract {
     interface View extends IBaseContract.View{
         void loadImageUrl(@NonNull String url);
         void loadMdText(@NonNull String text, @NonNull String baseUrl);
-        void loadCode(@NonNull String text);
+        void loadCode(@NonNull String text, @Nullable String extension);
     }
 
     interface Presenter extends IBaseContract.Presenter<IViewerContract.View>{

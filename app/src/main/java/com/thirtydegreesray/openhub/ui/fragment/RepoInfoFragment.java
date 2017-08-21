@@ -36,7 +36,7 @@ import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.RepoInfoPresenter;
 import com.thirtydegreesray.openhub.ui.activity.UserListActivity;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
-import com.thirtydegreesray.openhub.ui.widget.webview.PrettifyWebView;
+import com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewHelper;
@@ -67,7 +67,7 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         return fragment;
     }
 
-    @BindView(R.id.prettify_web_view) PrettifyWebView webView;
+    @BindView(R.id.web_view) CodeWebView webView;
 
     @Override
     public void onAttach(Context context) {
@@ -124,7 +124,7 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
 
     @Override
     public void showReadMe(String source, String baseUrl) {
-        webView.setGithubContent(source, baseUrl);
+        webView.setMdSource(source, baseUrl);
     }
 
     @OnClick({R.id.issues_lay, R.id.stargazers_lay, R.id.froks_lay, R.id.watchers_lay})

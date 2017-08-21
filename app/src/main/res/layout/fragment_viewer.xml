@@ -26,8 +26,8 @@
         android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.thirtydegreesray.openhub.ui.widget.webview.PrettifyWebView
-            android:id="@+id/prettify_web_view"
+        <com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView
+            android:id="@+id/web_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </android.support.v4.widget.SwipeRefreshLayout>
