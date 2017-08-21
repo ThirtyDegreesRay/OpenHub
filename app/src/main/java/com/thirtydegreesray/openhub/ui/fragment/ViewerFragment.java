@@ -22,6 +22,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.R;
@@ -47,6 +49,7 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
         CodeWebView.ContentChangedListener{
 
     @BindView(R.id.web_view) CodeWebView webView;
+    @BindView(R.id.loader) ProgressBar loader;
 
     @AutoAccess boolean wrap = false;
 
@@ -79,6 +82,8 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
+        loader.setVisibility(View.VISIBLE);
+        loader.setIndeterminate(true);
     }
 
     @Override
@@ -101,7 +106,7 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
             loadCode(mPresenter.getDownloadSource(), mPresenter.getExtension());
             return true;
         } else if(item.getItemId() == R.id.action_refresh){
-            onRefresh();
+            refresh();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -117,6 +122,8 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     public void loadMdText(@NonNull String text, @NonNull String baseUrl) {
         webView.setMdSource(text, baseUrl);
         webView.setContentChangedListener(this);
+        loader.setVisibility(View.VISIBLE);
+        loader.setIndeterminate(false);
     }
 
     @Override
@@ -124,25 +131,35 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
         webView.setCodeSource(text, wrap, extension);
         webView.setContentChangedListener(this);
         getActivity().invalidateOptionsMenu();
+        loader.setVisibility(View.VISIBLE);
+        loader.setIndeterminate(false);
     }
 
     @Override
     public void showLoading() {
         super.showLoading();
+        loader.setVisibility(View.VISIBLE);
+        loader.setIndeterminate(true);
     }
 
     @Override
     public void hideLoading() {
         super.hideLoading();
+        loader.setVisibility(View.GONE);
     }
 
-    public void onRefresh() {
+    public void refresh() {
         mPresenter.load(true);
     }
 
     @Override
     public void onContentChanged(int progress) {
-
+        if (loader != null) {
+            loader.setProgress(progress);
+            if (progress == 100) {
+                loader.setVisibility(View.GONE);
+            }
+        }
     }
 
     @Override

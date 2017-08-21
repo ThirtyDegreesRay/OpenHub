@@ -15,10 +15,10 @@
   ~    limitations under the License.
   -->
 
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -28,4 +28,16 @@
         android:layout_height="match_parent"
         app:webview_background="?android:windowBackground"/>
 
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/loader"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:indeterminate="false"
+        android:paddingEnd="@dimen/spacing_large"
+        android:paddingStart="@dimen/spacing_large"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+</FrameLayout>

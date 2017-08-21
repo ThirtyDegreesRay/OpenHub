@@ -68,6 +68,7 @@ class HtmlHelper {
                 "<head>\n" +
                     "<meta charset=\"utf-8\" />\n" +
                     "<title>Code WebView</title>\n" +
+                    "<meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0; user-scalable=1;\"/>" +
                     "<script src=\"./core/run_prettify.js?autoload=true&amp;" +
                     "skin=" + skin + "&amp;" +
                     "lang=" + getExtension(extension) + "&amp;\" defer></script>\n" +
