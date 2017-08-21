@@ -20,7 +20,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -36,7 +35,6 @@ import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 import com.thirtydegreesray.openhub.util.StringUtils;
-import com.thirtydegreesray.openhub.util.ViewHelper;
 
 import butterknife.BindView;
 
@@ -46,11 +44,9 @@ import butterknife.BindView;
 
 public class ViewerFragment extends BaseFragment<ViewerPresenter>
         implements IViewerContract.View,
-        SwipeRefreshLayout.OnRefreshListener,
         CodeWebView.ContentChangedListener{
 
     @BindView(R.id.web_view) CodeWebView webView;
-    @BindView(R.id.refresh_layout) SwipeRefreshLayout refreshLayout;
 
     @AutoAccess boolean wrap = false;
 
@@ -83,8 +79,6 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-        refreshLayout.setColorSchemeColors(ViewHelper.getRefreshLayoutColors(getContext()));
-        refreshLayout.setOnRefreshListener(this);
     }
 
     @Override
@@ -105,6 +99,9 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
             item.setChecked(!item.isChecked());
             wrap = item.isChecked();
             loadCode(mPresenter.getDownloadSource(), mPresenter.getExtension());
+            return true;
+        } else if(item.getItemId() == R.id.action_refresh){
+            onRefresh();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -132,16 +129,13 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     @Override
     public void showLoading() {
         super.showLoading();
-        refreshLayout.setRefreshing(true);
     }
 
     @Override
     public void hideLoading() {
         super.hideLoading();
-        refreshLayout.setRefreshing(false);
     }
 
-    @Override
     public void onRefresh() {
         mPresenter.load(true);
     }

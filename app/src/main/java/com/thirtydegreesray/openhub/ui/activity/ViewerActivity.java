@@ -40,6 +40,15 @@ import com.thirtydegreesray.openhub.util.StringUtils;
 
 public class ViewerActivity extends BaseActivity {
 
+    public static void showImage(@NonNull Context context, @NonNull String imageUrl){
+        FileModel fileModel = new FileModel();
+        fileModel.setHtmlUrl(imageUrl);
+        fileModel.setDownloadUrl(imageUrl);
+        fileModel.setUrl(imageUrl);
+        fileModel.setName(imageUrl.substring(imageUrl.lastIndexOf("/") + 1, imageUrl.length()));
+        show(context, fileModel);
+    }
+
     public static void show(@NonNull Context context, @NonNull FileModel fileModel){
         Intent intent = new Intent(context, ViewerActivity.class);
         intent.putExtras(BundleBuilder.builder().put("fileModel", fileModel).build());

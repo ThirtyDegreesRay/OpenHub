@@ -32,7 +32,7 @@
     <attr name="appbar_theme" format="reference"/>
     <attr name="popup_theme" format="reference"/>
 
-    <declare-styleable name="PrettifyWebView">
+    <declare-styleable name="CodeWebView">
         <attr name="webview_background" format="color"/>
     </declare-styleable>
 

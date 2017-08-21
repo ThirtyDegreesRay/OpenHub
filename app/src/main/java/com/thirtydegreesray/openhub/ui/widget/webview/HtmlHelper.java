@@ -44,23 +44,26 @@ class HtmlHelper {
     private static Pattern LINK_TAG_MATCHER = Pattern.compile("href=\"(.*?)\"");
     private static Pattern IMAGE_TAG_MATCHER = Pattern.compile("src=\"(.*?)\"");
 
-    static String generateImageHtml(@NonNull String imageUrl){
+    static String generateImageHtml(@NonNull String imageUrl, @NonNull String backgroundColor){
         return "<html>" +
                 "<head>" +
-                    "<style>img{display: inline; height: auto; max-width: 100%;}</style>" +
+                    "<style>" +
+                        "img{display: inline; height: auto; max-width: 100%;}" +
+                        "body{background: " + backgroundColor + ";}" +
+                    "</style>" +
                 "</head>" +
                 "<body><img src=\"" + imageUrl + "\"/></body>" +
                 "</html>";
     }
 
     static String generateCodeHtml(@NonNull String codeSource, @Nullable String extension,
-                                          boolean isDark){
-        String skin = isDark ? "sons-of-obsidian" : "";
-        return generateCodeHtml(codeSource, extension, skin);
+                                          boolean isDark, @NonNull String backgroundColor){
+        String skin = isDark ? "sons-of-obsidian" : "prettify";
+        return generateCodeHtml(codeSource, extension, skin, backgroundColor);
     }
 
     private static String generateCodeHtml(@NonNull String codeSource, @Nullable String extension,
-                                          @Nullable String skin ){
+                                          @Nullable String skin, @NonNull String backgroundColor ){
         return "<html>\n" +
                 "<head>\n" +
                     "<meta charset=\"utf-8\" />\n" +
@@ -68,6 +71,10 @@ class HtmlHelper {
                     "<script src=\"./core/run_prettify.js?autoload=true&amp;" +
                     "skin=" + skin + "&amp;" +
                     "lang=" + getExtension(extension) + "&amp;\" defer></script>\n" +
+                    "<style>" +
+                        "body {background: " + backgroundColor + ";}" +
+                        ".prettyprint {background: " + backgroundColor + ";}" +
+                    "</style>" +
                 "</head>\n" +
                 "<body>\n" +
                     "<?prettify lang=" + getExtension(extension) + " linenums=true?>\n" +
@@ -79,22 +86,29 @@ class HtmlHelper {
     }
 
     static String generateMdHtml(@NonNull String mdSource, @Nullable String baseUrl,
-                                 boolean isDark){
+                                 boolean isDark, @NonNull String backgroundColor,
+                                 @NonNull String accentColor){
         String skin = isDark ? "github_dark.css" : "github.css";
         if(StringUtils.isBlank(baseUrl)){
-            return generateMdHtml(mdSource, skin);
+            return generateMdHtml(mdSource, skin, backgroundColor, accentColor);
         }else{
-            return generateMdHtml(validateImageBaseUrl(mdSource, baseUrl), skin);
+            return generateMdHtml(validateImageBaseUrl(mdSource, baseUrl), skin,
+                    backgroundColor, accentColor);
         }
     }
 
-    private static String generateMdHtml(@NonNull String mdSource, String skin){
+    private static String generateMdHtml(@NonNull String mdSource, String skin,
+                                         @NonNull String backgroundColor, @NonNull String accentColor){
         return "<html>\n" +
                 "<head>\n" +
                     "<meta charset=\"utf-8\" />\n" +
                     "<title>Code WebView</title>\n" +
                     "<meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;\"/>" +
                     "<link rel=\"stylesheet\" type=\"text/css\" href=\"./" + skin + "\">\n" +
+                    "<style>" +
+                        "body{background: " + backgroundColor + ";}" +
+                        "a {color:" + accentColor + " !important;}" +
+                    "</style>" +
                 "</head>\n" +
                 "<body>\n" +
                     mdSource +

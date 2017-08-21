@@ -122,8 +122,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
         toggle.syncState();
         navView.setNavigationItemSelectedListener(this);
 
-        navView.setCheckedItem(R.id.nav_starred);
-        loadFragment(R.id.nav_starred);
+        navView.setCheckedItem(R.id.nav_owned);
+        loadFragment(R.id.nav_owned);
 
 
         ImageView avatar = (ImageView) navView.getHeaderView(0).findViewById(R.id.avatar);

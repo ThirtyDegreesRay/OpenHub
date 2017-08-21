@@ -18,6 +18,8 @@ package com.thirtydegreesray.openhub.ui.widget.webview;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -29,8 +31,12 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 import com.thirtydegreesray.openhub.util.AppHelper;
+import com.thirtydegreesray.openhub.util.MarkdownHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
+import com.thirtydegreesray.openhub.util.ViewHelper;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/20 12:10:56
@@ -39,6 +45,7 @@ import com.thirtydegreesray.openhub.util.StringUtils;
 public class CodeWebView extends WebView {
 
     private ContentChangedListener contentChangedListener;
+    private int backgroundColor ;
 
     public interface ContentChangedListener {
         void onContentChanged(int progress);
@@ -68,6 +75,16 @@ public class CodeWebView extends WebView {
 
     @SuppressLint("SetJavaScriptEnabled")
     private void init(AttributeSet attrs) {
+        if (attrs != null) {
+            TypedArray tp = getContext().obtainStyledAttributes(attrs, R.styleable.CodeWebView);
+            try {
+                backgroundColor = tp.getColor(R.styleable.CodeWebView_webview_background,
+                        ViewHelper.getWindowBackground(getContext()));
+                setBackgroundColor(backgroundColor);
+            } finally {
+                tp.recycle();
+            }
+        }
 
         setWebChromeClient(new ChromeClient());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -79,7 +96,7 @@ public class CodeWebView extends WebView {
         settings.setJavaScriptEnabled(true);
         settings.setAppCachePath(getContext().getCacheDir().getPath());
         settings.setAppCacheEnabled(true);
-        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         settings.setDefaultTextEncodingName("utf-8");
         settings.setLoadsImagesAutomatically(true);
         settings.setBlockNetworkImage(false);
@@ -111,18 +128,18 @@ public class CodeWebView extends WebView {
         settings.setSupportZoom(true);
         settings.setBuiltInZoomControls(true);
         settings.setDisplayZoomControls(false);
-        String html = HtmlHelper.generateImageHtml(url);
+        String html = HtmlHelper.generateImageHtml(url, getCodeBackgroundColor());
         loadData(html, "text/html", null);
     }
 
-    //FIXME 背景、链接点击、链接颜色
     public void setMdSource(@NonNull String source, @NonNull String baseUrl) {
         if (StringUtils.isBlank(source)) return;
-        String page = HtmlHelper.generateMdHtml(source, baseUrl, AppHelper.isNightMode());
+        String page = HtmlHelper.generateMdHtml(source, baseUrl, AppHelper.isNightMode(),
+                getCodeBackgroundColor(), getAccentColor());
         loadMd(page);
     }
 
-    //FIXME 背景、换行
+    //FIXME 换行
     public void setCodeSource(@NonNull String source, boolean wrap, @Nullable String extension) {
         if (StringUtils.isBlank(source)) return;
         WebSettings settings = getSettings();
@@ -131,7 +148,8 @@ public class CodeWebView extends WebView {
         settings.setSupportZoom(!wrap);
         settings.setBuiltInZoomControls(!wrap);
         if (!wrap) settings.setDisplayZoomControls(false);
-        String page = HtmlHelper.generateCodeHtml(source, extension, AppHelper.isNightMode());
+        String page = HtmlHelper.generateCodeHtml(source, extension, AppHelper.isNightMode(),
+                getCodeBackgroundColor());
         loadCode(page);
     }
 
@@ -171,7 +189,7 @@ public class CodeWebView extends WebView {
     private class WebClientN extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-//            startActivity(request.getUrl());
+            startActivity(request.getUrl());
             return true;
         }
     }
@@ -180,9 +198,26 @@ public class CodeWebView extends WebView {
         @SuppressWarnings("deprecation")
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//            startActivity(Uri.parse(url));
+            startActivity(Uri.parse(url));
             return true;
         }
+    }
+
+    private String getCodeBackgroundColor(){
+        return "#" + Integer.toHexString(backgroundColor).substring(2).toUpperCase();
+    }
+    private String getAccentColor(){
+        return "#" + Integer.toHexString(ViewHelper.getAccentColor(getContext())).substring(2).toUpperCase();
+    }
+
+    private void startActivity(Uri uri){
+        if(uri == null) return;
+        if(MarkdownHelper.isImage(uri.toString())){
+            ViewerActivity.showImage(getContext(), uri.toString());
+        } else {
+            AppHelper.openInBrowser(getContext(), uri.toString());
+        }
+        //TODO 判断是否是仓库地址
     }
 }
 

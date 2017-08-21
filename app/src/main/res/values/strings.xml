@@ -83,6 +83,7 @@
     <string name="fork">Fork</string>
     <string name="unfork">Unfork</string>
     <string name="wrap_lines">Wrap lines</string>
+    <string name="refresh">Refresh</string>
 
     <string name="success_copied">Copied</string>
 

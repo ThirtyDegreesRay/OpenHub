@@ -26,6 +26,12 @@
         app:showAsAction="ifRoom"/>
 
     <item
+        android:id="@+id/action_refresh"
+        android:title="@string/refresh"
+        android:icon="@drawable/ic_refresh_title"
+        app:showAsAction="never"/>
+
+    <item
         android:id="@+id/action_share"
         android:title="@string/share"
         app:showAsAction="never"/>
