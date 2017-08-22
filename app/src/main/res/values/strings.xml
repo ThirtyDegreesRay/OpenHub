@@ -74,12 +74,16 @@
     <string name="commits">COMMITS</string>
 
     <string name="star">Star</string>
+    <string name="unstar">Unstar</string>
+    <string name="unstarred">Unstarred</string>
     <string name="branch_tip">Branches or tags</string>
     <string name="share">Share</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="copy_url">Copy URL</string>
     <string name="watch">Watch</string>
+    <string name="watched">Watched</string>
     <string name="unwatch">Unwatch</string>
+    <string name="unwatched">Unwatched</string>
     <string name="fork">Fork</string>
     <string name="unfork">Unfork</string>
     <string name="wrap_lines">Wrap lines</string>

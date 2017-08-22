@@ -30,10 +30,13 @@ public interface IRepositoryContract {
     interface View extends IBaseContract.View{
         void showRepo(Repository repo);
         void showBranchesAndTags(ArrayList<Branch> list, Branch curBranch);
+        void invalidateOptionsMenu();
     }
 
     interface Presenter extends IBaseContract.Presenter<IRepositoryContract.View>{
         void loadBranchesAndTags();
+        void starRepo(boolean star);
+        void watchRepo(boolean watch);
     }
 
 }

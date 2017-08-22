@@ -90,20 +90,37 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem starItem = menu.findItem(R.id.action_star);
+        starItem.setTitle(mPresenter.isStarred() ? R.string.unstar : R.string.star);
+        starItem.setIcon(mPresenter.isStarred() ?
+                R.drawable.ic_star_title : R.drawable.ic_un_star_title);
+        menu.findItem(R.id.action_watch).setTitle(mPresenter.isWatched() ?
+                R.string.unwatch : R.string.watch);
+        menu.findItem(R.id.action_fork).setTitle(mPresenter.getRepository().isFork() ?
+                R.string.unfork : R.string.fork);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-
         toolbar.setTitleTextAppearance(getActivity(), R.style.Toolbar_TitleText);
         toolbar.setSubtitleTextAppearance(getActivity(), R.style.Toolbar_Subtitle);
         setToolbarBackEnable();
 
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_star:
-
+                mPresenter.starRepo(!mPresenter.isStarred());
+                invalidateOptionsMenu();
+                showShortToast(mPresenter.isStarred() ?
+                        getString(R.string.starred) : getString(R.string.unstarred));
                 return true;
             case R.id.action_branch:
                 mPresenter.loadBranchesAndTags();
@@ -118,7 +135,10 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                 AppHelper.copyToClipboard(getActivity(), mPresenter.getRepository().getHtmlUrl());
                 return true;
             case R.id.action_watch:
-
+                mPresenter.watchRepo(!mPresenter.isWatched());
+                invalidateOptionsMenu();
+                showShortToast(mPresenter.isWatched() ?
+                        getString(R.string.watched) : getString(R.string.unwatched));
                 return true;
             case R.id.action_fork:
 
@@ -173,4 +193,6 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         });
 
     }
+
+
 }

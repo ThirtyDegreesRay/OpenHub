@@ -69,7 +69,7 @@ public interface RepoService {
      * Check if you are starring a repository
      */
     @NonNull @GET("user/starred/{owner}/{repo}")
-    Observable<Response<Object>> checkRepoStarred(
+    Observable<Response<ResponseBody>> checkRepoStarred(
             @Path("owner") String owner,
             @Path("repo") String repo
     );
@@ -78,7 +78,7 @@ public interface RepoService {
      * Star a repository
      */
     @NonNull @PUT("user/starred/{owner}/{repo}")
-    Observable<Response<Object>> starRepo(
+    Observable<Response<ResponseBody>> starRepo(
             @Path("owner") String owner,
             @Path("repo") String repo
     );
@@ -87,7 +87,25 @@ public interface RepoService {
      * Unstar a repository
      */
     @NonNull @DELETE("user/starred/{owner}/{repo}")
-    Observable<Response<Object>> unstarRepo(
+    Observable<Response<ResponseBody>> unstarRepo(
+            @Path("owner") String owner,
+            @Path("repo") String repo
+    );
+
+    @NonNull @GET("user/subscriptions/{owner}/{repo}")
+    Observable<Response<ResponseBody>> checkRepoWatched(
+            @Path("owner") String owner,
+            @Path("repo") String repo
+    );
+
+    @NonNull @PUT("user/subscriptions/{owner}/{repo}")
+    Observable<Response<ResponseBody>> watchRepo(
+            @Path("owner") String owner,
+            @Path("repo") String repo
+    );
+
+    @NonNull @DELETE("user/subscriptions/{owner}/{repo}")
+    Observable<Response<ResponseBody>> unwatchRepo(
             @Path("owner") String owner,
             @Path("repo") String repo
     );

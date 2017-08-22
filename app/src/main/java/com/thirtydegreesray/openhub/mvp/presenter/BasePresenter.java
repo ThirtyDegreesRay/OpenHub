@@ -49,6 +49,7 @@ import org.apache.http.conn.ConnectTimeoutException;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 
+import okhttp3.ResponseBody;
 import retrofit2.Response;
 import rx.Observable;
 import rx.Subscriber;
@@ -84,7 +85,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
 
     @Override
     public void onRestoreInstanceState(Bundle outState) {
-        if(outState == null) return ;
+        if (outState == null) return;
         DataAutoAccess.getData(this, outState);
     }
 
@@ -96,7 +97,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
     @Override
     public void attachView(@NonNull V view) {
         mView = view;
-        if(isEventSubscriber) AppEventBus.INSTANCE.getEventBus().register(this);
+        if (isEventSubscriber) AppEventBus.INSTANCE.getEventBus().register(this);
         onViewAttached();
     }
 
@@ -107,13 +108,13 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
     public void detachView() {
         mView = null;
         //view 取消绑定时，把请求取消订阅
-        for(Subscriber subscriber : subscribers){
-            if(subscriber != null && !subscriber.isUnsubscribed()){
+        for (Subscriber subscriber : subscribers) {
+            if (subscriber != null && !subscriber.isUnsubscribed()) {
                 subscriber.unsubscribe();
                 Logger.d(TAG, "unsubscribe:" + subscriber.toString());
             }
         }
-        if(isEventSubscriber) AppEventBus.INSTANCE.getEventBus().unregister(this);
+        if (isEventSubscriber) AppEventBus.INSTANCE.getEventBus().unregister(this);
     }
 
     @Override
@@ -166,9 +167,9 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
     public Context getContext() {
         if (mView instanceof Context) {
             return (Context) mView;
-        } else if(mView instanceof Fragment){
+        } else if (mView instanceof Fragment) {
             return ((Fragment) mView).getContext();
-        }else {
+        } else {
             throw new NullPointerException("BasePresenter:mView is't instance of Context,can't use getContext() method.");
         }
     }
@@ -177,11 +178,11 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
      * presenter和view绑定成功
      */
     @CallSuper
-    protected void onViewAttached(){
+    protected void onViewAttached() {
 
     }
 
-    protected interface IObservableCreator<T>{
+    protected interface IObservableCreator<T> {
         Observable<Response<T>> createObservable(boolean forceNetWork);
     }
 
@@ -213,7 +214,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
 
     protected <T> void generalRxHttpExecute(@NonNull final IObservableCreator<T> observableCreator
             , @NonNull final HttpObserver<T> httpObserver,
-            final boolean readCacheFirst) {
+                                            final boolean readCacheFirst) {
 
         final HttpObserver<T> tempObserver = new HttpObserver<T>() {
             @Override
@@ -225,14 +226,14 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
             public void onSuccess(@NonNull HttpResponse<T> response) {
                 Logger.d(TAG, "get data ok:" + System.currentTimeMillis());
                 Logger.d(TAG, "data:" + response.body());
-                if(response.isSuccessful()){
-                    if(readCacheFirst && response.isFromCache()
-                            && NetHelper.getInstance().getNetEnabled()){
+                if (response.isSuccessful()) {
+                    if (readCacheFirst && response.isFromCache()
+                            && NetHelper.getInstance().getNetEnabled()) {
                         generalRxHttpExecute(observableCreator.createObservable(true),
                                 getHttpSubscriber(this));
                     }
                     httpObserver.onSuccess(response);
-                }else{
+                } else {
                     httpObserver.onError(new HttpError(HttpErrorCode.NO_CACHE_AND_NETWORK));
                 }
 
@@ -245,7 +246,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
         Logger.d(TAG, "get date start:" + System.currentTimeMillis());
     }
 
-    private <T> HttpSubscriber<T> getHttpSubscriber(HttpObserver<T> httpObserver){
+    private <T> HttpSubscriber<T> getHttpSubscriber(HttpObserver<T> httpObserver) {
         return new HttpSubscriber<>(httpObserver);
     }
 
@@ -255,13 +256,14 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
         return "loading...";
     }
 
-    protected boolean isLastResponse(@NonNull HttpResponse response){
+    protected boolean isLastResponse(@NonNull HttpResponse response) {
         return response.isFromNetWork() ||
                 !NetHelper.getInstance().getNetEnabled();
     }
 
     /**
      * 获取error提示
+     *
      * @param error
      * @param typeInfo
      * @return
@@ -279,8 +281,10 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
         }
         return StringUtils.isBlank(typeInfo) ? errorTip : typeInfo + "，" + errorTip;
     }
+
     /**
      * 获取error提示
+     *
      * @param error
      * @return
      */
@@ -290,14 +294,35 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
     }
 
     @NonNull
-    protected String getString(@StringRes int resId){
-        if(getContext() != null){
-            return getContext().getResources().getString(resId);
-        }
-        return null;
+    protected String getString(@StringRes int resId) {
+        return getContext().getResources().getString(resId);
     }
 
     public void setEventSubscriber(boolean eventSubscriber) {
         isEventSubscriber = eventSubscriber;
     }
+
+    void checkStatus(@NonNull Observable<Response<ResponseBody>> observable,
+                     @NonNull final CheckStatusCallback callback) {
+        HttpSubscriber<ResponseBody> httpSubscriber = new HttpSubscriber<>(
+                new HttpObserver<ResponseBody>() {
+                    @Override
+                    public void onError(Throwable error) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(HttpResponse<ResponseBody> response) {
+                        callback.onChecked(response.isSuccessful());
+                    }
+                }
+        );
+        generalRxHttpExecute(observable, httpSubscriber);
+    }
+
+    interface CheckStatusCallback {
+        void onChecked(boolean status);
+    }
+
+
 }

@@ -29,6 +29,7 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import okhttp3.ResponseBody;
 import retrofit2.Response;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -47,6 +48,10 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
 
     private ArrayList<Branch> branches;
     private Branch curBranch;
+    private boolean starred;
+    private boolean watched;
+
+    private boolean isStatusChecked = false;
 
     @Inject
     public RepositoryPresenter(DaoSession daoSession) {
@@ -60,6 +65,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
             curBranch = new Branch(repository.getDefaultBranch());
             mView.showRepo(repository);
             getRepoInfo(repository.getOwner().getLogin(), repository.getName(), false);
+            checkStatus();
         } else {
             //TODO load by repo url
         }
@@ -103,6 +109,24 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
                 .subscribe(httpProgressSubscriber);
     }
 
+    @Override
+    public void starRepo(boolean star) {
+        starred = star;
+        Observable<Response<ResponseBody>> observable = starred ?
+                getRepoService().starRepo(repository.getOwner().getLogin(), repository.getName()) :
+                getRepoService().unstarRepo(repository.getOwner().getLogin(), repository.getName());
+        generalRxHttpExecute(observable, null);
+    }
+
+    @Override
+    public void watchRepo(boolean watch) {
+        watched = watch;
+        Observable<Response<ResponseBody>> observable = watched ?
+                getRepoService().watchRepo(repository.getOwner().getLogin(), repository.getName()) :
+                getRepoService().unwatchRepo(repository.getOwner().getLogin(), repository.getName());
+        generalRxHttpExecute(observable, null);
+    }
+
     private void setTags(ArrayList<Branch> list) {
         for (Branch branch : list) {
             branch.setBranch(false);
@@ -110,20 +134,21 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
     }
 
     private void getRepoInfo(final String owner, final String repoName, final boolean isShowLoading) {
-        if(isShowLoading) mView.getProgressDialog(getLoadTip()).show();
+        if (isShowLoading) mView.getProgressDialog(getLoadTip()).show();
         HttpObserver<Repository> httpObserver =
                 new HttpObserver<Repository>() {
                     @Override
                     public void onError(Throwable error) {
-                        if(isShowLoading) mView.getProgressDialog(getLoadTip()).cancel();
+                        if (isShowLoading) mView.getProgressDialog(getLoadTip()).cancel();
                         mView.showShortToast(error.getMessage());
                     }
 
                     @Override
                     public void onSuccess(HttpResponse<Repository> response) {
-                        if(isShowLoading) mView.getProgressDialog(getLoadTip()).cancel();
+                        if (isShowLoading) mView.getProgressDialog(getLoadTip()).cancel();
                         repository = response.body();
                         mView.showRepo(repository);
+                        checkStatus();
                     }
                 };
 
@@ -133,11 +158,51 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
                 return getRepoService().getRepoInfo(forceNetWork, owner, repoName);
             }
         }, httpObserver, true);
+    }
 
+    private void checkStatus(){
+        if(isStatusChecked) return;
+        isStatusChecked = true;
+        checkStarred();
+        checkWatched();
     }
 
 
+    private void checkStarred() {
+        checkStatus(
+                getRepoService().checkRepoStarred(repository.getOwner().getLogin(), repository.getName()),
+                new CheckStatusCallback() {
+                    @Override
+                    public void onChecked(boolean status) {
+                        starred = status;
+                        mView.invalidateOptionsMenu();
+                    }
+                }
+        );
+    }
+
+    private void checkWatched() {
+        checkStatus(
+                getRepoService().checkRepoWatched(repository.getOwner().getLogin(), repository.getName()),
+                new CheckStatusCallback() {
+                    @Override
+                    public void onChecked(boolean status) {
+                        watched = status;
+                        mView.invalidateOptionsMenu();
+                    }
+                }
+        );
+    }
+
     public Repository getRepository() {
         return repository;
+    }
+
+    public boolean isStarred() {
+        return starred;
+    }
+
+    public boolean isWatched() {
+        return watched;
     }
 }
