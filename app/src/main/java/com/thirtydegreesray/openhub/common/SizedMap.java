@@ -14,28 +14,31 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.mvp.contract;
+package com.thirtydegreesray.openhub.common;
 
-import android.support.annotation.NonNull;
-
-import com.thirtydegreesray.openhub.mvp.model.FileModel;
-
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 /**
- * Created by ThirtyDegreesRay on 2017/8/14 16:02:28
+ * Created by ThirtyDegreesRay on 2017/8/22 18:46:06
  */
 
-public interface IRepoFilesContract {
+public class SizedMap<K,V> extends LinkedHashMap<K,V> {
 
-    interface View extends IBaseContract.View{
-        void showFiles(ArrayList<FileModel> files);
+    private int maxSize ;
+    private final int DEFAULT_SIZE = 64;
+
+    public SizedMap() {
+        super();
+        this.maxSize = DEFAULT_SIZE;
     }
 
-    interface Presenter extends IBaseContract.Presenter<IRepoFilesContract.View>{
-        void loadFiles(boolean isReload);
-        void loadFiles(@NonNull String path, boolean isReload);
-        boolean goBack();
+    public SizedMap(int maxSize) {
+        super();
+        this.maxSize = maxSize;
     }
 
+    @Override
+    protected boolean removeEldestEntry(Entry<K, V> eldest) {
+        return size() > maxSize;
+    }
 }

@@ -16,11 +16,8 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
-import android.support.annotation.NonNull;
-
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppConfig;
-import com.thirtydegreesray.openhub.common.AppEventBus;
 import com.thirtydegreesray.openhub.common.Event;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
@@ -49,21 +46,10 @@ public class RepoInfoPresenter extends BasePresenter<IRepoInfoContract.View>
     @AutoAccess Repository repository;
     @AutoAccess String readmeSource;
 
-    @Override
-    public void attachView(@NonNull IRepoInfoContract.View view) {
-        super.attachView(view);
-        AppEventBus.INSTANCE.getEventBus().register(this);
-    }
-
-    @Override
-    public void detachView() {
-        super.detachView();
-        AppEventBus.INSTANCE.getEventBus().unregister(this);
-    }
-
     @Inject
     public RepoInfoPresenter(DaoSession daoSession) {
         super(daoSession);
+        setEventSubscriber(true);
     }
 
     @Override
@@ -114,6 +100,7 @@ public class RepoInfoPresenter extends BasePresenter<IRepoInfoContract.View>
 
     @Subscribe
     public void onRepoInfoUpdated(Event.RepoInfoUpdatedEvent event){
+        if(!this.repository.getFullName().equals(event.repository.getFullName())) return;
         this.repository = event.repository;
         mView.showRepoInfo(repository);
     }

@@ -57,24 +57,25 @@ class HtmlHelper {
     }
 
     static String generateCodeHtml(@NonNull String codeSource, @Nullable String extension,
-                                          boolean isDark, @NonNull String backgroundColor){
+                                   boolean isDark, @NonNull String backgroundColor, boolean wrap){
         String skin = isDark ? "sons-of-obsidian" : "prettify";
-        return generateCodeHtml(codeSource, extension, skin, backgroundColor);
+        return generateCodeHtml(codeSource, extension, skin, backgroundColor, wrap);
     }
 
     private static String generateCodeHtml(@NonNull String codeSource, @Nullable String extension,
-                                          @Nullable String skin, @NonNull String backgroundColor ){
+                                           @Nullable String skin, @NonNull String backgroundColor, boolean wrap ){
         return "<html>\n" +
                 "<head>\n" +
                     "<meta charset=\"utf-8\" />\n" +
                     "<title>Code WebView</title>\n" +
-                    "<meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0; user-scalable=1;\"/>" +
+                    "<meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0;\"/>" +
                     "<script src=\"./core/run_prettify.js?autoload=true&amp;" +
                     "skin=" + skin + "&amp;" +
                     "lang=" + getExtension(extension) + "&amp;\" defer></script>\n" +
                     "<style>" +
                         "body {background: " + backgroundColor + ";}" +
                         ".prettyprint {background: " + backgroundColor + ";}" +
+                        "pre.prettyprint { white-space: " + (wrap ? "pre-wrap" : "no-wrap") + "; }" +
                     "</style>" +
                 "</head>\n" +
                 "<body>\n" +

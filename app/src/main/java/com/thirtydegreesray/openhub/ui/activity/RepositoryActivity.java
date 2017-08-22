@@ -43,6 +43,7 @@ import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.BranchesAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
+import com.thirtydegreesray.openhub.ui.widget.AdaptiveView;
 import com.thirtydegreesray.openhub.util.AppHelper;
 
 import java.util.ArrayList;
@@ -129,7 +130,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
     @Override
     public void showRepo(Repository repo) {
         setToolbarTiltle(repo.getFullName(), repo.getDefaultBranch());
-        if(pagerAdapter.getCount() == 0){
+        if (pagerAdapter.getCount() == 0) {
             pagerAdapter.setPagerList(FragmentPagerModel.createRepoPagerList(getActivity(), repo));
             tabLayout.setVisibility(View.VISIBLE);
             tabLayout.setupWithViewPager(viewPager);
@@ -140,23 +141,19 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
     }
 
     @Override
-    public void showBranchesAndTags(ArrayList<Branch> list, Branch curBranch) {
+    public void showBranchesAndTags(final ArrayList<Branch> list, Branch curBranch) {
         BranchesAdapter branchesAdapter = new BranchesAdapter(getActivity(), curBranch.getName());
         branchesAdapter.setData(list);
-        branchesAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
 
-            }
-        });
-
-        RecyclerView recyclerView = new RecyclerView(getActivity());
+        final RecyclerView recyclerView = new RecyclerView(getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(branchesAdapter);
+        AdaptiveView contentView = new AdaptiveView(getActivity());
+        contentView.addView(recyclerView);
 
-        new AlertDialog.Builder(getActivity())
+        final AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                 .setTitle(getString(R.string.select_branch))
-                .setView(recyclerView)
+                .setView(contentView)
                 .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -164,5 +161,16 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                     }
                 })
                 .show();
+
+        branchesAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Branch branch = list.get(position);
+                mPresenter.getRepository().setDefaultBranch(branch.getName());
+                showRepo(mPresenter.getRepository());
+                alertDialog.dismiss();
+            }
+        });
+
     }
 }

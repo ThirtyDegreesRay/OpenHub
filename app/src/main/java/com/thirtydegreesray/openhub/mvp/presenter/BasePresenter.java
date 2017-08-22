@@ -22,10 +22,12 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.v4.app.Fragment;
 
 import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
 import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.AppData;
+import com.thirtydegreesray.openhub.common.AppEventBus;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.LoginService;
 import com.thirtydegreesray.openhub.http.RepoService;
@@ -68,6 +70,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
     protected DaoSession daoSession;
 
     private ArrayList<Subscriber<?>> subscribers;
+    private boolean isEventSubscriber = false;
 
     public BasePresenter(DaoSession daoSession) {
         this.daoSession = daoSession;
@@ -93,6 +96,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
     @Override
     public void attachView(@NonNull V view) {
         mView = view;
+        if(isEventSubscriber) AppEventBus.INSTANCE.getEventBus().register(this);
         onViewAttached();
     }
 
@@ -109,6 +113,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
                 Logger.d(TAG, "unsubscribe:" + subscriber.toString());
             }
         }
+        if(isEventSubscriber) AppEventBus.INSTANCE.getEventBus().unregister(this);
     }
 
     @Override
@@ -156,12 +161,14 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
      *
      * @return
      */
-    @Nullable
+    @NonNull
     @Override
     public Context getContext() {
         if (mView instanceof Context) {
             return (Context) mView;
-        } else {
+        } else if(mView instanceof Fragment){
+            return ((Fragment) mView).getContext();
+        }else {
             throw new NullPointerException("BasePresenter:mView is't instance of Context,can't use getContext() method.");
         }
     }
@@ -290,4 +297,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
         return null;
     }
 
+    public void setEventSubscriber(boolean eventSubscriber) {
+        isEventSubscriber = eventSubscriber;
+    }
 }

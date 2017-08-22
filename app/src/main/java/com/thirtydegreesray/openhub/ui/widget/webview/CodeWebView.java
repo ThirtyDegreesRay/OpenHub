@@ -139,17 +139,16 @@ public class CodeWebView extends WebView {
         loadMd(page);
     }
 
-    //FIXME 换行
     public void setCodeSource(@NonNull String source, boolean wrap, @Nullable String extension) {
         if (StringUtils.isBlank(source)) return;
         WebSettings settings = getSettings();
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
         setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        settings.setSupportZoom(!wrap);
-        settings.setBuiltInZoomControls(!wrap);
-        if (!wrap) settings.setDisplayZoomControls(false);
+        settings.setSupportZoom(true);
+        settings.setBuiltInZoomControls(true);
+        settings.setDisplayZoomControls(false);
         String page = HtmlHelper.generateCodeHtml(source, extension, AppHelper.isNightMode(),
-                getCodeBackgroundColor());
+                getCodeBackgroundColor(), wrap);
         loadCode(page);
     }
 

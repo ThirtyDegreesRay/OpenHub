@@ -14,28 +14,32 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.mvp.contract;
+package com.thirtydegreesray.openhub.ui.widget;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
-
-import com.thirtydegreesray.openhub.mvp.model.FileModel;
-
-import java.util.ArrayList;
+import android.widget.FrameLayout;
 
 /**
- * Created by ThirtyDegreesRay on 2017/8/14 16:02:28
+ * Created by ThirtyDegreesRay on 2017/8/22 11:57:35
  */
 
-public interface IRepoFilesContract {
+public class AdaptiveView extends FrameLayout {
 
-    interface View extends IBaseContract.View{
-        void showFiles(ArrayList<FileModel> files);
+    private int maxHeight = -1;
+
+    public AdaptiveView(@NonNull Context context) {
+        super(context);
     }
 
-    interface Presenter extends IBaseContract.Presenter<IRepoFilesContract.View>{
-        void loadFiles(boolean isReload);
-        void loadFiles(@NonNull String path, boolean isReload);
-        boolean goBack();
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+    }
+
+    public void setMaxHeight(int height){
+        //FIXME 设置最大显示高度
     }
 
 }

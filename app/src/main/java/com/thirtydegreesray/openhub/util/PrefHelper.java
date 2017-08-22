@@ -62,6 +62,7 @@ public class PrefHelper {
     public final static String CACHE_FIRST_ENABLE = "cacheFirstEnable";
     public final static String LANGUAGE = "language";
     public final static String LOGOUT = "logout";
+    public final static String CODE_WRAP = "codeWrap";
 
     @SuppressLint("ApplySharedPref") public static <T> void set(@NonNull String key, @Nullable T value) {
         if (StringUtils.isBlank(key)) {
@@ -86,7 +87,8 @@ public class PrefHelper {
         } else {
             edit.putString(key, value.toString());
         }
-        edit.commit();//apply on UI
+//        edit.commit();//apply on UI
+        edit.apply();
     }
 
     public static void clearKey(@NonNull String key) {
@@ -110,6 +112,10 @@ public class PrefHelper {
 
     public static boolean isCacheFirstEnable(){
         return getDefaultSp(AppApplication.get()).getBoolean(CACHE_FIRST_ENABLE, true);
+    }
+
+    public static boolean isCodeWrap(){
+        return getDefaultSp(AppApplication.get()).getBoolean(CODE_WRAP, false);
     }
 
     public static SharedPreferences getDefaultSp(Context context){

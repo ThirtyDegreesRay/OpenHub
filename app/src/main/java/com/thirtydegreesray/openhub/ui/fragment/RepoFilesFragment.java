@@ -31,7 +31,7 @@ import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.RepoFilesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
-import com.thirtydegreesray.openhub.util.StringUtils;
+import com.thirtydegreesray.openhub.util.BundleBuilder;
 
 import java.util.ArrayList;
 
@@ -43,15 +43,9 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
         implements IRepoFilesContract.View, PagerActivity.IFragmentKeyListener{
 
     public static RepoFilesFragment create(Repository repository) {
-        return new RepoFilesFragment().setRepository(repository);
-    }
-
-    private Repository repo;
-    private String curPath = "";
-
-    public RepoFilesFragment setRepository(Repository repository) {
-        this.repo = repository;
-        return this;
+        RepoFilesFragment fragment = new RepoFilesFragment();
+        fragment.setArguments(BundleBuilder.builder().put("repo", repository).build());
+        return fragment;
     }
 
     @Override
@@ -87,12 +81,11 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
     @Override
     protected void initFragment(Bundle savedInstanceState) {
         super.initFragment(savedInstanceState);
-        mPresenter.loadFiles(repo, repo.getDefaultBranch(), curPath, false);
     }
 
     @Override
     protected void onReLoadData() {
-        mPresenter.loadFiles(repo, repo.getDefaultBranch(), curPath, true);
+        mPresenter.loadFiles(true);
     }
 
     @Override
@@ -105,8 +98,7 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
         super.onItemClick(position);
         FileModel model = adapter.getData().get(position);
         if(model.isDir()){
-            curPath = model.getPath();
-            mPresenter.loadFiles(repo, repo.getDefaultBranch(), curPath, false);
+            mPresenter.loadFiles(model.getPath(), false);
         }else{
             ViewerActivity.show(getActivity(), model);
         }
@@ -115,12 +107,7 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
-            if(!StringUtils.isBlank(curPath)){
-                curPath = curPath.contains("/") ?
-                        curPath.substring(0, curPath.lastIndexOf("/")) : "";
-                mPresenter.loadFiles(repo, repo.getDefaultBranch(), curPath, false);
-                return true;
-            }
+            return mPresenter.goBack();
         }
         return false;
     }

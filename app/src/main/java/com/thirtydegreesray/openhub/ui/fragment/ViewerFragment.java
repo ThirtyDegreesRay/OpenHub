@@ -36,6 +36,7 @@ import com.thirtydegreesray.openhub.mvp.presenter.ViewerPresenter;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.PrefHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import butterknife.BindView;
@@ -82,6 +83,7 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
+        wrap = PrefHelper.isCodeWrap();
         loader.setVisibility(View.VISIBLE);
         loader.setIndeterminate(true);
     }
@@ -104,6 +106,7 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
             item.setChecked(!item.isChecked());
             wrap = item.isChecked();
             loadCode(mPresenter.getDownloadSource(), mPresenter.getExtension());
+            PrefHelper.set(PrefHelper.CODE_WRAP, wrap);
             return true;
         } else if(item.getItemId() == R.id.action_refresh){
             refresh();
