@@ -22,6 +22,7 @@ import android.support.v4.app.Fragment;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.User;
+import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 import com.thirtydegreesray.openhub.ui.fragment.ProfileInfoFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoFilesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoInfoFragment;
@@ -64,7 +65,8 @@ public class FragmentPagerModel {
         return Arrays.asList(
                 new FragmentPagerModel(context.getString(R.string.info), ProfileInfoFragment.create(user)),
                 new FragmentPagerModel(context.getString(R.string.starred),
-                        RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED, user.getLogin()))
+                        RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED, user.getLogin())),
+                new FragmentPagerModel(context.getString(R.string.activity), new ActivityFragment())
         );
     }
 }

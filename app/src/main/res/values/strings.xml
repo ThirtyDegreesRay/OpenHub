@@ -116,5 +116,6 @@
     <string name="gists">Gists</string>
     <string name="joined_at">Joined at</string>
     <string name="users">Users</string>
+    <string name="activity">Activity</string>
 
 </resources>

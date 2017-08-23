@@ -31,6 +31,10 @@ import java.util.Date;
 
 public class User implements Parcelable {
 
+    public enum UserType{
+        User, Organization
+    }
+
     private String login;
     private String id;
     private String name;
@@ -191,7 +195,7 @@ public class User implements Parcelable {
     }
 
     public boolean isUser(){
-        return "User".equals(type);
+        return UserType.User.name().equals(type);
     }
 
     @Override

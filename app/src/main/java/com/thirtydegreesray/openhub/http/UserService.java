@@ -18,6 +18,7 @@ package com.thirtydegreesray.openhub.http;
 
 import android.support.annotation.NonNull;
 
+import com.thirtydegreesray.openhub.mvp.model.Event;
 import com.thirtydegreesray.openhub.mvp.model.User;
 
 import java.util.ArrayList;
@@ -85,6 +86,16 @@ public interface UserService {
 
     @NonNull @GET("users/{user}/following")
     Observable<Response<ArrayList<User>>> getFollowing(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("user") String user,
+            @Query("page") int page
+    );
+
+    /**
+     * List events performed by a user
+     */
+    @NonNull @GET("users/{user}/events")
+    Observable<Response<ArrayList<Event>>> getUserEvents(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("user") String user,
             @Query("page") int page
