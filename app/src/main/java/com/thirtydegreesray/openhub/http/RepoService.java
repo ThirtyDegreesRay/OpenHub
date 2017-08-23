@@ -49,20 +49,20 @@ public interface RepoService {
     /**
      * List repositories being starred
      */
-    @NonNull @GET("user{user}/starred")
+    @NonNull @GET("users/{user}/starred")
     Observable<Response<ArrayList<Repository>>> getStarredRepos(
             @Header("forceNetWork") boolean forceNetWork,
-            @Path("user") String user,
+            @Path("user") @NonNull String user,
             @Query("page") int page
     );
 
     /**
      * List user repositories
      */
-    @NonNull @GET("user{user}/repos")
+    @NonNull @GET("users/{user}/repos")
     Observable<retrofit2.Response<ArrayList<Repository>>> getUserRepos(
             @Header("forceNetWork") boolean forceNetWork,
-            @Path("user") String user,
+            @Path("user") @NonNull String user,
             @Query("page") int page
     );
 

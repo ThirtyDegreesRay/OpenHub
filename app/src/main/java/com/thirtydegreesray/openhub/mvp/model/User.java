@@ -39,7 +39,7 @@ public class User implements Parcelable {
     private String type;
     private String company;
     private String blog;
-    private String localtion;
+    private String location;
     private String email;
     private String bio;
 
@@ -118,12 +118,12 @@ public class User implements Parcelable {
         this.blog = blog;
     }
 
-    public String getLocaltion() {
-        return localtion;
+    public String getLocation() {
+        return location;
     }
 
-    public void setLocaltion(String localtion) {
-        this.localtion = localtion;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getEmail() {
@@ -190,6 +190,10 @@ public class User implements Parcelable {
         this.updatedAt = updatedAt;
     }
 
+    public boolean isUser(){
+        return "User".equals(type);
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -205,7 +209,7 @@ public class User implements Parcelable {
         dest.writeString(this.type);
         dest.writeString(this.company);
         dest.writeString(this.blog);
-        dest.writeString(this.localtion);
+        dest.writeString(this.location);
         dest.writeString(this.email);
         dest.writeString(this.bio);
         dest.writeInt(this.publicRepos);
@@ -225,7 +229,7 @@ public class User implements Parcelable {
         this.type = in.readString();
         this.company = in.readString();
         this.blog = in.readString();
-        this.localtion = in.readString();
+        this.location = in.readString();
         this.email = in.readString();
         this.bio = in.readString();
         this.publicRepos = in.readInt();

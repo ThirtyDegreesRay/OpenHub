@@ -39,7 +39,7 @@ public class UserListPresenter extends BasePresenter<IUserListContract.View>
         implements IUserListContract.Presenter{
 
     @AutoAccess UserListFragment.UserListType type;
-    @AutoAccess String owner;
+    @AutoAccess String user;
     @AutoAccess String repo;
 
     private ArrayList<User> users;
@@ -76,9 +76,13 @@ public class UserListPresenter extends BasePresenter<IUserListContract.View>
             @Override
             public Observable<Response<ArrayList<User>>> createObservable(boolean forceNetWork) {
                 if(type.equals(UserListFragment.UserListType.STARGAZERS)){
-                    return getRepoService().getStargazers(forceNetWork, owner, repo, page);
+                    return getRepoService().getStargazers(forceNetWork, user, repo, page);
                 }else if(type.equals(UserListFragment.UserListType.WATCHERS)){
-                    return getRepoService().getWatchers(forceNetWork, owner, repo, page);
+                    return getRepoService().getWatchers(forceNetWork, user, repo, page);
+                }else if(type.equals(UserListFragment.UserListType.FOLLOWERS)){
+                    return getUserService().getFollowers(forceNetWork, user, page);
+                }else if(type.equals(UserListFragment.UserListType.FOLLOWING)){
+                    return getUserService().getFollowing(forceNetWork, user, page);
                 }else{
                     throw new IllegalArgumentException(type.name());
                 }

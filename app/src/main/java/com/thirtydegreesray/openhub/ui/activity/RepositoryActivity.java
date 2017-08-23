@@ -80,7 +80,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
     @Nullable
     @Override
     protected int getContentView() {
-        return R.layout.activity_repository;
+        return R.layout.activity_view_pager;
     }
 
     @Override
@@ -109,7 +109,6 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         toolbar.setTitleTextAppearance(getActivity(), R.style.Toolbar_TitleText);
         toolbar.setSubtitleTextAppearance(getActivity(), R.style.Toolbar_Subtitle);
         setToolbarBackEnable();
-
     }
 
     @Override

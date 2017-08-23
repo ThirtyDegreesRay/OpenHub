@@ -19,7 +19,9 @@ package com.thirtydegreesray.openhub.util;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -68,6 +70,18 @@ public class StringUtils {
             return String.format(Locale.getDefault(), "%.2f MB", sizeM);
         }
         return null;
+    }
+
+    public static String getDateStr(Date date){
+        Locale locale = AppHelper.getLocale(PrefHelper.getLanguage());
+        String regex ;
+        if(locale.equals(Locale.CHINA)){
+            regex = "yyyy-MM-dd";
+        }else{
+            regex = "dd-MM-yyyy";
+        }
+        SimpleDateFormat format = new SimpleDateFormat(regex, locale);
+        return format.format(date);
     }
 
 }

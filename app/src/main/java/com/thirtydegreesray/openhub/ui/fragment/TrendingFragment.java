@@ -116,9 +116,7 @@ public class TrendingFragment extends BaseFragment<TrendingPresenter>
 
         @Override
         public Fragment getItem(int position) {
-            return new RepositoriesFragment()
-                    .setRepositoriesType(RepositoriesFragment.RepositoriesType.TRENDING)
-                    .setLanguage(mLanguageList.get(position));
+            return null;
         }
 
         @Override

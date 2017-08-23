@@ -19,6 +19,7 @@ package com.thirtydegreesray.openhub.mvp.presenter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
@@ -43,10 +44,10 @@ import rx.Observable;
 public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.View>
         implements IRepositoriesContract.Presenter{
 
-    private RepositoriesFragment.RepositoriesType mRepositoriesType;
-    private String mLanguage;
-
     private ArrayList<Repository> repos;
+
+    @AutoAccess RepositoriesFragment.RepositoriesType type;
+    @AutoAccess String user;
 
     @Inject
     public RepositoriesPresenter(DaoSession daoSession) {
@@ -54,34 +55,16 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
     }
 
     @Override
-    public void loadRepositories(@NonNull RepositoriesFragment.RepositoriesType repositoriesType,
-                                 String language, boolean isReLoad, int page) {
-        mRepositoriesType = repositoriesType;
-        mLanguage = language;
-        if (repositoriesType.equals(RepositoriesFragment.RepositoriesType.TRENDING)) {
-            mView.showRepositories(getLanguageRepTest(language));
-        } else {
-            loadRepositories(isReLoad, page);
-        }
-
+    public void onViewInitialized() {
+        super.onViewInitialized();
+        loadRepositories(false, 1);
     }
 
-    @NonNull
-    private ArrayList<Repository> getLanguageRepTest(String language) {
-        ArrayList<Repository> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Repository repository = new Repository();
-            repository.setName(language + "-" + i);
-            list.add(repository);
-        }
-        return list;
-    }
-
-    private void loadRepositories(final boolean isReLoad, final int page) {
+    @Override
+    public void loadRepositories(final boolean isReLoad, final int page) {
         mView.showLoading();
 
-        final boolean readCacheFirst = !isReLoad && page == 1 &&
-                !mRepositoriesType.equals(RepositoriesFragment.RepositoriesType.EXPLORE);
+        final boolean readCacheFirst = !isReLoad && page == 1;
 
         HttpObserver<ArrayList<Repository>> httpObserver = new HttpObserver<ArrayList<Repository>>() {
             @Override
@@ -112,15 +95,24 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
 
     }
 
+    @NonNull
+    private ArrayList<Repository> getLanguageRepTest(String language) {
+        ArrayList<Repository> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Repository repository = new Repository();
+            repository.setName(language + "-" + i);
+            list.add(repository);
+        }
+        return list;
+    }
+
     private Observable<Response<ArrayList<Repository>>> getObservable(boolean forceNetWork, int page){
         String loginedUser = AppData.INSTANCE.getLoggedUser().getLogin();
-        switch (mRepositoriesType){
+        switch (type){
             case OWNED:
-                return getRepoService().getUserRepos(forceNetWork, "", page);
+                return getRepoService().getUserRepos(forceNetWork, user, page);
             case STARRED:
-            case TRENDING:
-            case EXPLORE:
-                return getRepoService().getStarredRepos(forceNetWork, "", page);
+                return getRepoService().getStarredRepos(forceNetWork, user, page);
             default:
                 return null;
         }

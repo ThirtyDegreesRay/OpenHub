@@ -30,6 +30,7 @@ import android.support.annotation.NonNull;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
 
@@ -155,6 +156,26 @@ public class ViewHelper {
     public static void hideKeyboard(@NonNull View view) {
         InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public static void setLongClickCopy(@NonNull TextView textView){
+        textView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                TextView text = (TextView) v;
+                AppHelper.copyToClipboard(text.getContext(), text.getText().toString());
+                return true;
+            }
+        });
+    }
+
+    public static void setTextView(@NonNull TextView textView, String text){
+        if(!StringUtils.isBlank(text)){
+            textView.setText(text);
+            textView.setVisibility(View.VISIBLE);
+        }else{
+            textView.setVisibility(View.GONE);
+        }
     }
 
 }

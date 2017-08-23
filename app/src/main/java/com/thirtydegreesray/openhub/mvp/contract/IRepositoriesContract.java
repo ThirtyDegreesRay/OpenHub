@@ -17,7 +17,6 @@
 package com.thirtydegreesray.openhub.mvp.contract;
 
 import com.thirtydegreesray.openhub.mvp.model.Repository;
-import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 
 import java.util.ArrayList;
 
@@ -38,9 +37,7 @@ public interface IRepositoriesContract {
     }
 
     interface Presenter extends IBaseContract.Presenter<IRepositoriesContract.View> {
-
-        void loadRepositories(RepositoriesFragment.RepositoriesType repositoriesType
-                , String language, boolean isReLoad, int page);
+        void loadRepositories(boolean isReLoad, int page);
     }
 
 }

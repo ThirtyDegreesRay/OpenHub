@@ -16,10 +16,18 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
+import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
+import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.dao.DaoSession;
+import com.thirtydegreesray.openhub.http.core.HttpObserver;
+import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.IProfileContract;
+import com.thirtydegreesray.openhub.mvp.model.User;
 
 import javax.inject.Inject;
+
+import retrofit2.Response;
+import rx.Observable;
 
 /**
  * Created on 2017/7/18.
@@ -30,23 +38,83 @@ import javax.inject.Inject;
 public class ProfilePresenter extends BasePresenter<IProfileContract.View>
         implements IProfileContract.Presenter{
 
+    @AutoAccess String loginId;
+    private User user;
+    private boolean following = false;
+
     @Inject
     public ProfilePresenter(DaoSession daoSession) {
         super(daoSession);
     }
 
     @Override
-    public void loadContent(String name) {
-//        mView.showContent(getContent(name));
-        mView.showContent(name);
+    public void onViewInitialized() {
+        super.onViewInitialized();
+        getProfileInfo();
+        checkFollowingStatus();
     }
 
-    private String getContent(String name){
-        StringBuffer stringBuffer = new StringBuffer();
-        for(int i = 0; i < 200; i++){
-            stringBuffer.append(name).append("-").append(i).append(" ");
-        }
-        return stringBuffer.toString();
+    private void getProfileInfo(){
+        mView.getProgressDialog(getLoadTip()).show();
+        HttpObserver<User> httpObserver = new HttpObserver<User>() {
+            @Override
+            public void onError(Throwable error) {
+                mView.showShortToast(error.getMessage());
+                mView.getProgressDialog(getLoadTip()).dismiss();
+            }
+
+            @Override
+            public void onSuccess(HttpResponse<User> response) {
+                user = response.body();
+                mView.showProfileInfo(user);
+                mView.getProgressDialog(getLoadTip()).dismiss();
+            }
+        };
+        generalRxHttpExecute(new IObservableCreator<User>() {
+            @Override
+            public Observable<Response<User>> createObservable(boolean forceNetWork) {
+                return getUserService().getUser(forceNetWork, loginId);
+            }
+        }, httpObserver, true);
     }
 
+    public String getLoginId() {
+        return loginId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public boolean isFollowing() {
+        return following;
+    }
+
+    public boolean isUser(){
+        return user != null && user.isUser();
+    }
+
+    public boolean isMe(){
+        return user != null && user.getLogin().equals(AppData.INSTANCE.getLoggedUser().getLogin());
+    }
+
+    private void checkFollowingStatus(){
+        checkStatus(
+                getUserService().checkFollowing(loginId),
+                new CheckStatusCallback() {
+                    @Override
+                    public void onChecked(boolean status) {
+                        following = status;
+                        mView.invalidateOptionsMenu();
+                    }
+                }
+        );
+    }
+
+    @Override
+    public void followUser(boolean follow) {
+        following = follow;
+        generalRxHttpExecute(follow ?
+                getUserService().followUser(loginId) : getUserService().unfollowUser(loginId), null);
+    }
 }

@@ -16,12 +16,20 @@
 
 package com.thirtydegreesray.openhub.http;
 
+import android.support.annotation.NonNull;
+
 import com.thirtydegreesray.openhub.mvp.model.User;
 
+import java.util.ArrayList;
+
+import okhttp3.ResponseBody;
 import retrofit2.Response;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -32,12 +40,54 @@ import rx.Observable;
 
 public interface UserService {
 
-    String USERS_START = "s/";
+    @NonNull @GET("user")
+    Observable<Response<User>> getPersonInfo(
+            @Header("forceNetWork") boolean forceNetWork
+    );
 
-    @GET("user{user}")
+    @NonNull @GET("users/{user}")
     Observable<Response<User>> getUser(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("user") String user
+    );
+
+
+    @NonNull @GET("user/following/{user}")
+    Observable<Response<ResponseBody>> checkFollowing(
+            @Path("user") String user
+    );
+
+    /**
+     * Check if one user follows another
+     */
+    @NonNull @GET("users/{user}/following/{targetUser}")
+    Observable<Response<ResponseBody>> checkFollowing(
+            @Path("user") String user,
+            @Path("targetUser") String targetUser
+    );
+
+    @NonNull @PUT("user/following/{user}")
+    Observable<Response<ResponseBody>> followUser(
+            @Path("user") String user
+    );
+
+    @NonNull @DELETE("user/following/{user}")
+    Observable<Response<ResponseBody>> unfollowUser(
+            @Path("user") String user
+    );
+
+    @NonNull @GET("users/{user}/followers")
+    Observable<Response<ArrayList<User>>> getFollowers(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("user") String user,
+            @Query("page") int page
+    );
+
+    @NonNull @GET("users/{user}/following")
+    Observable<Response<ArrayList<User>>> getFollowing(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("user") String user,
+            @Query("page") int page
     );
 
 }

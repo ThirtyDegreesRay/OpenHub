@@ -155,7 +155,7 @@ public class LoginPresenter extends BasePresenter<ILoginContract.View>
         generalRxHttpExecute(new IObservableCreator<User>() {
             @Override
             public Observable<Response<User>> createObservable(boolean forceNetWork) {
-                return getUserService(basicToken.getToken()).getUser(forceNetWork, "");
+                return getUserService(basicToken.getToken()).getPersonInfo(forceNetWork);
             }
         }, httpObserver, false);
 

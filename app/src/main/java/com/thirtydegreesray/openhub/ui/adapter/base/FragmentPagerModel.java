@@ -21,9 +21,11 @@ import android.support.v4.app.Fragment;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
-import com.thirtydegreesray.openhub.ui.fragment.ProfileFragment;
+import com.thirtydegreesray.openhub.mvp.model.User;
+import com.thirtydegreesray.openhub.ui.fragment.ProfileInfoFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoFilesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoInfoFragment;
+import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 
 import java.util.Arrays;
 import java.util.List;
@@ -53,8 +55,16 @@ public class FragmentPagerModel {
     public static List<FragmentPagerModel> createRepoPagerList(Context context, Repository repository){
         return Arrays.asList(
                 new FragmentPagerModel(context.getString(R.string.info), RepoInfoFragment.create(repository)),
-                new FragmentPagerModel(context.getString(R.string.files), RepoFilesFragment.create(repository)),
-                new FragmentPagerModel(context.getString(R.string.commits), new ProfileFragment().setName("profile"))
+                new FragmentPagerModel(context.getString(R.string.files), RepoFilesFragment.create(repository))
+//                new FragmentPagerModel(context.getString(R.string.commits), new ProfileFragment().setName("profile"))
+        );
+    }
+
+    public static List<FragmentPagerModel> createProfilePagerList(Context context, User user){
+        return Arrays.asList(
+                new FragmentPagerModel(context.getString(R.string.info), ProfileInfoFragment.create(user)),
+                new FragmentPagerModel(context.getString(R.string.starred),
+                        RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED, user.getLogin()))
         );
     }
 }

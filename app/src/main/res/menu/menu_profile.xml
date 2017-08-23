@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~    Copyright 2017 ThirtyDegressRay
   ~
@@ -17,16 +18,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="com.thirtydegreesray.openhub.ui.activity.RepositoryActivity">
+      tools:context="com.thirtydegreesray.openhub.ui.activity.ProfileActivity">
     <item
-        android:id="@+id/action_star"
-        android:title="@string/star"
-        android:icon="@drawable/ic_star_title"
-        app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/action_branch"
-        android:title="@string/branch_tip"
-        android:icon="@drawable/ic_branch_title"
+        android:id="@+id/action_follow"
+        android:title="@string/follow"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_share"
@@ -39,13 +34,5 @@
     <item
         android:id="@+id/action_copy_url"
         android:title="@string/copy_url"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_watch"
-        android:title="@string/watch"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/action_fork"
-        android:title="@string/fork"
         app:showAsAction="never"/>
 </menu>

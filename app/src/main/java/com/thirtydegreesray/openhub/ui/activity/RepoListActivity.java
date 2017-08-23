@@ -16,43 +16,35 @@
 
 package com.thirtydegreesray.openhub.ui.activity;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
-import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
+import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 
 /**
- * Created by ThirtyDegreesRay on 2017/8/16 17:22:44
+ * Created by ThirtyDegreesRay on 2017/8/23 18:15:40
  */
 
-public class UserListActivity extends BaseActivity {
+public class RepoListActivity extends BaseActivity {
 
-    public static void show(Activity context, UserListFragment.UserListType type,
-                            String user){
-        show(context, type, user, null);
-    }
-
-    public static void show(Activity context, UserListFragment.UserListType type,
-                            String user, String repo){
-        Intent intent = new Intent(context, UserListActivity.class);
-        intent.putExtras(BundleBuilder.builder()
-                .put("type", type)
-                .put("user", user)
-                .put("repo", repo)
-                .build());
+    public static void show(@NonNull Context context,
+                            @NonNull RepositoriesFragment.RepositoriesType type,
+                            @NonNull String user){
+        Intent intent = new Intent(context, RepoListActivity.class);
+        intent.putExtras(BundleBuilder.builder().put("type", type).put("user", user).build());
         context.startActivity(intent);
     }
 
-    @AutoAccess UserListFragment.UserListType type;
+    @AutoAccess RepositoriesFragment.RepositoriesType type;
     @AutoAccess String user;
-    @AutoAccess String repo;
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
@@ -72,20 +64,16 @@ public class UserListActivity extends BaseActivity {
         setToolbarTiltle(getListTitle());
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.container, UserListFragment.create(type, user, repo))
+                .add(R.id.container, RepositoriesFragment.create(type, user))
                 .commit();
     }
 
     private String getListTitle(){
-        if(type.equals(UserListFragment.UserListType.STARGAZERS)){
-            return getString(R.string.stargazers);
-        }else if(type.equals(UserListFragment.UserListType.WATCHERS)){
-            return getString(R.string.watchers);
-        }else if(type.equals(UserListFragment.UserListType.FOLLOWERS)){
-            return getString(R.string.followers);
-        }else if(type.equals(UserListFragment.UserListType.FOLLOWING)){
-            return getString(R.string.following);
+        if(type.equals(RepositoriesFragment.RepositoriesType.OWNED)){
+            return getString(R.string.owned);
+        }else if(type.equals(RepositoriesFragment.RepositoriesType.STARRED)){
+            return getString(R.string.starred);
         }
-        return getString(R.string.users);
+        return getString(R.string.repositories);
     }
 }

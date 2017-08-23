@@ -99,9 +99,23 @@
         </activity>
 
         <activity
+            android:name=".ui.activity.RepoListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeLight.Indigo"
+            android:label="@string/users">
+        </activity>
+
+        <activity
             android:name=".ui.activity.ViewerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeLight.Indigo">
+        </activity>
+
+        <activity
+            android:name=".ui.activity.ProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeLight.Indigo"
+            android:label="@string/profile">
         </activity>
 
     </application>

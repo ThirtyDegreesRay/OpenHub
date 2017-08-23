@@ -29,6 +29,7 @@ import com.thirtydegreesray.openhub.mvp.presenter.RepositoriesPresenter;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.adapter.RepositoriesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
+import com.thirtydegreesray.openhub.util.BundleBuilder;
 
 import java.util.ArrayList;
 
@@ -45,24 +46,12 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
         OWNED, STARRED, TRENDING, EXPLORE
     }
 
-    public static RepositoriesFragment create(RepositoriesType repositoriesType){
-        return new RepositoriesFragment().setRepositoriesType(repositoriesType);
-    }
-
-    private RepositoriesType repositoriesType;
-
-    private String language;
-
-    @NonNull
-    public RepositoriesFragment setRepositoriesType(RepositoriesType repositoriesType) {
-        this.repositoriesType = repositoriesType;
-        return this;
-    }
-
-    @NonNull
-    public RepositoriesFragment setLanguage(String language) {
-        this.language = language;
-        return this;
+    public static RepositoriesFragment create(@NonNull RepositoriesType type,
+                                              @NonNull String user){
+        RepositoriesFragment fragment = new RepositoriesFragment();
+        fragment.setArguments(BundleBuilder.builder().put("type", type).put("user", user).build()
+        );
+        return fragment;
     }
 
     @Override
@@ -94,12 +83,11 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     protected void initFragment(Bundle savedInstanceState){
         super.initFragment(savedInstanceState);
         setLoadMoreEnable(true);
-        mPresenter.loadRepositories(repositoriesType, language, false, getCurPage());
     }
 
     @Override
     protected void onReLoadData() {
-        mPresenter.loadRepositories(repositoriesType, language, true, 1);
+        mPresenter.loadRepositories(true, 1);
     }
 
     @Override
@@ -116,6 +104,6 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     @Override
     protected void onLoadMore(int page) {
         super.onLoadMore(page);
-        mPresenter.loadRepositories(repositoriesType, language, false, page);
+        mPresenter.loadRepositories(false, page);
     }
 }

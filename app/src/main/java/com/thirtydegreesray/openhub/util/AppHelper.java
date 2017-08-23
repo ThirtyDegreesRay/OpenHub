@@ -67,7 +67,7 @@ public class AppHelper {
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 
-    @NonNull private static Locale getLocale(String language) {
+    @NonNull public static Locale getLocale(String language) {
         Locale locale = null;
         if (language.equalsIgnoreCase("zh-rCN")) {
             locale = Locale.SIMPLIFIED_CHINESE;
@@ -108,6 +108,13 @@ public class AppHelper {
         shareIntent.putExtra(Intent.EXTRA_TEXT, text);
         shareIntent.setType("text/plain");
         context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share_to)));
+    }
+
+    public static void launchEmail(@NonNull Context context, @NonNull String email){
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+        context.startActivity(intent);
     }
 
 }

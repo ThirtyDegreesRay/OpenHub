@@ -47,7 +47,6 @@ import com.thirtydegreesray.openhub.mvp.contract.IMainContract;
 import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.mvp.presenter.MainPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
-import com.thirtydegreesray.openhub.ui.fragment.ProfileFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 
 import java.util.HashMap;
@@ -84,7 +83,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Override
     protected void initActivity() {
         super.initActivity();
-        TAG_MAP.put(R.id.nav_profile, ProfileFragment.class.getSimpleName());
         TAG_MAP.put(R.id.nav_owned, RepositoriesFragment.RepositoriesType.OWNED.name());
         TAG_MAP.put(R.id.nav_starred, RepositoriesFragment.RepositoriesType.STARRED.name());
     }
@@ -173,6 +171,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 break;
 
             case R.id.nav_profile:
+                ProfileActivity.show(getActivity(), AppData.INSTANCE.getLoggedUser().getLogin());
+                break;
             case R.id.nav_owned:
             case R.id.nav_starred:
                 loadFragment(id);
@@ -240,14 +240,14 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @NonNull
     private Fragment getFragment(int itemId){
         switch (itemId){
-            case R.id.nav_profile:
-                return new ProfileFragment().setName("nav_profile");
             case R.id.nav_owned:
-                return RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.OWNED);
+                return RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.OWNED,
+                        AppData.INSTANCE.getLoggedUser().getLogin());
             case R.id.nav_starred:
-                return RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED);
+                return RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED,
+                        AppData.INSTANCE.getLoggedUser().getLogin());
         }
-        return new ProfileFragment().setName("nav_profile");
+        return null;
     }
 
     private void showAndHideFragment(@NonNull Fragment showFragment, @Nullable Fragment hideFragment){

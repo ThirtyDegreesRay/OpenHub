@@ -25,6 +25,7 @@ import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IUserListContract;
 import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.mvp.presenter.UserListPresenter;
+import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.adapter.UsersAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
@@ -39,15 +40,15 @@ public class UserListFragment extends ListFragment<UserListPresenter, UsersAdapt
         implements IUserListContract.View{
 
     public enum UserListType{
-        STARGAZERS, WATCHERS
+        STARGAZERS, WATCHERS, FOLLOWERS, FOLLOWING
     }
 
-    public static UserListFragment create(UserListType type, String owner, String repo){
+    public static UserListFragment create(UserListType type, String user, String repo){
         UserListFragment fragment = new UserListFragment();
         fragment.setArguments(
                 BundleBuilder.builder()
                 .put("type", type)
-                .put("owner", owner)
+                .put("user", user)
                 .put("repo", repo)
                 .build()
         );
@@ -95,5 +96,11 @@ public class UserListFragment extends ListFragment<UserListPresenter, UsersAdapt
     protected void onLoadMore(int page) {
         super.onLoadMore(page);
         mPresenter.loadUsers(page, false);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        super.onItemClick(position);
+        ProfileActivity.show(getActivity(), adapter.getData().get(position).getLogin());
     }
 }
