@@ -37,6 +37,8 @@ public interface IRepositoryContract {
         void loadBranchesAndTags();
         void starRepo(boolean star);
         void watchRepo(boolean watch);
+        void createFork();
+        boolean isForkEnable();
     }
 
 }

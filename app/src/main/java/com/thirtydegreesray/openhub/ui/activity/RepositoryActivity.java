@@ -16,7 +16,7 @@
 
 package com.thirtydegreesray.openhub.ui.activity;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,13 +55,13 @@ import java.util.ArrayList;
 public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         implements IRepositoryContract.View {
 
-    public static void show(@NonNull Activity activity, @NonNull String repoUrl) {
+    public static void show(@NonNull Context activity, @NonNull String repoUrl) {
         Intent intent = new Intent(activity, RepositoryActivity.class);
         intent.putExtra("repoUrl", repoUrl);
         activity.startActivity(intent);
     }
 
-    public static void show(@NonNull Activity activity, @NonNull Repository repository) {
+    public static void show(@NonNull Context activity, @NonNull Repository repository) {
         Intent intent = new Intent(activity, RepositoryActivity.class);
         intent.putExtra("repository", repository);
         activity.startActivity(intent);
@@ -98,7 +98,8 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         menu.findItem(R.id.action_watch).setTitle(mPresenter.isWatched() ?
                 R.string.unwatch : R.string.watch);
         menu.findItem(R.id.action_fork).setTitle(mPresenter.getRepository().isFork() ?
-                R.string.unfork : R.string.fork);
+                R.string.forked : R.string.fork);
+        menu.findItem(R.id.action_fork).setVisible(mPresenter.isForkEnable());
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -110,8 +111,6 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         setToolbarBackEnable();
 
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -141,7 +140,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                         getString(R.string.watched) : getString(R.string.unwatched));
                 return true;
             case R.id.action_fork:
-
+                if(!mPresenter.getRepository().isFork()) forkRepo();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -193,6 +192,25 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         });
 
     }
+
+    private void forkRepo(){
+        new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.waring_dialog_tile)
+                .setMessage(R.string.fork_waring_msg)
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .setPositiveButton(R.string.fork, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mPresenter.createFork();
+                    }
+                }).show();
+    }
+
 
 
 }

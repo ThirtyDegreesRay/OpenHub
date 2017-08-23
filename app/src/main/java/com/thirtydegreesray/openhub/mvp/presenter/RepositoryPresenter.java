@@ -17,6 +17,8 @@
 package com.thirtydegreesray.openhub.mvp.presenter;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
+import com.thirtydegreesray.openhub.AppData;
+import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpProgressSubscriber;
@@ -24,6 +26,7 @@ import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.IRepositoryContract;
 import com.thirtydegreesray.openhub.mvp.model.Branch;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
+import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 
 import java.util.ArrayList;
 
@@ -125,6 +128,44 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
                 getRepoService().watchRepo(repository.getOwner().getLogin(), repository.getName()) :
                 getRepoService().unwatchRepo(repository.getOwner().getLogin(), repository.getName());
         generalRxHttpExecute(observable, null);
+    }
+
+    @Override
+    public void createFork() {
+        mView.getProgressDialog(getLoadTip()).show();
+        HttpObserver<Repository> httpObserver = new HttpObserver<Repository>() {
+            @Override
+            public void onError(Throwable error) {
+                mView.showShortToast(error.getMessage());
+                mView.getProgressDialog(getLoadTip()).dismiss();
+            }
+
+            @Override
+            public void onSuccess(HttpResponse<Repository> response) {
+                if(response.body() != null) {
+                    mView.showShortToast(getString(R.string.forked));
+                    RepositoryActivity.show(getContext(), response.body());
+                } else {
+                    //TODO tip error
+                }
+                mView.getProgressDialog(getLoadTip()).dismiss();
+            }
+        };
+        generalRxHttpExecute(new IObservableCreator<Repository>() {
+            @Override
+            public Observable<Response<Repository>> createObservable(boolean forceNetWork) {
+                return getRepoService().createFork(repository.getOwner().getLogin(), repository.getName());
+            }
+        }, httpObserver);
+    }
+
+    @Override
+    public boolean isForkEnable() {
+        if(repository != null && !repository.isFork() &&
+                !repository.getOwner().getLogin().equals(AppData.INSTANCE.getLoggedUser().getLogin())){
+            return true;
+        }
+        return false;
     }
 
     private void setTags(ArrayList<Branch> list) {
