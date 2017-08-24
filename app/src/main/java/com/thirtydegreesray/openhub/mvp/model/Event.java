@@ -16,6 +16,9 @@
 
 package com.thirtydegreesray.openhub.mvp.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
@@ -24,10 +27,23 @@ import java.util.Date;
  * Created by ThirtyDegreesRay on 2017/8/23 21:11:20
  */
 
-public class Event {
+public class Event implements Parcelable {
+
+    public enum EventType{
+        WatchEvent,
+        CreateEvent,
+        ForkEvent,
+        PushEvent,
+        PullRequestEvent,
+        PullRequestReviewCommentEvent,
+        //made repository public
+        PublicEvent,
+        IssuesEvent,
+        IssueCommentEvent
+    }
 
     private String id;
-    private String type;
+    private EventType type;
     private User actor;
     private Repository repo;
     private User org;
@@ -43,11 +59,11 @@ public class Event {
         this.id = id;
     }
 
-    public String getType() {
+    public EventType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(EventType type) {
         this.type = type;
     }
 
@@ -98,44 +114,49 @@ public class Event {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
-}
 
-//{
-//        "id": "6501666755",
-//        "type": "PushEvent",
-//        "actor": {
-//        "id": 9625508,
-//        "login": "ThirtyDegreesRay",
-//        "display_login": "ThirtyDegreesRay",
-//        "gravatar_id": "",
-//        "url": "https://api.github.com/users/ThirtyDegreesRay",
-//        "avatar_url": "https://avatars.githubusercontent.com/u/9625508?"
-//        },
-//        "repo": {
-//        "id": 96896313,
-//        "name": "ThirtyDegreesRay/OpenHub",
-//        "url": "https://api.github.com/repos/ThirtyDegreesRay/OpenHub"
-//        },
-//        "payload": {
-//        "push_id": 1938913526,
-//        "size": 1,
-//        "distinct_size": 1,
-//        "ref": "refs/heads/master",
-//        "head": "83d02ab5420c8d573b1c49160a5fe8c532c1fae3",
-//        "before": "9e18b40ce4221eb7bca3e24fb300500542d824ca",
-//        "commits": [
-//        {
-//        "sha": "83d02ab5420c8d573b1c49160a5fe8c532c1fae3",
-//        "author": {
-//        "email": "550906320@qq.com",
-//        "name": "13372038054"
-//        },
-//        "message": "develop profile page",
-//        "distinct": true,
-//        "url": "https://api.github.com/repos/ThirtyDegreesRay/OpenHub/commits/83d02ab5420c8d573b1c49160a5fe8c532c1fae3"
-//        }
-//        ]
-//        },
-//        "public": true,
-//        "created_at": "2017-08-23T10:32:25Z"
-//        },
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeInt(this.type == null ? -1 : this.type.ordinal());
+        dest.writeParcelable(this.actor, flags);
+        dest.writeParcelable(this.repo, flags);
+        dest.writeParcelable(this.org, flags);
+        dest.writeParcelable(this.payload, flags);
+        dest.writeByte(this.isPublic ? (byte) 1 : (byte) 0);
+        dest.writeLong(this.createdAt != null ? this.createdAt.getTime() : -1);
+    }
+
+    public Event() {
+    }
+
+    protected Event(Parcel in) {
+        this.id = in.readString();
+        int tmpType = in.readInt();
+        this.type = tmpType == -1 ? null : EventType.values()[tmpType];
+        this.actor = in.readParcelable(User.class.getClassLoader());
+        this.repo = in.readParcelable(Repository.class.getClassLoader());
+        this.org = in.readParcelable(User.class.getClassLoader());
+        this.payload = in.readParcelable(EventPayload.class.getClassLoader());
+        this.isPublic = in.readByte() != 0;
+        long tmpCreatedAt = in.readLong();
+        this.createdAt = tmpCreatedAt == -1 ? null : new Date(tmpCreatedAt);
+    }
+
+    public static final Parcelable.Creator<Event> CREATOR = new Parcelable.Creator<Event>() {
+        @Override
+        public Event createFromParcel(Parcel source) {
+            return new Event(source);
+        }
+
+        @Override
+        public Event[] newArray(int size) {
+            return new Event[size];
+        }
+    };
+}

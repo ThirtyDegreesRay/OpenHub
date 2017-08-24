@@ -36,15 +36,16 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_user_avatar"
-            android:layout_width="38dp"
-            android:layout_height="38dp"
-            app:riv_oval="true"/>
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:riv_oval="true"
+            android:background="?android:selectableItemBackgroundBorderless"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="@dimen/spacing_normal">
+            android:layout_marginStart="@dimen/spacing_normal">
             <TextView
                 android:id="@+id/tv_repo_name"
                 android:layout_width="match_parent"

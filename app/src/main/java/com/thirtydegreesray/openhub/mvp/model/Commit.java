@@ -16,11 +16,14 @@
 
 package com.thirtydegreesray.openhub.mvp.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by ThirtyDegreesRay on 2017/8/23 21:41:08
  */
 
-public class Commit {
+public class Commit implements Parcelable {
 
     private String sha;
     //email&name
@@ -68,4 +71,41 @@ public class Commit {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.sha);
+        dest.writeParcelable(this.author, flags);
+        dest.writeString(this.message);
+        dest.writeByte(this.distinct ? (byte) 1 : (byte) 0);
+        dest.writeString(this.url);
+    }
+
+    public Commit() {
+    }
+
+    protected Commit(Parcel in) {
+        this.sha = in.readString();
+        this.author = in.readParcelable(User.class.getClassLoader());
+        this.message = in.readString();
+        this.distinct = in.readByte() != 0;
+        this.url = in.readString();
+    }
+
+    public static final Parcelable.Creator<Commit> CREATOR = new Parcelable.Creator<Commit>() {
+        @Override
+        public Commit createFromParcel(Parcel source) {
+            return new Commit(source);
+        }
+
+        @Override
+        public Commit[] newArray(int size) {
+            return new Commit[size];
+        }
+    };
 }

@@ -101,4 +101,14 @@ public interface UserService {
             @Query("page") int page
     );
 
+    /**
+     * List events that a user has received
+     */
+    @NonNull @GET("users/{user}/received_events")
+    Observable<Response<ArrayList<Event>>> getNewsEvent(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("user") String user,
+            @Query("page") int page
+    );
+
 }

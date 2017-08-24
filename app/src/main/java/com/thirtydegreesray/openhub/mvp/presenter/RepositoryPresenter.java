@@ -16,8 +16,6 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
-import android.app.Activity;
-
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
@@ -29,8 +27,6 @@ import com.thirtydegreesray.openhub.mvp.contract.IRepositoryContract;
 import com.thirtydegreesray.openhub.mvp.model.Branch;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
-import com.thirtydegreesray.openhub.util.AppHelper;
-import com.thirtydegreesray.openhub.util.GitHubHelper;
 
 import java.util.ArrayList;
 
@@ -51,10 +47,9 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
         implements IRepositoryContract.Presenter {
 
     @AutoAccess(dataName = "repository") Repository repository;
-    @AutoAccess(dataName = "repoUrl") String repoUrl;
 
-    private String owner;
-    private String repoName;
+    @AutoAccess String owner;
+    @AutoAccess String repoName;
 
     private ArrayList<Branch> branches;
     private Branch curBranch;
@@ -79,14 +74,6 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
             getRepoInfo(false);
             checkStatus();
         } else {
-            String fullName = GitHubHelper.getRepoFullNameFromUrl(repoUrl);
-            if(fullName == null){
-                AppHelper.openInBrowser(getContext(), repoUrl);
-                ((Activity)getContext()).finish();
-                return;
-            }
-            owner = fullName.split("/")[0];
-            repoName = fullName.split("/")[1];
             getRepoInfo(true);
         }
     }

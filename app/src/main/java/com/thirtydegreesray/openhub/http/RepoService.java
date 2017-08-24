@@ -19,6 +19,7 @@ package com.thirtydegreesray.openhub.http;
 import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.mvp.model.Branch;
+import com.thirtydegreesray.openhub.mvp.model.Event;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.User;
@@ -170,6 +171,17 @@ public interface RepoService {
     Observable<Response<Repository>> createFork(
             @Path("owner") String owner,
             @Path("repo") String repo
+    );
+
+    /**
+     * List public events for a network of repositories
+     */
+    @NonNull @GET("networks/{owner}/{repo}/events")
+    Observable<Response<ArrayList<Event>>> getRepoEvent(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("owner") String owner,
+            @Path("repo") String repo,
+            @Query("page") int page
     );
 
 }

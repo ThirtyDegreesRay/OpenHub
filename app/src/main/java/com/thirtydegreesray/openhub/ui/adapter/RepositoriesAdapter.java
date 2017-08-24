@@ -26,12 +26,14 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
+import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created on 2017/7/18.
@@ -69,6 +71,11 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+        }
+
+        @OnClick(R.id.iv_user_avatar)
+        public void onUserClick(){
+            ProfileActivity.show(mContext, mData.get(getAdapterPosition()).getOwner().getLogin());
         }
     }
 

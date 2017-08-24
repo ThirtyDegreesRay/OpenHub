@@ -16,6 +16,10 @@
 
 package com.thirtydegreesray.openhub.mvp.contract;
 
+import com.thirtydegreesray.openhub.mvp.model.Event;
+
+import java.util.ArrayList;
+
 /**
  * Created by ThirtyDegreesRay on 2017/8/23 21:51:44
  */
@@ -23,11 +27,11 @@ package com.thirtydegreesray.openhub.mvp.contract;
 public interface IActivityContract {
 
     interface View extends IBaseContract.View{
-
+        void showEvents(ArrayList<Event> events);
     }
 
     interface Presenter extends IBaseContract.Presenter<IActivityContract.View>{
-
+        void loadEvents(boolean isReload, int page);
     }
 
 }

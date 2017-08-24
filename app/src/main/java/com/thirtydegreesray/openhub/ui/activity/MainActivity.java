@@ -22,9 +22,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -47,6 +45,7 @@ import com.thirtydegreesray.openhub.mvp.contract.IMainContract;
 import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.mvp.presenter.MainPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
+import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 
 import java.util.HashMap;
@@ -60,7 +59,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.tab_layout) TabLayout tabLayout;
     @BindView(R.id.frame_layout_content) FrameLayout frameLayoutContent;
-    @BindView(R.id.fab) FloatingActionButton fab;
     @BindView(R.id.nav_view) NavigationView navView;
     @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
 
@@ -83,6 +81,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Override
     protected void initActivity() {
         super.initActivity();
+        TAG_MAP.put(R.id.nav_news, ActivityFragment.class.getSimpleName());
         TAG_MAP.put(R.id.nav_owned, RepositoriesFragment.RepositoriesType.OWNED.name());
         TAG_MAP.put(R.id.nav_starred, RepositoriesFragment.RepositoriesType.STARRED.name());
     }
@@ -106,22 +105,14 @@ public class MainActivity extends BaseActivity<MainPresenter>
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(@NonNull View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
         navView.setNavigationItemSelectedListener(this);
 
-        navView.setCheckedItem(R.id.nav_owned);
-        loadFragment(R.id.nav_owned);
+        navView.setCheckedItem(R.id.nav_news);
+        loadFragment(R.id.nav_news);
 
 
         ImageView avatar = (ImageView) navView.getHeaderView(0).findViewById(R.id.avatar);
@@ -165,14 +156,10 @@ public class MainActivity extends BaseActivity<MainPresenter>
     private void onNavItemSelected(MenuItem item){
         int id = item.getItemId();
         switch (id) {
-
-            case R.id.nav_news:
-//                loadFragment("nav_news");
-                break;
-
             case R.id.nav_profile:
                 ProfileActivity.show(getActivity(), AppData.INSTANCE.getLoggedUser().getLogin());
                 break;
+            case R.id.nav_news:
             case R.id.nav_owned:
             case R.id.nav_starred:
                 loadFragment(id);
@@ -215,31 +202,12 @@ public class MainActivity extends BaseActivity<MainPresenter>
         }
     }
 
-//    private void loadRepositoriesFragment(RepositoriesFragment.RepositoriesType repositoriesType) {
-//        RepositoriesFragment repositoriesFragment = new RepositoriesFragment();
-//        repositoriesFragment.setRepositoriesType(repositoriesType);
-//        loadFragment(repositoriesFragment);
-//    }
-
-
-//    private void loadFragment(Fragment fragment) {
-//        if (fragment instanceof TrendingFragment) {
-//            setToolbarScrollAble(true);
-//            tabLayout.setVisibility(View.VISIBLE);
-//        } else {
-//            setToolbarScrollAble(false);
-//            tabLayout.setVisibility(View.GONE);
-//        }
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.frame_layout_content, fragment)
-//                .commit();
-//    }
-
-
     @NonNull
     private Fragment getFragment(int itemId){
         switch (itemId){
+            case R.id.nav_news:
+                return ActivityFragment.create(ActivityFragment.ActivityType.News,
+                        AppData.INSTANCE.getLoggedUser().getLogin());
             case R.id.nav_owned:
                 return RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.OWNED,
                         AppData.INSTANCE.getLoggedUser().getLogin());

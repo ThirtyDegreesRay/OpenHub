@@ -16,6 +16,9 @@
 
 package com.thirtydegreesray.openhub.mvp.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -24,15 +27,28 @@ import java.util.ArrayList;
  * Created by ThirtyDegreesRay on 2017/8/23 21:33:09
  */
 
-public class EventPayload {
+public class EventPayload implements Parcelable {
 
+    //PushEvent
     @SerializedName("push_id") private String pushId;
     private int size;
     @SerializedName("distinct_size") private int distinctSize;
-    private String ref;
+    private String ref; //PushEvent&CreateEvent
     private String head;
     private String before;
     private ArrayList<Commit> commits;
+
+    //WatchEvent&PullRequestEvent
+    private String action;
+
+    //CreateEvent
+    @SerializedName("ref_type") private String refType;
+    @SerializedName("master_branch") private String masterBranch;
+    private String description;
+    @SerializedName("pusher_type") private String pusherType;
+
+    //ForkEvent,PublicEvent None
+
 
     public String getPushId() {
         return pushId;
@@ -89,25 +105,63 @@ public class EventPayload {
     public void setCommits(ArrayList<Commit> commits) {
         this.commits = commits;
     }
-}
 
-//"payload": {
-//        "push_id": 1938913526,
-//        "size": 1,
-//        "distinct_size": 1,
-//        "ref": "refs/heads/master",
-//        "head": "83d02ab5420c8d573b1c49160a5fe8c532c1fae3",
-//        "before": "9e18b40ce4221eb7bca3e24fb300500542d824ca",
-//        "commits": [
-    //        {
-        //        "sha": "83d02ab5420c8d573b1c49160a5fe8c532c1fae3",
-        //        "author": {
-            //        "email": "550906320@qq.com",
-            //        "name": "13372038054"
-            //        },
-        //        "message": "develop profile page",
-        //        "distinct": true,
-        //        "url": "https://api.github.com/repos/ThirtyDegreesRay/OpenHub/commits/83d02ab5420c8d573b1c49160a5fe8c532c1fae3"
-    //        }
-//        ]
-//        },
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.pushId);
+        dest.writeInt(this.size);
+        dest.writeInt(this.distinctSize);
+        dest.writeString(this.ref);
+        dest.writeString(this.head);
+        dest.writeString(this.before);
+        dest.writeTypedList(this.commits);
+        dest.writeString(this.action);
+        dest.writeString(this.refType);
+        dest.writeString(this.masterBranch);
+        dest.writeString(this.description);
+        dest.writeString(this.pusherType);
+    }
+
+    public EventPayload() {
+    }
+
+    protected EventPayload(Parcel in) {
+        this.pushId = in.readString();
+        this.size = in.readInt();
+        this.distinctSize = in.readInt();
+        this.ref = in.readString();
+        this.head = in.readString();
+        this.before = in.readString();
+        this.commits = in.createTypedArrayList(Commit.CREATOR);
+        this.action = in.readString();
+        this.refType = in.readString();
+        this.masterBranch = in.readString();
+        this.description = in.readString();
+        this.pusherType = in.readString();
+    }
+
+    public static final Parcelable.Creator<EventPayload> CREATOR = new Parcelable.Creator<EventPayload>() {
+        @Override
+        public EventPayload createFromParcel(Parcel source) {
+            return new EventPayload(source);
+        }
+
+        @Override
+        public EventPayload[] newArray(int size) {
+            return new EventPayload[size];
+        }
+    };
+}

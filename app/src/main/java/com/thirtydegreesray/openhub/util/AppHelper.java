@@ -130,7 +130,12 @@ public class AppHelper {
         } else if((loginId = GitHubHelper.getUserFromUrl(uri.toString())) != null){
             ProfileActivity.show(context, loginId);
         } else if(GitHubHelper.isRepoUrl(uri.toString())){
-            RepositoryActivity.show(context, uri.toString());
+            String fullName = GitHubHelper.getRepoFullNameFromUrl(uri.toString());
+            if(StringUtils.isBlank(fullName)){
+                openInBrowser(context, uri.toString());
+            } else {
+                RepositoryActivity.show(context, fullName.split("/")[0], fullName.split("/")[1]);
+            }
         } else {
             openInBrowser(context, uri.toString());
         }

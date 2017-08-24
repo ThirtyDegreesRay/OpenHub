@@ -17,11 +17,11 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_menu_person"
+        android:title="@string/profile"/>
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_menu_person"
-            android:title="@string/profile"/>
         <!--<item-->
             <!--android:id="@+id/nav_notifications"-->
             <!--android:icon="@drawable/ic_menu_notifications"-->
@@ -71,7 +71,6 @@
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_menu_about"
                 android:title="@string/about"/>
-
         </menu>
     </item>
 

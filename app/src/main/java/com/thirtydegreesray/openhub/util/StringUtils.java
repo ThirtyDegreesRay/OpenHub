@@ -16,8 +16,11 @@
 
 package com.thirtydegreesray.openhub.util;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
+import com.thirtydegreesray.openhub.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -72,16 +75,40 @@ public class StringUtils {
         return null;
     }
 
-    public static String getDateStr(Date date){
+    public static String getDateStr(@NonNull Date date){
         Locale locale = AppHelper.getLocale(PrefHelper.getLanguage());
         String regex ;
-        if(locale.equals(Locale.CHINA)){
-            regex = "yyyy-MM-dd";
-        }else{
-            regex = "dd-MM-yyyy";
-        }
+        regex = "yyyy-MM-dd";
+//        if(locale.equals(Locale.CHINA)){
+//            regex = "yyyy-MM-dd";
+//        }else{
+//            regex = "dd-MM-yyyy";
+//        }
         SimpleDateFormat format = new SimpleDateFormat(regex, locale);
         return format.format(date);
+    }
+
+    public static String getNewsTimeStr(@NonNull Context context, @NonNull Date date){
+        long subTime = System.currentTimeMillis() - date.getTime();
+        final long SECONDS_LIMIT = 60 * 1000;
+        final long MINUTES_LIMIT = 60 * SECONDS_LIMIT;
+        final long HOURS_LIMIT = 24 * MINUTES_LIMIT;
+        final long DAYS_LIMIT = 30 * HOURS_LIMIT;
+        if(subTime < SECONDS_LIMIT){
+            return subTime / 1000 + " " + context.getString(R.string.seconds_ago);
+        } else if(subTime < MINUTES_LIMIT){
+            return subTime / SECONDS_LIMIT + " " + context.getString(R.string.minutes_ago);
+        } else if(subTime < HOURS_LIMIT){
+            return subTime / MINUTES_LIMIT + " " + context.getString(R.string.hours_ago);
+        } else if(subTime < DAYS_LIMIT){
+            return subTime / HOURS_LIMIT + " " + context.getString(R.string.days_ago);
+        } else
+            return getDateStr(date);
+    }
+
+    public static String upCaseFisrtChar(String str){
+        if(isBlank(str)) return null;
+        return str.substring(0, 1).toUpperCase().concat(str.substring(1));
     }
 
 }

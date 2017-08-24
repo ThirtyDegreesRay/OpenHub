@@ -40,7 +40,7 @@ public class User implements Parcelable {
     private String name;
     @SerializedName("avatar_url") private String avatarUrl;
     @SerializedName("html_url") private String htmlUrl;
-    private String type;
+    private UserType type;
     private String company;
     private String blog;
     private String location;
@@ -98,11 +98,11 @@ public class User implements Parcelable {
         this.htmlUrl = htmlUrl;
     }
 
-    public String getType() {
+    public UserType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(UserType type) {
         this.type = type;
     }
 
@@ -195,7 +195,7 @@ public class User implements Parcelable {
     }
 
     public boolean isUser(){
-        return UserType.User.name().equals(type);
+        return UserType.User.equals(type);
     }
 
     @Override
@@ -210,7 +210,7 @@ public class User implements Parcelable {
         dest.writeString(this.name);
         dest.writeString(this.avatarUrl);
         dest.writeString(this.htmlUrl);
-        dest.writeString(this.type);
+        dest.writeInt(this.type == null ? -1 : this.type.ordinal());
         dest.writeString(this.company);
         dest.writeString(this.blog);
         dest.writeString(this.location);
@@ -230,7 +230,8 @@ public class User implements Parcelable {
         this.name = in.readString();
         this.avatarUrl = in.readString();
         this.htmlUrl = in.readString();
-        this.type = in.readString();
+        int tmpType = in.readInt();
+        this.type = tmpType == -1 ? null : UserType.values()[tmpType];
         this.company = in.readString();
         this.blog = in.readString();
         this.location = in.readString();

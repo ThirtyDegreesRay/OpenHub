@@ -32,7 +32,7 @@ public class AppConfig {
 
     public final static int HTTP_TIME_OUT = 16 * 1000;
 
-    public final static int MAX_CACHE_SIZE = 8 * 1024 * 1024;
+    public final static int MAX_CACHE_SIZE = 16 * 1024 * 1024;
 
     public final static int CACHE_MAX_AGE = 4 * 7 * 24 * 60 * 60;
 

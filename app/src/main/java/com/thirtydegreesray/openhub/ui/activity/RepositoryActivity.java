@@ -45,6 +45,7 @@ import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.ui.widget.AdaptiveView;
 import com.thirtydegreesray.openhub.util.AppHelper;
+import com.thirtydegreesray.openhub.util.BundleBuilder;
 
 import java.util.ArrayList;
 
@@ -55,9 +56,10 @@ import java.util.ArrayList;
 public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         implements IRepositoryContract.View {
 
-    public static void show(@NonNull Context activity, @NonNull String repoUrl) {
+    public static void show(@NonNull Context activity, @NonNull String owner,
+                            @NonNull String repoName) {
         Intent intent = new Intent(activity, RepositoryActivity.class);
-        intent.putExtra("repoUrl", repoUrl);
+        intent.putExtras(BundleBuilder.builder().put("owner", owner).put("repoName", repoName).build());
         activity.startActivity(intent);
     }
 

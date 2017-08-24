@@ -16,12 +16,14 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
+import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.IActivityContract;
 import com.thirtydegreesray.openhub.mvp.model.Event;
 import com.thirtydegreesray.openhub.mvp.model.User;
+import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 
 import java.util.ArrayList;
 
@@ -37,6 +39,12 @@ import rx.Observable;
 public class ActivityPresenter extends BasePresenter<IActivityContract.View>
         implements IActivityContract.Presenter{
 
+    @AutoAccess ActivityFragment.ActivityType type ;
+    @AutoAccess String user ;
+    @AutoAccess String repo ;
+
+    @AutoAccess ArrayList<Event> events;
+
     @Inject
     public ActivityPresenter(DaoSession daoSession) {
         super(daoSession);
@@ -45,33 +53,60 @@ public class ActivityPresenter extends BasePresenter<IActivityContract.View>
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
-        loadActivities();
+        if(events != null){
+            mView.showEvents(events);
+            return;
+        }
+        loadEvents(false, 1);
     }
 
-    private void loadActivities(){
+    @Override
+    public void loadEvents(final boolean isReload, final int page) {
+        mView.showLoading();
+        final boolean readCacheFirst = !isReload && page == 1;
         HttpObserver<ArrayList<Event>> httpObserver = new HttpObserver<ArrayList<Event>>() {
             @Override
             public void onError(Throwable error) {
-
+                mView.hideLoading();
+                mView.showShortToast(error.getMessage());
             }
 
             @Override
             public void onSuccess(HttpResponse<ArrayList<Event>> response) {
+                mView.hideLoading();
                 correctEvent(response.body());
+                if(events == null || isReload || readCacheFirst){
+                    events = response.body();
+                } else {
+                    events.addAll(response.body());
+                }
+                mView.showEvents(events);
             }
         };
         generalRxHttpExecute(new IObservableCreator<ArrayList<Event>>() {
             @Override
             public Observable<Response<ArrayList<Event>>> createObservable(boolean forceNetWork) {
-                return getUserService().getUserEvents(forceNetWork, "ThirtyDegreesRay", 1);
+                return getObservable(forceNetWork, page);
             }
-        }, httpObserver, true);
+        }, httpObserver, readCacheFirst);
+    }
+
+    private Observable<Response<ArrayList<Event>>> getObservable(boolean forceNetWork, int page){
+        if(type.equals(ActivityFragment.ActivityType.News)){
+            return getUserService().getNewsEvent(forceNetWork, user, page);
+        } else if(type.equals(ActivityFragment.ActivityType.User)){
+            return getUserService().getUserEvents(forceNetWork, user, page);
+        } else if(type.equals(ActivityFragment.ActivityType.Repository)){
+            return getRepoService().getRepoEvent(forceNetWork, user, repo, page);
+        } else {
+            return null;
+        }
     }
 
     private void correctEvent(ArrayList<Event> events){
         for(Event event : events){
-            if(event.getActor() != null) event.getActor().setType(User.UserType.User.name());
-            if(event.getOrg() != null) event.getOrg().setType(User.UserType.User.name());
+            if(event.getActor() != null) event.getActor().setType(User.UserType.User);
+            if(event.getOrg() != null) event.getOrg().setType(User.UserType.Organization);
             if(event.getRepo() != null){
                 String fullName = event.getRepo().getName();
                 event.getRepo().setFullName(fullName);

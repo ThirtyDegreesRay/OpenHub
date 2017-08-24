@@ -56,7 +56,10 @@ public class FragmentPagerModel {
     public static List<FragmentPagerModel> createRepoPagerList(Context context, Repository repository){
         return Arrays.asList(
                 new FragmentPagerModel(context.getString(R.string.info), RepoInfoFragment.create(repository)),
-                new FragmentPagerModel(context.getString(R.string.files), RepoFilesFragment.create(repository))
+                new FragmentPagerModel(context.getString(R.string.files), RepoFilesFragment.create(repository)),
+                new FragmentPagerModel(context.getString(R.string.activity),
+                        ActivityFragment.create(ActivityFragment.ActivityType.Repository,
+                                repository.getOwner().getLogin(), repository.getName()))
 //                new FragmentPagerModel(context.getString(R.string.commits), new ProfileFragment().setName("profile"))
         );
     }
@@ -64,9 +67,10 @@ public class FragmentPagerModel {
     public static List<FragmentPagerModel> createProfilePagerList(Context context, User user){
         return Arrays.asList(
                 new FragmentPagerModel(context.getString(R.string.info), ProfileInfoFragment.create(user)),
+                new FragmentPagerModel(context.getString(R.string.activity),
+                        ActivityFragment.create(ActivityFragment.ActivityType.User, user.getLogin())),
                 new FragmentPagerModel(context.getString(R.string.starred),
-                        RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED, user.getLogin())),
-                new FragmentPagerModel(context.getString(R.string.activity), new ActivityFragment())
+                        RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED, user.getLogin()))
         );
     }
 }

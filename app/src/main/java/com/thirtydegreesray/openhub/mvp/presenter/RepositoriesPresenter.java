@@ -44,7 +44,7 @@ import rx.Observable;
 public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.View>
         implements IRepositoriesContract.Presenter{
 
-    private ArrayList<Repository> repos;
+    @AutoAccess ArrayList<Repository> repos;
 
     @AutoAccess RepositoriesFragment.RepositoriesType type;
     @AutoAccess String user;
@@ -57,6 +57,10 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
+        if(repos != null) {
+            mView.showRepositories(repos);
+            return;
+        }
         loadRepositories(false, 1);
     }
 
