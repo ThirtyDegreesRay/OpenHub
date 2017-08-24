@@ -28,6 +28,9 @@ import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
+import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
+import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 
 import java.util.Locale;
 
@@ -116,5 +119,22 @@ public class AppHelper {
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
         context.startActivity(intent);
     }
+
+
+
+    public static void launchUrl(@NonNull Context context, @NonNull Uri uri){
+        if(StringUtils.isBlank(uri.toString())) return;
+        String loginId;
+        if(GitHubHelper.isImage(uri.toString())){
+            ViewerActivity.showImage(context, uri.toString());
+        } else if((loginId = GitHubHelper.getUserFromUrl(uri.toString())) != null){
+            ProfileActivity.show(context, loginId);
+        } else if(GitHubHelper.isRepoUrl(uri.toString())){
+            RepositoryActivity.show(context, uri.toString());
+        } else {
+            openInBrowser(context, uri.toString());
+        }
+    }
+
 
 }

@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
+import android.app.Activity;
+
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
@@ -27,6 +29,8 @@ import com.thirtydegreesray.openhub.mvp.contract.IRepositoryContract;
 import com.thirtydegreesray.openhub.mvp.model.Branch;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
+import com.thirtydegreesray.openhub.util.AppHelper;
+import com.thirtydegreesray.openhub.util.GitHubHelper;
 
 import java.util.ArrayList;
 
@@ -49,6 +53,9 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
     @AutoAccess(dataName = "repository") Repository repository;
     @AutoAccess(dataName = "repoUrl") String repoUrl;
 
+    private String owner;
+    private String repoName;
+
     private ArrayList<Branch> branches;
     private Branch curBranch;
     private boolean starred;
@@ -66,11 +73,21 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
         super.onViewInitialized();
         if (repository != null) {
             curBranch = new Branch(repository.getDefaultBranch());
+            owner = repository.getOwner().getLogin();
+            repoName = repository.getName();
             mView.showRepo(repository);
-            getRepoInfo(repository.getOwner().getLogin(), repository.getName(), false);
+            getRepoInfo(false);
             checkStatus();
         } else {
-            //TODO load by repo url
+            String fullName = GitHubHelper.getRepoFullNameFromUrl(repoUrl);
+            if(fullName == null){
+                AppHelper.openInBrowser(getContext(), repoUrl);
+                ((Activity)getContext()).finish();
+                return;
+            }
+            owner = fullName.split("/")[0];
+            repoName = fullName.split("/")[1];
+            getRepoInfo(true);
         }
     }
 
@@ -97,14 +114,13 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
                             }
                         }
                 );
-        getRepoService().getBranches(repository.getOwner().getLogin(), repository.getName())
+        getRepoService().getBranches(owner, repoName)
                 .flatMap(new Func1<Response<ArrayList<Branch>>, Observable<Response<ArrayList<Branch>>>>() {
                     @Override
                     public Observable<Response<ArrayList<Branch>>> call(
                             Response<ArrayList<Branch>> arrayListResponse) {
                         branches = arrayListResponse.body();
-                        return getRepoService().getTags(repository.getOwner().getLogin(),
-                                repository.getName());
+                        return getRepoService().getTags(owner, repoName);
                     }
                 })
                 .subscribeOn(Schedulers.io())
@@ -116,8 +132,8 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
     public void starRepo(boolean star) {
         starred = star;
         Observable<Response<ResponseBody>> observable = starred ?
-                getRepoService().starRepo(repository.getOwner().getLogin(), repository.getName()) :
-                getRepoService().unstarRepo(repository.getOwner().getLogin(), repository.getName());
+                getRepoService().starRepo(owner, repoName) :
+                getRepoService().unstarRepo(owner, repoName);
         generalRxHttpExecute(observable, null);
     }
 
@@ -125,8 +141,8 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
     public void watchRepo(boolean watch) {
         watched = watch;
         Observable<Response<ResponseBody>> observable = watched ?
-                getRepoService().watchRepo(repository.getOwner().getLogin(), repository.getName()) :
-                getRepoService().unwatchRepo(repository.getOwner().getLogin(), repository.getName());
+                getRepoService().watchRepo(owner, repoName) :
+                getRepoService().unwatchRepo(owner, repoName);
         generalRxHttpExecute(observable, null);
     }
 
@@ -154,7 +170,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
         generalRxHttpExecute(new IObservableCreator<Repository>() {
             @Override
             public Observable<Response<Repository>> createObservable(boolean forceNetWork) {
-                return getRepoService().createFork(repository.getOwner().getLogin(), repository.getName());
+                return getRepoService().createFork(owner, repoName);
             }
         }, httpObserver);
     }
@@ -174,7 +190,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
         }
     }
 
-    private void getRepoInfo(final String owner, final String repoName, final boolean isShowLoading) {
+    private void getRepoInfo(final boolean isShowLoading) {
         if (isShowLoading) mView.getProgressDialog(getLoadTip()).show();
         HttpObserver<Repository> httpObserver =
                 new HttpObserver<Repository>() {
@@ -188,6 +204,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
                     public void onSuccess(HttpResponse<Repository> response) {
                         if (isShowLoading) mView.getProgressDialog(getLoadTip()).cancel();
                         repository = response.body();
+                        curBranch = new Branch(repository.getDefaultBranch());
                         mView.showRepo(repository);
                         checkStatus();
                     }
@@ -211,7 +228,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
 
     private void checkStarred() {
         checkStatus(
-                getRepoService().checkRepoStarred(repository.getOwner().getLogin(), repository.getName()),
+                getRepoService().checkRepoStarred(owner, repoName),
                 new CheckStatusCallback() {
                     @Override
                     public void onChecked(boolean status) {
@@ -224,7 +241,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
 
     private void checkWatched() {
         checkStatus(
-                getRepoService().checkRepoWatched(repository.getOwner().getLogin(), repository.getName()),
+                getRepoService().checkRepoWatched(owner, repoName),
                 new CheckStatusCallback() {
                     @Override
                     public void onChecked(boolean status) {
@@ -237,6 +254,10 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
 
     public Repository getRepository() {
         return repository;
+    }
+
+    public boolean isFork() {
+        return repository != null && repository.isFork();
     }
 
     public boolean isStarred() {

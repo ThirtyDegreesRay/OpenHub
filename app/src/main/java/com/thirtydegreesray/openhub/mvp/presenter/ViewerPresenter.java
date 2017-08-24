@@ -23,7 +23,7 @@ import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.IViewerContract;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
-import com.thirtydegreesray.openhub.util.MarkdownHelper;
+import com.thirtydegreesray.openhub.util.GitHubHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.io.IOException;
@@ -65,13 +65,13 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
             return;
         }
 
-        if(MarkdownHelper.isArchive(url)){
+        if(GitHubHelper.isArchive(url)){
             mView.showLongToast(getString(R.string.view_archive_file_error));
             mView.hideLoading();
             return;
         }
 
-        if(MarkdownHelper.isImage(url)){
+        if(GitHubHelper.isImage(url)){
             mView.loadImageUrl(fileModel.getDownloadUrl());
             mView.hideLoading();
             return;
@@ -90,7 +90,7 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
                         mView.hideLoading();
                         try {
                             downloadSource = response.body().string();
-                            if(MarkdownHelper.isMarkdown(url)){
+                            if(GitHubHelper.isMarkdown(url)){
                                 mView.loadMdText(downloadSource, htmlUrl);
                             }else{
                                 mView.loadCode(downloadSource, getExtension());
@@ -103,7 +103,7 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
         generalRxHttpExecute(new IObservableCreator<ResponseBody>() {
             @Override
             public Observable<Response<ResponseBody>> createObservable(boolean forceNetWork) {
-                return MarkdownHelper.isMarkdown(url) ?
+                return GitHubHelper.isMarkdown(url) ?
                         getRepoService().getFileAsHtmlStream(forceNetWork, url) :
                         getRepoService().getFileAsStream(forceNetWork, url);
             }
@@ -112,9 +112,9 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
     }
 
     public boolean isCode(){
-        return !MarkdownHelper.isArchive(fileModel.getUrl()) &&
-                !MarkdownHelper.isImage(fileModel.getUrl()) &&
-                !MarkdownHelper.isMarkdown(fileModel.getUrl());
+        return !GitHubHelper.isArchive(fileModel.getUrl()) &&
+                !GitHubHelper.isImage(fileModel.getUrl()) &&
+                !GitHubHelper.isMarkdown(fileModel.getUrl());
     }
 
     public String getDownloadSource() {
@@ -122,6 +122,6 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
     }
 
     public String getExtension(){
-        return MarkdownHelper.getExtension(fileModel.getUrl());
+        return GitHubHelper.getExtension(fileModel.getUrl());
     }
 }

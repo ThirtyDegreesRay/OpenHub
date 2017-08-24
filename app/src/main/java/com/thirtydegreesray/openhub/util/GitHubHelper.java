@@ -16,14 +16,17 @@
 
 package com.thirtydegreesray.openhub.util;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.webkit.MimeTypeMap;
+
+import java.util.regex.Pattern;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/19 17:24:29
  */
 
-public class MarkdownHelper {
+public class GitHubHelper {
 
     private static final String[] IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".gif", ".svg"};
 
@@ -35,6 +38,11 @@ public class MarkdownHelper {
             ".zip", ".7z", ".rar", ".tar.gz", ".tgz", ".tar.Z", ".tar.bz2", ".tbz2", ".tar.lzma",
             ".tlz", ".apk", ".jar", ".dmg"
     };
+
+    private static final Pattern USER_PATTERN =
+            Pattern.compile("(https://)?(www.)?github.com/([a-z]|[A-Z]|\\d)*(/)?");
+    private static final Pattern REPO_PATTERN =
+            Pattern.compile("(https://)?(www.)?github.com/([a-z]|[A-Z]|\\d)*/([a-z]|[A-Z]|\\d|-)*(/)?");
 
     public static boolean isImage(@Nullable String name) {
         if (StringUtils.isBlank(name)) return false;
@@ -76,6 +84,28 @@ public class MarkdownHelper {
     public static String getExtension(@Nullable String name) {
         if (StringUtils.isBlank(name)) return null;
         return MimeTypeMap.getFileExtensionFromUrl(name);
+    }
+
+    public static boolean isUserUrl(@NonNull String url){
+        return USER_PATTERN.matcher(url).matches();
+    }
+
+    public static boolean isRepoUrl(@NonNull String url){
+        return REPO_PATTERN.matcher(url).matches();
+    }
+
+    @Nullable
+    public static String getUserFromUrl(@NonNull String url){
+        if(!isUserUrl(url)) return null;
+        if(url.endsWith("/")) url = url.substring(0, url.length() - 1);
+        return url.substring(url.lastIndexOf("/") + 1);
+    }
+
+    @Nullable
+    public static String getRepoFullNameFromUrl(@NonNull String url){
+        if(!isRepoUrl(url)) return null;
+        if(url.endsWith("/")) url = url.substring(0, url.length() - 1);
+        return url.substring(url.indexOf("com/") + 4);
     }
 
 }

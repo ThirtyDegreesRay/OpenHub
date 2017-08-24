@@ -97,7 +97,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                 R.drawable.ic_star_title : R.drawable.ic_un_star_title);
         menu.findItem(R.id.action_watch).setTitle(mPresenter.isWatched() ?
                 R.string.unwatch : R.string.watch);
-        menu.findItem(R.id.action_fork).setTitle(mPresenter.getRepository().isFork() ?
+        menu.findItem(R.id.action_fork).setTitle(mPresenter.isFork() ?
                 R.string.forked : R.string.fork);
         menu.findItem(R.id.action_fork).setVisible(mPresenter.isForkEnable());
         return super.onPrepareOptionsMenu(menu);

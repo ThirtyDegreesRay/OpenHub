@@ -32,9 +32,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.thirtydegreesray.openhub.R;
-import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 import com.thirtydegreesray.openhub.util.AppHelper;
-import com.thirtydegreesray.openhub.util.MarkdownHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewHelper;
 
@@ -211,12 +209,7 @@ public class CodeWebView extends WebView {
 
     private void startActivity(Uri uri){
         if(uri == null) return;
-        if(MarkdownHelper.isImage(uri.toString())){
-            ViewerActivity.showImage(getContext(), uri.toString());
-        } else {
-            AppHelper.openInBrowser(getContext(), uri.toString());
-        }
-        //TODO 判断是否是仓库地址
+        AppHelper.launchUrl(getContext(), uri);
     }
 }
 

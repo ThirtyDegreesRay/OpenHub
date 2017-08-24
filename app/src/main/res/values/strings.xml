@@ -103,7 +103,8 @@
     <string name="url_invalid">Url is invalid</string>
     <string name="view_archive_file_error">Archive file is not supported, please download the file to view its content.</string>
     <string name="fork_waring_msg">Fork this repository?</string>
-    
+    <string name="invalid_repo_url">Invalid repository url!</string>
+
     <!-- Profile -->
     <string name="follow">Follow</string>
     <string name="followed">Followed</string>
