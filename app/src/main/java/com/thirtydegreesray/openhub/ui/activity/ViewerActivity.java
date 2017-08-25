@@ -79,7 +79,7 @@ public class ViewerActivity extends BaseActivity {
         super.initView(savedInstanceState);
         setToolbarBackEnable();
         String title = fileModel.getName();
-        setToolbarTiltle(title);
+        setToolbarTitle(title);
 
         ViewerFragment fragment = ViewerFragment.create(getActivity(), fileModel);
         getSupportFragmentManager()

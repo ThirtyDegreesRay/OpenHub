@@ -57,7 +57,6 @@ public class RepoFilesPresenter extends BasePresenter<IRepoFilesContract.View>
         super(daoSession);
         cacheMap = new SizedMap<>();
         setEventSubscriber(true);
-
     }
 
     @Override

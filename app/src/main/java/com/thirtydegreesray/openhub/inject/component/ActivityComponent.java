@@ -22,6 +22,7 @@ import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
 import com.thirtydegreesray.openhub.ui.activity.MainActivity;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
+import com.thirtydegreesray.openhub.ui.activity.SearchActivity;
 import com.thirtydegreesray.openhub.ui.activity.SettingsActivity;
 import com.thirtydegreesray.openhub.ui.activity.SplashActivity;
 
@@ -40,4 +41,5 @@ public interface ActivityComponent {
     void inject(SettingsActivity activity);
     void inject(RepositoryActivity activity);
     void inject(ProfileActivity activity);
+    void inject(SearchActivity activity);
 }

@@ -36,7 +36,8 @@ import butterknife.BindView;
  */
 
 public abstract class PagerActivity<P extends BasePresenter> extends BaseActivity<P>
-        implements IBaseContract.View{
+        implements IBaseContract.View,
+        ViewPager.OnPageChangeListener{
 
     @Inject protected FragmentViewPagerAdapter pagerAdapter;
 
@@ -52,7 +53,7 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-
+        viewPager.addOnPageChangeListener(this);
     }
 
     @Override
@@ -73,6 +74,21 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
 
     public interface IFragmentKeyListener {
         boolean onKeyDown(int keyCode, KeyEvent event);
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 
 }

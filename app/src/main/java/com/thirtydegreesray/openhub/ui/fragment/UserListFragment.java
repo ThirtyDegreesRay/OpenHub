@@ -17,12 +17,14 @@
 package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IUserListContract;
+import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.mvp.presenter.UserListPresenter;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
@@ -40,10 +42,11 @@ public class UserListFragment extends ListFragment<UserListPresenter, UsersAdapt
         implements IUserListContract.View{
 
     public enum UserListType{
-        STARGAZERS, WATCHERS, FOLLOWERS, FOLLOWING
+        STARGAZERS, WATCHERS, FOLLOWERS, FOLLOWING, SEARCH
     }
 
-    public static UserListFragment create(UserListType type, String user, String repo){
+    public static UserListFragment create(@NonNull UserListType type, @NonNull String user,
+                                          @NonNull String repo){
         UserListFragment fragment = new UserListFragment();
         fragment.setArguments(
                 BundleBuilder.builder()
@@ -51,6 +54,17 @@ public class UserListFragment extends ListFragment<UserListPresenter, UsersAdapt
                 .put("user", user)
                 .put("repo", repo)
                 .build()
+        );
+        return fragment;
+    }
+
+    public static UserListFragment createForSearch(@NonNull SearchModel searchModel){
+        UserListFragment fragment = new UserListFragment();
+        fragment.setArguments(
+                BundleBuilder.builder()
+                        .put("type", UserListType.SEARCH)
+                        .put("searchModel", searchModel)
+                        .build()
         );
         return fragment;
     }
@@ -73,7 +87,6 @@ public class UserListFragment extends ListFragment<UserListPresenter, UsersAdapt
     protected void initFragment(Bundle savedInstanceState) {
         super.initFragment(savedInstanceState);
         setLoadMoreEnable(true);
-        mPresenter.loadUsers(getCurPage(), false);
     }
 
     @Override

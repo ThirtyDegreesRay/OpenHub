@@ -31,6 +31,7 @@ import com.thirtydegreesray.openhub.common.AppEventBus;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.LoginService;
 import com.thirtydegreesray.openhub.http.RepoService;
+import com.thirtydegreesray.openhub.http.SearchService;
 import com.thirtydegreesray.openhub.http.UserService;
 import com.thirtydegreesray.openhub.http.core.AppRetrofit;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
@@ -72,6 +73,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
 
     private ArrayList<Subscriber<?>> subscribers;
     private boolean isEventSubscriber = false;
+    private boolean isAttached = false;
 
     public BasePresenter(DaoSession daoSession) {
         this.daoSession = daoSession;
@@ -99,6 +101,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
         mView = view;
         if (isEventSubscriber) AppEventBus.INSTANCE.getEventBus().register(this);
         onViewAttached();
+        isAttached = true;
     }
 
     /**
@@ -155,6 +158,13 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
                 .getRetrofit(AppConfig.GITHUB_API_BASE_URL,
                         AppData.INSTANCE.getAuthUser().getAccessToken())
                 .create(RepoService.class);
+    }
+
+    protected SearchService getSearchService() {
+        return AppRetrofit.INSTANCE
+                .getRetrofit(AppConfig.GITHUB_API_BASE_URL,
+                        AppData.INSTANCE.getAuthUser().getAccessToken())
+                .create(SearchService.class);
     }
 
     /**
@@ -300,6 +310,9 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
 
     public void setEventSubscriber(boolean eventSubscriber) {
         isEventSubscriber = eventSubscriber;
+        if(isEventSubscriber && isAttached && !AppEventBus.INSTANCE.getEventBus().isRegistered(this)){
+            AppEventBus.INSTANCE.getEventBus().register(this);
+        }
     }
 
     void checkStatus(@NonNull Observable<Response<ResponseBody>> observable,

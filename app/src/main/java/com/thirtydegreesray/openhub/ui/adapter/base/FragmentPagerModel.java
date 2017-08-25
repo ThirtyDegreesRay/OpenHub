@@ -17,17 +17,21 @@
 package com.thirtydegreesray.openhub.ui.adapter.base;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
+import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 import com.thirtydegreesray.openhub.ui.fragment.ProfileInfoFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoFilesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoInfoFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
+import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -73,4 +77,15 @@ public class FragmentPagerModel {
                         RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED, user.getLogin()))
         );
     }
+
+    public static List<FragmentPagerModel> createSearchPagerList(
+            @NonNull Context context, @NonNull ArrayList<SearchModel> searchModels){
+        return Arrays.asList(
+                new FragmentPagerModel(context.getString(R.string.repositories),
+                        RepositoriesFragment.createForSearch(searchModels.get(0))),
+                new FragmentPagerModel(context.getString(R.string.users),
+                        UserListFragment.createForSearch(searchModels.get(1)))
+        );
+    }
+
 }

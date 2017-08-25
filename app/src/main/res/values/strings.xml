@@ -69,9 +69,9 @@
 
     <!-- Repository -->
     <string name="repository">Repository</string>
-    <string name="info">INFO</string>
-    <string name="files">FILES</string>
-    <string name="commits">COMMITS</string>
+    <string name="info">Info</string>
+    <string name="files">Files</string>
+    <string name="commits">Commits</string>
 
     <string name="star">Star</string>
     <string name="unstar">Unstar</string>
@@ -125,5 +125,26 @@
     <string name="days_ago">days ago</string>
 
     <string name="search">Search</string>
+    <string name="sort">Sort</string>
+
+    <string name="best_match">Best match</string>
+    <string name="most_stars">Most stars</string>
+    <string name="fewest_stars">Fewest stars</string>
+    <string name="most_forks">Most forks</string>
+    <string name="fewest_forks">Fewest forks</string>
+    <string name="recently_updated">Recently updated</string>
+    <string name="least_recently_updated">Least recently updated</string>
+
+    <string name="most_followers">Most followers</string>
+    <string name="fewest_followers">Fewest followers</string>
+    <string name="most_recently_joined">Most recently joined</string>
+    <string name="least_recently_joined">Least recently joined</string>
+    <string name="most_repositories">Most repositories</string>
+    <string name="fewest_repositories">Fewest repositories</string>
+
+    <string name="recently_indexed">Recently indexed</string>
+    <string name="least_recently_indexed">Least recently indexed</string>
+
+    <string name="invalid_query">Invalid query text!</string>
 
 </resources>

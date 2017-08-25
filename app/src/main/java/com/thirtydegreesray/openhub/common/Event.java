@@ -17,6 +17,7 @@
 package com.thirtydegreesray.openhub.common;
 
 import com.thirtydegreesray.openhub.mvp.model.Repository;
+import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 
 /**
  * 事件
@@ -56,6 +57,14 @@ public class Event {
 
         public RepoInfoUpdatedEvent(Repository repository) {
             this.repository = repository;
+        }
+    }
+
+    public static class SearchEvent{
+        public SearchModel searchModel;
+
+        public SearchEvent(SearchModel searchModel) {
+            this.searchModel = searchModel;
         }
     }
 

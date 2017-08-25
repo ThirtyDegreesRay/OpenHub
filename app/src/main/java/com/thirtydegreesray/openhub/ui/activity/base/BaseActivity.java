@@ -52,7 +52,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import es.dmoral.toasty.Toasty;
 
 /**
  * This is base activity to set some common things.
@@ -171,15 +170,21 @@ BaseActivity<P extends IBaseContract.Presenter>
         }
     }
 
-    protected void setToolbarTiltle(String title) {
+    protected void setToolbarTitle(String title) {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
         }
     }
 
-    protected void setToolbarTiltle(String title, String subTitle) {
+    protected void setToolbarTitle(String title, String subTitle) {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
+            getSupportActionBar().setSubtitle(subTitle);
+        }
+    }
+
+    protected void setToolbarSubTitle(String subTitle) {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setSubtitle(subTitle);
         }
     }

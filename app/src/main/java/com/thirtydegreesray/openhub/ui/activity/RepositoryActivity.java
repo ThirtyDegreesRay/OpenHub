@@ -149,7 +149,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
 
     @Override
     public void showRepo(Repository repo) {
-        setToolbarTiltle(repo.getFullName(), repo.getDefaultBranch());
+        setToolbarTitle(repo.getFullName(), repo.getDefaultBranch());
         if (pagerAdapter.getCount() == 0) {
             pagerAdapter.setPagerList(FragmentPagerModel.createRepoPagerList(getActivity(), repo));
             tabLayout.setVisibility(View.VISIBLE);

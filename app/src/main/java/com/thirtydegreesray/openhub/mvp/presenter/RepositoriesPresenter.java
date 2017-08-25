@@ -21,12 +21,17 @@ import android.support.annotation.Nullable;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppData;
+import com.thirtydegreesray.openhub.common.Event;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.IRepositoriesContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
+import com.thirtydegreesray.openhub.mvp.model.SearchModel;
+import com.thirtydegreesray.openhub.mvp.model.SearchResult;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
@@ -49,6 +54,8 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
     @AutoAccess RepositoriesFragment.RepositoriesType type;
     @AutoAccess String user;
 
+    @AutoAccess SearchModel searchModel;
+
     @Inject
     public RepositoriesPresenter(DaoSession daoSession) {
         super(daoSession);
@@ -57,6 +64,9 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
+        if(type.equals(RepositoriesFragment.RepositoriesType.SEARCH)){
+            setEventSubscriber(true);
+        }
         if(repos != null) {
             mView.showRepositories(repos);
             return;
@@ -66,8 +76,11 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
 
     @Override
     public void loadRepositories(final boolean isReLoad, final int page) {
+        if(type.equals(RepositoriesFragment.RepositoriesType.SEARCH)){
+            searchRepos(page);
+            return;
+        }
         mView.showLoading();
-
         final boolean readCacheFirst = !isReLoad && page == 1;
 
         HttpObserver<ArrayList<Repository>> httpObserver = new HttpObserver<ArrayList<Repository>>() {
@@ -99,17 +112,6 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
 
     }
 
-    @NonNull
-    private ArrayList<Repository> getLanguageRepTest(String language) {
-        ArrayList<Repository> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Repository repository = new Repository();
-            repository.setName(language + "-" + i);
-            list.add(repository);
-        }
-        return list;
-    }
-
     private Observable<Response<ArrayList<Repository>>> getObservable(boolean forceNetWork, int page){
         String loginedUser = AppData.INSTANCE.getLoggedUser().getLogin();
         switch (type){
@@ -122,5 +124,43 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
         }
     }
 
+    private void searchRepos(final int page){
+        mView.showLoading();
+
+        HttpObserver<SearchResult<Repository>> httpObserver =
+                new HttpObserver<SearchResult<Repository>>() {
+            @Override
+            public void onError(@NonNull Throwable error) {
+                mView.hideLoading();
+                mView.showLoadError(error.getMessage());
+            }
+
+            @Override
+            public void onSuccess(@NonNull HttpResponse<SearchResult<Repository>> response) {
+                mView.hideLoading();
+                if (repos == null || page == 1) {
+                    repos = response.body().getItems();
+                }else{
+                    repos.addAll(response.body().getItems());
+                }
+                mView.showRepositories(repos);
+            }
+        };
+        generalRxHttpExecute(new IObservableCreator<SearchResult<Repository>>() {
+            @Nullable
+            @Override
+            public Observable<Response<SearchResult<Repository>>> createObservable(boolean forceNetWork) {
+                return getSearchService().searchRepos(searchModel.getQuery(), searchModel.getSort(),
+                        searchModel.getOrder(), page);
+            }
+        }, httpObserver);
+    }
+
+    @Subscribe
+    public void onSearchEvent(@NonNull Event.SearchEvent searchEvent){
+        if (!searchEvent.searchModel.getType().equals(SearchModel.SearchType.Repository)) return;
+        this.searchModel = searchEvent.searchModel;
+        searchRepos(1);
+    }
 
 }

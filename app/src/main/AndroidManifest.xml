@@ -118,6 +118,13 @@
             android:label="@string/profile">
         </activity>
 
+        <activity
+            android:name=".ui.activity.SearchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeLight.Indigo"
+            android:label="@string/search">
+        </activity>
+
     </application>
 
 </manifest>

@@ -69,7 +69,7 @@ public class UserListActivity extends BaseActivity {
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         setToolbarBackEnable();
-        setToolbarTiltle(getListTitle());
+        setToolbarTitle(getListTitle());
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.container, UserListFragment.create(type, user, repo))

@@ -25,6 +25,7 @@ import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IRepositoriesContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
+import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.presenter.RepositoriesPresenter;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.adapter.RepositoriesAdapter;
@@ -43,13 +44,23 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
             implements IRepositoriesContract.View{
 
     public enum RepositoriesType{
-        OWNED, STARRED, TRENDING, EXPLORE
+        OWNED, STARRED, TRENDING, SEARCH
     }
 
     public static RepositoriesFragment create(@NonNull RepositoriesType type,
                                               @NonNull String user){
         RepositoriesFragment fragment = new RepositoriesFragment();
-        fragment.setArguments(BundleBuilder.builder().put("type", type).put("user", user).build()
+        fragment.setArguments(BundleBuilder.builder().put("type", type).put("user", user).build());
+        return fragment;
+    }
+
+    public static RepositoriesFragment createForSearch(@NonNull SearchModel searchModel){
+        RepositoriesFragment fragment = new RepositoriesFragment();
+        fragment.setArguments(
+                BundleBuilder.builder()
+                        .put("type", RepositoriesType.SEARCH)
+                        .put("searchModel", searchModel)
+                        .build()
         );
         return fragment;
     }
