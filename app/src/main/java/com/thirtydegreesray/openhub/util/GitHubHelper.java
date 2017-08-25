@@ -39,6 +39,8 @@ public class GitHubHelper {
             ".tlz", ".apk", ".jar", ".dmg"
     };
 
+    public static final Pattern REPO_FULL_NAME_PATTERN =
+            Pattern.compile("([a-z]|[A-Z]|\\d)*/([a-z]|[A-Z]|\\d|-)*");
     private static final Pattern USER_PATTERN =
             Pattern.compile("(https://)?(www.)?github.com/([a-z]|[A-Z]|\\d)*(/)?");
     private static final Pattern REPO_PATTERN =

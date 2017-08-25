@@ -124,4 +124,6 @@
     <string name="hours_ago">hours ago</string>
     <string name="days_ago">days ago</string>
 
+    <string name="search">Search</string>
+
 </resources>

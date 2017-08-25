@@ -40,4 +40,12 @@
         app:tabGravity="fill"
         android:visibility="gone"/>
 
+    <android.support.v7.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionSearch"
+        app:defaultQueryHint="搜索"
+        android:visibility="gone"/>
+
 </android.support.design.widget.AppBarLayout>

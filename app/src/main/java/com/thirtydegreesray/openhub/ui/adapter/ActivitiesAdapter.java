@@ -17,7 +17,11 @@
 package com.thirtydegreesray.openhub.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.TextView;
 
@@ -28,7 +32,10 @@ import com.thirtydegreesray.openhub.mvp.model.Event;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
+import com.thirtydegreesray.openhub.util.GitHubHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
+
+import java.util.regex.Matcher;
 
 import javax.inject.Inject;
 
@@ -67,70 +74,47 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
         holder.userName.setText(model.getActor().getLogin());
         holder.time.setText(StringUtils.getNewsTimeStr(mContext, model.getCreatedAt()));
 
+        holder.action.setVisibility(View.VISIBLE);
+        holder.desc.setVisibility(View.GONE);
+        String action = "";
         if(Event.EventType.WatchEvent.equals(model.getType())){
-            holder.action.setVisibility(View.VISIBLE);
-            holder.desc.setVisibility(View.GONE);
-            String action = model.getPayload().getAction() + " " + model.getRepo().getFullName();
-            action = StringUtils.upCaseFisrtChar(action);
-            holder.action.setText(action);
+            action = model.getPayload().getAction() + " " + model.getRepo().getFullName();
         } else if(Event.EventType.CreateEvent.equals(model.getType())){
-            holder.action.setVisibility(View.VISIBLE);
-            holder.desc.setVisibility(View.GONE);
-            String action = "Created repository " + model.getRepo().getFullName();
-            holder.action.setText(action);
+            action = "Created repository " + model.getRepo().getFullName();
         } else if(Event.EventType.ForkEvent.equals(model.getType())){
-            holder.action.setVisibility(View.VISIBLE);
-            holder.desc.setVisibility(View.GONE);
             String oriRepo = model.getRepo().getFullName();
             String newRepo = model.getActor().getLogin() + "/" + model.getRepo().getName();
-            String action = "Forked " + oriRepo + " to " + newRepo;
-            holder.action.setText(action);
+            action = "Forked " + oriRepo + " to " + newRepo;
         } else if(Event.EventType.PushEvent.equals(model.getType())){
-            holder.action.setVisibility(View.VISIBLE);
-            holder.desc.setVisibility(View.GONE);
             String ref = model.getPayload().getRef();
             ref = ref.substring(ref.lastIndexOf("/") + 1);
-            String action = "Push to " + ref +
+            action = "Push to " + ref +
                     " at " + model.getRepo().getFullName();
-            holder.action.setText(action);
         } else if(Event.EventType.PullRequestEvent.equals(model.getType())){
-            holder.action.setVisibility(View.VISIBLE);
-            holder.desc.setVisibility(View.GONE);
-            String action = model.getPayload().getAction() + " pull request " + model.getRepo().getFullName();
-            action = StringUtils.upCaseFisrtChar(action);
-            holder.action.setText(action);
-//            opened pull request MobDevGroup/AndroidResources#2
+            action = model.getPayload().getAction() + " pull request " + model.getRepo().getFullName();
         } else if(Event.EventType.PullRequestReviewCommentEvent.equals(model.getType())){
-            holder.action.setVisibility(View.VISIBLE);
-            holder.desc.setVisibility(View.GONE);
-            String action = model.getPayload().getAction() + " pull request review comment at"
+            action = model.getPayload().getAction() + " pull request review comment at"
                     + model.getRepo().getFullName();
-            action = StringUtils.upCaseFisrtChar(action);
-            holder.action.setText(action);
-//            opened pull request MobDevGroup/AndroidResources#2
         } else if(Event.EventType.PublicEvent.equals(model.getType())){
-            holder.action.setVisibility(View.VISIBLE);
-            holder.desc.setVisibility(View.GONE);
-            String action = "Made " + model.getRepo().getFullName() + "public";
-            holder.action.setText(action);
+            action = "Made " + model.getRepo().getFullName() + "public";
         } else if(Event.EventType.IssuesEvent.equals(model.getType())){
-            holder.action.setVisibility(View.VISIBLE);
-            holder.desc.setVisibility(View.GONE);
-            String action = model.getPayload().getAction() + " issue at " +
+            action = model.getPayload().getAction() + " issue at " +
                     model.getRepo().getFullName();
-            action = StringUtils.upCaseFisrtChar(action);
-            holder.action.setText(action);
         }else if(Event.EventType.IssueCommentEvent.equals(model.getType())){
-            holder.action.setVisibility(View.VISIBLE);
-            holder.desc.setVisibility(View.GONE);
-            String action = model.getPayload().getAction() + " issue comment at " +
+            action = model.getPayload().getAction() + " issue comment at " +
                      model.getRepo().getFullName();
-            action = StringUtils.upCaseFisrtChar(action);
-            holder.action.setText(action);
         } else {
-            holder.action.setVisibility(View.VISIBLE);
+            holder.action.setVisibility(View.GONE);
             holder.desc.setVisibility(View.GONE);
         }
+        action = StringUtils.upCaseFisrtChar(action);
+        SpannableStringBuilder span = new SpannableStringBuilder(action);
+        Matcher matcher = GitHubHelper.REPO_FULL_NAME_PATTERN.matcher(action);
+        for(;matcher.find();){
+            span.setSpan(new StyleSpan(Typeface.BOLD), matcher.start(), matcher.end(),
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        holder.action.setText(span);
 
     }
 
