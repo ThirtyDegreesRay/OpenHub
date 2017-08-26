@@ -31,6 +31,7 @@ import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.mvp.presenter.ProfileInfoPresenter;
 import com.thirtydegreesray.openhub.ui.activity.RepoListActivity;
 import com.thirtydegreesray.openhub.ui.activity.UserListActivity;
+import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
@@ -85,9 +86,11 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
     }
 
     @OnClick({R.id.followers_lay, R.id.following_lay, R.id.repos_lay, R.id.gists_lay,
-                R.id.email, R.id.link})
+                R.id.email, R.id.link, R.id.avatar})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.avatar:
+                break;
             case R.id.followers_lay:
                 UserListActivity.show(getActivity(), UserListFragment.UserListType.FOLLOWERS,
                         mPresenter.getUser().getLogin());

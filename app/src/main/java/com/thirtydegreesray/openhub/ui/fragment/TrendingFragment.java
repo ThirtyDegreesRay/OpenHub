@@ -17,11 +17,8 @@
 package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.thirtydegreesray.openhub.R;
@@ -30,10 +27,9 @@ import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.ITrendingContract;
 import com.thirtydegreesray.openhub.mvp.presenter.TrendingPresenter;
+import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
+import com.thirtydegreesray.openhub.ui.adapter.base.FragmentViewPagerAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
-
-import java.util.Arrays;
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -46,17 +42,14 @@ import butterknife.BindView;
 public class TrendingFragment extends BaseFragment<TrendingPresenter>
         implements ITrendingContract.View {
 
-    @Nullable @BindView(R.id.view_pager) ViewPager viewPager;
+    @BindView(R.id.view_pager) ViewPager viewPager;
     private TabLayout tabLayout;
+    private FragmentViewPagerAdapter adapter;
 
-    private final List<String> languageList = Arrays.asList(
-            "All", "Java"
-            , "C++", "C", "C#"
-            , "Xml", "Html", "JavaScript"
-    );
-
-    public void setTabLayout(TabLayout tabLayout) {
-        this.tabLayout = tabLayout;
+    public static TrendingFragment create(@NonNull TabLayout tabLayout){
+        TrendingFragment fragment = new TrendingFragment();
+        fragment.tabLayout = tabLayout;
+        return fragment;
     }
 
     @Override
@@ -75,8 +68,8 @@ public class TrendingFragment extends BaseFragment<TrendingPresenter>
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager(), languageList);
+        adapter = new FragmentViewPagerAdapter(getFragmentManager());
+        adapter.setPagerList(FragmentPagerModel.createTrendingPagerList(getContext()));
         viewPager.setAdapter(adapter);
 
         tabLayout.setupWithViewPager(viewPager);
@@ -96,34 +89,6 @@ public class TrendingFragment extends BaseFragment<TrendingPresenter>
 
             }
         });
-
-
-    }
-
-    private class ViewPagerAdapter extends FragmentStatePagerAdapter{
-
-        private List<String> mLanguageList;
-
-        public ViewPagerAdapter(FragmentManager fm, List<String> languageList) {
-            super(fm);
-            mLanguageList = languageList;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mLanguageList.get(position);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public int getCount() {
-            return mLanguageList.size();
-        }
-
 
     }
 

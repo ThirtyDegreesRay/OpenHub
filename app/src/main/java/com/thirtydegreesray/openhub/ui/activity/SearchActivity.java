@@ -104,6 +104,7 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
         SearchView searchView =
                 (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setOnQueryTextListener(this);
+        searchView.setQuery(mPresenter.getSearchModels().get(0).getQuery(), false);
         if(isInputMode) {
             MenuItemCompat.expandActionView(searchItem);
         } else {
@@ -130,11 +131,14 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         if(isInputMode){
-            menu.findItem(R.id.action_info).setVisible(true);
+            menu.findItem(R.id.action_info).setVisible(false);
             menu.findItem(R.id.action_sort).setVisible(false);
+            SearchView searchView = (SearchView) MenuItemCompat.
+                    getActionView(menu.findItem(R.id.action_search));
+            searchView.setQuery(mPresenter.getSearchModels().get(0).getQuery(), false);
         } else {
             menu.findItem(R.id.action_info).setVisible(false);
-            menu.findItem(R.id.action_sort).setVisible(true);
+            menu.findItem(R.id.action_sort).setVisible(pagerAdapter.getCount() != 0);
         }
         return super.onPrepareOptionsMenu(menu);
     }

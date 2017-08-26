@@ -39,7 +39,8 @@ public class Event implements Parcelable {
         //made repository public
         PublicEvent,
         IssuesEvent,
-        IssueCommentEvent
+        IssueCommentEvent,
+        MemberEvent,
     }
 
     private String id;

@@ -55,6 +55,7 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
     @AutoAccess String user;
 
     @AutoAccess SearchModel searchModel;
+    @AutoAccess String since;
 
     @Inject
     public RepositoriesPresenter(DaoSession daoSession) {
@@ -81,7 +82,8 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
             return;
         }
         mView.showLoading();
-        final boolean readCacheFirst = !isReLoad && page == 1;
+        final boolean readCacheFirst = !isReLoad && page == 1 &&
+                !type.equals(RepositoriesFragment.RepositoriesType.TRENDING);
 
         HttpObserver<ArrayList<Repository>> httpObserver = new HttpObserver<ArrayList<Repository>>() {
             @Override
@@ -119,6 +121,8 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
                 return getRepoService().getUserRepos(forceNetWork, user, page);
             case STARRED:
                 return getRepoService().getStarredRepos(forceNetWork, user, page);
+            case TRENDING:
+                return getOpenHubService().getTrendingRepos(since);
             default:
                 return null;
         }

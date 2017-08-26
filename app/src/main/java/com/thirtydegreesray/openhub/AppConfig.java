@@ -30,6 +30,13 @@ public class AppConfig {
 
     public final static String GITHUB_CONTENT_BASE_URL = "https://raw.githubusercontent.com/";
 
+    /**
+     * This link are for OpenHub only. Please do not use these endpoints in your applications.
+     * If you want to get trending repositories, you may stand up your own instance.
+     * https://github.com/thedillonb/GitHub-Trending
+     */
+    public final static String OPENHUB_BASE_URL = "http://openhub.raysus.win:3000/";
+
     public final static int HTTP_TIME_OUT = 16 * 1000;
 
     public final static int MAX_CACHE_SIZE = 16 * 1024 * 1024;

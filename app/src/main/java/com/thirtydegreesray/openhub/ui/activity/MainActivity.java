@@ -26,10 +26,8 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -50,6 +48,7 @@ import com.thirtydegreesray.openhub.mvp.presenter.MainPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
+import com.thirtydegreesray.openhub.ui.fragment.TrendingFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -182,11 +181,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
             case R.id.nav_starred:
                 loadFragment(id);
                 break;
-
             case R.id.nav_trending:
-//                TrendingFragment fragment = new TrendingFragment();
-//                fragment.setTabLayout(tabLayout);
-//                loadFragment(fragment);
+                TrendingActivity.show(getActivity());
                 break;
 
             case R.id.nav_settings:
@@ -232,6 +228,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
             case R.id.nav_starred:
                 return RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED,
                         AppData.INSTANCE.getLoggedUser().getLogin());
+            case R.id.nav_trending:
+                return TrendingFragment.create(tabLayout);
         }
         return null;
     }

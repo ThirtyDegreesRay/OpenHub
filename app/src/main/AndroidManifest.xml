@@ -125,6 +125,13 @@
             android:label="@string/search">
         </activity>
 
+        <activity
+            android:name=".ui.activity.TrendingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeLight.Indigo"
+            android:label="@string/trending">
+        </activity>
+
     </application>
 
 </manifest>

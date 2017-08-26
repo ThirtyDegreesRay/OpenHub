@@ -29,6 +29,7 @@ import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
+import com.thirtydegreesray.openhub.util.StringUtils;
 
 import javax.inject.Inject;
 
@@ -64,6 +65,7 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
 
         @Nullable @BindView(R.id.iv_user_avatar) ImageView ivUserAvatar;
         @Nullable @BindView(R.id.tv_repo_name) TextView tvRepoName;
+        @Nullable @BindView(R.id.tv_language) TextView tvLanguage;
         @Nullable @BindView(R.id.tv_repo_description) TextView tvRepoDescription;
         @Nullable @BindView(R.id.tv_star_num) TextView tvStarNum;
         @Nullable @BindView(R.id.tv_fork_num) TextView tvForkNum;
@@ -84,6 +86,7 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
         super.onBindViewHolder(holder, position);
         Repository repository = mData.get(position);
         holder.tvRepoName.setText(repository.getName());
+        holder.tvLanguage.setText(StringUtils.isBlank(repository.getLanguage()) ? "" : repository.getLanguage());
         holder.tvRepoDescription.setText(repository.getDescription());
         holder.tvStarNum.setText(String.valueOf(repository.getStargazersCount()));
         holder.tvForkNum.setText(String.valueOf(repository.getForksCount()));

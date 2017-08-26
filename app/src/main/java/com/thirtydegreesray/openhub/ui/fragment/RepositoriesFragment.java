@@ -65,6 +65,17 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
         return fragment;
     }
 
+    public static RepositoriesFragment createForTrending(@NonNull String since){
+        RepositoriesFragment fragment = new RepositoriesFragment();
+        fragment.setArguments(
+                BundleBuilder.builder()
+                        .put("type", RepositoriesType.TRENDING)
+                        .put("since", since)
+                        .build()
+        );
+        return fragment;
+    }
+
     @Override
     public void showRepositories(ArrayList<Repository> repositoryList) {
         adapter.setData(repositoryList);

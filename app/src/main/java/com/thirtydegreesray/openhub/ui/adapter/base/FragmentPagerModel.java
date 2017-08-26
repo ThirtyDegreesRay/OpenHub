@@ -88,4 +88,16 @@ public class FragmentPagerModel {
         );
     }
 
+    public static List<FragmentPagerModel> createTrendingPagerList(
+            @NonNull Context context){
+        return Arrays.asList(
+                new FragmentPagerModel(context.getString(R.string.daily),
+                        RepositoriesFragment.createForTrending("daily")),
+                new FragmentPagerModel(context.getString(R.string.weekly),
+                        RepositoriesFragment.createForTrending("weekly")),
+                new FragmentPagerModel(context.getString(R.string.monthly),
+                        RepositoriesFragment.createForTrending("monthly"))
+        );
+    }
+
 }

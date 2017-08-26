@@ -67,6 +67,13 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
     public void onViewInitialized() {
         super.onViewInitialized();
         if (repository != null) {
+            //from trending
+            if(repository.getFullName() == null){
+                owner = repository.getOwner().getLogin();
+                repoName = repository.getName();
+                getRepoInfo(true);
+                return;
+            }
             curBranch = new Branch(repository.getDefaultBranch());
             owner = repository.getOwner().getLogin();
             repoName = repository.getName();

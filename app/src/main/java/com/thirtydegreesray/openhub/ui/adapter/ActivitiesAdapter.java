@@ -77,40 +77,44 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
         holder.action.setVisibility(View.VISIBLE);
         holder.desc.setVisibility(View.GONE);
         String action = "";
-        if(Event.EventType.WatchEvent.equals(model.getType())){
+        if (Event.EventType.WatchEvent.equals(model.getType())) {
             action = model.getPayload().getAction() + " " + model.getRepo().getFullName();
-        } else if(Event.EventType.CreateEvent.equals(model.getType())){
+        } else if (Event.EventType.CreateEvent.equals(model.getType())) {
             action = "Created repository " + model.getRepo().getFullName();
-        } else if(Event.EventType.ForkEvent.equals(model.getType())){
+        } else if (Event.EventType.ForkEvent.equals(model.getType())) {
             String oriRepo = model.getRepo().getFullName();
             String newRepo = model.getActor().getLogin() + "/" + model.getRepo().getName();
             action = "Forked " + oriRepo + " to " + newRepo;
-        } else if(Event.EventType.PushEvent.equals(model.getType())){
+        } else if (Event.EventType.PushEvent.equals(model.getType())) {
             String ref = model.getPayload().getRef();
             ref = ref.substring(ref.lastIndexOf("/") + 1);
             action = "Push to " + ref +
                     " at " + model.getRepo().getFullName();
-        } else if(Event.EventType.PullRequestEvent.equals(model.getType())){
+        } else if (Event.EventType.PullRequestEvent.equals(model.getType())) {
             action = model.getPayload().getAction() + " pull request " + model.getRepo().getFullName();
-        } else if(Event.EventType.PullRequestReviewCommentEvent.equals(model.getType())){
+        } else if (Event.EventType.PullRequestReviewCommentEvent.equals(model.getType())) {
             action = model.getPayload().getAction() + " pull request review comment at"
                     + model.getRepo().getFullName();
-        } else if(Event.EventType.PublicEvent.equals(model.getType())){
+        } else if (Event.EventType.PublicEvent.equals(model.getType())) {
             action = "Made " + model.getRepo().getFullName() + "public";
-        } else if(Event.EventType.IssuesEvent.equals(model.getType())){
+        } else if (Event.EventType.IssuesEvent.equals(model.getType())) {
             action = model.getPayload().getAction() + " issue at " +
                     model.getRepo().getFullName();
-        }else if(Event.EventType.IssueCommentEvent.equals(model.getType())){
+        } else if (Event.EventType.IssueCommentEvent.equals(model.getType())) {
             action = model.getPayload().getAction() + " issue comment at " +
-                     model.getRepo().getFullName();
+                    model.getRepo().getFullName();
+        } else if (Event.EventType.MemberEvent.equals(model.getType())) {
+            action = model.getPayload().getAction() + " member to " +
+                    model.getRepo().getFullName();
         } else {
             holder.action.setVisibility(View.GONE);
             holder.desc.setVisibility(View.GONE);
         }
         action = StringUtils.upCaseFisrtChar(action);
+        action = action == null ? "" : action;
         SpannableStringBuilder span = new SpannableStringBuilder(action);
         Matcher matcher = GitHubHelper.REPO_FULL_NAME_PATTERN.matcher(action);
-        for(;matcher.find();){
+        for (; matcher.find(); ) {
             span.setSpan(new StyleSpan(Typeface.BOLD), matcher.start(), matcher.end(),
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
@@ -131,7 +135,7 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
         }
 
         @OnClick({R.id.user_avatar, R.id.user_name})
-        public void onUserClick(){
+        public void onUserClick() {
             ProfileActivity.show(mContext, mData.get(getAdapterPosition()).getActor().getLogin());
         }
 
