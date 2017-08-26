@@ -29,7 +29,7 @@ import retrofit2.http.Query;
 import rx.Observable;
 
 /**
- * This link are for OpenHub only. Please do not use these endpoints in your applications.
+ * This link are for OpenHub only. Please do not use this endpoint in your applications.
  * If you want to get trending repositories, you may stand up your own instance.
  * https://github.com/thedillonb/GitHub-Trending
  * Created by ThirtyDegreesRay on 2017/8/26 16:04:02

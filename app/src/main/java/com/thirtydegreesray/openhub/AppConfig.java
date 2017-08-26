@@ -31,7 +31,7 @@ public class AppConfig {
     public final static String GITHUB_CONTENT_BASE_URL = "https://raw.githubusercontent.com/";
 
     /**
-     * This link are for OpenHub only. Please do not use these endpoints in your applications.
+     * This link are for OpenHub only. Please do not use this endpoint in your applications.
      * If you want to get trending repositories, you may stand up your own instance.
      * https://github.com/thedillonb/GitHub-Trending
      */
