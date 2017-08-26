@@ -95,14 +95,14 @@
     <string name="forks">Froks</string>
     <string name="watchers">Watchers</string>
     <string name="readme">README</string>
-    <string name="waring_dialog_tile">Warning</string>
+    <string name="warning_dialog_tile">Warning</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="select_branch">Select branch or tag</string>
     <string name="share_to">Share to</string>
     <string name="url_invalid">Url is invalid</string>
     <string name="view_archive_file_error">Archive file is not supported, please download the file to view its content.</string>
-    <string name="fork_waring_msg">Fork this repository?</string>
+    <string name="fork_warning_msg">Fork this repository?</string>
     <string name="invalid_repo_url">Invalid repository url!</string>
 
     <!-- Profile -->
@@ -150,5 +150,7 @@
     <string name="daily">Daily</string>
     <string name="weekly">Weekly</string>
     <string name="monthly">Monthly</string>
+
+    <string name="logout_warning">Confirm to logout ?</string>
 
 </resources>

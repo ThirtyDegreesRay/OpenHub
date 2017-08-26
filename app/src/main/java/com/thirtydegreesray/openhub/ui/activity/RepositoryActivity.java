@@ -196,8 +196,8 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
 
     private void forkRepo(){
         new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.waring_dialog_tile)
-                .setMessage(R.string.fork_waring_msg)
+                .setTitle(R.string.warning_dialog_tile)
+                .setMessage(R.string.fork_warning_msg)
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

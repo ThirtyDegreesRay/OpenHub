@@ -56,7 +56,6 @@
     </style>
 
     <style name="AppbarThemeDark" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-
     </style>
 
     <style name="PopupThemeDark" parent="ThemeOverlay.AppCompat.Dark">
@@ -66,81 +65,97 @@
     <style name="ThemeDark.LightBlue" parent="ThemeDark">
         <item name="colorAccent">@color/material_light_blue_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.LightBlue</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.LightBlue</item>
     </style>
 
     <style name="ThemeDark.Blue" parent="ThemeDark">
         <item name="colorAccent">@color/material_blue_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Blue</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.Blue</item>
     </style>
 
     <style name="ThemeDark.Indigo" parent="ThemeDark">
         <item name="colorAccent">@color/material_indigo_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Indigo</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.Indigo</item>
     </style>
 
     <style name="ThemeDark.Orange" parent="ThemeDark">
         <item name="colorAccent">@color/material_orange_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Orange</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.Orange</item>
     </style>
 
     <style name="ThemeDark.Yellow" parent="ThemeDark">
         <item name="colorAccent">@color/material_yellow_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Yellow</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.Yellow</item>
     </style>
 
     <style name="ThemeDark.Amber" parent="ThemeDark">
         <item name="colorAccent">@color/material_amber_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Amber</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.Amber</item>
     </style>
 
     <style name="ThemeDark.Grey" parent="ThemeDark">
         <item name="colorAccent">@color/material_grey_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Grey</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.Grey</item>
     </style>
 
     <style name="ThemeDark.Brown" parent="ThemeDark">
         <item name="colorAccent">@color/material_brown_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Brown</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.Brown</item>
     </style>
 
     <style name="ThemeDark.Cyan" parent="ThemeDark">
         <item name="colorAccent">@color/material_cyan_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Cyan</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.Cyan</item>
     </style>
 
     <style name="ThemeDark.Teal" parent="ThemeDark">
         <item name="colorAccent">@color/material_teal_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Teal</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.Teal</item>
     </style>
 
     <style name="ThemeDark.Lime" parent="ThemeDark">
         <item name="colorAccent">@color/material_lime_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Lime</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.Lime</item>
     </style>
 
     <style name="ThemeDark.Green" parent="ThemeDark">
         <item name="colorAccent">@color/material_green_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Green</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.Green</item>
     </style>
 
     <style name="ThemeDark.Pink" parent="ThemeDark">
         <item name="colorAccent">@color/material_pink_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Pink</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.Pink</item>
     </style>
 
     <style name="ThemeDark.Red" parent="ThemeDark">
         <item name="colorAccent">@color/material_red_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Red</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.Red</item>
     </style>
 
     <style name="ThemeDark.Purple" parent="ThemeDark">
         <item name="colorAccent">@color/material_purple_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.Purple</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.Purple</item>
     </style>
 
     <style name="ThemeDark.DeepPurple" parent="ThemeDark">
         <item name="colorAccent">@color/material_deep_purple_accent_700</item>
         <item name="alertDialogTheme">@style/DialogThemeDark.DeepPurple</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.DeepPurple</item>
     </style>
 
 

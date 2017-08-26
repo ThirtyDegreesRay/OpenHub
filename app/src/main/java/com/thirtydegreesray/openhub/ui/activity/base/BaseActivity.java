@@ -67,7 +67,6 @@ BaseActivity<P extends IBaseContract.Presenter>
     private static BaseActivity curActivity;
 
     protected boolean isAlive = true;
-
     @BindView(R.id.toolbar) @Nullable protected Toolbar toolbar;
 
     @Override

@@ -100,7 +100,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
                 showLanguageList();
                 return true;
             case PrefHelper.LOGOUT:
-                callBack.onLogout();
+                logout();
                 return true;
         }
         return false;
@@ -133,7 +133,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
             Log.d("TAG" , "");
         }
 
-        new AlertDialog.Builder(getContext(), R.style.DialogThemeLight_Amber)
+        new AlertDialog.Builder(getContext())
                 .setTitle(R.string.language)
                 .setSingleChoiceItems(R.array.language_array, index, new DialogInterface.OnClickListener() {
                     @Override
@@ -153,5 +153,26 @@ public class SettingsFragment extends PreferenceFragmentCompat
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         getActivity().startActivity(intent);
     }
+
+    private void logout(){
+        new AlertDialog.Builder(getContext())
+                .setTitle(R.string.warning_dialog_tile)
+                .setMessage(R.string.logout_warning)
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton(R.string.logout, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        callBack.onLogout();
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
 
 }
