@@ -26,12 +26,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
-import com.squareup.picasso.Picasso;
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.common.GlideApp;
 import com.thirtydegreesray.openhub.mvp.model.Event;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
+import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.util.GitHubHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
@@ -49,8 +50,8 @@ import butterknife.OnClick;
 public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder, Event> {
 
     @Inject
-    public ActivitiesAdapter(Context context) {
-        super(context);
+    public ActivitiesAdapter(Context context, BaseFragment fragment){
+        super(context, fragment);
     }
 
     @Override
@@ -66,13 +67,13 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
-        Event model = mData.get(position);
-        Picasso.with(mContext)
+        Event model = data.get(position);
+        GlideApp.with(fragment)
                 .load(model.getActor().getAvatarUrl())
                 .placeholder(R.mipmap.logo)
                 .into(holder.userAvatar);
         holder.userName.setText(model.getActor().getLogin());
-        holder.time.setText(StringUtils.getNewsTimeStr(mContext, model.getCreatedAt()));
+        holder.time.setText(StringUtils.getNewsTimeStr(context, model.getCreatedAt()));
 
         holder.action.setVisibility(View.VISIBLE);
         holder.desc.setVisibility(View.GONE);
@@ -136,7 +137,7 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
 
         @OnClick({R.id.user_avatar, R.id.user_name})
         public void onUserClick() {
-            ProfileActivity.show(mContext, mData.get(getAdapterPosition()).getActor().getLogin());
+            ProfileActivity.show(context, data.get(getAdapterPosition()).getActor().getLogin());
         }
 
     }

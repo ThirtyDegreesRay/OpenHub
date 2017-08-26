@@ -22,11 +22,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
-import com.squareup.picasso.Picasso;
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.common.GlideApp;
 import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
+import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 
 import javax.inject.Inject;
 
@@ -39,8 +40,8 @@ import butterknife.BindView;
 public class UsersAdapter extends BaseAdapter<UsersAdapter.ViewHolder, User> {
 
     @Inject
-    public UsersAdapter(Context context) {
-        super(context);
+    public UsersAdapter(Context context, BaseFragment fragment){
+        super(context, fragment);
     }
 
     @Override
@@ -56,11 +57,11 @@ public class UsersAdapter extends BaseAdapter<UsersAdapter.ViewHolder, User> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
-        Picasso.with(mContext)
-                .load(mData.get(position).getAvatarUrl())
+        GlideApp.with(fragment)
+                .load(data.get(position).getAvatarUrl())
                 .placeholder(R.mipmap.logo)
                 .into(holder.avatar);
-        holder.name.setText(mData.get(position).getLogin());
+        holder.name.setText(data.get(position).getLogin());
     }
 
     class ViewHolder extends BaseViewHolder {

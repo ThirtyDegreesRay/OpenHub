@@ -74,7 +74,7 @@ public class SettingsAdapter extends BaseAdapter<SettingsAdapter.ViewHolder, Set
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
-        SettingModel model = mData.get(position);
+        SettingModel model = data.get(position);
         holder.iconImage.setImageResource(model.getIconResId());
         holder.titleText.setText(model.getTitle());
         if(StringUtils.isBlank(model.getDesc())){

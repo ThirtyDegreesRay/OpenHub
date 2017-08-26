@@ -36,9 +36,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.common.GlideApp;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
 import com.thirtydegreesray.openhub.inject.module.ActivityModule;
@@ -122,7 +122,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         TextView mail = (TextView) navView.getHeaderView(0).findViewById(R.id.mail);
 
         User loginUser = AppData.INSTANCE.getLoggedUser();
-        Picasso.with(this)
+        GlideApp.with(getActivity())
                 .load(loginUser.getAvatarUrl())
                 .into(avatar);
         name.setText(loginUser.getName());

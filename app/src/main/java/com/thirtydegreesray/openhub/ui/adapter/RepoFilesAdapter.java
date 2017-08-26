@@ -57,7 +57,7 @@ public class RepoFilesAdapter extends BaseAdapter<RepoFilesAdapter.ViewHolder, F
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
-        FileModel model = mData.get(position);
+        FileModel model = data.get(position);
         holder.fileName.setText(model.getName());
         if(model.isFile()){
             holder.fileType.setImageResource(R.drawable.ic_file);

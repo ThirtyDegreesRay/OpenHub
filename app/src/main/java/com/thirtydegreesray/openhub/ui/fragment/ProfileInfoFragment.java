@@ -21,8 +21,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
-import com.squareup.picasso.Picasso;
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.common.GlideApp;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
@@ -31,7 +31,6 @@ import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.mvp.presenter.ProfileInfoPresenter;
 import com.thirtydegreesray.openhub.ui.activity.RepoListActivity;
 import com.thirtydegreesray.openhub.ui.activity.UserListActivity;
-import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
@@ -116,7 +115,7 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
 
     @Override
     public void showProfileInfo(User user) {
-        Picasso.with(getActivity())
+        GlideApp.with(this)
                 .load(user.getAvatarUrl())
                 .into(avatar);
         name.setText(StringUtils.isBlank(user.getName()) ? user.getLogin() : user.getName());

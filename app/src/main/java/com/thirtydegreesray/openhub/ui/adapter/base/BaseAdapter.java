@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 
 import java.util.ArrayList;
 
@@ -48,17 +49,24 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
     /**
      * 数据列表
      */
-    protected ArrayList<D> mData ;
+    protected ArrayList<D> data;
 
     /**
      * 关联的activity
      */
-    protected Context mContext;
+    protected Context context;
+    protected BaseFragment fragment;
 
     protected final int TAG_POSITION = R.id.position_tag;
 
     public BaseAdapter(Context context){
-        mContext = context;
+        this.context = context;
+        handler = getHandler();
+    }
+
+    public BaseAdapter(Context context, BaseFragment fragment){
+        this.context = context;
+        this.fragment = fragment;
         handler = getHandler();
     }
 
@@ -67,11 +75,11 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
      * @param data
      */
     public void setData(ArrayList<D> data){
-        mData = data;
+        this.data = data;
     }
 
     public ArrayList<D> getData() {
-        return mData;
+        return data;
     }
 
     /**
@@ -115,7 +123,7 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
 
     @Override
     public int getItemCount() {
-        return mData == null ? 0 : mData.size();
+        return data == null ? 0 : data.size();
     }
 
     /**
@@ -188,7 +196,7 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
     }
 
     protected void showShortToast(String msg){
-        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override

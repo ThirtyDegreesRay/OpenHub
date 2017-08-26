@@ -55,13 +55,13 @@ public class BranchesAdapter extends BaseAdapter<BranchesAdapter.ViewHolder, Bra
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
-        Branch branch = mData.get(position);
+        Branch branch = data.get(position);
         holder.icon.setImageResource(branch.isBranch() ? R.drawable.ic_branch : R.drawable.ic_tag);
         holder.name.setText(branch.getName());
         if(branch.getName().equals(curBranch)){
 //            holder.itemView.setBackground();
         }else{
-//            holder.itemView.setBackground(ViewHelper.getSelectableItemBackground(mContext));
+//            holder.itemView.setBackground(ViewHelper.getSelectableItemBackground(context));
         }
     }
 

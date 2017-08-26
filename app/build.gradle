@@ -82,7 +82,8 @@ dependencies {
     compile "com.github.hotchemi:permissionsdispatcher:${PERMISSIONS_DISPATCHER_VERSION}"
     annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:${PERMISSIONS_DISPATCHER_VERSION}"
 
-    compile "com.squareup.picasso:picasso:${PICASSO_VERSION}"
+    compile "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${GLIDE_VERSION}"
 
     compile "com.makeramen:roundedimageview:${ROUNDED_IMAGEVIEW_VERSION}"
 

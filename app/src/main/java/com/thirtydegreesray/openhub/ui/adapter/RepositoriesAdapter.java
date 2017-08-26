@@ -23,12 +23,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.common.GlideApp;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
+import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import javax.inject.Inject;
@@ -45,8 +46,8 @@ import butterknife.OnClick;
 public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHolder, Repository> {
 
     @Inject
-    public RepositoriesAdapter(Context context) {
-        super(context);
+    public RepositoriesAdapter(Context context, BaseFragment fragment){
+        super(context, fragment);
     }
 
     @Override
@@ -77,24 +78,23 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
 
         @OnClick(R.id.iv_user_avatar)
         public void onUserClick(){
-            ProfileActivity.show(mContext, mData.get(getAdapterPosition()).getOwner().getLogin());
+            ProfileActivity.show(context, data.get(getAdapterPosition()).getOwner().getLogin());
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
-        Repository repository = mData.get(position);
+        Repository repository = data.get(position);
         holder.tvRepoName.setText(repository.getName());
         holder.tvLanguage.setText(StringUtils.isBlank(repository.getLanguage()) ? "" : repository.getLanguage());
         holder.tvRepoDescription.setText(repository.getDescription());
         holder.tvStarNum.setText(String.valueOf(repository.getStargazersCount()));
         holder.tvForkNum.setText(String.valueOf(repository.getForksCount()));
         holder.tvOwnerName.setText(repository.getOwner().getLogin());
-        Picasso.with(mContext)
+        GlideApp.with(fragment)
                 .load(repository.getOwner().getAvatarUrl())
                 .placeholder(R.mipmap.logo)
                 .into(holder.ivUserAvatar);
-
     }
 }
