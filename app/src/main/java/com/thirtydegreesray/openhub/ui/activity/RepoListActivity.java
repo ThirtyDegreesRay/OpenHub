@@ -43,8 +43,20 @@ public class RepoListActivity extends BaseActivity {
         context.startActivity(intent);
     }
 
+    public static void showForks(@NonNull Context context,
+                            @NonNull String user, @NonNull String repo){
+        Intent intent = new Intent(context, RepoListActivity.class);
+        intent.putExtras(BundleBuilder.builder()
+                .put("type", RepositoriesFragment.RepositoriesType.FORKS)
+                .put("user", user)
+                .put("repo", repo)
+                .build());
+        context.startActivity(intent);
+    }
+
     @AutoAccess RepositoriesFragment.RepositoriesType type;
     @AutoAccess String user;
+    @AutoAccess String repo;
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
@@ -62,9 +74,12 @@ public class RepoListActivity extends BaseActivity {
         super.initView(savedInstanceState);
         setToolbarBackEnable();
         setToolbarTitle(getListTitle());
+        RepositoriesFragment fragment = RepositoriesFragment.RepositoriesType.FORKS.equals(type) ?
+                RepositoriesFragment.createForForks(user, repo) :
+                RepositoriesFragment.create(type, user);
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.container, RepositoriesFragment.create(type, user))
+                .add(R.id.container, fragment)
                 .commit();
     }
 
@@ -73,6 +88,8 @@ public class RepoListActivity extends BaseActivity {
             return getString(R.string.owned);
         }else if(type.equals(RepositoriesFragment.RepositoriesType.STARRED)){
             return getString(R.string.starred);
+        }else if(type.equals(RepositoriesFragment.RepositoriesType.FORKS)){
+            return getString(R.string.forks);
         }
         return getString(R.string.repositories);
     }

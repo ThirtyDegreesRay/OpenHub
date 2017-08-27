@@ -173,6 +173,13 @@ public interface RepoService {
             @Path("repo") String repo
     );
 
+    @NonNull @GET("repos/{owner}/{repo}/forks")
+    Observable<Response<ArrayList<Repository>>> getForks(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("owner") String owner,
+            @Path("repo") String repo
+    );
+
     /**
      * List public events for a network of repositories
      */

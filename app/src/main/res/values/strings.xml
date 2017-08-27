@@ -86,6 +86,7 @@
     <string name="unwatched">Unwatched</string>
     <string name="fork">Fork</string>
     <string name="forked">Forked</string>
+    <string name="forked_from">Forked from</string>
     <string name="wrap_lines">Wrap lines</string>
     <string name="refresh">Refresh</string>
 

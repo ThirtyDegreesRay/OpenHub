@@ -18,7 +18,6 @@ package com.thirtydegreesray.openhub.ui.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -64,13 +63,14 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
 
     public class ViewHolder extends BaseViewHolder {
 
-        @Nullable @BindView(R.id.iv_user_avatar) ImageView ivUserAvatar;
-        @Nullable @BindView(R.id.tv_repo_name) TextView tvRepoName;
-        @Nullable @BindView(R.id.tv_language) TextView tvLanguage;
-        @Nullable @BindView(R.id.tv_repo_description) TextView tvRepoDescription;
-        @Nullable @BindView(R.id.tv_star_num) TextView tvStarNum;
-        @Nullable @BindView(R.id.tv_fork_num) TextView tvForkNum;
-        @Nullable @BindView(R.id.tv_owner_name) TextView tvOwnerName;
+        @BindView(R.id.iv_user_avatar) ImageView ivUserAvatar;
+        @BindView(R.id.tv_repo_name) TextView tvRepoName;
+        @BindView(R.id.tv_language) TextView tvLanguage;
+        @BindView(R.id.tv_repo_description) TextView tvRepoDescription;
+        @BindView(R.id.tv_star_num) TextView tvStarNum;
+        @BindView(R.id.tv_fork_num) TextView tvForkNum;
+        @BindView(R.id.tv_owner_name) TextView tvOwnerName;
+        @BindView(R.id.fork_mark) View forkMark;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -96,5 +96,6 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
                 .load(repository.getOwner().getAvatarUrl())
                 .placeholder(R.mipmap.logo)
                 .into(holder.ivUserAvatar);
+        holder.forkMark.setVisibility(repository.isFork() ? View.VISIBLE : View.GONE);
     }
 }

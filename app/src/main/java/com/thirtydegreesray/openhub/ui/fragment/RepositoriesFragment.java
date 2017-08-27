@@ -44,13 +44,23 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
             implements IRepositoriesContract.View{
 
     public enum RepositoriesType{
-        OWNED, STARRED, TRENDING, SEARCH
+        OWNED, STARRED, TRENDING, SEARCH, FORKS
     }
 
     public static RepositoriesFragment create(@NonNull RepositoriesType type,
                                               @NonNull String user){
         RepositoriesFragment fragment = new RepositoriesFragment();
         fragment.setArguments(BundleBuilder.builder().put("type", type).put("user", user).build());
+        return fragment;
+    }
+
+    public static RepositoriesFragment createForForks(@NonNull String user, @NonNull String repo){
+        RepositoriesFragment fragment = new RepositoriesFragment();
+        fragment.setArguments(BundleBuilder.builder()
+                .put("type", RepositoriesType.FORKS)
+                .put("user", user)
+                .put("repo", repo)
+                .build());
         return fragment;
     }
 

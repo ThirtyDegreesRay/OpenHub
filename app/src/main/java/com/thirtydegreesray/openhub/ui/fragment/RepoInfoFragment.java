@@ -35,6 +35,8 @@ import com.thirtydegreesray.openhub.mvp.contract.IRepoInfoContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.RepoInfoPresenter;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
+import com.thirtydegreesray.openhub.ui.activity.RepoListActivity;
+import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.activity.UserListActivity;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView;
@@ -55,6 +57,7 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         implements IRepoInfoContract.View {
 
     @BindView(R.id.repo_title_text) TextView repoTitleText;
+    @BindView(R.id.fork_info_text) TextView forkInfoText;
     @BindView(R.id.repo_desc_text) TextView repoDescText;
     @BindView(R.id.repo_code_text) TextView repoCodeText;
     @BindView(R.id.issues_num_text) TextView issuesNumText;
@@ -104,6 +107,14 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         repoCodeText.setText(String.format(Locale.getDefault(), "Language %s, size %s",
                 repository.getLanguage(), StringUtils.getSizeString(repository.getSize() * 1024)));
 
+        if(repository.isFork() && repository.getParent() != null){
+            forkInfoText.setVisibility(View.VISIBLE);
+            forkInfoText.setText(getString(R.string.forked_from)
+                    .concat(" ").concat(repository.getParent().getFullName()));
+        }else{
+            forkInfoText.setVisibility(View.GONE);
+        }
+
         String fullName = repository.getFullName();
         SpannableStringBuilder spannable = new SpannableStringBuilder(fullName);
         spannable.setSpan(new ForegroundColorSpan(ViewHelper.getAccentColor(getContext())),
@@ -128,7 +139,8 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         webView.setMdSource(source, baseUrl);
     }
 
-    @OnClick({R.id.issues_lay, R.id.stargazers_lay, R.id.froks_lay, R.id.watchers_lay})
+    @OnClick({R.id.issues_lay, R.id.stargazers_lay, R.id.froks_lay, R.id.watchers_lay,
+                R.id.fork_info_text})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.issues_lay:
@@ -139,11 +151,17 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
                         mPresenter.getRepository().getName());
                 break;
             case R.id.froks_lay:
+                RepoListActivity.showForks(getContext(),
+                        mPresenter.getRepository().getOwner().getLogin(),
+                        mPresenter.getRepository().getName());
                 break;
             case R.id.watchers_lay:
                 UserListActivity.show(getActivity(), UserListFragment.UserListType.WATCHERS,
                         mPresenter.getRepository().getOwner().getLogin(),
                         mPresenter.getRepository().getName());
+                break;
+            case R.id.fork_info_text:
+                RepositoryActivity.show(getActivity(), mPresenter.getRepository().getParent());
                 break;
         }
     }

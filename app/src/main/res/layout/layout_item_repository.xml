@@ -126,7 +126,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_weight="3.5"
+                    android:layout_weight="4"
                     android:gravity="center_vertical">
                     <android.support.v7.widget.AppCompatImageView
                         android:layout_width="12dp"
@@ -141,6 +141,27 @@
                         android:textColor="?android:textColorSecondary"
                         android:text="ThirtyDegreesRay"
                         android:layout_marginLeft="@dimen/spacing_micro"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/fork_mark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/spacing_micro"
+                    android:layout_marginRight="@dimen/spacing_micro">
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        app:srcCompat="@drawable/ic_fork"
+                        android:tint="?android:textColorPrimary"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_micro"
+                        android:textColor="?android:textColorPrimary"
+                        android:text="@string/fork"
+                        android:layout_marginStart="@dimen/spacing_micro"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

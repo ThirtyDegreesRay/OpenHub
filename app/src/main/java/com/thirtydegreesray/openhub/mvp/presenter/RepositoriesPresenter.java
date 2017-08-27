@@ -53,6 +53,7 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
 
     @AutoAccess RepositoriesFragment.RepositoriesType type;
     @AutoAccess String user;
+    @AutoAccess String repo;
 
     @AutoAccess SearchModel searchModel;
     @AutoAccess String since;
@@ -123,6 +124,8 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
                 return getRepoService().getStarredRepos(forceNetWork, user, page);
             case TRENDING:
                 return getOpenHubService().getTrendingRepos(since);
+            case FORKS:
+                return getRepoService().getForks(forceNetWork, user, repo);
             default:
                 return null;
         }
