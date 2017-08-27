@@ -26,6 +26,7 @@ import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.IRepoFilesContract;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
+import com.thirtydegreesray.openhub.mvp.model.FilePath;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
@@ -51,12 +52,17 @@ public class RepoFilesPresenter extends BasePresenter<IRepoFilesContract.View>
     private Map<String, ArrayList<FileModel>> cacheMap;
     @AutoAccess Repository repo ;
     @AutoAccess String curPath = "";
+    private ArrayList<FilePath> filePath;
+    private FilePath homePath ;
 
     @Inject
     public RepoFilesPresenter(DaoSession daoSession) {
         super(daoSession);
         cacheMap = new SizedMap<>();
         setEventSubscriber(true);
+        filePath = new ArrayList<>();
+        homePath = new FilePath("", "");
+        filePath.add(homePath);
     }
 
     @Override
@@ -73,6 +79,7 @@ public class RepoFilesPresenter extends BasePresenter<IRepoFilesContract.View>
     @Override
     public void loadFiles(@NonNull String path, boolean isReload) {
         curPath = path;
+        updateFilePath();
         ArrayList<FileModel> filesCache = cacheMap.get(getCacheKey());
         if(!isReload && filesCache != null){
             mView.showFiles(filesCache);
@@ -116,6 +123,13 @@ public class RepoFilesPresenter extends BasePresenter<IRepoFilesContract.View>
         return false;
     }
 
+    @Override
+    public void goHome() {
+        if(curPath.equals("")) return;
+        curPath = "";
+        loadFiles(false);
+    }
+
     private void sort(ArrayList<FileModel> oriList){
         Collections.sort(oriList, new Comparator<FileModel>() {
             @Override
@@ -140,11 +154,35 @@ public class RepoFilesPresenter extends BasePresenter<IRepoFilesContract.View>
         this.curPath = curPath;
     }
 
+    public ArrayList<FilePath> getFilePath(){
+        return filePath;
+    }
+
     @Subscribe
     public void onRepoInfoUpdated(Event.RepoInfoUpdatedEvent event) {
         if (!repo.getFullName().equals(event.repository.getFullName())) return;
         repo = event.repository;
         loadFiles("", false);
+    }
+
+    private void updateFilePath(){
+        filePath.clear();
+        filePath.add(homePath);
+        if(!StringUtils.isBlank(curPath)){
+            String[] pathArray = curPath.split("/");
+            for(int i = 0; i < pathArray.length; i++){
+                String name = pathArray[i];
+                String fullPath = "";
+                for(int j = 0; j <= i; j++){
+                    fullPath = fullPath.concat(pathArray[j]).concat("/");
+                }
+                fullPath = fullPath.endsWith("/") ?
+                        fullPath.substring(0, fullPath.length() - 1) : fullPath;
+                FilePath path = new FilePath(name, fullPath);
+                filePath.add(path);
+            }
+        }
+        mView.showFilePath(filePath);
     }
 
 }

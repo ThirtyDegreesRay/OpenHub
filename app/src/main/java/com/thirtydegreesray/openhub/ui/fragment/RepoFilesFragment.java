@@ -17,6 +17,8 @@
 package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 
 import com.thirtydegreesray.openhub.R;
@@ -25,15 +27,22 @@ import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IRepoFilesContract;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
+import com.thirtydegreesray.openhub.mvp.model.FilePath;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.RepoFilesPresenter;
 import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
+import com.thirtydegreesray.openhub.ui.adapter.FilePathAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.RepoFilesAdapter;
+import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 
 import java.util.ArrayList;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/14 16:13:20
@@ -48,10 +57,26 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
         return fragment;
     }
 
+    @BindView(R.id.path_recycler_view) RecyclerView pathRecyclerView;
+    @Inject FilePathAdapter filePathAdapter;
+
     @Override
     public void showFiles(ArrayList<FileModel> files) {
         adapter.setData(files);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showFilePath(final ArrayList<FilePath> filePath) {
+        filePathAdapter.setData(filePath);
+        filePathAdapter.notifyDataSetChanged();
+        if(filePath.size() != 0)
+            pathRecyclerView.post(new Runnable() {
+                @Override
+                public void run() {
+                    pathRecyclerView.smoothScrollToPosition(filePath.size() - 1);
+                }
+            });
     }
 
     @Override
@@ -66,7 +91,7 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_list;
+        return R.layout.fragment_repo_files;
     }
 
     @Override
@@ -81,6 +106,15 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
     @Override
     protected void initFragment(Bundle savedInstanceState) {
         super.initFragment(savedInstanceState);
+        pathRecyclerView.setLayoutManager(
+                new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        pathRecyclerView.setAdapter(filePathAdapter);
+        filePathAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                mPresenter.loadFiles(filePathAdapter.getData().get(position).getFullPath(), false);
+            }
+        });
     }
 
     @Override
@@ -111,4 +145,5 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
         }
         return false;
     }
+
 }
