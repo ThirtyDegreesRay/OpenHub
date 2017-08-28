@@ -189,11 +189,11 @@
             app:cardCornerRadius="@dimen/spacing_micro"
             app:contentPaddingTop="@dimen/spacing_normal"
             app:contentPaddingBottom="@dimen/spacing_normal">
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/readme_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="?android:colorAccent"
@@ -205,8 +205,19 @@
                     android:id="@+id/web_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:webview_background="?card_background"/>
-            </LinearLayout>
+                    app:webview_background="?card_background"
+                    android:layout_below="@+id/readme_title"/>
+                <ProgressBar
+                    android:id="@+id/readme_loader"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:indeterminate="false"
+                    android:paddingEnd="@dimen/spacing_large"
+                    android:paddingStart="@dimen/spacing_large"
+                    android:layout_below="@+id/readme_title"/>
+            </RelativeLayout>
 
         </android.support.v7.widget.CardView>
 

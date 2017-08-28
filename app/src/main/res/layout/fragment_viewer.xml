@@ -37,7 +37,6 @@
         android:indeterminate="false"
         android:paddingEnd="@dimen/spacing_large"
         android:paddingStart="@dimen/spacing_large"
-        android:visibility="gone"
         tools:visibility="visible"/>
 
 </FrameLayout>

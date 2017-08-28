@@ -25,6 +25,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
@@ -54,7 +55,14 @@ import butterknife.OnClick;
  */
 
 public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
-        implements IRepoInfoContract.View {
+        implements IRepoInfoContract.View,
+        CodeWebView.ContentChangedListener {
+
+    public static RepoInfoFragment create(Repository repository) {
+        RepoInfoFragment fragment = new RepoInfoFragment();
+        fragment.setArguments(BundleBuilder.builder().put("repository", repository).build());
+        return fragment;
+    }
 
     @BindView(R.id.repo_title_text) TextView repoTitleText;
     @BindView(R.id.fork_info_text) TextView forkInfoText;
@@ -65,13 +73,10 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
     @BindView(R.id.forks_num_text) TextView forksNumText;
     @BindView(R.id.watchers_num_text) TextView watchersNumText;
 
-    public static RepoInfoFragment create(Repository repository) {
-        RepoInfoFragment fragment = new RepoInfoFragment();
-        fragment.setArguments(BundleBuilder.builder().put("repository", repository).build());
-        return fragment;
-    }
-
+    @BindView(R.id.readme_loader) ProgressBar readmeLoader;
     @BindView(R.id.web_view) CodeWebView webView;
+
+    private boolean isReadmeSetted = false;
 
     @Override
     public void onAttach(Context context) {
@@ -94,6 +99,10 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
+        isReadmeSetted = false;
+        webView.setContentChangedListener(this);
+        readmeLoader.setVisibility(View.VISIBLE);
+        readmeLoader.setIndeterminate(true);
         mPresenter.loadReadMe();
     }
 
@@ -107,11 +116,11 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         repoCodeText.setText(String.format(Locale.getDefault(), "Language %s, size %s",
                 repository.getLanguage(), StringUtils.getSizeString(repository.getSize() * 1024)));
 
-        if(repository.isFork() && repository.getParent() != null){
+        if (repository.isFork() && repository.getParent() != null) {
             forkInfoText.setVisibility(View.VISIBLE);
             forkInfoText.setText(getString(R.string.forked_from)
                     .concat(" ").concat(repository.getParent().getFullName()));
-        }else{
+        } else {
             forkInfoText.setVisibility(View.GONE);
         }
 
@@ -136,11 +145,16 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
 
     @Override
     public void showReadMe(String source, String baseUrl) {
-        webView.setMdSource(source, baseUrl);
+        if (!isReadmeSetted) {
+            isReadmeSetted = true;
+            webView.setMdSource(source, baseUrl);
+            readmeLoader.setVisibility(View.VISIBLE);
+            readmeLoader.setIndeterminate(false);
+        }
     }
 
     @OnClick({R.id.issues_lay, R.id.stargazers_lay, R.id.froks_lay, R.id.watchers_lay,
-                R.id.fork_info_text})
+            R.id.fork_info_text})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.issues_lay:
@@ -166,4 +180,18 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         }
     }
 
+    @Override
+    public void onContentChanged(int progress) {
+        if (readmeLoader != null) {
+            readmeLoader.setProgress(progress);
+            if (progress == 100) {
+                readmeLoader.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    @Override
+    public void onScrollChanged(boolean reachedTop, int scroll) {
+
+    }
 }
