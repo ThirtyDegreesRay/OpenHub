@@ -69,13 +69,15 @@ public class FragmentPagerModel {
     }
 
     public static List<FragmentPagerModel> createProfilePagerList(Context context, User user){
-        return Arrays.asList(
-                new FragmentPagerModel(context.getString(R.string.info), ProfileInfoFragment.create(user)),
-                new FragmentPagerModel(context.getString(R.string.activity),
-                        ActivityFragment.create(ActivityFragment.ActivityType.User, user.getLogin())),
-                new FragmentPagerModel(context.getString(R.string.starred),
-                        RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED, user.getLogin()))
-        );
+        List<FragmentPagerModel> list = new ArrayList<>();
+        list.add(new FragmentPagerModel(context.getString(R.string.info), ProfileInfoFragment.create(user)));
+        list.add(new FragmentPagerModel(context.getString(R.string.activity),
+                ActivityFragment.create(ActivityFragment.ActivityType.User, user.getLogin())));
+        if(user.isUser()) {
+            list.add(new FragmentPagerModel(context.getString(R.string.starred),
+                    RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED, user.getLogin())));
+        }
+        return list;
     }
 
     public static List<FragmentPagerModel> createSearchPagerList(

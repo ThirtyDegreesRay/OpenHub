@@ -114,8 +114,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
         navView.setNavigationItemSelectedListener(this);
 
         navView.setCheckedItem(R.id.nav_news);
+        updateTitle(R.id.nav_news);
         loadFragment(R.id.nav_news);
-
 
         ImageView avatar = (ImageView) navView.getHeaderView(0).findViewById(R.id.avatar);
         TextView name = (TextView) navView.getHeaderView(0).findViewById(R.id.name);
@@ -179,6 +179,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
             case R.id.nav_news:
             case R.id.nav_owned:
             case R.id.nav_starred:
+                updateTitle(id);
                 loadFragment(id);
                 break;
             case R.id.nav_trending:
@@ -192,6 +193,23 @@ public class MainActivity extends BaseActivity<MainPresenter>
 //                loadFragment("nav_about");
                 break;
             default:
+                break;
+        }
+    }
+
+    private void updateTitle(int itemId){
+        switch (itemId){
+            case R.id.nav_news:
+                setToolbarTitle(getString(R.string.news));
+                break;
+            case R.id.nav_owned:
+                setToolbarTitle(getString(R.string.owned));
+                break;
+            case R.id.nav_starred:
+                setToolbarTitle(getString(R.string.starred));
+                break;
+            default:
+                setToolbarTitle(getString(R.string.app_name));
                 break;
         }
     }

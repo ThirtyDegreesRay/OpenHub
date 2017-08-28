@@ -85,6 +85,8 @@ public class UserListActivity extends BaseActivity {
             return getString(R.string.followers);
         }else if(type.equals(UserListFragment.UserListType.FOLLOWING)){
             return getString(R.string.following);
+        }else if(type.equals(UserListFragment.UserListType.ORG_MEMBERS)){
+            return getString(R.string.members);
         }
         return getString(R.string.users);
     }

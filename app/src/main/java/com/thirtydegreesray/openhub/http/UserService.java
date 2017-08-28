@@ -111,4 +111,18 @@ public interface UserService {
             @Query("page") int page
     );
 
+    @NonNull @GET("orgs/{org}/members")
+    Observable<Response<ArrayList<User>>> getOrgMembers(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("org") String org,
+            @Query("page") int page
+    );
+
+    @NonNull @GET("users/{user}/orgs")
+    Observable<Response<ArrayList<User>>> getUserOrgs(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("user") String user
+    );
+
+
 }

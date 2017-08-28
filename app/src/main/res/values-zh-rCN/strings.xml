@@ -16,10 +16,6 @@
 
 <resources>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <!-- login -->
     <string name="user_name">用户名</string>
     <string name="password">密码</string>
     <string name="login">登录</string>
@@ -27,37 +23,30 @@
     <string name="oauth_tip">Login using your default browser(OAuth)</string>
     <string name="user_name_warning">用户名不可用！</string>
     <string name="password_warning">密码不可用！</string>
-
-    <!-- menu -->
     <string name="profile">主页</string>
     <string name="notifications">提醒</string>
     <string name="news">动态</string>
     <string name="issues">问题</string>
-
     <string name="repositories">仓库</string>
     <string name="owned">我的</string>
     <string name="starred">星标</string>
     <string name="trending">趋势</string>
     <string name="explore">搜索</string>
-
     <string name="info_and_repositories">信息 &#038; 偏好</string>
     <string name="settings">设置</string>
     <string name="about">关于</string>
-
-
     <string name="no_cache_and_network">No cache and network available.</string>
     <string name="tap_to_retry">Tap to retry.</string>
     <string name="no_repositories">No repositories.</string>
     <string name="title_activity_repository">OpenHub</string>
     <string name="title_activity_settings">Settings</string>
-
-    <!-- Strings related to Settings -->
-
-    <!-- settings -->
     <string name="choose_theme">选择主题</string>
     <string name="cache_controller">缓存控制</string>
     <string name="cache_controller_desc">如果缓存可用，先加载缓存，然后从网络加载。</string>
     <string name="language">语言</string>
     <string name="logout">登出</string>
+    <string name="daily">每日的</string>
+    <string name="weekly">每周的</string>
+    <string name="monthly">每月的</string>
 
 </resources>

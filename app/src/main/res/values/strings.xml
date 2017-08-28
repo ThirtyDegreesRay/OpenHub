@@ -1,10 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">OpenHub</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-
+    <string name="navigation_drawer_open" translatable="false">navigation_drawer_open</string>
+    <string name="navigation_drawer_close" translatable="false">navigation_drawer_close</string>
 
     <!-- onLoginClick -->
     <string name="user_name">UserName</string>
@@ -111,6 +108,8 @@
     <string name="followed">Followed</string>
     <string name="unfollow">Unfollow</string>
     <string name="unfollowed">Unfollowed</string>
+    <string name="members">Members</string>
+    <string name="view">View</string>
     <string name="followers">Followers</string>
     <string name="following">Following</string>
     <string name="repos">Repos</string>
@@ -153,5 +152,7 @@
     <string name="monthly">Monthly</string>
 
     <string name="logout_warning">Confirm to logout ?</string>
+    <string name="unknown">Unknown</string>
+    <string name="organizations">Organizations</string>
 
 </resources>

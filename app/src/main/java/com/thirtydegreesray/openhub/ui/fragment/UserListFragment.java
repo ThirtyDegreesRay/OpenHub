@@ -42,7 +42,7 @@ public class UserListFragment extends ListFragment<UserListPresenter, UsersAdapt
         implements IUserListContract.View{
 
     public enum UserListType{
-        STARGAZERS, WATCHERS, FOLLOWERS, FOLLOWING, SEARCH
+        STARGAZERS, WATCHERS, FOLLOWERS, FOLLOWING, SEARCH, ORG_MEMBERS
     }
 
     public static UserListFragment create(@NonNull UserListType type, @NonNull String user,

@@ -107,6 +107,8 @@ public class UserListPresenter extends BasePresenter<IUserListContract.View>
                     return getUserService().getFollowers(forceNetWork, user, page);
                 } else if (type.equals(UserListFragment.UserListType.FOLLOWING)) {
                     return getUserService().getFollowing(forceNetWork, user, page);
+                } else if (type.equals(UserListFragment.UserListType.ORG_MEMBERS)) {
+                    return getUserService().getOrgMembers(forceNetWork, user, page);
                 } else {
                     throw new IllegalArgumentException(type.name());
                 }

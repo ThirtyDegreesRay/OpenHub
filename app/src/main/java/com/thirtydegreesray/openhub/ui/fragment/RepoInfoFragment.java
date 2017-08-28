@@ -113,8 +113,10 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         forksNumText.setText(String.valueOf(repository.getForksCount()));
         watchersNumText.setText(String.valueOf(repository.getSubscribersCount()));
         repoDescText.setText(repository.getDescription());
+        String language = StringUtils.isBlank(repository.getLanguage()) ?
+                getString(R.string.unknown) : repository.getLanguage();
         repoCodeText.setText(String.format(Locale.getDefault(), "Language %s, size %s",
-                repository.getLanguage(), StringUtils.getSizeString(repository.getSize() * 1024)));
+                language, StringUtils.getSizeString(repository.getSize() * 1024)));
 
         if (repository.isFork() && repository.getParent() != null) {
             forkInfoText.setVisibility(View.VISIBLE);
@@ -158,18 +160,22 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.issues_lay:
+
                 break;
             case R.id.stargazers_lay:
+                if(mPresenter.getRepository().getStargazersCount() == 0) return;
                 UserListActivity.show(getActivity(), UserListFragment.UserListType.STARGAZERS,
                         mPresenter.getRepository().getOwner().getLogin(),
                         mPresenter.getRepository().getName());
                 break;
             case R.id.froks_lay:
+                if(mPresenter.getRepository().getForksCount() == 0) return;
                 RepoListActivity.showForks(getContext(),
                         mPresenter.getRepository().getOwner().getLogin(),
                         mPresenter.getRepository().getName());
                 break;
             case R.id.watchers_lay:
+                if(mPresenter.getRepository().getWatchersCount() == 0) return;
                 UserListActivity.show(getActivity(), UserListFragment.UserListType.WATCHERS,
                         mPresenter.getRepository().getOwner().getLogin(),
                         mPresenter.getRepository().getName());
