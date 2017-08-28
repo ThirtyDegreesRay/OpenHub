@@ -158,6 +158,10 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
         this.loadMoreEnable = loadMoreEnable;
     }
 
+    public void setCanLoadMore(boolean canLoadMore) {
+        this.canLoadMore = canLoadMore;
+    }
+
     public int getCurPage() {
         return curPage;
     }

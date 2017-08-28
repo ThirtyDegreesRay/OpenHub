@@ -89,7 +89,11 @@ public class UserListPresenter extends BasePresenter<IUserListContract.View>
                         } else {
                             users.addAll(response.body());
                         }
-                        mView.showUsers(users);
+                        if(response.body().size() > 0){
+                            mView.showUsers(users);
+                        } else {
+                            mView.setCanLoadMore(false);
+                        }
                     }
                 };
         generalRxHttpExecute(new IObservableCreator<ArrayList<User>>() {
@@ -128,7 +132,11 @@ public class UserListPresenter extends BasePresenter<IUserListContract.View>
                         } else {
                             users.addAll(response.body().getItems());
                         }
-                        mView.showUsers(users);
+                        if(response.body().getItems().size() > 0){
+                            mView.showUsers(users);
+                        } else {
+                            mView.setCanLoadMore(false);
+                        }
                     }
                 };
         generalRxHttpExecute(new IObservableCreator<SearchResult<User>>() {

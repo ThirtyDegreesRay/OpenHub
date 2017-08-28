@@ -177,7 +177,8 @@ public interface RepoService {
     Observable<Response<ArrayList<Repository>>> getForks(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("owner") String owner,
-            @Path("repo") String repo
+            @Path("repo") String repo,
+            @Query("page") int page
     );
 
     /**

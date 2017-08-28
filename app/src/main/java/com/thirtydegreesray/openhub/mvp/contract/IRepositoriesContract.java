@@ -34,6 +34,8 @@ public interface IRepositoriesContract {
 
         void showLoadError(String errorMsg);
 
+        void setCanLoadMore(boolean canLoadMore);
+
     }
 
     interface Presenter extends IBaseContract.Presenter<IRepositoriesContract.View> {

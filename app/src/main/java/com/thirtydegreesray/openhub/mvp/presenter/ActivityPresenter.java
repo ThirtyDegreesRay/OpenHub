@@ -80,7 +80,11 @@ public class ActivityPresenter extends BasePresenter<IActivityContract.View>
                 } else {
                     events.addAll(response.body());
                 }
-                mView.showEvents(events);
+                if(response.body().size() > 0){
+                    mView.showEvents(events);
+                } else {
+                    mView.setCanLoadMore(false);
+                }
             }
         };
         generalRxHttpExecute(new IObservableCreator<ArrayList<Event>>() {

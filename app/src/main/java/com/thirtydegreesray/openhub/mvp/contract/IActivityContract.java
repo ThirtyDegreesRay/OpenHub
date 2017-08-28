@@ -28,6 +28,7 @@ public interface IActivityContract {
 
     interface View extends IBaseContract.View{
         void showEvents(ArrayList<Event> events);
+        void setCanLoadMore(boolean canLoadMore);
     }
 
     interface Presenter extends IBaseContract.Presenter<IActivityContract.View>{

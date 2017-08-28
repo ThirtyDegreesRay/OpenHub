@@ -47,7 +47,7 @@ import rx.Observable;
  */
 
 public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.View>
-        implements IRepositoriesContract.Presenter{
+        implements IRepositoriesContract.Presenter {
 
     @AutoAccess ArrayList<Repository> repos;
 
@@ -66,10 +66,10 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
-        if(type.equals(RepositoriesFragment.RepositoriesType.SEARCH)){
+        if (type.equals(RepositoriesFragment.RepositoriesType.SEARCH)) {
             setEventSubscriber(true);
         }
-        if(repos != null) {
+        if (repos != null) {
             mView.showRepositories(repos);
             return;
         }
@@ -78,7 +78,7 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
 
     @Override
     public void loadRepositories(final boolean isReLoad, final int page) {
-        if(type.equals(RepositoriesFragment.RepositoriesType.SEARCH)){
+        if (type.equals(RepositoriesFragment.RepositoriesType.SEARCH)) {
             searchRepos(page);
             return;
         }
@@ -98,10 +98,14 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
                 mView.hideLoading();
                 if (isReLoad || readCacheFirst || repos == null) {
                     repos = response.body();
-                }else{
+                } else {
                     repos.addAll(response.body());
                 }
-                mView.showRepositories(repos);
+                if(response.body().size() > 0){
+                    mView.showRepositories(repos);
+                } else {
+                    mView.setCanLoadMore(false);
+                }
             }
         };
 
@@ -115,9 +119,9 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
 
     }
 
-    private Observable<Response<ArrayList<Repository>>> getObservable(boolean forceNetWork, int page){
+    private Observable<Response<ArrayList<Repository>>> getObservable(boolean forceNetWork, int page) {
         String loginedUser = AppData.INSTANCE.getLoggedUser().getLogin();
-        switch (type){
+        switch (type) {
             case OWNED:
                 return getRepoService().getUserRepos(forceNetWork, user, page);
             case STARRED:
@@ -125,34 +129,38 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
             case TRENDING:
                 return getOpenHubService().getTrendingRepos(since);
             case FORKS:
-                return getRepoService().getForks(forceNetWork, user, repo);
+                return getRepoService().getForks(forceNetWork, user, repo, page);
             default:
                 return null;
         }
     }
 
-    private void searchRepos(final int page){
+    private void searchRepos(final int page) {
         mView.showLoading();
 
         HttpObserver<SearchResult<Repository>> httpObserver =
                 new HttpObserver<SearchResult<Repository>>() {
-            @Override
-            public void onError(@NonNull Throwable error) {
-                mView.hideLoading();
-                mView.showLoadError(error.getMessage());
-            }
+                    @Override
+                    public void onError(@NonNull Throwable error) {
+                        mView.hideLoading();
+                        mView.showLoadError(error.getMessage());
+                    }
 
-            @Override
-            public void onSuccess(@NonNull HttpResponse<SearchResult<Repository>> response) {
-                mView.hideLoading();
-                if (repos == null || page == 1) {
-                    repos = response.body().getItems();
-                }else{
-                    repos.addAll(response.body().getItems());
-                }
-                mView.showRepositories(repos);
-            }
-        };
+                    @Override
+                    public void onSuccess(@NonNull HttpResponse<SearchResult<Repository>> response) {
+                        mView.hideLoading();
+                        if (repos == null || page == 1) {
+                            repos = response.body().getItems();
+                        } else {
+                            repos.addAll(response.body().getItems());
+                        }
+                        if(response.body().getItems().size() > 0){
+                            mView.showRepositories(repos);
+                        } else {
+                            mView.setCanLoadMore(false);
+                        }
+                    }
+                };
         generalRxHttpExecute(new IObservableCreator<SearchResult<Repository>>() {
             @Nullable
             @Override
@@ -164,7 +172,7 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
     }
 
     @Subscribe
-    public void onSearchEvent(@NonNull Event.SearchEvent searchEvent){
+    public void onSearchEvent(@NonNull Event.SearchEvent searchEvent) {
         if (!searchEvent.searchModel.getType().equals(SearchModel.SearchType.Repository)) return;
         this.searchModel = searchEvent.searchModel;
         searchRepos(1);
