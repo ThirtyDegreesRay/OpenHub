@@ -24,6 +24,7 @@ import android.support.annotation.Nullable;
 
 import com.danielstone.materialaboutlibrary.MaterialAboutActivity;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickAction;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
@@ -65,7 +66,7 @@ public class AboutActivity extends MaterialAboutActivity {
         return getString(R.string.about);
     }
 
-    private void buildApp(MaterialAboutCard.Builder appBuilder, Context context){
+    private void buildApp(MaterialAboutCard.Builder appBuilder, final Context context){
         appBuilder.addItem(new MaterialAboutTitleItem.Builder()
                 .text(getString(R.string.app_name))
                 .desc("© 2017 ThirtyDegreesRay")
@@ -79,29 +80,54 @@ public class AboutActivity extends MaterialAboutActivity {
         appBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text(R.string.source_code)
                 .icon(R.drawable.ic_code)
-                .setOnClickAction(() -> RepositoryActivity.show(context, "ThirtyDegreesRay", "OpenHub"))
+                .setOnClickAction(new MaterialAboutItemOnClickAction() {
+                    @Override
+                    public void onClick() {
+                        RepositoryActivity.show(context, "ThirtyDegreesRay", "OpenHub");
+                    }
+                })
                 .build());
     }
 
-    private void buildAuthor(MaterialAboutCard.Builder appBuilder, Context context){
+    private void buildAuthor(MaterialAboutCard.Builder appBuilder, final Context context){
         appBuilder.title(R.string.author);
         appBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text(R.string.author_name)
                 .subText(R.string.author_location)
                 .icon(R.drawable.ic_menu_person)
-                .setOnClickAction(() -> ProfileActivity.show(context, "ThirtyDegreesRay"))
+                .setOnClickAction(new MaterialAboutItemOnClickAction() {
+                    @Override
+                    public void onClick() {
+                        ProfileActivity.show(context, "ThirtyDegreesRay");
+                    }
+                })
                 .build());
         appBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text(R.string.follow_on_github)
                 .icon(R.drawable.ic_github)
-                .setOnClickAction(() -> ProfileActivity.show(context, "ThirtyDegreesRay"))
+                .setOnClickAction(new MaterialAboutItemOnClickAction() {
+                    @Override
+                    public void onClick() {
+                        ProfileActivity.show(context, "ThirtyDegreesRay");
+                    }
+                })
                 .build());
         appBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text(R.string.email)
                 .subText(R.string.auth_email_address)
                 .icon(R.drawable.ic_mail)
-                .setOnClickAction(() -> AppHelper.launchEmail(context, getString(R.string.auth_email_address)))
-                .setOnLongClickAction(() -> AppHelper.copyToClipboard(context, getString(R.string.auth_email_address)))
+                .setOnClickAction(new MaterialAboutItemOnClickAction() {
+                    @Override
+                    public void onClick() {
+                        AppHelper.launchEmail(context, getString(R.string.auth_email_address));
+                    }
+                })
+                .setOnLongClickAction(new MaterialAboutItemOnClickAction() {
+                    @Override
+                    public void onClick() {
+                        AppHelper.copyToClipboard(context, getString(R.string.auth_email_address));
+                    }
+                })
                 .build());
     }
 

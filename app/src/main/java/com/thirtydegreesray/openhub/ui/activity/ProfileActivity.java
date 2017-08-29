@@ -82,6 +82,7 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        setToolbarScrollAble(true);
         setToolbarBackEnable();
         setToolbarTitle(mPresenter.getLoginId());
     }

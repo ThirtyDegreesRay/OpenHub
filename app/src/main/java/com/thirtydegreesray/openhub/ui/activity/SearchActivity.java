@@ -88,6 +88,7 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        setToolbarScrollAble(true);
         setToolbarBackEnable();
         sortInfos = new String[]{
                 getString(R.string.best_match), getString(R.string.best_match)

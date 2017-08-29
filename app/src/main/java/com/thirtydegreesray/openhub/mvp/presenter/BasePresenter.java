@@ -289,7 +289,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
 
     @NonNull
     protected String getLoadTip() {
-        return "loading...";
+        return getContext().getString(R.string.loading).concat("...");
     }
 
     protected boolean isLastResponse(@NonNull HttpResponse response) {

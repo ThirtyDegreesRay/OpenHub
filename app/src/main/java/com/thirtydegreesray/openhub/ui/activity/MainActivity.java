@@ -21,7 +21,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -282,14 +281,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
                     .hide(hideFragment)
                     .commit();
         }
-    }
-
-    private void setToolbarScrollAble(boolean scrollAble) {
-        int flags = scrollAble ? (AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
-                | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS) : 0;
-        AppBarLayout.LayoutParams layoutParams = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
-        layoutParams.setScrollFlags(flags);
-        toolbar.setLayoutParams(layoutParams);
     }
 
 }

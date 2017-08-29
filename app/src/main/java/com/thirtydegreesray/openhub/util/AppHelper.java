@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub.util;
 
+import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -110,16 +111,23 @@ public class AppHelper {
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.putExtra(Intent.EXTRA_TEXT, text);
         shareIntent.setType("text/plain");
-        context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share_to)));
+        try{
+            context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share_to)));
+        }catch (ActivityNotFoundException e){
+            Toasty.warning(context, context.getString(R.string.no_share_clients)).show();
+        }
     }
 
     public static void launchEmail(@NonNull Context context, @NonNull String email){
         Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
+        intent.setType("message/rfc822");
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-        context.startActivity(intent);
+        try{
+            context.startActivity(Intent.createChooser(intent, context.getString(R.string.send_email)));
+        }catch (ActivityNotFoundException e){
+            Toasty.warning(context, context.getString(R.string.no_email_clients)).show();
+        }
     }
-
 
 
     public static void launchUrl(@NonNull Context context, @NonNull Uri uri){

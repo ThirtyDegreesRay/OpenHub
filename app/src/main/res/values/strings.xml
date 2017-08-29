@@ -50,23 +50,23 @@
     <string name="logout">Logout</string>
 
     <!-- colors -->
-    <string name="light_blue">Light Blue</string>
-    <string name="blue">Blue</string>
-    <string name="indigo">Indigo</string>
-    <string name="orange">Orange</string>
-    <string name="yellow">Yellow</string>
-    <string name="amber">Amber</string>
-    <string name="grey">Grey</string>
-    <string name="brown">Brown</string>
+    <string name="light_blue" translatable="false">Light Blue</string>
+    <string name="blue" translatable="false">Blue</string>
+    <string name="indigo" translatable="false">Indigo</string>
+    <string name="orange" translatable="false">Orange</string>
+    <string name="yellow" translatable="false">Yellow</string>
+    <string name="amber" translatable="false">Amber</string>
+    <string name="grey" translatable="false">Grey</string>
+    <string name="brown" translatable="false">Brown</string>
 
-    <string name="cyan">Cyan</string>
-    <string name="teal">Teal</string>
-    <string name="lime">Lime</string>
-    <string name="green">Green</string>
-    <string name="pink">Pink</string>
-    <string name="red">Red</string>
-    <string name="purple">Purple</string>
-    <string name="deep_purple">Deep Purple</string>
+    <string name="cyan" translatable="false">Cyan</string>
+    <string name="teal" translatable="false">Teal</string>
+    <string name="lime" translatable="false">Lime</string>
+    <string name="green" translatable="false">Green</string>
+    <string name="pink" translatable="false">Pink</string>
+    <string name="red" translatable="false">Red</string>
+    <string name="purple" translatable="false">Purple</string>
+    <string name="deep_purple" translatable="false">Deep Purple</string>
 
     <!-- Repository -->
     <string name="repository">Repository</string>
@@ -96,12 +96,15 @@
     <string name="stargazers">Stargazers</string>
     <string name="forks">Froks</string>
     <string name="watchers">Watchers</string>
-    <string name="readme">README</string>
+    <string name="readme" translatable="false">README</string>
     <string name="warning_dialog_tile">Warning</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="select_branch">Select branch or tag</string>
     <string name="share_to">Share to</string>
+    <string name="no_share_clients">There are no share clients installed.</string>
+    <string name="send_email">Send email</string>
+    <string name="no_email_clients">There are no email clients installed.</string>
     <string name="url_invalid">Url is invalid</string>
     <string name="view_archive_file_error">Archive file is not supported, please download the file to view its content.</string>
     <string name="fork_warning_msg">Fork this repository?</string>
@@ -131,23 +134,23 @@
     <string name="search">Search</string>
     <string name="sort">Sort</string>
 
-    <string name="best_match">Best match</string>
-    <string name="most_stars">Most stars</string>
-    <string name="fewest_stars">Fewest stars</string>
-    <string name="most_forks">Most forks</string>
-    <string name="fewest_forks">Fewest forks</string>
-    <string name="recently_updated">Recently updated</string>
-    <string name="least_recently_updated">Least recently updated</string>
+    <string name="best_match" translatable="false">Best match</string>
+    <string name="most_stars" translatable="false">Most stars</string>
+    <string name="fewest_stars" translatable="false">Fewest stars</string>
+    <string name="most_forks" translatable="false">Most forks</string>
+    <string name="fewest_forks" translatable="false">Fewest forks</string>
+    <string name="recently_updated" translatable="false">Recently updated</string>
+    <string name="least_recently_updated" translatable="false">Least recently updated</string>
 
-    <string name="most_followers">Most followers</string>
-    <string name="fewest_followers">Fewest followers</string>
-    <string name="most_recently_joined">Most recently joined</string>
-    <string name="least_recently_joined">Least recently joined</string>
-    <string name="most_repositories">Most repositories</string>
-    <string name="fewest_repositories">Fewest repositories</string>
+    <string name="most_followers" translatable="false">Most followers</string>
+    <string name="fewest_followers" translatable="false">Fewest followers</string>
+    <string name="most_recently_joined" translatable="false">Most recently joined</string>
+    <string name="least_recently_joined" translatable="false">Least recently joined</string>
+    <string name="most_repositories" translatable="false">Most repositories</string>
+    <string name="fewest_repositories" translatable="false">Fewest repositories</string>
 
-    <string name="recently_indexed">Recently indexed</string>
-    <string name="least_recently_indexed">Least recently indexed</string>
+    <string name="recently_indexed" translatable="false">Recently indexed</string>
+    <string name="least_recently_indexed" translatable="false">Least recently indexed</string>
 
     <string name="invalid_query">Invalid query text!</string>
 
@@ -167,9 +170,10 @@
     <string name="source_code" >Source code</string>
     <string name="author" >Author</string>
     <string name="author_name" translatable="false">ThirtyDegreesRay</string>
-    <string name="author_location" translatable="false">NanJing,China</string>
+    <string name="author_location">NanJing,China</string>
     <string name="follow_on_github" >Follow on GitHub</string>
     <string name="email" >Email</string>
-    <string name="auth_email_address" >rays.yuz@gmail.com</string>
+    <string name="auth_email_address" translatable="false">rays.yuz@gmail.com</string>
+    <string name="loading">loading</string>
 
 </resources>
