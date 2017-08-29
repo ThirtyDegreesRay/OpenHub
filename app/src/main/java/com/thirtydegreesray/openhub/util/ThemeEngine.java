@@ -1,5 +1,5 @@
 /*
- *    Copyright 2017 ThirtyDegressRay
+ *    Copyright 2017 ThirtyDegreesRay
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub.util;
 
+import android.app.Activity;
 import android.support.annotation.StyleRes;
 
 import com.thirtydegreesray.openhub.R;
@@ -37,6 +38,20 @@ public class ThemeEngine {
         int theme = PrefHelper.getTheme();
         int accentColor = PrefHelper.getAccentColor();
         activity.setTheme(getTheme(theme, accentColor));
+    }
+
+    public static void applyForAboutActivity(Activity activity){
+        int theme = PrefHelper.getTheme();
+        activity.setTheme(getAboutTheme(theme));
+    }
+
+    @StyleRes
+    public static int getAboutTheme(int theme){
+        if(theme == PrefHelper.LIGHT){
+            return R.style.ThemeLight_AboutActivity;
+        }else{
+            return R.style.ThemeDark_AboutActivity;
+        }
     }
 
     @StyleRes

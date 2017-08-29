@@ -1,5 +1,5 @@
 /*
- *    Copyright 2017 ThirtyDegressRay
+ *    Copyright 2017 ThirtyDegreesRay
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -190,7 +190,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 startActivity(new Intent(getActivity(), SettingsActivity.class));
                 break;
             case R.id.nav_about:
-//                loadFragment("nav_about");
+                AboutActivity.show(getActivity());
                 break;
             default:
                 break;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~    Copyright 2017 ThirtyDegressRay
+  ~    Copyright 2017 ThirtyDegreesRay
   ~
   ~    Licensed under the Apache License, Version 2.0 (the "License");
   ~    you may not use this file except in compliance with the License.
@@ -101,7 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?android:selectableItemBackground"
-                    android:drawableStart="@drawable/ic_mail"
+                    android:drawableStart="@drawable/ic_mail_secondary"
                     android:paddingBottom="@dimen/spacing_small"
                     android:paddingEnd="@dimen/spacing_small"
                     android:paddingStart="@dimen/spacing_small"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~    Copyright 2014 ThirtyDegressRay
+  ~    Copyright 2017 ThirtyDegreesRay
   ~
   ~    Licensed under the Apache License, Version 2.0 (the "License");
   ~    you may not use this file except in compliance with the License.
@@ -126,6 +126,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/ThemeLight.Indigo"
             android:label="@string/trending">
+        </activity>
+
+        <activity
+            android:name=".ui.activity.AboutActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeLight.AboutActivity"
+            android:label="@string/about">
         </activity>
 
     </application>

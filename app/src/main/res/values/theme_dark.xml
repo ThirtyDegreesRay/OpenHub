@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~    Copyright 2017 ThirtyDegressRay
+  ~    Copyright 2017 ThirtyDegreesRay
   ~
   ~    Licensed under the Apache License, Version 2.0 (the "License");
   ~    you may not use this file except in compliance with the License.
@@ -221,6 +221,14 @@
 
     <style name="DialogThemeDark.DeepPurple" parent="DialogThemeDark">
         <item name="colorAccent">@color/material_deep_purple_accent_700</item>
+    </style>
+
+    <style name="ThemeDark.AboutActivity" parent="ThemeDark">
+        <item name="mal_toolbarPopupTheme">@style/Theme.Mal.Toolbar.Dark</item>
+        <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Dark</item>
+        <item name="mal_color_primary">@color/dark_text_color_primary</item>
+        <item name="mal_color_secondary">@color/dark_text_color_secondary</item>
+        <item name="mal_card_background">@color/dark_card_background</item>
     </style>
 
 </resources>
