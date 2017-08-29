@@ -94,4 +94,6 @@ dependencies {
     compile "com.afollestad.material-dialogs:core:${MATERIAL_DIALOG_VERSION}"
     compile "com.afollestad.material-dialogs:commons:${MATERIAL_DIALOG_VERSION}"
 
+    compile "com.umeng.analytics:analytics:${UMENG_VERSION}"
+
 }
