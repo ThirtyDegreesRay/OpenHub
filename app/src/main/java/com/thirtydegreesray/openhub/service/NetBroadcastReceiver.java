@@ -36,9 +36,9 @@ public class NetBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, @NonNull Intent intent) {
         String action = intent.getAction();
         if (action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
-            int preNetStatus = NetHelper.getInstance().getNetStatus();
-            NetHelper.getInstance().checkNet();
-            int curNetStatus = NetHelper.getInstance().getNetStatus();
+            int preNetStatus = NetHelper.INSTANCE.getNetStatus();
+            NetHelper.INSTANCE.checkNet();
+            int curNetStatus = NetHelper.INSTANCE.getNetStatus();
             AppEventBus.INSTANCE.getEventBus().post(new Event.NetChangedEvent(preNetStatus, curNetStatus));
         }
     }

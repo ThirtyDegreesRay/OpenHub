@@ -131,6 +131,7 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
                 break;
             case R.id.gists_lay:
                 if(mPresenter.getUser().getPublicGists() == 0) return;
+                showInfoToast(getString(R.string.developing));
                 break;
             case R.id.email:
                 AppHelper.launchEmail(getActivity(), mPresenter.getUser().getEmail());

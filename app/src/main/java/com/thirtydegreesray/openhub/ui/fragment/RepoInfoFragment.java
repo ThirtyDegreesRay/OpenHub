@@ -160,7 +160,7 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.issues_lay:
-
+                showInfoToast(getString(R.string.developing));
                 break;
             case R.id.stargazers_lay:
                 if(mPresenter.getRepository().getStargazersCount() == 0) return;

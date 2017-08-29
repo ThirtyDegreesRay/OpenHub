@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub;
 
+import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.dao.AuthUser;
 import com.thirtydegreesray.openhub.mvp.model.User;
 
@@ -28,11 +29,8 @@ import com.thirtydegreesray.openhub.mvp.model.User;
 public enum  AppData {
     INSTANCE;
 
-//    @AutoAccess(dataName = "appData_loginedUser") User loggedUser;
-//    @AutoAccess(dataName = "appData_authUser") AuthUser authUser;
-
-    User loggedUser;
-    AuthUser authUser;
+    @AutoAccess(dataName = "appData_loggedUser") User loggedUser;
+    @AutoAccess(dataName = "appData_authUser") AuthUser authUser;
 
     public User getLoggedUser() {
         return loggedUser;

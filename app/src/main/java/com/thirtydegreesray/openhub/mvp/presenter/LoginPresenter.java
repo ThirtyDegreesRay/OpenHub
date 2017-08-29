@@ -25,8 +25,8 @@ import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.dao.AuthUser;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
-import com.thirtydegreesray.openhub.http.core.HttpProgressSubscriber;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
+import com.thirtydegreesray.openhub.http.core.HttpSubscriber;
 import com.thirtydegreesray.openhub.http.model.AuthRequestModel;
 import com.thirtydegreesray.openhub.mvp.contract.ILoginContract;
 import com.thirtydegreesray.openhub.mvp.model.BasicToken;
@@ -63,12 +63,12 @@ public class LoginPresenter extends BasePresenter<ILoginContract.View>
                 getLoginService().getAccessToken(AppConfig.OPENHUB_CLIENT_ID,
                         AppConfig.OPENHUB_CLIENT_SECRET, code, state);
 
-        HttpProgressSubscriber<OauthToken> subscriber =
-                new HttpProgressSubscriber<>(
-                        mView.getProgressDialog(getLoadTip()),
+        HttpSubscriber<OauthToken> subscriber =
+                new HttpSubscriber<>(
                         new HttpObserver<OauthToken>() {
                             @Override
                             public void onError(@NonNull Throwable error) {
+                                mView.dismissProgressDialog();
                                 mView.showErrorToast(getErrorTip(error));
                             }
 
@@ -84,6 +84,7 @@ public class LoginPresenter extends BasePresenter<ILoginContract.View>
                         }
                 );
         generalRxHttpExecute(observable, subscriber);
+        mView.showProgressDialog(getLoadTip());
     }
 
     @NonNull
@@ -102,12 +103,12 @@ public class LoginPresenter extends BasePresenter<ILoginContract.View>
         String token = Credentials.basic(userName, password);
         Observable<Response<BasicToken>> observable =
                 getLoginService(token).authorizations(authRequestModel);
-        HttpProgressSubscriber<BasicToken> subscriber =
-                new HttpProgressSubscriber<>(
-                        mView.getProgressDialog(getLoadTip()),
+        HttpSubscriber<BasicToken> subscriber =
+                new HttpSubscriber<>(
                         new HttpObserver<BasicToken>() {
                             @Override
                             public void onError(@NonNull Throwable error) {
+//                                mView.dismissProgressDialog();
                                 mView.onGetTokenError(getErrorTip(error));
                             }
 
@@ -124,6 +125,7 @@ public class LoginPresenter extends BasePresenter<ILoginContract.View>
                         }
                 );
         generalRxHttpExecute(observable, subscriber);
+//        mView.showProgressDialog(getLoadTip());
     }
 
     @Override
@@ -138,26 +140,26 @@ public class LoginPresenter extends BasePresenter<ILoginContract.View>
 
     @Override
     public void getUserInfo(final BasicToken basicToken) {
+        HttpSubscriber<User> subscriber = new HttpSubscriber<>(
+                new HttpObserver<User>() {
+                    @Override
+                    public void onError(Throwable error) {
+                        mView.dismissProgressDialog();
+                        mView.showErrorToast(getErrorTip(error));
+                    }
 
-        HttpObserver<User> httpObserver = new HttpObserver<User>() {
-            @Override
-            public void onError(@NonNull Throwable error) {
-                mView.showErrorToast(getErrorTip(error));
-            }
-
-            @Override
-            public void onSuccess(@NonNull HttpResponse<User> response) {
-                saveAuthUser(basicToken, response.body());
-                mView.onLoginComplete();
-            }
-        };
-
-        generalRxHttpExecute(new IObservableCreator<User>() {
-            @Override
-            public Observable<Response<User>> createObservable(boolean forceNetWork) {
-                return getUserService(basicToken.getToken()).getPersonInfo(forceNetWork);
-            }
-        }, httpObserver, false);
+                    @Override
+                    public void onSuccess(HttpResponse<User> response) {
+//                        mView.dismissProgressDialog();
+                        saveAuthUser(basicToken, response.body());
+                        mView.onLoginComplete();
+                    }
+                }
+        );
+        Observable<Response<User>> observable = getUserService(basicToken.getToken()).
+                getPersonInfo(true);
+        generalRxHttpExecute(observable, subscriber);
+        mView.showProgressDialog(getLoadTip());
 
     }
 

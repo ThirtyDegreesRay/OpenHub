@@ -17,6 +17,7 @@
 package com.thirtydegreesray.openhub.mvp.presenter;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.dao.AuthUser;
@@ -47,6 +48,7 @@ public class SplashPresenter extends BasePresenter<ISplashContract.View>
     private final String TAG = "SplashPresenter";
 
     private AuthUser authUser;
+    private boolean isMainPageShowwed = false;
 
     @Inject
     public SplashPresenter(DaoSession daoSession) {
@@ -105,7 +107,10 @@ public class SplashPresenter extends BasePresenter<ISplashContract.View>
                     authUser.setLoginId(response.body().getLogin());
                     daoSession.getAuthUserDao().update(authUser);
                 }
-                mView.showMainPage();
+                if(!isMainPageShowwed) {
+                    isMainPageShowwed = true;
+                    mView.showMainPage();
+                }
             }
         };
 
@@ -114,7 +119,7 @@ public class SplashPresenter extends BasePresenter<ISplashContract.View>
             public Observable<Response<User>> createObservable(boolean forceNetWork) {
                 return getUserService().getPersonInfo(forceNetWork);
             }
-        }, httpObserver, false);
+        }, httpObserver, true);
 
     }
 

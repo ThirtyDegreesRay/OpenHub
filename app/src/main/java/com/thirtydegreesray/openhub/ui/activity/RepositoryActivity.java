@@ -115,6 +115,10 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if(mPresenter.getRepository() == null && item.getItemId() != android.R.id.home){
+            showWarningToast(getString(R.string.no_data));
+            return super.onOptionsItemSelected(item);
+        }
         switch (item.getItemId()) {
             case R.id.action_star:
                 mPresenter.starRepo(!mPresenter.isStarred());

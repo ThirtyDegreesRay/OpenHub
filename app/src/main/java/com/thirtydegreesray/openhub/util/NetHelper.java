@@ -27,18 +27,8 @@ import android.util.Log;
  * @author Administrator
  *
  */
-public class NetHelper {
-
-	private NetHelper(){}
-
-	private static class SingleInstanceHolder{
-		private final static NetHelper instance = new NetHelper();
-	}
-
-	@NonNull
-    public static NetHelper getInstance(){
-		return SingleInstanceHolder.instance;
-	}
+public enum  NetHelper {
+	INSTANCE;
 
 	public static final int TYPE_DISCONNECT = 0;
 	public static final int TYPE_WIFI = 1;

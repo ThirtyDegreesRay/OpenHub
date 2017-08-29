@@ -107,16 +107,15 @@ public enum  AppRetrofit {
 
             //第二次请求，强制使用网络请求
             String forceNetWork = request.header("forceNetWork");
-            if("true".equals(forceNetWork)){
-                request = request.newBuilder()
-                        .cacheControl(CacheControl.FORCE_NETWORK)
-                        .build();
-            }
             //有forceNetWork且无网络状态下取从缓存中取
-            else if (!StringUtils.isBlank(forceNetWork) &&
-                    !NetHelper.getInstance().getNetEnabled()) {
+            if (!StringUtils.isBlank(forceNetWork) &&
+                    !NetHelper.INSTANCE.getNetEnabled()) {
                 request = request.newBuilder()
                         .cacheControl(CacheControl.FORCE_CACHE)
+                        .build();
+            } else if("true".equals(forceNetWork)){
+                request = request.newBuilder()
+                        .cacheControl(CacheControl.FORCE_NETWORK)
                         .build();
             }
 

@@ -88,6 +88,10 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if(mPresenter.getUser() == null && item.getItemId() != android.R.id.home){
+            showWarningToast(getString(R.string.no_data));
+            return super.onOptionsItemSelected(item);
+        }
         switch (item.getItemId()){
             case R.id.action_follow:
                 mPresenter.followUser(!mPresenter.isFollowing());

@@ -46,7 +46,7 @@ public class AppApplication extends Application {
                 .appModule(new AppModule(this))
                 .build();
         startTime = System.currentTimeMillis();
-        NetHelper.getInstance().init(this);
+        NetHelper.INSTANCE.init(this);
         Log.i(TAG, "application ok:" + (System.currentTimeMillis() - startTime));
     }
 

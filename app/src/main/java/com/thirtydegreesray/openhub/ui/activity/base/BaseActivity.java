@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub.ui.activity.base;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
@@ -33,7 +34,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
@@ -216,6 +216,7 @@ BaseActivity<P extends IBaseContract.Presenter>
     }
 
     protected Fragment getVisibleFragment(){
+        @SuppressLint("RestrictedApi")
         List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
         if(fragmentList != null ){
             for(Fragment fragment : fragmentList){

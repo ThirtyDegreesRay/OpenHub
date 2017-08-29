@@ -40,6 +40,7 @@ import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.http.core.HttpSubscriber;
 import com.thirtydegreesray.openhub.http.error.HttpError;
+import com.thirtydegreesray.openhub.http.error.HttpErrorCode;
 import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseContract;
 import com.thirtydegreesray.openhub.util.Logger;
@@ -256,7 +257,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
                 Logger.d(TAG, "data:" + response.body());
                 if (response.isSuccessful()) {
                     if (readCacheFirst && response.isFromCache()
-                            && NetHelper.getInstance().getNetEnabled()
+                            && NetHelper.INSTANCE.getNetEnabled()
                             && requestTimesMap.get(observableCreator.toString()) < 2) {
                         requestTimesMap.put(observableCreator.toString(), 2);
                         generalRxHttpExecute(observableCreator.createObservable(true),
@@ -265,6 +266,8 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
                     httpObserver.onSuccess(response);
                 } else if(response.getOriResponse().code() == 404){
                     httpObserver.onError(new HttpPageNoFoundError());
+                } else if(response.getOriResponse().code() == 504){
+                    httpObserver.onError(new HttpError(HttpErrorCode.NO_CACHE_AND_NETWORK));
                 } else {
                     httpObserver.onError(new Error(response.getOriResponse().message()));
                 }
@@ -273,6 +276,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
         };
 
         boolean cacheFirstEnable = PrefHelper.isCacheFirstEnable();
+//        cacheFirstEnable = cacheFirstEnable || !NetHelper.INSTANCE.getNetEnabled();
         generalRxHttpExecute(observableCreator.createObservable(!cacheFirstEnable || !readCacheFirst),
                 getHttpSubscriber(tempObserver));
         Logger.d(TAG, "get date start:" + System.currentTimeMillis());
@@ -290,7 +294,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
 
     protected boolean isLastResponse(@NonNull HttpResponse response) {
         return response.isFromNetWork() ||
-                !NetHelper.getInstance().getNetEnabled();
+                !NetHelper.INSTANCE.getNetEnabled();
     }
 
     @NonNull

@@ -29,11 +29,13 @@
     <string name="about">About</string>
 
 
-    <string name="no_cache_and_network">No cache and network available.</string>
+    <string name="no_cache_and_network">Network and cache is unavailable.</string>
     <string name="page_no_found">Page not found.</string>
     <string name="no_network_tip">Loading the data from GitHub failed.Please check your network connection and retry.</string>
     <string name="load_timeout_tip">Loading the data from GitHub timeout.Please check your network connection and retry.</string>
     <string name="tap_to_retry">Tap to retry</string>
+    <string name="no_data">No data</string>
+
     <string name="title_activity_repository">OpenHub</string>
     <string name="title_activity_settings">Settings</string>
 
@@ -160,5 +162,7 @@
     <string name="no_activity">No activity</string>
     <string name="no_repository">No repository</string>
     <string name="no_file">No file</string>
+
+    <string name="developing">Developing</string>
 
 </resources>

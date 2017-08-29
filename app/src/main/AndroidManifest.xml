@@ -20,10 +20,6 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
-    <!--
-        android:name=".AppApplication"
-        android:theme="@style/AppTheme"
-    -->
     <application
         android:name=".AppApplication"
         android:allowBackup="true"

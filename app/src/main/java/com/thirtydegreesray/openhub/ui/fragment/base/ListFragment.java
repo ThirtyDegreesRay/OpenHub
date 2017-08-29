@@ -29,6 +29,7 @@ import android.widget.TextView;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseContract;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
+import com.thirtydegreesray.openhub.util.NetHelper;
 import com.thirtydegreesray.openhub.util.ViewHelper;
 
 import javax.inject.Inject;
@@ -107,7 +108,8 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
-            if(!loadMoreEnable || !canLoadMore || isLoading) return;
+            if(!loadMoreEnable || !canLoadMore || isLoading ||
+                    !NetHelper.INSTANCE.getNetEnabled()) return;
             RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
             //only LinearLayoutManager can find last visible
             if(layoutManager instanceof LinearLayoutManager){
