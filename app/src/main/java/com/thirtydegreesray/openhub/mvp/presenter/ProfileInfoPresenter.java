@@ -64,7 +64,7 @@ public class ProfileInfoPresenter extends BasePresenter<IProfileInfoContract.Vie
         HttpObserver<ArrayList<User>> httpObserver = new HttpObserver<ArrayList<User>>() {
             @Override
             public void onError(Throwable error) {
-                mView.showShortToast(error.getMessage());
+                mView.showErrorToast(getErrorTip(error));
             }
 
             @Override

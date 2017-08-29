@@ -30,8 +30,10 @@
 
 
     <string name="no_cache_and_network">No cache and network available.</string>
-    <string name="tap_to_retry">Tap to retry.</string>
-    <string name="no_repositories">No repositories.</string>
+    <string name="page_no_found">Page not found.</string>
+    <string name="no_network_tip">Loading the data from GitHub failed.Please check your network connection and retry.</string>
+    <string name="load_timeout_tip">Loading the data from GitHub timeout.Please check your network connection and retry.</string>
+    <string name="tap_to_retry">Tap to retry</string>
     <string name="title_activity_repository">OpenHub</string>
     <string name="title_activity_settings">Settings</string>
 
@@ -154,5 +156,9 @@
     <string name="logout_warning">Confirm to logout ?</string>
     <string name="unknown">Unknown</string>
     <string name="organizations">Organizations</string>
+    <string name="no_user">No user</string>
+    <string name="no_activity">No activity</string>
+    <string name="no_repository">No repository</string>
+    <string name="no_file">No file</string>
 
 </resources>

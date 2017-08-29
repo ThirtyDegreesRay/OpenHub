@@ -59,7 +59,7 @@ public class ProfilePresenter extends BasePresenter<IProfileContract.View>
         HttpObserver<User> httpObserver = new HttpObserver<User>() {
             @Override
             public void onError(Throwable error) {
-                mView.showShortToast(error.getMessage());
+                mView.showErrorToast(getErrorTip(error));
                 mView.getProgressDialog(getLoadTip()).dismiss();
             }
 

@@ -60,7 +60,7 @@ public enum  AppRetrofit {
     private void createRetrofit(@NonNull String baseUrl) {
         int timeOut = AppConfig.HTTP_TIME_OUT;
         Cache cache = new Cache(FileUtil.getHttpImageCacheDir(AppApplication.get()),
-                AppConfig.MAX_CACHE_SIZE);
+                AppConfig.HTTP_MAX_CACHE_SIZE);
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(timeOut, TimeUnit.MILLISECONDS)

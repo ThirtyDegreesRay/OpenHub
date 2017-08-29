@@ -69,7 +69,7 @@ public class LoginPresenter extends BasePresenter<ILoginContract.View>
                         new HttpObserver<OauthToken>() {
                             @Override
                             public void onError(@NonNull Throwable error) {
-                                mView.showShortToast(error.getMessage());
+                                mView.showErrorToast(getErrorTip(error));
                             }
 
                             @Override
@@ -108,7 +108,7 @@ public class LoginPresenter extends BasePresenter<ILoginContract.View>
                         new HttpObserver<BasicToken>() {
                             @Override
                             public void onError(@NonNull Throwable error) {
-                                mView.onGetTokenError(error.getMessage());
+                                mView.onGetTokenError(getErrorTip(error));
                             }
 
                             @Override
@@ -142,7 +142,7 @@ public class LoginPresenter extends BasePresenter<ILoginContract.View>
         HttpObserver<User> httpObserver = new HttpObserver<User>() {
             @Override
             public void onError(@NonNull Throwable error) {
-                mView.showShortToast(error.getMessage());
+                mView.showErrorToast(getErrorTip(error));
             }
 
             @Override

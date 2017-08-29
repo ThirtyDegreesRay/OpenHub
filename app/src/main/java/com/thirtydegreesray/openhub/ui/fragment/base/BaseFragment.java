@@ -28,8 +28,8 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
@@ -40,6 +40,7 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import es.dmoral.toasty.Toasty;
 
 /**
  * Created on 2017/7/18.
@@ -167,6 +168,12 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
         Logger.d(TAG, getClass().getSimpleName() + " onDetach");
     }
 
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        Glide.with(this).onLowMemory();
+    }
+
     protected AppApplication getAppApplication() {
         return AppApplication.get();
     }
@@ -211,13 +218,28 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     }
 
     @Override
-    public void showShortToast(String message){
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    public void showToast(String message){
+        Toasty.normal(getActivity(), message).show();
     }
 
     @Override
-    public void showLongToast(String message){
-        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+    public void showInfoToast(String message) {
+        Toasty.info(getActivity(), message).show();
+    }
+
+    @Override
+    public void showSuccessToast(String message) {
+        Toasty.success(getActivity(), message).show();
+    }
+
+    @Override
+    public void showErrorToast(String message) {
+        Toasty.error(getActivity(), message).show();
+    }
+
+    @Override
+    public void showWarningToast(String message) {
+        Toasty.warning(getActivity(), message).show();
     }
 
     @Override

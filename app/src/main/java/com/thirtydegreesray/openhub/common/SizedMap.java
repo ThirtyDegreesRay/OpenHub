@@ -37,8 +37,11 @@ public class SizedMap<K,V> extends LinkedHashMap<K,V> {
         this.maxSize = maxSize;
     }
 
-    @Override
-    protected boolean removeEldestEntry(Entry<K, V> eldest) {
-        return size() > maxSize;
-    }
+
+    //FIXME
+//    @Override
+//    protected boolean removeEldestEntry(Entry<K, V> eldest) {
+//        return size() > maxSize;
+//    }
+
 }

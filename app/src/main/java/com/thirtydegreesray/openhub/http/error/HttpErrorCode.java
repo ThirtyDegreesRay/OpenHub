@@ -36,11 +36,13 @@ public class HttpErrorCode {
      * No cache and network available.
      */
     public final static int NO_CACHE_AND_NETWORK = 0;
+    public final static int PAGE_NOT_FOUND = 1;
 
     private final static Map<Integer, String> ERROR_MSG_MAP = new HashMap<>();
 
     static{
         ERROR_MSG_MAP.put(NO_CACHE_AND_NETWORK, getString(R.string.no_cache_and_network));
+        ERROR_MSG_MAP.put(PAGE_NOT_FOUND, getString(R.string.page_no_found));
     }
 
     public static String getErrorMsg(int errorCode){

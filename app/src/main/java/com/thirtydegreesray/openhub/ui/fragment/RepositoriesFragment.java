@@ -93,11 +93,6 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     }
 
     @Override
-    public void showLoadError(String errorMsg) {
-        setErrorTip(errorMsg);
-    }
-
-    @Override
     protected int getLayoutId() {
         return R.layout.fragment_list;
     }
@@ -124,7 +119,7 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
 
     @Override
     protected String getEmptyTip() {
-        return getString(R.string.no_repositories);
+        return getString(R.string.no_repository);
     }
 
     @Override

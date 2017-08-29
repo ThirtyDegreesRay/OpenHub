@@ -24,6 +24,7 @@ import com.thirtydegreesray.openhub.common.SizedMap;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
+import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
 import com.thirtydegreesray.openhub.mvp.contract.IRepoFilesContract;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.mvp.model.FilePath;
@@ -91,7 +92,11 @@ public class RepoFilesPresenter extends BasePresenter<IRepoFilesContract.View>
                 new HttpObserver<ArrayList<FileModel>>() {
                     @Override
                     public void onError(Throwable error) {
-                        mView.showShortToast(error.getMessage());
+                        if(error instanceof HttpPageNoFoundError){
+                            mView.showFiles(new ArrayList<FileModel>());
+                        }else{
+                            mView.showLoadError(getErrorTip(error));
+                        }
                         mView.hideLoading();
                     }
 

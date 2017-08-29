@@ -14,26 +14,14 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.mvp.contract;
-
-import com.thirtydegreesray.openhub.mvp.model.Event;
-
-import java.util.ArrayList;
+package com.thirtydegreesray.openhub.http.error;
 
 /**
- * Created by ThirtyDegreesRay on 2017/8/23 21:51:44
+ * Created by ThirtyDegreesRay on 2017/8/28 16:59:37
  */
 
-public interface IActivityContract {
-
-    interface View extends IBaseContract.View{
-        void showEvents(ArrayList<Event> events);
-        void setCanLoadMore(boolean canLoadMore);
-        void showLoadError(String error);
+public class HttpPageNoFoundError extends HttpError {
+    public HttpPageNoFoundError() {
+        super(HttpErrorCode.PAGE_NOT_FOUND);
     }
-
-    interface Presenter extends IBaseContract.Presenter<IActivityContract.View>{
-        void loadEvents(boolean isReload, int page);
-    }
-
 }

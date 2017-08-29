@@ -32,6 +32,7 @@ public interface IRepoFilesContract {
     interface View extends IBaseContract.View{
         void showFiles(ArrayList<FileModel> files);
         void showFilePath(ArrayList<FilePath> filePath);
+        void showLoadError(String error);
     }
 
     interface Presenter extends IBaseContract.Presenter<IRepoFilesContract.View>{

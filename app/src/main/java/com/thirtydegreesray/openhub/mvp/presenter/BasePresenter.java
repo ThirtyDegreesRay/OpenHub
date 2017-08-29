@@ -27,6 +27,7 @@ import android.support.v4.app.Fragment;
 import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
 import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.AppData;
+import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.AppEventBus;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.LoginService;
@@ -39,7 +40,7 @@ import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.http.core.HttpSubscriber;
 import com.thirtydegreesray.openhub.http.error.HttpError;
-import com.thirtydegreesray.openhub.http.error.HttpErrorCode;
+import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseContract;
 import com.thirtydegreesray.openhub.util.Logger;
 import com.thirtydegreesray.openhub.util.NetHelper;
@@ -49,7 +50,10 @@ import com.thirtydegreesray.openhub.util.StringUtils;
 import org.apache.http.conn.ConnectTimeoutException;
 
 import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Response;
@@ -204,6 +208,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
         Observable<Response<T>> createObservable(boolean forceNetWork);
     }
 
+
     /**
      * 一般的rx http请求执行
      *
@@ -213,6 +218,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
      */
     protected <T> void generalRxHttpExecute(
             @NonNull Observable<Response<T>> observable, @Nullable HttpSubscriber<T> subscriber) {
+
         if (subscriber != null) {
             subscribers.add(subscriber);
             observable.subscribeOn(Schedulers.io())
@@ -230,9 +236,13 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
         generalRxHttpExecute(observableCreator, httpObserver, false);
     }
 
+    //防止死循环
+    private Map<String, Integer> requestTimesMap = new HashMap<>();
+
     protected <T> void generalRxHttpExecute(@NonNull final IObservableCreator<T> observableCreator
             , @NonNull final HttpObserver<T> httpObserver,
                                             final boolean readCacheFirst) {
+        requestTimesMap.put(observableCreator.toString(), 1);
 
         final HttpObserver<T> tempObserver = new HttpObserver<T>() {
             @Override
@@ -246,13 +256,17 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
                 Logger.d(TAG, "data:" + response.body());
                 if (response.isSuccessful()) {
                     if (readCacheFirst && response.isFromCache()
-                            && NetHelper.getInstance().getNetEnabled()) {
+                            && NetHelper.getInstance().getNetEnabled()
+                            && requestTimesMap.get(observableCreator.toString()) < 2) {
+                        requestTimesMap.put(observableCreator.toString(), 2);
                         generalRxHttpExecute(observableCreator.createObservable(true),
                                 getHttpSubscriber(this));
                     }
                     httpObserver.onSuccess(response);
+                } else if(response.getOriResponse().code() == 404){
+                    httpObserver.onError(new HttpPageNoFoundError());
                 } else {
-                    httpObserver.onError(new HttpError(HttpErrorCode.NO_CACHE_AND_NETWORK));
+                    httpObserver.onError(new Error(response.getOriResponse().message()));
                 }
 
             }
@@ -279,37 +293,21 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
                 !NetHelper.getInstance().getNetEnabled();
     }
 
-    /**
-     * 获取error提示
-     *
-     * @param error
-     * @param typeInfo
-     * @return
-     */
     @NonNull
-    protected String getErrorTip(Throwable error, String typeInfo) {
-        String errorTip = null;
-        if (error instanceof SocketTimeoutException
-                || error instanceof ConnectTimeoutException) {
-            errorTip = "网络超时，请检查网络后重试！";
+    protected String getErrorTip(@NonNull Throwable error) {
+        String errorTip ;
+        if(error instanceof UnknownHostException){
+            errorTip = getString(R.string.no_network_tip);
+        } else if (error instanceof SocketTimeoutException || error instanceof ConnectTimeoutException) {
+            errorTip = getString(R.string.load_timeout_tip);
         } else if (error instanceof HttpError) {
             errorTip = error.getMessage();
         } else {
-            errorTip = "网络异常，请检查网络后重试！";
+            errorTip = StringUtils.isBlank(error.getMessage()) ? error.toString() : error.getMessage();
         }
-        return StringUtils.isBlank(typeInfo) ? errorTip : typeInfo + "，" + errorTip;
+        return errorTip;
     }
 
-    /**
-     * 获取error提示
-     *
-     * @param error
-     * @return
-     */
-    @NonNull
-    protected String getErrorTip(Throwable error) {
-        return getErrorTip(error, null);
-    }
 
     @NonNull
     protected String getString(@StringRes int resId) {

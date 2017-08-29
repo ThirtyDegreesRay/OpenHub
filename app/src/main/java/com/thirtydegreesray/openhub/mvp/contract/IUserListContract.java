@@ -29,6 +29,7 @@ public interface IUserListContract {
     interface View extends IBaseContract.View{
         void showUsers(ArrayList<User> users);
         void setCanLoadMore(boolean canLoadMore);
+        void showLoadError(String error);
     }
 
     interface Presenter extends IBaseContract.Presenter<IUserListContract.View>{

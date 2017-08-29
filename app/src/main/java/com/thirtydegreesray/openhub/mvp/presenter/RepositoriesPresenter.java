@@ -25,11 +25,13 @@ import com.thirtydegreesray.openhub.common.Event;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
+import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
 import com.thirtydegreesray.openhub.mvp.contract.IRepositoriesContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.SearchResult;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
+import com.thirtydegreesray.openhub.util.StringUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -90,7 +92,7 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
             @Override
             public void onError(@NonNull Throwable error) {
                 mView.hideLoading();
-                mView.showLoadError(error.getMessage());
+                handleError(error);
             }
 
             @Override
@@ -101,10 +103,10 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
                 } else {
                     repos.addAll(response.body());
                 }
-                if(response.body().size() > 0){
-                    mView.showRepositories(repos);
-                } else {
+                if(response.body().size() == 0 && repos.size() != 0){
                     mView.setCanLoadMore(false);
+                } else {
+                    mView.showRepositories(repos);
                 }
             }
         };
@@ -143,7 +145,7 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
                     @Override
                     public void onError(@NonNull Throwable error) {
                         mView.hideLoading();
-                        mView.showLoadError(error.getMessage());
+                        handleError(error);
                     }
 
                     @Override
@@ -154,10 +156,10 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
                         } else {
                             repos.addAll(response.body().getItems());
                         }
-                        if(response.body().getItems().size() > 0){
-                            mView.showRepositories(repos);
-                        } else {
+                        if(response.body().getItems().size() == 0 && repos.size() != 0){
                             mView.setCanLoadMore(false);
+                        } else {
+                            mView.showRepositories(repos);
                         }
                     }
                 };
@@ -176,6 +178,16 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
         if (!searchEvent.searchModel.getType().equals(SearchModel.SearchType.Repository)) return;
         this.searchModel = searchEvent.searchModel;
         searchRepos(1);
+    }
+
+    private void handleError(Throwable error){
+        if(!StringUtils.isBlankList(repos)){
+            mView.showErrorToast(getErrorTip(error));
+        } else if(error instanceof HttpPageNoFoundError){
+            mView.showRepositories(new ArrayList<Repository>());
+        }else{
+            mView.showLoadError(getErrorTip(error));
+        }
     }
 
 }

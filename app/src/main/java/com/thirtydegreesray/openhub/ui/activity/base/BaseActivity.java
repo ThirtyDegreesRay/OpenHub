@@ -35,6 +35,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.AppData;
@@ -52,6 +53,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 
 /**
  * This is base activity to set some common things.
@@ -163,6 +165,18 @@ BaseActivity<P extends IBaseContract.Presenter>
         isAlive = false;
     }
 
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        Glide.with(this).onTrimMemory(level);
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        Glide.with(this).onLowMemory();
+    }
+
     protected void setToolbarBackEnable() {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -249,13 +263,28 @@ BaseActivity<P extends IBaseContract.Presenter>
     }
 
     @Override
-    public void showShortToast(String message){
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    public void showToast(String message){
+        Toasty.normal(getActivity(), message).show();
     }
 
     @Override
-    public void showLongToast(String message){
-        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+    public void showInfoToast(String message) {
+        Toasty.info(getActivity(), message).show();
+    }
+
+    @Override
+    public void showSuccessToast(String message) {
+        Toasty.success(getActivity(), message).show();
+    }
+
+    @Override
+    public void showErrorToast(String message) {
+        Toasty.error(getActivity(), message).show();
+    }
+
+    @Override
+    public void showWarningToast(String message) {
+        Toasty.warning(getActivity(), message).show();
     }
 
     @Override

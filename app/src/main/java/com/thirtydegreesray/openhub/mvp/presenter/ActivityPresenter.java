@@ -20,10 +20,12 @@ import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
+import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
 import com.thirtydegreesray.openhub.mvp.contract.IActivityContract;
 import com.thirtydegreesray.openhub.mvp.model.Event;
 import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
+import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.ArrayList;
 
@@ -68,7 +70,13 @@ public class ActivityPresenter extends BasePresenter<IActivityContract.View>
             @Override
             public void onError(Throwable error) {
                 mView.hideLoading();
-                mView.showShortToast(error.getMessage());
+                if(!StringUtils.isBlankList(events)){
+                    mView.showErrorToast(getErrorTip(error));
+                } else if(error instanceof HttpPageNoFoundError){
+                    mView.showEvents(new ArrayList<Event>());
+                }else{
+                    mView.showLoadError(getErrorTip(error));
+                }
             }
 
             @Override
@@ -80,10 +88,10 @@ public class ActivityPresenter extends BasePresenter<IActivityContract.View>
                 } else {
                     events.addAll(response.body());
                 }
-                if(response.body().size() > 0){
-                    mView.showEvents(events);
-                } else {
+                if(response.body().size() == 0 && events.size() != 0){
                     mView.setCanLoadMore(false);
+                } else {
+                    mView.showEvents(events);
                 }
             }
         };

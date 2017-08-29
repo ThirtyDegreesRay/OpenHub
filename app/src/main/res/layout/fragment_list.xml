@@ -29,19 +29,33 @@
         android:gravity="center"
         android:paddingBottom="100dp">
 
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/error_image"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            app:srcCompat="@drawable/ic_cloud_off"
+            android:tint="?android:textColorSecondary"/>
+
         <TextView
             android:id="@+id/tv_tip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/no_cache_and_network"/>
+            android:text="@string/no_cache_and_network"
+            android:textSize="@dimen/text_small"
+            android:textColor="?android:textColorSecondary"/>
 
-        <TextView
+        <Button
+            android:id="@+id/retry_bn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/tap_to_retry"
-            android:layout_marginTop="10dp"/>
+            android:textSize="@dimen/text_normal"
+            android:textColor="?colorAccent"
+            android:background="?android:selectableItemBackground"
+            android:paddingStart="@dimen/spacing_normal"
+            android:paddingEnd="@dimen/spacing_normal"/>
 
     </LinearLayout>
 

@@ -44,10 +44,6 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
         News, User, Repository
     }
 
-//    public static ActivityFragment create(@NonNull ActivityType type){
-//        return create(type, null, null);
-//    }
-
     public static ActivityFragment create(@NonNull ActivityType type, @NonNull String user){
         return create(type, user, null);
     }
@@ -87,7 +83,7 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
 
     @Override
     protected String getEmptyTip() {
-        return null;
+        return getString(R.string.no_activity);
     }
 
     @Override
@@ -109,4 +105,5 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
         adapter.setData(events);
         adapter.notifyDataSetChanged();
     }
+
 }

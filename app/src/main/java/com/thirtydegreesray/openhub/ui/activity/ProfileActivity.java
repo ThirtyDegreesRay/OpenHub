@@ -92,7 +92,7 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
             case R.id.action_follow:
                 mPresenter.followUser(!mPresenter.isFollowing());
                 invalidateOptionsMenu();
-                showShortToast(mPresenter.isFollowing() ?
+                showSuccessToast(mPresenter.isFollowing() ?
                         getString(R.string.followed) : getString(R.string.unfollowed));
                 break;
             case R.id.action_share:

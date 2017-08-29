@@ -21,11 +21,13 @@ import com.thirtydegreesray.openhub.common.Event;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
+import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
 import com.thirtydegreesray.openhub.mvp.contract.IUserListContract;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.SearchResult;
 import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
+import com.thirtydegreesray.openhub.util.StringUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -78,7 +80,7 @@ public class UserListPresenter extends BasePresenter<IUserListContract.View>
                     @Override
                     public void onError(Throwable error) {
                         mView.hideLoading();
-                        mView.showShortToast(error.getMessage());
+                        handleError(error);
                     }
 
                     @Override
@@ -89,10 +91,10 @@ public class UserListPresenter extends BasePresenter<IUserListContract.View>
                         } else {
                             users.addAll(response.body());
                         }
-                        if(response.body().size() > 0){
-                            mView.showUsers(users);
-                        } else {
+                        if(response.body().size() == 0 && users.size() != 0){
                             mView.setCanLoadMore(false);
+                        } else {
+                            mView.showUsers(users);
                         }
                     }
                 };
@@ -123,7 +125,7 @@ public class UserListPresenter extends BasePresenter<IUserListContract.View>
                     @Override
                     public void onError(Throwable error) {
                         mView.hideLoading();
-                        mView.showShortToast(error.getMessage());
+                        handleError(error);
                     }
 
                     @Override
@@ -134,10 +136,10 @@ public class UserListPresenter extends BasePresenter<IUserListContract.View>
                         } else {
                             users.addAll(response.body().getItems());
                         }
-                        if(response.body().getItems().size() > 0){
-                            mView.showUsers(users);
-                        } else {
+                        if(response.body().getItems().size() == 0 && users.size() != 0){
                             mView.setCanLoadMore(false);
+                        } else {
+                            mView.showUsers(users);
                         }
                     }
                 };
@@ -155,6 +157,16 @@ public class UserListPresenter extends BasePresenter<IUserListContract.View>
         if (!searchEvent.searchModel.getType().equals(SearchModel.SearchType.User)) return;
         this.searchModel = searchEvent.searchModel;
         searchUsers(1);
+    }
+
+    private void handleError(Throwable error){
+        if(!StringUtils.isBlankList(users)){
+            mView.showErrorToast(getErrorTip(error));
+        } else if(error instanceof HttpPageNoFoundError){
+            mView.showUsers(new ArrayList<User>());
+        }else{
+            mView.showLoadError(getErrorTip(error));
+        }
     }
 
 }

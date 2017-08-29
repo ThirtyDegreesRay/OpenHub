@@ -124,7 +124,7 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
 
     @Override
     protected String getEmptyTip() {
-        return getString(R.string.no_cache_and_network);
+        return getString(R.string.no_file);
     }
 
     @Override

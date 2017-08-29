@@ -72,7 +72,7 @@ public class RepoInfoPresenter extends BasePresenter<IRepoInfoContract.View>
         HttpObserver<ResponseBody> httpObserver = new HttpObserver<ResponseBody>() {
             @Override
             public void onError(Throwable error) {
-                mView.showShortToast(error.getMessage());
+                mView.showErrorToast(getErrorTip(error));
             }
 
             @Override

@@ -96,7 +96,7 @@ public class UserListFragment extends ListFragment<UserListPresenter, UsersAdapt
 
     @Override
     protected String getEmptyTip() {
-        return null;
+        return getString(R.string.no_user);
     }
 
     @Override

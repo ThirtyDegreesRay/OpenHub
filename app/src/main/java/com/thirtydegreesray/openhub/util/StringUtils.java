@@ -38,6 +38,10 @@ public class StringUtils {
         return str == null || str.trim().equals("");
     }
 
+    public static boolean isBlankList(@Nullable List list) {
+        return list == null || list.size() == 0;
+    }
+
     public static List<String> stringToList(@NonNull String str, @NonNull String separator){
         List<String> list = null;
         if(!str.contains(separator)){

@@ -97,7 +97,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
                         new HttpObserver<ArrayList<Branch>>() {
                             @Override
                             public void onError(Throwable error) {
-                                mView.showShortToast(error.getMessage());
+                                mView.showErrorToast(getErrorTip(error));
                             }
 
                             @Override
@@ -146,14 +146,14 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
         HttpObserver<Repository> httpObserver = new HttpObserver<Repository>() {
             @Override
             public void onError(Throwable error) {
-                mView.showShortToast(error.getMessage());
+                mView.showErrorToast(getErrorTip(error));
                 mView.getProgressDialog(getLoadTip()).dismiss();
             }
 
             @Override
             public void onSuccess(HttpResponse<Repository> response) {
                 if(response.body() != null) {
-                    mView.showShortToast(getString(R.string.forked));
+                    mView.showSuccessToast(getString(R.string.forked));
                     RepositoryActivity.show(getContext(), response.body());
                 } else {
                     //TODO tip error
@@ -191,7 +191,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
                     @Override
                     public void onError(Throwable error) {
                         if (isShowLoading) mView.getProgressDialog(getLoadTip()).cancel();
-                        mView.showShortToast(error.getMessage());
+                        mView.showErrorToast(getErrorTip(error));
                     }
 
                     @Override

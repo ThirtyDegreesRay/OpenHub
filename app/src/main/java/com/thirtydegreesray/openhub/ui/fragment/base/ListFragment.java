@@ -19,6 +19,7 @@ package com.thirtydegreesray.openhub.ui.fragment.base;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -33,6 +34,7 @@ import com.thirtydegreesray.openhub.util.ViewHelper;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created on 2017/7/20.
@@ -44,8 +46,7 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
         extends BaseFragment<P> implements IBaseContract.View,
         BaseAdapter.OnItemClickListener,
         BaseAdapter.OnItemLongClickListener,
-        SwipeRefreshLayout.OnRefreshListener,
-        View.OnClickListener{
+        SwipeRefreshLayout.OnRefreshListener{
 
     @BindView(R.id.refresh_layout) protected SwipeRefreshLayout refreshLayout;
     @BindView(R.id.recycler_view) protected RecyclerView recyclerView;
@@ -54,6 +55,7 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
 
     @BindView(R.id.lay_tip) LinearLayout layTip;
     @BindView(R.id.tv_tip) TextView tvTip;
+    @BindView(R.id.error_image) AppCompatImageView errorImage;
 
     private int curPage = 1;
 
@@ -73,7 +75,6 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
         recyclerView.setAdapter(adapter);
 
         layTip.setVisibility(View.GONE);
-        layTip.setOnClickListener(this);
 
         //adapter 数据观察者，当数据为空时，显示空提示
         observer = new RecyclerView.AdapterDataObserver() {
@@ -85,6 +86,7 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
                     refreshLayout.setVisibility(View.GONE);
                     layTip.setVisibility(View.VISIBLE);
                     tvTip.setText(getEmptyTip());
+                    errorImage.setVisibility(View.GONE);
                 } else {
                     refreshLayout.setVisibility(View.VISIBLE);
                     layTip.setVisibility(View.GONE);
@@ -134,18 +136,17 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
         onReLoadData();
     }
 
-    @Override
-    public void onClick(@NonNull View view) {
-        if(view.getId() == R.id.lay_tip){
-            refreshLayout.setVisibility(View.VISIBLE);
-            layTip.setVisibility(View.GONE);
-            refreshLayout.setRefreshing(true);
-            onReLoadData();
-        }
+    @OnClick(R.id.retry_bn)
+    public void onRetryClick(@NonNull View view) {
+        refreshLayout.setVisibility(View.VISIBLE);
+        layTip.setVisibility(View.GONE);
+        refreshLayout.setRefreshing(true);
+        onReLoadData();
     }
 
     protected void setErrorTip(String errorTip){
         refreshLayout.setVisibility(View.GONE);
+        errorImage.setVisibility(View.VISIBLE);
         layTip.setVisibility(View.VISIBLE);
         tvTip.setText(errorTip);
     }
@@ -188,6 +189,10 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
 
     protected void onLoadMore(int page){
 
+    }
+
+    public void showLoadError(String error) {
+        setErrorTip(error);
     }
 
 }

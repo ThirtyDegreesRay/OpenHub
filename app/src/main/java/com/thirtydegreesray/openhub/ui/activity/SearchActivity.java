@@ -40,7 +40,6 @@ import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,9 +51,9 @@ import java.util.Map;
 public class SearchActivity extends PagerActivity<SearchPresenter>
         implements ISearchContract.View,
         MenuItemCompat.OnActionExpandListener,
-        SearchView.OnQueryTextListener{
+        SearchView.OnQueryTextListener {
 
-    public static void show(@NonNull Context context){
+    public static void show(@NonNull Context context) {
         Intent intent = new Intent(context, SearchActivity.class);
         context.startActivity(intent);
     }
@@ -62,15 +61,13 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
     private final Map<Integer, List<Integer>> MENU_ID_MAP = new HashMap<>();
 
     private boolean isInputMode = true;
-    private List<SearchModel> searchModels;
-    private String[] sortInfos ;
+    private String[] sortInfos;
 
     @Override
     protected void initActivity() {
         super.initActivity();
         MENU_ID_MAP.put(0, SearchModel.REPO_SORT_ID_LIST);
         MENU_ID_MAP.put(1, SearchModel.USER_SORT_ID_LIST);
-        searchModels = new ArrayList<>();
     }
 
     @Override
@@ -105,7 +102,7 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
                 (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setOnQueryTextListener(this);
         searchView.setQuery(mPresenter.getSearchModels().get(0).getQuery(), false);
-        if(isInputMode) {
+        if (isInputMode) {
             MenuItemCompat.expandActionView(searchItem);
         } else {
             MenuItemCompat.collapseActionView(searchItem);
@@ -116,9 +113,9 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.action_sort){
+        if (item.getItemId() == R.id.action_sort) {
             filterSortMenu(item);
-        } else if(SearchModel.SORT_ID_LIST.contains(item.getItemId())){
+        } else if (SearchModel.SORT_ID_LIST.contains(item.getItemId())) {
             int page = viewPager.getCurrentItem();
             postSearchEvent(mPresenter.getSortModel(page, item.getItemId()));
             sortInfos[page] = item.getTitle().toString();
@@ -130,7 +127,7 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if(isInputMode){
+        if (isInputMode) {
             menu.findItem(R.id.action_info).setVisible(false);
             menu.findItem(R.id.action_sort).setVisible(false);
             SearchView searchView = (SearchView) MenuItemCompat.
@@ -159,8 +156,8 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        if(StringUtils.isBlank(query)){
-            showShortToast(getString(R.string.invalid_query));
+        if (StringUtils.isBlank(query)) {
+            showWarningToast(getString(R.string.invalid_query));
             return true;
         }
         isInputMode = false;
@@ -175,33 +172,33 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
         return false;
     }
 
-    private void filterSortMenu(MenuItem item){
+    private void filterSortMenu(MenuItem item) {
         int index = viewPager.getCurrentItem();
         List<Integer> idList = MENU_ID_MAP.get(index);
-        for(Integer id : SearchModel.SORT_ID_LIST){
+        for (Integer id : SearchModel.SORT_ID_LIST) {
             item.getSubMenu().findItem(id).setVisible(idList.contains(id));
         }
     }
 
-    private void search(String query){
-        if(pagerAdapter.getCount() == 0){
+    private void search(String query) {
+        if (pagerAdapter.getCount() == 0) {
             pagerAdapter.setPagerList(FragmentPagerModel.
                     createSearchPagerList(getActivity(), mPresenter.getQueryModels(query)));
             tabLayout.setVisibility(View.VISIBLE);
             tabLayout.setupWithViewPager(viewPager);
             viewPager.setAdapter(pagerAdapter);
         } else {
-            for(SearchModel searchModel : mPresenter.getQueryModels(query)){
+            for (SearchModel searchModel : mPresenter.getQueryModels(query)) {
                 postSearchEvent(searchModel);
             }
         }
     }
 
-    private void postSearchEvent(SearchModel searchModel){
+    private void postSearchEvent(SearchModel searchModel) {
         AppEventBus.INSTANCE.getEventBus().post(new Event.SearchEvent(searchModel));
     }
 
-    private void setSubTitle(int page){
+    private void setSubTitle(int page) {
         setToolbarSubTitle(mPresenter.getSearchModels().get(0).getQuery() + "/" + sortInfos[page]);
     }
 

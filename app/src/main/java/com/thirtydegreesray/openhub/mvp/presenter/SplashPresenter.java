@@ -95,7 +95,7 @@ public class SplashPresenter extends BasePresenter<ISplashContract.View>
         HttpObserver<User> httpObserver = new HttpObserver<User>() {
             @Override
             public void onError(@NonNull Throwable error) {
-                mView.showShortToast(error.getMessage());
+                mView.showErrorToast(getErrorTip(error));
             }
 
             @Override

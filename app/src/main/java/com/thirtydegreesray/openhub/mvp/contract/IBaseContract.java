@@ -31,44 +31,26 @@ public interface IBaseContract {
 
     interface View {
 
-        /**
-         * 显示dialog
-         * @param content
-         */
         void showProgressDialog(String content);
 
-        /**
-         * 取消dailog
-         */
         void dismissProgressDialog();
 
-        /**
-         * 获取View的dialog
-         * @param content
-         * @return
-         */
         ProgressDialog getProgressDialog(String content);
 
-        /**
-         * 显示Toast
-         * @param message
-         */
-        void showShortToast(String message);
-
-        /**
-         * 显示LongToast
-         * @param message
-         */
-        void showLongToast(String message);
-
-        /**
-         * 显示tip dialog
-         * @param content
-         */
         void showTipDialog(String content);
 
         void showConfirmDialog(String msn, String title, String confirmText
                 , DialogInterface.OnClickListener confirmListener);
+
+        void showToast(String message);
+
+        void showInfoToast(String message);
+
+        void showSuccessToast(String message);
+
+        void showErrorToast(String message);
+
+        void showWarningToast(String message);
 
         void showLoading();
 

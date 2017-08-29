@@ -60,13 +60,13 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
         final String url = fileModel.getUrl();
         final String htmlUrl = fileModel.getHtmlUrl();
         if(StringUtils.isBlank(url) || StringUtils.isBlank(htmlUrl)){
-            mView.showShortToast(getString(R.string.url_invalid));
+            mView.showWarningToast(getString(R.string.url_invalid));
             mView.hideLoading();
             return;
         }
 
         if(GitHubHelper.isArchive(url)){
-            mView.showLongToast(getString(R.string.view_archive_file_error));
+            mView.showWarningToast(getString(R.string.view_archive_file_error));
             mView.hideLoading();
             return;
         }
@@ -82,7 +82,7 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
                     @Override
                     public void onError(Throwable error) {
                         mView.hideLoading();
-                        mView.showShortToast(error.getMessage());
+                        mView.showErrorToast(getErrorTip(error));
                     }
 
                     @Override
