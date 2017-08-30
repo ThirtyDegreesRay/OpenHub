@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/spacing_small"
+    android:paddingBottom="@dimen/spacing_small"
+    android:paddingStart="@dimen/spacing_x_large"
+    android:paddingEnd="@dimen/spacing_x_large">
+
+    <TextView
+        android:id="@+id/version_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="@dimen/text_normal"
+        android:text="@string/upgrade_version"
+        android:layout_marginBottom="@dimen/spacing_micro"/>
+
+    <TextView
+        android:id="@+id/size_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="@dimen/text_normal"
+        android:text="@string/upgrade_apk_size"
+        android:layout_marginBottom="@dimen/spacing_micro"/>
+
+    <TextView
+        android:id="@+id/time_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="@dimen/text_normal"
+        android:text="@string/publish_time"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="@dimen/text_large"
+        android:text="@string/upgrade_info"
+        android:layout_marginTop="@dimen/spacing_small"/>
+
+    <TextView
+        android:id="@+id/upgrade_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="@dimen/text_normal"
+        android:layout_marginTop="@dimen/spacing_micro"/>
+
+</LinearLayout>

@@ -17,11 +17,20 @@
 package com.thirtydegreesray.openhub;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.util.Log;
 
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerAppComponent;
 import com.thirtydegreesray.openhub.inject.module.AppModule;
+import com.thirtydegreesray.openhub.ui.activity.AboutActivity;
+import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
+import com.thirtydegreesray.openhub.ui.activity.MainActivity;
+import com.thirtydegreesray.openhub.ui.widget.UpgradeDialog;
 import com.thirtydegreesray.openhub.util.NetHelper;
 
 /**
@@ -36,6 +45,12 @@ public class AppApplication extends Application {
     private AppComponent mAppComponent;
 
     @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
         application = this;
@@ -47,7 +62,23 @@ public class AppApplication extends Application {
                 .build();
         startTime = System.currentTimeMillis();
         NetHelper.INSTANCE.init(this);
+        initBugly();
         Log.i(TAG, "application ok:" + (System.currentTimeMillis() - startTime));
+    }
+
+    private void initBugly(){
+        Beta.initDelay = 5 * 1000;
+        Beta.enableHotfix = true;
+        Beta.canShowUpgradeActs.add(LoginActivity.class);
+        Beta.canShowUpgradeActs.add(MainActivity.class);
+        Beta.canShowUpgradeActs.add(AboutActivity.class);
+        Beta.upgradeListener = UpgradeDialog.INSTANCE;
+
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
+        strategy.setAppVersion(BuildConfig.VERSION_NAME);
+        strategy.setAppReportDelay(10 * 1000);
+        Bugly.init(getApplicationContext(), AppConfig.BUGLY_APPID, BuildConfig.DEBUG);
+        CrashReport.setIsDevelopmentDevice(getApplicationContext(), BuildConfig.DEBUG);
     }
 
     public static AppApplication get(){

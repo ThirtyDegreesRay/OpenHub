@@ -108,7 +108,6 @@
     <string name="no_share_clients">未安装分享软件</string>
     <string name="tap_to_retry">点击重试</string>
     <string name="loading">加载中</string>
-    <string name="author_location" >中国南京</string>
     <string name="stargazers">星标</string>
     <string name="theme_accent_color">主色调</string>
     <string name="unstar">取消星标</string>
@@ -124,5 +123,13 @@
     <string name="forks">版本库分支</string>
     <string name="forked_from">版本库分支从</string>
     <string name="gists">主题帖</string>
+    <string name="upgrade">升级</string>
+    <string name="install">安装</string>
+    <string name="next_time">暂不更新</string>
+    <string name="upgrade_version">版本：</string>
+    <string name="upgrade_apk_size">Apk大小：</string>
+    <string name="publish_time">发布时间：</string>
+    <string name="upgrade_info">升级信息：</string>
+    <string name="no_upgrade_tip">你已经安装了最新版本</string>
 
 </resources>

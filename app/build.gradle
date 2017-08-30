@@ -11,11 +11,13 @@ android {
         versionName VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            multiDexKeepFile file('multidex-config.txt')
         }
     }
 
@@ -50,6 +52,7 @@ dependencies {
     compile "com.android.support:preference-v14:${ANDROID_SUPPORT_VERSION}"
 
     compile "com.android.support.constraint:constraint-layout:${CONSTRAINT_VERSION}"
+    compile "com.android.support:multidex:${MULTIDEX_VERSION}"
 
     compile "com.thirtydegreesray:dataautoaccess:${DATAAUTOACCESS_VERSION}"
     annotationProcessor "com.thirtydegreesray:dataautoaccess-compiler:${DATAAUTOACCESS_VERSION}"
@@ -94,6 +97,7 @@ dependencies {
     compile "com.afollestad.material-dialogs:core:${MATERIAL_DIALOG_VERSION}"
     compile "com.afollestad.material-dialogs:commons:${MATERIAL_DIALOG_VERSION}"
 
-    compile "com.umeng.analytics:analytics:${UMENG_VERSION}"
+//    compile "com.tencent.bugly:crashreport:${BUGGLY_VERSION}"
+    compile "com.tencent.bugly:crashreport_upgrade:${BUGGLY_VERSION}"
 
 }

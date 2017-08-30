@@ -35,6 +35,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.tencent.bugly.crashreport.CrashReport;
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.GlideApp;
@@ -85,6 +86,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
         TAG_MAP.put(R.id.nav_news, ActivityFragment.class.getSimpleName());
         TAG_MAP.put(R.id.nav_owned, RepositoriesFragment.RepositoriesType.OWNED.name());
         TAG_MAP.put(R.id.nav_starred, RepositoriesFragment.RepositoriesType.STARRED.name());
+        if (AppData.INSTANCE.getLoggedUser() != null)
+            CrashReport.putUserData(getApplicationContext(),
+                    "GitHubId", AppData.INSTANCE.getLoggedUser().getLogin());
     }
 
     /**
@@ -142,7 +146,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.action_search){
+        if (item.getItemId() == R.id.action_search) {
             SearchActivity.show(getActivity());
             return true;
         }
@@ -169,7 +173,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         return true;
     }
 
-    private void onNavItemSelected(MenuItem item){
+    private void onNavItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_profile:
@@ -196,8 +200,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
         }
     }
 
-    private void updateTitle(int itemId){
-        switch (itemId){
+    private void updateTitle(int itemId) {
+        switch (itemId) {
             case R.id.nav_news:
                 setToolbarTitle(getString(R.string.news));
                 break;
@@ -217,25 +221,25 @@ public class MainActivity extends BaseActivity<MainPresenter>
         String fragmentTag = TAG_MAP.get(itemId);
         Fragment showFragment = getSupportFragmentManager().findFragmentByTag(fragmentTag);
         boolean isExist = true;
-        if(showFragment == null){
+        if (showFragment == null) {
             isExist = false;
             showFragment = getFragment(itemId);
         }
-        if(showFragment.isVisible()){
-            return ;
+        if (showFragment.isVisible()) {
+            return;
         }
 
         Fragment visibleFragment = getVisibleFragment();
-        if(isExist){
+        if (isExist) {
             showAndHideFragment(showFragment, visibleFragment);
-        }else{
+        } else {
             addAndHideFragment(showFragment, visibleFragment, fragmentTag);
         }
     }
 
     @NonNull
-    private Fragment getFragment(int itemId){
-        switch (itemId){
+    private Fragment getFragment(int itemId) {
+        switch (itemId) {
             case R.id.nav_news:
                 return ActivityFragment.create(ActivityFragment.ActivityType.News,
                         AppData.INSTANCE.getLoggedUser().getLogin());
@@ -251,13 +255,13 @@ public class MainActivity extends BaseActivity<MainPresenter>
         return null;
     }
 
-    private void showAndHideFragment(@NonNull Fragment showFragment, @Nullable Fragment hideFragment){
-        if(hideFragment == null){
+    private void showAndHideFragment(@NonNull Fragment showFragment, @Nullable Fragment hideFragment) {
+        if (hideFragment == null) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .show(showFragment)
                     .commit();
-        }else{
+        } else {
             getSupportFragmentManager()
                     .beginTransaction()
                     .show(showFragment)
@@ -268,13 +272,13 @@ public class MainActivity extends BaseActivity<MainPresenter>
     }
 
     private void addAndHideFragment(@NonNull Fragment showFragment,
-                                    @Nullable Fragment hideFragment, @NonNull String addTag){
-        if(hideFragment == null){
+                                    @Nullable Fragment hideFragment, @NonNull String addTag) {
+        if (hideFragment == null) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.frame_layout_content, showFragment, addTag)
                     .commit();
-        }else{
+        } else {
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.frame_layout_content, showFragment, addTag)

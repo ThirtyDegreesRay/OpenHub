@@ -66,4 +66,7 @@ public class AppConfig {
 
     public final static String REDIRECT_URL = "https://github.com/ThirtyDegreesRay/OpenHub/CallBack";
 
+
+    public final static String BUGLY_APPID = "3ce790e8a2";
+
 }

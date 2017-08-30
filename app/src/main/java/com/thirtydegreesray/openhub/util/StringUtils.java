@@ -66,7 +66,7 @@ public class StringUtils {
         return stringBuilder.toString();
     }
 
-    public static String getSizeString(int size){
+    public static String getSizeString(long size){
         if(size < 1024){
             return String.format(Locale.getDefault(), "%d B", size);
         }else if(size < 1024 * 1024){
