@@ -106,7 +106,7 @@ public class PrefHelper {
     }
 
     public static int getAccentColor(){
-        int accentColor = getDefaultSp(AppApplication.get()).getInt(ACCENT_COLOR, 2);
+        int accentColor = getDefaultSp(AppApplication.get()).getInt(ACCENT_COLOR, 11);
         return accentColor;
     }
 

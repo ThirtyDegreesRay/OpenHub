@@ -130,7 +130,7 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
                         mPresenter.getUser().getLogin());
                 break;
             case R.id.gists_lay:
-                if(mPresenter.getUser().getPublicGists() == 0) return;
+//                if(mPresenter.getUser().getPublicGists() == 0) return;
                 showInfoToast(getString(R.string.developing));
                 break;
             case R.id.email:
