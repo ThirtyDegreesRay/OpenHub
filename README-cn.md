@@ -2,8 +2,10 @@
 # OpenHub 
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
-一个开源的GitHub Android客户端应用程序,更快更简洁。
+一个**开源**的GitHub Android客户端应用程序,更快更简洁。
 <!-- ![OpenHub](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/openhub.png) -->
+
+[Download Apk From Releases](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
 ## 特征
 * 项目使用MVP+dagger2+retrofit架构，在onSaveInstanceState时保存了Activity、Fragment、Presenter中的数据；
@@ -23,7 +25,7 @@
 |:-:|:-:|:-:|
 | ![repo](/art/repo.png?raw=true) | ![trending](/art/trending.png?raw=true) | ![search](/art/search.png?raw=true) |
 
-## 开源
+## 开源库
 
 * [ButterKnife](https://github.com/JakeWharton/butterknife)
 * [GreenDao](https://github.com/greenrobot/greenDAO)

@@ -8,8 +8,6 @@ An **open source** GitHub Android client app, faster and concise.
 
 [Download Apk From Releases](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
-
-
 ## Features
 * Project use MVP+dagger2+retrofit framework，save Activity,Fragment,Presenter data when onSaveInstanceState;
 * On the basis of Retrofit2+RxJava,load cache first if cache available,then load from network,better user experience; 
