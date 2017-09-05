@@ -5,7 +5,7 @@ English | [中文](/README-cn.md)
 An open source GitHub Android client app, faster and concise.
 <!-- ![OpenHub](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/openhub.png) -->
 
-## Description
+## Features
 * 项目使用MVP+dagger2+retrofit架构，在onSaveInstanceState时保存了Activity、Fragment、Presenter中的数据；
 * 对Retrofit2+RxJava进行了封装，实现了先加载缓存数据，然后再加载网络数据显示，用户体验更佳；
 * 支持主题切换、16种强调色切换、语言切换；
