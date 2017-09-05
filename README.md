@@ -2,8 +2,13 @@ English | [中文](/README-cn.md)
 # OpenHub 
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
-An open source GitHub Android client app, faster and concise.
-<!-- ![OpenHub](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/openhub.png) -->
+![OpenHub](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/openhub.png)
+
+An **open source** GitHub Android client app, faster and concise.
+
+[Download Apk From Releases](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
+
+
 
 ## Features
 * Project use MVP+dagger2+retrofit framework，save Activity,Fragment,Presenter data when onSaveInstanceState;
