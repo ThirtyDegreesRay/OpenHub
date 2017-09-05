@@ -2,7 +2,7 @@
 # OpenHub 
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
-An open source GitHub Android client app, faster and concise.
+一个开源的GitHub Android客户端应用程序,更快更简洁。
 <!-- ![OpenHub](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/openhub.png) -->
 
 ## Description
@@ -10,11 +10,11 @@ An open source GitHub Android client app, faster and concise.
 
 ## Screenshots
 
-| News | Drawer | Profile |
+| 动态 | 侧滑页 | 个人主页 |
 |:-:|:-:|:-:|
 | ![news](/art/news.png?raw=true) | ![drawer](/art/drawer.png?raw=true) | ![profile](/art/profile.png?raw=true) |
 
-| Repository | Trending | Search |
+| 版本库主页 | 趋势 | 搜索 |
 |:-:|:-:|:-:|
 | ![repo](/art/repo.png?raw=true) | ![trending](/art/trending.png?raw=true) | ![search](/art/search.png?raw=true) |
 
