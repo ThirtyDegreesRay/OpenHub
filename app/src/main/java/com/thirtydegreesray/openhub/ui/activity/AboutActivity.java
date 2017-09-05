@@ -72,7 +72,7 @@ public class AboutActivity extends MaterialAboutActivity {
     private void buildApp(MaterialAboutCard.Builder appBuilder, final Context context){
         appBuilder.addItem(new MaterialAboutTitleItem.Builder()
                 .text(getString(R.string.app_name))
-                .desc("© 2017 ThirtyDegreesRay")
+                .desc(getString(R.string.app_copyright))
                 .icon(R.mipmap.logo)
                 .build());
         appBuilder.addItem(new MaterialAboutActionItem.Builder()
@@ -92,7 +92,7 @@ public class AboutActivity extends MaterialAboutActivity {
                 .setOnClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
                     public void onClick() {
-                        RepositoryActivity.show(context, "ThirtyDegreesRay", "OpenHub");
+                        RepositoryActivity.show(context, getString(R.string.author_login_id), getString(R.string.app_name));
                     }
                 })
                 .build());
@@ -107,7 +107,7 @@ public class AboutActivity extends MaterialAboutActivity {
                 .setOnClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
                     public void onClick() {
-                        ProfileActivity.show(context, "ThirtyDegreesRay");
+                        ProfileActivity.show(context, getString(R.string.author_login_id));
                     }
                 })
                 .build());
@@ -117,7 +117,7 @@ public class AboutActivity extends MaterialAboutActivity {
                 .setOnClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
                     public void onClick() {
-                        ProfileActivity.show(context, "ThirtyDegreesRay");
+                        ProfileActivity.show(context, getString(R.string.author_login_id));
                     }
                 })
                 .build());

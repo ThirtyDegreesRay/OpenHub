@@ -35,7 +35,6 @@ public class NameParser {
 
     public NameParser(@Nullable String url) {
         if (!StringUtils.isBlank(url)) {
-            //FIXME enterprise judge
 //            boolean isEnterprise = LinkParserHelper.isEnterprise(url);
 //            if (isEnterprise) {
 //                url = url.replace("api/v3/", "");

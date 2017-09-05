@@ -19,7 +19,7 @@
 
     <color name="light_color_primary">@color/material_indigo_500</color>
     <color name="light_color_primary_dark">@color/material_indigo_700</color>
-    <color name="light_color_accent">@color/material_indigo_accent_700</color>
+    <color name="light_color_accent">@color/material_green_accent_700</color>
     <color name="light_window_background">@color/material_light_white</color>
     <color name="light_icon_color">@color/material_light_black</color>
     <color name="light_card_background">@color/material_white</color>
@@ -206,6 +206,8 @@
         <item name="mal_color_primary">@color/light_text_color_primary</item>
         <item name="mal_color_secondary">@color/light_text_color_secondary</item>
         <item name="mal_card_background">@color/light_card_background</item>
+        <item name="alertDialogTheme">@style/DialogThemeLight.Green</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLight.Green</item>
     </style>
 
 </resources>

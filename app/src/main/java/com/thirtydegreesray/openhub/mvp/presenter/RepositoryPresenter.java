@@ -156,7 +156,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
                     mView.showSuccessToast(getString(R.string.forked));
                     RepositoryActivity.show(getContext(), response.body());
                 } else {
-                    //TODO tip error
+                    mView.showErrorToast(getString(R.string.fork_failed));
                 }
                 mView.getProgressDialog(getLoadTip()).dismiss();
             }

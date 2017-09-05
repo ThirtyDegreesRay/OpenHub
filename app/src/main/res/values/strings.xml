@@ -169,8 +169,10 @@
     <string name="version" >Version</string>
     <string name="source_code" >Source code</string>
     <string name="author" >Author</string>
-    <string name="author_name" translatable="false">ThirtyDegreesRay</string>
+    <string name="author_name" translatable="false">Rays Yu</string>
     <string name="author_location" translatable="false">NanJing,China</string>
+    <string name="author_login_id" translatable="false">ThirtyDegreesRay</string>
+    <string name="app_copyright" translatable="false">© 2017 ThirtyDegreesRay</string>
     <string name="follow_on_github" >Follow on GitHub</string>
     <string name="email" >Email</string>
     <string name="auth_email_address" translatable="false">rays.yuz@gmail.com</string>
@@ -184,5 +186,6 @@
     <string name="publish_time">Publish time:</string>
     <string name="upgrade_info">Upgrade info:</string>
     <string name="no_upgrade_tip">You have installed the latest version.</string>
+    <string name="fork_failed">Fork failed</string>
 
 </resources>
