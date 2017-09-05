@@ -1,4 +1,4 @@
-[English](/README.md) | [中文](/README-cn.md)
+[English](/) | 中文
 # OpenHub 
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
