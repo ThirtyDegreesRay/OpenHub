@@ -3,12 +3,18 @@ An android client of GitHub.
 ![OpenHub](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/openhub.png)
 
 ## Screenshots
-![News](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/news.png)
-![drawer](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/drawer.png)
-![profile](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/profile.png)
-![repo](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/repo.png)
-![trending](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/trending.png)
-![search](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/search.png)
+
+| News | Drawer |
+|:-:|:-:|
+| ![news](/art/news.png?raw=true) | ![drawer](/art/drawer.png?raw=true) |
+
+| Profile | Repository |
+|:-:|:-:|
+| ![profile](/art/profile.png?raw=true) | ![repo](/art/repo.png?raw=true) |
+
+| Trending | Search |
+|:-:|:-:|
+| ![trending](/art/trending.png?raw=true) | ![search](/art/search.png?raw=true) |
 
 ## License
     Copyright 2017 ThirtyDegreesRay
