@@ -6,11 +6,11 @@ An open source GitHub Android client app, faster and concise.
 <!-- ![OpenHub](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/openhub.png) -->
 
 ## Features
-* 项目使用MVP+dagger2+retrofit架构，在onSaveInstanceState时保存了Activity、Fragment、Presenter中的数据；
-* 对Retrofit2+RxJava进行了封装，实现了先加载缓存数据，然后再加载网络数据显示，用户体验更佳；
-* 支持主题切换、16种强调色切换、语言切换；
-* 支持趋势版本库列表查看，每隔1小时，服务器端刷新一次数据；
-* 启动时立马显示闪屏，无白屏时间；
+* Project use MVP+dagger2+retrofit framework，save Activity,Fragment,Presenter data when onSaveInstanceState;
+* On the basis of Retrofit2+RxJava,load cache first if cache available,then load from network,better user experience; 
+* Support the theme switch,16 kinds of accent color switch,language switch;
+* Support the trending repositories view,every one hour,the server update data at a time;
+* Start immediately show the splash screen,no bad time;
 * And more...
 
 ## Screenshots
