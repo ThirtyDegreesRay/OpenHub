@@ -2,7 +2,7 @@ English | [中文](/README-cn.md)
 # OpenHub 
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
-![OpenHub](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/openhub.png)
+<!-- ![OpenHub](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/openhub.png) -->
 
 An **open source** GitHub Android client app, faster and concise.
 
