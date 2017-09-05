@@ -64,6 +64,10 @@ public class PrefHelper {
     public final static String LOGOUT = "logout";
     public final static String CODE_WRAP = "codeWrap";
 
+    public final static String POP_TIMES = "popTimes";
+    public final static String POP_VERSION_TIME = "popVersionTime";
+    public final static String LAST_POP_TIME = "lastPopTime";
+
     @SuppressLint("ApplySharedPref") public static <T> void set(@NonNull String key, @Nullable T value) {
         if (StringUtils.isBlank(key)) {
             throw new NullPointerException("Key must not be null! (key = " + key + "), (value = " + value + ")");
@@ -116,6 +120,18 @@ public class PrefHelper {
 
     public static boolean isCodeWrap(){
         return getDefaultSp(AppApplication.get()).getBoolean(CODE_WRAP, false);
+    }
+
+    public static int getPopTimes(){
+        return getDefaultSp(AppApplication.get()).getInt(POP_TIMES, 0);
+    }
+
+    public static long getPopVersionTime(){
+        return getDefaultSp(AppApplication.get()).getLong(POP_VERSION_TIME, 1);
+    }
+
+    public static long getLastPopTime(){
+        return getDefaultSp(AppApplication.get()).getLong(LAST_POP_TIME, 0);
     }
 
     public static SharedPreferences getDefaultSp(Context context){
