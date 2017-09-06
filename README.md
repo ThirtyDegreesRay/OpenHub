@@ -14,7 +14,7 @@ An **open source** GitHub Android client app, faster and concise.
 * Support the theme switch,16 kinds of accent color switch,language switch;
 * Support the trending repositories view,every one hour,the server update data at a time;
 * Start immediately show the splash screen,no bad time;
-* Faster and more cool syntax highlighting;
+* Faster and cool syntax highlighting;
 * And more...
 
 ## Screenshots
