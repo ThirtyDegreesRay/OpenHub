@@ -7,7 +7,7 @@
 
 [Download Apk From Releases](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
-## 特征
+## 特点
 * 项目使用MVP+dagger2+retrofit架构，在onSaveInstanceState时保存了Activity、Fragment、Presenter中的数据；
 * 对Retrofit2+RxJava进行了封装，实现了先加载缓存数据，然后再加载网络数据显示，用户体验更佳；
 * 支持主题切换、16种强调色切换、语言切换；
@@ -28,20 +28,20 @@
 
 ## 开源库
 
-* [ButterKnife](https://github.com/JakeWharton/butterknife)
-* [GreenDao](https://github.com/greenrobot/greenDAO)
-* [EventBus](https://github.com/greenrobot/EventBus)
-* [RxJava](https://github.com/ReactiveX/RxJava)
-* [RxAndroid](https://github.com/ReactiveX/RxAndroid)
-* [Retrofit](https://github.com/square/retrofit)
-* [Dagger](https://github.com/google/dagger)
-* [Glide](https://github.com/bumptech/glide)
-* [DataAutoAccess](https://github.com/ThirtyDegreesRay/DataAutoAccess)
-* [RoundedImageView](https://github.com/vinc3m1/RoundedImageView)
-* [Toasty](https://github.com/GrenderG/Toasty)
-* [material-about-library](https://github.com/daniel-stoneuk/material-about-library)
-* [material-dialogs](https://github.com/afollestad/material-dialogs)
-* [GitHub-Trending](https://github.com/thedillonb/GitHub-Trending)
+* [ButterKnife](https://github.com/JakeWharton/butterknife) Bind Android views and callbacks to fields and methods.
+* [GreenDao](https://github.com/greenrobot/greenDAO) A light & fast ORM solution for Android that maps objects to SQLite databases.
+* [EventBus](https://github.com/greenrobot/EventBus) Android optimized event bus that simplifies communication between Activities, Fragments, Threads, Services, etc.
+* [RxJava](https://github.com/ReactiveX/RxJava) A library for composing asynchronous and event-based programs using observable sequences for the Java VM.
+* [RxAndroid](https://github.com/ReactiveX/RxAndroid) RxJava bindings for Android.
+* [Retrofit](https://github.com/square/retrofit) Type-safe HTTP client for Android and Java by Square, Inc.
+* [Dagger](https://github.com/google/dagger) A fast dependency injector for Android and Java. 
+* [Glide](https://github.com/bumptech/glide) An image loading and caching library for Android focused on smooth scrolling.
+* [DataAutoAccess](https://github.com/ThirtyDegreesRay/DataAutoAccess) A simple way to access android bundle data.
+* [RoundedImageView](https://github.com/vinc3m1/RoundedImageView) A fast ImageView that supports rounded corners, ovals, and circles.
+* [Toasty](https://github.com/GrenderG/Toasty) The usual Toast, but with steroids 💪.
+* [material-about-library](https://github.com/daniel-stoneuk/material-about-library) Makes it easy to create beautiful about screens for your apps.
+* [material-dialogs](https://github.com/afollestad/material-dialogs) A beautiful, fluid, and customizable dialogs API.
+* [GitHub-Trending](https://github.com/thedillonb/GitHub-Trending) Scrapes GitHub's Trending Pages.
 
 ## License
     Copyright 2017 ThirtyDegreesRay

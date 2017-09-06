@@ -1,4 +1,4 @@
-English | [中文](/README-cn.md)
+English | [中文](http://www.jianshu.com/p/89ec9632b382)
 # OpenHub 
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
