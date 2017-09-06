@@ -13,6 +13,7 @@
 * 支持主题切换、16种强调色切换、语言切换；
 * 支持趋势版本库列表查看，每隔1小时，服务器端刷新一次数据；
 * 启动时立马显示闪屏，无白屏时间；
+* 更快更酷的代码高亮；
 * And more...
 
 ## 截屏
@@ -21,9 +22,9 @@
 |:-:|:-:|:-:|
 | ![news](/art/news.png?raw=true) | ![drawer](/art/drawer.png?raw=true) | ![profile](/art/profile.png?raw=true) |
 
-| 版本库主页 | 趋势 | 搜索 |
+| 版本库主页 | 趋势 | 代码 |
 |:-:|:-:|:-:|
-| ![repo](/art/repo.png?raw=true) | ![trending](/art/trending.png?raw=true) | ![search](/art/search.png?raw=true) |
+| ![repo](/art/repo.png?raw=true) | ![trending](/art/trending.png?raw=true) | ![code](/art/code.png?raw=true) |
 
 ## 开源库
 
