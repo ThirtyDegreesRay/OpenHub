@@ -49,16 +49,16 @@
                     android:id="@+id/nav_starred"
                     android:icon="@drawable/ic_menu_star"
                     android:title="@string/starred"/>
-            <!--<item-->
-                <!--android:id="@+id/nav_explore"-->
-                <!--android:icon="@drawable/ic_menu_explore"-->
-                <!--android:title="@string/explore"-->
-                <!--android:visible="false"/>-->
+
             </group>
             <item
                 android:id="@+id/nav_trending"
                 android:icon="@drawable/ic_menu_trending"
                 android:title="@string/trending"/>
+            <item
+                android:id="@+id/nav_search"
+                android:icon="@drawable/ic_search_title"
+                android:title="@string/search"/>
         </menu>
     </item>
 

@@ -188,4 +188,16 @@
     <string name="no_upgrade_tip">You have installed the latest version.</string>
     <string name="fork_failed">Fork failed</string>
 
+    <string name="filter" translatable="false">Filter</string>
+    <string name="filter_all" translatable="false">All</string>
+    <string name="filter_owner" translatable="false">Owner</string>
+    <string name="filter_public" translatable="false">Public</string>
+    <string name="filter_private" translatable="false">Private</string>
+    <string name="filter_member" translatable="false">Member</string>
+
+    <string name="sort_full_name" translatable="false">Full name</string>
+    <string name="sort_created" translatable="false">Created</string>
+    <string name="sort_updated" translatable="false">Updated</string>
+    <string name="sort_pushed" translatable="false">Pushed</string>
+
 </resources>

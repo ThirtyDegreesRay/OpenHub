@@ -112,10 +112,10 @@
     <string name="theme_accent_color">主色调</string>
     <string name="unstar">取消星标</string>
     <string name="unstarred" >已取消星标</string>
-    <string name="unwatch" >取消查看</string>
-    <string name="unwatched">已取消查看</string>
-    <string name="watch" >查看</string>
-    <string name="watched">已查看</string>
+    <string name="unwatch" >取消关注</string>
+    <string name="unwatched">已取消关注</string>
+    <string name="watch" >关注</string>
+    <string name="watched">已关注</string>
     <string name="watchers" >查看</string>
     <string name="fork" >添加到我的版本库</string>
     <string name="fork_warning_msg">添加到我的版本库？</string>

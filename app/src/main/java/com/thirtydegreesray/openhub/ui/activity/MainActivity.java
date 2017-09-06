@@ -146,16 +146,16 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_search) {
-            SearchActivity.show(getActivity());
-            return true;
-        }
+//        if (item.getItemId() == R.id.action_search) {
+//            SearchActivity.show(getActivity());
+//            return true;
+//        }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+//        getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -188,7 +188,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
             case R.id.nav_trending:
                 TrendingActivity.show(getActivity());
                 break;
-
+            case R.id.nav_search:
+                SearchActivity.show(getActivity());
+                break;
             case R.id.nav_settings:
                 startActivity(new Intent(getActivity(), SettingsActivity.class));
                 break;

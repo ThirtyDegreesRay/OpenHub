@@ -21,5 +21,6 @@
         android:id="@+id/action_search"
         android:title="@string/search"
         android:icon="@drawable/ic_search_title"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
 </menu>

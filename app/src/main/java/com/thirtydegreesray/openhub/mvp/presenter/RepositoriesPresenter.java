@@ -190,4 +190,11 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
         }
     }
 
+    public String getUser() {
+        return user;
+    }
+
+    public RepositoriesFragment.RepositoriesType getType() {
+        return type;
+    }
 }

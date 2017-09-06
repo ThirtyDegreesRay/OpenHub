@@ -18,6 +18,10 @@ package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
@@ -87,6 +91,12 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public void showRepositories(ArrayList<Repository> repositoryList) {
         adapter.setData(repositoryList);
         adapter.notifyDataSetChanged();
@@ -133,4 +143,22 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
         super.onLoadMore(page);
         mPresenter.loadRepositories(false, page);
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+//        if(mPresenter.getType().equals(RepositoriesType.OWNED)){
+//            inflater.inflate(R.menu.menu_owned_repo, menu);
+//            if(!mPresenter.getUser().equals(AppData.INSTANCE.getLoggedUser().getLogin())){
+//                menu.findItem(R.id.action_filter_public).setVisible(false);
+//                menu.findItem(R.id.action_filter_private).setVisible(false);
+//            }
+//        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
 }
