@@ -49,6 +49,7 @@ import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.TrendingFragment;
+import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -128,8 +129,10 @@ public class MainActivity extends BaseActivity<MainPresenter>
         GlideApp.with(getActivity())
                 .load(loginUser.getAvatarUrl())
                 .into(avatar);
-        name.setText(loginUser.getName());
-        mail.setText(loginUser.getBio());
+        name.setText(StringUtils.isBlank(loginUser.getName()) ? loginUser.getLogin() : loginUser.getName());
+        String joinTime = getString(R.string.joined_at).concat(" ")
+                .concat(StringUtils.getDateStr(loginUser.getCreatedAt()));
+        mail.setText(StringUtils.isBlank(loginUser.getBio()) ? joinTime : loginUser.getBio());
 
         tabLayout.setVisibility(View.GONE);
     }
