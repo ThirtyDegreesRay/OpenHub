@@ -28,20 +28,20 @@
 
 ## 开源库
 
-* [ButterKnife](https://github.com/JakeWharton/butterknife) Bind Android views and callbacks to fields and methods.
-* [GreenDao](https://github.com/greenrobot/greenDAO) A light & fast ORM solution for Android that maps objects to SQLite databases.
-* [EventBus](https://github.com/greenrobot/EventBus) Android optimized event bus that simplifies communication between Activities, Fragments, Threads, Services, etc.
-* [RxJava](https://github.com/ReactiveX/RxJava) A library for composing asynchronous and event-based programs using observable sequences for the Java VM.
-* [RxAndroid](https://github.com/ReactiveX/RxAndroid) RxJava bindings for Android.
-* [Retrofit](https://github.com/square/retrofit) Type-safe HTTP client for Android and Java by Square, Inc.
-* [Dagger](https://github.com/google/dagger) A fast dependency injector for Android and Java. 
-* [Glide](https://github.com/bumptech/glide) An image loading and caching library for Android focused on smooth scrolling.
-* [DataAutoAccess](https://github.com/ThirtyDegreesRay/DataAutoAccess) A simple way to access android bundle data.
-* [RoundedImageView](https://github.com/vinc3m1/RoundedImageView) A fast ImageView that supports rounded corners, ovals, and circles.
-* [Toasty](https://github.com/GrenderG/Toasty) The usual Toast, but with steroids 💪.
-* [material-about-library](https://github.com/daniel-stoneuk/material-about-library) Makes it easy to create beautiful about screens for your apps.
-* [material-dialogs](https://github.com/afollestad/material-dialogs) A beautiful, fluid, and customizable dialogs API.
-* [GitHub-Trending](https://github.com/thedillonb/GitHub-Trending) Scrapes GitHub's Trending Pages.
+* [ButterKnife](https://github.com/JakeWharton/butterknife) 视图绑定
+* [GreenDao](https://github.com/greenrobot/greenDAO) 一个轻量级而且更快的Android ORM解决方案
+* [EventBus](https://github.com/greenrobot/EventBus) 简化Android Activities, Fragments, Threads, Services,等组件之间的通信
+* [RxJava](https://github.com/ReactiveX/RxJava) 一个专注于异步编程与控制可观察数据（或者事件）流的API
+* [RxAndroid](https://github.com/ReactiveX/RxAndroid) 为了在Android中使用RxJava
+* [Retrofit](https://github.com/square/retrofit) 安全的HTTP请求工具库
+* [Dagger](https://github.com/google/dagger) 一个快速的依赖注入
+* [Glide](https://github.com/bumptech/glide) 一个图像加载和缓存库为了Android中更平滑的滚动。
+* [DataAutoAccess](https://github.com/ThirtyDegreesRay/DataAutoAccess) 一个简单的方法去自动存取Android bundle中的数据
+* [RoundedImageView](https://github.com/vinc3m1/RoundedImageView) 一个快速ImageView支持圆角,椭圆形,圆形
+* [Toasty](https://github.com/GrenderG/Toasty) 美化的Toast
+* [material-about-library](https://github.com/daniel-stoneuk/material-about-library) 让你更容易的创建美丽的关于页面
+* [material-dialogs](https://github.com/afollestad/material-dialogs) 一个美丽、流畅的和可自定义的对话框的API
+* [GitHub-Trending](https://github.com/thedillonb/GitHub-Trending) 对GitHub趋势页面进行数据抓取
 
 ## License
     Copyright 2017 ThirtyDegreesRay
