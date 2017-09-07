@@ -6,7 +6,7 @@ English | [中文](/README-cn.md)
 
 An **open source** GitHub Android client app, faster and concise.
 
-[![Download From APP Treasure](/art/app_treasure.png?raw=true)](http://android.myapp.com/myapp/detail.htm?apkName=com.thirtydegreesray.openhub) 
+[![Download From APP Treasure](/art/app_treasure.jpg?raw=true)](http://android.myapp.com/myapp/detail.htm?apkName=com.thirtydegreesray.openhub) 
 [Download Apk From Releases](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
 ## Features
