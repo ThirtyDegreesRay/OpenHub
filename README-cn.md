@@ -35,7 +35,8 @@
 * [RxAndroid](https://github.com/ReactiveX/RxAndroid) 为了在Android中使用RxJava
 * [Retrofit](https://github.com/square/retrofit) 安全的HTTP请求工具库
 * [Dagger](https://github.com/google/dagger) 一个快速的依赖注入
-* [Glide](https://github.com/bumptech/glide) 一个图像加载和缓存库为了Android中更平滑的滚动。
+* [Glide](https://github.com/bumptech/glide) 一个图像加载和缓存库为了Android中更平滑的滚动
+* [code-prettify](https://github.com/google/code-prettify) 代码美化
 * [DataAutoAccess](https://github.com/ThirtyDegreesRay/DataAutoAccess) 一个简单的方法去自动存取Android bundle中的数据
 * [RoundedImageView](https://github.com/vinc3m1/RoundedImageView) 一个快速ImageView支持圆角,椭圆形,圆形
 * [Toasty](https://github.com/GrenderG/Toasty) 美化的Toast

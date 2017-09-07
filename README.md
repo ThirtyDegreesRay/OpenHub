@@ -37,6 +37,7 @@ An **open source** GitHub Android client app, faster and concise.
 * [Retrofit](https://github.com/square/retrofit) Type-safe HTTP client for Android and Java by Square, Inc.
 * [Dagger](https://github.com/google/dagger) A fast dependency injector for Android and Java. 
 * [Glide](https://github.com/bumptech/glide) An image loading and caching library for Android focused on smooth scrolling.
+* [code-prettify](https://github.com/google/code-prettify) An embeddable script that makes source-code snippets in HTML prettier.
 * [DataAutoAccess](https://github.com/ThirtyDegreesRay/DataAutoAccess) A simple way to access android bundle data.
 * [RoundedImageView](https://github.com/vinc3m1/RoundedImageView) A fast ImageView that supports rounded corners, ovals, and circles.
 * [Toasty](https://github.com/GrenderG/Toasty) The usual Toast, but with steroids 💪.
