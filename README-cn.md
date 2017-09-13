@@ -5,7 +5,7 @@
 一个**开源**的GitHub Android客户端应用程序，更快更简洁。
 <!-- ![OpenHub](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/openhub.png) -->
 
-[![Download From APP Treasure](/art/app_treasure.jpg?raw=true)](http://android.myapp.com/myapp/detail.htm?apkName=com.thirtydegreesray.openhub) 
+[酷安下载](https://www.coolapk.com/apk/160180)
 [Download Apk From Releases](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
 ## 特点

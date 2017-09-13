@@ -6,7 +6,7 @@ English | [中文](http://blog.csdn.net/a550906320/article/details/77891443)
 
 An **open source** GitHub Android client app, faster and concise.
 
-[![Download From APP Treasure](/art/app_treasure.jpg?raw=true)](http://android.myapp.com/myapp/detail.htm?apkName=com.thirtydegreesray.openhub) 
+[COOL APK Download](https://www.coolapk.com/apk/160180)
 [Download Apk From Releases](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
 ## Features
