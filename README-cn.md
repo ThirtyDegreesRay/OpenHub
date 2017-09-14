@@ -6,7 +6,8 @@
 <!-- ![OpenHub](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/openhub.png) -->
 
 [酷安下载](https://www.coolapk.com/apk/160180)
-[Download Apk From Releases](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
+
+[从已发布版本中下载](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
 ## 特点
 * 项目使用MVP+dagger2+retrofit架构，在onSaveInstanceState时保存了Activity、Fragment、Presenter中的数据；
