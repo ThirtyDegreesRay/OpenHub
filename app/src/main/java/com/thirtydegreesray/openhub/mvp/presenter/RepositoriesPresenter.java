@@ -181,7 +181,9 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
     }
 
     private void handleError(Throwable error){
-        if(!StringUtils.isBlankList(repos)){
+        if(checkIsUnauthorized(error)){
+
+        } else if(!StringUtils.isBlankList(repos)){
             mView.showErrorToast(getErrorTip(error));
         } else if(error instanceof HttpPageNoFoundError){
             mView.showRepositories(new ArrayList<Repository>());
@@ -197,4 +199,16 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
     public RepositoriesFragment.RepositoriesType getType() {
         return type;
     }
+
+    private boolean checkIsUnauthorized(Throwable error){
+        if(getErrorTip(error).equals("Unauthorized")){
+            daoSession.getAuthUserDao().delete(AppData.INSTANCE.getAuthUser());
+            AppData.INSTANCE.setAuthUser(null);
+            AppData.INSTANCE.setLoggedUser(null);
+            mView.showLoginPage();
+            return true;
+        }
+        return false;
+    }
+
 }

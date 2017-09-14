@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
+import android.os.Bundle;
+
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.common.Event;
@@ -50,6 +52,12 @@ public class RepoInfoPresenter extends BasePresenter<IRepoInfoContract.View>
     public RepoInfoPresenter(DaoSession daoSession) {
         super(daoSession);
         setEventSubscriber(true);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        checkReadmeSourceSize();
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -103,6 +111,15 @@ public class RepoInfoPresenter extends BasePresenter<IRepoInfoContract.View>
         if(!this.repository.getFullName().equals(event.repository.getFullName())) return;
         this.repository = event.repository;
         mView.showRepoInfo(repository);
+    }
+
+    /**
+     * check if the string size is too large to save
+     */
+    private void checkReadmeSourceSize(){
+        if(readmeSource != null && readmeSource.getBytes().length > 128 * 1024){
+            readmeSource = null;
+        }
     }
 
 }

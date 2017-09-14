@@ -36,6 +36,8 @@ public interface IRepositoriesContract {
 
         void setCanLoadMore(boolean canLoadMore);
 
+        void showLoginPage();
+
     }
 
     interface Presenter extends IBaseContract.Presenter<IRepositoriesContract.View> {
