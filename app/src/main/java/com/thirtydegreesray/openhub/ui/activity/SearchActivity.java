@@ -90,6 +90,7 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
         super.initView(savedInstanceState);
         setToolbarScrollAble(true);
         setToolbarBackEnable();
+        setToolbarTitle(getString(R.string.search));
         sortInfos = new String[]{
                 getString(R.string.best_match), getString(R.string.best_match)
         };

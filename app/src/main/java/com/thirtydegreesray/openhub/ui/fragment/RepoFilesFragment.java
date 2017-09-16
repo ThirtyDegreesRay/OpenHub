@@ -134,7 +134,7 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
         if(model.isDir()){
             mPresenter.loadFiles(model.getPath(), false);
         }else{
-            ViewerActivity.show(getActivity(), model);
+            ViewerActivity.show(getActivity(), model, mPresenter.getRepoName());
         }
     }
 

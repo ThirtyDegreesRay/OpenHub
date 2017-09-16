@@ -48,4 +48,8 @@
         android:id="@+id/action_fork"
         android:title="@string/fork"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_releases"
+        android:title="@string/releases"
+        app:showAsAction="never"/>
 </menu>

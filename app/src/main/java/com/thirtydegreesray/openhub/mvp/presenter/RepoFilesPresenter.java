@@ -190,4 +190,8 @@ public class RepoFilesPresenter extends BasePresenter<IRepoFilesContract.View>
         mView.showFilePath(filePath);
     }
 
+    public String getRepoName(){
+        return repo.getName();
+    }
+
 }

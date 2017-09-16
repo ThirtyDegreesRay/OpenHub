@@ -112,6 +112,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         toolbar.setTitleTextAppearance(getActivity(), R.style.Toolbar_TitleText);
         toolbar.setSubtitleTextAppearance(getActivity(), R.style.Toolbar_Subtitle);
         setToolbarBackEnable();
+        setToolbarTitle(getString(R.string.repository));
     }
 
     @Override
@@ -147,6 +148,9 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                 return true;
             case R.id.action_fork:
                 if(!mPresenter.getRepository().isFork()) forkRepo();
+                return true;
+            case R.id.action_releases:
+                showReleases();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -217,6 +221,9 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                 }).show();
     }
 
-
+    private void showReleases(){
+        ReleasesActivity.show(getActivity(), mPresenter.getRepository().getOwner().getLogin(),
+                mPresenter.getRepository().getName());
+    }
 
 }

@@ -91,7 +91,15 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
         super.onItemClick(position);
         Event event = adapter.getData().get(position);
         String owner = event.getRepo().getFullName().split("/")[0];
-        RepositoryActivity.show(getContext(), owner, event.getRepo().getName());
+        switch (event.getType()){
+            case ForkEvent:
+                String actorId = event.getActor().getLogin();
+                RepositoryActivity.show(getContext(), actorId, event.getRepo().getName());
+                break;
+            default:
+                RepositoryActivity.show(getContext(), owner, event.getRepo().getName());
+                break;
+        }
     }
 
     @Override

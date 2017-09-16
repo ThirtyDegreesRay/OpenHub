@@ -132,5 +132,7 @@
     <string name="upgrade_info">升级信息：</string>
     <string name="no_upgrade_tip">你已经安装了最新版本</string>
     <string name="fork_failed">添加到我的版本库失败</string>
+    <string name="no_browser_clients">未安装浏览器客户端</string>
+    <string name="releases"></string>
 
 </resources>

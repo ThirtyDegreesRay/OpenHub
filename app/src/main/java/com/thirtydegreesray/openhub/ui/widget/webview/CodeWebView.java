@@ -130,7 +130,7 @@ public class CodeWebView extends WebView {
         loadData(html, "text/html", null);
     }
 
-    public void setMdSource(@NonNull String source, @NonNull String baseUrl) {
+    public void setMdSource(@NonNull String source, @Nullable String baseUrl) {
         if (StringUtils.isBlank(source)) return;
         String page = HtmlHelper.generateMdHtml(source, baseUrl, AppHelper.isNightMode(),
                 getCodeBackgroundColor(), getAccentColor());

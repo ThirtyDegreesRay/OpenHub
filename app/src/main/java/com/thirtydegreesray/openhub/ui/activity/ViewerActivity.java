@@ -26,6 +26,7 @@ import android.view.MenuItem;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.http.Downloader;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
@@ -50,12 +51,19 @@ public class ViewerActivity extends BaseActivity {
     }
 
     public static void show(@NonNull Context context, @NonNull FileModel fileModel){
+        show(context, fileModel, null);
+    }
+
+    public static void show(@NonNull Context context, @NonNull FileModel fileModel
+            , @Nullable String repoName){
         Intent intent = new Intent(context, ViewerActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("fileModel", fileModel).build());
+        intent.putExtras(BundleBuilder.builder().put("fileModel", fileModel)
+                .put("repoName", repoName).build());
         context.startActivity(intent);
     }
 
     @AutoAccess FileModel fileModel;
+    @AutoAccess String repoName;
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
@@ -101,6 +109,10 @@ public class ViewerActivity extends BaseActivity {
                 return true;
             case R.id.action_copy_url:
                 AppHelper.copyToClipboard(getActivity(), htmlUrl);
+                return true;
+            case R.id.action_download:
+                Downloader.create(getApplicationContext())
+                        .start(fileModel.getDownloadUrl(), repoName.concat("-").concat(fileModel.getName()));
                 return true;
         }
         return super.onOptionsItemSelected(item);

@@ -103,7 +103,11 @@ public class AppHelper {
     public static void openInBrowser(@NonNull Context context, @NonNull String url){
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
-        context.startActivity(intent);
+        try{
+            context.startActivity(intent);
+        }catch (ActivityNotFoundException e){
+            Toasty.warning(context, context.getString(R.string.no_share_clients)).show();
+        }
     }
 
     public static void shareText(@NonNull Context context, @NonNull String text) {

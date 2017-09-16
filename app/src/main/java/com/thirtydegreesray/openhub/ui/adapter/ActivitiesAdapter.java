@@ -81,7 +81,12 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
         if (Event.EventType.WatchEvent.equals(model.getType())) {
             action = model.getPayload().getAction() + " " + model.getRepo().getFullName();
         } else if (Event.EventType.CreateEvent.equals(model.getType())) {
-            action = "Created repository " + model.getRepo().getFullName();
+            if(model.getPayload().getRefType().equals("repository")){
+                action = "Created repository " + model.getRepo().getFullName();
+            } else if(model.getPayload().getRefType().equals("tag")){
+                action = "Created tag " + model.getPayload().getRef() + " at "
+                        + model.getRepo().getFullName();
+            }
         } else if (Event.EventType.ForkEvent.equals(model.getType())) {
             String oriRepo = model.getRepo().getFullName();
             String newRepo = model.getActor().getLogin() + "/" + model.getRepo().getName();
@@ -91,6 +96,10 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
             ref = ref.substring(ref.lastIndexOf("/") + 1);
             action = "Push to " + ref +
                     " at " + model.getRepo().getFullName();
+        } else if (Event.EventType.ReleaseEvent.equals(model.getType())) {
+            //TODO show release name
+            action = model.getPayload().getAction() + " release at " +
+                    model.getRepo().getFullName();
         } else if (Event.EventType.PullRequestEvent.equals(model.getType())) {
             action = model.getPayload().getAction() + " pull request " + model.getRepo().getFullName();
         } else if (Event.EventType.PullRequestReviewCommentEvent.equals(model.getType())) {

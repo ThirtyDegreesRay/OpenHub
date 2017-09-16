@@ -99,10 +99,12 @@
     <string name="readme" translatable="false">README</string>
     <string name="warning_dialog_tile">Warning</string>
     <string name="cancel">Cancel</string>
+    <string name="close">Close</string>
     <string name="ok">OK</string>
     <string name="select_branch">Select branch or tag</string>
     <string name="share_to">Share to</string>
     <string name="no_share_clients">There are no share clients installed.</string>
+    <string name="no_browser_clients">There are no browser clients installed.</string>
     <string name="send_email">Send email</string>
     <string name="no_email_clients">There are no email clients installed.</string>
     <string name="url_invalid">Url is invalid</string>
@@ -199,5 +201,19 @@
     <string name="sort_created" translatable="false">Created</string>
     <string name="sort_updated" translatable="false">Updated</string>
     <string name="sort_pushed" translatable="false">Pushed</string>
+
+    <string name="releases">Releases</string>
+    <string name="no_releases">No releases</string>
+    <string name="source_code_zip">Source code (zip)</string>
+    <string name="source_code_tar">Source code (tar.gz)</string>
+    <string name="released_this">released this</string>
+    <string name="on">on</string>
+    <string name="download">Download</string>
+    <string name="download_complete">Download complete</string>
+    <string name="download_failed">Download failed</string>
+    <string name="downloading">Downloading</string>
+    <string name="download_empty_tip">Url or file name is empty!</string>
+    <string name="download_start">Download start</string>
+    <string name="download_cancel">Download cancel</string>
 
 </resources>

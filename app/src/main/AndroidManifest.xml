@@ -24,6 +24,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
     <application
         android:name=".AppApplication"
@@ -142,6 +143,19 @@
             android:screenOrientation="portrait"
             android:theme="@style/ThemeLight.AboutActivity"
             android:label="@string/about">
+        </activity>
+
+        <activity
+            android:name=".ui.activity.ReleasesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeLight.Green"
+            android:label="@string/releases">
+        </activity>
+
+        <activity
+            android:name=".ui.activity.ReleaseInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeLight.Green">
         </activity>
 
     </application>

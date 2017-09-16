@@ -34,6 +34,7 @@ public class Event implements Parcelable {
         CreateEvent,
         ForkEvent,
         PushEvent,
+        ReleaseEvent,
         PullRequestEvent,
         PullRequestReviewCommentEvent,
         //made repository public

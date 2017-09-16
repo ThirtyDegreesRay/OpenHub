@@ -21,6 +21,7 @@ import android.support.annotation.NonNull;
 import com.thirtydegreesray.openhub.mvp.model.Branch;
 import com.thirtydegreesray.openhub.mvp.model.Event;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
+import com.thirtydegreesray.openhub.mvp.model.Release;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.User;
 
@@ -186,6 +187,15 @@ public interface RepoService {
      */
     @NonNull @GET("networks/{owner}/{repo}/events")
     Observable<Response<ArrayList<Event>>> getRepoEvent(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("owner") String owner,
+            @Path("repo") String repo,
+            @Query("page") int page
+    );
+
+    @NonNull @GET("repos/{owner}/{repo}/releases")
+    @Headers("Accept: application/vnd.github.html")
+    Observable<Response<ArrayList<Release>>> getReleases(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("owner") String owner,
             @Path("repo") String repo,
