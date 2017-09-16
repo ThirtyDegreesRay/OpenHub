@@ -1,14 +1,9 @@
 package com.thirtydegreesray.openhub.mvp.presenter;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
-import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.mvp.contract.IReleaseInfoContract;
-import com.thirtydegreesray.openhub.mvp.model.DownloadSource;
 import com.thirtydegreesray.openhub.mvp.model.Release;
-import com.thirtydegreesray.openhub.mvp.model.ReleaseAsset;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -51,16 +46,6 @@ public class ReleaseInfoPresenter extends BasePresenter<IReleaseInfoContract.Vie
 
     public Release getRelease(){
         return release;
-    }
-
-    public ArrayList<DownloadSource> getDownloadSources(){
-        ArrayList<DownloadSource> sources = new ArrayList<>();
-        for(ReleaseAsset asset : release.getAssets()){
-            sources.add(new DownloadSource(asset.getDownloadUrl(), false, asset.getName(), asset.getSize()));
-        }
-        sources.add(new DownloadSource(release.getZipballUrl(), true, getString(R.string.source_code_zip)));
-        sources.add(new DownloadSource(release.getTarballUrl(), true, getString(R.string.source_code_tar)));
-        return sources;
     }
 
 }

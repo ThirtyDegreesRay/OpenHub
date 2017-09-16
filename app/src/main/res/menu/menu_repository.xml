@@ -52,4 +52,12 @@
         android:id="@+id/action_releases"
         android:title="@string/releases"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_download_source_zip"
+        android:title="@string/download_source_zip"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_download_source_tar"
+        android:title="@string/download_source_tar"
+        app:showAsAction="never"/>
 </menu>

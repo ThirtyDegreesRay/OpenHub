@@ -1,13 +1,12 @@
 package com.thirtydegreesray.openhub.ui.activity;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -22,12 +21,12 @@ import com.thirtydegreesray.openhub.mvp.contract.IReleaseInfoContract;
 import com.thirtydegreesray.openhub.mvp.model.Release;
 import com.thirtydegreesray.openhub.mvp.presenter.ReleaseInfoPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
-import com.thirtydegreesray.openhub.ui.adapter.DownloadSourcesAdapter;
-import com.thirtydegreesray.openhub.ui.widget.AdaptiveView;
+import com.thirtydegreesray.openhub.ui.widget.DownloadSourceDialog;
 import com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView;
 import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 import com.thirtydegreesray.openhub.util.StringUtils;
+import com.thirtydegreesray.openhub.util.ViewHelper;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -49,7 +48,6 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
     @BindView(R.id.web_view) CodeWebView webView;
     @BindView(R.id.user_avatar) ImageView userAvatar;
     @BindView(R.id.user_name) TextView userName;
-    @BindView(R.id.release_time) TextView releaseTime;
 
     @Override
     public void showReleaseInfo(Release release) {
@@ -58,7 +56,6 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
                 .load(release.getAuthor().getAvatarUrl())
                 .placeholder(R.mipmap.logo)
                 .into(userAvatar);
-        userName.setText(release.getAuthor().getLogin());
 
         String time = StringUtils.getNewsTimeStr(getActivity(), release.getCreatedAt());
         String timeStr = "";
@@ -70,7 +67,13 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
             timeStr = getString(R.string.released_this)
                     .concat(" ").concat(time);
         }
-        releaseTime.setText(timeStr);
+
+        String str = release.getAuthor().getLogin().concat(" ").concat(timeStr);
+        SpannableStringBuilder spannable = new SpannableStringBuilder(str);
+        ForegroundColorSpan colorSpan = new ForegroundColorSpan(ViewHelper.getAccentColor(getActivity()));
+        spannable.setSpan(colorSpan, 0, release.getAuthor().getLogin().length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        userName.setText(spannable);
     }
 
     @Override
@@ -117,26 +120,8 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
 
     @OnClick(R.id.download_bn)
     public void showDownloadDialog(){
-        DownloadSourcesAdapter adapter = new DownloadSourcesAdapter(getActivity(),
-                mPresenter.getRepoName(), mPresenter.getRelease().getTagName());
-        adapter.setData(mPresenter.getDownloadSources());
-
-        final RecyclerView recyclerView = new RecyclerView(getActivity());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(adapter);
-        AdaptiveView contentView = new AdaptiveView(getActivity());
-        contentView.addView(recyclerView);
-
-        new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.download)
-                .setView(contentView)
-                .setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                })
-                .show();
+        DownloadSourceDialog.show(getActivity(), mPresenter.getRepoName(),
+                mPresenter.getRelease().getTagName(), mPresenter.getRelease());
     }
 
     @OnClick({R.id.user_name, R.id.user_avatar})

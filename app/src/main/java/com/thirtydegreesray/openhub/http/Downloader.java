@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
-import android.widget.Toast;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.util.StringUtils;
@@ -36,6 +35,7 @@ public class Downloader {
     }
 
     public void start(String url, String fileName) {
+        //FIXME write permission
         if(StringUtils.isBlank(url) || StringUtils.isBlank(fileName)){
             Toasty.error(mContext, mContext.getString(R.string.download_empty_tip)).show();
             return;
@@ -46,7 +46,7 @@ public class Downloader {
         //移动网络情况下是否允许漫游
         request.setAllowedOverRoaming(false);
 
-        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         String title = mContext.getString(R.string.downloading);
         if(fileName.contains("/")){
             title = title.concat(" ").concat(fileName.substring(fileName.lastIndexOf("/") + 1));
@@ -57,7 +57,7 @@ public class Downloader {
 //        request.setDescription("Apk Downloading");
         request.setVisibleInDownloadsUi(true);
 
-        request.setDestinationInExternalPublicDir("OpenHub/Download", fileName);
+        request.setDestinationInExternalPublicDir("Download", fileName);
 
         downloadManager = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
         downloadId = downloadManager.enqueue(request);
@@ -81,6 +81,7 @@ public class Downloader {
         Cursor c = downloadManager.query(query);
         if (c.moveToFirst()) {
             int status = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));
+            String msg = c.getString(c.getColumnIndex(DownloadManager.COLUMN_REASON));
             switch (status) {
                 case DownloadManager.STATUS_PAUSED:
                     break;
@@ -90,10 +91,12 @@ public class Downloader {
                     break;
                 case DownloadManager.STATUS_SUCCESSFUL:
                     String tip = mContext.getString(R.string.download_complete).concat("\n").concat(getFilePath());
-                    Toasty.success(mContext, tip, Toast.LENGTH_LONG).show();
+                    Toasty.success(mContext, tip).show();
+                    unregister();
                     break;
                 case DownloadManager.STATUS_FAILED:
                     Toasty.error(mContext, mContext.getString(R.string.download_failed)).show();
+                    unregister();
                     break;
             }
         }
@@ -102,8 +105,12 @@ public class Downloader {
 
     private String getFilePath(){
         return Environment.getExternalStorageDirectory().getAbsolutePath()
-                .concat("/OpenHub/Download").concat("/").concat(fileName);
+                .concat("/Download").concat("/").concat(fileName);
     }
 
+    private void unregister(){
+        mContext.unregisterReceiver(receiver);
+        mContext = null;
+    }
 
 }

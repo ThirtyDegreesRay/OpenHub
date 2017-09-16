@@ -74,9 +74,9 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
                 getRepoInfo(true);
                 return;
             }
-            curBranch = new Branch(repository.getDefaultBranch());
             owner = repository.getOwner().getLogin();
             repoName = repository.getName();
+            initCurBranch();
             mView.showRepo(repository);
             getRepoInfo(false);
             checkStatus();
@@ -198,7 +198,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
                     public void onSuccess(HttpResponse<Repository> response) {
                         if (isShowLoading) mView.getProgressDialog(getLoadTip()).cancel();
                         repository = response.body();
-                        curBranch = new Branch(repository.getDefaultBranch());
+                        initCurBranch();
                         mView.showRepo(repository);
                         checkStatus();
                     }
@@ -246,6 +246,16 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
         );
     }
 
+    private void initCurBranch(){
+        curBranch = new Branch(repository.getDefaultBranch());
+        curBranch.setZipballUrl("https://github.com/".concat(owner).concat("/")
+                .concat(repoName).concat("/archive/")
+                .concat(curBranch.getName()).concat(".zip"));
+        curBranch.setTarballUrl("https://github.com/".concat(owner).concat("/")
+                .concat(repoName).concat("/archive/")
+                .concat(curBranch.getName()).concat(".tar.gz"));
+    }
+
     public Repository getRepository() {
         return repository;
     }
@@ -260,5 +270,25 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
 
     public boolean isWatched() {
         return watched;
+    }
+
+    public String getZipSourceUrl(){
+        return curBranch.getZipballUrl();
+    }
+
+    public String getZipSourceName(){
+        return repoName.concat("-").concat(curBranch.getName()).concat(".zip");
+    }
+
+    public String getTarSourceUrl(){
+        return curBranch.getTarballUrl();
+    }
+
+    public String getTarSourceName(){
+        return repoName.concat("-").concat(curBranch.getName()).concat(".tar.gz");
+    }
+
+    public void setCurBranch(Branch curBranch) {
+        this.curBranch = curBranch;
     }
 }

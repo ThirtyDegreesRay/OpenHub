@@ -41,16 +41,9 @@
                             android:id="@+id/user_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_normal"
-                            android:textColor="?colorAccent"
-                            android:layout_marginStart="@dimen/spacing_small"/>
-                        <TextView
-                            android:id="@+id/release_time"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:textSize="@dimen/text_small"
                             android:textColor="?android:textColorSecondary"
-                            android:layout_marginStart="@dimen/spacing_micro"/>
+                            android:layout_marginStart="@dimen/spacing_small"/>
                     </LinearLayout>
 
                     <com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView

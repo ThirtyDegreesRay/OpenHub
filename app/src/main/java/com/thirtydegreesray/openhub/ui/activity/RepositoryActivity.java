@@ -32,6 +32,7 @@ import android.view.View;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.AppEventBus;
 import com.thirtydegreesray.openhub.common.Event;
+import com.thirtydegreesray.openhub.http.Downloader;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
 import com.thirtydegreesray.openhub.inject.module.ActivityModule;
@@ -152,6 +153,14 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
             case R.id.action_releases:
                 showReleases();
                 return true;
+            case R.id.action_download_source_zip:
+                Downloader.create(getApplicationContext())
+                        .start(mPresenter.getZipSourceUrl(), mPresenter.getZipSourceName());
+                return true;
+            case R.id.action_download_source_tar:
+                Downloader.create(getApplicationContext())
+                        .start(mPresenter.getTarSourceUrl(), mPresenter.getTarSourceName());
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -196,6 +205,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
             public void onItemClick(int position) {
                 Branch branch = list.get(position);
                 mPresenter.getRepository().setDefaultBranch(branch.getName());
+                mPresenter.setCurBranch(branch);
                 showRepo(mPresenter.getRepository());
                 alertDialog.dismiss();
             }

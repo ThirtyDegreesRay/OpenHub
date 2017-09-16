@@ -44,7 +44,11 @@ public class ReleasesAdapter extends BaseAdapter<ReleasesAdapter.ViewHolder, Rel
         Release model = data.get(position);
         holder.releaseName.setText(model.getTagName());
         holder.time.setText(StringUtils.getNewsTimeStr(context, model.getCreatedAt()));
-        holder.body.setText(Html.fromHtml(model.getBodyHtml()));
+        if(!StringUtils.isBlank(model.getBodyHtml())){
+            holder.body.setText(Html.fromHtml(model.getBodyHtml()));
+        } else {
+            holder.body.setText("");
+        }
     }
 
     class ViewHolder extends BaseViewHolder {

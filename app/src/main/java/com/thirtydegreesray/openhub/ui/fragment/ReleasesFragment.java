@@ -12,6 +12,7 @@ import com.thirtydegreesray.openhub.mvp.presenter.ReleasesPresenter;
 import com.thirtydegreesray.openhub.ui.activity.ReleaseInfoActivity;
 import com.thirtydegreesray.openhub.ui.adapter.ReleasesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
+import com.thirtydegreesray.openhub.ui.widget.DownloadSourceDialog;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 
 import java.util.ArrayList;
@@ -70,6 +71,14 @@ public class ReleasesFragment extends ListFragment<ReleasesPresenter, ReleasesAd
         super.onItemClick(position);
         ReleaseInfoActivity.show(getActivity(), mPresenter.getRepoName(),
                 adapter.getData().get(position));
+    }
+
+    @Override
+    public boolean onItemLongClick(int position) {
+        Release release = adapter.getData().get(position);
+        DownloadSourceDialog.show(getActivity(), mPresenter.getRepoName(),
+                release.getTagName(), release);
+        return true;
     }
 
     @Override

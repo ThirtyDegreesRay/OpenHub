@@ -133,6 +133,19 @@
     <string name="no_upgrade_tip">你已经安装了最新版本</string>
     <string name="fork_failed">添加到我的版本库失败</string>
     <string name="no_browser_clients">未安装浏览器客户端</string>
-    <string name="releases"></string>
+    <string name="releases">已发布版本</string>
+    <string name="download">下载</string>
+    <string name="download_cancel">下载取消</string>
+    <string name="download_complete">下载完成</string>
+    <string name="download_empty_tip">下载地址或文件名称为空！</string>
+    <string name="download_failed">下载失败</string>
+    <string name="download_start">下载开始</string>
+    <string name="downloading">正在下载</string>
+    <string name="download_source_zip">下载源码 (zip)</string>
+    <string name="download_source_tar">下载源码 (tar.gz)</string>
+    <string name="no_releases">无已发布版本</string>
+    <string name="released_this">发布此版本</string>
+    <string name="on">在</string>
+    <string name="close">关闭</string>
 
 </resources>
