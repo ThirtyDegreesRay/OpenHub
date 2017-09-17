@@ -1,12 +1,13 @@
 English | [中文](http://blog.csdn.net/a550906320/article/details/77891443)
 # OpenHub 
+[![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
 <!-- ![OpenHub](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/openhub.png) -->
 
 An **open source** GitHub Android client app, faster and concise.
 
-[Cool Apk Download](https://www.coolapk.com/apk/160180)
+[Cool Apk Download](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 
 [Download Apk From Releases](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 

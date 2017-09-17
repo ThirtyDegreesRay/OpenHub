@@ -1,11 +1,12 @@
 [English](/README.md) | 中文
 # OpenHub 
+[![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
 一个**开源**的GitHub Android客户端应用程序，更快更简洁。
 <!-- ![OpenHub](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/openhub.png) -->
 
-[酷安下载](https://www.coolapk.com/apk/160180)
+[酷安下载](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 
 [从已发布版本中下载](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
