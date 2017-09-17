@@ -51,7 +51,9 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
 
     @Override
     public void showReleaseInfo(Release release) {
-        webView.setMdSource(release.getBodyHtml(), null);
+        webView.setMdSource(StringUtils.isBlank(release.getBodyHtml()) ?
+                release.getBody() : release.getBodyHtml(), null);
+
         GlideApp.with(getActivity())
                 .load(release.getAuthor().getAvatarUrl())
                 .placeholder(R.mipmap.logo)

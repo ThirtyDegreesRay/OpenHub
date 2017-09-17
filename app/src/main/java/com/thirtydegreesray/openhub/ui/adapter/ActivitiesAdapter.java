@@ -97,8 +97,8 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
             action = "Push to " + ref +
                     " at " + model.getRepo().getFullName();
         } else if (Event.EventType.ReleaseEvent.equals(model.getType())) {
-            //TODO show release name
-            action = model.getPayload().getAction() + " release at " +
+            action = model.getPayload().getAction() + " release " +
+                    model.getPayload().getRelease().getTagName() + " at " +
                     model.getRepo().getFullName();
         } else if (Event.EventType.PullRequestEvent.equals(model.getType())) {
             action = model.getPayload().getAction() + " pull request " + model.getRepo().getFullName();

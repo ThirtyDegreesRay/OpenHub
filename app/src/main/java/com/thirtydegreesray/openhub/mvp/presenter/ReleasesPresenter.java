@@ -71,7 +71,7 @@ public class ReleasesPresenter extends BasePresenter<IReleasesContract.View>
             public Observable<Response<ArrayList<Release>>> createObservable(boolean forceNetWork) {
                 return getRepoService().getReleases(forceNetWork, owner, repo, page);
             }
-        }, httpObserver);
+        }, httpObserver, readCacheFirst);
 
     }
 

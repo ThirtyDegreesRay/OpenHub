@@ -126,5 +126,6 @@ public class ActivityPresenter extends BasePresenter<IActivityContract.View>
             }
         }
     }
+
 }
 

@@ -47,6 +47,9 @@ public class EventPayload implements Parcelable {
     private String description;
     @SerializedName("pusher_type") private String pusherType;
 
+    //ReleaseEvent
+    private Release release;
+
     //ForkEvent,PublicEvent None
 
 
@@ -146,6 +149,14 @@ public class EventPayload implements Parcelable {
         this.pusherType = pusherType;
     }
 
+    public Release getRelease() {
+        return release;
+    }
+
+    public void setRelease(Release release) {
+        this.release = release;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -165,6 +176,7 @@ public class EventPayload implements Parcelable {
         dest.writeString(this.masterBranch);
         dest.writeString(this.description);
         dest.writeString(this.pusherType);
+        dest.writeParcelable(this.release, flags);
     }
 
     public EventPayload() {
@@ -183,6 +195,7 @@ public class EventPayload implements Parcelable {
         this.masterBranch = in.readString();
         this.description = in.readString();
         this.pusherType = in.readString();
+        this.release = in.readParcelable(Release.class.getClassLoader());
     }
 
     public static final Parcelable.Creator<EventPayload> CREATOR = new Parcelable.Creator<EventPayload>() {

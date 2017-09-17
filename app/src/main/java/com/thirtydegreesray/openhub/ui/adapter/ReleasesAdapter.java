@@ -46,8 +46,10 @@ public class ReleasesAdapter extends BaseAdapter<ReleasesAdapter.ViewHolder, Rel
         holder.time.setText(StringUtils.getNewsTimeStr(context, model.getCreatedAt()));
         if(!StringUtils.isBlank(model.getBodyHtml())){
             holder.body.setText(Html.fromHtml(model.getBodyHtml()));
+            holder.body.setVisibility(View.VISIBLE);
         } else {
             holder.body.setText("");
+            holder.body.setVisibility(View.GONE);
         }
     }
 

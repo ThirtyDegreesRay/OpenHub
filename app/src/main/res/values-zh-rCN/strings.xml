@@ -116,7 +116,7 @@
     <string name="unwatched">已取消关注</string>
     <string name="watch" >关注</string>
     <string name="watched">已关注</string>
-    <string name="watchers" >查看</string>
+    <string name="watchers" >关注者</string>
     <string name="fork" >添加到我的版本库</string>
     <string name="fork_warning_msg">添加到我的版本库？</string>
     <string name="forked">已添加到我的版本库</string>
@@ -147,5 +147,6 @@
     <string name="released_this">发布此版本</string>
     <string name="on">在</string>
     <string name="close">关闭</string>
+    <string name="permission_storage_denied">权限被拒绝，请允许访问存储权限。</string>
 
 </resources>

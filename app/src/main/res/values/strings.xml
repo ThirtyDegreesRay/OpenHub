@@ -217,5 +217,6 @@
     <string name="download_empty_tip">Url or file name is empty!</string>
     <string name="download_start">Download start</string>
     <string name="download_cancel">Download cancel</string>
+    <string name="permission_storage_denied">Permission denied, please allow storage permission.</string>
 
 </resources>

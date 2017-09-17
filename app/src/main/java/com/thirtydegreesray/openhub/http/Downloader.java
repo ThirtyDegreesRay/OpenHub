@@ -8,9 +8,16 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.widget.Toast;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.util.StringUtils;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
+import com.yanzhenjie.permission.PermissionListener;
+
+import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
@@ -24,6 +31,7 @@ public class Downloader {
     private Context mContext;
     private long downloadId;
 
+    private String url;
     private String fileName;
 
     public static Downloader create(Context context){
@@ -35,12 +43,31 @@ public class Downloader {
     }
 
     public void start(String url, String fileName) {
-        //FIXME write permission
         if(StringUtils.isBlank(url) || StringUtils.isBlank(fileName)){
             Toasty.error(mContext, mContext.getString(R.string.download_empty_tip)).show();
             return;
         }
+        this.url = url;
         this.fileName = fileName;
+
+        AndPermission.with(mContext)
+                .permission(Permission.STORAGE)
+                .callback(new PermissionListener() {
+                    @Override
+                    public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
+                        start();
+                    }
+
+                    @Override
+                    public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
+                        Toasty.error(mContext, mContext.getString(R.string.permission_storage_denied),
+                                Toast.LENGTH_LONG).show();
+                    }
+                })
+                .start();
+    }
+
+    private void start() {
 
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
         //移动网络情况下是否允许漫游

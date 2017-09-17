@@ -26,6 +26,7 @@ import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IActivityContract;
 import com.thirtydegreesray.openhub.mvp.model.Event;
 import com.thirtydegreesray.openhub.mvp.presenter.ActivityPresenter;
+import com.thirtydegreesray.openhub.ui.activity.ReleaseInfoActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.adapter.ActivitiesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
@@ -95,6 +96,12 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
             case ForkEvent:
                 String actorId = event.getActor().getLogin();
                 RepositoryActivity.show(getContext(), actorId, event.getRepo().getName());
+                break;
+            case ReleaseEvent:
+                String repoName = event.getRepo().getFullName();
+                repoName = repoName.substring(repoName.lastIndexOf("/") + 1);
+                ReleaseInfoActivity.show(getActivity(), repoName,
+                        event.getPayload().getRelease());
                 break;
             default:
                 RepositoryActivity.show(getContext(), owner, event.getRepo().getName());
