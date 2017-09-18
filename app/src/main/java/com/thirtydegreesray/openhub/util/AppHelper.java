@@ -16,11 +16,13 @@
 
 package com.thirtydegreesray.openhub.util;
 
+import android.app.ActivityManager;
 import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -33,6 +35,7 @@ import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 
+import java.util.List;
 import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
@@ -153,5 +156,41 @@ public class AppHelper {
         }
     }
 
+
+    public static boolean isAppAlive(Context context, String packageName){
+        ActivityManager activityManager =
+                (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> processInfos
+                = activityManager.getRunningAppProcesses();
+        for(int i = 0; i < processInfos.size(); i++){
+            if(processInfos.get(i).processName.equals(packageName)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static final String DOWNLOAD_SERVICE_PACKAGE_NAME = "com.android.providers.downloads";
+
+    public static boolean checkApplicationEnabledSetting(Context context, String packageName){
+        int state = context.getPackageManager().getApplicationEnabledSetting(packageName);
+        return state == PackageManager.COMPONENT_ENABLED_STATE_DEFAULT ||
+                state == PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
+    }
+
+    public static boolean checkDownloadServiceEnabled(Context context){
+        return checkApplicationEnabledSetting(context, DOWNLOAD_SERVICE_PACKAGE_NAME);
+    }
+
+    public static void showDownloadServiceSetting(Context context){
+        try {
+            Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            intent.setData(Uri.parse("package:" + DOWNLOAD_SERVICE_PACKAGE_NAME));
+            context.startActivity(intent);
+        } catch (ActivityNotFoundException e){
+            Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            context.startActivity(intent);
+        }
+    }
 
 }

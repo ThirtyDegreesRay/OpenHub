@@ -19,6 +19,7 @@ package com.thirtydegreesray.openhub.ui.activity.base;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -44,6 +45,8 @@ import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.mvp.contract.IBaseContract;
+import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
+import com.thirtydegreesray.openhub.ui.activity.SplashActivity;
 import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.ThemeEngine;
 import com.thirtydegreesray.openhub.util.WindowUtil;
@@ -74,6 +77,15 @@ BaseActivity<P extends IBaseContract.Presenter>
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        if((AppData.INSTANCE.getAuthUser() == null || AppData.INSTANCE.getLoggedUser() == null)
+                && !this.getClass().equals(SplashActivity.class)
+                && !this.getClass().equals(LoginActivity.class)){
+            super.onCreate(savedInstanceState);
+            finishAffinity();
+            startActivity(new Intent(getActivity(), SplashActivity.class));
+            return;
+        }
+
         ThemeEngine.apply(this);
         AppHelper.updateAppLanguage(getActivity());
         super.onCreate(savedInstanceState);

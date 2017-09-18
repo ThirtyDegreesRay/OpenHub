@@ -148,5 +148,6 @@
     <string name="on">在</string>
     <string name="close">关闭</string>
     <string name="permission_storage_denied">权限被拒绝，请允许访问存储权限。</string>
+    <string name="enable_download_service_tip">请先开启下载服务！</string>
 
 </resources>

@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -43,12 +44,20 @@ public class Downloader {
     }
 
     public void start(String url, String fileName) {
+
         if(StringUtils.isBlank(url) || StringUtils.isBlank(fileName)){
             Toasty.error(mContext, mContext.getString(R.string.download_empty_tip)).show();
             return;
         }
         this.url = url;
         this.fileName = fileName;
+
+        if(!AppHelper.checkDownloadServiceEnabled(mContext)){
+            Toasty.warning(mContext, mContext.getString(R.string.enable_download_service_tip),
+                    Toast.LENGTH_LONG).show();
+            AppHelper.showDownloadServiceSetting(mContext);
+            return ;
+        }
 
         AndPermission.with(mContext)
                 .permission(Permission.STORAGE)
