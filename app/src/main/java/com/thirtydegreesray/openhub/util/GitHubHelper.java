@@ -40,11 +40,11 @@ public class GitHubHelper {
     };
 
     public static final Pattern REPO_FULL_NAME_PATTERN =
-            Pattern.compile("([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.)*");
+            Pattern.compile("([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.|_)*");
     private static final Pattern USER_PATTERN =
             Pattern.compile("(https://)?(www.)?github.com/([a-z]|[A-Z]|\\d|-)*(/)?");
     private static final Pattern REPO_PATTERN =
-            Pattern.compile("(https://)?(www.)?github.com/([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.)*(/)?");
+            Pattern.compile("(https://)?(www.)?github.com/([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.|_)*(/)?");
 
     public static boolean isImage(@Nullable String name) {
         if (StringUtils.isBlank(name)) return false;

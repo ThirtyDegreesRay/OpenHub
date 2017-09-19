@@ -94,7 +94,7 @@
     <string name="success_copied">Copied</string>
 
     <string name="stargazers">Stargazers</string>
-    <string name="forks">Froks</string>
+    <string name="forks">Forks</string>
     <string name="watchers">Watchers</string>
     <string name="readme" translatable="false">README</string>
     <string name="warning_dialog_tile">Warning</string>

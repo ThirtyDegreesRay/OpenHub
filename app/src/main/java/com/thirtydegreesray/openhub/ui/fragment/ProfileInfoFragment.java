@@ -150,6 +150,7 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
     public void showProfileInfo(User user) {
         GlideApp.with(this)
                 .load(user.getAvatarUrl())
+                .placeholder(R.mipmap.logo)
                 .into(avatar);
         String nameStr = StringUtils.isBlank(user.getName()) ? user.getLogin() : user.getName();
         nameStr = user.isUser() ? nameStr : nameStr.concat("(ORG)");

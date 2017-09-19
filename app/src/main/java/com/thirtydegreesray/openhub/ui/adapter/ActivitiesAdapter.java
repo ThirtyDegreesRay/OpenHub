@@ -50,7 +50,7 @@ import butterknife.OnClick;
 public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder, Event> {
 
     @Inject
-    public ActivitiesAdapter(Context context, BaseFragment fragment){
+    public ActivitiesAdapter(Context context, BaseFragment fragment) {
         super(context, fragment);
     }
 
@@ -75,61 +75,7 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
         holder.userName.setText(model.getActor().getLogin());
         holder.time.setText(StringUtils.getNewsTimeStr(context, model.getCreatedAt()));
 
-        holder.action.setVisibility(View.VISIBLE);
-        holder.desc.setVisibility(View.GONE);
-        String action = "";
-        if (Event.EventType.WatchEvent.equals(model.getType())) {
-            action = model.getPayload().getAction() + " " + model.getRepo().getFullName();
-        } else if (Event.EventType.CreateEvent.equals(model.getType())) {
-            if(model.getPayload().getRefType().equals("repository")){
-                action = "Created repository " + model.getRepo().getFullName();
-            } else if(model.getPayload().getRefType().equals("tag")){
-                action = "Created tag " + model.getPayload().getRef() + " at "
-                        + model.getRepo().getFullName();
-            }
-        } else if (Event.EventType.ForkEvent.equals(model.getType())) {
-            String oriRepo = model.getRepo().getFullName();
-            String newRepo = model.getActor().getLogin() + "/" + model.getRepo().getName();
-            action = "Forked " + oriRepo + " to " + newRepo;
-        } else if (Event.EventType.PushEvent.equals(model.getType())) {
-            String ref = model.getPayload().getRef();
-            ref = ref.substring(ref.lastIndexOf("/") + 1);
-            action = "Push to " + ref +
-                    " at " + model.getRepo().getFullName();
-        } else if (Event.EventType.ReleaseEvent.equals(model.getType())) {
-            action = model.getPayload().getAction() + " release " +
-                    model.getPayload().getRelease().getTagName() + " at " +
-                    model.getRepo().getFullName();
-        } else if (Event.EventType.PullRequestEvent.equals(model.getType())) {
-            action = model.getPayload().getAction() + " pull request " + model.getRepo().getFullName();
-        } else if (Event.EventType.PullRequestReviewCommentEvent.equals(model.getType())) {
-            action = model.getPayload().getAction() + " pull request review comment at"
-                    + model.getRepo().getFullName();
-        } else if (Event.EventType.PublicEvent.equals(model.getType())) {
-            action = "Made " + model.getRepo().getFullName() + "public";
-        } else if (Event.EventType.IssuesEvent.equals(model.getType())) {
-            action = model.getPayload().getAction() + " issue at " +
-                    model.getRepo().getFullName();
-        } else if (Event.EventType.IssueCommentEvent.equals(model.getType())) {
-            action = model.getPayload().getAction() + " issue comment at " +
-                    model.getRepo().getFullName();
-        } else if (Event.EventType.MemberEvent.equals(model.getType())) {
-            action = model.getPayload().getAction() + " member to " +
-                    model.getRepo().getFullName();
-        } else {
-            holder.action.setVisibility(View.GONE);
-            holder.desc.setVisibility(View.GONE);
-        }
-        action = StringUtils.upCaseFisrtChar(action);
-        action = action == null ? "" : action;
-        SpannableStringBuilder span = new SpannableStringBuilder(action);
-        Matcher matcher = GitHubHelper.REPO_FULL_NAME_PATTERN.matcher(action);
-        for (; matcher.find(); ) {
-            span.setSpan(new StyleSpan(Typeface.BOLD), matcher.start(), matcher.end(),
-                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-        holder.action.setText(span);
-
+        holder.setActionAndDesc(model);
     }
 
     class ViewHolder extends BaseViewHolder {
@@ -145,8 +91,118 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
         }
 
         @OnClick({R.id.user_avatar, R.id.user_name})
-        public void onUserClick() {
+        void onUserClick() {
             ProfileActivity.show(context, data.get(getAdapterPosition()).getActor().getLogin());
+        }
+
+        //TODO to be better event action and desc
+        void setActionAndDesc(Event model) {
+            String actionStr = null;
+            switch (model.getType()) {
+                case CommitCommentEvent:
+                    actionStr = "Commit comment at " + model.getRepo().getFullName();
+                    break;
+                case CreateEvent:
+                    if (model.getPayload().getRefType().equals("repository")) {
+                        actionStr = "Created repository " + model.getRepo().getFullName();
+                    } else {
+                        actionStr = "Created " + model.getPayload().getRefType() + " "
+                                + model.getPayload().getRef() + " at "
+                                + model.getRepo().getFullName();
+                    }
+                    break;
+                case DeleteEvent:
+                    actionStr = "Delete " + model.getPayload().getRefType() + " " + model.getPayload().getRef()
+                            + " at " + model.getRepo().getFullName();
+                    break;
+                case ForkEvent:
+                    String oriRepo = model.getRepo().getFullName();
+                    String newRepo = model.getActor().getLogin() + "/" + model.getRepo().getName();
+                    actionStr = "Forked " + oriRepo + " to " + newRepo;
+                    break;
+                case GollumEvent:
+                    actionStr = model.getPayload().getAction() + " a wiki page ";
+                    break;
+
+                case InstallationEvent:
+                    actionStr = model.getPayload().getAction() + " an GitHub App ";
+                    break;
+                case InstallationRepositoriesEvent:
+                    actionStr = model.getPayload().getAction() + " repository from an installation ";
+                    break;
+                case IssueCommentEvent:
+                    actionStr = model.getPayload().getAction() + " issue comment at " +
+                            model.getRepo().getFullName();
+                    break;
+                case IssuesEvent:
+                    actionStr = model.getPayload().getAction() + " issue at " +
+                            model.getRepo().getFullName();
+                    break;
+
+                case MarketplacePurchaseEvent:
+                    actionStr = model.getPayload().getAction() + " marketplace plan ";
+                    break;
+                case MemberEvent:
+                    actionStr = model.getPayload().getAction() + " member to " +
+                            model.getRepo().getFullName();
+                    break;
+                case OrgBlockEvent:
+                    actionStr = model.getPayload().getAction() + " a user ";
+                    break;
+                case ProjectCardEvent:
+                    actionStr = model.getPayload().getAction() + " a project ";
+                    break;
+                case ProjectColumnEvent:
+                    actionStr = model.getPayload().getAction() + " a project ";
+                    break;
+
+                case ProjectEvent:
+                    actionStr = model.getPayload().getAction() + " a project ";
+                    break;
+                case PublicEvent:
+                    actionStr = "Made " + model.getRepo().getFullName() + "public";
+                    break;
+                case PullRequestEvent:
+                    actionStr = model.getPayload().getAction() + " pull request " + model.getRepo().getFullName();
+                    break;
+                case PullRequestReviewEvent:
+                    actionStr = model.getPayload().getAction() + " pull request review at"
+                            + model.getRepo().getFullName();
+                    break;
+                case PullRequestReviewCommentEvent:
+                    actionStr = model.getPayload().getAction() + " pull request review comment at"
+                            + model.getRepo().getFullName();
+                    break;
+
+                case PushEvent:
+                    String ref = model.getPayload().getRef();
+                    ref = ref.substring(ref.lastIndexOf("/") + 1);
+                    actionStr = "Push to " + ref +
+                            " at " + model.getRepo().getFullName();
+                    break;
+                case ReleaseEvent:
+                    actionStr = model.getPayload().getAction() + " release " +
+                            model.getPayload().getRelease().getTagName() + " at " +
+                            model.getRepo().getFullName();
+                    break;
+                case WatchEvent:
+                    actionStr = model.getPayload().getAction() + " " + model.getRepo().getFullName();
+                    break;
+            }
+
+            action.setVisibility(View.VISIBLE);
+            desc.setVisibility(View.GONE);
+
+            actionStr = StringUtils.upCaseFisrtChar(actionStr);
+            actionStr = actionStr == null ? "" : actionStr;
+            SpannableStringBuilder span = new SpannableStringBuilder(actionStr);
+            Matcher matcher = GitHubHelper.REPO_FULL_NAME_PATTERN.matcher(actionStr);
+            for (; matcher.find(); ) {
+                span.setSpan(new StyleSpan(Typeface.BOLD), matcher.start(), matcher.end(),
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+            action.setText(span);
+
         }
 
     }

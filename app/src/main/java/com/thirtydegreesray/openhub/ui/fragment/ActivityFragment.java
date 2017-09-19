@@ -26,6 +26,7 @@ import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IActivityContract;
 import com.thirtydegreesray.openhub.mvp.model.Event;
 import com.thirtydegreesray.openhub.mvp.presenter.ActivityPresenter;
+import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.activity.ReleaseInfoActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.adapter.ActivitiesAdapter;
@@ -91,6 +92,11 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
     public void onItemClick(int position) {
         super.onItemClick(position);
         Event event = adapter.getData().get(position);
+        if(event.getRepo() == null){
+            ProfileActivity.show(getContext(), event.getActor().getLogin());
+            return ;
+        }
+        //TODO to be better redirection
         String owner = event.getRepo().getFullName().split("/")[0];
         switch (event.getType()){
             case ForkEvent:
