@@ -40,8 +40,6 @@ import java.util.List;
 
 public class ColorChooserPreference extends Preference implements ColorChooserDialog.ColorCallback {
 
-    private ColorChooserDialog colorChooserDialog;
-    private View colorView;
     private ColorChooserCallback colorChooserCallback;
     private int oriColor;
 
@@ -69,14 +67,14 @@ public class ColorChooserPreference extends Preference implements ColorChooserDi
         this.colorChooserCallback = colorChooserCallback;
     }
 
-    private void init(){
+    private void init() {
         setWidgetLayoutResource(R.layout.preference_widget_color);
     }
 
     @Override
     public void onBindViewHolder(PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
-        colorView = holder.findViewById(R.id.color_view);
+        View colorView = holder.findViewById(R.id.color_view);
         colorView.setBackgroundResource(R.drawable.shape_circle);
         colorView.getBackground().setColorFilter(getSelectedColor(), PorterDuff.Mode.SRC_IN);
     }
@@ -85,7 +83,7 @@ public class ColorChooserPreference extends Preference implements ColorChooserDi
     protected void onClick() {
         super.onClick();
         oriColor = getSelectedColor();
-        colorChooserDialog = new ColorChooserDialog
+        new ColorChooserDialog
                 .Builder(BaseActivity.getCurActivity(), this, R.string.theme_accent_color)
                 .titleSub(R.string.choose_theme)
                 .customColors(getAccentColors(), null)
@@ -98,8 +96,8 @@ public class ColorChooserPreference extends Preference implements ColorChooserDi
     @Override
     public void onColorSelection(@NonNull ColorChooserDialog dialog, @ColorInt int selectedColor) {
         PrefHelper.set(PrefHelper.ACCENT_COLOR, getColorIndex(selectedColor));
-        colorView.getBackground().setColorFilter(selectedColor, PorterDuff.Mode.SRC_IN);
-        if(colorChooserCallback != null && oriColor != selectedColor){
+//        colorView.getBackground().setColorFilter(selectedColor, PorterDuff.Mode.SRC_IN);
+        if (colorChooserCallback != null && oriColor != selectedColor) {
             colorChooserCallback.onColorChanged(oriColor, selectedColor);
         }
     }
@@ -109,28 +107,30 @@ public class ColorChooserPreference extends Preference implements ColorChooserDi
 
     }
 
+
+
     @NonNull
-    private int[] getAccentColors(){
+    private int[] getAccentColors() {
         int[] colorsResId = getContext().getResources().getIntArray(R.array.accent_color_array);
         return colorsResId;
     }
 
-    private int getColorByIndex(int index){
+    private int getColorByIndex(int index) {
         return getColorList().get(index);
     }
 
-    private int getColorIndex(int color){
+    private int getColorIndex(int color) {
         return getColorList().indexOf(color);
     }
 
-    private int getSelectedColor(){
+    private int getSelectedColor() {
         return getColorByIndex(PrefHelper.getAccentColor());
     }
 
-    private List<Integer> getColorList(){
+    private List<Integer> getColorList() {
         int[] colorsResId = getContext().getResources().getIntArray(R.array.accent_color_array);
         List<Integer> list = new ArrayList<>();
-        for(int i = 0; i < colorsResId.length; i++){
+        for (int i = 0; i < colorsResId.length; i++) {
             list.add(colorsResId[i]);
         }
         return list;
