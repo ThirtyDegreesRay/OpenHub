@@ -163,10 +163,10 @@
     <string name="logout_warning">Confirm to logout ?</string>
     <string name="unknown">Unknown</string>
     <string name="organizations">Organizations</string>
-    <string name="no_user">No user</string>
-    <string name="no_activity">No activity</string>
-    <string name="no_repository">No repository</string>
-    <string name="no_file">No file</string>
+    <string name="no_user">No users</string>
+    <string name="no_activity">No activities</string>
+    <string name="no_repository">No repositories</string>
+    <string name="no_file">No files</string>
     <string name="developing">Developing</string>
     <string name="version" >Version</string>
     <string name="source_code" >Source code</string>
@@ -219,5 +219,10 @@
     <string name="download_cancel">Download cancel</string>
     <string name="permission_storage_denied">Permission denied, please allow storage permission.</string>
     <string name="enable_download_service_tip">Please enable download service first!</string>
+
+    <string name="open">Open</string>
+    <string name="closed">Closed</string>
+    <string name="no_issues">No issues</string>
+
 
 </resources>

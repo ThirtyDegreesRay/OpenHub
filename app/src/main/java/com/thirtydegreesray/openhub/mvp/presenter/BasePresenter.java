@@ -30,6 +30,7 @@ import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.AppEventBus;
 import com.thirtydegreesray.openhub.dao.DaoSession;
+import com.thirtydegreesray.openhub.http.IssueService;
 import com.thirtydegreesray.openhub.http.LoginService;
 import com.thirtydegreesray.openhub.http.OpenHubService;
 import com.thirtydegreesray.openhub.http.RepoService;
@@ -178,6 +179,13 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
                 .getRetrofit(AppConfig.OPENHUB_BASE_URL,
                         AppData.INSTANCE.getAuthUser().getAccessToken())
                 .create(OpenHubService.class);
+    }
+
+    protected IssueService getIssueService() {
+        return AppRetrofit.INSTANCE
+                .getRetrofit(AppConfig.GITHUB_API_BASE_URL,
+                        AppData.INSTANCE.getAuthUser().getAccessToken())
+                .create(IssueService.class);
     }
 
     /**

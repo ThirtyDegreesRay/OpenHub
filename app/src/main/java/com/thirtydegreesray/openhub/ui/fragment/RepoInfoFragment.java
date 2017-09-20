@@ -36,6 +36,7 @@ import com.thirtydegreesray.openhub.mvp.contract.IRepoInfoContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.RepoInfoPresenter;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
+import com.thirtydegreesray.openhub.ui.activity.RepoIssuesActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepoListActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.activity.UserListActivity;
@@ -160,7 +161,9 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.issues_lay:
-                showInfoToast(getString(R.string.developing));
+                RepoIssuesActivity.show(getActivity(), mPresenter.getRepository().getOwner().getLogin(),
+                        mPresenter.getRepository().getName());
+//                showInfoToast(getString(R.string.developing));
                 break;
             case R.id.stargazers_lay:
                 if(mPresenter.getRepository().getStargazersCount() == 0) return;

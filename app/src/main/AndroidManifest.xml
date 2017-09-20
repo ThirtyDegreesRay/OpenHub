@@ -158,6 +158,12 @@
             android:theme="@style/ThemeLight.Green">
         </activity>
 
+        <activity
+            android:name=".ui.activity.RepoIssuesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeLight.Green">
+        </activity>
+
     </application>
 
 </manifest>

@@ -19,6 +19,7 @@ package com.thirtydegreesray.openhub.inject.component;
 import com.thirtydegreesray.openhub.inject.FragmentScope;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
+import com.thirtydegreesray.openhub.ui.fragment.IssuesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.ProfileInfoFragment;
 import com.thirtydegreesray.openhub.ui.fragment.ReleasesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoFilesFragment;
@@ -48,4 +49,5 @@ public interface FragmentComponent {
     void inject(ProfileInfoFragment fragment);
     void inject(ActivityFragment fragment);
     void inject(ReleasesFragment fragment);
+    void inject(IssuesFragment fragment);
 }

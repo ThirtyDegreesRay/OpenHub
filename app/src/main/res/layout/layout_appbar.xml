@@ -39,6 +39,7 @@
         android:visibility="gone"
         app:tabGravity="fill"
         app:tabMode="fixed"
-        app:tabTextAppearance="@style/TextAppearance.Design.Tab"/>
+        app:tabTextAppearance="@style/TextAppearance.Design.Tab"
+        app:tabSelectedTextColor="?colorAccent"/>
 
 </android.support.design.widget.AppBarLayout>

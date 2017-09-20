@@ -25,6 +25,7 @@ import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
+import com.thirtydegreesray.openhub.ui.fragment.IssuesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.ProfileInfoFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoFilesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoInfoFragment;
@@ -99,6 +100,16 @@ public class FragmentPagerModel {
                         RepositoriesFragment.createForTrending("weekly")),
                 new FragmentPagerModel(context.getString(R.string.monthly),
                         RepositoriesFragment.createForTrending("monthly"))
+        );
+    }
+
+    public static List<FragmentPagerModel> createRepoIssuesPagerList(@NonNull Context context,
+            @NonNull String userId, @NonNull String repoName){
+        return Arrays.asList(
+                new FragmentPagerModel(context.getString(R.string.open), IssuesFragment
+                        .create(IssuesFragment.IssueFragmentType.RepoOpen, userId, repoName)),
+                new FragmentPagerModel(context.getString(R.string.closed), IssuesFragment
+                        .create(IssuesFragment.IssueFragmentType.RepoClosed, userId, repoName))
         );
     }
 
