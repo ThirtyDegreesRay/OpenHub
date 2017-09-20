@@ -157,34 +157,34 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
     }
 
     protected UserService getUserService() {
-        return getUserService(AppData.INSTANCE.getAuthUser().getAccessToken());
+        return getUserService(AppData.INSTANCE.getAccessToken());
     }
 
     protected RepoService getRepoService() {
         return AppRetrofit.INSTANCE
                 .getRetrofit(AppConfig.GITHUB_API_BASE_URL,
-                        AppData.INSTANCE.getAuthUser().getAccessToken())
+                        AppData.INSTANCE.getAccessToken())
                 .create(RepoService.class);
     }
 
     protected SearchService getSearchService() {
         return AppRetrofit.INSTANCE
                 .getRetrofit(AppConfig.GITHUB_API_BASE_URL,
-                        AppData.INSTANCE.getAuthUser().getAccessToken())
+                        AppData.INSTANCE.getAccessToken())
                 .create(SearchService.class);
     }
 
     protected OpenHubService getOpenHubService() {
         return AppRetrofit.INSTANCE
                 .getRetrofit(AppConfig.OPENHUB_BASE_URL,
-                        AppData.INSTANCE.getAuthUser().getAccessToken())
+                        AppData.INSTANCE.getAccessToken())
                 .create(OpenHubService.class);
     }
 
     protected IssueService getIssueService() {
         return AppRetrofit.INSTANCE
                 .getRetrofit(AppConfig.GITHUB_API_BASE_URL,
-                        AppData.INSTANCE.getAuthUser().getAccessToken())
+                        AppData.INSTANCE.getAccessToken())
                 .create(IssueService.class);
     }
 

@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub;
 
+import android.support.annotation.Nullable;
+
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.dao.AuthUser;
 import com.thirtydegreesray.openhub.mvp.model.User;
@@ -47,4 +49,9 @@ public enum  AppData {
     public void setAuthUser(AuthUser authUser) {
         this.authUser = authUser;
     }
+
+    @Nullable public String getAccessToken() {
+        return authUser == null ? null : authUser.getAccessToken();
+    }
+
 }

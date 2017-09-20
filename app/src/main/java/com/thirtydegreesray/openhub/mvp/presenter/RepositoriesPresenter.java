@@ -122,7 +122,6 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
     }
 
     private Observable<Response<ArrayList<Repository>>> getObservable(boolean forceNetWork, int page) {
-        String loginedUser = AppData.INSTANCE.getLoggedUser().getLogin();
         switch (type) {
             case OWNED:
                 return getRepoService().getUserRepos(forceNetWork, user, page);

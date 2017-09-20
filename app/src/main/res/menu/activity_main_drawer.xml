@@ -31,11 +31,11 @@
             android:id="@+id/nav_news"
             android:icon="@drawable/ic_menu_news"
             android:title="@string/news"/>
-        <!--<item-->
-            <!--android:id="@+id/nav_issues"-->
-            <!--android:icon="@drawable/ic_menu_issues"-->
-            <!--android:title="@string/issues"-->
-            <!--android:visible="false"/>-->
+        <item
+            android:id="@+id/nav_issues"
+            android:icon="@drawable/ic_issues"
+            android:title="@string/issues"
+            android:visible="true"/>
     </group>
 
     <item android:title="@string/repositories">

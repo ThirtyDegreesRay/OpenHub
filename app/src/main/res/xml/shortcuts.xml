@@ -3,7 +3,7 @@
            xmlns:android="http://schemas.android.com/apk/res/android">
 
     <shortcut
-        android:shortcutId="id1"
+        android:shortcutId="search"
         android:enabled="true"
         android:icon="@mipmap/ic_search"
         android:shortcutShortLabel="@string/search"
@@ -19,7 +19,7 @@
     </shortcut>
 
     <shortcut
-        android:shortcutId="id2"
+        android:shortcutId="trending"
         android:enabled="true"
         android:icon="@mipmap/ic_trending"
         android:shortcutShortLabel="@string/trending"

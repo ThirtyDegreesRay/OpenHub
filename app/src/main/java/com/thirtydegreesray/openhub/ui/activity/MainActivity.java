@@ -183,6 +183,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
             case R.id.nav_profile:
                 ProfileActivity.show(getActivity(), AppData.INSTANCE.getLoggedUser().getLogin());
                 break;
+            case R.id.nav_issues:
+
+                break;
             case R.id.nav_news:
             case R.id.nav_owned:
             case R.id.nav_starred:

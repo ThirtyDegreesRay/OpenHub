@@ -46,7 +46,9 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
         Uri dataUri = getIntent().getData();
         if (dataUri == null) {
             startActivity(new Intent(getActivity(), MainActivity.class));
-        } else if (dataUri.toString().equals("trending")){
+        }
+        //handle shortcuts redirection
+        else if (dataUri.toString().equals("trending")){
             startActivity(new Intent(getActivity(), TrendingActivity.class));
         } else if (dataUri.toString().equals("search")){
             startActivity(new Intent(getActivity(), SearchActivity.class));
