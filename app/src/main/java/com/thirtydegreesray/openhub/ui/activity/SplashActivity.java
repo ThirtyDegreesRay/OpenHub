@@ -17,6 +17,7 @@
 package com.thirtydegreesray.openhub.ui.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
@@ -42,7 +43,14 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
     @Override
     public void showMainPage() {
         delayFinish();
-        startActivity(new Intent(getActivity(), MainActivity.class));
+        Uri dataUri = getIntent().getData();
+        if (dataUri == null) {
+            startActivity(new Intent(getActivity(), MainActivity.class));
+        } else if (dataUri.toString().equals("trending")){
+            startActivity(new Intent(getActivity(), TrendingActivity.class));
+        } else if (dataUri.toString().equals("search")){
+            startActivity(new Intent(getActivity(), SearchActivity.class));
+        }
     }
 
     @Override
@@ -105,7 +113,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
     protected void onActivityResult(int requestCode, int resultCode, @NonNull Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        switch (requestCode){
+        switch (requestCode) {
 //            case REQUEST_ACCESS_TOKEN:
 //                if(resultCode == RESULT_OK){
 //                    showMainPage();
