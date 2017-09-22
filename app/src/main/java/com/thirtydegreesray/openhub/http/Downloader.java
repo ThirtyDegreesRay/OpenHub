@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.util.AppHelper;
+import com.thirtydegreesray.openhub.util.Logger;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -112,31 +114,38 @@ public class Downloader {
     };
 
     private void checkStatus() {
-        DownloadManager.Query query = new DownloadManager.Query();
-        query.setFilterById(downloadId);
-        Cursor c = downloadManager.query(query);
-        if (c.moveToFirst()) {
-            int status = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));
-            String msg = c.getString(c.getColumnIndex(DownloadManager.COLUMN_REASON));
-            switch (status) {
-                case DownloadManager.STATUS_PAUSED:
-                    break;
-                case DownloadManager.STATUS_PENDING:
-                    break;
-                case DownloadManager.STATUS_RUNNING:
-                    break;
-                case DownloadManager.STATUS_SUCCESSFUL:
-                    String tip = mContext.getString(R.string.download_complete).concat("\n").concat(getFilePath());
-                    Toasty.success(mContext, tip).show();
-                    unregister();
-                    break;
-                case DownloadManager.STATUS_FAILED:
-                    Toasty.error(mContext, mContext.getString(R.string.download_failed)).show();
-                    unregister();
-                    break;
+        //cause SQLiteException at 乐视 LE X820 Android 6.0.1,level 23
+        try{
+            DownloadManager.Query query = new DownloadManager.Query();
+            query.setFilterById(downloadId);
+            Cursor c = downloadManager.query(query);
+            if (c.moveToFirst()) {
+                int status = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));
+                switch (status) {
+                    case DownloadManager.STATUS_PAUSED:
+                        break;
+                    case DownloadManager.STATUS_PENDING:
+                        break;
+                    case DownloadManager.STATUS_RUNNING:
+                        break;
+                    case DownloadManager.STATUS_SUCCESSFUL:
+                        String tip = mContext.getString(R.string.download_complete)
+                                .concat("\n").concat(getFilePath());
+                        Toasty.success(mContext, tip).show();
+                        unregister();
+                        break;
+                    case DownloadManager.STATUS_FAILED:
+                        Toasty.error(mContext, mContext.getString(R.string.download_failed)).show();
+                        unregister();
+                        break;
+                }
             }
+            c.close();
+        }catch (SQLiteException e){
+            Logger.e(e);
+            unregister();
         }
-        c.close();
+
     }
 
     private String getFilePath(){
