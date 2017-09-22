@@ -146,4 +146,10 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
         return false;
     }
 
+    @Override
+    public void onFragmentShowed() {
+        super.onFragmentShowed();
+        if(mPresenter != null) mPresenter.prepareLoadData();
+    }
+
 }

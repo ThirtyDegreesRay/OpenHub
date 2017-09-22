@@ -18,7 +18,6 @@ package com.thirtydegreesray.openhub.ui.adapter.base;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
@@ -31,6 +30,7 @@ import com.thirtydegreesray.openhub.ui.fragment.RepoFilesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoInfoFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
+import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,9 +43,9 @@ import java.util.List;
 public class FragmentPagerModel {
 
     private String title;
-    private Fragment fragment;
+    private BaseFragment fragment;
 
-    public FragmentPagerModel(String title, Fragment fragment) {
+    public FragmentPagerModel(String title, BaseFragment fragment) {
         this.title = title;
         this.fragment = fragment;
     }
@@ -54,63 +54,70 @@ public class FragmentPagerModel {
         return title;
     }
 
-    public Fragment getFragment() {
+    public BaseFragment getFragment() {
         return fragment;
     }
 
-    public static List<FragmentPagerModel> createRepoPagerList(Context context, Repository repository){
-        return Arrays.asList(
+    public static List<FragmentPagerModel> createRepoPagerList(Context context, Repository repository) {
+        return setPagerFragmentFlag(Arrays.asList(
                 new FragmentPagerModel(context.getString(R.string.info), RepoInfoFragment.create(repository)),
                 new FragmentPagerModel(context.getString(R.string.files), RepoFilesFragment.create(repository)),
                 new FragmentPagerModel(context.getString(R.string.activity),
                         ActivityFragment.create(ActivityFragment.ActivityType.Repository,
                                 repository.getOwner().getLogin(), repository.getName()))
 //                new FragmentPagerModel(context.getString(R.string.commits), new ProfileFragment().setName("profile"))
-        );
+        ));
     }
 
-    public static List<FragmentPagerModel> createProfilePagerList(Context context, User user){
+    public static List<FragmentPagerModel> createProfilePagerList(Context context, User user) {
         List<FragmentPagerModel> list = new ArrayList<>();
         list.add(new FragmentPagerModel(context.getString(R.string.info), ProfileInfoFragment.create(user)));
         list.add(new FragmentPagerModel(context.getString(R.string.activity),
                 ActivityFragment.create(ActivityFragment.ActivityType.User, user.getLogin())));
-        if(user.isUser()) {
+        if (user.isUser()) {
             list.add(new FragmentPagerModel(context.getString(R.string.starred),
                     RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED, user.getLogin())));
         }
-        return list;
+        return setPagerFragmentFlag(list);
     }
 
     public static List<FragmentPagerModel> createSearchPagerList(
-            @NonNull Context context, @NonNull ArrayList<SearchModel> searchModels){
-        return Arrays.asList(
+            @NonNull Context context, @NonNull ArrayList<SearchModel> searchModels) {
+        return setPagerFragmentFlag(Arrays.asList(
                 new FragmentPagerModel(context.getString(R.string.repositories),
                         RepositoriesFragment.createForSearch(searchModels.get(0))),
                 new FragmentPagerModel(context.getString(R.string.users),
                         UserListFragment.createForSearch(searchModels.get(1)))
-        );
+        ));
     }
 
     public static List<FragmentPagerModel> createTrendingPagerList(
-            @NonNull Context context){
-        return Arrays.asList(
+            @NonNull Context context) {
+        return setPagerFragmentFlag(Arrays.asList(
                 new FragmentPagerModel(context.getString(R.string.daily),
                         RepositoriesFragment.createForTrending("daily")),
                 new FragmentPagerModel(context.getString(R.string.weekly),
                         RepositoriesFragment.createForTrending("weekly")),
                 new FragmentPagerModel(context.getString(R.string.monthly),
                         RepositoriesFragment.createForTrending("monthly"))
-        );
+        ));
     }
 
     public static List<FragmentPagerModel> createRepoIssuesPagerList(@NonNull Context context,
-            @NonNull String userId, @NonNull String repoName){
-        return Arrays.asList(
+                                                                     @NonNull String userId, @NonNull String repoName) {
+        return setPagerFragmentFlag(Arrays.asList(
                 new FragmentPagerModel(context.getString(R.string.open), IssuesFragment
                         .create(IssuesFragment.IssueFragmentType.RepoOpen, userId, repoName)),
                 new FragmentPagerModel(context.getString(R.string.closed), IssuesFragment
                         .create(IssuesFragment.IssueFragmentType.RepoClosed, userId, repoName))
-        );
+        ));
+    }
+
+    private static List<FragmentPagerModel> setPagerFragmentFlag(List<FragmentPagerModel> list) {
+        for (FragmentPagerModel model : list) {
+            model.getFragment().setPagerFragment(true);
+        }
+        return list;
     }
 
 }

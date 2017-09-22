@@ -31,7 +31,7 @@ import javax.inject.Inject;
 
 public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    protected List<FragmentPagerModel> mPagerList;
+    private List<FragmentPagerModel> mPagerList;
 
     private Fragment curFragment;
 
@@ -65,7 +65,7 @@ public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
         if(curFragment.equals(object)){
             curFragment = null;
         }
-        super.destroyItem(container, position, object);
+//        super.destroyItem(container, position, object);
     }
 
     @Override
@@ -77,4 +77,9 @@ public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getCurFragment() {
         return curFragment;
     }
+
+    public List<FragmentPagerModel> getPagerList(){
+        return mPagerList;
+    }
+
 }

@@ -6,6 +6,7 @@ import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.IReleasesContract;
 import com.thirtydegreesray.openhub.mvp.model.Release;
+import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
 
 import java.util.ArrayList;
 

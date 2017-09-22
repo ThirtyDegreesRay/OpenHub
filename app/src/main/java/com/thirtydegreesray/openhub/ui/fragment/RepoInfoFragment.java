@@ -203,4 +203,11 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
     public void onScrollChanged(boolean reachedTop, int scroll) {
 
     }
+
+    @Override
+    public void onFragmentShowed() {
+        super.onFragmentShowed();
+        if(mPresenter != null) mPresenter.prepareLoadData();
+    }
+
 }

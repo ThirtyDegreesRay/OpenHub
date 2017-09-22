@@ -33,7 +33,7 @@ import com.bumptech.glide.Glide;
 import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
-import com.thirtydegreesray.openhub.mvp.contract.IBaseContract;
+import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.util.Logger;
 
 import javax.inject.Inject;
@@ -57,6 +57,12 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     protected P mPresenter;
     private ProgressDialog mProgressDialog;
     Unbinder unbinder;
+
+    /**
+     * fragment for viewpager
+     */
+    private boolean isPagerFragment  = false;
+    private boolean isFragmentShowed  = false;
 
     public BaseFragment() {
 
@@ -174,6 +180,14 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
         Glide.with(this).onLowMemory();
     }
 
+    public void onFragmentShowed(){
+        isFragmentShowed = true;
+    }
+
+    public void onFragmentHided(){
+        isFragmentShowed = false;
+    }
+
     protected AppApplication getAppApplication() {
         return AppApplication.get();
     }
@@ -274,4 +288,16 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
                 .show();
     }
 
+    public boolean isPagerFragment() {
+        return isPagerFragment;
+    }
+
+    public BaseFragment setPagerFragment(boolean flag) {
+        isPagerFragment = flag;
+        return this;
+    }
+
+    public boolean isFragmentShowed() {
+        return isFragmentShowed;
+    }
 }

@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.mvp.presenter;
+package com.thirtydegreesray.openhub.mvp.presenter.base;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -43,7 +43,7 @@ import com.thirtydegreesray.openhub.http.core.HttpSubscriber;
 import com.thirtydegreesray.openhub.http.error.HttpError;
 import com.thirtydegreesray.openhub.http.error.HttpErrorCode;
 import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
-import com.thirtydegreesray.openhub.mvp.contract.IBaseContract;
+import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.util.Logger;
 import com.thirtydegreesray.openhub.util.NetHelper;
 import com.thirtydegreesray.openhub.util.PrefHelper;
@@ -80,6 +80,8 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
 
     private ArrayList<Subscriber<?>> subscribers;
     private boolean isEventSubscriber = false;
+    private boolean isViewInitialized = false;
+
     private boolean isAttached = false;
 
     public BasePresenter(DaoSession daoSession) {
@@ -129,7 +131,11 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
 
     @Override
     public void onViewInitialized() {
+        isViewInitialized = true;
+    }
 
+    protected boolean isViewInitialized() {
+        return isViewInitialized;
     }
 
     /**
@@ -333,7 +339,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
         }
     }
 
-    void checkStatus(@NonNull Observable<Response<ResponseBody>> observable,
+    protected void checkStatus(@NonNull Observable<Response<ResponseBody>> observable,
                      @NonNull final CheckStatusCallback callback) {
         HttpSubscriber<ResponseBody> httpSubscriber = new HttpSubscriber<>(
                 new HttpObserver<ResponseBody>() {
@@ -351,7 +357,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
         generalRxHttpExecute(observable, httpSubscriber);
     }
 
-    interface CheckStatusCallback {
+    protected interface CheckStatusCallback {
         void onChecked(boolean status);
     }
 

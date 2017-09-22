@@ -116,4 +116,11 @@ public class UserListFragment extends ListFragment<UserListPresenter, UsersAdapt
         super.onItemClick(position);
         ProfileActivity.show(getActivity(), adapter.getData().get(position).getLogin());
     }
+
+    @Override
+    public void onFragmentShowed() {
+        super.onFragmentShowed();
+        if(mPresenter != null) mPresenter.prepareLoadData();
+    }
+
 }

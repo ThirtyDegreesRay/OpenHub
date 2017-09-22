@@ -26,6 +26,7 @@ import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.IRepoInfoContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
+import com.thirtydegreesray.openhub.mvp.presenter.base.BasePagerPresenter;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -42,7 +43,7 @@ import rx.Observable;
  * Created by ThirtyDegreesRay on 2017/8/11 11:34:31
  */
 
-public class RepoInfoPresenter extends BasePresenter<IRepoInfoContract.View>
+public class RepoInfoPresenter extends BasePagerPresenter<IRepoInfoContract.View>
         implements IRepoInfoContract.Presenter{
 
     @AutoAccess Repository repository;
@@ -63,6 +64,10 @@ public class RepoInfoPresenter extends BasePresenter<IRepoInfoContract.View>
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
+    }
+
+    @Override
+    protected void loadData() {
         mView.showRepoInfo(repository);
     }
 
@@ -110,7 +115,8 @@ public class RepoInfoPresenter extends BasePresenter<IRepoInfoContract.View>
     public void onRepoInfoUpdated(Event.RepoInfoUpdatedEvent event){
         if(!this.repository.getFullName().equals(event.repository.getFullName())) return;
         this.repository = event.repository;
-        mView.showRepoInfo(repository);
+        setLoaded(false);
+        prepareLoadData();
     }
 
     /**

@@ -67,5 +67,6 @@ public class TrendingActivity extends PagerActivity {
         tabLayout.setVisibility(View.VISIBLE);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setAdapter(pagerAdapter);
+        showFirstPager();
     }
 }

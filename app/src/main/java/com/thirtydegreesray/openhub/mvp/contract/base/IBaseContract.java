@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.mvp.contract;
+package com.thirtydegreesray.openhub.mvp.contract.base;
 
 import android.app.ProgressDialog;
 import android.content.Context;

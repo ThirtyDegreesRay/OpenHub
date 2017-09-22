@@ -21,6 +21,7 @@ import android.support.annotation.NonNull;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.mvp.contract.ISearchContract;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
+import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
 
 import java.util.ArrayList;
 

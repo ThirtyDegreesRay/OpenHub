@@ -18,6 +18,7 @@ package com.thirtydegreesray.openhub.mvp.contract;
 
 import android.support.annotation.NonNull;
 
+import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 
 import java.util.ArrayList;

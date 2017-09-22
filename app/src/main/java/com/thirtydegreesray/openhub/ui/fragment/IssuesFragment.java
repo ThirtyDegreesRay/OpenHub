@@ -83,4 +83,10 @@ public class IssuesFragment extends ListFragment<IssuePresenter, IssuesAdapter>
         super.onItemClick(position);
     }
 
+    @Override
+    public void onFragmentShowed() {
+        super.onFragmentShowed();
+        if(mPresenter != null) mPresenter.prepareLoadData();
+    }
+
 }

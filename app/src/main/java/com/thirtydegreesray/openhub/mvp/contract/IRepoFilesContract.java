@@ -18,6 +18,9 @@ package com.thirtydegreesray.openhub.mvp.contract;
 
 import android.support.annotation.NonNull;
 
+import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
+import com.thirtydegreesray.openhub.mvp.contract.base.IBaseListContract;
+import com.thirtydegreesray.openhub.mvp.contract.base.IBasePagerContract;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.mvp.model.FilePath;
 
@@ -29,13 +32,12 @@ import java.util.ArrayList;
 
 public interface IRepoFilesContract {
 
-    interface View extends IBaseContract.View{
+    interface View extends IBaseContract.View, IBasePagerContract.View, IBaseListContract.View{
         void showFiles(ArrayList<FileModel> files);
         void showFilePath(ArrayList<FilePath> filePath);
-        void showLoadError(String error);
     }
 
-    interface Presenter extends IBaseContract.Presenter<IRepoFilesContract.View>{
+    interface Presenter extends IBasePagerContract.Presenter<IRepoFilesContract.View>{
         void loadFiles(boolean isReload);
         void loadFiles(@NonNull String path, boolean isReload);
         boolean goBack();

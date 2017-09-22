@@ -30,6 +30,7 @@ import com.thirtydegreesray.openhub.mvp.contract.IRepositoriesContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.SearchResult;
+import com.thirtydegreesray.openhub.mvp.presenter.base.BasePagerPresenter;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
@@ -48,7 +49,7 @@ import rx.Observable;
  * @author ThirtyDegreesRay
  */
 
-public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.View>
+public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContract.View>
         implements IRepositoriesContract.Presenter {
 
     @AutoAccess ArrayList<Repository> repos;
@@ -70,6 +71,14 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
         super.onViewInitialized();
         if (type.equals(RepositoriesFragment.RepositoriesType.SEARCH)) {
             setEventSubscriber(true);
+        }
+    }
+
+    @Override
+    protected void loadData() {
+        if(RepositoriesFragment.RepositoriesType.SEARCH.equals(type)){
+            if(searchModel != null) searchRepos(1);
+            return ;
         }
         if (repos != null) {
             mView.showRepositories(repos);
@@ -175,8 +184,9 @@ public class RepositoriesPresenter extends BasePresenter<IRepositoriesContract.V
     @Subscribe
     public void onSearchEvent(@NonNull Event.SearchEvent searchEvent) {
         if (!searchEvent.searchModel.getType().equals(SearchModel.SearchType.Repository)) return;
+        setLoaded(false);
         this.searchModel = searchEvent.searchModel;
-        searchRepos(1);
+        prepareLoadData();
     }
 
     private void handleError(Throwable error){

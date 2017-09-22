@@ -4,6 +4,7 @@ import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.mvp.contract.IReleaseInfoContract;
 import com.thirtydegreesray.openhub.mvp.model.Release;
+import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
 
 import javax.inject.Inject;
 

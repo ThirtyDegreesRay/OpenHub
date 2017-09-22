@@ -173,6 +173,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
             tabLayout.setVisibility(View.VISIBLE);
             tabLayout.setupWithViewPager(viewPager);
             viewPager.setAdapter(pagerAdapter);
+            showFirstPager();
         } else {
             AppEventBus.INSTANCE.getEventBus().post(new Event.RepoInfoUpdatedEvent(repo));
         }

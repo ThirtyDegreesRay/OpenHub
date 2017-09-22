@@ -29,6 +29,7 @@ import com.thirtydegreesray.openhub.mvp.contract.IRepoFilesContract;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.mvp.model.FilePath;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
+import com.thirtydegreesray.openhub.mvp.presenter.base.BasePagerPresenter;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -47,7 +48,7 @@ import rx.Observable;
  * Created by ThirtyDegreesRay on 2017/8/14 16:06:30
  */
 
-public class RepoFilesPresenter extends BasePresenter<IRepoFilesContract.View>
+public class RepoFilesPresenter extends BasePagerPresenter<IRepoFilesContract.View>
         implements IRepoFilesContract.Presenter{
 
     private Map<String, ArrayList<FileModel>> cacheMap;
@@ -69,6 +70,10 @@ public class RepoFilesPresenter extends BasePresenter<IRepoFilesContract.View>
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
+    }
+
+    @Override
+    protected void loadData() {
         loadFiles(curPath, false);
     }
 
@@ -167,7 +172,9 @@ public class RepoFilesPresenter extends BasePresenter<IRepoFilesContract.View>
     public void onRepoInfoUpdated(Event.RepoInfoUpdatedEvent event) {
         if (!repo.getFullName().equals(event.repository.getFullName())) return;
         repo = event.repository;
-        loadFiles("", false);
+        curPath = "";
+        setLoaded(false);
+        prepareLoadData();
     }
 
     private void updateFilePath(){

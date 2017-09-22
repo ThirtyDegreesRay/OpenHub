@@ -194,4 +194,11 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
     public void onItemClick(int position) {
         ProfileActivity.show(getContext(), orgsAdapter.getData().get(position).getLogin());
     }
+
+    @Override
+    public void onFragmentShowed() {
+        super.onFragmentShowed();
+        if(mPresenter != null) mPresenter.prepareLoadData();
+    }
+
 }

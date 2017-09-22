@@ -18,6 +18,7 @@ package com.thirtydegreesray.openhub.mvp.contract;
 
 import android.content.Intent;
 
+import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.model.BasicToken;
 
 /**

@@ -1,5 +1,6 @@
 package com.thirtydegreesray.openhub.mvp.contract;
 
+import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.model.Release;
 
 import java.util.ArrayList;

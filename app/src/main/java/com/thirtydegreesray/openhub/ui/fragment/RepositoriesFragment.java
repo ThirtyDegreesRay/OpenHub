@@ -170,4 +170,10 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onFragmentShowed() {
+        super.onFragmentShowed();
+        if(mPresenter != null) mPresenter.prepareLoadData();
+    }
+
 }

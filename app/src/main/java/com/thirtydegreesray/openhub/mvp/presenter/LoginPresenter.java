@@ -32,6 +32,7 @@ import com.thirtydegreesray.openhub.mvp.contract.ILoginContract;
 import com.thirtydegreesray.openhub.mvp.model.BasicToken;
 import com.thirtydegreesray.openhub.mvp.model.OauthToken;
 import com.thirtydegreesray.openhub.mvp.model.User;
+import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.Date;

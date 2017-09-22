@@ -17,14 +17,15 @@
 package com.thirtydegreesray.openhub.ui.activity.base;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 
 import com.thirtydegreesray.openhub.R;
-import com.thirtydegreesray.openhub.mvp.contract.IBaseContract;
-import com.thirtydegreesray.openhub.mvp.presenter.BasePresenter;
+import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
+import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentViewPagerAdapter;
 
 import javax.inject.Inject;
@@ -43,6 +44,8 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
 
     @BindView(R.id.view_pager) protected ViewPager viewPager;
     @BindView(R.id.tab_layout) protected TabLayout tabLayout;
+
+    private int prePosition = 0;
 
     @Override
     protected void initActivity() {
@@ -68,6 +71,11 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
         return onMainKeyDown(keyCode, event);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
     protected boolean onMainKeyDown(int keyCode, KeyEvent event){
         return super.onKeyDown(keyCode, event);
     }
@@ -82,13 +90,37 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
     }
 
     @Override
-    public void onPageSelected(int position) {
-
+    public void onPageSelected(final int position) {
+        postNotifyFragmentStatus(prePosition, false);
+        postNotifyFragmentStatus(position, true);
+        prePosition = position;
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    /**
+     * Notify first pager selected, only for first launch
+     */
+    protected void showFirstPager(){
+        prePosition = 0;
+        postNotifyFragmentStatus(0, true);
+
+    }
+
+    private void postNotifyFragmentStatus(final int position, final boolean isShow){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(isShow){
+                    pagerAdapter.getPagerList().get(position).getFragment().onFragmentShowed();
+                }else{
+                    pagerAdapter.getPagerList().get(position).getFragment().onFragmentHided();
+                }
+            }
+        }, 500);
     }
 
 }

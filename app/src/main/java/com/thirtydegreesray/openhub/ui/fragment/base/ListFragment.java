@@ -27,7 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
-import com.thirtydegreesray.openhub.mvp.contract.IBaseContract;
+import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.util.NetHelper;
 import com.thirtydegreesray.openhub.util.ViewHelper;
@@ -101,7 +101,7 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
         };
         adapter.registerAdapterDataObserver(observer);
         recyclerView.setOnScrollListener(new ScrollListener());
-
+        refreshLayout.setRefreshing(true);
     }
 
     private class ScrollListener extends RecyclerView.OnScrollListener{
@@ -195,6 +195,12 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
 
     public void showLoadError(String error) {
         setErrorTip(error);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        adapter.unregisterAdapterDataObserver(observer);
     }
 
 }

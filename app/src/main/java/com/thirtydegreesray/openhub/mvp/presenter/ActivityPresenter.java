@@ -24,6 +24,7 @@ import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
 import com.thirtydegreesray.openhub.mvp.contract.IActivityContract;
 import com.thirtydegreesray.openhub.mvp.model.Event;
 import com.thirtydegreesray.openhub.mvp.model.User;
+import com.thirtydegreesray.openhub.mvp.presenter.base.BasePagerPresenter;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
@@ -38,7 +39,7 @@ import rx.Observable;
  * Created by ThirtyDegreesRay on 2017/8/23 21:53:51
  */
 
-public class ActivityPresenter extends BasePresenter<IActivityContract.View>
+public class ActivityPresenter extends BasePagerPresenter<IActivityContract.View>
         implements IActivityContract.Presenter{
 
     @AutoAccess ActivityFragment.ActivityType type ;
@@ -55,6 +56,10 @@ public class ActivityPresenter extends BasePresenter<IActivityContract.View>
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
+    }
+
+    @Override
+    protected void loadData() {
         if(events != null){
             mView.showEvents(events);
             return;

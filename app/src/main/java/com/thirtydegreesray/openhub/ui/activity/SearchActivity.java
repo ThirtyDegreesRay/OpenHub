@@ -189,6 +189,7 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
             tabLayout.setVisibility(View.VISIBLE);
             tabLayout.setupWithViewPager(viewPager);
             viewPager.setAdapter(pagerAdapter);
+            showFirstPager();
         } else {
             for (SearchModel searchModel : mPresenter.getQueryModels(query)) {
                 postSearchEvent(searchModel);

@@ -61,6 +61,6 @@ public class RepoIssuesActivity extends PagerActivity<RepoIssuesPresenter> {
         tabLayout.setVisibility(View.VISIBLE);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setAdapter(pagerAdapter);
-
+        showFirstPager();
     }
 }

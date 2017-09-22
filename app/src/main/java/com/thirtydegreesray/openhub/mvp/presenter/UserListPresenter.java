@@ -26,6 +26,7 @@ import com.thirtydegreesray.openhub.mvp.contract.IUserListContract;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.SearchResult;
 import com.thirtydegreesray.openhub.mvp.model.User;
+import com.thirtydegreesray.openhub.mvp.presenter.base.BasePagerPresenter;
 import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
@@ -42,7 +43,7 @@ import rx.Observable;
  * Created by ThirtyDegreesRay on 2017/8/16 17:38:43
  */
 
-public class UserListPresenter extends BasePresenter<IUserListContract.View>
+public class UserListPresenter extends BasePagerPresenter<IUserListContract.View>
         implements IUserListContract.Presenter {
 
     @AutoAccess UserListFragment.UserListType type;
@@ -64,7 +65,15 @@ public class UserListPresenter extends BasePresenter<IUserListContract.View>
         if (type.equals(UserListFragment.UserListType.SEARCH)) {
             setEventSubscriber(true);
         }
-        loadUsers(1, false);
+    }
+
+    @Override
+    protected void loadData() {
+        if(UserListFragment.UserListType.SEARCH.equals(type)){
+            if(searchModel != null) searchUsers(1);
+        } else {
+            loadUsers(1, false);
+        }
     }
 
     @Override
@@ -155,8 +164,9 @@ public class UserListPresenter extends BasePresenter<IUserListContract.View>
     @Subscribe
     public void onSearchEvent(Event.SearchEvent searchEvent) {
         if (!searchEvent.searchModel.getType().equals(SearchModel.SearchType.User)) return;
+        setLoaded(false);
         this.searchModel = searchEvent.searchModel;
-        searchUsers(1);
+        prepareLoadData();
     }
 
     private void handleError(Throwable error){
@@ -164,7 +174,7 @@ public class UserListPresenter extends BasePresenter<IUserListContract.View>
             mView.showErrorToast(getErrorTip(error));
         } else if(error instanceof HttpPageNoFoundError){
             mView.showUsers(new ArrayList<User>());
-        }else{
+        } else {
             mView.showLoadError(getErrorTip(error));
         }
     }

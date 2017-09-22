@@ -62,8 +62,6 @@ public class AppConfig {
 
     public final static String OPENHUB_HOME = AUTH_HOME + "/OpenHub";
 
-    public final static String OAUTH2_CALLBACK_URL = "https://github.com/ThirtyDegreesRay/OpenHub/CallBack";
-
     public final static String REDIRECT_URL = "https://github.com/ThirtyDegreesRay/OpenHub/CallBack";
 
 

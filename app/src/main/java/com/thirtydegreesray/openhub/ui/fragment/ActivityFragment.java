@@ -127,4 +127,10 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
         adapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onFragmentShowed() {
+        super.onFragmentShowed();
+        if(mPresenter != null) mPresenter.prepareLoadData();
+    }
+
 }

@@ -22,6 +22,7 @@ import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.IProfileInfoContract;
 import com.thirtydegreesray.openhub.mvp.model.User;
+import com.thirtydegreesray.openhub.mvp.presenter.base.BasePagerPresenter;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ import rx.Observable;
  * Created by ThirtyDegreesRay on 2017/8/23 14:37:51
  */
 
-public class ProfileInfoPresenter extends BasePresenter<IProfileInfoContract.View>
+public class ProfileInfoPresenter extends BasePagerPresenter<IProfileInfoContract.View>
         implements IProfileInfoContract.Presenter{
 
     @AutoAccess User user;
@@ -48,6 +49,10 @@ public class ProfileInfoPresenter extends BasePresenter<IProfileInfoContract.Vie
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
+    }
+
+    @Override
+    protected void loadData() {
         mView.showProfileInfo(user);
         if(user.isUser()) loadOrgs();
     }

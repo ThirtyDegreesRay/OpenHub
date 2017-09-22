@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.mvp.contract;
 
+import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
+
 /**
  * Created on 2017/8/1.
  *

@@ -7,6 +7,7 @@ import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
 import com.thirtydegreesray.openhub.mvp.contract.IIssuesContract;
 import com.thirtydegreesray.openhub.mvp.model.Issue;
+import com.thirtydegreesray.openhub.mvp.presenter.base.BasePagerPresenter;
 import com.thirtydegreesray.openhub.ui.fragment.IssuesFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
@@ -21,7 +22,7 @@ import rx.Observable;
  * Created by ThirtyDegreesRay on 2017/9/20 14:56:49
  */
 
-public class IssuePresenter extends BasePresenter<IIssuesContract.View>
+public class IssuePresenter extends BasePagerPresenter<IIssuesContract.View>
         implements IIssuesContract.Presenter {
 
     @AutoAccess IssuesFragment.IssueFragmentType type;
@@ -38,6 +39,10 @@ public class IssuePresenter extends BasePresenter<IIssuesContract.View>
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
+    }
+
+    @Override
+    protected void loadData() {
         if (issues == null) {
             loadIssues(1, false);
         } else {

@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.mvp.contract;
 
+import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
+import com.thirtydegreesray.openhub.mvp.contract.base.IBasePagerContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 
 /**
@@ -24,12 +26,12 @@ import com.thirtydegreesray.openhub.mvp.model.Repository;
 
 public interface IRepoInfoContract {
 
-    interface View extends IBaseContract.View{
+    interface View extends IBaseContract.View, IBasePagerContract.View{
         void showRepoInfo(Repository repository);
         void showReadMe(String content, String baseUrl);
     }
 
-    interface Presenter extends IBaseContract.Presenter<IRepoInfoContract.View>{
+    interface Presenter extends IBasePagerContract.Presenter<IRepoInfoContract.View>{
         void loadReadMe();
     }
 
