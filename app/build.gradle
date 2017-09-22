@@ -4,13 +4,6 @@ Properties buildProperties = new Properties()
 //read properties
 buildProperties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-//buildProperties {
-//    secrets {
-//        file rootProject.file('local.properties')
-//    }
-//}
-
-
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
     buildToolsVersion BUILD_TOOLS_VERSION
