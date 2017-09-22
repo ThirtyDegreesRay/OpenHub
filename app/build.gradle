@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 Properties buildProperties = new Properties()
-//读取properties的配置信息，当然直接把信息写到代码里也是可以的
+//read properties
 buildProperties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 //buildProperties {
