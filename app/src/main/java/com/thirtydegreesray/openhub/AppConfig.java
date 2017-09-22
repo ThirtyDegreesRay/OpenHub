@@ -49,9 +49,9 @@ public class AppConfig {
 
 
 
-    public final static String OPENHUB_CLIENT_ID = "2a2f29517239a22ad850";
+    public final static String OPENHUB_CLIENT_ID = BuildConfig.OPENHUB_CLIENT_ID;
 
-    public final static String OPENHUB_CLIENT_SECRET = "d16d28be9f7da6a92112a7c1e9671aef421eb8bf";
+    public final static String OPENHUB_CLIENT_SECRET = BuildConfig.OPENHUB_CLIENT_SECRET;
 
     public final static String OAUTH2_SCOPE = "user,repo,gist,notifications";
 
@@ -65,6 +65,6 @@ public class AppConfig {
     public final static String REDIRECT_URL = "https://github.com/ThirtyDegreesRay/OpenHub/CallBack";
 
 
-    public final static String BUGLY_APPID = "3ce790e8a2";
+    public final static String BUGLY_APPID = BuildConfig.BUGLY_ID;
 
 }
