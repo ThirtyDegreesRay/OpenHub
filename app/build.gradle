@@ -15,7 +15,7 @@ android {
         versionName VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-        multiDexEnabled true
+        multiDexEnabled false
 
         buildConfigField "String", "OPENHUB_CLIENT_ID", buildProperties.getProperty("openhub_client_id")
         buildConfigField "String", "OPENHUB_CLIENT_SECRET", buildProperties.getProperty("openhub_client_secret")
@@ -24,9 +24,9 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            multiDexKeepProguard file('proguard-rules.pro')
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            multiDexKeepFile file('multidex-config.txt')
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            multiDexKeepProguard file('proguard-rules.pro')
+//            multiDexKeepFile file('multidex-config.txt')
         }
     }
 
