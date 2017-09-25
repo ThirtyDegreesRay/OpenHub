@@ -67,6 +67,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     private final Map<Integer, String> TAG_MAP = new HashMap<>();
 
+    private final int SETTINGS_REQUEST_CODE = 100;
+
     /**
      * 依赖注入的入口
      *
@@ -199,7 +201,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 SearchActivity.show(getActivity());
                 break;
             case R.id.nav_settings:
-                startActivity(new Intent(getActivity(), SettingsActivity.class));
+                SettingsActivity.show(getActivity(), SETTINGS_REQUEST_CODE);
                 break;
             case R.id.nav_about:
                 AboutActivity.show(getActivity());
@@ -296,4 +298,11 @@ public class MainActivity extends BaseActivity<MainPresenter>
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == SETTINGS_REQUEST_CODE && resultCode == RESULT_OK) {
+            recreate();
+        }
+    }
 }

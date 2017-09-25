@@ -82,6 +82,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         }
         if (repos != null) {
             mView.showRepositories(repos);
+            mView.hideLoading();
             return;
         }
         loadRepositories(false, 1);

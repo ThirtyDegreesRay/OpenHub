@@ -62,6 +62,7 @@ public class ActivityPresenter extends BasePagerPresenter<IActivityContract.View
     protected void loadData() {
         if(events != null){
             mView.showEvents(events);
+            mView.hideLoading();
             return;
         }
         loadEvents(false, 1);

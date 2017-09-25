@@ -18,7 +18,6 @@ package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.v7.app.AlertDialog;
@@ -27,7 +26,6 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import android.util.Log;
 
 import com.thirtydegreesray.openhub.R;
-import com.thirtydegreesray.openhub.ui.activity.MainActivity;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.widget.colorChooser.ColorChooserPreference;
 import com.thirtydegreesray.openhub.util.PrefHelper;
@@ -53,6 +51,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
 
     public interface SettingsCallBack{
         void onLogout();
+        void onRecreate();
     }
 
     private SettingsCallBack callBack;
@@ -147,11 +146,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
     }
 
     private void recreateMain(){
-        getActivity().finish();
-
-        Intent intent = new Intent(getContext(), MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        getActivity().startActivity(intent);
+        callBack.onRecreate();
     }
 
     private void logout(){

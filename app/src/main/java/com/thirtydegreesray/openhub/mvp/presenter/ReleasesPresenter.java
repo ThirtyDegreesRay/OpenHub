@@ -38,6 +38,7 @@ public class ReleasesPresenter extends BasePresenter<IReleasesContract.View>
             loadReleases(1, false);
         } else {
             mView.showReleases(releases);
+            mView.hideLoading();
         }
     }
 

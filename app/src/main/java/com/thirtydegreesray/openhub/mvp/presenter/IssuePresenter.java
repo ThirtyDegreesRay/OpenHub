@@ -47,6 +47,7 @@ public class IssuePresenter extends BasePagerPresenter<IIssuesContract.View>
             loadIssues(1, false);
         } else {
             mView.showIssues(issues);
+            mView.hideLoading();
         }
     }
 
