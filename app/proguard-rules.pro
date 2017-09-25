@@ -24,8 +24,23 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-dontwarn
+-verbose
+
+-dontoptimize
+-dontpreverify
+
+-ignorewarnings
+
+-dontwarn javax.annotation.**
+-dontwarn javax.inject.**
+
+# DataAutoAccess
 -keep class com.thirtydegreesray.dataautoaccess.** { *; }
 -keep class **$$DataAccessor { *; }
+-keepclasseswithmembernames class * { @com.thirtydegreesray.dataautoaccess.annotation.AutoAccess <fields>;}
 
 # greenDAO 3
 -keepclassmembers class * extends org.greenrobot.greendao.AbstractDao {
@@ -45,10 +60,6 @@ public static java.lang.String TABLENAME;
     <init>(java.lang.Throwable);
 }
 
-#Retrofit
--dontwarn okio.**
--dontwarn javax.annotation.**
-
 #Glide
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.AppGlideModule
@@ -61,3 +72,29 @@ public static java.lang.String TABLENAME;
 -dontwarn com.tencent.bugly.**
 -keep public class com.tencent.bugly.**{*;}
 -keep class android.support.**{*;}
+
+# OkHttp3
+-dontwarn okhttp3.logging.**
+-keep class okhttp3.internal.**{*;}
+-dontwarn okio.**
+# Retrofit
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+#-keepattributes Signature-keepattributes Exceptions
+# RxJava RxAndroid
+-dontwarn sun.misc.**
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+    long producerIndex;
+    long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+# Gson
+-keep class com.google.gson.stream.** { *; }
+-keepattributes EnclosingMethod
+-keep class com.thirtydegreesray.openhub.mvp.model.**{*;}
+-keep class com.thirtydegreesray.openhub.dao.**{*;}
