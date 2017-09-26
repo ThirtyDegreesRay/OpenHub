@@ -91,8 +91,8 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
 
     @Override
     public void onPageSelected(final int position) {
-        postNotifyFragmentStatus(prePosition, false);
-        postNotifyFragmentStatus(position, true);
+        postNotifyFragmentStatus(prePosition, false, 100);
+        postNotifyFragmentStatus(position, true, 500);
         prePosition = position;
     }
 
@@ -106,11 +106,11 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
      */
     protected void showFirstPager(){
         prePosition = 0;
-        postNotifyFragmentStatus(0, true);
+        postNotifyFragmentStatus(0, true, 100);
 
     }
 
-    private void postNotifyFragmentStatus(final int position, final boolean isShow){
+    private void postNotifyFragmentStatus(final int position, final boolean isShow, long delay){
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -120,7 +120,7 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
                     pagerAdapter.getPagerList().get(position).getFragment().onFragmentHided();
                 }
             }
-        }, 500);
+        }, delay);
     }
 
 }

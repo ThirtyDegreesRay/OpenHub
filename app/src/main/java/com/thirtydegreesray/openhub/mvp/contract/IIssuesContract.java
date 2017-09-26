@@ -4,6 +4,7 @@ import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseListContract;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBasePagerContract;
 import com.thirtydegreesray.openhub.mvp.model.Issue;
+import com.thirtydegreesray.openhub.mvp.model.filter.IssuesFilter;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,7 @@ public interface IIssuesContract {
 
     interface Presenter extends IBasePagerContract.Presenter<IIssuesContract.View>{
         void loadIssues(int page, boolean isReload);
+        void loadIssues(IssuesFilter issuesFilter, int page, boolean isReload);
     }
 
 }

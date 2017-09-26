@@ -24,9 +24,15 @@ import butterknife.BindView;
 
 public class IssuesAdapter extends BaseAdapter<IssuesAdapter.ViewHolder, Issue> {
 
+    private boolean isUserIssues = false;
+
     @Inject
     public IssuesAdapter(Context context, BaseFragment fragment) {
         super(context, fragment);
+    }
+
+    public void setUserIssues(boolean userIssues) {
+        isUserIssues = userIssues;
     }
 
     @Override
@@ -51,6 +57,8 @@ public class IssuesAdapter extends BaseAdapter<IssuesAdapter.ViewHolder, Issue> 
         holder.issueTitle.setText(model.getTitle());
         holder.commentNum.setText(String.valueOf(model.getCommentNum()));
         holder.time.setText(StringUtils.getNewsTimeStr(context, model.getCreatedAt()));
+        holder.repoFullName.setVisibility(isUserIssues ? View.VISIBLE : View.INVISIBLE);
+        if(isUserIssues) holder.repoFullName.setText(model.getRepoFullName());
     }
 
     class ViewHolder extends BaseViewHolder {
@@ -60,6 +68,7 @@ public class IssuesAdapter extends BaseAdapter<IssuesAdapter.ViewHolder, Issue> 
         @BindView(R.id.time) TextView time;
         @BindView(R.id.issue_title) TextView issueTitle;
         @BindView(R.id.comment_num) TextView commentNum;
+        @BindView(R.id.repo_full_name) TextView repoFullName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

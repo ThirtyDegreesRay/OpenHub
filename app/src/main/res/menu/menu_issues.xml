@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_type_chooser"
+        android:title="@string/type">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_all"
+                    android:title="@string/all"
+                    android:checked="true"/>
+                <item
+                    android:id="@+id/nav_created"
+                    android:title="@string/created"/>
+                <item
+                    android:id="@+id/nav_assigned"
+                    android:title="@string/assigned"/>
+                <item
+                    android:id="@+id/nav_mentioned"
+                    android:title="@string/mentioned"/>
+                <item
+                    android:id="@+id/nav_subscribed"
+                    android:title="@string/subscribed"/>
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/nav_sort"
+        android:title="@string/sort">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_recently_created"
+                    android:title="@string/recently_created"
+                    android:checked="true"/>
+                <item
+                    android:id="@+id/nav_previously_created"
+                    android:title="@string/previously_created"/>
+                <item
+                    android:id="@+id/nav_recently_updated"
+                    android:title="@string/recently_updated"/>
+                <item
+                    android:id="@+id/nav_least_recently_updated"
+                    android:title="@string/least_recently_updated"/>
+                <item
+                    android:id="@+id/nav_most_comments"
+                    android:title="@string/most_comments"/>
+                <item
+                    android:id="@+id/nav_fewest_comments"
+                    android:title="@string/fewest_comments"/>
+            </group>
+        </menu>
+    </item>
+
+</menu>

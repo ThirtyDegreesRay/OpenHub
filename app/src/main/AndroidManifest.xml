@@ -162,7 +162,7 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.RepoIssuesActivity"
+            android:name=".ui.activity.IssuesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeLight.Green">
         </activity>

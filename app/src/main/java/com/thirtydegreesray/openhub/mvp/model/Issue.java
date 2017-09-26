@@ -148,6 +148,11 @@ public class Issue implements Parcelable {
                 repoUrl.substring(repoUrl.lastIndexOf("/") + 1) : null;
     }
 
+    public String getRepoFullName() {
+        return (!StringUtils.isBlank(repoUrl) && repoUrl.contains("repos/")) ?
+                repoUrl.substring(repoUrl.lastIndexOf("repos/") + 6) : null;
+    }
+
     public String getHtmlUrl() {
         return htmlUrl;
     }

@@ -217,7 +217,7 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
         if(mProgressDialog != null){
             mProgressDialog.dismiss();
         }else{
-            throw new NullPointerException("dismissProgressDialog: can't dismiss a null dialog, must show dialog first!");
+            throw new NullPointerException("dismissProgressDialog: can't dismiss a null dialog, must showForRepo dialog first!");
         }
     }
 

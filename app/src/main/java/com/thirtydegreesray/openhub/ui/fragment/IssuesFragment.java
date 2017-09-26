@@ -9,7 +9,9 @@ import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IIssuesContract;
 import com.thirtydegreesray.openhub.mvp.model.Issue;
+import com.thirtydegreesray.openhub.mvp.model.filter.IssuesFilter;
 import com.thirtydegreesray.openhub.mvp.presenter.IssuePresenter;
+import com.thirtydegreesray.openhub.ui.activity.IssuesActivity;
 import com.thirtydegreesray.openhub.ui.adapter.IssuesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
@@ -21,18 +23,23 @@ import java.util.ArrayList;
  */
 
 public class IssuesFragment extends ListFragment<IssuePresenter, IssuesAdapter>
-        implements IIssuesContract.View{
+        implements IIssuesContract.View, IssuesActivity.IssuesFilterListener{
 
-    public enum IssueFragmentType{
-        RepoOpen, RepoClosed,
-        UserAssigned, UserCreated, UserMentioned, UserSubscribed
+    public static IssuesFragment createForRepo(@NonNull Issue.IssueState issueState,
+                                               @NonNull String userId, @NonNull String repoName){
+        IssuesFragment fragment = new IssuesFragment();
+        fragment.setArguments(BundleBuilder.builder()
+                .put("issuesFilter", new IssuesFilter(IssuesFilter.Type.Repo, issueState))
+                .put("userId", userId)
+                .put("repoName", repoName).build());
+        return fragment;
     }
 
-    public static IssuesFragment create(@NonNull IssueFragmentType type,
-                                        @NonNull String userId, @NonNull String repoName){
+    public static IssuesFragment createForUser(@NonNull Issue.IssueState issueState){
         IssuesFragment fragment = new IssuesFragment();
-        fragment.setArguments(BundleBuilder.builder().put("userId", userId)
-                .put("type", type).put("repoName", repoName).build());
+        fragment.setArguments(BundleBuilder.builder()
+                .put("issuesFilter", new IssuesFilter(IssuesFilter.Type.User, issueState))
+                .put("issueState", issueState).build());
         return fragment;
     }
 
@@ -54,6 +61,7 @@ public class IssuesFragment extends ListFragment<IssuePresenter, IssuesAdapter>
     protected void initFragment(Bundle savedInstanceState) {
         super.initFragment(savedInstanceState);
         setLoadMoreEnable(true);
+        adapter.setUserIssues(mPresenter.getIssuesFilter().getType().equals(IssuesFilter.Type.User));
     }
 
     @Override
@@ -87,6 +95,11 @@ public class IssuesFragment extends ListFragment<IssuePresenter, IssuesAdapter>
     public void onFragmentShowed() {
         super.onFragmentShowed();
         if(mPresenter != null) mPresenter.prepareLoadData();
+    }
+
+    @Override
+    public void onIssuesFilterChanged(@NonNull IssuesFilter issuesFilter) {
+        mPresenter.loadIssues(issuesFilter, 1, true);
     }
 
 }

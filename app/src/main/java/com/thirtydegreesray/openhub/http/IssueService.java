@@ -27,14 +27,18 @@ public interface IssueService {
             @Path("owner") String owner,
             @Path("repo") String repo,
             @Query("state") String state,
+            @Query("sort") String sort,
+            @Query("direction") String direction,
             @Query("page") int page
     );
 
     @NonNull @GET("user/issues")
     Observable<Response<ArrayList<Issue>>> getUserIssues(
             @Header("forceNetWork") boolean forceNetWork,
-            @Query("filter") int filter,
-            @Query("state") int state,
+            @Query("filter") String filter,
+            @Query("state") String state,
+            @Query("sort") String sort,
+            @Query("direction") String direction,
             @Query("page") int page
     );
 

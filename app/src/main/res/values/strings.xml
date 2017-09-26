@@ -220,9 +220,20 @@
     <string name="permission_storage_denied">Permission denied, please allow storage permission.</string>
     <string name="enable_download_service_tip">Please enable download service first!</string>
 
-    <string name="open">Open</string>
-    <string name="closed">Closed</string>
-    <string name="no_issues">No issues</string>
+    <string name="open" translatable="false">Open</string>
+    <string name="closed" translatable="false">Closed</string>
+    <string name="no_issues" translatable="false">No issues</string>
 
+    <string name="type" translatable="false">Type</string>
+    <string name="all" translatable="false">All</string>
+    <string name="created" translatable="false">Created</string>
+    <string name="assigned" translatable="false">Assigned</string>
+    <string name="mentioned" translatable="false">Mentioned</string>
+    <string name="subscribed" translatable="false">Subscribed</string>
+
+    <string name="recently_created" translatable="false">Recently created</string>
+    <string name="previously_created" translatable="false">Previously created</string>
+    <string name="most_comments" translatable="false">Most comments</string>
+    <string name="fewest_comments" translatable="false">Fewest comments</string>
 
 </resources>

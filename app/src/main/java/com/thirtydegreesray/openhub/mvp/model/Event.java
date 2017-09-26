@@ -112,7 +112,7 @@ public class Event implements Parcelable {
         LabelEvent,
 
         //Events of this type are no longer delivered, but it's possible that they exist in timelines
-        // of some users. You cannot create webhooks that listen to these events.
+        // of some users. You cannot createForRepo webhooks that listen to these events.
         DownloadEvent,
         FollowEvent,
         ForkApplyEvent,

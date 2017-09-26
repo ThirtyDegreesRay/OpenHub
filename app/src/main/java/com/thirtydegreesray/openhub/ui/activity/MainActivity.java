@@ -153,7 +153,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 //        if (item.getItemId() == R.id.action_search) {
-//            SearchActivity.show(getActivity());
+//            SearchActivity.showForRepo(getActivity());
 //            return true;
 //        }
         return super.onOptionsItemSelected(item);
@@ -186,7 +186,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 ProfileActivity.show(getActivity(), AppData.INSTANCE.getLoggedUser().getLogin());
                 break;
             case R.id.nav_issues:
-
+                IssuesActivity.showForUser(getActivity());
                 break;
             case R.id.nav_news:
             case R.id.nav_owned:
@@ -266,6 +266,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         return null;
     }
 
+    //FIXME bugs when recreate
     private void showAndHideFragment(@NonNull Fragment showFragment, @Nullable Fragment hideFragment) {
         if (hideFragment == null) {
             getSupportFragmentManager()

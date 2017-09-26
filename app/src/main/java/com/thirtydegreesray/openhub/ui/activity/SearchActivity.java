@@ -23,6 +23,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -103,6 +104,7 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
         SearchView searchView =
                 (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setOnQueryTextListener(this);
+        searchView.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS);
         searchView.setQuery(mPresenter.getSearchModels().get(0).getQuery(), false);
         if (isInputMode) {
             MenuItemCompat.expandActionView(searchItem);

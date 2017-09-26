@@ -20,6 +20,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.mvp.model.Issue;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.User;
@@ -107,9 +108,18 @@ public class FragmentPagerModel {
                                                                      @NonNull String userId, @NonNull String repoName) {
         return setPagerFragmentFlag(Arrays.asList(
                 new FragmentPagerModel(context.getString(R.string.open), IssuesFragment
-                        .create(IssuesFragment.IssueFragmentType.RepoOpen, userId, repoName)),
+                        .createForRepo(Issue.IssueState.open, userId, repoName)),
                 new FragmentPagerModel(context.getString(R.string.closed), IssuesFragment
-                        .create(IssuesFragment.IssueFragmentType.RepoClosed, userId, repoName))
+                        .createForRepo(Issue.IssueState.closed, userId, repoName))
+        ));
+    }
+
+    public static List<FragmentPagerModel> createUserIssuesPagerList(@NonNull Context context) {
+        return setPagerFragmentFlag(Arrays.asList(
+                new FragmentPagerModel(context.getString(R.string.open), IssuesFragment
+                        .createForUser(Issue.IssueState.open)),
+                new FragmentPagerModel(context.getString(R.string.closed), IssuesFragment
+                        .createForUser(Issue.IssueState.closed))
         ));
     }
 

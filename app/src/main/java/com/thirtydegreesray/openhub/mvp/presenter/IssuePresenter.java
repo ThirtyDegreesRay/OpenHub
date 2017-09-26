@@ -7,8 +7,8 @@ import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
 import com.thirtydegreesray.openhub.mvp.contract.IIssuesContract;
 import com.thirtydegreesray.openhub.mvp.model.Issue;
+import com.thirtydegreesray.openhub.mvp.model.filter.IssuesFilter;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePagerPresenter;
-import com.thirtydegreesray.openhub.ui.fragment.IssuesFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import rx.Observable;
 public class IssuePresenter extends BasePagerPresenter<IIssuesContract.View>
         implements IIssuesContract.Presenter {
 
-    @AutoAccess IssuesFragment.IssueFragmentType type;
+    @AutoAccess IssuesFilter issuesFilter;
     @AutoAccess String userId;
     @AutoAccess String repoName;
 
@@ -43,12 +43,7 @@ public class IssuePresenter extends BasePagerPresenter<IIssuesContract.View>
 
     @Override
     protected void loadData() {
-        if (issues == null) {
-            loadIssues(1, false);
-        } else {
-            mView.showIssues(issues);
-            mView.hideLoading();
-        }
+        loadIssues(1, false);
     }
 
     @Override
@@ -83,16 +78,34 @@ public class IssuePresenter extends BasePagerPresenter<IIssuesContract.View>
         generalRxHttpExecute(new IObservableCreator<ArrayList<Issue>>() {
             @Override
             public Observable<Response<ArrayList<Issue>>> createObservable(boolean forceNetWork) {
-                if (type.equals(IssuesFragment.IssueFragmentType.RepoOpen)) {
-                    return getIssueService().getRepoIssues(forceNetWork, userId, repoName, "open", page);
-                } else if (type.equals(IssuesFragment.IssueFragmentType.RepoClosed)) {
-                    return getIssueService().getRepoIssues(forceNetWork, userId, repoName, "closed", page);
-                } else {
-                    throw new IllegalArgumentException(type.name());
-                }
+                return getObservable(forceNetWork, page);
             }
         }, httpObserver, readCacheFirst);
 
+    }
+
+    @Override
+    public void loadIssues(IssuesFilter issuesFilter, int page, boolean isReload) {
+        this.issuesFilter = issuesFilter;
+        setLoaded(false);
+        prepareLoadData();
+    }
+
+    private Observable<Response<ArrayList<Issue>>> getObservable(boolean forceNetWork, int page){
+        String statusStr = issuesFilter.getIssueState().name().toLowerCase();
+        String filterStr = issuesFilter.getUserIssuesFilterType() == null ?
+                null : issuesFilter.getUserIssuesFilterType().name().toLowerCase();
+        String sortStr = issuesFilter.getSortType().name().toLowerCase();
+        String sortDirectionStr = issuesFilter.getSortDirection().name().toLowerCase();
+        if (IssuesFilter.Type.Repo.equals(issuesFilter.getType())) {
+            return getIssueService().getRepoIssues(forceNetWork, userId, repoName, statusStr,
+                    sortStr, sortDirectionStr, page);
+        } else if (IssuesFilter.Type.User.equals(issuesFilter.getType())) {
+            return getIssueService().getUserIssues(forceNetWork, filterStr, statusStr,
+                    sortStr, sortDirectionStr,  page);
+        } else {
+            throw new IllegalArgumentException(issuesFilter.getType() + "");
+        }
     }
 
     private void handleError(Throwable error){
@@ -105,4 +118,7 @@ public class IssuePresenter extends BasePagerPresenter<IIssuesContract.View>
         }
     }
 
+    public IssuesFilter getIssuesFilter() {
+        return issuesFilter;
+    }
 }

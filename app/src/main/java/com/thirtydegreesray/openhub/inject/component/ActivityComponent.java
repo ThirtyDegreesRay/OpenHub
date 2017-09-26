@@ -18,11 +18,11 @@ package com.thirtydegreesray.openhub.inject.component;
 
 import com.thirtydegreesray.openhub.inject.ActivityScope;
 import com.thirtydegreesray.openhub.inject.module.ActivityModule;
+import com.thirtydegreesray.openhub.ui.activity.IssuesActivity;
 import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
 import com.thirtydegreesray.openhub.ui.activity.MainActivity;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.activity.ReleaseInfoActivity;
-import com.thirtydegreesray.openhub.ui.activity.RepoIssuesActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.activity.SearchActivity;
 import com.thirtydegreesray.openhub.ui.activity.SettingsActivity;
@@ -45,5 +45,5 @@ public interface ActivityComponent {
     void inject(ProfileActivity activity);
     void inject(SearchActivity activity);
     void inject(ReleaseInfoActivity activity);
-    void inject(RepoIssuesActivity activity);
+    void inject(IssuesActivity activity);
 }
