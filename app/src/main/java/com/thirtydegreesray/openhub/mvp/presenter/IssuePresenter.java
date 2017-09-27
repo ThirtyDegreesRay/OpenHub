@@ -29,7 +29,7 @@ public class IssuePresenter extends BasePagerPresenter<IIssuesContract.View>
     @AutoAccess String userId;
     @AutoAccess String repoName;
 
-    @AutoAccess ArrayList<Issue> issues;
+    private ArrayList<Issue> issues;
 
     @Inject
     public IssuePresenter(DaoSession daoSession) {

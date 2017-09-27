@@ -23,6 +23,7 @@ import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
@@ -142,8 +143,8 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     }
 
     @Override
-    public void onItemClick(int position) {
-        super.onItemClick(position);
+    public void onItemClick(int position, @NonNull View view) {
+        super.onItemClick(position, view);
         RepositoryActivity.show(getActivity(), adapter.getData().get(position));
     }
 

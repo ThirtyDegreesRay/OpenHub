@@ -203,7 +203,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
 
         branchesAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(int position) {
+            public void onItemClick(int position, @NonNull View view) {
                 Branch branch = list.get(position);
                 mPresenter.getRepository().setDefaultBranch(branch.getName());
                 mPresenter.setCurBranch(branch);

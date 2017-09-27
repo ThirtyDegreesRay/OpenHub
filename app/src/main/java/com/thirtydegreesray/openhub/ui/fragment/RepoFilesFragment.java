@@ -17,9 +17,11 @@
 package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
+import android.view.View;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
@@ -111,7 +113,7 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
         pathRecyclerView.setAdapter(filePathAdapter);
         filePathAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(int position) {
+            public void onItemClick(int position, @NonNull View view) {
                 mPresenter.loadFiles(filePathAdapter.getData().get(position).getFullPath(), false);
             }
         });
@@ -128,8 +130,8 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
     }
 
     @Override
-    public void onItemClick(int position) {
-        super.onItemClick(position);
+    public void onItemClick(int position, @NonNull View view) {
+        super.onItemClick(position, view);
         FileModel model = adapter.getData().get(position);
         if(model.isDir()){
             mPresenter.loadFiles(model.getPath(), false);

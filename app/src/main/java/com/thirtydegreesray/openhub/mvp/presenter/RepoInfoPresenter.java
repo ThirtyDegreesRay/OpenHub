@@ -16,8 +16,6 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
-import android.os.Bundle;
-
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.common.Event;
@@ -47,18 +45,12 @@ public class RepoInfoPresenter extends BasePagerPresenter<IRepoInfoContract.View
         implements IRepoInfoContract.Presenter{
 
     @AutoAccess Repository repository;
-    @AutoAccess String readmeSource;
+    private String readmeSource;
 
     @Inject
     public RepoInfoPresenter(DaoSession daoSession) {
         super(daoSession);
         setEventSubscriber(true);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        checkReadmeSourceSize();
-        super.onSaveInstanceState(outState);
     }
 
     @Override

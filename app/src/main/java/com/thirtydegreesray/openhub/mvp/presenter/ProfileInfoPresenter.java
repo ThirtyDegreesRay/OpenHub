@@ -39,7 +39,7 @@ public class ProfileInfoPresenter extends BasePagerPresenter<IProfileInfoContrac
         implements IProfileInfoContract.Presenter{
 
     @AutoAccess User user;
-    @AutoAccess ArrayList<User> orgs;
+    private ArrayList<User> orgs;
 
     @Inject
     public ProfileInfoPresenter(DaoSession daoSession) {

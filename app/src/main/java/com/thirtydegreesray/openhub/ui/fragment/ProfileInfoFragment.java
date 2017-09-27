@@ -17,6 +17,7 @@
 package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -191,7 +192,7 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
     }
 
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(int position, @NonNull View view) {
         ProfileActivity.show(getContext(), orgsAdapter.getData().get(position).getLogin());
     }
 

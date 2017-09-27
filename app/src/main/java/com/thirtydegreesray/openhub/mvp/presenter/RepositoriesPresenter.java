@@ -52,7 +52,7 @@ import rx.Observable;
 public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContract.View>
         implements IRepositoriesContract.Presenter {
 
-    @AutoAccess ArrayList<Repository> repos;
+    private ArrayList<Repository> repos;
 
     @AutoAccess RepositoriesFragment.RepositoriesType type;
     @AutoAccess String user;

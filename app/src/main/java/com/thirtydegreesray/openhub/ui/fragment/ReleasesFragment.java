@@ -1,6 +1,8 @@
 package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.view.View;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
@@ -67,14 +69,14 @@ public class ReleasesFragment extends ListFragment<ReleasesPresenter, ReleasesAd
     }
 
     @Override
-    public void onItemClick(int position) {
-        super.onItemClick(position);
+    public void onItemClick(int position, @NonNull View view) {
+        super.onItemClick(position, view);
         ReleaseInfoActivity.show(getActivity(), mPresenter.getRepoName(),
                 adapter.getData().get(position));
     }
 
     @Override
-    public boolean onItemLongClick(int position) {
+    public boolean onItemLongClick(int position, @NonNull View view) {
         Release release = adapter.getData().get(position);
         DownloadSourceDialog.show(getActivity(), mPresenter.getRepoName(),
                 release.getTagName(), release);
