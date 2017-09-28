@@ -110,7 +110,7 @@ dependencies {
 
 //    compile "com.tencent.bugly:crashreport:${BUGGLY_VERSION}"
     compile "com.tencent.bugly:crashreport_upgrade:${BUGGLY_VERSION}"
-    compile "com.zzhoujay.richtext:richtext:${RICKTEXT_VERSION}"
-    compile 'com.zzhoujay.glideimagegetter:glideimagegetter:1.0.5'
+//    compile "com.zzhoujay.richtext:richtext:${RICKTEXT_VERSION}"
+//    compile 'com.zzhoujay.glideimagegetter:glideimagegetter:1.0.5'
 
 }

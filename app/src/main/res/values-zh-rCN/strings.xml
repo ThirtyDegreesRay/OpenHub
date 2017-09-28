@@ -68,7 +68,7 @@
     <string name="share_to">未安装邮件客户端</string>
     <string name="url_invalid">链接不可用</string>
     <string name="view_archive_file_error">文件不支持，请下载后查看。</string>
-    <string name="invalid_repo_url">版本库链接无效</string>
+    <string name="invalid_repo_url">版本库链接没有效</string>
     <string name="follow">跟随</string>
     <string name="followed">已跟随</string>
     <string name="unfollow">取消跟随</string>
@@ -103,7 +103,7 @@
     <string name="send_email">发送邮件</string>
     <string name="version">版本</string>
     <string name="follow_on_github">在GitHub上跟随我</string>
-    <string name="invalid_query">无效的查询内容</string>
+    <string name="invalid_query">没有效的查询内容</string>
     <string name="no_email_clients">未安装邮件客户端</string>
     <string name="no_share_clients">未安装分享软件</string>
     <string name="tap_to_retry">点击重试</string>
@@ -143,11 +143,20 @@
     <string name="downloading">正在下载</string>
     <string name="download_source_zip">下载源码 (zip)</string>
     <string name="download_source_tar">下载源码 (tar.gz)</string>
-    <string name="no_releases">无已发布版本</string>
+    <string name="no_releases">没有已发布版本</string>
     <string name="released_this">发布此版本</string>
     <string name="on">在</string>
     <string name="close">关闭</string>
     <string name="permission_storage_denied">权限被拒绝，请允许访问存储权限。</string>
     <string name="enable_download_service_tip">请先开启下载服务！</string>
+    <string name="closed">关闭的</string>
+    <string name="comment">评论</string>
+    <string name="comments">评论</string>
+    <string name="issue">问题</string>
+    <string name="no_comments">没有评论</string>
+    <string name="no_description">没有详细描述</string>
+    <string name="no_issues">没有问题</string>
+    <string name="open">开放的</string>
+    <string name="type">类型</string>
 
 </resources>

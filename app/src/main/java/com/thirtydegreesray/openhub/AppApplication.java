@@ -68,7 +68,7 @@ public class AppApplication extends Application {
     private void initBugly(){
 //        if(BuildConfig.DEBUG) return;
 
-        Beta.initDelay = 5 * 1000;
+        Beta.initDelay = 10 * 1000;
         Beta.enableHotfix = false;
         Beta.canShowUpgradeActs.add(LoginActivity.class);
         Beta.canShowUpgradeActs.add(MainActivity.class);
