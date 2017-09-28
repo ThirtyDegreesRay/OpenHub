@@ -24,6 +24,8 @@ public abstract class BasePagerPresenter<V extends IBasePagerContract.View> exte
 
     @Override
     public void prepareLoadData() {
+        if(mView == null)
+            return;
         if(mView.isPagerFragment() && (!isViewInitialized() || !mView.isFragmentShowed()))
             return;
         if(isLoaded) return;
