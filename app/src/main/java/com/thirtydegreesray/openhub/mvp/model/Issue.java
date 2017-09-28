@@ -23,7 +23,7 @@ public class Issue implements Parcelable {
     }
 
     private String id;
-    private String number;
+    private int number;
     private String title;
     private IssueState state;
     private boolean locked;
@@ -33,6 +33,7 @@ public class Issue implements Parcelable {
     @SerializedName("updated_at") private Date updatedAt;
     @SerializedName("closed_at") private Date closedAt;
     private String body;
+    @SerializedName("body_html") private String bodyHtml;
 
     private User user;
     @SerializedName("author_association") private IssueAuthorAssociation authorAssociation;
@@ -47,11 +48,11 @@ public class Issue implements Parcelable {
         this.id = id;
     }
 
-    public String getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
@@ -153,12 +154,25 @@ public class Issue implements Parcelable {
                 repoUrl.substring(repoUrl.lastIndexOf("repos/") + 6) : null;
     }
 
+    public String getRepoAuthorName() {
+        return (!StringUtils.isBlank(repoUrl) && repoUrl.contains("repos/")) ?
+                repoUrl.substring(repoUrl.lastIndexOf("repos/") + 6, repoUrl.lastIndexOf("/")) : null;
+    }
+
     public String getHtmlUrl() {
         return htmlUrl;
     }
 
     public void setHtmlUrl(String htmlUrl) {
         this.htmlUrl = htmlUrl;
+    }
+
+    public String getBodyHtml() {
+        return bodyHtml;
+    }
+
+    public void setBodyHtml(String bodyHtml) {
+        this.bodyHtml = bodyHtml;
     }
 
     @Override
@@ -169,7 +183,7 @@ public class Issue implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.id);
-        dest.writeString(this.number);
+        dest.writeInt(this.number);
         dest.writeString(this.title);
         dest.writeInt(this.state == null ? -1 : this.state.ordinal());
         dest.writeByte(this.locked ? (byte) 1 : (byte) 0);
@@ -178,6 +192,7 @@ public class Issue implements Parcelable {
         dest.writeLong(this.updatedAt != null ? this.updatedAt.getTime() : -1);
         dest.writeLong(this.closedAt != null ? this.closedAt.getTime() : -1);
         dest.writeString(this.body);
+        dest.writeString(this.bodyHtml);
         dest.writeParcelable(this.user, flags);
         dest.writeInt(this.authorAssociation == null ? -1 : this.authorAssociation.ordinal());
         dest.writeString(this.repoUrl);
@@ -189,7 +204,7 @@ public class Issue implements Parcelable {
 
     protected Issue(Parcel in) {
         this.id = in.readString();
-        this.number = in.readString();
+        this.number = in.readInt();
         this.title = in.readString();
         int tmpState = in.readInt();
         this.state = tmpState == -1 ? null : IssueState.values()[tmpState];
@@ -202,6 +217,7 @@ public class Issue implements Parcelable {
         long tmpClosedAt = in.readLong();
         this.closedAt = tmpClosedAt == -1 ? null : new Date(tmpClosedAt);
         this.body = in.readString();
+        this.bodyHtml = in.readString();
         this.user = in.readParcelable(User.class.getClassLoader());
         int tmpAuthorAssociation = in.readInt();
         this.authorAssociation = tmpAuthorAssociation == -1 ? null : IssueAuthorAssociation.values()[tmpAuthorAssociation];

@@ -17,7 +17,7 @@ import com.thirtydegreesray.openhub.inject.module.ActivityModule;
 import com.thirtydegreesray.openhub.mvp.model.Issue;
 import com.thirtydegreesray.openhub.mvp.model.filter.IssuesFilter;
 import com.thirtydegreesray.openhub.mvp.model.filter.SortDirection;
-import com.thirtydegreesray.openhub.mvp.presenter.RepoIssuesPresenter;
+import com.thirtydegreesray.openhub.mvp.presenter.IssuesActPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.PagerWithDrawerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
@@ -29,7 +29,7 @@ import java.util.ArrayList;
  * Created by ThirtyDegreesRay on 2017/9/20 14:42:31
  */
 
-public class IssuesActivity extends PagerWithDrawerActivity<RepoIssuesPresenter> {
+public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> {
 
     public static void showForRepo(@NonNull Activity activity, @NonNull String userId,
                                    @NonNull String repoName){

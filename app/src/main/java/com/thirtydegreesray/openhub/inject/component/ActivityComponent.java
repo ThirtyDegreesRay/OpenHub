@@ -18,6 +18,7 @@ package com.thirtydegreesray.openhub.inject.component;
 
 import com.thirtydegreesray.openhub.inject.ActivityScope;
 import com.thirtydegreesray.openhub.inject.module.ActivityModule;
+import com.thirtydegreesray.openhub.ui.activity.IssueDetailActivity;
 import com.thirtydegreesray.openhub.ui.activity.IssuesActivity;
 import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
 import com.thirtydegreesray.openhub.ui.activity.MainActivity;
@@ -46,4 +47,5 @@ public interface ActivityComponent {
     void inject(SearchActivity activity);
     void inject(ReleaseInfoActivity activity);
     void inject(IssuesActivity activity);
+    void inject(IssueDetailActivity activity);
 }

@@ -16,7 +16,6 @@
 
 package com.thirtydegreesray.openhub.ui.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -55,7 +54,15 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     @AutoAccess boolean wrap = false;
 
     @NonNull
-    public static ViewerFragment create(@NonNull Context context, @NonNull FileModel fileModel) {
+    public static ViewerFragment createForMd(@NonNull String title, @NonNull String mdSource) {
+        ViewerFragment fragment = new ViewerFragment();
+        fragment.setArguments(BundleBuilder.builder().put("title", title)
+                .put("mdSource", mdSource).build());
+        return fragment;
+    }
+
+    @NonNull
+    public static ViewerFragment create(@NonNull FileModel fileModel) {
         ViewerFragment fragment = new ViewerFragment();
         fragment.setArguments(BundleBuilder.builder().put("fileModel", fileModel).build());
         return fragment;
@@ -91,12 +98,14 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        MenuItem menuItem = menu.findItem(R.id.action_wrap_lines);
-        if(mPresenter.isCode() && !StringUtils.isBlank(mPresenter.getDownloadSource())){
-            menuItem.setChecked(wrap);
-            menuItem.setVisible(true);
-        }else{
-            menuItem.setVisible(false);
+        if(mPresenter.getFileModel() != null){
+            MenuItem menuItem = menu.findItem(R.id.action_wrap_lines);
+            if(mPresenter.isCode() && !StringUtils.isBlank(mPresenter.getDownloadSource())){
+                menuItem.setChecked(wrap);
+                menuItem.setVisible(true);
+            }else{
+                menuItem.setVisible(false);
+            }
         }
     }
 

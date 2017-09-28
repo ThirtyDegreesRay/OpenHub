@@ -223,6 +223,7 @@
     <string name="open" translatable="false">Open</string>
     <string name="closed" translatable="false">Closed</string>
     <string name="no_issues" translatable="false">No issues</string>
+    <string name="issue">Issue</string>
 
     <string name="type" translatable="false">Type</string>
     <string name="all" translatable="false">All</string>
@@ -235,5 +236,10 @@
     <string name="previously_created" translatable="false">Previously created</string>
     <string name="most_comments" translatable="false">Most comments</string>
     <string name="fewest_comments" translatable="false">Fewest comments</string>
+
+    <string name="comments" translatable="false">Comments</string>
+    <string name="comment" translatable="false">Comment</string>
+    <string name="no_description" translatable="false">No description provided.</string>
+    <string name="no_comments" translatable="false">No comments.</string>
 
 </resources>

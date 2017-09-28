@@ -99,6 +99,7 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:${GLIDE_VERSION}"
 
     compile "com.makeramen:roundedimageview:${ROUNDED_IMAGEVIEW_VERSION}"
+    compile "de.hdodenhof:circleimageview:${CIRCLE_IMAGEVIEW_VERSION}"
 
     compile "com.github.GrenderG:Toasty:${TOASTY_VERSION}"
     compile "com.github.daniel-stoneuk:material-about-library:${MATERIAL_ABOUT_VERSION}"
@@ -109,5 +110,7 @@ dependencies {
 
 //    compile "com.tencent.bugly:crashreport:${BUGGLY_VERSION}"
     compile "com.tencent.bugly:crashreport_upgrade:${BUGGLY_VERSION}"
+    compile "com.zzhoujay.richtext:richtext:${RICKTEXT_VERSION}"
+    compile 'com.zzhoujay.glideimagegetter:glideimagegetter:1.0.5'
 
 }

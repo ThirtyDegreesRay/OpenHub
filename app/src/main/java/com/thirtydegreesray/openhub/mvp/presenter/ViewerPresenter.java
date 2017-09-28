@@ -45,6 +45,9 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
     @AutoAccess FileModel fileModel;
     private String downloadSource;
 
+    @AutoAccess String title;
+    @AutoAccess String mdSource;
+
     @Inject
     public ViewerPresenter(DaoSession daoSession) {
         super(daoSession);
@@ -53,7 +56,11 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
-        load(false);
+        if(fileModel != null){
+            load(false);
+        } else {
+            mView.loadMdText(mdSource, null);
+        }
     }
 
     @Override
@@ -124,5 +131,9 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
 
     public String getExtension(){
         return GitHubHelper.getExtension(fileModel.getUrl());
+    }
+
+    public FileModel getFileModel() {
+        return fileModel;
     }
 }

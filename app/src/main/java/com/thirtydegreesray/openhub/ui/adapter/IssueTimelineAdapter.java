@@ -2,13 +2,13 @@ package com.thirtydegreesray.openhub.ui.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.text.Html;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.GlideApp;
-import com.thirtydegreesray.openhub.mvp.model.Issue;
+import com.thirtydegreesray.openhub.mvp.model.IssueEvent;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
@@ -19,27 +19,22 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- * Created by ThirtyDegreesRay on 2017/9/20 14:58:40
+ * Created by ThirtyDegreesRay on 2017/9/27 16:06:43
  */
 
-public class IssuesAdapter extends BaseAdapter<IssuesAdapter.ViewHolder, Issue> {
-
-    private boolean isUserIssues = false;
+public class IssueTimelineAdapter extends BaseAdapter<IssueTimelineAdapter.ViewHolder, IssueEvent> {
 
     @Inject
-    public IssuesAdapter(Context context, BaseFragment fragment) {
+    public IssueTimelineAdapter(Context context, BaseFragment fragment) {
         super(context, fragment);
-    }
-
-    public void setUserIssues(boolean userIssues) {
-        isUserIssues = userIssues;
     }
 
     @Override
     protected int getLayoutId(int viewType) {
-        return R.layout.layout_item_issue;
+        return R.layout.layout_item_comments;
     }
 
     @Override
@@ -50,39 +45,37 @@ public class IssuesAdapter extends BaseAdapter<IssuesAdapter.ViewHolder, Issue> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
-        Issue model = data.get(position);
+        IssueEvent model = data.get(position);
         GlideApp.with(fragment)
                 .load(model.getUser().getAvatarUrl())
                 .placeholder(R.mipmap.logo)
                 .into(holder.userAvatar);
         holder.userName.setText(model.getUser().getLogin());
-        holder.issueTitle.setText(model.getTitle());
-        holder.commentNum.setText(String.valueOf(model.getCommentNum()));
         holder.time.setText(StringUtils.getNewsTimeStr(context, model.getCreatedAt()));
-        if(isUserIssues) {
-            holder.repoFullName.setText(model.getRepoFullName().concat(" #").concat(String.valueOf(model.getNumber())));
+        if (!StringUtils.isBlank(model.getBodyHtml())) {
+            holder.commentDesc.setText(Html.fromHtml(model.getBodyHtml()));
         } else {
-            holder.repoFullName.setText(("#").concat(String.valueOf(model.getNumber())));
+            holder.commentDesc.setText(R.string.no_description);
         }
+        //cause android:ellipsize="end" invalid
+//        holder.commentDesc.setMovementMethod(LinkMovementMethod.getInstance());
+        //TODO text bottom spacing too large
     }
 
     class ViewHolder extends BaseViewHolder {
 
-        @BindView(R.id.user_avatar) ImageView userAvatar;
+        @BindView(R.id.user_avatar) CircleImageView userAvatar;
         @BindView(R.id.user_name) TextView userName;
         @BindView(R.id.time) TextView time;
-        @BindView(R.id.issue_title) TextView issueTitle;
-        @BindView(R.id.comment_num) TextView commentNum;
-        @BindView(R.id.repo_full_name) TextView repoFullName;
+        @BindView(R.id.comment_desc) TextView commentDesc;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }
 
         @OnClick({R.id.user_avatar, R.id.user_name})
-        public void onUserClick(){
-            Issue issue = data.get(getAdapterPosition());
-            ProfileActivity.show(context, issue.getUser().getLogin());
+        public void onUserClicked() {
+            ProfileActivity.show(context, data.get(getAdapterPosition()).getUser().getLogin());
         }
 
     }

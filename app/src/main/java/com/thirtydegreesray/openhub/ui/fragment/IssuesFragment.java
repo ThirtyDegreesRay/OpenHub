@@ -2,6 +2,7 @@ package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.View;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
@@ -11,6 +12,7 @@ import com.thirtydegreesray.openhub.mvp.contract.IIssuesContract;
 import com.thirtydegreesray.openhub.mvp.model.Issue;
 import com.thirtydegreesray.openhub.mvp.model.filter.IssuesFilter;
 import com.thirtydegreesray.openhub.mvp.presenter.IssuePresenter;
+import com.thirtydegreesray.openhub.ui.activity.IssueDetailActivity;
 import com.thirtydegreesray.openhub.ui.activity.IssuesActivity;
 import com.thirtydegreesray.openhub.ui.adapter.IssuesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
@@ -87,8 +89,12 @@ public class IssuesFragment extends ListFragment<IssuePresenter, IssuesAdapter>
     }
 
     @Override
-    public void onItemClick(int position) {
-        super.onItemClick(position);
+    public void onItemClick(int position, @NonNull View view) {
+        super.onItemClick(position, view);
+        Issue issue = adapter.getData().get(position);
+        View avatarView = view.findViewById(R.id.user_avatar);
+        View titleView = view.findViewById(R.id.issue_title);
+        IssueDetailActivity.show(getActivity(), avatarView, titleView, issue);
     }
 
     @Override

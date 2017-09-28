@@ -41,6 +41,14 @@ import com.thirtydegreesray.openhub.util.StringUtils;
 
 public class ViewerActivity extends BaseActivity {
 
+    public static void showMdSource(@NonNull Context context, @NonNull String title,
+                                    @NonNull String mdSource){
+        Intent intent = new Intent(context, ViewerActivity.class);
+        intent.putExtras(BundleBuilder.builder().put("title", title)
+                .put("mdSource", mdSource).build());
+        context.startActivity(intent);
+    }
+
     public static void showImage(@NonNull Context context, @NonNull String imageUrl){
         FileModel fileModel = new FileModel();
         fileModel.setHtmlUrl(imageUrl);
@@ -65,6 +73,9 @@ public class ViewerActivity extends BaseActivity {
     @AutoAccess FileModel fileModel;
     @AutoAccess String repoName;
 
+    @AutoAccess String title;
+    @AutoAccess String mdSource;
+
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
 
@@ -78,7 +89,8 @@ public class ViewerActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_viewer, menu);
+        if(fileModel != null)
+            getMenuInflater().inflate(R.menu.menu_viewer, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -86,10 +98,16 @@ public class ViewerActivity extends BaseActivity {
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         setToolbarBackEnable();
-        String title = fileModel.getName();
+        String title;
+        ViewerFragment fragment;
+        if(fileModel != null){
+            title = fileModel.getName();
+            fragment = ViewerFragment.create(fileModel);
+        } else{
+            title = this.title;
+            fragment = ViewerFragment.createForMd(title, mdSource);
+        }
         setToolbarTitle(title);
-
-        ViewerFragment fragment = ViewerFragment.create(getActivity(), fileModel);
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.container, fragment)
@@ -98,6 +116,8 @@ public class ViewerActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home)
+            return super.onOptionsItemSelected(item);
         String htmlUrl = fileModel.getHtmlUrl();
         if(StringUtils.isBlank(htmlUrl)) return true;
         switch (item.getItemId()) {

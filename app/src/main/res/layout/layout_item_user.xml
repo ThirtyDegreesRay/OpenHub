@@ -5,10 +5,10 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/spacing_small"
-    android:paddingBottom="@dimen/spacing_small"
-    android:paddingStart="@dimen/spacing_large"
-    android:paddingEnd="@dimen/spacing_large"
+    android:paddingTop="@dimen/card_view_item_vertical_margin"
+    android:paddingBottom="@dimen/card_view_item_vertical_margin"
+    android:paddingStart="@dimen/card_view_item_horizontal_margin"
+    android:paddingEnd="@dimen/card_view_item_horizontal_margin"
     android:gravity="center_vertical"
     android:background="?android:selectableItemBackground">
     <com.makeramen.roundedimageview.RoundedImageView

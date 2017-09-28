@@ -18,6 +18,7 @@ package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.View;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
@@ -89,8 +90,8 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
     }
 
     @Override
-    public void onItemClick(int position) {
-        super.onItemClick(position);
+    public void onItemClick(int position, @NonNull View view) {
+        super.onItemClick(position, view);
         Event event = adapter.getData().get(position);
         if(event.getRepo() == null){
             ProfileActivity.show(getContext(), event.getActor().getLogin());

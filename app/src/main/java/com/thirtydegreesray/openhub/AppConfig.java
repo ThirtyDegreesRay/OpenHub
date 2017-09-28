@@ -37,7 +37,7 @@ public class AppConfig {
      */
     public final static String OPENHUB_BASE_URL = "http://openhub.raysus.win:3000/";
 
-    public final static int HTTP_TIME_OUT = 16 * 1000;
+    public final static int HTTP_TIME_OUT = 32 * 1000;
 
     public final static int HTTP_MAX_CACHE_SIZE = 32 * 1024 * 1024;
 

@@ -14,8 +14,8 @@ import java.util.Date;
 public class IssueEvent implements Parcelable {
 
     public enum IssueEventType{
-        closed, commented, renamed, reopened
-//         subscribed, unlocked, locked, labeled
+        closed, commented, reopened
+//      renamed,subscribed, unlocked, locked, labeled
     }
 
     private String id;
@@ -24,6 +24,7 @@ public class IssueEvent implements Parcelable {
     @SerializedName("updated_at") private Date updatedAt;
     @SerializedName("author_association") private Issue.IssueAuthorAssociation authorAssociation;
     private String body;
+    @SerializedName("body_html") private String bodyHtml;
     @SerializedName("event") private IssueEventType type;
     @SerializedName("html_url") private String htmlUrl;
 
@@ -91,6 +92,14 @@ public class IssueEvent implements Parcelable {
         this.htmlUrl = htmlUrl;
     }
 
+    public String getBodyHtml() {
+        return bodyHtml;
+    }
+
+    public void setBodyHtml(String bodyHtml) {
+        this.bodyHtml = bodyHtml;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -106,6 +115,7 @@ public class IssueEvent implements Parcelable {
         dest.writeString(this.body);
         dest.writeInt(this.type == null ? -1 : this.type.ordinal());
         dest.writeString(this.htmlUrl);
+        dest.writeString(this.bodyHtml);
     }
 
     public IssueEvent() {
@@ -124,6 +134,7 @@ public class IssueEvent implements Parcelable {
         int tmpType = in.readInt();
         this.type = tmpType == -1 ? null : IssueEventType.values()[tmpType];
         this.htmlUrl = in.readString();
+        this.bodyHtml = in.readString();
     }
 
     public static final Parcelable.Creator<IssueEvent> CREATOR = new Parcelable.Creator<IssueEvent>() {

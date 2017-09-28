@@ -149,7 +149,7 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
          * RecyclerView item点击
          * @param position 位置
          */
-        void onItemClick(int position);
+        void onItemClick(int position, @NonNull View view);
     }
 
     /**
@@ -161,7 +161,7 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
          * @param position 位置
          * @return
          */
-        boolean onItemLongClick(int position);
+        boolean onItemLongClick(int position, @NonNull View view);
     }
 
     private Handler handler ;
@@ -201,12 +201,12 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
 
     @Override
     public void onClick(View v) {
-        mOnItemClickListener.onItemClick(getPositionByView(v));
+        mOnItemClickListener.onItemClick(getPositionByView(v), v);
     }
 
     @Override
     public boolean onLongClick(View v) {
-        return mOnItemLongClickListener.onItemLongClick(getPositionByView(v));
+        return mOnItemLongClickListener.onItemLongClick(getPositionByView(v), v);
     }
 
     protected int getPositionByView(View view){

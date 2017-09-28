@@ -47,4 +47,8 @@
         <item name="android:textColor">?subtitle_color</item>
     </style>
 
+    <style name="Toolbar.Expand.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">22sp</item>
+    </style>
+
 </resources>

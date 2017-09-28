@@ -29,7 +29,7 @@ public interface IViewerContract {
 
     interface View extends IBaseContract.View{
         void loadImageUrl(@NonNull String url);
-        void loadMdText(@NonNull String text, @NonNull String baseUrl);
+        void loadMdText(@NonNull String text, @Nullable String baseUrl);
         void loadCode(@NonNull String text, @Nullable String extension);
     }
 

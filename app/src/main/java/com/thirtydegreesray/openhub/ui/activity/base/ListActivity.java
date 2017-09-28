@@ -17,8 +17,10 @@
 package com.thirtydegreesray.openhub.ui.activity.base;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
@@ -52,12 +54,12 @@ public abstract class ListActivity <P extends IBaseContract.Presenter, A extends
     }
 
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(int position, @NonNull View view) {
 
     }
 
     @Override
-    public boolean onItemLongClick(int position) {
+    public boolean onItemLongClick(int position, @NonNull View view) {
         return false;
     }
 

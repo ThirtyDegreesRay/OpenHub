@@ -22,6 +22,7 @@ import rx.Observable;
 public interface IssueService {
 
     @NonNull @GET("repos/{owner}/{repo}/issues")
+    @Headers("Accept: application/vnd.github.html")
     Observable<Response<ArrayList<Issue>>> getRepoIssues(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("owner") String owner,
@@ -33,6 +34,7 @@ public interface IssueService {
     );
 
     @NonNull @GET("user/issues")
+    @Headers("Accept: application/vnd.github.html")
     Observable<Response<ArrayList<Issue>>> getUserIssues(
             @Header("forceNetWork") boolean forceNetWork,
             @Query("filter") String filter,
@@ -53,6 +55,26 @@ public interface IssueService {
     @NonNull @GET("repos/{owner}/{repo}/issues/{issueNumber}/timeline")
     @Headers("Accept: application/vnd.github.mockingbird-preview")
     Observable<Response<ArrayList<IssueEvent>>> getIssueTimeline(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("owner") String owner,
+            @Path("repo") String repo,
+            @Path("issueNumber") int issueNumber,
+            @Query("page") int page
+    );
+
+    @NonNull @GET("repos/{owner}/{repo}/issues/{issueNumber}/comments")
+    @Headers("Accept: application/vnd.github.html")
+    Observable<Response<ArrayList<IssueEvent>>> getIssueComments(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("owner") String owner,
+            @Path("repo") String repo,
+            @Path("issueNumber") int issueNumber,
+            @Query("page") int page
+    );
+
+    @NonNull @GET("repos/{owner}/{repo}/issues/{issueNumber}/events")
+    @Headers("Accept: application/vnd.github.html")
+    Observable<Response<ArrayList<IssueEvent>>> getIssueEvents(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("owner") String owner,
             @Path("repo") String repo,

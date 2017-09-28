@@ -91,6 +91,7 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
                 } else {
                     refreshLayout.setVisibility(View.VISIBLE);
                     layTip.setVisibility(View.GONE);
+                    itemCount -= getHeaderSize();
                     if(loadMoreEnable){
                         canLoadMore = itemCount % getPagerSize() == 0 ;
                         curPage = itemCount % getPagerSize() == 0 ?
@@ -122,13 +123,30 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
         }
     }
 
+    public int getVisibleItemCount(){
+        RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+        //only LinearLayoutManager can find last visible
+        if(layoutManager instanceof LinearLayoutManager){
+            LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
+            int firstPosition = linearManager.findFirstVisibleItemPosition();
+            int lastPosition = linearManager.findLastVisibleItemPosition();
+            return lastPosition - firstPosition + 1;
+        }else {
+            throw new UnsupportedOperationException("only for Linear RecyclerView ");
+        }
+    }
+
+    public int getItemCount(){
+        return adapter.getItemCount();
+    }
+
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(int position, @NonNull View view) {
 
     }
 
     @Override
-    public boolean onItemLongClick(int position) {
+    public boolean onItemLongClick(int position, @NonNull View view) {
         return false;
     }
 
@@ -187,6 +205,10 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
 
     protected int getPagerSize(){
         return DEFAULT_PAGE_SIZE;
+    }
+
+    protected int getHeaderSize(){
+        return 0;
     }
 
     protected void onLoadMore(int page){
