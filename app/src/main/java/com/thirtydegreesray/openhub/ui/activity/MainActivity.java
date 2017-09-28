@@ -36,6 +36,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tencent.bugly.crashreport.CrashReport;
+import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.GlideApp;
@@ -48,7 +49,6 @@ import com.thirtydegreesray.openhub.mvp.presenter.MainPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
-import com.thirtydegreesray.openhub.ui.fragment.TrendingFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.HashMap;
@@ -68,6 +68,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
     private final Map<Integer, String> TAG_MAP = new HashMap<>();
 
     private final int SETTINGS_REQUEST_CODE = 100;
+
+    private final int DEFAULT_PAGE = R.id.nav_news;
+    @AutoAccess int selectedPage = DEFAULT_PAGE;
 
     /**
      * 依赖注入的入口
@@ -119,9 +122,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
         toggle.syncState();
         navView.setNavigationItemSelectedListener(this);
 
-        navView.setCheckedItem(R.id.nav_news);
-        updateTitle(R.id.nav_news);
-        loadFragment(R.id.nav_news);
+        navView.setCheckedItem(selectedPage);
+        updateTitle(selectedPage);
+        loadFragment(selectedPage);
 
         ImageView avatar = (ImageView) navView.getHeaderView(0).findViewById(R.id.avatar);
         TextView name = (TextView) navView.getHeaderView(0).findViewById(R.id.name);
@@ -229,6 +232,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
     }
 
     private void loadFragment(int itemId) {
+        selectedPage = itemId;
         String fragmentTag = TAG_MAP.get(itemId);
         Fragment showFragment = getSupportFragmentManager().findFragmentByTag(fragmentTag);
         boolean isExist = true;
@@ -260,13 +264,10 @@ public class MainActivity extends BaseActivity<MainPresenter>
             case R.id.nav_starred:
                 return RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED,
                         AppData.INSTANCE.getLoggedUser().getLogin());
-            case R.id.nav_trending:
-                return TrendingFragment.create(tabLayout);
         }
         return null;
     }
 
-    //FIXME bugs when recreate
     private void showAndHideFragment(@NonNull Fragment showFragment, @Nullable Fragment hideFragment) {
         if (hideFragment == null) {
             getSupportFragmentManager()
@@ -306,4 +307,5 @@ public class MainActivity extends BaseActivity<MainPresenter>
             recreate();
         }
     }
+
 }
