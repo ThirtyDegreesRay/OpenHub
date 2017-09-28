@@ -27,6 +27,7 @@ import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IActivityContract;
 import com.thirtydegreesray.openhub.mvp.model.Event;
 import com.thirtydegreesray.openhub.mvp.presenter.ActivityPresenter;
+import com.thirtydegreesray.openhub.ui.activity.IssueDetailActivity;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.activity.ReleaseInfoActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
@@ -109,6 +110,10 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
                 repoName = repoName.substring(repoName.lastIndexOf("/") + 1);
                 ReleaseInfoActivity.show(getActivity(), repoName,
                         event.getPayload().getRelease());
+                break;
+            case IssueCommentEvent:
+            case IssuesEvent:
+                IssueDetailActivity.show(getActivity(), event.getPayload().getIssue());
                 break;
             default:
                 RepositoryActivity.show(getContext(), owner, event.getRepo().getName());

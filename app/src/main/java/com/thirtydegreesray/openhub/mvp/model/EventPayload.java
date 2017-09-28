@@ -49,6 +49,9 @@ public class EventPayload implements Parcelable {
 
     //ReleaseEvent
     private Release release;
+    //IssueCommentEvent
+    private Issue issue;
+    private IssueEvent comment;
 
     //ForkEvent,PublicEvent None
 
@@ -162,6 +165,14 @@ public class EventPayload implements Parcelable {
         return 0;
     }
 
+    public Issue getIssue() {
+        return issue;
+    }
+
+    public void setIssue(Issue issue) {
+        this.issue = issue;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.pushId);
@@ -177,6 +188,8 @@ public class EventPayload implements Parcelable {
         dest.writeString(this.description);
         dest.writeString(this.pusherType);
         dest.writeParcelable(this.release, flags);
+        dest.writeParcelable(this.issue, flags);
+        dest.writeParcelable(this.comment, flags);
     }
 
     public EventPayload() {
@@ -196,6 +209,8 @@ public class EventPayload implements Parcelable {
         this.description = in.readString();
         this.pusherType = in.readString();
         this.release = in.readParcelable(Release.class.getClassLoader());
+        this.issue = in.readParcelable(Issue.class.getClassLoader());
+        this.comment = in.readParcelable(IssueEvent.class.getClassLoader());
     }
 
     public static final Parcelable.Creator<EventPayload> CREATOR = new Parcelable.Creator<EventPayload>() {

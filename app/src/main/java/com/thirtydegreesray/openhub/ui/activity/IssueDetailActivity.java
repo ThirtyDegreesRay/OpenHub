@@ -47,6 +47,12 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         activity.startActivity(intent, optionsCompat.toBundle());
     }
 
+    public static void show(@NonNull Activity activity, @NonNull Issue issue){
+        Intent intent = new Intent(activity, IssueDetailActivity.class);
+        intent.putExtras(BundleBuilder.builder().put("issue", issue).build());
+        activity.startActivity(intent);
+    }
+
     @BindView(R.id.user_avatar) ImageView userImageView;
     @BindView(R.id.issue_title) TextView issueTitle;
     @BindView(R.id.issue_state_img) ImageView issueStateImg;
