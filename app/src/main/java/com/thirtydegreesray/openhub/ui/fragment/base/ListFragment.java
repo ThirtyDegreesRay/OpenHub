@@ -222,7 +222,8 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
     @Override
     public void onDestroy() {
         super.onDestroy();
-        adapter.unregisterAdapterDataObserver(observer);
+        if(adapter != null && observer != null)
+            adapter.unregisterAdapterDataObserver(observer);
     }
 
 }
