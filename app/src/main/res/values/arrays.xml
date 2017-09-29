@@ -19,10 +19,12 @@
     <array name="language_array">
         <item >English</item>
         <item >简体中文</item>
+        <item >עִברִית</item>
     </array>
     <array name="language_id_array">
         <item >en</item>
         <item >zh-rCN</item>
+        <item >iw</item>
     </array>
 
     <array name="accent_color_array">

@@ -116,7 +116,7 @@
         android:layout_gravity="bottom|end"
         app:srcCompat="@drawable/ic_comment"
         android:tint="?title_color"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
     <FrameLayout
         android:id="@+id/container"

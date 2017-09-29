@@ -21,7 +21,7 @@
                     android:title="@string/mentioned"/>
                 <item
                     android:id="@+id/nav_subscribed"
-                    android:title="@string/subscribed"/>
+                    android:title="@string/participating"/>
             </group>
         </menu>
     </item>

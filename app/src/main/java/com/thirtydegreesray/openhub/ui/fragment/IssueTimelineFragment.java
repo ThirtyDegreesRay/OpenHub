@@ -86,4 +86,31 @@ public class IssueTimelineFragment extends ListFragment<IssueTimelinePresenter, 
                 adapter.getData().get(position).getBodyHtml());
     }
 
+    public void addComment(IssueEvent event){
+        mPresenter.getTimeline().add(event);
+        adapter.notifyDataSetChanged();
+        recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+    }
+
+//    @Override
+//    public boolean onItemLongClick(int position, @NonNull View view) {
+//        final IssueEvent issueEvent = adapter.getData().get(position);
+//        String[] actions = new String[]{
+//                getString(R.string.share),
+//                getString(R.string.edit),
+//                getString(R.string.delete)
+//        };
+//        new AlertDialog.Builder(getActivity())
+//                .setItems(actions, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                        if(which == 1){
+//                            MarkdownEditorActivity.show(getActivity(), R.string.comment, 101, issueEvent.getBodyHtml());
+//                        }
+//                    }
+//                })
+//                .show();
+//        return true;
+//    }
 }

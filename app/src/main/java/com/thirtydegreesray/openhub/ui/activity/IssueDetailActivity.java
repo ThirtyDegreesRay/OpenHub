@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.view.Menu;
@@ -21,6 +22,7 @@ import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
 import com.thirtydegreesray.openhub.inject.module.ActivityModule;
 import com.thirtydegreesray.openhub.mvp.contract.IIssueDetailContract;
 import com.thirtydegreesray.openhub.mvp.model.Issue;
+import com.thirtydegreesray.openhub.mvp.model.IssueEvent;
 import com.thirtydegreesray.openhub.mvp.presenter.IssueDetailPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.fragment.IssueTimelineFragment;
@@ -28,6 +30,7 @@ import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by ThirtyDegreesRay on 2017/9/26 19:27:11
@@ -57,8 +60,11 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
     @BindView(R.id.issue_title) TextView issueTitle;
     @BindView(R.id.issue_state_img) ImageView issueStateImg;
     @BindView(R.id.issue_state_text) TextView issueStateText;
+    @BindView(R.id.comment_bn) FloatingActionButton commentBn;
 
     private IssueTimelineFragment issueTimelineFragment;
+
+    private final int ADD_COMMENT_REQUEST_CODE = 100;
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
@@ -116,6 +122,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
                 .placeholder(R.mipmap.logo)
                 .into(userImageView);
         issueTitle.setText(issue.getTitle());
+        commentBn.setVisibility(issue.isLocked() ? View.GONE : View.VISIBLE);
 
         String commentStr = String.valueOf(issue.getCommentNum()).concat(" ")
                 .concat(getString(R.string.comments).toLowerCase());
@@ -137,7 +144,26 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
                         .commit();
             }
         }, 500);
-
     }
 
+    @Override
+    public void showAddedComment(@NonNull IssueEvent event) {
+        issueTimelineFragment.addComment(event);
+    }
+
+    @OnClick(R.id.comment_bn)
+    public void onCommentBnClicked(){
+        MarkdownEditorActivity.show(getActivity(), R.string.comment, ADD_COMMENT_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode != RESULT_OK) return;
+        if(requestCode == ADD_COMMENT_REQUEST_CODE){
+            String text = data.getExtras().getString("text");
+            mPresenter.addComment(text);
+            return ;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

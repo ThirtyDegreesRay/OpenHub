@@ -135,4 +135,7 @@ public class IssueTimelinePresenter extends BasePresenter<IIssueTimelineContract
         }
     }
 
+    public ArrayList<IssueEvent> getTimeline() {
+        return timeline;
+    }
 }

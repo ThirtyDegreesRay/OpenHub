@@ -4,13 +4,16 @@ import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.mvp.model.Issue;
 import com.thirtydegreesray.openhub.mvp.model.IssueEvent;
+import com.thirtydegreesray.openhub.mvp.model.request.CommentRequestModel;
 
 import java.util.ArrayList;
 
 import retrofit2.Response;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -80,6 +83,15 @@ public interface IssueService {
             @Path("repo") String repo,
             @Path("issueNumber") int issueNumber,
             @Query("page") int page
+    );
+
+    @NonNull @POST("repos/{owner}/{repo}/issues/{issueNumber}/comments")
+    @Headers("Accept: application/vnd.github.html")
+    Observable<Response<IssueEvent>> addComment(
+            @Path("owner") String owner,
+            @Path("repo") String repo,
+            @Path("issueNumber") int issueNumber,
+            @Body CommentRequestModel body
     );
 
 }

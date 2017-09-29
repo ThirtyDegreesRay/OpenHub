@@ -55,6 +55,11 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
     private ArrayList<IssuesFilterListener> listeners ;
 
     @Override
+    protected void initActivity() {
+        super.initActivity();
+    }
+
+    @Override
     protected void setupActivityComponent(AppComponent appComponent) {
         DaggerActivityComponent.builder()
                 .appComponent(appComponent)
@@ -129,8 +134,8 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
             MenuItem selectedUserFilterMenu = ViewHelper.getSelectedMenu(
                     navView.getMenu().findItem(R.id.nav_type_chooser));
             if(selectedUserFilterMenu != null) {
-                IssuesFilter.UserIssuesFilterType userFilterType = Enum.valueOf(
-                        IssuesFilter.UserIssuesFilterType.class, selectedUserFilterMenu.getTitle().toString());
+                IssuesFilter.UserIssuesFilterType userFilterType =
+                        getUserIssuesFilterType(selectedUserFilterMenu.getItemId());
                 issuesFilter.setUserIssuesFilterType(userFilterType);
             }
         }
@@ -168,6 +173,23 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
         issuesFilter.setSortType(sortType);
         issuesFilter.setSortDirection(sortDirection);
         return issuesFilter;
+    }
+
+    private IssuesFilter.UserIssuesFilterType getUserIssuesFilterType(int itemId){
+        switch (itemId){
+            case R.id.nav_all:
+                return IssuesFilter.UserIssuesFilterType.All;
+            case R.id.nav_created:
+                return IssuesFilter.UserIssuesFilterType.Created;
+            case R.id.nav_assigned:
+                return IssuesFilter.UserIssuesFilterType.Assigned;
+            case R.id.nav_mentioned:
+                return IssuesFilter.UserIssuesFilterType.Mentioned;
+            case R.id.nav_subscribed:
+                return IssuesFilter.UserIssuesFilterType.Subscribed;
+            default:
+                return IssuesFilter.UserIssuesFilterType.All;
+        }
     }
 
     public interface IssuesFilterListener{

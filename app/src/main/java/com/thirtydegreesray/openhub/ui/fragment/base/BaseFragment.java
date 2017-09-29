@@ -83,7 +83,7 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
         View fragmentView = inflater.inflate(getLayoutId(), container, false);
         unbinder = ButterKnife.bind(this, fragmentView);
         initFragment(savedInstanceState);
-        mPresenter.onViewInitialized();
+        if(mPresenter != null) mPresenter.onViewInitialized();
         return fragmentView;
     }
 
@@ -91,10 +91,11 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupFragmentComponent(getAppComponent());
-        mPresenter.attachView(this);
+        if(mPresenter != null) mPresenter.attachView(this);
         DataAutoAccess.getData(this, savedInstanceState);
-        mPresenter.onRestoreInstanceState(getArguments());
-        mPresenter.onRestoreInstanceState(savedInstanceState);
+        DataAutoAccess.getData(this, getArguments());
+        if(mPresenter != null) mPresenter.onRestoreInstanceState(getArguments());
+        if(mPresenter != null) mPresenter.onRestoreInstanceState(savedInstanceState);
         Logger.d(TAG, getClass().getSimpleName() + " onCreate");
     }
 
@@ -120,7 +121,7 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         DataAutoAccess.saveData(this, outState);
-        mPresenter.onSaveInstanceState(outState);
+        if(mPresenter != null) mPresenter.onSaveInstanceState(outState);
         Logger.d(TAG, getClass().getSimpleName() + " onSaveInstanceState");
     }
 
@@ -134,7 +135,7 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-        mPresenter.detachView();
+        if(mPresenter != null) mPresenter.detachView();
         Logger.d(TAG, getClass().getSimpleName() + " onDestroyView");
     }
 
