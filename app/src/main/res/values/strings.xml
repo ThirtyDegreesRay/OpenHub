@@ -3,6 +3,25 @@
     <string name="navigation_drawer_open" translatable="false">navigation_drawer_open</string>
     <string name="navigation_drawer_close" translatable="false">navigation_drawer_close</string>
 
+    <!-- colors -->
+    <string name="light_blue" translatable="false">Light Blue</string>
+    <string name="blue" translatable="false">Blue</string>
+    <string name="indigo" translatable="false">Indigo</string>
+    <string name="orange" translatable="false">Orange</string>
+    <string name="yellow" translatable="false">Yellow</string>
+    <string name="amber" translatable="false">Amber</string>
+    <string name="grey" translatable="false">Grey</string>
+    <string name="brown" translatable="false">Brown</string>
+
+    <string name="cyan" translatable="false">Cyan</string>
+    <string name="teal" translatable="false">Teal</string>
+    <string name="lime" translatable="false">Lime</string>
+    <string name="green" translatable="false">Green</string>
+    <string name="pink" translatable="false">Pink</string>
+    <string name="red" translatable="false">Red</string>
+    <string name="purple" translatable="false">Purple</string>
+    <string name="deep_purple" translatable="false">Deep Purple</string>
+
     <!-- onLoginClick -->
     <string name="user_name">UserName</string>
     <string name="password">Password</string>
@@ -49,30 +68,12 @@
     <string name="language">Language</string>
     <string name="logout">Logout</string>
 
-    <!-- colors -->
-    <string name="light_blue" translatable="false">Light Blue</string>
-    <string name="blue" translatable="false">Blue</string>
-    <string name="indigo" translatable="false">Indigo</string>
-    <string name="orange" translatable="false">Orange</string>
-    <string name="yellow" translatable="false">Yellow</string>
-    <string name="amber" translatable="false">Amber</string>
-    <string name="grey" translatable="false">Grey</string>
-    <string name="brown" translatable="false">Brown</string>
-
-    <string name="cyan" translatable="false">Cyan</string>
-    <string name="teal" translatable="false">Teal</string>
-    <string name="lime" translatable="false">Lime</string>
-    <string name="green" translatable="false">Green</string>
-    <string name="pink" translatable="false">Pink</string>
-    <string name="red" translatable="false">Red</string>
-    <string name="purple" translatable="false">Purple</string>
-    <string name="deep_purple" translatable="false">Deep Purple</string>
-
     <!-- Repository -->
     <string name="repository">Repository</string>
     <string name="info">Info</string>
     <string name="files">Files</string>
     <string name="commits">Commits</string>
+    <string name="commit">Commit</string>
 
     <string name="star">Star</string>
     <string name="unstar">Unstar</string>
@@ -96,7 +97,7 @@
     <string name="stargazers">Stargazers</string>
     <string name="forks">Forks</string>
     <string name="watchers">Watchers</string>
-    <string name="readme" translatable="false">README</string>
+    <string name="readme">README</string>
     <string name="warning_dialog_tile">Warning</string>
     <string name="cancel">Cancel</string>
     <string name="close">Close</string>
@@ -136,23 +137,20 @@
     <string name="search">Search</string>
     <string name="sort">Sort</string>
 
-    <string name="best_match" translatable="false">Best match</string>
-    <string name="most_stars" translatable="false">Most stars</string>
-    <string name="fewest_stars" translatable="false">Fewest stars</string>
-    <string name="most_forks" translatable="false">Most forks</string>
-    <string name="fewest_forks" translatable="false">Fewest forks</string>
-    <string name="recently_updated" translatable="false">Recently updated</string>
-    <string name="least_recently_updated" translatable="false">Least recently updated</string>
+    <string name="best_match">Best match</string>
+    <string name="most_stars">Most stars</string>
+    <string name="fewest_stars">Fewest stars</string>
+    <string name="most_forks">Most forks</string>
+    <string name="fewest_forks">Fewest forks</string>
+    <string name="recently_updated">Recently updated</string>
+    <string name="least_recently_updated">Least recently updated</string>
 
-    <string name="most_followers" translatable="false">Most followers</string>
-    <string name="fewest_followers" translatable="false">Fewest followers</string>
-    <string name="most_recently_joined" translatable="false">Most recently joined</string>
-    <string name="least_recently_joined" translatable="false">Least recently joined</string>
-    <string name="most_repositories" translatable="false">Most repositories</string>
-    <string name="fewest_repositories" translatable="false">Fewest repositories</string>
-
-    <string name="recently_indexed" translatable="false">Recently indexed</string>
-    <string name="least_recently_indexed" translatable="false">Least recently indexed</string>
+    <string name="most_followers">Most followers</string>
+    <string name="fewest_followers">Fewest followers</string>
+    <string name="most_recently_joined">Most recently joined</string>
+    <string name="least_recently_joined">Least recently joined</string>
+    <string name="most_repositories">Most repositories</string>
+    <string name="fewest_repositories">Fewest repositories</string>
 
     <string name="invalid_query">Invalid query text!</string>
 
@@ -190,7 +188,8 @@
     <string name="no_upgrade_tip">You have installed the latest version.</string>
     <string name="fork_failed">Fork failed</string>
 
-    <string name="filter" translatable="false">Filter</string>
+    <string name="filter">Filter</string>
+    <!-- unused now -->
     <string name="filter_all" translatable="false">All</string>
     <string name="filter_owner" translatable="false">Owner</string>
     <string name="filter_public" translatable="false">Public</string>
@@ -201,11 +200,12 @@
     <string name="sort_created" translatable="false">Created</string>
     <string name="sort_updated" translatable="false">Updated</string>
     <string name="sort_pushed" translatable="false">Pushed</string>
+    <!-- unused now -->
 
     <string name="releases">Releases</string>
     <string name="no_releases">No releases</string>
-    <string name="source_code_zip" translatable="false">Source code (zip)</string>
-    <string name="source_code_tar" translatable="false">Source code (tar.gz)</string>
+    <string name="source_code_zip">Source code (zip)</string>
+    <string name="source_code_tar">Source code (tra.gz)</string>
     <string name="download_source_zip">Download source (zip)</string>
     <string name="download_source_tar">Download source (tar.gz)</string>
     <string name="released_this">released this</string>
@@ -226,20 +226,29 @@
     <string name="issue">Issue</string>
 
     <string name="type">Type</string>
-    <string name="all" translatable="false">All</string>
-    <string name="created" translatable="false">Created</string>
-    <string name="assigned" translatable="false">Assigned</string>
-    <string name="mentioned" translatable="false">Mentioned</string>
-    <string name="subscribed" translatable="false">Subscribed</string>
+    <string name="all">All</string>
+    <string name="created">Created</string>
+    <string name="assigned">Assigned</string>
+    <string name="mentioned">Mentioned</string>
+    <string name="participating">Participating</string>
 
-    <string name="recently_created" translatable="false">Recently created</string>
-    <string name="previously_created" translatable="false">Previously created</string>
-    <string name="most_comments" translatable="false">Most comments</string>
-    <string name="fewest_comments" translatable="false">Fewest comments</string>
+    <string name="recently_created">Recently created</string>
+    <string name="previously_created">Previously created</string>
+    <string name="most_comments">Most comments</string>
+    <string name="fewest_comments">Fewest comments</string>
 
     <string name="comments">Comments</string>
     <string name="comment">Comment</string>
     <string name="no_description">No description provided.</string>
     <string name="no_comments">No comments.</string>
+
+    <string name="write">Write</string>
+    <string name="preview">Preview</string>
+
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="comment_null_warning">Comment is null!</string>
+    <string name="comment_success">Comment success</string>
+
 
 </resources>

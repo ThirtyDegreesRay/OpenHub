@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- onLoginClick -->
+    <string name="user_name">שם משתמש</string>
+    <string name="password">סיסמה</string>
+    <string name="login">כנס</string>
+    <string name="login_in_browser">כנס באמצעות הדפדפן</string>
+    <string name="oauth_tip">כנס באמצעות דפדפן ברירת המחדל שלך (OAuth)</string>
+    <string name="user_name_warning">שם משתמש בלתי חוקי!</string>
+    <string name="password_warning">הסיסמה שגויה!</string>
+
+    <!-- menu -->
+    <string name="profile">תיאור משתמש</string>
+    <string name="notifications">התראות</string>
+    <string name="news">חדשות</string>
+    <string name="issues">סוגיות</string>
+
+    <string name="repositories">מאגרים</string>
+    <string name="owned">בבעלותך</string>
+    <string name="starred">כוכב</string>
+    <string name="trending">באופנה</string>
+    <string name="explore">סייר</string>
+
+    <string name="info_and_repositories">מידע והעדפות</string>
+    <string name="settings">הגדרות</string>
+    <string name="about">אודות</string>
+
+
+    <string name="no_cache_and_network">הרשת המטמון אינם זמינים.</string>
+    <string name="page_no_found">הדף לא נמצא.</string>
+    <string name="no_network_tip">טעינת המידע מגיטהאב נכשלה. נא לבדוק את החיבור לרשת ולנסות שוב.</string>
+    <string name="load_timeout_tip">טעינת המידע מגיטהאב נכשלה. נא לבדוק את החיבור לרשת ולנסות שוב.</string>
+    <string name="tap_to_retry">הקש כדי לנסות שוב</string>
+    <string name="no_data">אין מידע</string>
+
+    <string name="title_activity_repository">OpenHub</string>
+    <string name="title_activity_settings">הגדרות</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- settings -->
+    <string name="choose_theme">בחר ערכת נושא</string>
+    <string name="theme_accent_color">צבע הדגשת ערכת הנושא</string>
+    <string name="cache_controller">מנהל מטמון</string>
+    <string name="cache_controller_desc">אם קיים מטמון, טען קודם מהמטמון, ולאחר מכן טען מהרשת.</string>
+    <string name="language">שפה</string>
+    <string name="logout">צא</string>
+
+    <!-- colors -->
+
+
+    <!-- Repository -->
+    <string name="repository">מאגר</string>
+    <string name="info">מידע</string>
+    <string name="files">קבצים</string>
+    <string name="commits">שינויים</string>
+
+    <string name="star">כוכב</string>
+    <string name="unstar">הסר כוכב</string>
+    <string name="unstarred">כוכב הוסר</string>
+    <string name="branch_tip">ענפים או תגים</string>
+    <string name="share">שתף</string>
+    <string name="open_in_browser">פתח בדפדפן</string>
+    <string name="copy_url">העתק קישור</string>
+    <string name="watch">צפה</string>
+    <string name="watched">נצפה</string>
+    <string name="unwatch">הפסק צפייה</string>
+    <string name="unwatched">צפייה הופסקה</string>
+    <string name="fork">סעף</string>
+    <string name="forked">סועף</string>
+    <string name="forked_from">סועף מ:</string>
+    <string name="wrap_lines">עטוף שורות</string>
+    <string name="refresh">רענן</string>
+
+    <string name="success_copied">הועתק</string>
+
+    <string name="stargazers">צופי כוכבים</string>
+    <string name="forks">הסתעפויות</string>
+    <string name="watchers">צופים</string>
+    <string name="warning_dialog_tile">הזהרה</string>
+    <string name="cancel">ביטול</string>
+    <string name="close">סגירה</string>
+    <string name="ok">בסדר</string>
+    <string name="select_branch">בחר ענף או תג</string>
+    <string name="share_to">שתף ל:</string>
+    <string name="no_share_clients">אין יישומי מותקנים.</string>
+    <string name="no_browser_clients">אין דפדפנים מותקנים.</string>
+    <string name="send_email">שלח דוא\"ל</string>
+    <string name="no_email_clients">אין יישומי דוא\"ל מותקנים</string>
+    <string name="url_invalid">הכתובת אינה חוקית</string>
+    <string name="view_archive_file_error">קובץ ארכיון אינו נתמך, נא להוריד את הקובץ כדי להציג את תוכנו.</string>
+    <string name="fork_warning_msg">סעף את המאגר הזה?</string>
+    <string name="invalid_repo_url">כתובת מאגר בלתי חוקי!</string>
+
+    <!-- Profile -->
+    <string name="follow">עקוב</string>
+    <string name="followed">נעקב</string>
+    <string name="unfollow">הפסק עקיבה</string>
+    <string name="unfollowed">עקיבה הופסקה</string>
+    <string name="members">חברים</string>
+    <string name="view">הצג</string>
+    <string name="followers">עוקבים</string>
+    <string name="following">עוקב אחרי</string>
+    <string name="repos">מאגרים</string>
+    <string name="stars">כוכבים</string>
+    <string name="gists">סיכומים</string>
+    <string name="joined_at">הצטרף/ה</string>
+    <string name="users">משתמשים</string>
+    <string name="activity">פעילות</string>
+
+    <string name="seconds_ago">שנות לפני</string>
+    <string name="minutes_ago">דקות לפני</string>
+    <string name="hours_ago">שעות לפני</string>
+    <string name="days_ago">ימים לפני</string>
+
+    <string name="search">חפש</string>
+    <string name="sort">מיין</string>
+
+
+
+
+    <string name="invalid_query">תמליל שאילתא בלתי חוקי!</string>
+
+    <string name="daily">יומי</string>
+    <string name="weekly">שבועי</string>
+    <string name="monthly">חודשי</string>
+
+    <string name="logout_warning">אשר יציאה?</string>
+    <string name="unknown">לא ידוע</string>
+    <string name="organizations">ארגונים</string>
+    <string name="no_user">אין משתמשים</string>
+    <string name="no_activity">אין פעילויות</string>
+    <string name="no_repository">אין מאגרים</string>
+    <string name="no_file">אין קבצים</string>
+    <string name="developing">בפיתוח</string>
+    <string name="version" >גרסה</string>
+    <string name="source_code" >קוד מקור</string>
+    <string name="author" >מפתח</string>
+    <string name="follow_on_github" >עקוב בגיטהאב</string>
+    <string name="email" >דוא\"ל</string>
+    <string name="loading">טוען</string>
+
+    <string name="upgrade">שדרג</string>
+    <string name="install">התקן</string>
+    <string name="next_time">פעם הבאה</string>
+    <string name="upgrade_version">גרסה:</string>
+    <string name="upgrade_apk_size">גודל התקנה:</string>
+    <string name="publish_time">זמן פרסום:</string>
+    <string name="upgrade_info">מידע אודות שדרוג:</string>
+    <string name="no_upgrade_tip">הינך משתמש בגרסה האחרונה.</string>
+    <string name="fork_failed">הסתעפות נכשלה</string>
+
+
+
+    <string name="releases">שחרורים</string>
+    <string name="no_releases">אין שחרורים</string>
+    <string name="download_source_zip">הורד מקור (zip)</string>
+    <string name="download_source_tar">הורד מקור (tar.gz)</string>
+    <string name="released_this">פורסם ב:</string>
+    <string name="on">ב:</string>
+    <string name="download">הורד</string>
+    <string name="download_complete">ההורדה הושלמה</string>
+    <string name="download_failed">ההורדה נכשלה</string>
+    <string name="downloading">מוריד</string>
+    <string name="download_empty_tip">כתובת או שם קובץ ריקים!</string>
+    <string name="download_start">התחל הורדה</string>
+    <string name="download_cancel">בטל הורדה</string>
+    <string name="permission_storage_denied">הגישה נדחתה. נא התר גישה לקבצים.</string>
+    <string name="enable_download_service_tip">נא להפעיל ראשית את שירות ההורדה!</string>
+
+    <string name="open">פתח</string>
+    <string name="closed">נסגר</string>
+    <string name="no_issues">אין סוגיות</string>
+    <string name="issue">סוגיה</string>
+
+    <string name="type">סוג</string>
+
+
+    <string name="comments">תגובות</string>
+    <string name="comment">תגובה</string>
+    <string name="no_description">לא ניתן תיאור</string>
+    <string name="no_comments">אין תגובות.</string>
+
+    <!-- traslated by google traslate -->
+    <string name="all">את כל</string>
+    <string name="assigned">שהוקצה</string>
+    <string name="best_match">ההתאמה הטובה ביותר</string>
+    <string name="comment_null_warning">הערה היא null!</string>
+    <string name="comment_success">תגובה הצלחה</string>
+    <string name="commit">לְבַצֵעַ</string>
+    <string name="created">נוצר</string>
+    <string name="delete">לִמְחוֹק</string>
+    <string name="edit">לַעֲרוֹך</string>
+    <string name="fewest_comments">הערות מעטות</string>
+    <string name="fewest_followers">חסידים מעטים</string>
+    <string name="fewest_forks">מזלג מעטים</string>
+    <string name="fewest_repositories">המאגרים הכי קטנים</string>
+    <string name="fewest_stars">Fewest stars</string>
+    <string name="filter">לְסַנֵן</string>
+    <string name="least_recently_joined">לפחות לאחרונה הצטרף</string>
+    <string name="least_recently_updated">לפחות עדכון לאחרונה</string>
+    <string name="mentioned">מוּזְכָּר</string>
+    <string name="most_comments">רוב ההערות</string>
+    <string name="most_followers">רוב העוקבים</string>
+    <string name="most_forks">רוב מזלגות</string>
+    <string name="most_recently_joined">הצטרף לאחרונה</string>
+    <string name="most_repositories">רוב המאגרים</string>
+    <string name="most_stars">רוב הכוכבים</string>
+    <string name="participating">משתתף</string>
+    <string name="preview">תצוגה מקדימה</string>
+    <string name="previously_created">נוצר בעבר</string>
+    <string name="readme">תקרא אותי</string>
+    <string name="recently_created">נוצר לאחרונה</string>
+    <string name="recently_updated">עודכן לאחרונה</string>
+    <string name="source_code_tar">קוד מקור (tar.gz)</string>
+    <string name="source_code_zip">קוד מקור (zip)</string>
+    <string name="write">לִכתוֹב</string>
+</resources>

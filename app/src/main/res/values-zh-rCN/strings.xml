@@ -158,5 +158,40 @@
     <string name="no_issues">没有问题</string>
     <string name="open">开放的</string>
     <string name="type">类型</string>
+    <string name="comment_null_warning">评论不能为空！</string>
+    <string name="comment_success">评论成功</string>
+    <string name="commit">提交</string>
+    <string name="delete">删除</string>
+    <string name="edit">编辑</string>
+    <string name="preview">预览</string>
+    <string name="write">编辑</string>
+    <string name="all">全部</string>
+    <string name="created">我创建的</string>
+    <string name="assigned">分配给我的</string>
+    <string name="mentioned">提到我的</string>
+    <string name="participating">参与的</string>
+    <string name="recently_created">最近创建的</string>
+    <string name="previously_created">以前创建的</string>
+    <string name="most_comments">评论最多的</string>
+    <string name="fewest_comments">评论最少的</string>
+    <string name="filter">过滤器</string>
+
+    <string name="best_match">最匹配的</string>
+    <string name="most_stars">最多星标的</string>
+    <string name="fewest_stars">最少星标的</string>
+    <string name="most_forks">最多分支的</string>
+    <string name="fewest_forks">最少分支的</string>
+    <string name="recently_updated">最近更新的</string>
+    <string name="least_recently_updated">以前更新的</string>
+
+    <string name="most_followers">最多跟随者的</string>
+    <string name="fewest_followers">最少跟随者的</string>
+    <string name="most_recently_joined">最近加入的</string>
+    <string name="least_recently_joined">以前加入的</string>
+    <string name="most_repositories">最多版本库的</string>
+    <string name="fewest_repositories">最少版本库的</string>
+    <string name="readme">描述</string>
+    <string name="source_code_tar">源码 (tar.gz)</string>
+    <string name="source_code_zip">源码 (zip)</string>
 
 </resources>
