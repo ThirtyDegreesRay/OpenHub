@@ -18,7 +18,6 @@ package com.thirtydegreesray.openhub;
 
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
@@ -30,6 +29,7 @@ import com.thirtydegreesray.openhub.ui.activity.AboutActivity;
 import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
 import com.thirtydegreesray.openhub.ui.activity.MainActivity;
 import com.thirtydegreesray.openhub.ui.widget.UpgradeDialog;
+import com.thirtydegreesray.openhub.util.Logger;
 import com.thirtydegreesray.openhub.util.NetHelper;
 
 /**
@@ -55,20 +55,20 @@ public class AppApplication extends Application {
         application = this;
         //init application
         long startTime = System.currentTimeMillis();
-        Log.i(TAG, "startTime:" + startTime);
+        Logger.i(TAG, "startTime:" + startTime);
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
-        startTime = System.currentTimeMillis();
         NetHelper.INSTANCE.init(this);
         initBugly();
-        Log.i(TAG, "application ok:" + (System.currentTimeMillis() - startTime));
+        startTime = System.currentTimeMillis();
+        Logger.i(TAG, "application ok:" + (System.currentTimeMillis() - startTime));
     }
 
     private void initBugly(){
 //        if(BuildConfig.DEBUG) return;
 
-        Beta.initDelay = 10 * 1000;
+        Beta.initDelay = 6 * 1000;
         Beta.enableHotfix = false;
         Beta.canShowUpgradeActs.add(LoginActivity.class);
         Beta.canShowUpgradeActs.add(MainActivity.class);
@@ -78,8 +78,9 @@ public class AppApplication extends Application {
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
         strategy.setAppVersion(BuildConfig.VERSION_NAME);
         strategy.setAppReportDelay(10 * 1000);
-        Bugly.init(getApplicationContext(), AppConfig.BUGLY_APPID, BuildConfig.DEBUG);
+        Bugly.init(getApplicationContext(), AppConfig.BUGLY_APPID, BuildConfig.DEBUG, strategy);
         CrashReport.setIsDevelopmentDevice(getApplicationContext(), BuildConfig.DEBUG);
+
     }
 
     public static AppApplication get(){

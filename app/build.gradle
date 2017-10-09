@@ -20,6 +20,10 @@ android {
         buildConfigField "String", "OPENHUB_CLIENT_ID", buildProperties.getProperty("openhub_client_id")
         buildConfigField "String", "OPENHUB_CLIENT_SECRET", buildProperties.getProperty("openhub_client_secret")
         buildConfigField "String", "BUGLY_ID", buildProperties.getProperty("bugly_appid")
+
+        ndk {
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
     }
     buildTypes {
         release {
@@ -40,6 +44,7 @@ android {
 
 repositories {
     maven { url "https://jitpack.io" }
+//    google()
 }
 
 dependencies {
@@ -49,7 +54,7 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
 
-//    implementation "com.android.support:support-annotations:${ANDROID_SUPPORT_VERSION}"
+//    compile "com.android.support:support-annotations:${ANDROID_SUPPORT_VERSION}"
 
     compile "com.android.support:support-v4:${ANDROID_SUPPORT_VERSION}"
     compile "com.android.support:appcompat-v7:${ANDROID_SUPPORT_VERSION}"
@@ -61,7 +66,7 @@ dependencies {
     compile "com.android.support:preference-v14:${ANDROID_SUPPORT_VERSION}"
 
     compile "com.android.support.constraint:constraint-layout:${CONSTRAINT_VERSION}"
-    compile "com.android.support:multidex:${MULTIDEX_VERSION}"
+//    compile "com.android.support:multidex:${MULTIDEX_VERSION}"
 
     compile "com.thirtydegreesray:dataautoaccess:${DATAAUTOACCESS_VERSION}"
     annotationProcessor "com.thirtydegreesray:dataautoaccess-compiler:${DATAAUTOACCESS_VERSION}"
@@ -110,6 +115,7 @@ dependencies {
 
 //    compile "com.tencent.bugly:crashreport:${BUGGLY_VERSION}"
     compile "com.tencent.bugly:crashreport_upgrade:${BUGGLY_VERSION}"
+    compile "com.tencent.bugly:nativecrashreport:${BUGGLY_VERSION}"
     compile "com.zzhoujay.richtext:richtext:${RICKTEXT_VERSION}"
     compile 'com.zzhoujay.glideimagegetter:glideimagegetter:1.0.5'
 

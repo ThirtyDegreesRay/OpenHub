@@ -68,6 +68,7 @@ public enum UpgradeDialog implements UpgradeListener {
                 R.string.install : R.string.upgrade;
 
         new AlertDialog.Builder(tempActivity)
+                .setCancelable(true)
                 .setTitle(title)
                 .setView(content)
                 .setNegativeButton(R.string.next_time, new DialogInterface.OnClickListener() {

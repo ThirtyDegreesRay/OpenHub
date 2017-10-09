@@ -43,6 +43,7 @@ public class Downloader {
 
     private Downloader(Context context){
         this.mContext = context;
+        AppHelper.updateAppLanguage(context);
     }
 
     public void start(String url, String fileName) {

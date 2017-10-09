@@ -27,12 +27,11 @@ public class DownloadSourceDialog {
         final RecyclerView recyclerView = new RecyclerView(context);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(adapter);
-        AdaptiveView contentView = new AdaptiveView(context);
-        contentView.addView(recyclerView);
 
         new AlertDialog.Builder(context)
+                .setCancelable(true)
                 .setTitle(R.string.download)
-                .setView(contentView)
+                .setView(recyclerView)
                 .setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

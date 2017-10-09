@@ -36,9 +36,7 @@ import javax.inject.Inject;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/9 21:42:47
@@ -109,7 +107,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
                             }
                         }
                 );
-        getRepoService().getBranches(owner, repoName)
+        Observable<Response<ArrayList<Branch>>> observable = getRepoService().getBranches(owner, repoName)
                 .flatMap(new Func1<Response<ArrayList<Branch>>, Observable<Response<ArrayList<Branch>>>>() {
                     @Override
                     public Observable<Response<ArrayList<Branch>>> call(
@@ -117,10 +115,8 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
                         branches = arrayListResponse.body();
                         return getRepoService().getTags(owner, repoName);
                     }
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(httpProgressSubscriber);
+                });
+        generalRxHttpExecute(observable, httpProgressSubscriber);
     }
 
     @Override

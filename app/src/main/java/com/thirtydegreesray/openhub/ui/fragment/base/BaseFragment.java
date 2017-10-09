@@ -260,6 +260,7 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     @Override
     public void showTipDialog(String content) {
         new AlertDialog.Builder(getActivity())
+                .setCancelable(true)
                 .setTitle("提示")
                 .setMessage(content)
                 .setCancelable(true)
@@ -276,6 +277,7 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     public void showConfirmDialog(String msn, String title, String confirmText
             , DialogInterface.OnClickListener confirmListener) {
         new AlertDialog.Builder(getActivity())
+                .setCancelable(true)
                 .setTitle(title)
                 .setMessage(msn)
                 .setCancelable(true)

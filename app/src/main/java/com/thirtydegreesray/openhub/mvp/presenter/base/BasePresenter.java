@@ -313,7 +313,10 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
 
     @NonNull
     protected String getErrorTip(@NonNull Throwable error) {
-        String errorTip ;
+        String errorTip = null;
+        if(error == null){
+            return errorTip;
+        }
         if(error instanceof UnknownHostException){
             errorTip = getString(R.string.no_network_tip);
         } else if (error instanceof SocketTimeoutException || error instanceof ConnectTimeoutException) {

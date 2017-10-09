@@ -110,6 +110,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
                 = Arrays.asList(getResources().getStringArray(R.array.theme_array));
         int theme = PrefHelper.getTheme();
         AlertDialog dialog = new AlertDialog.Builder(getContext())
+                .setCancelable(true)
                 .setTitle(R.string.choose_theme)
                 .setSingleChoiceItems(R.array.theme_array, theme, new DialogInterface.OnClickListener() {
                     @Override
@@ -133,6 +134,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
         }
 
         new AlertDialog.Builder(getContext())
+                .setCancelable(true)
                 .setTitle(R.string.language)
                 .setSingleChoiceItems(R.array.language_array, index, new DialogInterface.OnClickListener() {
                     @Override
@@ -151,6 +153,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
 
     private void logout(){
         new AlertDialog.Builder(getContext())
+                .setCancelable(true)
                 .setTitle(R.string.warning_dialog_tile)
                 .setMessage(R.string.logout_warning)
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

@@ -44,7 +44,6 @@ import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.BranchesAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
-import com.thirtydegreesray.openhub.ui.widget.AdaptiveView;
 import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 
@@ -187,12 +186,11 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         final RecyclerView recyclerView = new RecyclerView(getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(branchesAdapter);
-        AdaptiveView contentView = new AdaptiveView(getActivity());
-        contentView.addView(recyclerView);
 
         final AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+                .setCancelable(true)
                 .setTitle(getString(R.string.select_branch))
-                .setView(contentView)
+                .setView(recyclerView)
                 .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -216,6 +214,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
 
     private void forkRepo(){
         new AlertDialog.Builder(getActivity())
+                .setCancelable(true)
                 .setTitle(R.string.warning_dialog_tile)
                 .setMessage(R.string.fork_warning_msg)
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
