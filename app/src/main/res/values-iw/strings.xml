@@ -1,4 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~    Copyright 2017 ThirtyDegreesRay
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+
 <resources>
     <!-- onLoginClick -->
     <string name="user_name">שם משתמש</string>
@@ -215,4 +230,9 @@
     <string name="source_code_tar">קוד מקור (tar.gz)</string>
     <string name="source_code_zip">קוד מקור (zip)</string>
     <string name="write">לִכתוֹב</string>
+    <string name="close_success">סגור הצלחה</string>
+    <string name="delete_comment_warning">לאשר כדי למחוק תגובה?</string>
+    <string name="just_now">זֶה עַתָה</string>
+    <string name="reopen">נפתח מחדש</string>
+    <string name="reopen_success">פתח מחדש את ההצלחה</string>
 </resources>

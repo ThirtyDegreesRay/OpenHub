@@ -122,4 +122,12 @@ public interface IssueService {
             @Body Issue body
     );
 
+    @NonNull @POST("repos/{owner}/{repo}/issues")
+    @Headers("Accept: application/vnd.github.html,application/vnd.github.VERSION.raw")
+    Observable<Response<Issue>> createIssue(
+            @Path("owner") String owner,
+            @Path("repo") String repo,
+            @Body Issue body
+    );
+
 }

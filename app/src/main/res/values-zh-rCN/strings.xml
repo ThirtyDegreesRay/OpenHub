@@ -193,5 +193,10 @@
     <string name="readme">描述</string>
     <string name="source_code_tar">源码 (tar.gz)</string>
     <string name="source_code_zip">源码 (zip)</string>
+    <string name="close_success">关闭成功</string>
+    <string name="delete_comment_warning">确认要删除评论？</string>
+    <string name="just_now">刚刚</string>
+    <string name="reopen">重开</string>
+    <string name="reopen_success">重开成功</string>
 
 </resources>
