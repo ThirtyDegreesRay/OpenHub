@@ -1,13 +1,17 @@
 package com.thirtydegreesray.openhub.mvp.presenter;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
+import com.thirtydegreesray.openhub.AppData;
+import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
+import com.thirtydegreesray.openhub.http.core.HttpProgressSubscriber;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
 import com.thirtydegreesray.openhub.mvp.contract.IIssueTimelineContract;
 import com.thirtydegreesray.openhub.mvp.model.Issue;
 import com.thirtydegreesray.openhub.mvp.model.IssueEvent;
+import com.thirtydegreesray.openhub.mvp.model.request.CommentRequestModel;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
@@ -46,6 +50,42 @@ public class IssueTimelinePresenter extends BasePresenter<IIssueTimelineContract
 //        if(page == 1)
 //            loadEvents();
         loadComments(page, isReload);
+    }
+
+    @Override
+    public boolean isEditAndDeleteEnable() {
+        return AppData.INSTANCE.getLoggedUser().getLogin().equals(issue.getUser().getLogin()) ||
+                AppData.INSTANCE.getLoggedUser().getLogin().equals(issue.getRepoAuthorName());
+    }
+
+    @Override
+    public void deleteComment(String commentId) {
+        generalRxHttpExecute(getIssueService()
+                .deleteComment(issue.getRepoAuthorName(), issue.getRepoName(), commentId), null);
+    }
+
+    @Override
+    public void editComment(final String commentId, final String body) {
+        HttpProgressSubscriber<IssueEvent> subscriber
+                = new HttpProgressSubscriber<>(
+                mView.getProgressDialog(getLoadTip()),
+                new HttpObserver<IssueEvent>() {
+                    @Override
+                    public void onError(Throwable error) {
+                        mView.showErrorToast(getErrorTip(error));
+                        mView.showEditCommentPage(commentId, body);
+                    }
+
+                    @Override
+                    public void onSuccess(HttpResponse<IssueEvent> response) {
+                        updateComment(response.body());
+                        mView.showTimeline(timeline);
+                        mView.showSuccessToast(getString(R.string.comment_success));
+                    }
+                }
+        );
+        generalRxHttpExecute(getIssueService().editComment(issue.getRepoAuthorName(),
+                issue.getRepoName(), commentId, new CommentRequestModel(body)), subscriber);
     }
 
     private void loadComments(final int page, final boolean isReload){
@@ -119,6 +159,7 @@ public class IssueTimelinePresenter extends BasePresenter<IIssueTimelineContract
     private IssueEvent getFirstComment(){
         IssueEvent firstComment = new IssueEvent();
         firstComment.setBodyHtml(issue.getBodyHtml());
+        firstComment.setBody(issue.getBody());
         firstComment.setUser(issue.getUser());
         firstComment.setCreatedAt(issue.getCreatedAt());
         firstComment.setHtmlUrl(issue.getHtmlUrl());
@@ -138,4 +179,14 @@ public class IssueTimelinePresenter extends BasePresenter<IIssueTimelineContract
     public ArrayList<IssueEvent> getTimeline() {
         return timeline;
     }
+
+    private void updateComment(IssueEvent editedComment){
+        for(IssueEvent event : timeline){
+            if(editedComment.getId().equals(event.getId())){
+                event.setBodyHtml(editedComment.getBodyHtml());
+                event.setBody(editedComment.getBody());
+            }
+        }
+    }
+
 }

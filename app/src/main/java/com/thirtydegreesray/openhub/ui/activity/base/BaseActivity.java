@@ -140,8 +140,7 @@ BaseActivity<P extends IBaseContract.Presenter>
      * 获取ContentView id
      * @return
      */
-    @Nullable @LayoutRes
-    protected abstract int getContentView();
+    @LayoutRes protected abstract int getContentView();
 
     /**
      * 初始化activity

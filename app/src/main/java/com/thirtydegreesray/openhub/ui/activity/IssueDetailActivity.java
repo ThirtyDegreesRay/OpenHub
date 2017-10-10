@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.GlideApp;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
@@ -65,6 +66,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
     private IssueTimelineFragment issueTimelineFragment;
 
     private final int ADD_COMMENT_REQUEST_CODE = 100;
+    public static final int EDIT_COMMENT_REQUEST_CODE = 101;
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
@@ -75,7 +77,6 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
                 .inject(this);
     }
 
-    @Nullable
     @Override
     protected int getContentView() {
         return R.layout.activity_issue_detail;
@@ -94,6 +95,22 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        boolean isCanToggle = AppData.INSTANCE.getLoggedUser().getLogin()
+                .equals(mPresenter.getIssue().getUser().getLogin()) ||
+                AppData.INSTANCE.getLoggedUser().getLogin()
+                        .equals(mPresenter.getIssue().getRepoAuthorName());
+        boolean isOpen = mPresenter.getIssue().getState().equals(Issue.IssueState.open);
+        if(isCanToggle){
+            MenuItem item = menu.findItem(R.id.action_issue_toggle);
+            item.setTitle(isOpen ? R.string.close : R.string.reopen);
+        }else{
+            menu.removeItem(R.id.action_issue_toggle);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
@@ -107,6 +124,9 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
                 return true;
             case R.id.action_copy_url:
                 AppHelper.copyToClipboard(getActivity(), mPresenter.getIssue().getHtmlUrl());
+                return true;
+            case R.id.action_issue_toggle:
+                mPresenter.toggleIssueState();
                 return true;
         }
 
@@ -133,17 +153,20 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
             issueStateImg.setImageResource(R.drawable.ic_issues_closed);
             issueStateText.setText(getString(R.string.closed).concat("    ").concat(commentStr));
         }
+        invalidateOptionsMenu();
 
-        issueTimelineFragment = IssueTimelineFragment.create(issue);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(R.id.container, issueTimelineFragment)
-                        .commit();
-            }
-        }, 500);
+        if(issueTimelineFragment == null){
+            issueTimelineFragment = IssueTimelineFragment.create(issue);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .add(R.id.container, issueTimelineFragment)
+                            .commit();
+                }
+            }, 500);
+        }
     }
 
     @Override
@@ -151,9 +174,14 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         issueTimelineFragment.addComment(event);
     }
 
+    @Override
+    public void showAddCommentPage(@Nullable String text) {
+        MarkdownEditorActivity.show(getActivity(), R.string.comment, ADD_COMMENT_REQUEST_CODE, text);
+    }
+
     @OnClick(R.id.comment_bn)
     public void onCommentBnClicked(){
-        MarkdownEditorActivity.show(getActivity(), R.string.comment, ADD_COMMENT_REQUEST_CODE);
+        showAddCommentPage(null);
     }
 
     @Override
@@ -162,6 +190,10 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         if(requestCode == ADD_COMMENT_REQUEST_CODE){
             String text = data.getExtras().getString("text");
             mPresenter.addComment(text);
+            return ;
+        } else if(requestCode == EDIT_COMMENT_REQUEST_CODE){
+            String text = data.getExtras().getString("text");
+            issueTimelineFragment.onEditComment(text);
             return ;
         }
         super.onActivityResult(requestCode, resultCode, data);

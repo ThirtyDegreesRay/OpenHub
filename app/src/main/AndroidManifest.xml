@@ -178,7 +178,8 @@
         <activity
             android:name=".ui.activity.MarkdownEditorActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/ThemeLight.Green">
+            android:theme="@style/ThemeLight.Green"
+            android:windowSoftInputMode="stateVisible">
         </activity>
 
     </application>

@@ -249,6 +249,9 @@
     <string name="delete">Delete</string>
     <string name="comment_null_warning">Comment is null!</string>
     <string name="comment_success">Comment success</string>
-
+    <string name="delete_comment_warning">Confirm to delete comment?</string>
+    <string name="reopen">Reopen</string>
+    <string name="reopen_success">Reopen success</string>
+    <string name="close_success">Close success</string>
 
 </resources>

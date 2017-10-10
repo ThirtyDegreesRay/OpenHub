@@ -98,6 +98,7 @@ public class StringUtils {
         final long MINUTES_LIMIT = 60 * SECONDS_LIMIT;
         final long HOURS_LIMIT = 24 * MINUTES_LIMIT;
         final long DAYS_LIMIT = 30 * HOURS_LIMIT;
+        subTime = subTime < 0 ? 0 : subTime;
         if(subTime < SECONDS_LIMIT){
             return subTime / 1000 + " " + context.getString(R.string.seconds_ago);
         } else if(subTime < MINUTES_LIMIT){

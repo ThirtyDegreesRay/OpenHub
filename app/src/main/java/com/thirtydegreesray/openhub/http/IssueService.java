@@ -8,11 +8,14 @@ import com.thirtydegreesray.openhub.mvp.model.request.CommentRequestModel;
 
 import java.util.ArrayList;
 
+import okhttp3.ResponseBody;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -25,7 +28,7 @@ import rx.Observable;
 public interface IssueService {
 
     @NonNull @GET("repos/{owner}/{repo}/issues")
-    @Headers("Accept: application/vnd.github.html")
+    @Headers("Accept: application/vnd.github.html,application/vnd.github.VERSION.raw")
     Observable<Response<ArrayList<Issue>>> getRepoIssues(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("owner") String owner,
@@ -37,7 +40,7 @@ public interface IssueService {
     );
 
     @NonNull @GET("user/issues")
-    @Headers("Accept: application/vnd.github.html")
+    @Headers("Accept: application/vnd.github.html,application/vnd.github.VERSION.raw")
     Observable<Response<ArrayList<Issue>>> getUserIssues(
             @Header("forceNetWork") boolean forceNetWork,
             @Query("filter") String filter,
@@ -66,7 +69,7 @@ public interface IssueService {
     );
 
     @NonNull @GET("repos/{owner}/{repo}/issues/{issueNumber}/comments")
-    @Headers("Accept: application/vnd.github.html")
+    @Headers("Accept: application/vnd.github.html,application/vnd.github.VERSION.raw")
     Observable<Response<ArrayList<IssueEvent>>> getIssueComments(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("owner") String owner,
@@ -86,12 +89,37 @@ public interface IssueService {
     );
 
     @NonNull @POST("repos/{owner}/{repo}/issues/{issueNumber}/comments")
-    @Headers("Accept: application/vnd.github.html")
+    @Headers("Accept: application/vnd.github.html,application/vnd.github.VERSION.raw")
     Observable<Response<IssueEvent>> addComment(
             @Path("owner") String owner,
             @Path("repo") String repo,
             @Path("issueNumber") int issueNumber,
             @Body CommentRequestModel body
+    );
+
+    @NonNull @PATCH("repos/{owner}/{repo}/issues/comments/{commentId}")
+    @Headers("Accept: application/vnd.github.html,application/vnd.github.VERSION.raw")
+    Observable<Response<IssueEvent>> editComment(
+            @Path("owner") String owner,
+            @Path("repo") String repo,
+            @Path("commentId") String commentId,
+            @Body CommentRequestModel body
+    );
+
+    @NonNull @DELETE("repos/{owner}/{repo}/issues/comments/{commentId}")
+    Observable<Response<ResponseBody>> deleteComment(
+            @Path("owner") String owner,
+            @Path("repo") String repo,
+            @Path("commentId") String commentId
+    );
+
+    @NonNull @PATCH("repos/{owner}/{repo}/issues/{issueNumber}")
+    @Headers("Accept: application/vnd.github.html,application/vnd.github.VERSION.raw")
+    Observable<Response<Issue>> editIssue(
+            @Path("owner") String owner,
+            @Path("repo") String repo,
+            @Path("issueNumber") int issueNumber,
+            @Body Issue body
     );
 
 }

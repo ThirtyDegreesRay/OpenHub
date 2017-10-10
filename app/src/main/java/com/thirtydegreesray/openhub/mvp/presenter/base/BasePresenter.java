@@ -348,7 +348,6 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
                 new HttpObserver<ResponseBody>() {
                     @Override
                     public void onError(Throwable error) {
-
                     }
 
                     @Override

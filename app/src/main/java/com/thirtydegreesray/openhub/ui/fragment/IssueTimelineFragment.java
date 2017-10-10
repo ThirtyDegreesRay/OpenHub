@@ -1,9 +1,12 @@
 package com.thirtydegreesray.openhub.ui.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 
+import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
@@ -12,9 +15,12 @@ import com.thirtydegreesray.openhub.mvp.contract.IIssueTimelineContract;
 import com.thirtydegreesray.openhub.mvp.model.Issue;
 import com.thirtydegreesray.openhub.mvp.model.IssueEvent;
 import com.thirtydegreesray.openhub.mvp.presenter.IssueTimelinePresenter;
+import com.thirtydegreesray.openhub.ui.activity.IssueDetailActivity;
+import com.thirtydegreesray.openhub.ui.activity.MarkdownEditorActivity;
 import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.IssueTimelineAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
+import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 
 import java.util.ArrayList;
@@ -24,13 +30,15 @@ import java.util.ArrayList;
  */
 
 public class IssueTimelineFragment extends ListFragment<IssueTimelinePresenter, IssueTimelineAdapter>
-        implements IIssueTimelineContract.View{
+        implements IIssueTimelineContract.View {
 
     public static IssueTimelineFragment create(@NonNull Issue issue){
         IssueTimelineFragment fragment = new IssueTimelineFragment();
         fragment.setArguments(BundleBuilder.builder().put("issue", issue).build());
         return fragment;
     }
+
+    @AutoAccess String editingCommentId;
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
@@ -42,6 +50,13 @@ public class IssueTimelineFragment extends ListFragment<IssueTimelinePresenter, 
     public void showTimeline(ArrayList<IssueEvent> events) {
         adapter.setData(events);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showEditCommentPage(String commentId, String body) {
+        MarkdownEditorActivity.show(getActivity(), R.string.comment,
+                IssueDetailActivity.EDIT_COMMENT_REQUEST_CODE,
+                body);
     }
 
     @Override
@@ -92,25 +107,64 @@ public class IssueTimelineFragment extends ListFragment<IssueTimelinePresenter, 
         recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
     }
 
-//    @Override
-//    public boolean onItemLongClick(int position, @NonNull View view) {
-//        final IssueEvent issueEvent = adapter.getData().get(position);
-//        String[] actions = new String[]{
-//                getString(R.string.share),
-//                getString(R.string.edit),
-//                getString(R.string.delete)
-//        };
-//        new AlertDialog.Builder(getActivity())
-//                .setItems(actions, new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.dismiss();
-//                        if(which == 1){
-//                            MarkdownEditorActivity.show(getActivity(), R.string.comment, 101, issueEvent.getBodyHtml());
-//                        }
-//                    }
-//                })
-//                .show();
-//        return true;
-//    }
+    @Override
+    public boolean onItemLongClick(final int position, @NonNull View view) {
+        final IssueEvent issueEvent = adapter.getData().get(position);
+        String[] actions ;
+        if(mPresenter.isEditAndDeleteEnable() && position != 0){
+            actions = new String[]{getString(R.string.share), getString(R.string.edit), getString(R.string.delete)};
+        } else {
+            actions = new String[]{getString(R.string.share)};
+
+        }
+        new AlertDialog.Builder(getActivity())
+                .setItems(actions, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        switch (which){
+                            case 0:
+                                AppHelper.shareText(getActivity(), issueEvent.getHtmlUrl());
+                                break;
+                            case 1:
+                                editingCommentId = issueEvent.getId();
+                                showEditCommentPage(editingCommentId, issueEvent.getBody());
+                                break;
+                            case 2:
+                                showDeleteCommentWarning(position, issueEvent.getId());
+                                break;
+                        }
+                    }
+                })
+                .show();
+        return true;
+    }
+
+    private void showDeleteCommentWarning(final int position, final String commentId){
+        new AlertDialog.Builder(getActivity())
+                .setCancelable(true)
+                .setTitle(R.string.warning_dialog_tile)
+                .setMessage(R.string.delete_comment_warning)
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        adapter.getData().remove(position);
+                        adapter.notifyItemRemoved(position);
+                        mPresenter.deleteComment(commentId);
+                    }
+                })
+                .show();
+    }
+
+    public void onEditComment(String body) {
+        mPresenter.editComment(editingCommentId, body);
+    }
+
 }
