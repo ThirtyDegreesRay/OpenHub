@@ -41,6 +41,10 @@
         android:title="@string/copy_url"
         app:showAsAction="never"/>
     <item
+        android:id="@+id/action_copy_clone_url"
+        android:title="@string/copy_clone_url"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/action_watch"
         android:title="@string/watch"
         app:showAsAction="never"/>

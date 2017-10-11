@@ -7,6 +7,114 @@
     android:layout_height="match_parent"
     android:padding="@dimen/spacing_normal">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <com.thirtydegreesray.openhub.ui.widget.ToastAbleImageButton
+            android:id="@+id/add_large_head"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_head_large"
+            android:scaleType="center"
+            android:background="?android:selectableItemBackgroundBorderless"
+            app:toast_text="@string/add_large_header"/>
+
+        <com.thirtydegreesray.openhub.ui.widget.ToastAbleImageButton
+            android:id="@+id/add_medium_head"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_head_medium"
+            android:scaleType="center"
+            android:background="?android:selectableItemBackgroundBorderless"
+            app:toast_text="@string/add_medium_header"/>
+
+        <com.thirtydegreesray.openhub.ui.widget.ToastAbleImageButton
+            android:id="@+id/add_small_head"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_head_small"
+            android:scaleType="center"
+            android:background="?android:selectableItemBackgroundBorderless"
+            app:toast_text="@string/add_small_header"/>
+
+        <com.thirtydegreesray.openhub.ui.widget.ToastAbleImageButton
+            android:id="@+id/add_bold"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_bold"
+            android:scaleType="center"
+            android:background="?android:selectableItemBackgroundBorderless"
+            app:toast_text="@string/add_bold_text"/>
+
+        <com.thirtydegreesray.openhub.ui.widget.ToastAbleImageButton
+            android:id="@+id/add_italic"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_italic"
+            android:scaleType="center"
+            android:background="?android:selectableItemBackgroundBorderless"
+            app:toast_text="@string/add_italic_text"/>
+
+        <com.thirtydegreesray.openhub.ui.widget.ToastAbleImageButton
+            android:id="@+id/add_quote"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_quote"
+            android:scaleType="center"
+            android:background="?android:selectableItemBackgroundBorderless"
+            app:toast_text="@string/insert_a_quote"/>
+
+        <com.thirtydegreesray.openhub.ui.widget.ToastAbleImageButton
+            android:id="@+id/insert_code"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_code"
+            android:scaleType="center"
+            android:background="?android:selectableItemBackgroundBorderless"
+            app:toast_text="@string/insert_code"/>
+
+        <com.thirtydegreesray.openhub.ui.widget.ToastAbleImageButton
+            android:id="@+id/add_link"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_link"
+            android:scaleType="center"
+            android:background="?android:selectableItemBackgroundBorderless"
+            app:toast_text="@string/add_a_link"/>
+
+        <com.thirtydegreesray.openhub.ui.widget.ToastAbleImageButton
+            android:id="@+id/add_bulleted_list"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_bulleted_list"
+            android:scaleType="center"
+            android:background="?android:selectableItemBackgroundBorderless"
+            app:toast_text="@string/add_a_bulleted_list"/>
+
+        <com.thirtydegreesray.openhub.ui.widget.ToastAbleImageButton
+            android:id="@+id/add_mention"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_mention"
+            android:scaleType="center"
+            android:background="?android:selectableItemBackgroundBorderless"
+            app:toast_text="@string/mention"/>
+
+    </LinearLayout>
+
     <EditText
         android:id="@+id/markdown_edit"
         android:layout_width="match_parent"

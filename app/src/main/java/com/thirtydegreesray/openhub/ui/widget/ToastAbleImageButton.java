@@ -1,0 +1,78 @@
+/*
+ *    Copyright 2017 ThirtyDegreesRay
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
+package com.thirtydegreesray.openhub.ui.widget;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.support.v7.widget.AppCompatImageView;
+import android.util.AttributeSet;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Toast;
+
+import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.util.StringUtils;
+
+/**
+ * Created by ThirtyDegreesRay on 2017/10/11 11:05:36
+ */
+
+public class ToastAbleImageButton extends AppCompatImageView
+        implements View.OnLongClickListener {
+
+    private String toastText ;
+
+    public ToastAbleImageButton(Context context) {
+        super(context);
+        init(null);
+    }
+
+    public ToastAbleImageButton(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init(attrs);
+    }
+
+    public ToastAbleImageButton(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(attrs);
+    }
+
+    private void init(AttributeSet attrs) {
+        if (attrs != null) {
+            TypedArray tp = getContext().obtainStyledAttributes(attrs, R.styleable.ToastAbleImageButton);
+            try {
+                toastText = tp.getString(R.styleable.ToastAbleImageButton_toast_text);
+            } finally {
+                tp.recycle();
+            }
+            if(!StringUtils.isBlank(toastText)){
+                setOnLongClickListener(this);
+            }
+        }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        Toast toast = Toast.makeText(getContext(), toastText, Toast.LENGTH_SHORT);
+        int[] location = new int[2];
+        v.getLocationInWindow(location);
+        toast.setGravity(Gravity.TOP|Gravity.START, location[0] + v.getWidth() / 2, location[1] + v.getHeight() / 2);
+        toast.show();
+        return true;
+    }
+
+}

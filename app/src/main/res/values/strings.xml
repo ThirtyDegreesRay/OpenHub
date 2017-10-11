@@ -98,6 +98,7 @@
     <string name="share">Share</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="copy_url">Copy URL</string>
+    <string name="copy_clone_url">Copy clone URL</string>
     <string name="watch">Watch</string>
     <string name="watched">Watched</string>
     <string name="unwatch">Unwatch</string>
@@ -270,5 +271,16 @@
     <string name="reopen">Reopen</string>
     <string name="reopen_success">Reopen success</string>
     <string name="close_success">Close success</string>
+
+    <string name="add_large_header">Add large header</string>
+    <string name="add_medium_header">Add medium header</string>
+    <string name="add_small_header">Add small header</string>
+    <string name="add_bold_text">Add bold text</string>
+    <string name="add_italic_text">Add italic text</string>
+    <string name="add_a_link">Add a link</string>
+    <string name="insert_code">Insert code</string>
+    <string name="insert_a_quote">Insert a quote</string>
+    <string name="add_a_bulleted_list">Add a bulleted list</string>
+    <string name="mention">Directly mention a user or team</string>
 
 </resources>

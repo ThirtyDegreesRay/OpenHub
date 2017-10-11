@@ -36,4 +36,8 @@
         <attr name="webview_background" format="color"/>
     </declare-styleable>
 
+    <declare-styleable name="ToastAbleImageButton">
+        <attr name="toast_text" format="string"/>
+    </declare-styleable>
+
 </resources>

@@ -140,6 +140,9 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
             case R.id.action_copy_url:
                 AppHelper.copyToClipboard(getActivity(), mPresenter.getRepository().getHtmlUrl());
                 return true;
+            case R.id.action_copy_clone_url:
+                AppHelper.copyToClipboard(getActivity(), mPresenter.getRepository().getCloneUrl());
+                return true;
             case R.id.action_watch:
                 mPresenter.watchRepo(!mPresenter.isWatched());
                 invalidateOptionsMenu();
