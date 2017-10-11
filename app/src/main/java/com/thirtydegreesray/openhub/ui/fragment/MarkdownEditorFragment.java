@@ -101,7 +101,7 @@ public class MarkdownEditorFragment extends BaseFragment
                 addKeyWord("-");
                 break;
             case R.id.add_mention:
-                addKeyWord("@");
+                addKeyWord("@", 1);
                 break;
         }
     }
