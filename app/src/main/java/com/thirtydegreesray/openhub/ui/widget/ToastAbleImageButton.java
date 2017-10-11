@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.util.StringUtils;
+import com.thirtydegreesray.openhub.util.WindowUtil;
 
 /**
  * Created by ThirtyDegreesRay on 2017/10/11 11:05:36
@@ -70,7 +71,11 @@ public class ToastAbleImageButton extends AppCompatImageView
         Toast toast = Toast.makeText(getContext(), toastText, Toast.LENGTH_SHORT);
         int[] location = new int[2];
         v.getLocationInWindow(location);
-        toast.setGravity(Gravity.TOP|Gravity.START, location[0] + v.getWidth() / 2, location[1] + v.getHeight() / 2);
+        if(location[0] + v.getWidth() / 2 < WindowUtil.screenWidth / 2){
+            toast.setGravity(Gravity.TOP|Gravity.START, location[0] + v.getWidth() , location[1] + v.getHeight() / 2);
+        } else {
+            toast.setGravity(Gravity.TOP|Gravity.END, WindowUtil.screenWidth - location[0] , location[1] + v.getHeight() / 2);
+        }
         toast.show();
         return true;
     }
