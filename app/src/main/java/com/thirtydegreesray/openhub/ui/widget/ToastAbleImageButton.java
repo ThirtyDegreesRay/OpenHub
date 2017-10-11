@@ -30,6 +30,7 @@ import com.thirtydegreesray.openhub.util.WindowUtil;
 
 /**
  * Created by ThirtyDegreesRay on 2017/10/11 11:05:36
+ * A ImageButton which can toast text when long click.
  */
 
 public class ToastAbleImageButton extends AppCompatImageView
