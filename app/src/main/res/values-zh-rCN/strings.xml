@@ -198,5 +198,16 @@
     <string name="just_now">刚刚</string>
     <string name="reopen">重开</string>
     <string name="reopen_success">重开成功</string>
+    <string name="add_a_link">添加一个链接</string>
+    <string name="add_bold_text">添加加粗文字</string>
+    <string name="add_italic_text">添加斜体文字</string>
+    <string name="add_large_header">添加大标题</string>
+    <string name="add_medium_header">添加中标题</string>
+    <string name="add_small_header">添加小标题</string>
+    <string name="add_a_bulleted_list">添加列表</string>
+    <string name="copy_clone_url">复制克隆链接</string>
+    <string name="insert_code">插入代码</string>
+    <string name="insert_a_quote">插入引用</string>
+    <string name="mention">直接提到一个用户或者团队</string>
 
 </resources>

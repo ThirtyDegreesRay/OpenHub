@@ -235,4 +235,15 @@
     <string name="just_now">זֶה עַתָה</string>
     <string name="reopen">נפתח מחדש</string>
     <string name="reopen_success">פתח מחדש את ההצלחה</string>
+    <string name="add_a_bulleted_list">הוסף רשימה עם תבליטים</string>
+    <string name="add_a_link">הוסף קישור</string>
+    <string name="add_bold_text">הוסף טקסט מודגש</string>
+    <string name="add_italic_text">הוסף טקסט נטוי</string>
+    <string name="add_large_header">הוסף כותרת גדולה</string>
+    <string name="add_medium_header">הוסף כותרת בינונית</string>
+    <string name="add_small_header">הוסף כותרת קטנה</string>
+    <string name="copy_clone_url">העתק את כתובת האתר המשובצת</string>
+    <string name="insert_a_quote">הוסף הצעת מחיר</string>
+    <string name="insert_code">הכנס קוד</string>
+    <string name="mention">ציין ישירות משתמש או צוות</string>
 </resources>
