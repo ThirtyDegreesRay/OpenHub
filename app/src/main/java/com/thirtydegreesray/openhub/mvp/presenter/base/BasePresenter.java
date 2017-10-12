@@ -45,6 +45,7 @@ import com.thirtydegreesray.openhub.http.core.HttpSubscriber;
 import com.thirtydegreesray.openhub.http.error.HttpError;
 import com.thirtydegreesray.openhub.http.error.HttpErrorCode;
 import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
+import com.thirtydegreesray.openhub.http.error.UnauthorizedError;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.util.Logger;
 import com.thirtydegreesray.openhub.util.NetHelper;
@@ -269,7 +270,9 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
         final HttpObserver<T> tempObserver = new HttpObserver<T>() {
             @Override
             public void onError(Throwable error) {
-                httpObserver.onError(error);
+                if(!checkIsUnauthorized(error)){
+                    httpObserver.onError(error);
+                }
             }
 
             @Override
@@ -289,6 +292,8 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
                     httpObserver.onError(new HttpPageNoFoundError());
                 } else if(response.getOriResponse().code() == 504){
                     httpObserver.onError(new HttpError(HttpErrorCode.NO_CACHE_AND_NETWORK));
+                } else if(response.getOriResponse().code() == 401){
+                    httpObserver.onError(new UnauthorizedError());
                 } else {
                     httpObserver.onError(new Error(response.getOriResponse().message()));
                 }
@@ -308,6 +313,18 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
             return new HttpSubscriber<>(httpObserver);
         else
             return new HttpProgressSubscriber<>(progressDialog, httpObserver);
+    }
+
+    private boolean checkIsUnauthorized(Throwable error){
+        if(error instanceof UnauthorizedError){
+            mView.showErrorToast(error.getMessage());
+            daoSession.getAuthUserDao().delete(AppData.INSTANCE.getAuthUser());
+            AppData.INSTANCE.setAuthUser(null);
+            AppData.INSTANCE.setLoggedUser(null);
+            mView.showLoginPage();
+            return true;
+        }
+        return false;
     }
 
 
@@ -350,6 +367,25 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
         if(isEventSubscriber && isAttached && !AppEventBus.INSTANCE.getEventBus().isRegistered(this)){
             AppEventBus.INSTANCE.getEventBus().register(this);
         }
+    }
+
+    protected void executeSimpleRequest(@NonNull final Observable<Response<ResponseBody>> observable) {
+        HttpObserver<ResponseBody> httpObserver = new HttpObserver<ResponseBody>() {
+            @Override
+            public void onError(Throwable error) {
+                mView.showErrorToast(getErrorTip(error));
+            }
+
+            @Override
+            public void onSuccess(HttpResponse<ResponseBody> response) {
+            }
+        };
+        generalRxHttpExecute(new IObservableCreator<ResponseBody>() {
+            @Override
+            public Observable<Response<ResponseBody>> createObservable(boolean forceNetWork) {
+                return observable;
+            }
+        }, httpObserver);
     }
 
     protected void checkStatus(@NonNull Observable<Response<ResponseBody>> observable,

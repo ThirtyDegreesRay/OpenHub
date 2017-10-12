@@ -125,7 +125,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
         Observable<Response<ResponseBody>> observable = starred ?
                 getRepoService().starRepo(owner, repoName) :
                 getRepoService().unstarRepo(owner, repoName);
-        generalRxHttpExecute(observable, null);
+        executeSimpleRequest(observable);
     }
 
     @Override
@@ -134,7 +134,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
         Observable<Response<ResponseBody>> observable = watched ?
                 getRepoService().watchRepo(owner, repoName) :
                 getRepoService().unwatchRepo(owner, repoName);
-        generalRxHttpExecute(observable, null);
+        executeSimpleRequest(observable);
     }
 
     @Override

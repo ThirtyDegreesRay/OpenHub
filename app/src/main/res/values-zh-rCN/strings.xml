@@ -209,5 +209,10 @@
     <string name="insert_code">插入代码</string>
     <string name="insert_a_quote">插入引用</string>
     <string name="mention">直接提到一个用户或者团队</string>
+    <string name="unauthorized">未授权。</string>
+    <string name="open_in_market">在应用市场中打开</string>
+    <string name="rate_in_market">评分</string>
+    <string name="source_code_wishes">期待你的星标和贡献</string>
+    <string name="no_market_clients">未安装应用市场客户端</string>
 
 </resources>

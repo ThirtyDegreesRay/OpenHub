@@ -15,7 +15,7 @@ import butterknife.BindView;
 /**
  * Created by ThirtyDegreesRay on 2017/9/29 11:52:42
  */
-
+//FIXME click link cause exception
 public class MarkdownPreviewFragment extends BaseFragment{
 
     public static MarkdownPreviewFragment create(@NonNull MarkdownEditorActivity.MarkdownEditor markdownEditor){

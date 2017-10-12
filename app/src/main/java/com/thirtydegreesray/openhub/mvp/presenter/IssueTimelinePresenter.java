@@ -59,8 +59,8 @@ public class IssueTimelinePresenter extends BasePresenter<IIssueTimelineContract
 
     @Override
     public void deleteComment(String commentId) {
-        generalRxHttpExecute(getIssueService()
-                .deleteComment(issue.getRepoAuthorName(), issue.getRepoName(), commentId), null);
+        executeSimpleRequest(getIssueService()
+                .deleteComment(issue.getRepoAuthorName(), issue.getRepoName(), commentId));
     }
 
     @Override

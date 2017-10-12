@@ -35,8 +35,6 @@ public interface IRepositoriesContract {
 
         void showRepositories(ArrayList<Repository> repositoryList);
 
-        void showLoginPage();
-
     }
 
     interface Presenter extends IBasePagerContract.Presenter<IRepositoriesContract.View> {

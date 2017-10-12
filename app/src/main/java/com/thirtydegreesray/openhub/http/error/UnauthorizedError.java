@@ -14,26 +14,16 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.mvp.contract;
-
-import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
+package com.thirtydegreesray.openhub.http.error;
 
 /**
- * Created on 2017/8/1.
- *
- * @author ThirtyDegreesRay
+ * Created by ThirtyDegreesRay on 2017/10/12 14:35:50
  */
 
-public interface ISettingsContract {
+public class UnauthorizedError extends HttpError {
 
-    interface View extends IBaseContract.View{
-
-    }
-
-    interface Presenter extends IBaseContract.Presenter<ISettingsContract.View>{
-
-        void logout();
-
+    public UnauthorizedError() {
+        super(HttpErrorCode.UNAUTHORIZED);
     }
 
 }

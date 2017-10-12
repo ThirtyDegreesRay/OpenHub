@@ -19,6 +19,7 @@ package com.thirtydegreesray.openhub.ui.fragment.base;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -34,6 +35,7 @@ import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
+import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
 import com.thirtydegreesray.openhub.util.Logger;
 
 import javax.inject.Inject;
@@ -303,4 +305,12 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     public boolean isFragmentShowed() {
         return isFragmentShowed;
     }
+
+    @Override
+    public void showLoginPage() {
+        getActivity().finishAffinity();
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
+    }
+
 }

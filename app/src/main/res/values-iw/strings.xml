@@ -246,4 +246,9 @@
     <string name="insert_a_quote">הוסף הצעת מחיר</string>
     <string name="insert_code">הכנס קוד</string>
     <string name="mention">ציין ישירות משתמש או צוות</string>
+    <string name="unauthorized">לא מורשה.</string>
+    <string name="open_in_market">פתח בשוק</string>
+    <string name="rate_in_market">שיעור בשוק</string>
+    <string name="source_code_wishes">חפש את הכוכב שלך ותרום</string>
+    <string name="no_market_clients">אין בשוק לקוחות מותקנים.</string>
 </resources>

@@ -115,7 +115,7 @@ public class ProfilePresenter extends BasePresenter<IProfileContract.View>
     @Override
     public void followUser(boolean follow) {
         following = follow;
-        generalRxHttpExecute(follow ?
-                getUserService().followUser(loginId) : getUserService().unfollowUser(loginId), null);
+        executeSimpleRequest(follow ?
+                getUserService().followUser(loginId) : getUserService().unfollowUser(loginId));
     }
 }

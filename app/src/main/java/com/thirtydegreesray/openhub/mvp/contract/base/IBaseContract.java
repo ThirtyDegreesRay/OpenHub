@@ -55,6 +55,9 @@ public interface IBaseContract {
         void showLoading();
 
         void hideLoading();
+
+        void showLoginPage();
+
     }
 
     interface Presenter<V extends IBaseContract.View>{

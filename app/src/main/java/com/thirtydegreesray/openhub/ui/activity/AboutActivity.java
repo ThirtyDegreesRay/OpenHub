@@ -88,11 +88,22 @@ public class AboutActivity extends MaterialAboutActivity {
                 .build());
         appBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text(R.string.source_code)
+                .subText(R.string.source_code_wishes)
                 .icon(R.drawable.ic_code)
                 .setOnClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
                     public void onClick() {
                         RepositoryActivity.show(context, getString(R.string.author_login_id), getString(R.string.app_name));
+                    }
+                })
+                .build());
+        appBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .text(R.string.rate_in_market)
+                .icon(R.drawable.ic_menu_star)
+                .setOnClickAction(new MaterialAboutItemOnClickAction() {
+                    @Override
+                    public void onClick() {
+                        AppHelper.openInMarket(context);
                     }
                 })
                 .build());

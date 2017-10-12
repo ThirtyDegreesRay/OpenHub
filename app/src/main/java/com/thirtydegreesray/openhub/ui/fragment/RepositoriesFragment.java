@@ -16,7 +16,6 @@
 
 package com.thirtydegreesray.openhub.ui.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -33,7 +32,6 @@ import com.thirtydegreesray.openhub.mvp.contract.IRepositoriesContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.presenter.RepositoriesPresenter;
-import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.adapter.RepositoriesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
@@ -103,13 +101,6 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     public void showRepositories(ArrayList<Repository> repositoryList) {
         adapter.setData(repositoryList);
         adapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void showLoginPage() {
-        getActivity().finishAffinity();
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
-        startActivity(intent);
     }
 
     @Override

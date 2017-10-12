@@ -66,7 +66,6 @@ public class AppApplication extends Application {
     }
 
     private void initBugly(){
-//        if(BuildConfig.DEBUG) return;
 
         Beta.initDelay = 6 * 1000;
         Beta.enableHotfix = false;

@@ -136,6 +136,17 @@ public class AppHelper {
         }
     }
 
+    public static void openInMarket(@NonNull Context context){
+        Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
+        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        try{
+            context.startActivity(Intent.createChooser(intent, context.getString(R.string.open_in_market)));
+        }catch (ActivityNotFoundException e){
+            Toasty.warning(context, context.getString(R.string.no_market_clients)).show();
+        }
+    }
+
 
     public static void launchUrl(@NonNull Context context, @NonNull Uri uri){
         if(StringUtils.isBlank(uri.toString())) return;

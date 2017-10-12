@@ -433,4 +433,12 @@ BaseActivity<P extends IBaseContract.Presenter>
         layoutParams.setScrollFlags(flags);
         toolbar.setLayoutParams(layoutParams);
     }
+
+    @Override
+    public void showLoginPage() {
+        getActivity().finishAffinity();
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
+    }
+
 }

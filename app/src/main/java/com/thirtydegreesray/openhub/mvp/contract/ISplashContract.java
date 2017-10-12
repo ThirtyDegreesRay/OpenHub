@@ -28,8 +28,6 @@ public interface ISplashContract{
 
     interface View extends IBaseContract.View{
         void showMainPage();
-
-        void showLoginPage();
     }
 
     interface Presenter extends IBaseContract.Presenter<ISplashContract.View>{

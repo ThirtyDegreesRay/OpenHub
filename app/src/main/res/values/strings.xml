@@ -66,6 +66,7 @@
 
     <string name="no_cache_and_network">Network and cache is unavailable.</string>
     <string name="page_no_found">Page not found.</string>
+    <string name="unauthorized">Unauthorized.</string>
     <string name="no_network_tip">Loading the data from GitHub failed.Please check your network connection and retry.</string>
     <string name="load_timeout_tip">Loading the data from GitHub timeout.Please check your network connection and retry.</string>
     <string name="tap_to_retry">Tap to retry</string>
@@ -124,7 +125,9 @@
     <string name="no_share_clients">There are no share clients installed.</string>
     <string name="no_browser_clients">There are no browser clients installed.</string>
     <string name="send_email">Send email</string>
+    <string name="open_in_market">Open in market</string>
     <string name="no_email_clients">There are no email clients installed.</string>
+    <string name="no_market_clients">There are no market clients installed.</string>
     <string name="url_invalid">Url is invalid</string>
     <string name="view_archive_file_error">Archive file is not supported, please download the file to view its content.</string>
     <string name="fork_warning_msg">Fork this repository?</string>
@@ -186,6 +189,8 @@
     <string name="developing">Developing</string>
     <string name="version" >Version</string>
     <string name="source_code" >Source code</string>
+    <string name="source_code_wishes" >Look forward to your star and contribute</string>
+    <string name="rate_in_market" >Rate in market</string>
     <string name="author" >Author</string>
     <string name="author_name" translatable="false">Rays Yu</string>
     <string name="author_location" translatable="false">NanJing,China</string>

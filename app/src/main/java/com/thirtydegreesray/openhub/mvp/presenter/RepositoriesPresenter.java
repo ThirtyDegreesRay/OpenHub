@@ -20,7 +20,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
-import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.common.Event;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
@@ -191,9 +190,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
     }
 
     private void handleError(Throwable error){
-        if(checkIsUnauthorized(error)){
-
-        } else if(!StringUtils.isBlankList(repos)){
+        if(!StringUtils.isBlankList(repos)){
             mView.showErrorToast(getErrorTip(error));
         } else if(error instanceof HttpPageNoFoundError){
             mView.showRepositories(new ArrayList<Repository>());
@@ -208,17 +205,6 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
 
     public RepositoriesFragment.RepositoriesType getType() {
         return type;
-    }
-
-    private boolean checkIsUnauthorized(Throwable error){
-        if(getErrorTip(error).equals("Unauthorized")){
-            daoSession.getAuthUserDao().delete(AppData.INSTANCE.getAuthUser());
-            AppData.INSTANCE.setAuthUser(null);
-            AppData.INSTANCE.setLoggedUser(null);
-            mView.showLoginPage();
-            return true;
-        }
-        return false;
     }
 
 }

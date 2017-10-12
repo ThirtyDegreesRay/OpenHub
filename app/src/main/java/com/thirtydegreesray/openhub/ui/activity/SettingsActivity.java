@@ -123,13 +123,6 @@ public class SettingsActivity extends BaseActivity<SettingsPresenter>
     }
 
     @Override
-    public void showLoginPage() {
-        finishAffinity();
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
     public void finishActivity() {
         super.finishActivity();
     }
