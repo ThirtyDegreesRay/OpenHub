@@ -185,8 +185,6 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
                 return IssuesFilter.UserIssuesFilterType.Assigned;
             case R.id.nav_mentioned:
                 return IssuesFilter.UserIssuesFilterType.Mentioned;
-            case R.id.nav_subscribed:
-                return IssuesFilter.UserIssuesFilterType.Subscribed;
             default:
                 return IssuesFilter.UserIssuesFilterType.All;
         }

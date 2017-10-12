@@ -16,7 +16,7 @@ public class IssuesFilter implements Parcelable {
     }
 
     public enum UserIssuesFilterType {
-        All, Created, Assigned, Mentioned, Subscribed
+        All, Created, Assigned, Mentioned
     }
 
     public enum SortType {
