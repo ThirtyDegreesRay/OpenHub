@@ -16,6 +16,9 @@ import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
 
 import javax.inject.Inject;
 
+import retrofit2.Response;
+import rx.Observable;
+
 /**
  * Created by ThirtyDegreesRay on 2017/9/26 16:53:52
  */
@@ -42,24 +45,26 @@ public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.Vie
 
     @Override
     public void addComment(@NonNull final String text) {
-        HttpProgressSubscriber<IssueEvent> subscriber = new HttpProgressSubscriber<>(
-                        mView.getProgressDialog(getLoadTip()),
-                        new HttpObserver<IssueEvent>() {
-                            @Override
-                            public void onError(Throwable error) {
-                                mView.showErrorToast(getErrorTip(error));
-                                mView.showAddCommentPage(text);
-                            }
+        HttpObserver<IssueEvent> httpObserver = new HttpObserver<IssueEvent>() {
+            @Override
+            public void onError(Throwable error) {
+                mView.showErrorToast(getErrorTip(error));
+                mView.showAddCommentPage(text);
+            }
 
-                            @Override
-                            public void onSuccess(HttpResponse<IssueEvent> response) {
-                                mView.showSuccessToast(getString(R.string.comment_success));
-                                mView.showAddedComment(response.body());
-                            }
-                        }
-                );
-        generalRxHttpExecute(getIssueService().addComment(issue.getUser().getLogin(),
-                issue.getRepoName(), issue.getNumber(), new CommentRequestModel(text)), subscriber);
+            @Override
+            public void onSuccess(HttpResponse<IssueEvent> response) {
+                mView.showSuccessToast(getString(R.string.comment_success));
+                mView.showAddedComment(response.body());
+            }
+        };
+        generalRxHttpExecute(new IObservableCreator<IssueEvent>() {
+            @Override
+            public Observable<Response<IssueEvent>> createObservable(boolean forceNetWork) {
+                return getIssueService().addComment(issue.getRepoAuthorName(),
+                        issue.getRepoName(), issue.getNumber(), new CommentRequestModel(text));
+            }
+        }, httpObserver, false, mView.getProgressDialog(getLoadTip()));
     }
 
     @Override

@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter.base;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
@@ -38,6 +39,7 @@ import com.thirtydegreesray.openhub.http.SearchService;
 import com.thirtydegreesray.openhub.http.UserService;
 import com.thirtydegreesray.openhub.http.core.AppRetrofit;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
+import com.thirtydegreesray.openhub.http.core.HttpProgressSubscriber;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.http.core.HttpSubscriber;
 import com.thirtydegreesray.openhub.http.error.HttpError;
@@ -251,12 +253,17 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
         generalRxHttpExecute(observableCreator, httpObserver, false);
     }
 
+    protected <T> void generalRxHttpExecute(@NonNull IObservableCreator<T> observableCreator
+            , @NonNull HttpObserver<T> httpObserver, final boolean readCacheFirst) {
+        generalRxHttpExecute(observableCreator, httpObserver, readCacheFirst, null);
+    }
+
     //防止死循环
     private Map<String, Integer> requestTimesMap = new HashMap<>();
 
     protected <T> void generalRxHttpExecute(@NonNull final IObservableCreator<T> observableCreator
-            , @NonNull final HttpObserver<T> httpObserver,
-                                            final boolean readCacheFirst) {
+            , @NonNull final HttpObserver<T> httpObserver, final boolean readCacheFirst
+            , @Nullable final ProgressDialog progressDialog) {
         requestTimesMap.put(observableCreator.toString(), 1);
 
         final HttpObserver<T> tempObserver = new HttpObserver<T>() {
@@ -275,7 +282,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
                             && requestTimesMap.get(observableCreator.toString()) < 2) {
                         requestTimesMap.put(observableCreator.toString(), 2);
                         generalRxHttpExecute(observableCreator.createObservable(true),
-                                getHttpSubscriber(this));
+                                getHttpSubscriber(this, progressDialog));
                     }
                     httpObserver.onSuccess(response);
                 } else if(response.getOriResponse().code() == 404){
@@ -292,12 +299,15 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
         boolean cacheFirstEnable = PrefHelper.isCacheFirstEnable();
 //        cacheFirstEnable = cacheFirstEnable || !NetHelper.INSTANCE.getNetEnabled();
         generalRxHttpExecute(observableCreator.createObservable(!cacheFirstEnable || !readCacheFirst),
-                getHttpSubscriber(tempObserver));
+                getHttpSubscriber(tempObserver, progressDialog));
         Logger.d(TAG, "get date start:" + System.currentTimeMillis());
     }
 
-    private <T> HttpSubscriber<T> getHttpSubscriber(HttpObserver<T> httpObserver) {
-        return new HttpSubscriber<>(httpObserver);
+    private <T> HttpSubscriber<T> getHttpSubscriber(HttpObserver<T> httpObserver, ProgressDialog progressDialog) {
+        if(progressDialog == null)
+            return new HttpSubscriber<>(httpObserver);
+        else
+            return new HttpProgressSubscriber<>(progressDialog, httpObserver);
     }
 
 

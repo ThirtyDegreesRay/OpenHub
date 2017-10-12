@@ -5,7 +5,6 @@ import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
-import com.thirtydegreesray.openhub.http.core.HttpProgressSubscriber;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
 import com.thirtydegreesray.openhub.mvp.contract.IIssueTimelineContract;
@@ -66,26 +65,27 @@ public class IssueTimelinePresenter extends BasePresenter<IIssueTimelineContract
 
     @Override
     public void editComment(final String commentId, final String body) {
-        HttpProgressSubscriber<IssueEvent> subscriber
-                = new HttpProgressSubscriber<>(
-                mView.getProgressDialog(getLoadTip()),
-                new HttpObserver<IssueEvent>() {
-                    @Override
-                    public void onError(Throwable error) {
-                        mView.showErrorToast(getErrorTip(error));
-                        mView.showEditCommentPage(commentId, body);
-                    }
+        HttpObserver<IssueEvent> httpObserver = new HttpObserver<IssueEvent>() {
+            @Override
+            public void onError(Throwable error) {
+                mView.showErrorToast(getErrorTip(error));
+                mView.showEditCommentPage(commentId, body);
+            }
 
-                    @Override
-                    public void onSuccess(HttpResponse<IssueEvent> response) {
-                        updateComment(response.body());
-                        mView.showTimeline(timeline);
-                        mView.showSuccessToast(getString(R.string.comment_success));
-                    }
-                }
-        );
-        generalRxHttpExecute(getIssueService().editComment(issue.getRepoAuthorName(),
-                issue.getRepoName(), commentId, new CommentRequestModel(body)), subscriber);
+            @Override
+            public void onSuccess(HttpResponse<IssueEvent> response) {
+                updateComment(response.body());
+                mView.showTimeline(timeline);
+                mView.showSuccessToast(getString(R.string.comment_success));
+            }
+        };
+        generalRxHttpExecute(new IObservableCreator<IssueEvent>() {
+            @Override
+            public Observable<Response<IssueEvent>> createObservable(boolean forceNetWork) {
+                return getIssueService().editComment(issue.getRepoAuthorName(),
+                        issue.getRepoName(), commentId, new CommentRequestModel(body));
+            }
+        }, httpObserver, false, mView.getProgressDialog(getLoadTip()));
     }
 
     private void loadComments(final int page, final boolean isReload){
