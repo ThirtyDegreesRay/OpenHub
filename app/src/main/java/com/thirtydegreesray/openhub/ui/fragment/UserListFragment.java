@@ -115,7 +115,9 @@ public class UserListFragment extends ListFragment<UserListPresenter, UsersAdapt
     @Override
     public void onItemClick(int position, @NonNull View view) {
         super.onItemClick(position, view);
-        ProfileActivity.show(getActivity(), adapter.getData().get(position).getLogin());
+        View userAvatar = view.findViewById(R.id.avatar);
+        ProfileActivity.show(getActivity(), userAvatar, adapter.getData().get(position).getLogin(),
+                adapter.getData().get(position).getAvatarUrl());
     }
 
     @Override

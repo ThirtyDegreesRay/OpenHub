@@ -186,7 +186,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_profile:
-                ProfileActivity.show(getActivity(), AppData.INSTANCE.getLoggedUser().getLogin());
+                ProfileActivity.show(getActivity(), AppData.INSTANCE.getLoggedUser().getLogin(),
+                        AppData.INSTANCE.getLoggedUser().getAvatarUrl());
                 break;
             case R.id.nav_issues:
                 IssuesActivity.showForUser(getActivity());

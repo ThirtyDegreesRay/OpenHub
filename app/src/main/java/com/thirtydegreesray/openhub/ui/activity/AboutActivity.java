@@ -118,7 +118,8 @@ public class AboutActivity extends MaterialAboutActivity {
                 .setOnClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
                     public void onClick() {
-                        ProfileActivity.show(context, getString(R.string.author_login_id));
+                        ProfileActivity.show(AboutActivity.this, getString(R.string.author_login_id),
+                                getString(R.string.author_avatar_url));
                     }
                 })
                 .build());
@@ -128,7 +129,8 @@ public class AboutActivity extends MaterialAboutActivity {
                 .setOnClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
                     public void onClick() {
-                        ProfileActivity.show(context, getString(R.string.author_login_id));
+                        ProfileActivity.show(AboutActivity.this, getString(R.string.author_login_id),
+                                getString(R.string.author_avatar_url));
                     }
                 })
                 .build());

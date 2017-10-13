@@ -55,7 +55,8 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     public static RepositoriesFragment create(@NonNull RepositoriesType type,
                                               @NonNull String user){
         RepositoriesFragment fragment = new RepositoriesFragment();
-        fragment.setArguments(BundleBuilder.builder().put("type", type).put("user", user).build());
+        fragment.setArguments(BundleBuilder.builder().put("type", type)
+                .put("user", user).build());
         return fragment;
     }
 

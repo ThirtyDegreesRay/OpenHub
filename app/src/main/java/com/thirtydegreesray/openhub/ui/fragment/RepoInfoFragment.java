@@ -35,8 +35,8 @@ import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IRepoInfoContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.RepoInfoPresenter;
-import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.activity.IssuesActivity;
+import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepoListActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.activity.UserListActivity;
@@ -134,7 +134,8 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         spannable.setSpan(new ClickableSpan() {
             @Override
             public void onClick(View widget) {
-                ProfileActivity.show(getContext(), mPresenter.getRepository().getOwner().getLogin());
+                ProfileActivity.show(getActivity(), mPresenter.getRepository().getOwner().getLogin(),
+                        mPresenter.getRepository().getOwner().getAvatarUrl());
             }
 
             @Override

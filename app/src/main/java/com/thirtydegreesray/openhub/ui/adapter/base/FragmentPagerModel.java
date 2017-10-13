@@ -74,7 +74,7 @@ public class FragmentPagerModel {
         List<FragmentPagerModel> list = new ArrayList<>();
         list.add(new FragmentPagerModel(context.getString(R.string.info), ProfileInfoFragment.create(user)));
         list.add(new FragmentPagerModel(context.getString(R.string.activity),
-                ActivityFragment.create(ActivityFragment.ActivityType.User, user.getLogin())));
+                ActivityFragment.create(ActivityFragment.ActivityType.User, user.getLogin(), null)));
         if (user.isUser()) {
             list.add(new FragmentPagerModel(context.getString(R.string.starred),
                     RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED, user.getLogin())));

@@ -1,5 +1,6 @@
 package com.thirtydegreesray.openhub.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.Html;
@@ -75,7 +76,8 @@ public class IssueTimelineAdapter extends BaseAdapter<IssueTimelineAdapter.ViewH
 
         @OnClick({R.id.user_avatar, R.id.user_name})
         public void onUserClicked() {
-            ProfileActivity.show(context, data.get(getAdapterPosition()).getUser().getLogin());
+            ProfileActivity.show((Activity) context, userAvatar, data.get(getAdapterPosition()).getUser().getLogin(),
+                    data.get(getAdapterPosition()).getUser().getAvatarUrl());
         }
 
     }

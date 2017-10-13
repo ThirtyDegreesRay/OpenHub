@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
@@ -23,9 +24,9 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.GlideApp;
 import com.thirtydegreesray.openhub.mvp.model.Event;
@@ -80,7 +81,7 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
 
     class ViewHolder extends BaseViewHolder {
 
-        @BindView(R.id.user_avatar) RoundedImageView userAvatar;
+        @BindView(R.id.user_avatar) ImageView userAvatar;
         @BindView(R.id.user_name) TextView userName;
         @BindView(R.id.time) TextView time;
         @BindView(R.id.action) TextView action;
@@ -92,7 +93,9 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
 
         @OnClick({R.id.user_avatar, R.id.user_name})
         void onUserClick() {
-            ProfileActivity.show(context, data.get(getAdapterPosition()).getActor().getLogin());
+            String loginId = data.get(getAdapterPosition()).getActor().getLogin();
+            String userAvatar = data.get(getAdapterPosition()).getActor().getAvatarUrl();
+            ProfileActivity.show((Activity)context, ViewHolder.this.userAvatar, loginId, userAvatar);
         }
 
         //TODO to be better event action and desc
@@ -202,7 +205,6 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
             action.setText(span);
-
         }
 
     }

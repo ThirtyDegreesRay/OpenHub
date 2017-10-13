@@ -11,12 +11,10 @@
     android:paddingEnd="@dimen/card_view_item_horizontal_margin"
     android:gravity="center_vertical"
     android:background="?android:selectableItemBackground">
-    <com.makeramen.roundedimageview.RoundedImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/avatar"
         android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@mipmap/logo"
-        app:riv_oval="true"/>
+        android:layout_height="48dp"/>
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"

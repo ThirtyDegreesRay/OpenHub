@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub.util;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ActivityNotFoundException;
 import android.content.ClipData;
@@ -154,7 +155,7 @@ public class AppHelper {
         if(GitHubHelper.isImage(uri.toString())){
             ViewerActivity.showImage(context, uri.toString());
         } else if((loginId = GitHubHelper.getUserFromUrl(uri.toString())) != null){
-            ProfileActivity.show(context, loginId);
+            ProfileActivity.show((Activity) context, loginId);
         } else if(GitHubHelper.isRepoUrl(uri.toString())){
             String fullName = GitHubHelper.getRepoFullNameFromUrl(uri.toString());
             if(StringUtils.isBlank(fullName)){

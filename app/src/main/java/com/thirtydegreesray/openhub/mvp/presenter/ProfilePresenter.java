@@ -16,6 +16,8 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
+import android.os.Handler;
+
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.dao.DaoSession;
@@ -40,8 +42,12 @@ public class ProfilePresenter extends BasePresenter<IProfileContract.View>
         implements IProfileContract.Presenter{
 
     @AutoAccess String loginId;
+    @AutoAccess String userAvatar;
     private User user;
     private boolean following = false;
+
+    private boolean isTransitionComplete = false;
+    private boolean isWaitForTransition = false;
 
     @Inject
     public ProfilePresenter(DaoSession daoSession) {
@@ -51,24 +57,36 @@ public class ProfilePresenter extends BasePresenter<IProfileContract.View>
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isTransitionComplete = true;
+                if(isWaitForTransition) mView.showProfileInfo(user);
+                isWaitForTransition = false;
+            }
+        }, 500);
         getProfileInfo();
         checkFollowingStatus();
     }
 
     private void getProfileInfo(){
-        mView.getProgressDialog(getLoadTip()).show();
+        mView.showLoading();
         HttpObserver<User> httpObserver = new HttpObserver<User>() {
             @Override
             public void onError(Throwable error) {
                 mView.showErrorToast(getErrorTip(error));
-                mView.getProgressDialog(getLoadTip()).dismiss();
+                mView.hideLoading();
             }
 
             @Override
             public void onSuccess(HttpResponse<User> response) {
                 user = response.body();
-                mView.showProfileInfo(user);
-                mView.getProgressDialog(getLoadTip()).dismiss();
+                mView.hideLoading();
+                if(isTransitionComplete){
+                    mView.showProfileInfo(user);
+                } else {
+                    isWaitForTransition = true;
+                }
             }
         };
         generalRxHttpExecute(new IObservableCreator<User>() {
@@ -81,6 +99,10 @@ public class ProfilePresenter extends BasePresenter<IProfileContract.View>
 
     public String getLoginId() {
         return loginId;
+    }
+
+    public String getUserAvatar() {
+        return user != null ? user.getAvatarUrl() : userAvatar;
     }
 
     public User getUser() {

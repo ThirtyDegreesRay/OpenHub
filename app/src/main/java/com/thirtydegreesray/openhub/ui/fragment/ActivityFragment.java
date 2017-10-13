@@ -18,6 +18,7 @@ package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.thirtydegreesray.openhub.R;
@@ -53,7 +54,7 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
     }
 
     public static ActivityFragment create(@NonNull ActivityType type, @NonNull String user,
-                                          @NonNull String repo){
+                                          @Nullable String repo){
         ActivityFragment fragment = new ActivityFragment();
         fragment.setArguments(BundleBuilder.builder().put("type", type)
                 .put("user", user).put("repo", repo).build());
@@ -95,7 +96,7 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
         super.onItemClick(position, view);
         Event event = adapter.getData().get(position);
         if(event.getRepo() == null){
-            ProfileActivity.show(getContext(), event.getActor().getLogin());
+            ProfileActivity.show(getActivity(), null, event.getActor().getLogin(), event.getActor().getAvatarUrl());
             return ;
         }
         //TODO to be better redirection

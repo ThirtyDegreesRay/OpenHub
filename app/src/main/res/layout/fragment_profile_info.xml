@@ -44,46 +44,18 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-                    <com.makeramen.roundedimageview.RoundedImageView
-                        android:id="@+id/avatar"
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
-                        app:riv_oval="false"
-                        app:riv_corner_radius="@dimen/spacing_small"
-                        android:layout_marginStart="@dimen/spacing_small"
-                        android:layout_marginEnd="@dimen/spacing_small"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="@dimen/spacing_small">
-                        <TextView
-                            android:id="@+id/name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:lines="1"
-                            android:textSize="@dimen/text_large"
-                            android:textColor="?android:textColorPrimary"
-                            android:text="Rays yu"/>
-                        <TextView
-                            android:id="@+id/location"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="?android:textColorSecondary"
-                            android:textSize="@dimen/text_small"/>
-                        <TextView
-                            android:id="@+id/joined_time"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="?android:textColorSecondary"
-                            android:textSize="@dimen/text_small"/>
-                    </LinearLayout>
-                </LinearLayout>
+                    android:lines="1"
+                    android:textSize="@dimen/text_large"
+                    android:textColor="?android:textColorPrimary"
+                    android:text="Rays yu"
+                    android:paddingBottom="@dimen/spacing_small"
+                    android:paddingEnd="@dimen/spacing_small"
+                    android:paddingStart="@dimen/spacing_small"
+                    android:paddingTop="@dimen/spacing_small"/>
 
                 <TextView
                     android:id="@+id/bio"
@@ -114,7 +86,7 @@
                     android:id="@+id/link"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_link"
+                    android:drawableStart="@drawable/ic_link_secondary"
                     android:paddingStart="@dimen/spacing_small"
                     android:paddingEnd="@dimen/spacing_small"
                     android:paddingTop="@dimen/spacing_small"

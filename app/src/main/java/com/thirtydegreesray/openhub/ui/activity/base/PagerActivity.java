@@ -50,7 +50,6 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
     @Override
     protected void initActivity() {
         super.initActivity();
-
     }
 
     @Override

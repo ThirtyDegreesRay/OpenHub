@@ -128,7 +128,8 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
 
     @OnClick({R.id.user_name, R.id.user_avatar})
     public void onUserClick(){
-        ProfileActivity.show(getActivity(), mPresenter.getRelease().getAuthor().getLogin());
+        ProfileActivity.show(getActivity(), userAvatar, mPresenter.getRelease().getAuthor().getLogin(),
+                mPresenter.getRelease().getAuthor().getAvatarUrl());
     }
 
 }

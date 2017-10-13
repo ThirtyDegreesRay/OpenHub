@@ -19,9 +19,9 @@ package com.thirtydegreesray.openhub.ui.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.GlideApp;
 import com.thirtydegreesray.openhub.mvp.model.User;
@@ -65,7 +65,7 @@ public class UsersAdapter extends BaseAdapter<UsersAdapter.ViewHolder, User> {
     }
 
     class ViewHolder extends BaseViewHolder {
-        @BindView(R.id.avatar) RoundedImageView avatar;
+        @BindView(R.id.avatar) ImageView avatar;
         @BindView(R.id.name) TextView name;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

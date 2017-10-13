@@ -1,5 +1,6 @@
 package com.thirtydegreesray.openhub.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -82,7 +83,8 @@ public class IssuesAdapter extends BaseAdapter<IssuesAdapter.ViewHolder, Issue> 
         @OnClick({R.id.user_avatar, R.id.user_name})
         public void onUserClick(){
             Issue issue = data.get(getAdapterPosition());
-            ProfileActivity.show(context, issue.getUser().getLogin());
+            ProfileActivity.show((Activity) context, userAvatar, issue.getUser().getLogin(),
+                    issue.getUser().getAvatarUrl());
         }
 
     }

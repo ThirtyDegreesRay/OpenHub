@@ -195,6 +195,7 @@
     <string name="author_name" translatable="false">Rays Yu</string>
     <string name="author_location" translatable="false">NanJing,China</string>
     <string name="author_login_id" translatable="false">ThirtyDegreesRay</string>
+    <string name="author_avatar_url" translatable="false">https://avatars1.githubusercontent.com/u/9625508?v=4</string>
     <string name="app_copyright" translatable="false">© 2017 ThirtyDegreesRay</string>
     <string name="follow_on_github" >Follow on GitHub</string>
     <string name="email" >Email</string>

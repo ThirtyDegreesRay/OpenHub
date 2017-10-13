@@ -16,16 +16,21 @@
 
 package com.thirtydegreesray.openhub.ui.activity;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.common.GlideApp;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
 import com.thirtydegreesray.openhub.inject.module.ActivityModule;
@@ -36,6 +41,9 @@ import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.StringUtils;
+
+import butterknife.BindView;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/23 11:39:13
@@ -44,10 +52,27 @@ import com.thirtydegreesray.openhub.util.BundleBuilder;
 public class ProfileActivity extends PagerActivity<ProfilePresenter>
         implements IProfileContract.View{
 
-    public static void show(@NonNull Context context, @NonNull String loginId){
-        Intent intent = new Intent(context, ProfileActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("loginId", loginId).build());
-        context.startActivity(intent);
+    public static void show(@NonNull Activity activity, @NonNull String loginId){
+        show(activity, loginId, null);
+    }
+
+    public static void show(@NonNull Activity activity,
+                            @NonNull String loginId, @Nullable String userAvatar){
+        show(activity, null, loginId, userAvatar);
+    }
+
+    public static void show(@NonNull Activity activity, @Nullable View userAvatarView,
+                            @NonNull String loginId, @Nullable String userAvatar){
+        Intent intent = new Intent(activity, ProfileActivity.class);
+        intent.putExtras(BundleBuilder.builder().put("loginId", loginId).put("userAvatar", userAvatar).build());
+        if(userAvatarView != null){
+            ActivityOptionsCompat optionsCompat = ActivityOptionsCompat
+                    .makeSceneTransitionAnimation(activity, userAvatarView, "userAvatar");
+            activity.startActivity(intent, optionsCompat.toBundle());
+        } else {
+            activity.startActivity(intent);
+        }
+
     }
 
     @Override
@@ -59,10 +84,17 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
                 .inject(this);
     }
 
+    @BindView(R.id.user_avatar_bg) ImageView userImageViewBg;
+    @BindView(R.id.user_avatar) ImageView userImageView;
+    @BindView(R.id.loader) ProgressBar loader;
+    @BindView(R.id.joined_time) TextView joinedTime;
+    @BindView(R.id.location) TextView location;
+
+
     @Nullable
     @Override
     protected int getContentView() {
-        return R.layout.activity_view_pager;
+        return R.layout.activity_profile;
     }
 
     @Override
@@ -82,9 +114,10 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        setToolbarScrollAble(true);
+        setTransparentStatusBar();
         setToolbarBackEnable();
         setToolbarTitle(mPresenter.getLoginId());
+        setUserAvatar();
     }
 
     @Override
@@ -118,6 +151,11 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
     @Override
     public void showProfileInfo(User user) {
         invalidateOptionsMenu();
+        setUserAvatar();
+        joinedTime.setText(getString(R.string.joined_at).concat(" ")
+                .concat(StringUtils.getDateStr(user.getCreatedAt())));
+        location.setText(user.getLocation());
+
         if (pagerAdapter.getCount() == 0) {
             pagerAdapter.setPagerList(FragmentPagerModel.createProfilePagerList(getActivity(), user));
             tabLayout.setVisibility(View.VISIBLE);
@@ -127,6 +165,35 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
         } else {
 //            AppEventBus.INSTANCE.getEventBus().post(new Event.RepoInfoUpdatedEvent(repo));
         }
+    }
+
+    @Override
+    public void showLoading() {
+        super.showLoading();
+        loader.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        super.hideLoading();
+        loader.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void finishActivity() {
+        supportFinishAfterTransition();
+    }
+
+    private void setUserAvatar(){
+        GlideApp.with(getActivity())
+                .load(mPresenter.getUserAvatar())
+                .placeholder(R.mipmap.logo)
+                .centerCrop()
+                .into(userImageViewBg);
+        GlideApp.with(getActivity())
+                .load(mPresenter.getUserAvatar())
+                .placeholder(R.mipmap.logo)
+                .into(userImageView);
     }
 
 }

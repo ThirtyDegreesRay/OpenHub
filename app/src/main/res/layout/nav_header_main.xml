@@ -29,13 +29,12 @@
     android:paddingTop="@dimen/activity_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <com.makeramen.roundedimageview.RoundedImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/avatar"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@mipmap/logo"
-        app:riv_oval="true"/>
+        android:src="@mipmap/logo"/>
 
     <TextView
         android:id="@+id/name"

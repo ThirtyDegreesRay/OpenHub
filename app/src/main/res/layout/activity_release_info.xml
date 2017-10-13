@@ -31,11 +31,10 @@
                         android:layout_marginEnd="@dimen/spacing_normal"
                         android:layout_marginTop="@dimen/spacing_normal"
                         android:layout_marginBottom="@dimen/spacing_micro">
-                        <com.makeramen.roundedimageview.RoundedImageView
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/user_avatar"
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            app:riv_oval="true"
                             android:background="?android:selectableItemBackgroundBorderless"/>
                         <TextView
                             android:id="@+id/user_name"

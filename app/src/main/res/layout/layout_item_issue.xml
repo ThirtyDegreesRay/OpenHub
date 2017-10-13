@@ -39,8 +39,7 @@
             android:id="@+id/user_avatar"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:background="?android:selectableItemBackgroundBorderless"
-            android:transitionName="userAvatar"/>
+            android:background="?android:selectableItemBackgroundBorderless"/>
 
         <LinearLayout
             android:layout_width="match_parent"

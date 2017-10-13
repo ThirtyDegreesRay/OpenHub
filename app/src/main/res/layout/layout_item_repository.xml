@@ -34,11 +34,10 @@
         android:orientation="horizontal"
         android:padding="@dimen/spacing_normal">
 
-        <com.makeramen.roundedimageview.RoundedImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_user_avatar"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            app:riv_oval="true"
             android:background="?android:selectableItemBackgroundBorderless"/>
 
         <LinearLayout

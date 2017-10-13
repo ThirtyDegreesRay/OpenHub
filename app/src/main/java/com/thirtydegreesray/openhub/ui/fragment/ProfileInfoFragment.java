@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub.ui.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
@@ -25,9 +26,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.thirtydegreesray.openhub.R;
-import com.thirtydegreesray.openhub.common.GlideApp;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
@@ -60,10 +59,7 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
         implements IProfileInfoContract.View,
         BaseAdapter.OnItemClickListener{
 
-    @BindView(R.id.avatar) RoundedImageView avatar;
     @BindView(R.id.name) TextView name;
-    @BindView(R.id.joined_time) TextView joinedTime;
-    @BindView(R.id.location) TextView location;
     @BindView(R.id.bio) TextView bio;
     @BindView(R.id.email) TextView email;
     @BindView(R.id.link) TextView link;
@@ -110,11 +106,9 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
     }
 
     @OnClick({R.id.followers_lay, R.id.following_lay, R.id.repos_lay, R.id.gists_lay,
-                R.id.email, R.id.link, R.id.avatar, R.id.members_lay})
+                R.id.email, R.id.link, R.id.members_lay})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.avatar:
-                break;
             case R.id.followers_lay:
                 if(mPresenter.getUser().getFollowers() == 0) return;
                 UserListActivity.show(getActivity(), UserListFragment.UserListType.FOLLOWERS,
@@ -149,16 +143,11 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
 
     @Override
     public void showProfileInfo(User user) {
-        GlideApp.with(this)
-                .load(user.getAvatarUrl())
-                .placeholder(R.mipmap.logo)
-                .into(avatar);
+
         String nameStr = StringUtils.isBlank(user.getName()) ? user.getLogin() : user.getName();
         nameStr = user.isUser() ? nameStr : nameStr.concat("(ORG)");
         name.setText(nameStr);
-        joinedTime.setText(getString(R.string.joined_at).concat(" ")
-                .concat(StringUtils.getDateStr(user.getCreatedAt())));
-        location.setText(user.getLocation());
+
         bio.setText(user.getBio());
         bio.setVisibility(StringUtils.isBlank(user.getBio()) ? View.GONE :View.VISIBLE);
 
@@ -193,7 +182,9 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
 
     @Override
     public void onItemClick(int position, @NonNull View view) {
-        ProfileActivity.show(getContext(), orgsAdapter.getData().get(position).getLogin());
+        View userAvatar = view.findViewById(R.id.avatar);
+        ProfileActivity.show((Activity) getContext(), userAvatar, orgsAdapter.getData().get(position).getLogin(),
+                orgsAdapter.getData().get(position).getAvatarUrl());
     }
 
     @Override

@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -78,7 +79,8 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
 
         @OnClick(R.id.iv_user_avatar)
         public void onUserClick(){
-            ProfileActivity.show(context, data.get(getAdapterPosition()).getOwner().getLogin());
+            ProfileActivity.show((Activity) context, ivUserAvatar, data.get(getAdapterPosition()).getOwner().getLogin(),
+                    data.get(getAdapterPosition()).getOwner().getAvatarUrl());
         }
     }
 
