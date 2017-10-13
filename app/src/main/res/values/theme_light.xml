@@ -19,7 +19,7 @@
 
     <color name="light_color_primary">@color/material_indigo_500</color>
     <color name="light_color_primary_blur">#DD3F51B5</color>
-    <color name="light_color_primary_dark">@color/material_indigo_500</color>
+    <color name="light_color_primary_dark">@color/material_indigo_700</color>
     <color name="light_color_accent">@color/material_green_accent_700</color>
     <color name="light_window_background">@color/material_light_white</color>
     <color name="light_icon_color">@color/material_light_black</color>

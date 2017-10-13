@@ -19,8 +19,7 @@
 
     <color name="dark_color_primary">#2D3035</color>
     <color name="dark_color_primary_blur">#DD2D3035</color>
-    <color name="dark_color_primary_dark">#2D3035</color>
-    <!--<color name="dark_color_primary_dark">#26282C</color>-->
+    <color name="dark_color_primary_dark">#26282C</color>
     <color name="dark_color_accent">@color/material_green_accent_700</color>
     <color name="dark_color_window_background">#22252A</color>
     <color name="dark_text_color_primary">@color/material_light_white</color>
