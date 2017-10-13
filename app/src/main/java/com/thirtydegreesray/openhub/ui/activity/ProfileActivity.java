@@ -75,6 +75,8 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
 
     }
 
+    private boolean isAvatarSetted = false;
+
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
         DaggerActivityComponent.builder()
@@ -90,6 +92,10 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
     @BindView(R.id.joined_time) TextView joinedTime;
     @BindView(R.id.location) TextView location;
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
@@ -185,6 +191,8 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
     }
 
     private void setUserAvatar(){
+        if(isAvatarSetted || StringUtils.isBlank(mPresenter.getUserAvatar())) return;
+        isAvatarSetted = true;
         GlideApp.with(getActivity())
                 .load(mPresenter.getUserAvatar())
                 .placeholder(R.mipmap.logo)
