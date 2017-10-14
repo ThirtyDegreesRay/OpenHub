@@ -49,6 +49,7 @@ public class MarkdownEditorFragment extends BaseFragment
         if (!StringUtils.isBlank(text)) {
             isTextChanged = true;
             markdownEdit.setText(text);
+            markdownEdit.setSelection(text.length());
         }
     }
 

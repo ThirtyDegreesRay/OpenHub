@@ -46,8 +46,6 @@ import com.thirtydegreesray.openhub.util.BundleBuilder;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewHelper;
 
-import java.util.Locale;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -67,9 +65,10 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
 
     @BindView(R.id.repo_title_text) TextView repoTitleText;
     @BindView(R.id.fork_info_text) TextView forkInfoText;
-    @BindView(R.id.repo_desc_text) TextView repoDescText;
-    @BindView(R.id.repo_code_text) TextView repoCodeText;
+//    @BindView(R.id.repo_desc_text) TextView repoDescText;
+    @BindView(R.id.repo_created_info_text) TextView repoCreatedInfoText;
     @BindView(R.id.issues_num_text) TextView issuesNumText;
+    @BindView(R.id.issues_lay) View issueLay;
     @BindView(R.id.stargazers_num_text) TextView stargazersNumText;
     @BindView(R.id.forks_num_text) TextView forksNumText;
     @BindView(R.id.watchers_num_text) TextView watchersNumText;
@@ -109,15 +108,25 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
 
     @Override
     public void showRepoInfo(Repository repository) {
+//        repoDescText.setVisibility(View.GONE);
+
+        issueLay.setVisibility(repository.isFork() ? View.GONE :View.VISIBLE);
         issuesNumText.setText(String.valueOf(repository.getOpenIssuesCount()));
         stargazersNumText.setText(String.valueOf(repository.getStargazersCount()));
         forksNumText.setText(String.valueOf(repository.getForksCount()));
         watchersNumText.setText(String.valueOf(repository.getSubscribersCount()));
-        repoDescText.setText(repository.getDescription());
-        String language = StringUtils.isBlank(repository.getLanguage()) ?
-                getString(R.string.unknown) : repository.getLanguage();
-        repoCodeText.setText(String.format(Locale.getDefault(), "Language %s, size %s",
-                language, StringUtils.getSizeString(repository.getSize() * 1024)));
+//        repoDescText.setText(repository.getDescription());
+
+//        String language = StringUtils.isBlank(repository.getLanguage()) ?
+//                getString(R.string.unknown) : repository.getLanguage();
+//        repoCreatedInfoText.setText(String.format(Locale.getDefault(), "Language %s, size %s",
+//                language, StringUtils.getSizeString(repository.getSize() * 1024)));
+
+        String createStr = (repository.isFork() ? getString(R.string.forked_at)
+                : getString(R.string.created_at)) + " " + StringUtils.getDateStr(repository.getCreatedAt());
+        String updateStr = getString(R.string.latest_update) + " "
+                + StringUtils.getNewsTimeStr(getActivity(), repository.getUpdatedAt());
+        repoCreatedInfoText.setText(String.format("%s, %s", createStr, updateStr));
 
         if (repository.isFork() && repository.getParent() != null) {
             forkInfoText.setVisibility(View.VISIBLE);

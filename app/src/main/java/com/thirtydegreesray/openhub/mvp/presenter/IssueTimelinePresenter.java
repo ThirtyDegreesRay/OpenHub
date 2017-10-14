@@ -52,9 +52,10 @@ public class IssueTimelinePresenter extends BasePresenter<IIssueTimelineContract
     }
 
     @Override
-    public boolean isEditAndDeleteEnable() {
+    public boolean isEditAndDeleteEnable(int position) {
         return AppData.INSTANCE.getLoggedUser().getLogin().equals(issue.getUser().getLogin()) ||
-                AppData.INSTANCE.getLoggedUser().getLogin().equals(issue.getRepoAuthorName());
+                AppData.INSTANCE.getLoggedUser().getLogin().equals(issue.getRepoAuthorName()) ||
+                AppData.INSTANCE.getLoggedUser().getLogin().equals(timeline.get(position).getUser().getLogin());
     }
 
     @Override
@@ -189,4 +190,7 @@ public class IssueTimelinePresenter extends BasePresenter<IIssueTimelineContract
         }
     }
 
+    public void setIssue(Issue issue) {
+        this.issue = issue;
+    }
 }

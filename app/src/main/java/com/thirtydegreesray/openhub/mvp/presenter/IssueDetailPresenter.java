@@ -43,6 +43,10 @@ public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.Vie
         return issue;
     }
 
+    public void setIssue(Issue issue) {
+        this.issue = issue;
+    }
+
     @Override
     public void addComment(@NonNull final String text) {
         HttpObserver<IssueEvent> httpObserver = new HttpObserver<IssueEvent>() {

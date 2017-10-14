@@ -62,11 +62,13 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
     @BindView(R.id.issue_state_img) ImageView issueStateImg;
     @BindView(R.id.issue_state_text) TextView issueStateText;
     @BindView(R.id.comment_bn) FloatingActionButton commentBn;
+    @BindView(R.id.edit_bn) FloatingActionButton editBn;
 
     private IssueTimelineFragment issueTimelineFragment;
 
     private final int ADD_COMMENT_REQUEST_CODE = 100;
     public static final int EDIT_COMMENT_REQUEST_CODE = 101;
+    public static final int EDIT_ISSUE_REQUEST_CODE = 102;
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
@@ -114,6 +116,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
+                editBn.setVisibility(View.GONE);
                 supportFinishAfterTransition();
                 return true;
             case R.id.action_open_in_browser:
@@ -167,6 +170,12 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
                 }
             }, 500);
         }
+
+        String loggedUser = AppData.INSTANCE.getLoggedUser().getLogin();
+        boolean editAble = loggedUser.equals(issue.getUser().getLogin()) ||
+                loggedUser.equals(issue.getRepoAuthorName());
+        editBn.setVisibility(editAble ? View.VISIBLE : View.GONE);
+
     }
 
     @Override
@@ -184,6 +193,11 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         showAddCommentPage(null);
     }
 
+    @OnClick(R.id.edit_bn)
+    public void onEditBnClicked(){
+        EditIssueActivity.showForEdit(getActivity(), mPresenter.getIssue(), EDIT_ISSUE_REQUEST_CODE);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode != RESULT_OK) return;
@@ -195,7 +209,19 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
             String text = data.getExtras().getString("text");
             issueTimelineFragment.onEditComment(text);
             return ;
+        } else if(requestCode == EDIT_ISSUE_REQUEST_CODE){
+            Issue issue = data.getParcelableExtra("issue");
+            mPresenter.setIssue(issue);
+            issueTitle.setText(issue.getTitle());
+            issueTimelineFragment.onEditIssue(issue);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+    @Override
+    public void onBackPressed() {
+        editBn.setVisibility(View.GONE);
+        super.onBackPressed();
+    }
+
 }

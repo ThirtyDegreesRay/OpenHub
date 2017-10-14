@@ -25,7 +25,7 @@ import java.util.ArrayList;
  */
 
 public class IssuesFragment extends ListFragment<IssuePresenter, IssuesAdapter>
-        implements IIssuesContract.View, IssuesActivity.IssuesFilterListener{
+        implements IIssuesContract.View, IssuesActivity.IssuesListListener {
 
     public static IssuesFragment createForRepo(@NonNull Issue.IssueState issueState,
                                                @NonNull String userId, @NonNull String repoName){
@@ -106,6 +106,12 @@ public class IssuesFragment extends ListFragment<IssuePresenter, IssuesAdapter>
     @Override
     public void onIssuesFilterChanged(@NonNull IssuesFilter issuesFilter) {
         mPresenter.loadIssues(issuesFilter, 1, true);
+    }
+
+    @Override
+    public void onCreateIssue(@NonNull Issue issue) {
+        adapter.getData().add(0, issue);
+        adapter.notifyItemInserted(0);
     }
 
 }

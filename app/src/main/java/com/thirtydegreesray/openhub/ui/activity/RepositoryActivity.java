@@ -16,6 +16,7 @@
 
 package com.thirtydegreesray.openhub.ui.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,10 +29,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.AppEventBus;
 import com.thirtydegreesray.openhub.common.Event;
+import com.thirtydegreesray.openhub.common.GlideApp;
 import com.thirtydegreesray.openhub.http.Downloader;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
@@ -46,8 +51,12 @@ import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Locale;
+
+import butterknife.BindView;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/9 21:39:20
@@ -69,6 +78,17 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         activity.startActivity(intent);
     }
 
+    public static void show(@NonNull Activity activity, @NonNull Repository repository,
+                            @NonNull View titleView) {
+        Intent intent = new Intent(activity, RepositoryActivity.class);
+        intent.putExtra("repository", repository);
+        activity.startActivity(intent);
+    }
+
+    @BindView(R.id.user_avatar_bg) ImageView userImageViewBg;
+    @BindView(R.id.loader) ProgressBar loader;
+    @BindView(R.id.desc) TextView desc;
+    @BindView(R.id.info) TextView info;
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
@@ -82,7 +102,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
     @Nullable
     @Override
     protected int getContentView() {
-        return R.layout.activity_view_pager;
+        return R.layout.activity_repository;
     }
 
     @Override
@@ -108,11 +128,11 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        setToolbarScrollAble(true);
+        setTransparentStatusBar();
         toolbar.setTitleTextAppearance(getActivity(), R.style.Toolbar_TitleText);
         toolbar.setSubtitleTextAppearance(getActivity(), R.style.Toolbar_Subtitle);
         setToolbarBackEnable();
-        setToolbarTitle(getString(R.string.repository));
+        setToolbarTitle(mPresenter.getRepoName());
     }
 
     @Override
@@ -169,13 +189,26 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
 
     @Override
     public void showRepo(Repository repo) {
-        setToolbarTitle(repo.getFullName(), repo.getDefaultBranch());
+//        setToolbarTitle(repo.getFullName(), repo.getDefaultBranch());
+        desc.setText(repo.getDescription());
+        String language = StringUtils.isBlank(repo.getLanguage()) ?
+                getString(R.string.unknown) : repo.getLanguage();
+        info.setText(String.format(Locale.getDefault(), "Language %s, size %s",
+                language, StringUtils.getSizeString(repo.getSize() * 1024)));
+
         if (pagerAdapter.getCount() == 0) {
             pagerAdapter.setPagerList(FragmentPagerModel.createRepoPagerList(getActivity(), repo));
             tabLayout.setVisibility(View.VISIBLE);
             tabLayout.setupWithViewPager(viewPager);
             viewPager.setAdapter(pagerAdapter);
             showFirstPager();
+
+            GlideApp.with(getActivity())
+                    .load(repo.getOwner().getAvatarUrl())
+                    .centerCrop()
+                    .into(userImageViewBg);
+
+
         } else {
             AppEventBus.INSTANCE.getEventBus().post(new Event.RepoInfoUpdatedEvent(repo));
         }
@@ -239,4 +272,15 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                 mPresenter.getRepository().getName());
     }
 
+    @Override
+    public void showLoading() {
+        super.showLoading();
+        loader.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        super.hideLoading();
+        loader.setVisibility(View.GONE);
+    }
 }

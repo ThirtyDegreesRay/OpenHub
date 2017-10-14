@@ -289,4 +289,17 @@
     <string name="add_a_bulleted_list">Add a bulleted list</string>
     <string name="mention">Directly mention a user or team</string>
 
+    <string name="title">Title</string>
+    <string name="leave_a_comment">Leave a comment</string>
+    <string name="markdown_editor">Use markdown editor</string>
+
+    <string name="created_at">Created at</string>
+    <string name="forked_at">Forked at</string>
+    <string name="latest_update">Latest update</string>
+    <string name="issue_title_null_tip">Issue title can not be null.</string>
+    <string name="edit_issue">Edit issue</string>
+    <string name="create_issue">Create issue</string>
+    <string name="edit_issue_success">Edit issue success</string>
+    <string name="create_issue_success">Create issue success</string>
+
 </resources>

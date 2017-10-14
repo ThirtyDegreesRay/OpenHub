@@ -63,10 +63,11 @@ public class ProfilePresenter extends BasePresenter<IProfileContract.View>
                 isTransitionComplete = true;
                 if(isWaitForTransition) mView.showProfileInfo(user);
                 isWaitForTransition = false;
+                getProfileInfo();
+                checkFollowingStatus();
             }
         }, 500);
-        getProfileInfo();
-        checkFollowingStatus();
+
     }
 
     private void getProfileInfo(){

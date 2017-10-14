@@ -251,4 +251,15 @@
     <string name="rate_in_market">שיעור בשוק</string>
     <string name="source_code_wishes">חפש את הכוכב שלך ותרום</string>
     <string name="no_market_clients">אין בשוק לקוחות מותקנים.</string>
+    <string name="create_issue">צור בעיה</string>
+    <string name="create_issue_success">צור הצלחה בנושא</string>
+    <string name="created_at">נוצר ב</string>
+    <string name="edit_issue">ערוך את הבעיה</string>
+    <string name="edit_issue_success">ערוך את ההצלחה של הבעיה</string>
+    <string name="forked_at">מזלג ב</string>
+    <string name="issue_title_null_tip">כותרת הבעיה לא יכולה להיות null.</string>
+    <string name="latest_update">עדכון אחרון</string>
+    <string name="leave_a_comment">השאר תגובה</string>
+    <string name="markdown_editor">השתמש בעורך הסימון</string>
+    <string name="title">כותרת</string>
 </resources>

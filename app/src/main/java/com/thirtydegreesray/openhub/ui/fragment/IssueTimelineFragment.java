@@ -111,7 +111,7 @@ public class IssueTimelineFragment extends ListFragment<IssueTimelinePresenter, 
     public boolean onItemLongClick(final int position, @NonNull View view) {
         final IssueEvent issueEvent = adapter.getData().get(position);
         String[] actions ;
-        if(mPresenter.isEditAndDeleteEnable() && position != 0){
+        if(mPresenter.isEditAndDeleteEnable(position) && position != 0){
             actions = new String[]{getString(R.string.share), getString(R.string.edit), getString(R.string.delete)};
         } else {
             actions = new String[]{getString(R.string.share)};
@@ -165,6 +165,13 @@ public class IssueTimelineFragment extends ListFragment<IssueTimelinePresenter, 
 
     public void onEditComment(String body) {
         mPresenter.editComment(editingCommentId, body);
+    }
+
+    public void onEditIssue(Issue issue){
+        adapter.getData().get(0).setBody(issue.getBody());
+        adapter.getData().get(0).setBodyHtml(issue.getBodyHtml());
+        adapter.notifyItemChanged(0);
+        mPresenter.setIssue(issue);
     }
 
 }

@@ -195,7 +195,6 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
         isAvatarSetted = true;
         GlideApp.with(getActivity())
                 .load(mPresenter.getUserAvatar())
-                .placeholder(R.mipmap.logo)
                 .centerCrop()
                 .into(userImageViewBg);
         GlideApp.with(getActivity())
@@ -204,4 +203,10 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
                 .into(userImageView);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //TODO Don't know why loader show automatic when resume from other page, conflict with screen transition
+//        loader.setVisibility(View.GONE);
+    }
 }

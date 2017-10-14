@@ -182,6 +182,13 @@
             android:windowSoftInputMode="stateVisible">
         </activity>
 
+        <activity
+            android:name=".ui.activity.EditIssueActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeLight.Green"
+            android:windowSoftInputMode="stateVisible">
+        </activity>
+
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,9 @@ import com.thirtydegreesray.openhub.util.BundleBuilder;
 import com.thirtydegreesray.openhub.util.ViewHelper;
 
 import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by ThirtyDegreesRay on 2017/9/20 14:42:31
@@ -48,11 +52,14 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
         activity.startActivity(intent);
     }
 
+    private final static int ADD_ISSUE_REQUEST_CODE = 100;
+
     @AutoAccess String userId;
     @AutoAccess String repoName;
     @AutoAccess IssuesFilter.Type issuesType;
+    @BindView(R.id.add_issue_bn) FloatingActionButton addBn;
 
-    private ArrayList<IssuesFilterListener> listeners ;
+    private ArrayList<IssuesListListener> listeners ;
 
     @Override
     protected void initActivity() {
@@ -80,8 +87,9 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
         setToolbarScrollAble(true);
         setToolbarBackEnable();
         setToolbarTitle(getString(R.string.issues));
+        addBn.setVisibility(IssuesFilter.Type.Repo.equals(issuesType) ? View.VISIBLE : View.GONE);
 
-        if(IssuesFilter.Type.User.equals(issuesType)){
+            if(IssuesFilter.Type.User.equals(issuesType)){
             pagerAdapter.setPagerList(FragmentPagerModel
                     .createUserIssuesPagerList(getActivity()));
         } else {
@@ -91,7 +99,7 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
         }
         listeners = new ArrayList<>();
         for(FragmentPagerModel pagerModel : pagerAdapter.getPagerList()){
-            listeners.add((IssuesFilterListener) pagerModel.getFragment());
+            listeners.add((IssuesListListener) pagerModel.getFragment());
         }
         tabLayout.setVisibility(View.VISIBLE);
         tabLayout.setupWithViewPager(viewPager);
@@ -125,6 +133,11 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_sort, menu);
         return true;
+    }
+
+    @OnClick(R.id.add_issue_bn)
+    public void onAddIssueClick(){
+        EditIssueActivity.showForAdd(getActivity(), userId, repoName, ADD_ISSUE_REQUEST_CODE);
     }
 
     private IssuesFilter getIssuesFilter(boolean open){
@@ -190,8 +203,24 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
         }
     }
 
-    public interface IssuesFilterListener{
+    public interface IssuesListListener {
         void onIssuesFilterChanged(@NonNull IssuesFilter issuesFilter);
+        void onCreateIssue(@NonNull Issue issue);
     }
 
+    @Override
+    public void onPageSelected(int position) {
+        super.onPageSelected(position);
+        addBn.setVisibility(IssuesFilter.Type.Repo.equals(issuesType) && position == 0 ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode != RESULT_OK) return;
+        if(requestCode == ADD_ISSUE_REQUEST_CODE){
+            Issue issue = data.getParcelableExtra("issue");
+            listeners.get(0).onCreateIssue(issue);
+        }
+    }
 }

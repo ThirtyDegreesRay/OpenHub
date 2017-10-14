@@ -182,18 +182,18 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
     }
 
     private void getRepoInfo(final boolean isShowLoading) {
-        if (isShowLoading) mView.getProgressDialog(getLoadTip()).show();
+        if (isShowLoading) mView.showLoading();
         HttpObserver<Repository> httpObserver =
                 new HttpObserver<Repository>() {
                     @Override
                     public void onError(Throwable error) {
-                        if (isShowLoading) mView.getProgressDialog(getLoadTip()).cancel();
+                        if (isShowLoading) mView.hideLoading();
                         mView.showErrorToast(getErrorTip(error));
                     }
 
                     @Override
                     public void onSuccess(HttpResponse<Repository> response) {
-                        if (isShowLoading) mView.getProgressDialog(getLoadTip()).cancel();
+                        if (isShowLoading) mView.hideLoading();
                         repository = response.body();
                         initCurBranch();
                         mView.showRepo(repository);
@@ -287,5 +287,9 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
 
     public void setCurBranch(Branch curBranch) {
         this.curBranch = curBranch;
+    }
+
+    public String getRepoName() {
+        return repository == null ? repoName : repository.getName();
     }
 }

@@ -62,10 +62,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_micro"
                     android:textColor="?android:textColorSecondary"
-                    android:textSize="@dimen/text_small"/>
+                    android:textSize="@dimen/text_small"
+                    android:visibility="gone"/>
 
                 <TextView
-                    android:id="@+id/repo_code_text"
+                    android:id="@+id/repo_created_info_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_micro"

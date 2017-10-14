@@ -35,13 +35,13 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
             app:collapsedTitleGravity="start"
             app:expandedTitleGravity="top"
-            app:expandedTitleMarginStart="96dp"
+            app:expandedTitleMarginStart="@dimen/spacing_x_large"
             app:expandedTitleMarginTop="60dp"
             app:expandedTitleTextAppearance="@style/Toolbar.Expand.TitleText"
             android:paddingTop="0dp">
@@ -70,32 +70,23 @@
                 android:paddingBottom="@dimen/spacing_normal"
                 android:layout_marginTop="86dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/user_avatar"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    android:transitionName="userAvatar"
-                    android:src="@mipmap/logo"/>
-
                 <TextView
-                    android:id="@+id/location"
+                    android:id="@+id/desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_small"
                     android:textColor="?title_color"
-                    android:layout_toEndOf="@+id/user_avatar"
                     android:layout_marginStart="@dimen/spacing_normal"
                     android:layout_marginTop="@dimen/spacing_x_large"/>
 
                 <TextView
-                    android:id="@+id/joined_time"
+                    android:id="@+id/info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:textSize="@dimen/text_small"
                     android:textColor="?title_color"
-                    android:layout_below="@+id/location"
-                    android:layout_toEndOf="@+id/user_avatar"
+                    android:layout_below="@+id/desc"
                     android:layout_marginStart="@dimen/spacing_normal"
                     android:transitionName="issueTitle"/>
 
@@ -138,9 +129,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
+            android:indeterminate="true"
             android:paddingEnd="@dimen/spacing_large"
             android:paddingStart="@dimen/spacing_large"
-            android:indeterminate="true"
             android:visibility="gone"/>
 
     </android.support.design.widget.CoordinatorLayout>

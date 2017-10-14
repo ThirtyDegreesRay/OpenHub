@@ -19,7 +19,7 @@ public interface IIssueTimelineContract {
 
     interface Presenter extends IBaseContract.Presenter<IIssueTimelineContract.View> {
         void loadTimeline(int page, boolean isReload);
-        boolean isEditAndDeleteEnable();
+        boolean isEditAndDeleteEnable(int position);
         void deleteComment(String commentId);
         void editComment(String commentId, String body);
     }
