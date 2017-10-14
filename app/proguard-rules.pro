@@ -37,6 +37,9 @@
 -dontwarn javax.annotation.**
 -dontwarn javax.inject.**
 
+-keep class com.thirtydegreesray.openhub.http.model.** { *; }
+-keep class com.thirtydegreesray.openhub.mvp.model.** { *; }
+
 # DataAutoAccess
 -keep class com.thirtydegreesray.dataautoaccess.** { *; }
 -keep class **$$DataAccessor { *; }
