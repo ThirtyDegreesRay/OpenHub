@@ -62,6 +62,12 @@ public class Repository implements Parcelable {
     private Repository parent;
     private RepositoryPermissions permissions;
 
+    @SerializedName("has_issues") private boolean hasIssues;
+    @SerializedName("has_projects") private boolean hasProjects;
+    @SerializedName("has_downloads") private boolean hasDownloads;
+    @SerializedName("has_wiki") private boolean hasWiki;
+    @SerializedName("has_pages") private boolean hasPages;
+
     public Repository() {
     }
 
@@ -265,6 +271,47 @@ public class Repository implements Parcelable {
         this.parent = parent;
     }
 
+    public boolean isHasIssues() {
+        return hasIssues;
+    }
+
+    public void setHasIssues(boolean hasIssues) {
+        this.hasIssues = hasIssues;
+    }
+
+    public boolean isHasProjects() {
+        return hasProjects;
+    }
+
+    public void setHasProjects(boolean hasProjects) {
+        this.hasProjects = hasProjects;
+    }
+
+    public boolean isHasDownloads() {
+        return hasDownloads;
+    }
+
+    public void setHasDownloads(boolean hasDownloads) {
+        this.hasDownloads = hasDownloads;
+    }
+
+    public boolean isHasWiki() {
+        return hasWiki;
+    }
+
+    public void setHasWiki(boolean hasWiki) {
+        this.hasWiki = hasWiki;
+    }
+
+    public boolean isHasPages() {
+        return hasPages;
+    }
+
+    public void setHasPages(boolean hasPages) {
+        this.hasPages = hasPages;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -297,6 +344,11 @@ public class Repository implements Parcelable {
         dest.writeByte(this.fork ? (byte) 1 : (byte) 0);
         dest.writeParcelable(this.parent, flags);
         dest.writeParcelable(this.permissions, flags);
+        dest.writeByte(this.hasIssues ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.hasProjects ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.hasDownloads ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.hasWiki ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.hasPages ? (byte) 1 : (byte) 0);
     }
 
     protected Repository(Parcel in) {
@@ -328,9 +380,14 @@ public class Repository implements Parcelable {
         this.fork = in.readByte() != 0;
         this.parent = in.readParcelable(Repository.class.getClassLoader());
         this.permissions = in.readParcelable(RepositoryPermissions.class.getClassLoader());
+        this.hasIssues = in.readByte() != 0;
+        this.hasProjects = in.readByte() != 0;
+        this.hasDownloads = in.readByte() != 0;
+        this.hasWiki = in.readByte() != 0;
+        this.hasPages = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<Repository> CREATOR = new Parcelable.Creator<Repository>() {
+    public static final Creator<Repository> CREATOR = new Creator<Repository>() {
         @Override
         public Repository createFromParcel(Parcel source) {
             return new Repository(source);

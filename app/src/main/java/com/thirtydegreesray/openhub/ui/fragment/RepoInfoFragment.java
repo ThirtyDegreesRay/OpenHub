@@ -110,7 +110,7 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
     public void showRepoInfo(Repository repository) {
 //        repoDescText.setVisibility(View.GONE);
 
-        issueLay.setVisibility(repository.isFork() ? View.GONE :View.VISIBLE);
+        issueLay.setVisibility(repository.isHasIssues() ? View.VISIBLE :View.GONE);
         issuesNumText.setText(String.valueOf(repository.getOpenIssuesCount()));
         stargazersNumText.setText(String.valueOf(repository.getStargazersCount()));
         forksNumText.setText(String.valueOf(repository.getForksCount()));
