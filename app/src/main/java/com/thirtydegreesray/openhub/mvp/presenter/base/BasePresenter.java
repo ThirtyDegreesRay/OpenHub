@@ -179,7 +179,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
     }
 
     protected OpenHubService getOpenHubService() {
-        return getServices(OpenHubService.class);
+        return getServices(OpenHubService.class, AppConfig.OPENHUB_BASE_URL);
     }
 
     protected IssueService getIssueService() {
@@ -191,8 +191,12 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
     }
 
     private <T> T getServices(Class<T> serviceClass){
+        return getServices(serviceClass, AppConfig.GITHUB_API_BASE_URL);
+    }
+
+    private <T> T getServices(Class<T> serviceClass, String baseUrl){
         return AppRetrofit.INSTANCE
-                .getRetrofit(AppConfig.GITHUB_API_BASE_URL,
+                .getRetrofit(baseUrl,
                         AppData.INSTANCE.getAccessToken())
                 .create(serviceClass);
     }
