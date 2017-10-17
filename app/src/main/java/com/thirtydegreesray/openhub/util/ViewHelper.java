@@ -91,8 +91,14 @@ public class ViewHelper {
         return getColorAttr(context, R.attr.card_background);
     }
 
-    public static Drawable getSelectableItemBackground(@NonNull Context context) {
-        return getDrawableAttr(context, android.R.attr.selectableItemBackground);
+    @ColorInt
+    public static int getSubTitleColor(@NonNull Context context) {
+        return getColorAttr(context, R.attr.subtitle_color);
+    }
+
+    @ColorInt
+    public static int getSelectedColor(@NonNull Context context) {
+        return getColorAttr(context, R.attr.selected_color);
     }
 
     @ColorInt

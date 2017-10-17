@@ -33,6 +33,7 @@ import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IRepoInfoContract;
+import com.thirtydegreesray.openhub.mvp.model.Branch;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.RepoInfoPresenter;
 import com.thirtydegreesray.openhub.ui.activity.IssuesActivity;
@@ -55,7 +56,8 @@ import butterknife.OnClick;
 
 public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         implements IRepoInfoContract.View,
-        CodeWebView.ContentChangedListener {
+        CodeWebView.ContentChangedListener,
+        RepositoryActivity.RepositoryListener {
 
     public static RepoInfoFragment create(Repository repository) {
         RepoInfoFragment fragment = new RepoInfoFragment();
@@ -99,11 +101,7 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-        isReadmeSetted = false;
         webView.setContentChangedListener(this);
-        readmeLoader.setVisibility(View.VISIBLE);
-        readmeLoader.setIndeterminate(true);
-        mPresenter.loadReadMe();
     }
 
     @Override
@@ -163,7 +161,16 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
             webView.setMdSource(source, baseUrl);
             readmeLoader.setVisibility(View.VISIBLE);
             readmeLoader.setIndeterminate(false);
+            webView.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void showReadMeLoader() {
+        isReadmeSetted = false;
+        readmeLoader.setVisibility(View.VISIBLE);
+        readmeLoader.setIndeterminate(true);
+        webView.setVisibility(View.GONE);
     }
 
     @OnClick({R.id.issues_lay, R.id.stargazers_lay, R.id.froks_lay, R.id.watchers_lay,
@@ -218,6 +225,20 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
     public void onFragmentShowed() {
         super.onFragmentShowed();
         if(mPresenter != null) mPresenter.prepareLoadData();
+    }
+
+    @Override
+    public void onRepositoryInfoUpdated(Repository repository) {
+        mPresenter.setRepository(repository);
+        mPresenter.setLoaded(false);
+        mPresenter.prepareLoadData();
+    }
+
+    @Override
+    public void onBranchChanged(Branch branch) {
+        mPresenter.setCurBranch(branch.getName());
+        mPresenter.setLoaded(false);
+        mPresenter.prepareLoadData();
     }
 
 }

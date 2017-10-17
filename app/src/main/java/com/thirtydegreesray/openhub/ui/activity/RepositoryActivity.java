@@ -34,8 +34,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
-import com.thirtydegreesray.openhub.common.AppEventBus;
-import com.thirtydegreesray.openhub.common.Event;
 import com.thirtydegreesray.openhub.common.GlideApp;
 import com.thirtydegreesray.openhub.http.Downloader;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
@@ -207,10 +205,9 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                     .load(repo.getOwner().getAvatarUrl())
                     .centerCrop()
                     .into(userImageViewBg);
-
-
         } else {
-            AppEventBus.INSTANCE.getEventBus().post(new Event.RepoInfoUpdatedEvent(repo));
+            noticeRepositoryUpdated(repo);
+//            AppEventBus.INSTANCE.getEventBus().post(new Event.RepoInfoUpdatedEvent(repo));
         }
     }
 
@@ -241,7 +238,8 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                 Branch branch = list.get(position);
                 mPresenter.getRepository().setDefaultBranch(branch.getName());
                 mPresenter.setCurBranch(branch);
-                showRepo(mPresenter.getRepository());
+                noticeBranchChanged(branch);
+//                showRepo(mPresenter.getRepository());
                 alertDialog.dismiss();
             }
         });
@@ -283,4 +281,26 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         super.hideLoading();
         loader.setVisibility(View.GONE);
     }
+
+    private void noticeBranchChanged(Branch branch){
+        for(FragmentPagerModel pagerModel : pagerAdapter.getPagerList()){
+            if(pagerModel.getFragment() instanceof RepositoryListener){
+                ((RepositoryListener)pagerModel.getFragment()).onBranchChanged(branch);
+            }
+        }
+    }
+
+    private void noticeRepositoryUpdated(Repository repository){
+        for(FragmentPagerModel pagerModel : pagerAdapter.getPagerList()){
+            if(pagerModel.getFragment() instanceof RepositoryListener){
+                ((RepositoryListener)pagerModel.getFragment()).onRepositoryInfoUpdated(repository);
+            }
+        }
+    }
+
+    public interface RepositoryListener{
+        void onRepositoryInfoUpdated(Repository repository);
+        void onBranchChanged(Branch branch);
+    }
+
 }

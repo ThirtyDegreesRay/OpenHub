@@ -51,7 +51,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
     @AutoAccess String repoName;
 
     private ArrayList<Branch> branches;
-    private Branch curBranch;
+    @AutoAccess Branch curBranch;
     private boolean starred;
     private boolean watched;
 
@@ -292,4 +292,5 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
     public String getRepoName() {
         return repository == null ? repoName : repository.getName();
     }
+
 }

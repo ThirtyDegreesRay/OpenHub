@@ -28,6 +28,7 @@
     <color name="dark_card_background">#2D3035</color>
     <color name="dark_title_color">@color/material_light_white</color>
     <color name="dark_subtitle_color">@color/material_grey_500</color>
+    <color name="dark_selected_color">#3f3f3f</color>
 
     <style name="ThemeDark" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/dark_color_primary</item>
@@ -42,6 +43,7 @@
         <item name="card_background">@color/dark_card_background</item>
         <item name="title_color">@color/dark_title_color</item>
         <item name="subtitle_color">@color/dark_subtitle_color</item>
+        <item name="selected_color">@color/dark_selected_color</item>
         <item name="color_primary_blur">@color/dark_color_primary_blur</item>
         <item name="popup_theme">@style/PopupThemeDark</item>
         <item name="appbar_theme">@style/AppbarThemeDark</item>

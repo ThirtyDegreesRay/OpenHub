@@ -31,6 +31,7 @@ import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.AppEventBus;
 import com.thirtydegreesray.openhub.dao.DaoSession;
+import com.thirtydegreesray.openhub.http.CommitService;
 import com.thirtydegreesray.openhub.http.IssueService;
 import com.thirtydegreesray.openhub.http.LoginService;
 import com.thirtydegreesray.openhub.http.OpenHubService;
@@ -170,31 +171,30 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
     }
 
     protected RepoService getRepoService() {
-        return AppRetrofit.INSTANCE
-                .getRetrofit(AppConfig.GITHUB_API_BASE_URL,
-                        AppData.INSTANCE.getAccessToken())
-                .create(RepoService.class);
+        return getServices(RepoService.class);
     }
 
     protected SearchService getSearchService() {
-        return AppRetrofit.INSTANCE
-                .getRetrofit(AppConfig.GITHUB_API_BASE_URL,
-                        AppData.INSTANCE.getAccessToken())
-                .create(SearchService.class);
+        return getServices(SearchService.class);
     }
 
     protected OpenHubService getOpenHubService() {
-        return AppRetrofit.INSTANCE
-                .getRetrofit(AppConfig.OPENHUB_BASE_URL,
-                        AppData.INSTANCE.getAccessToken())
-                .create(OpenHubService.class);
+        return getServices(OpenHubService.class);
     }
 
     protected IssueService getIssueService() {
+        return getServices(IssueService.class);
+    }
+
+    protected CommitService getCommitService() {
+        return getServices(CommitService.class);
+    }
+
+    private <T> T getServices(Class<T> serviceClass){
         return AppRetrofit.INSTANCE
                 .getRetrofit(AppConfig.GITHUB_API_BASE_URL,
                         AppData.INSTANCE.getAccessToken())
-                .create(IssueService.class);
+                .create(serviceClass);
     }
 
     /**

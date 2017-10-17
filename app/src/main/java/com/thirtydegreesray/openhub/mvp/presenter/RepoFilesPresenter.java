@@ -19,7 +19,6 @@ package com.thirtydegreesray.openhub.mvp.presenter;
 import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
-import com.thirtydegreesray.openhub.common.Event;
 import com.thirtydegreesray.openhub.common.SizedMap;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
@@ -31,8 +30,6 @@ import com.thirtydegreesray.openhub.mvp.model.FilePath;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePagerPresenter;
 import com.thirtydegreesray.openhub.util.StringUtils;
-
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -54,6 +51,7 @@ public class RepoFilesPresenter extends BasePagerPresenter<IRepoFilesContract.Vi
     private Map<String, ArrayList<FileModel>> cacheMap;
     @AutoAccess Repository repo ;
     @AutoAccess String curPath = "";
+    @AutoAccess String curBranch = "";
     private ArrayList<FilePath> filePath;
     private FilePath homePath ;
 
@@ -61,7 +59,6 @@ public class RepoFilesPresenter extends BasePagerPresenter<IRepoFilesContract.Vi
     public RepoFilesPresenter(DaoSession daoSession) {
         super(daoSession);
         cacheMap = new SizedMap<>();
-        setEventSubscriber(true);
         filePath = new ArrayList<>();
         homePath = new FilePath("", "");
         filePath.add(homePath);
@@ -117,7 +114,7 @@ public class RepoFilesPresenter extends BasePagerPresenter<IRepoFilesContract.Vi
             @Override
             public Observable<Response<ArrayList<FileModel>>> createObservable(boolean forceNetWork) {
                 return getRepoService().getRepoFiles(repo.getOwner().getLogin(),
-                        repo.getName(), curPath, repo.getDefaultBranch());
+                        repo.getName(), curPath, curBranch);
             }
         }, httpObserver, false);
     }
@@ -153,7 +150,7 @@ public class RepoFilesPresenter extends BasePagerPresenter<IRepoFilesContract.Vi
     }
 
     private String getCacheKey(){
-        return repo.getDefaultBranch() + "-" + curPath;
+        return curBranch + "-" + curPath;
     }
 
     public String getCurPath() {
@@ -166,15 +163,6 @@ public class RepoFilesPresenter extends BasePagerPresenter<IRepoFilesContract.Vi
 
     public ArrayList<FilePath> getFilePath(){
         return filePath;
-    }
-
-    @Subscribe
-    public void onRepoInfoUpdated(Event.RepoInfoUpdatedEvent event) {
-        if (!repo.getFullName().equals(event.repository.getFullName())) return;
-        repo = event.repository;
-        curPath = "";
-        setLoaded(false);
-        prepareLoadData();
     }
 
     private void updateFilePath(){
@@ -201,4 +189,8 @@ public class RepoFilesPresenter extends BasePagerPresenter<IRepoFilesContract.Vi
         return repo.getName();
     }
 
+    public void setCurBranch(String curBranch) {
+        this.curBranch = curBranch;
+        curPath = "";
+    }
 }

@@ -25,6 +25,7 @@ import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
+import com.thirtydegreesray.openhub.ui.fragment.CommitsFragment;
 import com.thirtydegreesray.openhub.ui.fragment.IssuesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.ProfileInfoFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoFilesFragment;
@@ -63,10 +64,12 @@ public class FragmentPagerModel {
         return setPagerFragmentFlag(Arrays.asList(
                 new FragmentPagerModel(context.getString(R.string.info), RepoInfoFragment.create(repository)),
                 new FragmentPagerModel(context.getString(R.string.files), RepoFilesFragment.create(repository)),
+                new FragmentPagerModel(context.getString(R.string.commits),
+                        CommitsFragment.create(repository.getOwner().getLogin(),
+                                repository.getName(), repository.getDefaultBranch())),
                 new FragmentPagerModel(context.getString(R.string.activity),
                         ActivityFragment.create(ActivityFragment.ActivityType.Repository,
                                 repository.getOwner().getLogin(), repository.getName()))
-//                new FragmentPagerModel(context.getString(R.string.commits), new ProfileFragment().setName("profile"))
         ));
     }
 

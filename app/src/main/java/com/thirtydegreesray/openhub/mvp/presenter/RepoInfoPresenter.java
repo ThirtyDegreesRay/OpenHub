@@ -18,7 +18,6 @@ package com.thirtydegreesray.openhub.mvp.presenter;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppConfig;
-import com.thirtydegreesray.openhub.common.Event;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
@@ -26,8 +25,6 @@ import com.thirtydegreesray.openhub.mvp.contract.IRepoInfoContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePagerPresenter;
 import com.thirtydegreesray.openhub.util.StringUtils;
-
-import org.greenrobot.eventbus.Subscribe;
 
 import java.io.IOException;
 
@@ -45,12 +42,12 @@ public class RepoInfoPresenter extends BasePagerPresenter<IRepoInfoContract.View
         implements IRepoInfoContract.Presenter{
 
     @AutoAccess Repository repository;
+    @AutoAccess String curBranch = "";
     private String readmeSource;
 
     @Inject
     public RepoInfoPresenter(DaoSession daoSession) {
         super(daoSession);
-        setEventSubscriber(true);
     }
 
     @Override
@@ -61,19 +58,24 @@ public class RepoInfoPresenter extends BasePagerPresenter<IRepoInfoContract.View
     @Override
     protected void loadData() {
         mView.showRepoInfo(repository);
+        if(readmeSource == null){
+            loadReadMe();
+        }
     }
 
     @Override
     public void loadReadMe() {
         final String readmeFileUrl = AppConfig.GITHUB_API_BASE_URL + "repos/" + repository.getFullName()
-                + "/" + "readme";
+                + "/" + "readme" + (StringUtils.isBlank(curBranch) ? "" : "?ref=" + curBranch);
+
         final String baseUrl = AppConfig.GITHUB_BASE_URL + repository.getFullName();
 
-        if(!StringUtils.isBlank(readmeSource)){
-            mView.showReadMe(readmeSource, baseUrl);
-            return;
-        }
+//        if(!StringUtils.isBlank(readmeSource)){
+//            mView.showReadMe(readmeSource, baseUrl);
+//            return;
+//        }
 
+        mView.showReadMeLoader();
         HttpObserver<ResponseBody> httpObserver = new HttpObserver<ResponseBody>() {
             @Override
             public void onError(Throwable error) {
@@ -103,14 +105,6 @@ public class RepoInfoPresenter extends BasePagerPresenter<IRepoInfoContract.View
         return repository;
     }
 
-    @Subscribe
-    public void onRepoInfoUpdated(Event.RepoInfoUpdatedEvent event){
-        if(!this.repository.getFullName().equals(event.repository.getFullName())) return;
-        this.repository = event.repository;
-        setLoaded(false);
-        prepareLoadData();
-    }
-
     /**
      * check if the string size is too large to save
      */
@@ -120,4 +114,12 @@ public class RepoInfoPresenter extends BasePagerPresenter<IRepoInfoContract.View
         }
     }
 
+    public void setRepository(Repository repository) {
+        this.repository = repository;
+    }
+
+    public void setCurBranch(String curBranch) {
+        this.curBranch = curBranch;
+        readmeSource = null;
+    }
 }

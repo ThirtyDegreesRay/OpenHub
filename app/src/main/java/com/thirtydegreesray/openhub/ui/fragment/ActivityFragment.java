@@ -43,7 +43,7 @@ import java.util.ArrayList;
  */
 
 public class ActivityFragment extends ListFragment<ActivityPresenter, ActivitiesAdapter>
-        implements IActivityContract.View{
+        implements IActivityContract.View {
 
     public enum ActivityType {
         News, User, Repository

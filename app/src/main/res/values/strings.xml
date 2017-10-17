@@ -302,4 +302,6 @@
     <string name="edit_issue_success">Edit issue success</string>
     <string name="create_issue_success">Create issue success</string>
 
+    <string name="no_commits">No commits</string>
+
 </resources>

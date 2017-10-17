@@ -30,6 +30,7 @@
     <attr name="card_background" format="color|reference"/>
     <attr name="title_color" format="color|reference"/>
     <attr name="subtitle_color" format="color|reference"/>
+    <attr name="selected_color" format="color|reference"/>
     <attr name="appbar_theme" format="reference"/>
     <attr name="popup_theme" format="reference"/>
 

@@ -36,7 +36,7 @@ public class EventPayload implements Parcelable {
     private String ref; //PushEvent&CreateEvent
     private String head;
     private String before;
-    private ArrayList<Commit> commits;
+    private ArrayList<PushEventCommit> commits;
 
     //WatchEvent&PullRequestEvent
     private String action;
@@ -104,11 +104,11 @@ public class EventPayload implements Parcelable {
         this.before = before;
     }
 
-    public ArrayList<Commit> getCommits() {
+    public ArrayList<PushEventCommit> getCommits() {
         return commits;
     }
 
-    public void setCommits(ArrayList<Commit> commits) {
+    public void setCommits(ArrayList<PushEventCommit> commits) {
         this.commits = commits;
     }
 
@@ -202,7 +202,7 @@ public class EventPayload implements Parcelable {
         this.ref = in.readString();
         this.head = in.readString();
         this.before = in.readString();
-        this.commits = in.createTypedArrayList(Commit.CREATOR);
+        this.commits = in.createTypedArrayList(PushEventCommit.CREATOR);
         this.action = in.readString();
         this.refType = in.readString();
         this.masterBranch = in.readString();

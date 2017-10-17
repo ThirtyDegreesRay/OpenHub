@@ -28,10 +28,12 @@ import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IRepoFilesContract;
+import com.thirtydegreesray.openhub.mvp.model.Branch;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.mvp.model.FilePath;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.RepoFilesPresenter;
+import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.FilePathAdapter;
@@ -51,7 +53,8 @@ import butterknife.BindView;
  */
 
 public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFilesAdapter>
-        implements IRepoFilesContract.View, PagerActivity.IFragmentKeyListener{
+        implements IRepoFilesContract.View, PagerActivity.IFragmentKeyListener,
+        RepositoryActivity.RepositoryListener{
 
     public static RepoFilesFragment create(Repository repository) {
         RepoFilesFragment fragment = new RepoFilesFragment();
@@ -154,4 +157,19 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
         if(mPresenter != null) mPresenter.prepareLoadData();
     }
 
+    @Override
+    public void onRepositoryInfoUpdated(Repository repository) {
+
+    }
+
+    @Override
+    public void onBranchChanged(Branch branch) {
+        if(mPresenter == null){
+            getArguments().putString("branch", branch.getName());
+        } else {
+            mPresenter.setCurBranch(branch.getName());
+            mPresenter.setLoaded(false);
+            mPresenter.prepareLoadData();
+        }
+    }
 }

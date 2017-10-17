@@ -26,6 +26,7 @@
     <color name="light_card_background">@color/material_white</color>
     <color name="light_title_color">@color/material_light_white</color>
     <color name="light_subtitle_color">@color/material_grey_350</color>
+    <color name="light_selected_color">@color/material_grey_350</color>
     <color name="light_text_color_primary">#212121</color>
     <color name="light_text_color_secondary">#757575</color>
 
@@ -42,6 +43,7 @@
         <item name="card_background">@color/light_card_background</item>
         <item name="title_color">@color/light_title_color</item>
         <item name="subtitle_color">@color/light_subtitle_color</item>
+        <item name="selected_color">@color/light_selected_color</item>
         <item name="color_primary_blur">@color/light_color_primary_blur</item>
         <item name="popup_theme">@style/PopupThemeLight</item>
         <item name="appbar_theme">@style/AppbarThemeLight</item>

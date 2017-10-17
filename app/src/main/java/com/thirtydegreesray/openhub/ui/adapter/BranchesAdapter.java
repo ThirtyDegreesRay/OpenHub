@@ -20,12 +20,14 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.model.Branch;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
+import com.thirtydegreesray.openhub.util.ViewHelper;
 
 import butterknife.BindView;
 
@@ -59,14 +61,15 @@ public class BranchesAdapter extends BaseAdapter<BranchesAdapter.ViewHolder, Bra
         holder.icon.setImageResource(branch.isBranch() ? R.drawable.ic_branch : R.drawable.ic_tag);
         holder.name.setText(branch.getName());
         if(branch.getName().equals(curBranch)){
-//            holder.itemView.setBackground();
+            holder.rootLayout.setBackgroundColor(ViewHelper.getSelectedColor(context));
         }else{
-//            holder.itemView.setBackground(ViewHelper.getSelectableItemBackground(context));
+            holder.rootLayout.setBackground(null);
         }
     }
 
     class ViewHolder extends BaseViewHolder {
 
+        @BindView(R.id.root_layout) LinearLayout rootLayout;
         @BindView(R.id.icon) AppCompatImageView icon;
         @BindView(R.id.name) TextView name;
 

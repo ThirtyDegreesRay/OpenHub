@@ -62,7 +62,7 @@ public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        if(curFragment.equals(object)){
+        if(curFragment != null && curFragment.equals(object)){
             curFragment = null;
         }
 //        super.destroyItem(container, position, object);

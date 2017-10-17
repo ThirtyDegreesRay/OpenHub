@@ -21,9 +21,10 @@ import android.os.Parcelable;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/23 21:41:08
+ * Commit model for PushEvent
  */
 
-public class Commit implements Parcelable {
+public class PushEventCommit implements Parcelable {
 
     private String sha;
     //email&name
@@ -86,10 +87,10 @@ public class Commit implements Parcelable {
         dest.writeString(this.url);
     }
 
-    public Commit() {
+    public PushEventCommit() {
     }
 
-    protected Commit(Parcel in) {
+    protected PushEventCommit(Parcel in) {
         this.sha = in.readString();
         this.author = in.readParcelable(User.class.getClassLoader());
         this.message = in.readString();
@@ -97,15 +98,15 @@ public class Commit implements Parcelable {
         this.url = in.readString();
     }
 
-    public static final Parcelable.Creator<Commit> CREATOR = new Parcelable.Creator<Commit>() {
+    public static final Parcelable.Creator<PushEventCommit> CREATOR = new Parcelable.Creator<PushEventCommit>() {
         @Override
-        public Commit createFromParcel(Parcel source) {
-            return new Commit(source);
+        public PushEventCommit createFromParcel(Parcel source) {
+            return new PushEventCommit(source);
         }
 
         @Override
-        public Commit[] newArray(int size) {
-            return new Commit[size];
+        public PushEventCommit[] newArray(int size) {
+            return new PushEventCommit[size];
         }
     };
 }

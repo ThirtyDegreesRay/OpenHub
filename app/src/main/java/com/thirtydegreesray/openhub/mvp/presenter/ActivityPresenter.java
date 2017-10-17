@@ -46,7 +46,7 @@ public class ActivityPresenter extends BasePagerPresenter<IActivityContract.View
     @AutoAccess String user ;
     @AutoAccess String repo ;
 
-    @AutoAccess ArrayList<Event> events;
+    ArrayList<Event> events;
 
     @Inject
     public ActivityPresenter(DaoSession daoSession) {
