@@ -26,7 +26,8 @@
     <dimen name="text_normal">16sp</dimen>
     <dimen name="text_large">18sp</dimen>
 
-    <dimen name="card_view_item_horizontal_margin">@dimen/spacing_normal</dimen>
-    <dimen name="card_view_item_vertical_margin">6dp</dimen>
+    <dimen name="card_view_item_horizontal_margin">8dp</dimen>
+    <dimen name="card_view_item_vertical_margin">4dp</dimen>
+    <dimen name="card_view_item_corner_radius">4dp</dimen>
 
 </resources>

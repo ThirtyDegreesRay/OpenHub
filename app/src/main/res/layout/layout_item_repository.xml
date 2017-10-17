@@ -27,7 +27,7 @@
     android:background="?card_background"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardBackgroundColor="?card_background"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="@dimen/card_view_item_corner_radius">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
