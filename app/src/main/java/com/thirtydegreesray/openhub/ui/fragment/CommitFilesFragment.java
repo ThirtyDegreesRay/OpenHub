@@ -18,6 +18,7 @@ package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.View;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
@@ -69,7 +70,7 @@ public class CommitFilesFragment extends ListFragment<CommitFilesPresenter, Comm
 
     @Override
     protected String getEmptyTip() {
-        return null;
+        return getString(R.string.no_file);
     }
 
     @Override
@@ -79,5 +80,13 @@ public class CommitFilesFragment extends ListFragment<CommitFilesPresenter, Comm
         setRefreshEnable(false);
         adapter.setData(mPresenter.getSortedList(commitFiles));
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemClick(int position, @NonNull View view) {
+        super.onItemClick(position, view);
+        if(adapter.getData().get(position).getTypePosition() == 1){
+            CommitFile commitFile = adapter.getData().get(position).getM2();
+        }
     }
 }

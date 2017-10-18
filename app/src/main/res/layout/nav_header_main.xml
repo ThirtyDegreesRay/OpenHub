@@ -31,16 +31,16 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/avatar"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/spacing_x_large"
         android:src="@mipmap/logo"/>
 
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:layout_marginTop="@dimen/spacing_large"
         android:text="OpenHub"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
