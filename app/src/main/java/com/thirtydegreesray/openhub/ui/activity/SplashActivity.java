@@ -33,7 +33,9 @@ import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
  *
  * @author ThirtyDegreesRay
  */
-
+//TODO 1.GitHub link intent
+//TODO 2.detection clipboard content
+//TODO 3.perfect GitHub link recognize(issue,file)
 public class SplashActivity extends BaseActivity<SplashPresenter> implements ISplashContract.View {
 
     private final String TAG = "SplashActivity";

@@ -157,6 +157,7 @@ public class IssueTimelinePresenter extends BasePresenter<IIssueTimelineContract
         return filteredEvents;
     }
 
+    //FIXME issue info from activities don't contain body html
     private IssueEvent getFirstComment(){
         IssueEvent firstComment = new IssueEvent();
         firstComment.setBodyHtml(issue.getBodyHtml());

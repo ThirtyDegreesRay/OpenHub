@@ -154,6 +154,7 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         repoTitleText.setText(spannable);
     }
 
+    //FIXME scroll conflict
     @Override
     public void showReadMe(String source, String baseUrl) {
         if (!isReadmeSetted) {

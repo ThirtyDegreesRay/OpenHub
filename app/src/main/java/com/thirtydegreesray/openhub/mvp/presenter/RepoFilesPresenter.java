@@ -82,6 +82,7 @@ public class RepoFilesPresenter extends BasePagerPresenter<IRepoFilesContract.Vi
     @Override
     public void loadFiles(@NonNull String path, boolean isReload) {
         curPath = path;
+        curBranch = StringUtils.isBlank(curBranch) ? repo.getDefaultBranch() : curBranch;
         updateFilePath();
         ArrayList<FileModel> filesCache = cacheMap.get(getCacheKey());
         if(!isReload && filesCache != null){

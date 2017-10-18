@@ -28,7 +28,7 @@ import com.google.gson.annotations.SerializedName;
 public class CommitFile implements Parcelable {
 
     public enum CommitFileStatusType{
-        modified, added, removed
+        modified, added, renamed, removed
     }
 
     private String sha;
@@ -120,6 +120,16 @@ public class CommitFile implements Parcelable {
 
     public void setPatch(String patch) {
         this.patch = patch;
+    }
+
+    public String getShortFileName() {
+        return fileName == null || !fileName.contains("/") ?
+                fileName : fileName.substring(fileName.lastIndexOf("/") + 1);
+    }
+
+    public String getBasePath() {
+        return fileName == null || !fileName.contains("/") ?
+                fileName : fileName.substring(0, fileName.lastIndexOf("/") + 1);
     }
 
     @Override

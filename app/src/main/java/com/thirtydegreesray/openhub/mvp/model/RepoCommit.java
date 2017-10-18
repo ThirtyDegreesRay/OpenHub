@@ -38,11 +38,13 @@ public class RepoCommit implements Parcelable {
     private User author;
     private User committer;
     private ArrayList<RepoCommit> parents;
-    private ArrayList<CommitFile> files;
-    private CommitStats stats;
 
     public String getSha() {
         return sha;
+    }
+
+    public String getShortSha() {
+        return sha == null || sha.length() <= 7 ? sha : sha.substring(0, 7);
     }
 
     public void setSha(String sha) {
@@ -105,22 +107,6 @@ public class RepoCommit implements Parcelable {
         this.parents = parents;
     }
 
-    public ArrayList<CommitFile> getFiles() {
-        return files;
-    }
-
-    public void setFiles(ArrayList<CommitFile> files) {
-        this.files = files;
-    }
-
-    public CommitStats getStats() {
-        return stats;
-    }
-
-    public void setStats(CommitStats stats) {
-        this.stats = stats;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -136,8 +122,6 @@ public class RepoCommit implements Parcelable {
         dest.writeParcelable(this.author, flags);
         dest.writeParcelable(this.committer, flags);
         dest.writeList(this.parents);
-        dest.writeTypedList(this.files);
-        dest.writeParcelable(this.stats, flags);
     }
 
     public RepoCommit() {
@@ -153,14 +137,12 @@ public class RepoCommit implements Parcelable {
         this.committer = in.readParcelable(User.class.getClassLoader());
         this.parents = new ArrayList<RepoCommit>();
         in.readList(this.parents, RepoCommit.class.getClassLoader());
-        this.files = in.createTypedArrayList(CommitFile.CREATOR);
-        this.stats = in.readParcelable(CommitStats.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<RepoCommit> CREATOR = new Parcelable.Creator<RepoCommit>() {
+    public static final Creator<RepoCommit> CREATOR = new Creator<RepoCommit>() {
         @Override
-        public RepoCommit createFromParcel(Parcel source) {
-            return new RepoCommit(source);
+        public RepoCommit createFromParcel(Parcel in) {
+            return new RepoCommit(in);
         }
 
         @Override

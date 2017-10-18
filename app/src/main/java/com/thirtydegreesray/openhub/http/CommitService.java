@@ -19,6 +19,7 @@ package com.thirtydegreesray.openhub.http;
 import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.mvp.model.RepoCommit;
+import com.thirtydegreesray.openhub.mvp.model.RepoCommitExt;
 
 import java.util.ArrayList;
 
@@ -46,7 +47,7 @@ public interface CommitService {
     );
 
     @NonNull @GET("repos/{owner}/{repo}/commits/{sha}")
-    Observable<Response<RepoCommit>> getCommitInfo(
+    Observable<Response<RepoCommitExt>> getCommitInfo(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("owner") String owner,
             @Path("repo") String repo,

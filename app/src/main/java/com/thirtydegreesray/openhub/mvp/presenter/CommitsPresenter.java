@@ -106,4 +106,20 @@ public class CommitsPresenter extends BasePagerPresenter<ICommitsContract.View>
     public void setBranch(String branch) {
         this.branch = branch;
     }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getRepo() {
+        return repo;
+    }
+
+    public void setRepo(String repo) {
+        this.repo = repo;
+    }
 }

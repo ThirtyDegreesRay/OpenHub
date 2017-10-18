@@ -14,33 +14,25 @@
  *    limitations under the License.
  */
 
-package com.thirtydegreesray.openhub.common;
+package com.thirtydegreesray.openhub.mvp.contract;
 
-import java.util.LinkedHashMap;
+import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
+import com.thirtydegreesray.openhub.mvp.model.RepoCommit;
+import com.thirtydegreesray.openhub.mvp.model.RepoCommitExt;
 
 /**
- * Created by ThirtyDegreesRay on 2017/8/22 18:46:06
+ * Created by ThirtyDegreesRay on 2017/10/18 11:14:32
  */
 
-public class SizedMap<K,V> extends LinkedHashMap<K,V> {
+public interface ICommitDetailContract {
 
-    private int maxSize ;
-    private final int DEFAULT_SIZE = 64;
-
-    public SizedMap() {
-        super();
-        this.maxSize = DEFAULT_SIZE;
+    interface View extends IBaseContract.View{
+        void showCommit(RepoCommit commit);
+        void showCommitInfo(RepoCommitExt commitExt);
     }
 
-    public SizedMap(int maxSize) {
-        super();
-        this.maxSize = maxSize;
-    }
-
-
-    @Override
-    protected boolean removeEldestEntry(Entry<K, V> eldest) {
-        return size() > maxSize;
+    interface Presenter extends IBaseContract.Presenter<ICommitDetailContract.View>{
+        void loadCommitInfo();
     }
 
 }

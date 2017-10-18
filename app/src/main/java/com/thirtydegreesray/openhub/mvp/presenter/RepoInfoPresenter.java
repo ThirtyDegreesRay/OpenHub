@@ -63,6 +63,7 @@ public class RepoInfoPresenter extends BasePagerPresenter<IRepoInfoContract.View
         }
     }
 
+    //FIXME don't throw exception when does't has readme
     @Override
     public void loadReadMe() {
         final String readmeFileUrl = AppConfig.GITHUB_API_BASE_URL + "repos/" + repository.getFullName()

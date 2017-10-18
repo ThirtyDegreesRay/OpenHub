@@ -60,6 +60,7 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
 
     private int curPage = 1;
 
+    private boolean refreshEnable = true;
     private boolean loadMoreEnable = false;
     private boolean canLoadMore = false;
     private boolean isLoading = false;
@@ -181,6 +182,11 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
 
     public void setCanLoadMore(boolean canLoadMore) {
         this.canLoadMore = canLoadMore;
+    }
+
+    public void setRefreshEnable(boolean refreshEnable) {
+        this.refreshEnable = refreshEnable;
+        refreshLayout.setEnabled(refreshEnable);
     }
 
     public int getCurPage() {

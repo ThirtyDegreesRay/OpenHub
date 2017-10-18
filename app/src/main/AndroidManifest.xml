@@ -189,6 +189,12 @@
             android:windowSoftInputMode="stateVisible">
         </activity>
 
+        <activity
+            android:name=".ui.activity.CommitDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeLight.Green">
+        </activity>
+
     </application>
 
 </manifest>

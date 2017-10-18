@@ -29,6 +29,7 @@ import com.thirtydegreesray.openhub.mvp.model.Branch;
 import com.thirtydegreesray.openhub.mvp.model.RepoCommit;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.CommitsPresenter;
+import com.thirtydegreesray.openhub.ui.activity.CommitDetailActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.adapter.CommitAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
@@ -101,6 +102,9 @@ public class CommitsFragment extends ListFragment<CommitsPresenter, CommitAdapte
     @Override
     public void onItemClick(int position, @NonNull View view) {
         super.onItemClick(position, view);
+        View userAvatar = view.findViewById(R.id.user_avatar);
+        CommitDetailActivity.show(getActivity(), mPresenter.getUser(), mPresenter.getRepo(),
+                adapter.getData().get(position), userAvatar);
     }
 
     @Override

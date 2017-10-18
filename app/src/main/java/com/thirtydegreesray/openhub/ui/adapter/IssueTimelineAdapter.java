@@ -55,6 +55,8 @@ public class IssueTimelineAdapter extends BaseAdapter<IssueTimelineAdapter.ViewH
         holder.time.setText(StringUtils.getNewsTimeStr(context, model.getCreatedAt()));
         if (!StringUtils.isBlank(model.getBodyHtml())) {
             holder.commentDesc.setText(Html.fromHtml(model.getBodyHtml()));
+        } else if (!StringUtils.isBlank(model.getBody())) {
+            holder.commentDesc.setText(model.getBody());
         } else {
             holder.commentDesc.setText(R.string.no_description);
         }
