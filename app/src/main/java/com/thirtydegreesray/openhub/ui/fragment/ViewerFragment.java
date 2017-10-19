@@ -30,8 +30,10 @@ import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IViewerContract;
+import com.thirtydegreesray.openhub.mvp.model.CommitFile;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.mvp.presenter.ViewerPresenter;
+import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
@@ -56,15 +58,24 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     @NonNull
     public static ViewerFragment createForMd(@NonNull String title, @NonNull String mdSource) {
         ViewerFragment fragment = new ViewerFragment();
-        fragment.setArguments(BundleBuilder.builder().put("title", title)
-                .put("mdSource", mdSource).build());
+        fragment.setArguments(BundleBuilder.builder().put("viewerType", ViewerActivity.ViewerType.MarkDown)
+                .put("title", title).put("mdSource", mdSource).build());
         return fragment;
     }
 
     @NonNull
     public static ViewerFragment create(@NonNull FileModel fileModel) {
         ViewerFragment fragment = new ViewerFragment();
-        fragment.setArguments(BundleBuilder.builder().put("fileModel", fileModel).build());
+        fragment.setArguments(BundleBuilder.builder().put("viewerType", ViewerActivity.ViewerType.RepoFile)
+                .put("fileModel", fileModel).build());
+        return fragment;
+    }
+
+    @NonNull
+    public static ViewerFragment createForDiff(@NonNull CommitFile commitFile) {
+        ViewerFragment fragment = new ViewerFragment();
+        fragment.setArguments(BundleBuilder.builder().put("viewerType", ViewerActivity.ViewerType.DiffFile)
+                .put("commitFile", commitFile).build());
         return fragment;
     }
 
@@ -98,14 +109,22 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        if(mPresenter.getFileModel() != null){
-            MenuItem menuItem = menu.findItem(R.id.action_wrap_lines);
-            if(mPresenter.isCode() && !StringUtils.isBlank(mPresenter.getDownloadSource())){
-                menuItem.setChecked(wrap);
-                menuItem.setVisible(true);
-            }else{
-                menuItem.setVisible(false);
-            }
+        MenuItem menuItem = menu.findItem(R.id.action_wrap_lines);
+        MenuItem menuItemDownload = menu.findItem(R.id.action_download);
+        MenuItem menuItemViewFile = menu.findItem(R.id.action_view_file);
+        MenuItem menuItemRefresh = menu.findItem(R.id.action_refresh);
+        if(ViewerActivity.ViewerType.RepoFile.equals(mPresenter.getViewerType())) {
+            menuItem.setVisible(mPresenter.isCode() && !StringUtils.isBlank(mPresenter.getDownloadSource()));
+            menuItem.setChecked(wrap);
+            menuItemDownload.setVisible(!StringUtils.isBlank(mPresenter.getFileModel().getDownloadUrl()));
+            menuItemViewFile.setVisible(false);
+            menuItemRefresh.setVisible(true);
+        } else if(ViewerActivity.ViewerType.DiffFile.equals(mPresenter.getViewerType())){
+            menuItem.setVisible(mPresenter.isCode());
+            menuItem.setChecked(wrap);
+            menuItemDownload.setVisible(false);
+            menuItemViewFile.setVisible(true);
+            menuItemRefresh.setVisible(false);
         }
     }
 
@@ -114,8 +133,12 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
         if(item.getItemId() == R.id.action_wrap_lines){
             item.setChecked(!item.isChecked());
             wrap = item.isChecked();
-            loadCode(mPresenter.getDownloadSource(), mPresenter.getExtension());
             PrefHelper.set(PrefHelper.CODE_WRAP, wrap);
+            if(ViewerActivity.ViewerType.RepoFile.equals(mPresenter.getViewerType())){
+                loadCode(mPresenter.getDownloadSource(), mPresenter.getExtension());
+            } else if(ViewerActivity.ViewerType.DiffFile.equals(mPresenter.getViewerType())){
+                loadDiffFile(mPresenter.getCommitFile().getPatch());
+            }
             return true;
         } else if(item.getItemId() == R.id.action_refresh){
             refresh();
@@ -141,6 +164,15 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     @Override
     public void loadCode(@NonNull String text, @Nullable String extension) {
         webView.setCodeSource(text, wrap, extension);
+        webView.setContentChangedListener(this);
+        getActivity().invalidateOptionsMenu();
+        loader.setVisibility(View.VISIBLE);
+        loader.setIndeterminate(false);
+    }
+
+    @Override
+    public void loadDiffFile(@NonNull String text) {
+        webView.setDiffFileSource(text, wrap);
         webView.setContentChangedListener(this);
         getActivity().invalidateOptionsMenu();
         loader.setVisibility(View.VISIBLE);

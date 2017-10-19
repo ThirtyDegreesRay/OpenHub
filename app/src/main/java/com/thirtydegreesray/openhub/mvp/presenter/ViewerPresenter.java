@@ -22,8 +22,10 @@ import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.IViewerContract;
+import com.thirtydegreesray.openhub.mvp.model.CommitFile;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
+import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 import com.thirtydegreesray.openhub.util.GitHubHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
@@ -42,11 +44,15 @@ import rx.Observable;
 public class ViewerPresenter extends BasePresenter<IViewerContract.View>
         implements IViewerContract.Presenter{
 
+    @AutoAccess ViewerActivity.ViewerType viewerType;
+
     @AutoAccess FileModel fileModel;
     private String downloadSource;
 
     @AutoAccess String title;
     @AutoAccess String mdSource;
+
+    @AutoAccess CommitFile commitFile;
 
     @Inject
     public ViewerPresenter(DaoSession daoSession) {
@@ -56,8 +62,10 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
-        if(fileModel != null){
+        if(ViewerActivity.ViewerType.RepoFile.equals(viewerType)){
             load(false);
+        } else if(ViewerActivity.ViewerType.DiffFile.equals(viewerType)) {
+            mView.loadDiffFile(commitFile.getPatch());
         } else {
             mView.loadMdText(mdSource, null);
         }
@@ -120,9 +128,10 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
     }
 
     public boolean isCode(){
-        return !GitHubHelper.isArchive(fileModel.getUrl()) &&
-                !GitHubHelper.isImage(fileModel.getUrl()) &&
-                !GitHubHelper.isMarkdown(fileModel.getUrl());
+        String url = fileModel != null ? fileModel.getUrl() : commitFile.getBlobUrl();
+        return !GitHubHelper.isArchive(url) &&
+                !GitHubHelper.isImage(url) &&
+                !GitHubHelper.isMarkdown(url);
     }
 
     public String getDownloadSource() {
@@ -135,5 +144,13 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
 
     public FileModel getFileModel() {
         return fileModel;
+    }
+
+    public CommitFile getCommitFile() {
+        return commitFile;
+    }
+
+    public ViewerActivity.ViewerType getViewerType() {
+        return viewerType;
     }
 }

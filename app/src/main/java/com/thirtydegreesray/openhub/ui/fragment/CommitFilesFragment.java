@@ -26,8 +26,10 @@ import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.model.CommitFile;
 import com.thirtydegreesray.openhub.mvp.presenter.CommitFilesPresenter;
+import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.CommitFilesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
+import com.thirtydegreesray.openhub.util.GitHubHelper;
 
 import java.util.ArrayList;
 
@@ -87,6 +89,11 @@ public class CommitFilesFragment extends ListFragment<CommitFilesPresenter, Comm
         super.onItemClick(position, view);
         if(adapter.getData().get(position).getTypePosition() == 1){
             CommitFile commitFile = adapter.getData().get(position).getM2();
+            if(GitHubHelper.isImage(commitFile.getFileName())){
+                ViewerActivity.show(getActivity(), commitFile.getRawUrl());
+            } else {
+                ViewerActivity.showForDiff(getActivity(), commitFile);
+            }
         }
     }
 }

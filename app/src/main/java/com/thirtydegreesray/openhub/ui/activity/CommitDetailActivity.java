@@ -41,6 +41,7 @@ import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.fragment.CommitFilesFragment;
 import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.StringUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -104,8 +105,9 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
         } else {
             userAvatar.setImageResource(R.drawable.ic_question);
         }
-
-        commitMessage.setText(commit.getCommit().getMessage());
+        String commitDateStr = getString(R.string.committed).concat(" ").concat(
+                StringUtils.getNewsTimeStr(getActivity(), commit.getCommit().getAuthor().getDate()));
+        commitMessage.setText(commitDateStr.concat("\n").concat(commit.getCommit().getMessage()));
     }
 
     private boolean first = true;

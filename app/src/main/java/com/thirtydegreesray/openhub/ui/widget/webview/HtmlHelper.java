@@ -79,7 +79,7 @@ class HtmlHelper {
                     "</style>" +
                 "</head>\n" +
                 "<body>\n" +
-                    "<?prettify lang=" + getExtension(extension) + " linenums=true?>\n" +
+                    "<?prettify lang=" + getExtension(extension) + " linenums=false?>\n" +
                     "<pre class=\"prettyprint\">\n" +
                         formatCode(codeSource) +
                     "</pre>\n" +

@@ -31,6 +31,7 @@ public interface IViewerContract {
         void loadImageUrl(@NonNull String url);
         void loadMdText(@NonNull String text, @Nullable String baseUrl);
         void loadCode(@NonNull String text, @Nullable String extension);
+        void loadDiffFile(@NonNull String text);
     }
 
     interface Presenter extends IBaseContract.Presenter<IViewerContract.View>{

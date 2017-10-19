@@ -150,6 +150,20 @@ public class CodeWebView extends WebView {
         loadCode(page);
     }
 
+    //TODO better diff view
+    public void setDiffFileSource(@NonNull String source, boolean wrap) {
+        if (StringUtils.isBlank(source)) return;
+        WebSettings settings = getSettings();
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
+        setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        settings.setSupportZoom(true);
+        settings.setBuiltInZoomControls(true);
+        settings.setDisplayZoomControls(false);
+        String page = HtmlHelper.generateCodeHtml(source, null, AppHelper.isNightMode(),
+                getCodeBackgroundColor(), wrap);
+        loadCode(page);
+    }
+
     private void loadPageWithBaseUrl(final String baseUrl, final String page){
         post(new Runnable() {
             @Override

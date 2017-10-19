@@ -303,5 +303,7 @@
     <string name="create_issue_success">Create issue success</string>
 
     <string name="no_commits">No commits</string>
+    <string name="committed">Committed</string>
+    <string name="view_file">View file</string>
 
 </resources>

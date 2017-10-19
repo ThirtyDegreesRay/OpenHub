@@ -53,4 +53,9 @@
         android:title="@string/download"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/action_view_file"
+        android:title="@string/view_file"
+        app:showAsAction="never"/>
+
 </menu>

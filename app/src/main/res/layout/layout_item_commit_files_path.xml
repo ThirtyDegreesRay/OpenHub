@@ -22,7 +22,5 @@
     android:layout_height="wrap_content"
     android:textSize="@dimen/text_small"
     android:textColor="?android:textColorSecondary"
-    android:paddingTop="@dimen/spacing_small"
-    android:paddingBottom="@dimen/spacing_small"
     android:paddingStart="@dimen/spacing_normal"
     android:paddingEnd="@dimen/spacing_normal"/>

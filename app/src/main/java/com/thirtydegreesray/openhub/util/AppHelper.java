@@ -153,7 +153,7 @@ public class AppHelper {
         if(StringUtils.isBlank(uri.toString())) return;
         String loginId;
         if(GitHubHelper.isImage(uri.toString())){
-            ViewerActivity.showImage(context, uri.toString());
+            ViewerActivity.show(context, uri.toString());
         } else if((loginId = GitHubHelper.getUserFromUrl(uri.toString())) != null){
             ProfileActivity.show((Activity) context, loginId);
         } else if(GitHubHelper.isRepoUrl(uri.toString())){

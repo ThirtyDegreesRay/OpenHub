@@ -47,36 +47,39 @@ public class Downloader {
     }
 
     public void start(String url, String fileName) {
+        try{
+            if(StringUtils.isBlank(url) || StringUtils.isBlank(fileName)){
+                Toasty.error(mContext, mContext.getString(R.string.download_empty_tip)).show();
+                return;
+            }
+            this.url = url;
+            this.fileName = fileName;
 
-        if(StringUtils.isBlank(url) || StringUtils.isBlank(fileName)){
-            Toasty.error(mContext, mContext.getString(R.string.download_empty_tip)).show();
-            return;
+            if(!AppHelper.checkDownloadServiceEnabled(mContext)){
+                Toasty.warning(mContext, mContext.getString(R.string.enable_download_service_tip),
+                        Toast.LENGTH_LONG).show();
+                AppHelper.showDownloadServiceSetting(mContext);
+                return ;
+            }
+
+            AndPermission.with(mContext)
+                    .permission(Permission.STORAGE)
+                    .callback(new PermissionListener() {
+                        @Override
+                        public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
+                            start();
+                        }
+
+                        @Override
+                        public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
+                            Toasty.error(mContext, mContext.getString(R.string.permission_storage_denied),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    })
+                    .start();
+        }catch (Exception e){
+            Toasty.error(mContext, e.getMessage()).show();
         }
-        this.url = url;
-        this.fileName = fileName;
-
-        if(!AppHelper.checkDownloadServiceEnabled(mContext)){
-            Toasty.warning(mContext, mContext.getString(R.string.enable_download_service_tip),
-                    Toast.LENGTH_LONG).show();
-            AppHelper.showDownloadServiceSetting(mContext);
-            return ;
-        }
-
-        AndPermission.with(mContext)
-                .permission(Permission.STORAGE)
-                .callback(new PermissionListener() {
-                    @Override
-                    public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
-                        start();
-                    }
-
-                    @Override
-                    public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
-                        Toasty.error(mContext, mContext.getString(R.string.permission_storage_denied),
-                                Toast.LENGTH_LONG).show();
-                    }
-                })
-                .start();
     }
 
     private void start() {
