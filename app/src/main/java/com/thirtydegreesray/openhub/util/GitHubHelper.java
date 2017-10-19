@@ -39,12 +39,18 @@ public class GitHubHelper {
             ".tlz", ".apk", ".jar", ".dmg"
     };
 
+    private static final String GITHUB_BASE_URL_PATTERN_STR = "(https://)?(http://)?(www.)?github.com";
+
     public static final Pattern REPO_FULL_NAME_PATTERN =
             Pattern.compile("([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.|_)*");
-    private static final Pattern USER_PATTERN =
-            Pattern.compile("(https://)?(www.)?github.com/([a-z]|[A-Z]|\\d|-)*(/)?");
-    private static final Pattern REPO_PATTERN =
-            Pattern.compile("(https://)?(www.)?github.com/([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.|_)*(/)?");
+    private static final Pattern USER_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR
+            + "/([a-z]|[A-Z]|\\d|-)*(/)?");
+    private static final Pattern REPO_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR
+            + "/([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.|_)*(/)?");
+    private static final Pattern ISSUE_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR
+            + "/([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.|_)*/issues/(\\d)*(/)?");
+    private static final Pattern GITHUB_URL_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR
+            + "(.)*");
 
     public static boolean isImage(@Nullable String name) {
         if (StringUtils.isBlank(name)) return false;
@@ -94,6 +100,14 @@ public class GitHubHelper {
 
     public static boolean isRepoUrl(@NonNull String url){
         return REPO_PATTERN.matcher(url).matches();
+    }
+
+    public static boolean isIssueUrl(@NonNull String url){
+        return ISSUE_PATTERN.matcher(url).matches();
+    }
+
+    public static boolean isGitHubUrl(@NonNull String url){
+        return GITHUB_URL_PATTERN.matcher(url).matches();
     }
 
     @Nullable

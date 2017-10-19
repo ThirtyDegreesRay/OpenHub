@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.AppData;
@@ -57,12 +58,19 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         activity.startActivity(intent);
     }
 
+    public static void show(@NonNull Activity activity, @NonNull String issueUrl){
+        Intent intent = new Intent(activity, IssueDetailActivity.class);
+        intent.putExtras(BundleBuilder.builder().put("issueUrl", issueUrl).build());
+        activity.startActivity(intent);
+    }
+
     @BindView(R.id.user_avatar) ImageView userImageView;
     @BindView(R.id.issue_title) TextView issueTitle;
     @BindView(R.id.issue_state_img) ImageView issueStateImg;
     @BindView(R.id.issue_state_text) TextView issueStateText;
     @BindView(R.id.comment_bn) FloatingActionButton commentBn;
     @BindView(R.id.edit_bn) FloatingActionButton editBn;
+    @BindView(R.id.loader) ProgressBar loader;
 
     private IssueTimelineFragment issueTimelineFragment;
 
@@ -88,6 +96,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         setToolbarBackEnable();
+        setToolbarTitle(getString(R.string.issue));
     }
 
     @Override
@@ -98,6 +107,9 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        if(mPresenter.getIssue() == null){
+            return true;
+        }
         boolean isCanToggle = AppData.INSTANCE.getLoggedUser().getLogin()
                 .equals(mPresenter.getIssue().getUser().getLogin()) ||
                 AppData.INSTANCE.getLoggedUser().getLogin()
@@ -224,4 +236,15 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         super.onBackPressed();
     }
 
+    @Override
+    public void showLoading() {
+        super.showLoading();
+        loader.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        super.hideLoading();
+        loader.setVisibility(View.GONE);
+    }
 }

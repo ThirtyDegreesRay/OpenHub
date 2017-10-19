@@ -29,9 +29,11 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.ui.activity.IssueDetailActivity;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
@@ -107,10 +109,13 @@ public class AppHelper {
     public static void openInBrowser(@NonNull Context context, @NonNull String url){
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try{
             context.startActivity(intent);
-        }catch (ActivityNotFoundException e){
+        }catch (ActivityNotFoundException ae){
             Toasty.warning(context, context.getString(R.string.no_share_clients)).show();
+        }catch (Exception e){
+            Toasty.warning(context, context.getString(R.string.failed_to_open_url), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -119,6 +124,7 @@ public class AppHelper {
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.putExtra(Intent.EXTRA_TEXT, text);
         shareIntent.setType("text/plain");
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try{
             context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share_to)));
         }catch (ActivityNotFoundException e){
@@ -130,6 +136,7 @@ public class AppHelper {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("message/rfc822");
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try{
             context.startActivity(Intent.createChooser(intent, context.getString(R.string.send_email)));
         }catch (ActivityNotFoundException e){
@@ -148,7 +155,6 @@ public class AppHelper {
         }
     }
 
-
     public static void launchUrl(@NonNull Context context, @NonNull Uri uri){
         if(StringUtils.isBlank(uri.toString())) return;
         String loginId;
@@ -163,8 +169,15 @@ public class AppHelper {
             } else {
                 RepositoryActivity.show(context, fullName.split("/")[0], fullName.split("/")[1]);
             }
+        } else if (GitHubHelper.isIssueUrl(uri.toString())) {
+            IssueDetailActivity.show((Activity) context, uri.toString());
         } else {
-            openInBrowser(context, uri.toString());
+            if(GitHubHelper.isGitHubUrl(uri.toString())){
+                Toasty.warning(context, context.getString(R.string.failed_to_recognize), Toast.LENGTH_LONG).show();
+            }else{
+                String url = uri.toString();
+                openInBrowser(context, url);
+            }
         }
     }
 

@@ -306,5 +306,7 @@
     <string name="no_commits">No commits</string>
     <string name="committed">Committed</string>
     <string name="view_file">View file</string>
+    <string name="failed_to_recognize">Failed to recognize the github url, please open in browser after long press copied.</string>
+    <string name="failed_to_open_url">Failed to open the url, please open in browser after long press copied.</string>
 
 </resources>

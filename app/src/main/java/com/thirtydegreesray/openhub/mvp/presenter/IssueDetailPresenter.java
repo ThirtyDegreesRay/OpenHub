@@ -13,6 +13,7 @@ import com.thirtydegreesray.openhub.mvp.model.Issue;
 import com.thirtydegreesray.openhub.mvp.model.IssueEvent;
 import com.thirtydegreesray.openhub.mvp.model.request.CommentRequestModel;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
+import com.thirtydegreesray.openhub.util.GitHubHelper;
 
 import javax.inject.Inject;
 
@@ -27,6 +28,7 @@ public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.Vie
         implements IIssueDetailContract.Presenter{
 
     @AutoAccess Issue issue;
+    @AutoAccess String issueUrl;
 
     @Inject
     public IssueDetailPresenter(DaoSession daoSession) {
@@ -36,7 +38,11 @@ public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.Vie
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
-        mView.showIssue(issue);
+        if(issue == null){
+            loadIssueInfo();
+        }else{
+            mView.showIssue(issue);
+        }
     }
 
     public Issue getIssue() {
@@ -45,6 +51,35 @@ public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.Vie
 
     public void setIssue(Issue issue) {
         this.issue = issue;
+    }
+
+    private void loadIssueInfo(){
+        if(!GitHubHelper.isIssueUrl(issueUrl)) return;
+        String[] arrays = issueUrl.substring(issueUrl.indexOf("com/") + 4).split("/");
+        final String user = arrays[0];
+        final String repo = arrays[1];
+        final int issueNumber = Integer.parseInt(arrays[3]);
+        HttpObserver<Issue> httpObserver = new HttpObserver<Issue>() {
+            @Override
+            public void onError(Throwable error) {
+                mView.showErrorToast(getErrorTip(error));
+                mView.hideLoading();
+            }
+
+            @Override
+            public void onSuccess(HttpResponse<Issue> response) {
+                issue = response.body();
+                mView.showIssue(issue);
+                mView.hideLoading();
+            }
+        };
+        generalRxHttpExecute(new IObservableCreator<Issue>() {
+            @Override
+            public Observable<Response<Issue>> createObservable(boolean forceNetWork) {
+                return getIssueService().getIssueInfo(forceNetWork, user, repo, issueNumber);
+            }
+        }, httpObserver, true);
+        mView.showLoading();
     }
 
     @Override
