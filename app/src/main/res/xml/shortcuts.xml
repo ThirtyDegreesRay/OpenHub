@@ -14,7 +14,7 @@
             android:action="android.intent.action.VIEW"
             android:data="search"
             android:targetPackage="com.thirtydegreesray.openhub"
-            android:targetClass="com.thirtydegreesray.openhub.ui.activity.SplashActivity"/>
+            android:targetClass="com.thirtydegreesray.openhub.ui.activity.BrowserFilterActivity"/>
         <categories android:name="android.shortcut.conversation" />
     </shortcut>
 
@@ -30,7 +30,7 @@
             android:action="android.intent.action.VIEW"
             android:data="trending"
             android:targetPackage="com.thirtydegreesray.openhub"
-            android:targetClass="com.thirtydegreesray.openhub.ui.activity.SplashActivity"/>
+            android:targetClass="com.thirtydegreesray.openhub.ui.activity.BrowserFilterActivity"/>
         <categories android:name="android.shortcut.conversation" />
     </shortcut>
 

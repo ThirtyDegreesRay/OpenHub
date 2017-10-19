@@ -33,9 +33,7 @@ import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
  *
  * @author ThirtyDegreesRay
  */
-//TODO 1.GitHub link intent
-//TODO 2.detection clipboard content
-//TODO 3.perfect GitHub link recognize(issue,file)
+//TODO detection clipboard content
 public class SplashActivity extends BaseActivity<SplashPresenter> implements ISplashContract.View {
 
     private final String TAG = "SplashActivity";
@@ -48,12 +46,8 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
         Uri dataUri = getIntent().getData();
         if (dataUri == null) {
             startActivity(new Intent(getActivity(), MainActivity.class));
-        }
-        //handle shortcuts redirection
-        else if (dataUri.toString().equals("trending")){
-            startActivity(new Intent(getActivity(), TrendingActivity.class));
-        } else if (dataUri.toString().equals("search")){
-            startActivity(new Intent(getActivity(), SearchActivity.class));
+        } else {
+            BrowserFilterActivity.handleBrowserUri(getActivity(), dataUri);
         }
     }
 
@@ -126,6 +120,6 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
             default:
                 break;
         }
-
     }
+
 }
