@@ -30,6 +30,7 @@ public interface IRepoInfoContract {
         void showRepoInfo(Repository repository);
         void showReadMe(String content, String baseUrl);
         void showReadMeLoader();
+        void showNoReadMe();
     }
 
     interface Presenter extends IBasePagerContract.Presenter<IRepoInfoContract.View>{

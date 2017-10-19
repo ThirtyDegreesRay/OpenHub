@@ -116,6 +116,7 @@
     <string name="forks">Forks</string>
     <string name="watchers">Watchers</string>
     <string name="readme">README</string>
+    <string name="no_readme">NO README</string>
     <string name="warning_dialog_tile">Warning</string>
     <string name="cancel">Cancel</string>
     <string name="close">Close</string>

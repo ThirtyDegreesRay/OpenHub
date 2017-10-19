@@ -21,6 +21,7 @@ import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
+import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
 import com.thirtydegreesray.openhub.mvp.contract.IRepoInfoContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePagerPresenter;
@@ -63,7 +64,6 @@ public class RepoInfoPresenter extends BasePagerPresenter<IRepoInfoContract.View
         }
     }
 
-    //FIXME don't throw exception when does't has readme
     @Override
     public void loadReadMe() {
         final String readmeFileUrl = AppConfig.GITHUB_API_BASE_URL + "repos/" + repository.getFullName()
@@ -80,7 +80,11 @@ public class RepoInfoPresenter extends BasePagerPresenter<IRepoInfoContract.View
         HttpObserver<ResponseBody> httpObserver = new HttpObserver<ResponseBody>() {
             @Override
             public void onError(Throwable error) {
-                mView.showErrorToast(getErrorTip(error));
+                if(error instanceof HttpPageNoFoundError){
+                    mView.showNoReadMe();
+                } else {
+                    mView.showErrorToast(getErrorTip(error));
+                }
             }
 
             @Override

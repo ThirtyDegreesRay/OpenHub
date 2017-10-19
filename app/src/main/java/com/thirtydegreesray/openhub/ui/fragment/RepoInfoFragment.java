@@ -75,6 +75,7 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
     @BindView(R.id.forks_num_text) TextView forksNumText;
     @BindView(R.id.watchers_num_text) TextView watchersNumText;
 
+    @BindView(R.id.readme_title) TextView readmeTitle;
     @BindView(R.id.readme_loader) ProgressBar readmeLoader;
     @BindView(R.id.web_view) CodeWebView webView;
 
@@ -172,6 +173,12 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         readmeLoader.setVisibility(View.VISIBLE);
         readmeLoader.setIndeterminate(true);
         webView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showNoReadMe() {
+        readmeTitle.setText(R.string.no_readme);
+        readmeLoader.setVisibility(View.GONE);
     }
 
     @OnClick({R.id.issues_lay, R.id.stargazers_lay, R.id.froks_lay, R.id.watchers_lay,
