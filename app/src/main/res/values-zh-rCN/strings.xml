@@ -225,5 +225,13 @@
     <string name="leave_a_comment">留下一个评论吧</string>
     <string name="markdown_editor">使用MarkDown编辑器</string>
     <string name="title">标题</string>
+    <string name="committed">提交</string>
+    <string name="compare">比较查看</string>
+    <string name="failed_to_open_url">打开链接失败，请长按复制后在浏览器中打开</string>
+    <string name="failed_to_recognize">识别GitHub链接失败，请长按复制后在浏览器中打开</string>
+    <string name="latest_commit">最后一次提交</string>
+    <string name="no_commits">没有提交</string>
+    <string name="no_readme">没有描述</string>
+    <string name="view_file">查看文件</string>
 
 </resources>

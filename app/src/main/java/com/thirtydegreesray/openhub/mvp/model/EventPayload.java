@@ -173,6 +173,14 @@ public class EventPayload implements Parcelable {
         this.issue = issue;
     }
 
+    public IssueEvent getComment() {
+        return comment;
+    }
+
+    public void setComment(IssueEvent comment) {
+        this.comment = comment;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.pushId);

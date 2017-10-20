@@ -51,4 +51,8 @@
         <item name="android:textSize">22sp</item>
     </style>
 
+    <style name="text_link">
+        <item name="android:textColor">?android:colorAccent</item>
+    </style>
+
 </resources>

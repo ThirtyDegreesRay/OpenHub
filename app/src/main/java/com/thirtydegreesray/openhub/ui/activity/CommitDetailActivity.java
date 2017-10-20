@@ -64,6 +64,16 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
         activity.startActivity(intent, optionsCompat.toBundle());
     }
 
+    public static void show(@NonNull Activity activity, @NonNull String user, @NonNull String repo,
+                            @NonNull String commitSha, @NonNull View userAvatar, @NonNull String userAvatarUrl) {
+        Intent intent = new Intent(activity, CommitDetailActivity.class);
+        intent.putExtras(BundleBuilder.builder().put("user", user).put("repo", repo)
+                .put("commitSha", commitSha).put("userAvatarUrl", userAvatarUrl).build());
+        ActivityOptionsCompat optionsCompat = ActivityOptionsCompat
+                .makeSceneTransitionAnimation(activity, userAvatar, "userAvatar");
+        activity.startActivity(intent, optionsCompat.toBundle());
+    }
+
     @BindView(R.id.user_avatar) CircleImageView userAvatar;
     @BindView(R.id.commit_message) TextView commitMessage;
     @BindView(R.id.changed_files_count) TextView changedFileCount;
@@ -86,6 +96,7 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         setToolbarBackEnable();
+        setToolbarTitle(getString(R.string.commit));
         commentBn.setVisibility(View.GONE);
     }
 
@@ -114,6 +125,8 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
 
     @Override
     public void showCommitInfo(RepoCommitExt commitExt) {
+        showCommit(commitExt);
+
         changedFileCount.setText(String.valueOf(commitExt.getFiles().size()));
         addtionsCount.setText(String.valueOf(commitExt.getStats().getAdditions()));
         deletionsCount.setText(String.valueOf(commitExt.getStats().getDeletions()));
@@ -126,6 +139,14 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
             first = false;
         }
 
+    }
+
+    @Override
+    public void showUserAvatar(String userAvatarUrl) {
+        GlideApp.with(getActivity())
+                .load(userAvatarUrl)
+                .placeholder(R.mipmap.logo)
+                .into(userAvatar);
     }
 
     @OnClick(R.id.comment_bn)

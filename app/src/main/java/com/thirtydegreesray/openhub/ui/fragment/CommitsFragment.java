@@ -30,6 +30,7 @@ import com.thirtydegreesray.openhub.mvp.model.RepoCommit;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.CommitsPresenter;
 import com.thirtydegreesray.openhub.ui.activity.CommitDetailActivity;
+import com.thirtydegreesray.openhub.ui.activity.CommitsListActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.adapter.CommitAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
@@ -44,17 +45,25 @@ import java.util.ArrayList;
 public class CommitsFragment extends ListFragment<CommitsPresenter, CommitAdapter>
         implements ICommitsContract.View, RepositoryActivity.RepositoryListener{
 
-    public static CommitsFragment create(@NonNull String user, @NonNull String repo, String branch){
+    public static CommitsFragment createForRepo(@NonNull String user, @NonNull String repo, String branch){
         CommitsFragment fragment = new CommitsFragment();
-        fragment.setArguments(BundleBuilder.builder().put("user", user)
-                .put("repo", repo).put("branch", branch).build());
+        fragment.setArguments(BundleBuilder.builder().put("type", CommitsListActivity.CommitsListType.Repo)
+                .put("user", user).put("repo", repo).put("branch", branch).build());
+        return fragment;
+    }
+
+    public static CommitsFragment createForCompare(@NonNull String user, @NonNull String repo,
+                                                   @NonNull String before, @NonNull String head){
+        CommitsFragment fragment = new CommitsFragment();
+        fragment.setArguments(BundleBuilder.builder().put("type", CommitsListActivity.CommitsListType.Compare)
+                .put("user", user).put("repo", repo).put("before", before).put("head", head).build());
         return fragment;
     }
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
         super.initFragment(savedInstanceState);
-        setLoadMoreEnable(true);
+        setLoadMoreEnable(CommitsListActivity.CommitsListType.Repo.equals(mPresenter.getType()));
     }
 
     @Override

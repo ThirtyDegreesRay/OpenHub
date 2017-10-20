@@ -42,6 +42,8 @@ public class CommitDetailPresenter extends BasePresenter<ICommitDetailContract.V
     @AutoAccess String user;
     @AutoAccess String repo;
     @AutoAccess RepoCommit commit;
+    @AutoAccess String commitSha;
+    @AutoAccess String userAvatarUrl;
     private RepoCommitExt commitExt;
 
     @Inject
@@ -52,7 +54,12 @@ public class CommitDetailPresenter extends BasePresenter<ICommitDetailContract.V
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
-        mView.showCommit(commit);
+        if(commit != null) {
+            mView.showCommit(commit);
+            commitSha = commit.getSha();
+        }else{
+            mView.showUserAvatar(userAvatarUrl);
+        }
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -81,7 +88,7 @@ public class CommitDetailPresenter extends BasePresenter<ICommitDetailContract.V
         generalRxHttpExecute(new IObservableCreator<RepoCommitExt>() {
             @Override
             public Observable<Response<RepoCommitExt>> createObservable(boolean forceNetWork) {
-                return getCommitService().getCommitInfo(forceNetWork, user, repo, commit.getSha());
+                return getCommitService().getCommitInfo(forceNetWork, user, repo, commitSha);
             }
         }, httpObserver, true);
     }

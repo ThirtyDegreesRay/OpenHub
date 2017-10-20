@@ -153,8 +153,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
 
     @Override
     public void showIssue(final Issue issue) {
-        setToolbarTitle(getString(R.string.issue).concat(" #").concat(String.valueOf(issue.getNumber())),
-                issue.getRepoFullName());
+        setToolbarTitle(getString(R.string.issue).concat(" #").concat(String.valueOf(issue.getNumber())));
         GlideApp.with(getActivity())
                 .load(issue.getUser().getAvatarUrl())
                 .placeholder(R.mipmap.logo)

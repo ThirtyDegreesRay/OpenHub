@@ -28,6 +28,8 @@ import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IActivityContract;
 import com.thirtydegreesray.openhub.mvp.model.Event;
 import com.thirtydegreesray.openhub.mvp.presenter.ActivityPresenter;
+import com.thirtydegreesray.openhub.ui.activity.CommitDetailActivity;
+import com.thirtydegreesray.openhub.ui.activity.CommitsListActivity;
 import com.thirtydegreesray.openhub.ui.activity.IssueDetailActivity;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.activity.ReleaseInfoActivity;
@@ -101,20 +103,32 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
         }
         //TODO to be better redirection
         String owner = event.getRepo().getFullName().split("/")[0];
+        String repoName = event.getRepo().getFullName().split("/")[1];
         switch (event.getType()){
             case ForkEvent:
                 String actorId = event.getActor().getLogin();
                 RepositoryActivity.show(getContext(), actorId, event.getRepo().getName());
                 break;
             case ReleaseEvent:
-                String repoName = event.getRepo().getFullName();
-                repoName = repoName.substring(repoName.lastIndexOf("/") + 1);
                 ReleaseInfoActivity.show(getActivity(), repoName,
                         event.getPayload().getRelease());
                 break;
             case IssueCommentEvent:
             case IssuesEvent:
                 IssueDetailActivity.show(getActivity(), event.getPayload().getIssue());
+                break;
+            case PushEvent:
+                if(event.getPayload().getCommits() == null){
+                    RepositoryActivity.show(getContext(), owner, event.getRepo().getName());
+                } else if(event.getPayload().getCommits().size() == 1){
+                    View userAvatar = view.findViewById(R.id.user_avatar);
+                    CommitDetailActivity.show(getActivity(), owner, repoName,
+                            event.getPayload().getCommits().get(0).getSha(), userAvatar,
+                            event.getActor().getAvatarUrl());
+                }else{
+                    CommitsListActivity.showForCompare(getActivity(), owner, repoName,
+                            event.getPayload().getBefore(), event.getPayload().getHead());
+                }
                 break;
             default:
                 RepositoryActivity.show(getContext(), owner, event.getRepo().getName());

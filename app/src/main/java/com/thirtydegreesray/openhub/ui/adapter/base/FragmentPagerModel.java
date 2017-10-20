@@ -65,7 +65,7 @@ public class FragmentPagerModel {
                 new FragmentPagerModel(context.getString(R.string.info), RepoInfoFragment.create(repository)),
                 new FragmentPagerModel(context.getString(R.string.files), RepoFilesFragment.create(repository)),
                 new FragmentPagerModel(context.getString(R.string.commits),
-                        CommitsFragment.create(repository.getOwner().getLogin(),
+                        CommitsFragment.createForRepo(repository.getOwner().getLogin(),
                                 repository.getName(), repository.getDefaultBranch())),
                 new FragmentPagerModel(context.getString(R.string.activity),
                         ActivityFragment.create(ActivityFragment.ActivityType.Repository,

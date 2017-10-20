@@ -297,6 +297,7 @@
     <string name="created_at">Created at</string>
     <string name="forked_at">Forked at</string>
     <string name="latest_update">Latest update</string>
+    <string name="latest_commit">Latest commit</string>
     <string name="issue_title_null_tip">Issue title can not be null.</string>
     <string name="edit_issue">Edit issue</string>
     <string name="create_issue">Create issue</string>
@@ -308,5 +309,6 @@
     <string name="view_file">View file</string>
     <string name="failed_to_recognize">Failed to recognize the github url, please open in browser after long press copied.</string>
     <string name="failed_to_open_url">Failed to open the url, please open in browser after long press copied.</string>
+    <string name="compare">Compare view</string>
 
 </resources>

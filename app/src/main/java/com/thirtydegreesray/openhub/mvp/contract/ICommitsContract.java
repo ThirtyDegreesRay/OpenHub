@@ -36,7 +36,6 @@ public interface ICommitsContract {
     }
 
     interface Presenter extends IBasePagerContract.Presenter<ICommitsContract.View>{
-        void loadCommits(@NonNull String branch, boolean isReload, int page);
         void loadCommits(boolean isReload, int page);
     }
 

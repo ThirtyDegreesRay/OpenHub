@@ -29,6 +29,7 @@ public interface ICommitDetailContract {
     interface View extends IBaseContract.View{
         void showCommit(RepoCommit commit);
         void showCommitInfo(RepoCommitExt commitExt);
+        void showUserAvatar(String userAvatarUrl);
     }
 
     interface Presenter extends IBaseContract.Presenter<ICommitDetailContract.View>{

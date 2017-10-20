@@ -262,4 +262,12 @@
     <string name="leave_a_comment">השאר תגובה</string>
     <string name="markdown_editor">השתמש בעורך הסימון</string>
     <string name="title">כותרת</string>
+    <string name="committed">מְחוּיָב</string>
+    <string name="failed_to_open_url">פתיחת כתובת האתר נכשלה, אנא פתח בדפדפן לאחר העתקה ממושכת.</string>
+    <string name="failed_to_recognize">נכשל בזיהוי כתובת האתר של github, אנא פתח בדפדפן לאחר העתקה ממושכת.</string>
+    <string name="latest_commit">האחרונה להתחייב</string>
+    <string name="no_commits">ללא התחייבות</string>
+    <string name="no_readme">NO README</string>
+    <string name="view_file">הצג קובץ</string>
+    <string name="compare">השווה את התצוגה</string>
 </resources>

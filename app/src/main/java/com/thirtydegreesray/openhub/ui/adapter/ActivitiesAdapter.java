@@ -23,6 +23,7 @@ import android.support.annotation.NonNull;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
+import android.text.style.TextAppearanceSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,10 +31,12 @@ import android.widget.TextView;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.GlideApp;
 import com.thirtydegreesray.openhub.mvp.model.Event;
+import com.thirtydegreesray.openhub.mvp.model.PushEventCommit;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
+import com.thirtydegreesray.openhub.ui.widget.EllipsizeLineSpan;
 import com.thirtydegreesray.openhub.util.GitHubHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
@@ -101,6 +104,7 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
         //TODO to be better event action and desc
         void setActionAndDesc(Event model) {
             String actionStr = null;
+            SpannableStringBuilder descSpan = null;
             switch (model.getType()) {
                 case CommitCommentEvent:
                     actionStr = "Commit comment at " + model.getRepo().getFullName();
@@ -134,12 +138,16 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
                     actionStr = model.getPayload().getAction() + " repository from an installation ";
                     break;
                 case IssueCommentEvent:
-                    actionStr = model.getPayload().getAction() + " issue comment at " +
+                    actionStr = model.getPayload().getAction() + " comment on issue "
+                            + model.getPayload().getIssue().getNumber() +  " in " +
                             model.getRepo().getFullName();
+                    descSpan = new SpannableStringBuilder(model.getPayload().getComment().getBody());
                     break;
                 case IssuesEvent:
-                    actionStr = model.getPayload().getAction() + " issue at " +
+                    actionStr = model.getPayload().getAction() + " issue "
+                            + model.getPayload().getIssue().getNumber() + " in " +
                             model.getRepo().getFullName();
+                    descSpan = new SpannableStringBuilder(model.getPayload().getIssue().getTitle());
                     break;
 
                 case MarketplacePurchaseEvent:
@@ -182,6 +190,33 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
                     ref = ref.substring(ref.lastIndexOf("/") + 1);
                     actionStr = "Push to " + ref +
                             " at " + model.getRepo().getFullName();
+
+                    descSpan = new SpannableStringBuilder("");
+                    int count = model.getPayload().getCommits().size();
+                    int maxLines = 4;
+                    int max = count > maxLines ? maxLines - 1 : count;
+
+                    for (int i = 0; i < max; i++) {
+                        PushEventCommit commit = model.getPayload().getCommits().get(i);
+                        if (i != 0) {
+                            descSpan.append("\n");
+                        }
+
+                        int lastLength = descSpan.length();
+                        String sha = commit.getSha().substring(0, 7);
+                        descSpan.append(sha);
+                        descSpan.setSpan(new TextAppearanceSpan(context, R.style.text_link),
+                                lastLength, lastLength + sha.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                        descSpan.append(" ");
+                        descSpan.append(commit.getMessage());
+
+                        descSpan.setSpan(new EllipsizeLineSpan(i == (count - 1) ? 0 : 0),
+                                lastLength, descSpan.length(), 0);
+                    }
+                    if(count > maxLines){
+                        descSpan.append("\n").append("...");
+                    }
                     break;
                 case ReleaseEvent:
                     actionStr = model.getPayload().getAction() + " release " +
@@ -194,7 +229,12 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
             }
 
             action.setVisibility(View.VISIBLE);
-            desc.setVisibility(View.GONE);
+            if(descSpan != null){
+                desc.setVisibility(View.VISIBLE);
+                desc.setText(descSpan);
+            }else{
+                desc.setVisibility(View.GONE);
+            }
 
             actionStr = StringUtils.upCaseFisrtChar(actionStr);
             actionStr = actionStr == null ? "" : actionStr;

@@ -31,6 +31,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -76,6 +77,7 @@ BaseActivity<P extends IBaseContract.Presenter>
 
     protected boolean isAlive = true;
     @BindView(R.id.toolbar) @Nullable protected Toolbar toolbar;
+    @BindView(R.id.toolbar_layout) @Nullable protected CollapsingToolbarLayout toolbarLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -201,11 +203,14 @@ BaseActivity<P extends IBaseContract.Presenter>
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
         }
+        if(toolbarLayout != null){
+            toolbarLayout.setTitle(title);
+        }
     }
 
     protected void setToolbarTitle(String title, String subTitle) {
+        setToolbarTitle(title);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(title);
             getSupportActionBar().setSubtitle(subTitle);
         }
     }

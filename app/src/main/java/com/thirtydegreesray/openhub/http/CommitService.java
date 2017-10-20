@@ -18,6 +18,7 @@ package com.thirtydegreesray.openhub.http;
 
 import android.support.annotation.NonNull;
 
+import com.thirtydegreesray.openhub.mvp.model.CommitsComparison;
 import com.thirtydegreesray.openhub.mvp.model.RepoCommit;
 import com.thirtydegreesray.openhub.mvp.model.RepoCommitExt;
 
@@ -61,6 +62,15 @@ public interface CommitService {
             @Path("repo") String repo,
             @Path("ref") String ref,
             @Query("page") int page
+    );
+
+    @NonNull @GET("repos/{owner}/{repo}/compare/{before}...{head}")
+    Observable<Response<CommitsComparison>> compareTwoCommits(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("owner") String owner,
+            @Path("repo") String repo,
+            @Path("before") String before,
+            @Path("head") String head
     );
 
 }
