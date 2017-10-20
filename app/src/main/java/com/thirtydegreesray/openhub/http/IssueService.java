@@ -51,6 +51,7 @@ public interface IssueService {
     );
 
     @NonNull @GET("repos/{owner}/{repo}/issues/{issueNumber}")
+    @Headers("Accept: application/vnd.github.html,application/vnd.github.VERSION.raw")
     Observable<Response<Issue>> getIssueInfo(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("owner") String owner,

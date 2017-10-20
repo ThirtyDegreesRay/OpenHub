@@ -97,11 +97,14 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         super.initView(savedInstanceState);
         setToolbarBackEnable();
         setToolbarTitle(getString(R.string.issue));
+        commentBn.setVisibility(View.GONE);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_issue_detail, menu);
+        if(mPresenter.getIssue() != null) {
+            getMenuInflater().inflate(R.menu.menu_issue_detail, menu);
+        }
         return true;
     }
 
@@ -187,6 +190,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         boolean editAble = loggedUser.equals(issue.getUser().getLogin()) ||
                 loggedUser.equals(issue.getRepoAuthorName());
         editBn.setVisibility(editAble ? View.VISIBLE : View.GONE);
+        commentBn.setVisibility(View.VISIBLE);
 
     }
 

@@ -38,7 +38,7 @@ public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.Vie
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
-        if(issue == null){
+        if(issue == null || issue.getBodyHtml() == null){
             loadIssueInfo();
         }else{
             mView.showIssue(issue);
@@ -53,12 +53,7 @@ public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.Vie
         this.issue = issue;
     }
 
-    private void loadIssueInfo(){
-        if(!GitHubHelper.isIssueUrl(issueUrl)) return;
-        String[] arrays = issueUrl.substring(issueUrl.indexOf("com/") + 4).split("/");
-        final String user = arrays[0];
-        final String repo = arrays[1];
-        final int issueNumber = Integer.parseInt(arrays[3]);
+    private void loadIssueInfo(final String user, final String repo, final int issueNumber){
         HttpObserver<Issue> httpObserver = new HttpObserver<Issue>() {
             @Override
             public void onError(Throwable error) {
@@ -80,6 +75,20 @@ public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.Vie
             }
         }, httpObserver, true);
         mView.showLoading();
+    }
+
+
+    private void loadIssueInfo(){
+        if(issue != null){
+            loadIssueInfo(issue.getRepoAuthorName(), issue.getRepoName(), issue.getNumber());
+        }else{
+            if(!GitHubHelper.isIssueUrl(issueUrl)) return;
+            String[] arrays = issueUrl.substring(issueUrl.indexOf("com/") + 4).split("/");
+            final String user = arrays[0];
+            final String repo = arrays[1];
+            final int issueNumber = Integer.parseInt(arrays[3]);
+            loadIssueInfo(user, repo, issueNumber);
+        }
     }
 
     @Override
