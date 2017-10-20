@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed|snap"
             app:collapsedTitleGravity="start"
             app:expandedTitleGravity="top"
             app:expandedTitleMarginStart="@dimen/spacing_x_large"

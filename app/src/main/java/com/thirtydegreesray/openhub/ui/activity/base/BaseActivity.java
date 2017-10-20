@@ -435,7 +435,8 @@ BaseActivity<P extends IBaseContract.Presenter>
     protected void setToolbarScrollAble(boolean scrollAble) {
         if(toolbar == null) return;
         int flags = scrollAble ? (AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
-                | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS) : 0;
+                | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
+                | AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP) : 0;
         AppBarLayout.LayoutParams layoutParams = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
         layoutParams.setScrollFlags(flags);
         toolbar.setLayoutParams(layoutParams);

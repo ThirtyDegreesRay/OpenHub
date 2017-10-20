@@ -209,7 +209,7 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
                                 lastLength, lastLength + sha.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
                         descSpan.append(" ");
-                        descSpan.append(commit.getMessage());
+                        descSpan.append(getFirstLine(commit.getMessage()));
 
                         descSpan.setSpan(new EllipsizeLineSpan(i == (count - 1) ? 0 : 0),
                                 lastLength, descSpan.length(), 0);
@@ -245,6 +245,11 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
             action.setText(span);
+        }
+
+        private String getFirstLine(String str){
+            if(str == null || !str.contains("\n")) return str;
+            return str.substring(0, str.indexOf("\n"));
         }
 
     }
