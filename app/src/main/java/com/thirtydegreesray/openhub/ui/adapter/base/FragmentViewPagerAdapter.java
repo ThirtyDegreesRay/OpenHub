@@ -78,7 +78,7 @@ public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
         return curFragment;
     }
 
-    public List<FragmentPagerModel> getPagerList(){
+    public List<FragmentPagerModel> getPagerList() {
         return mPagerList;
     }
 

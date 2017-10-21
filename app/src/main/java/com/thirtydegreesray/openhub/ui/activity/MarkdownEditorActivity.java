@@ -18,6 +18,7 @@ import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentViewPagerAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.MarkdownEditorFragment;
+import com.thirtydegreesray.openhub.ui.fragment.MarkdownPreviewFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import es.dmoral.toasty.Toasty;
@@ -73,6 +74,21 @@ public class MarkdownEditorActivity extends PagerActivity implements MarkdownEdi
         if(fragment instanceof  MarkdownEditorFragment){
             markdownEditorCallback = (MarkdownEditorCallback) fragment;
         }
+    }
+
+    @Override
+    public int getPagerSize() {
+        return 2;
+    }
+
+    @Override
+    protected int getFragmentPosition(Fragment fragment) {
+        if(fragment instanceof MarkdownEditorFragment){
+            return 0;
+        }else if(fragment instanceof MarkdownPreviewFragment){
+            return 1;
+        }else
+            return -1;
     }
 
     @Nullable

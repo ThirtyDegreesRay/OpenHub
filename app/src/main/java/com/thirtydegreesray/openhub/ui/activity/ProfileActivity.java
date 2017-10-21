@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,6 +40,9 @@ import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.mvp.presenter.ProfilePresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
+import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
+import com.thirtydegreesray.openhub.ui.fragment.ProfileInfoFragment;
+import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 import com.thirtydegreesray.openhub.util.StringUtils;
@@ -210,6 +214,21 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
 //        loader.setVisibility(View.GONE);
     }
 
+    @Override
+    public int getPagerSize() {
+        return 3;
+    }
 
+    @Override
+    protected int getFragmentPosition(Fragment fragment) {
+        if(fragment instanceof ProfileInfoFragment){
+            return 0;
+        }else if(fragment instanceof ActivityFragment){
+            return 1;
+        }else if(fragment instanceof RepositoriesFragment){
+            return 2;
+        }else
+            return -1;
+    }
 
 }

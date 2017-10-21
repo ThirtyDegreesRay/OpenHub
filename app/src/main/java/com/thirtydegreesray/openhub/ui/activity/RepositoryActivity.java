@@ -48,6 +48,10 @@ import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.BranchesAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
+import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
+import com.thirtydegreesray.openhub.ui.fragment.CommitsFragment;
+import com.thirtydegreesray.openhub.ui.fragment.RepoFilesFragment;
+import com.thirtydegreesray.openhub.ui.fragment.RepoInfoFragment;
 import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 import com.thirtydegreesray.openhub.util.StringUtils;
@@ -307,5 +311,24 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
     @Override
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
+    }
+
+    @Override
+    public int getPagerSize() {
+        return 4;
+    }
+
+    @Override
+    protected int getFragmentPosition(Fragment fragment) {
+        if(fragment instanceof RepoInfoFragment){
+            return 0;
+        }else if(fragment instanceof RepoFilesFragment){
+            return 1;
+        }else if(fragment instanceof CommitsFragment){
+            return 2;
+        }else if(fragment instanceof ActivityFragment){
+            return 3;
+        }else
+            return -1;
     }
 }

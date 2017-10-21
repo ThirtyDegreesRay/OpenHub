@@ -49,7 +49,7 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
     @BindView(R.id.view_pager) protected ViewPager viewPager;
     @BindView(R.id.tab_layout) protected TabLayout tabLayout;
 
-    private ArrayList<Fragment> fragments = new ArrayList<>();
+    private ArrayList<Fragment> fragments ;
 
     private int prePosition = 0;
 
@@ -99,6 +99,7 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
         postNotifyFragmentStatus(prePosition, false, 100);
         postNotifyFragmentStatus(position, true, 500);
         prePosition = position;
+        Logger.d("onPageSelected " + position);
     }
 
     @Override
@@ -131,12 +132,24 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
     @Override
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
-        fragments.add(fragment);
+        int fragmentPosition = getFragmentPosition(fragment);
+        if(fragmentPosition != -1) getFragments().set(fragmentPosition, fragment);
         Logger.d("onAttachFragment" + fragment);
     }
 
     @NonNull
     public ArrayList<Fragment> getFragments() {
+        if(fragments == null){
+            fragments = new ArrayList<>();
+            for(int i = 0; i < getPagerSize(); i++){
+                fragments.add(null);
+            }
+        }
         return fragments;
     }
+
+    public abstract int getPagerSize();
+
+    protected abstract int getFragmentPosition(Fragment fragment);
+
 }

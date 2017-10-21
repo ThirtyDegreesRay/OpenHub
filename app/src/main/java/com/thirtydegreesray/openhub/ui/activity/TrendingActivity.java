@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.thirtydegreesray.openhub.R;
@@ -28,6 +29,7 @@ import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentViewPagerAdapter;
+import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/26 16:56:35
@@ -69,4 +71,29 @@ public class TrendingActivity extends PagerActivity {
         viewPager.setAdapter(pagerAdapter);
         showFirstPager();
     }
+
+    @Override
+    public int getPagerSize() {
+        return 3;
+    }
+
+    @Override
+    protected int getFragmentPosition(Fragment fragment) {
+        if(fragment instanceof RepositoriesFragment){
+            String since = fragment.getArguments().getString("since");
+            if(since == null){
+                return -1;
+            }else if(since.equals("daily")){
+                return 0;
+            } else if(since.equals("weekly")){
+                return 1;
+            } else if(since.equals("monthly")){
+                return 2;
+            } else {
+                return -1;
+            }
+        }else
+            return -1;
+    }
+
 }

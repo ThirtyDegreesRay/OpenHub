@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.thirtydegreesray.openhub.mvp.model.filter.SortDirection;
 import com.thirtydegreesray.openhub.mvp.presenter.IssuesActPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.PagerWithDrawerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
+import com.thirtydegreesray.openhub.ui.fragment.IssuesFragment;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 import com.thirtydegreesray.openhub.util.ViewHelper;
 
@@ -212,6 +214,24 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
     public void onPageSelected(int position) {
         super.onPageSelected(position);
         addBn.setVisibility(IssuesFilter.Type.Repo.equals(issuesType) && position == 0 ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public int getPagerSize() {
+        return 2;
+    }
+
+    @Override
+    protected int getFragmentPosition(Fragment fragment) {
+        if(fragment instanceof IssuesFragment){
+            IssuesFilter issuesFilter = fragment.getArguments().getParcelable("issuesFilter");
+            if(issuesFilter == null){
+                return -1;
+            }else{
+                return Issue.IssueState.open.equals(issuesFilter.getIssueState()) ? 0 : 1;
+            }
+        }else
+            return -1;
     }
 
     @Override

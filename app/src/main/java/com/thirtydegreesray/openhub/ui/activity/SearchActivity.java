@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.text.InputType;
@@ -40,6 +41,8 @@ import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.presenter.SearchPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
+import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
+import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.ArrayList;
@@ -217,8 +220,24 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
     }
 
     @Override
+    public int getPagerSize() {
+        return 2;
+    }
+
+    @Override
     public void showSearches(ArrayList<SearchModel> searchModels) {
         search(searchModels.get(0).getQuery());
         setSubTitle(0);
     }
+
+    @Override
+    protected int getFragmentPosition(Fragment fragment) {
+        if(fragment instanceof RepositoriesFragment){
+            return 0;
+        }else if(fragment instanceof UserListFragment){
+            return 1;
+        }else
+            return -1;
+    }
+
 }
