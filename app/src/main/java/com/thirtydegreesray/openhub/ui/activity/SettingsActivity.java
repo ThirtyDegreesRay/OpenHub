@@ -33,7 +33,7 @@ import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
 import com.thirtydegreesray.openhub.inject.module.ActivityModule;
 import com.thirtydegreesray.openhub.mvp.contract.ISettingsContract;
 import com.thirtydegreesray.openhub.mvp.presenter.SettingsPresenter;
-import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
+import com.thirtydegreesray.openhub.ui.activity.base.SingleFragmentActivity;
 import com.thirtydegreesray.openhub.ui.fragment.SettingsFragment;
 
 import butterknife.BindView;
@@ -44,7 +44,7 @@ import butterknife.BindView;
  * @author ThirtyDegreesRay
  */
 
-public class SettingsActivity extends BaseActivity<SettingsPresenter>
+public class SettingsActivity extends SingleFragmentActivity<SettingsPresenter, SettingsFragment>
         implements ISettingsContract.View ,
         SettingsFragment.SettingsCallBack{
 
@@ -65,24 +65,10 @@ public class SettingsActivity extends BaseActivity<SettingsPresenter>
                 .inject(this);
     }
 
-    @Nullable
-    @Override
-    protected int getContentView() {
-        return R.layout.activity_single_fragment;
-    }
-
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        setToolbarBackEnable();
         setToolbarTitle(getString(R.string.settings));
-        if(savedInstanceState == null){
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.container, new SettingsFragment())
-                    .commit();
-        }
-
         if(recreated){
             rootLayout.post(new Runnable() {
                 @Override
@@ -93,6 +79,11 @@ public class SettingsActivity extends BaseActivity<SettingsPresenter>
             setResult(Activity.RESULT_OK);
         }
 
+    }
+
+    @Override
+    protected SettingsFragment createFragment() {
+        return new SettingsFragment();
     }
 
     private void startAnimation(){

@@ -27,10 +27,10 @@ import android.view.MenuItem;
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.http.Downloader;
-import com.thirtydegreesray.openhub.inject.component.AppComponent;
+import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.model.CommitFile;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
-import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
+import com.thirtydegreesray.openhub.ui.activity.base.SingleFragmentActivity;
 import com.thirtydegreesray.openhub.ui.fragment.ViewerFragment;
 import com.thirtydegreesray.openhub.util.AppHelper;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
@@ -40,7 +40,7 @@ import com.thirtydegreesray.openhub.util.StringUtils;
  * Created by ThirtyDegreesRay on 2017/8/19 15:05:44
  */
 
-public class ViewerActivity extends BaseActivity {
+public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Presenter, ViewerFragment> {
 
     public enum ViewerType{
         RepoFile, MarkDown, DiffFile
@@ -103,17 +103,6 @@ public class ViewerActivity extends BaseActivity {
     @AutoAccess String mdSource;
 
     @Override
-    protected void setupActivityComponent(AppComponent appComponent) {
-
-    }
-
-    @Nullable
-    @Override
-    protected int getContentView() {
-        return R.layout.activity_single_fragment;
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if(fileModel != null || commitFile != null)
             getMenuInflater().inflate(R.menu.menu_viewer, menu);
@@ -123,8 +112,19 @@ public class ViewerActivity extends BaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        setToolbarBackEnable();
         String title;
+        if(ViewerType.RepoFile.equals(viewerType)){
+            title = fileModel.getName();
+        } else if(ViewerType.DiffFile.equals(viewerType)){
+            title = commitFile.getShortFileName();
+        } else {
+            title = this.title;
+        }
+        setToolbarTitle(title);
+    }
+
+    @Override
+    protected ViewerFragment createFragment() {
         ViewerFragment fragment;
         if(ViewerType.RepoFile.equals(viewerType)){
             title = fileModel.getName();
@@ -136,11 +136,7 @@ public class ViewerActivity extends BaseActivity {
             title = this.title;
             fragment = ViewerFragment.createForMd(title, mdSource);
         }
-        setToolbarTitle(title);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.container, fragment)
-                .commit();
+        return fragment;
     }
 
     @Override

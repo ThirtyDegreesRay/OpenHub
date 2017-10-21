@@ -18,6 +18,7 @@ package com.thirtydegreesray.openhub.mvp.presenter;
 
 import android.support.annotation.NonNull;
 
+import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.mvp.contract.ISearchContract;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
@@ -34,12 +35,21 @@ import javax.inject.Inject;
 public class SearchPresenter extends BasePresenter<ISearchContract.View>
         implements ISearchContract.Presenter{
 
-    private ArrayList<SearchModel> searchModels;
+    @AutoAccess ArrayList<SearchModel> searchModels;
 
     @Inject
     public SearchPresenter(DaoSession daoSession) {
         super(daoSession);
-        createSearchModels();
+    }
+
+    @Override
+    public void onViewInitialized() {
+        super.onViewInitialized();
+        if(searchModels == null){
+            createSearchModels();
+        } else {
+            mView.showSearches(searchModels);
+        }
     }
 
     private void createSearchModels(){

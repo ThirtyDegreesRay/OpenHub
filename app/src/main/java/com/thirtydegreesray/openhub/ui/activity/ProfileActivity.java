@@ -163,7 +163,7 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
         location.setText(user.getLocation());
 
         if (pagerAdapter.getCount() == 0) {
-            pagerAdapter.setPagerList(FragmentPagerModel.createProfilePagerList(getActivity(), user));
+            pagerAdapter.setPagerList(FragmentPagerModel.createProfilePagerList(getActivity(), user, getFragments()));
             tabLayout.setVisibility(View.VISIBLE);
             tabLayout.setupWithViewPager(viewPager);
             viewPager.setAdapter(pagerAdapter);
@@ -209,4 +209,7 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
         //TODO Don't know why loader show automatic when resume from other page, conflict with screen transition
 //        loader.setVisibility(View.GONE);
     }
+
+
+
 }

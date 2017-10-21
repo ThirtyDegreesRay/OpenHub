@@ -18,6 +18,7 @@ package com.thirtydegreesray.openhub.ui.activity.base;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -27,6 +28,9 @@ import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentViewPagerAdapter;
+import com.thirtydegreesray.openhub.util.Logger;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -44,6 +48,8 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
 
     @BindView(R.id.view_pager) protected ViewPager viewPager;
     @BindView(R.id.tab_layout) protected TabLayout tabLayout;
+
+    private ArrayList<Fragment> fragments = new ArrayList<>();
 
     private int prePosition = 0;
 
@@ -122,4 +128,15 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
         }, delay);
     }
 
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+        fragments.add(fragment);
+        Logger.d("onAttachFragment" + fragment);
+    }
+
+    @NonNull
+    public ArrayList<Fragment> getFragments() {
+        return fragments;
+    }
 }

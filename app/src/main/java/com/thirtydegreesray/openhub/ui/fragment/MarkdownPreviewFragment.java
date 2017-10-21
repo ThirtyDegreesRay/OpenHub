@@ -1,12 +1,11 @@
 package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
-import com.thirtydegreesray.openhub.ui.activity.MarkdownEditorActivity;
+import com.thirtydegreesray.openhub.ui.activity.MarkdownEditorCallback;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.zzhoujay.richtext.RichText;
 
@@ -18,13 +17,11 @@ import butterknife.BindView;
 //FIXME click link cause exception
 public class MarkdownPreviewFragment extends BaseFragment{
 
-    public static MarkdownPreviewFragment create(@NonNull MarkdownEditorActivity.MarkdownEditor markdownEditor){
+    public static MarkdownPreviewFragment create(){
         MarkdownPreviewFragment fragment = new MarkdownPreviewFragment();
-        fragment.setMarkdownEditor(markdownEditor);
         return fragment;
     }
 
-    private MarkdownEditorActivity.MarkdownEditor markdownEditor;
     @BindView(R.id.preview_text) TextView previewText;
 
     @Override
@@ -42,15 +39,15 @@ public class MarkdownPreviewFragment extends BaseFragment{
 
     }
 
-    public void setMarkdownEditor(MarkdownEditorActivity.MarkdownEditor markdownEditor) {
-        this.markdownEditor = markdownEditor;
+    private MarkdownEditorCallback getMarkdownEditorCallback(){
+        return (MarkdownEditorCallback) getActivity();
     }
 
     @Override
     public void onFragmentShowed() {
         super.onFragmentShowed();
-        if(markdownEditor.isTextChanged()){
-            RichText.fromMarkdown(markdownEditor.getText()).into(previewText);
+        if(getMarkdownEditorCallback().isTextChanged()){
+            RichText.fromMarkdown(getMarkdownEditorCallback().getText()).into(previewText);
         }
     }
 

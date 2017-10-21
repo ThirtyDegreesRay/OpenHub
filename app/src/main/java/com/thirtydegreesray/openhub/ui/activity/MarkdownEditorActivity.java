@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,18 +18,14 @@ import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentViewPagerAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.MarkdownEditorFragment;
-import com.thirtydegreesray.openhub.ui.fragment.MarkdownPreviewFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
-
-import java.util.Arrays;
 
 import es.dmoral.toasty.Toasty;
 
 /**
  * Created by ThirtyDegreesRay on 2017/9/29 11:43:25
  */
-
-public class MarkdownEditorActivity extends PagerActivity {
+public class MarkdownEditorActivity extends PagerActivity implements MarkdownEditorCallback {
 
     public static void show(@NonNull Activity activity, @StringRes int title, int requestCode) {
         show(activity, title, requestCode, null);
@@ -44,7 +41,7 @@ public class MarkdownEditorActivity extends PagerActivity {
 
     @AutoAccess String text;
     @AutoAccess @StringRes int title;
-    private MarkdownEditor markdownEditor;
+    private MarkdownEditorCallback markdownEditorCallback;
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
@@ -63,16 +60,19 @@ public class MarkdownEditorActivity extends PagerActivity {
         setToolbarBackEnable();
         setToolbarTitle(getString(title));
 
-        MarkdownEditorFragment editorFragment = MarkdownEditorFragment.create(text);
-        markdownEditor = editorFragment;
-        MarkdownPreviewFragment previewFragment = MarkdownPreviewFragment.create(markdownEditor);
-        pagerAdapter.setPagerList(Arrays.asList(
-                new FragmentPagerModel(getString(R.string.write), editorFragment),
-                new FragmentPagerModel(getString(R.string.preview), previewFragment)
-        ));
+        pagerAdapter.setPagerList(FragmentPagerModel
+                .createMarkdownEditorPagerList(getActivity(), text, getFragments()));
         tabLayout.setVisibility(View.VISIBLE);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setAdapter(pagerAdapter);
+    }
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+        if(fragment instanceof  MarkdownEditorFragment){
+            markdownEditorCallback = (MarkdownEditorCallback) fragment;
+        }
     }
 
     @Nullable
@@ -97,22 +97,24 @@ public class MarkdownEditorActivity extends PagerActivity {
     }
 
     private void commit(){
-        if(StringUtils.isBlank(markdownEditor.getText())){
+        if(StringUtils.isBlank(getText())){
             Toasty.warning(getActivity(), getString(R.string.comment_null_warning)).show();
             return;
         }
         Intent data = new Intent();
-        data.putExtra("text", markdownEditor.getText());
+        data.putExtra("text", getText());
         setResult(RESULT_OK, data);
         finish();
     }
 
-    public interface MarkdownEditor {
 
-        String getText();
-
-        boolean isTextChanged();
-
+    @Override
+    public String getText() {
+        return markdownEditorCallback.getText();
     }
 
+    @Override
+    public boolean isTextChanged() {
+        return markdownEditorCallback.isTextChanged();
+    }
 }

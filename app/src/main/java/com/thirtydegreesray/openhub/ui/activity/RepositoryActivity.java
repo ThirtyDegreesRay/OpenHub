@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -59,7 +60,7 @@ import butterknife.BindView;
 /**
  * Created by ThirtyDegreesRay on 2017/8/9 21:39:20
  */
-
+//FIXME fix fragment not show from background
 public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         implements IRepositoryContract.View {
 
@@ -195,7 +196,8 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                 language, StringUtils.getSizeString(repo.getSize() * 1024)));
 
         if (pagerAdapter.getCount() == 0) {
-            pagerAdapter.setPagerList(FragmentPagerModel.createRepoPagerList(getActivity(), repo));
+            pagerAdapter.setPagerList(FragmentPagerModel
+                    .createRepoPagerList(getActivity(), repo, getFragments()));
             tabLayout.setVisibility(View.VISIBLE);
             tabLayout.setupWithViewPager(viewPager);
             viewPager.setAdapter(pagerAdapter);
@@ -207,7 +209,6 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                     .into(userImageViewBg);
         } else {
             noticeRepositoryUpdated(repo);
-//            AppEventBus.INSTANCE.getEventBus().post(new Event.RepoInfoUpdatedEvent(repo));
         }
     }
 
@@ -303,4 +304,8 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         void onBranchChanged(Branch branch);
     }
 
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+    }
 }

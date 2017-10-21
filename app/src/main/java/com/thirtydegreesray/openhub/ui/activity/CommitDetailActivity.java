@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -121,7 +122,7 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
         commitMessage.setText(commitDateStr.concat("\n").concat(commit.getCommit().getMessage()));
     }
 
-    private boolean first = true;
+    private CommitFilesFragment commitFilesFragment;
 
     @Override
     public void showCommitInfo(RepoCommitExt commitExt) {
@@ -131,14 +132,24 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
         addtionsCount.setText(String.valueOf(commitExt.getStats().getAdditions()));
         deletionsCount.setText(String.valueOf(commitExt.getStats().getDeletions()));
 
-        if(first){
+        if(commitFilesFragment == null){
+            commitFilesFragment = CommitFilesFragment.create(commitExt.getFiles());
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.container, CommitFilesFragment.create(commitExt.getFiles()))
+                    .add(R.id.container, commitFilesFragment)
                     .commit();
-            first = false;
+        }else{
+            commitFilesFragment.showCommitFiles(commitExt.getFiles());
         }
 
+    }
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+        if(fragment instanceof CommitFilesFragment){
+            commitFilesFragment = (CommitFilesFragment) fragment;
+        }
     }
 
     @Override

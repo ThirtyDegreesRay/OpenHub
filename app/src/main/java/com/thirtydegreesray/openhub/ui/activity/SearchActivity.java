@@ -28,6 +28,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.AppEventBus;
 import com.thirtydegreesray.openhub.common.Event;
@@ -41,6 +42,7 @@ import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,8 +63,8 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
 
     private final Map<Integer, List<Integer>> MENU_ID_MAP = new HashMap<>();
 
-    private boolean isInputMode = true;
-    private String[] sortInfos;
+    @AutoAccess boolean isInputMode = true;
+    @AutoAccess String[] sortInfos;
 
     @Override
     protected void initActivity() {
@@ -92,6 +94,7 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
         setToolbarScrollAble(true);
         setToolbarBackEnable();
         setToolbarTitle(getString(R.string.search));
+        if(sortInfos == null)
         sortInfos = new String[]{
                 getString(R.string.best_match), getString(R.string.best_match)
         };
@@ -187,7 +190,7 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
     private void search(String query) {
         if (pagerAdapter.getCount() == 0) {
             pagerAdapter.setPagerList(FragmentPagerModel.
-                    createSearchPagerList(getActivity(), mPresenter.getQueryModels(query)));
+                    createSearchPagerList(getActivity(), mPresenter.getQueryModels(query), getFragments()));
             tabLayout.setVisibility(View.VISIBLE);
             tabLayout.setupWithViewPager(viewPager);
             viewPager.setAdapter(pagerAdapter);
@@ -211,5 +214,11 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
     public void onPageSelected(int position) {
         super.onPageSelected(position);
         setSubTitle(position);
+    }
+
+    @Override
+    public void showSearches(ArrayList<SearchModel> searchModels) {
+        search(searchModels.get(0).getQuery());
+        setSubTitle(0);
     }
 }

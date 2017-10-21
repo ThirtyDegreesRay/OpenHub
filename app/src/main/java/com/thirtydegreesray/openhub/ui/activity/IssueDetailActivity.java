@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -177,6 +178,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    if(!isAlive) return;
                     getSupportFragmentManager()
                             .beginTransaction()
                             .add(R.id.container, issueTimelineFragment)
@@ -191,6 +193,14 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         editBn.setVisibility(editAble ? View.VISIBLE : View.GONE);
         commentBn.setVisibility(View.VISIBLE);
 
+    }
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+        if(fragment instanceof  IssueTimelineFragment){
+            issueTimelineFragment = (IssueTimelineFragment) fragment;
+        }
     }
 
     @Override

@@ -237,16 +237,24 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
 
     @Override
     public void onRepositoryInfoUpdated(Repository repository) {
-        mPresenter.setRepository(repository);
-        mPresenter.setLoaded(false);
-        mPresenter.prepareLoadData();
+        if(mPresenter == null){
+            getArguments().putParcelable("repository", repository);
+        }else{
+            mPresenter.setRepository(repository);
+            mPresenter.setLoaded(false);
+            mPresenter.prepareLoadData();
+        }
     }
 
     @Override
     public void onBranchChanged(Branch branch) {
-        mPresenter.setCurBranch(branch.getName());
-        mPresenter.setLoaded(false);
-        mPresenter.prepareLoadData();
+        if(mPresenter == null){
+            getArguments().putString("curBranch", branch.getName());
+        }else{
+            mPresenter.setCurBranch(branch.getName());
+            mPresenter.setLoaded(false);
+            mPresenter.prepareLoadData();
+        }
     }
 
 }

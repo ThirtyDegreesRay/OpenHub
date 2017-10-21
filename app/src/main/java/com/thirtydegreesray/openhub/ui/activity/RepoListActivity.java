@@ -20,12 +20,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.R;
-import com.thirtydegreesray.openhub.inject.component.AppComponent;
-import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
+import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
+import com.thirtydegreesray.openhub.ui.activity.base.SingleFragmentActivity;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 
@@ -33,7 +32,7 @@ import com.thirtydegreesray.openhub.util.BundleBuilder;
  * Created by ThirtyDegreesRay on 2017/8/23 18:15:40
  */
 
-public class RepoListActivity extends BaseActivity {
+public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Presenter, RepositoriesFragment> {
 
     public static void show(@NonNull Context context,
                             @NonNull RepositoriesFragment.RepositoriesType type,
@@ -59,28 +58,17 @@ public class RepoListActivity extends BaseActivity {
     @AutoAccess String repo;
 
     @Override
-    protected void setupActivityComponent(AppComponent appComponent) {
-
-    }
-
-    @Nullable
-    @Override
-    protected int getContentView() {
-        return R.layout.activity_single_fragment;
-    }
-
-    @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        setToolbarBackEnable();
         setToolbarTitle(getListTitle());
+    }
+
+    @Override
+    protected RepositoriesFragment createFragment() {
         RepositoriesFragment fragment = RepositoriesFragment.RepositoriesType.FORKS.equals(type) ?
                 RepositoriesFragment.createForForks(user, repo) :
                 RepositoriesFragment.create(type, user);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.container, fragment)
-                .commit();
+        return fragment;
     }
 
     private String getListTitle(){

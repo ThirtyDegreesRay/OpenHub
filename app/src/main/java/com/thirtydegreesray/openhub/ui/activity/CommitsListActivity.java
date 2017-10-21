@@ -20,12 +20,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.R;
-import com.thirtydegreesray.openhub.inject.component.AppComponent;
-import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
+import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
+import com.thirtydegreesray.openhub.ui.activity.base.SingleFragmentActivity;
 import com.thirtydegreesray.openhub.ui.fragment.CommitsFragment;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 
@@ -33,7 +32,7 @@ import com.thirtydegreesray.openhub.util.BundleBuilder;
  * Created by ThirtyDegreesRay on 2017/10/20 11:30:58
  */
 
-public class CommitsListActivity extends BaseActivity {
+public class CommitsListActivity extends SingleFragmentActivity<IBaseContract.Presenter, CommitsFragment> {
 
     public static void showForCompare(@NonNull Activity activity, @NonNull String user,
                                       @NonNull String repo, @NonNull String before, @NonNull String head){
@@ -55,33 +54,20 @@ public class CommitsListActivity extends BaseActivity {
     @AutoAccess String head ;
 
     @Override
-    protected void setupActivityComponent(AppComponent appComponent) {
-
-    }
-
-    @Override
-    protected int getContentView() {
-        return R.layout.activity_single_fragment;
-    }
-
-    @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        setToolbarBackEnable();
         String repoFullName = user.concat("/").concat(repo);
         setToolbarTitle(getString(R.string.compare), repoFullName);
-        Fragment fragment = null;
-        if(CommitsListType.Compare.equals(type)){
-            fragment = CommitsFragment.createForCompare(user, repo, before, head);
-        }else{
-            return;
-        }
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.container, fragment)
-                .commit();
     }
 
+    @Override
+    protected CommitsFragment createFragment() {
+        if(CommitsListType.Compare.equals(type)){
+            return CommitsFragment.createForCompare(user, repo, before, head);
+        }else{
+            return null;
+        }
+    }
 
 
 }

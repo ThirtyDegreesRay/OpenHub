@@ -8,7 +8,7 @@ import android.widget.EditText;
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
-import com.thirtydegreesray.openhub.ui.activity.MarkdownEditorActivity;
+import com.thirtydegreesray.openhub.ui.activity.MarkdownEditorCallback;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 import com.thirtydegreesray.openhub.util.StringUtils;
@@ -22,7 +22,7 @@ import butterknife.OnTextChanged;
  */
 
 public class MarkdownEditorFragment extends BaseFragment
-        implements MarkdownEditorActivity.MarkdownEditor {
+        implements MarkdownEditorCallback {
 
     public static MarkdownEditorFragment create(@Nullable String text) {
         MarkdownEditorFragment fragment = new MarkdownEditorFragment();

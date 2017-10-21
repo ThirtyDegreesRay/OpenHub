@@ -28,7 +28,6 @@ import com.thirtydegreesray.openhub.ui.fragment.ReleasesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoFilesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoInfoFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
-import com.thirtydegreesray.openhub.ui.fragment.TrendingFragment;
 import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
 import com.thirtydegreesray.openhub.ui.fragment.ViewerFragment;
 
@@ -43,7 +42,6 @@ import dagger.Component;
 @FragmentScope
 @Component(modules = FragmentModule.class, dependencies = AppComponent.class)
 public interface FragmentComponent {
-    void inject(TrendingFragment fragment);
     void inject(RepositoriesFragment fragment);
     void inject(RepoInfoFragment fragment);
     void inject(RepoFilesFragment fragment);

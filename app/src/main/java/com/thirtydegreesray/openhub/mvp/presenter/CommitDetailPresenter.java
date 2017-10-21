@@ -63,6 +63,7 @@ public class CommitDetailPresenter extends BasePresenter<ICommitDetailContract.V
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                if(mView == null) return;
                 loadCommitInfo();
             }
         }, 500);

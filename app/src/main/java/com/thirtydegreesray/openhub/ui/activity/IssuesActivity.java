@@ -91,10 +91,10 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
 
             if(IssuesFilter.Type.User.equals(issuesType)){
             pagerAdapter.setPagerList(FragmentPagerModel
-                    .createUserIssuesPagerList(getActivity()));
+                    .createUserIssuesPagerList(getActivity(), getFragments()));
         } else {
             pagerAdapter.setPagerList(FragmentPagerModel
-                    .createRepoIssuesPagerList(getActivity(), userId, repoName));
+                    .createRepoIssuesPagerList(getActivity(), userId, repoName, getFragments()));
             navView.getMenu().findItem(R.id.nav_type_chooser).setVisible(false);
         }
         listeners = new ArrayList<>();

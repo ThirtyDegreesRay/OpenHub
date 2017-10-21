@@ -80,8 +80,10 @@ public class CommitFilesFragment extends ListFragment<CommitFilesPresenter, Comm
         super.initFragment(savedInstanceState);
         setLoadMoreEnable(false);
         setRefreshEnable(false);
-        adapter.setData(mPresenter.getSortedList(commitFiles));
-        adapter.notifyDataSetChanged();
+        if(commitFiles != null){
+            adapter.setData(mPresenter.getSortedList(commitFiles));
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -96,4 +98,11 @@ public class CommitFilesFragment extends ListFragment<CommitFilesPresenter, Comm
             }
         }
     }
+
+    public void showCommitFiles(@NonNull ArrayList<CommitFile> commitFiles){
+        this.commitFiles = commitFiles;
+        adapter.setData(mPresenter.getSortedList(commitFiles));
+        adapter.notifyDataSetChanged();
+    }
+
 }

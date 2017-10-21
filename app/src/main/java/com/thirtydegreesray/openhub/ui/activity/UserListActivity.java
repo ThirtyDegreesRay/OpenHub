@@ -19,12 +19,11 @@ package com.thirtydegreesray.openhub.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.R;
-import com.thirtydegreesray.openhub.inject.component.AppComponent;
-import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
+import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
+import com.thirtydegreesray.openhub.ui.activity.base.SingleFragmentActivity;
 import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
 import com.thirtydegreesray.openhub.util.BundleBuilder;
 
@@ -32,7 +31,7 @@ import com.thirtydegreesray.openhub.util.BundleBuilder;
  * Created by ThirtyDegreesRay on 2017/8/16 17:22:44
  */
 
-public class UserListActivity extends BaseActivity {
+public class UserListActivity extends SingleFragmentActivity<IBaseContract.Presenter, UserListFragment> {
 
     public static void show(Activity context, UserListFragment.UserListType type,
                             String user){
@@ -55,25 +54,14 @@ public class UserListActivity extends BaseActivity {
     @AutoAccess String repo;
 
     @Override
-    protected void setupActivityComponent(AppComponent appComponent) {
-
-    }
-
-    @Nullable
-    @Override
-    protected int getContentView() {
-        return R.layout.activity_single_fragment;
-    }
-
-    @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        setToolbarBackEnable();
         setToolbarTitle(getListTitle());
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.container, UserListFragment.create(type, user, repo))
-                .commit();
+    }
+
+    @Override
+    protected UserListFragment createFragment() {
+        return UserListFragment.create(type, user, repo);
     }
 
     private String getListTitle(){

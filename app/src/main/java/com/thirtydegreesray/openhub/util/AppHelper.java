@@ -23,7 +23,9 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -38,6 +40,8 @@ import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -108,8 +112,11 @@ public class AppHelper {
 
     public static void openInBrowser(@NonNull Context context, @NonNull String url){
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
+        Uri uri = Uri.parse(url);
+        intent.setData(uri);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent = createActivityChooserIntent(context, intent, uri);
         try{
             context.startActivity(intent);
         }catch (ActivityNotFoundException ae){
@@ -172,12 +179,8 @@ public class AppHelper {
         } else if (GitHubHelper.isIssueUrl(uri.toString())) {
             IssueDetailActivity.show((Activity) context, uri.toString());
         } else {
-            if(GitHubHelper.isGitHubUrl(uri.toString())){
-                Toasty.warning(context, context.getString(R.string.failed_to_recognize), Toast.LENGTH_LONG).show();
-            }else{
-                String url = uri.toString();
-                openInBrowser(context, url);
-            }
+            String url = uri.toString();
+            openInBrowser(context, url);
         }
     }
 
@@ -219,5 +222,46 @@ public class AppHelper {
             context.startActivity(intent);
         }
     }
+
+    private static Intent createActivityChooserIntent(Context context, Intent intent, Uri uri) {
+        final PackageManager pm = context.getPackageManager();
+        final List<ResolveInfo> activities = pm.queryIntentActivities(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
+        final ArrayList<Intent> chooserIntents = new ArrayList<>();
+        final String ourPackageName = context.getPackageName();
+
+        Collections.sort(activities, new ResolveInfo.DisplayNameComparator(pm));
+
+        for (ResolveInfo resInfo : activities) {
+            ActivityInfo info = resInfo.activityInfo;
+            if (!info.enabled || !info.exported) {
+                continue;
+            }
+            if (info.packageName.equals(ourPackageName)) {
+                continue;
+            }
+
+            Intent targetIntent = new Intent(intent);
+            targetIntent.setPackage(info.packageName);
+            targetIntent.setDataAndType(uri, intent.getType());
+            chooserIntents.add(targetIntent);
+        }
+
+        if (chooserIntents.isEmpty()) {
+            return null;
+        }
+
+        final Intent lastIntent = chooserIntents.remove(chooserIntents.size() - 1);
+        if (chooserIntents.isEmpty()) {
+            // there was only one, no need to show the chooser
+            return lastIntent;
+        }
+
+        Intent chooserIntent = Intent.createChooser(lastIntent, null);
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS,
+                chooserIntents.toArray(new Intent[chooserIntents.size()]));
+        return chooserIntent;
+    }
+
 
 }

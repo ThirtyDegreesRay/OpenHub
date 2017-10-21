@@ -60,6 +60,7 @@ public class ProfilePresenter extends BasePresenter<IProfileContract.View>
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                if(mView == null) return;
                 isTransitionComplete = true;
                 if(isWaitForTransition) mView.showProfileInfo(user);
                 isWaitForTransition = false;
