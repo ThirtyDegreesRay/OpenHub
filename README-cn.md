@@ -25,9 +25,9 @@
 |:-:|:-:|:-:|
 | ![news](/art/news.png?raw=true) | ![drawer](/art/drawer.png?raw=true) | ![profile](/art/profile.png?raw=true) |
 
-| 版本库主页 | 趋势 | 代码 |
+| 版本库主页 | 提交 | 代码 |
 |:-:|:-:|:-:|
-| ![repo](/art/repo.png?raw=true) | ![trending](/art/trending.png?raw=true) | ![code](/art/code.png?raw=true) |
+| ![repo](/art/repo.png?raw=true) | ![commit](/art/commit.png?raw=true) | ![code](/art/code.png?raw=true) |
 
 ## 开源库
 

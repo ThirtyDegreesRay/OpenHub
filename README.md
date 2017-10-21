@@ -26,9 +26,9 @@ An **open source** GitHub Android client app, faster and concise.
 |:-:|:-:|:-:|
 | ![news](/art/news.png?raw=true) | ![drawer](/art/drawer.png?raw=true) | ![profile](/art/profile.png?raw=true) |
 
-| Repository | Trending | Code |
+| Repository | Commit | Code |
 |:-:|:-:|:-:|
-| ![repo](/art/repo.png?raw=true) | ![trending](/art/trending.png?raw=true) | ![code](/art/code.png?raw=true) |
+| ![repo](/art/repo.png?raw=true) | ![commit](/art/commit.png?raw=true) | ![code](/art/code.png?raw=true) |
 
 ## Open source library
 
