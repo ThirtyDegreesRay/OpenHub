@@ -293,13 +293,13 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
                     }
                     httpObserver.onSuccess(response);
                 } else if(response.getOriResponse().code() == 404){
-                    httpObserver.onError(new HttpPageNoFoundError());
+                    onError(new HttpPageNoFoundError());
                 } else if(response.getOriResponse().code() == 504){
-                    httpObserver.onError(new HttpError(HttpErrorCode.NO_CACHE_AND_NETWORK));
+                    onError(new HttpError(HttpErrorCode.NO_CACHE_AND_NETWORK));
                 } else if(response.getOriResponse().code() == 401){
-                    httpObserver.onError(new UnauthorizedError());
+                    onError(new UnauthorizedError());
                 } else {
-                    httpObserver.onError(new Error(response.getOriResponse().message()));
+                    onError(new Error(response.getOriResponse().message()));
                 }
 
             }
