@@ -24,11 +24,11 @@ An **open source** GitHub Android client app, faster and concise.
 
 | News | Drawer | Profile |
 |:-:|:-:|:-:|
-| ![news](/art/news.png?raw=true) | ![drawer](/art/drawer.png?raw=true) | ![profile](/art/profile.png?raw=true) |
+| ![news](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/news.png?raw=true) | ![drawer](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/drawer.png?raw=true) | ![profile](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/profile.png?raw=true) |
 
 | Repository | Commit | Code |
 |:-:|:-:|:-:|
-| ![repo](/art/repo.png?raw=true) | ![commit](/art/commit.png?raw=true) | ![code](/art/code.png?raw=true) |
+| ![repo](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/repo.png?raw=true) | ![commit](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/commit.png?raw=true) | ![code](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/code.png?raw=true) |
 
 ## Open source library
 

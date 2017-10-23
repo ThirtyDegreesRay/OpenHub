@@ -23,11 +23,11 @@
 
 | 动态 | 侧滑页 | 个人主页 |
 |:-:|:-:|:-:|
-| ![news](/art/news.png?raw=true) | ![drawer](/art/drawer.png?raw=true) | ![profile](/art/profile.png?raw=true) |
+| ![news](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/news.png?raw=true) | ![drawer](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/drawer.png?raw=true) | ![profile](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/profile.png?raw=true) |
 
 | 版本库主页 | 提交 | 代码 |
 |:-:|:-:|:-:|
-| ![repo](/art/repo.png?raw=true) | ![commit](/art/commit.png?raw=true) | ![code](/art/code.png?raw=true) |
+| ![repo](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/repo.png?raw=true) | ![commit](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/commit.png?raw=true) | ![code](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/code.png?raw=true) |
 
 ## 开源库
 
