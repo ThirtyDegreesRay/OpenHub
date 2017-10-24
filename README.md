@@ -1,4 +1,4 @@
-English | [中文](http://blog.csdn.net/a550906320/article/details/77891443)
+English | [中文](/README-cn.md)
 # OpenHub 
 [![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
@@ -12,13 +12,52 @@ An **open source** GitHub Android client app, faster and concise.
 [Download Apk From Releases](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
 ## Features
-* Project use MVP+dagger2+retrofit framework，save Activity,Fragment,Presenter data when onSaveInstanceState;
-* On the basis of Retrofit2+RxJava,load cache first if cache available,then load from network,better user experience; 
-* Support the theme switch,16 kinds of accent color switch,language switch;
-* Support the trending repositories view,every one hour,the server update data at a time;
-* Start immediately show the splash screen,no bad time;
-* Faster and cool syntax highlighting;
-* And more...
+
+### App
+* Two login types (Basic Auth) and (OAuth)
+* Light and dark theme, multiple accent color
+* Markdown and code highlighting support
+* English, simple chinese and hebrew support
+* Offline mode
+* Trending repositories
+* Search repos and users
+
+### Repositories
+* View repo info 
+* Star, watch and fork repos
+* View repo files, commits and activity
+* Download source code, releases and files
+* View your private, public, forked and starred repos
+* View trending repos of daily, weekly and monthly
+* Search repos
+
+### Users
+* View user info
+* View user followers, following, organizations
+* View user public repositories, starred repositories and activity
+* Follow/Unfollow users
+* Search users
+
+### Organizations
+* View org info
+* View org public repositories and activity
+* View org members
+
+### Issues
+* View issue info and comments
+* Create, open and close issues
+* Create, edit and delete issue comments
+* Write comment with preview
+* View your created, assigned and mentioned issues
+* View repository issues
+
+### Commits
+* View commit info and files
+* View file diff
+* View repository commits
+
+### And more
+* OpenHub is growing, try to be better github client.
 
 ## Screenshots
 
@@ -42,7 +81,7 @@ An **open source** GitHub Android client app, faster and concise.
 * [Glide](https://github.com/bumptech/glide) An image loading and caching library for Android focused on smooth scrolling.
 * [code-prettify](https://github.com/google/code-prettify) An embeddable script that makes source-code snippets in HTML prettier.
 * [DataAutoAccess](https://github.com/ThirtyDegreesRay/DataAutoAccess) A simple way to access android bundle data.
-* [RoundedImageView](https://github.com/vinc3m1/RoundedImageView) A fast ImageView that supports rounded corners, ovals, and circles.
+* [CircleImageView](https://github.com/hdodenhof/CircleImageView) A circular ImageView for Android.
 * [Toasty](https://github.com/GrenderG/Toasty) The usual Toast, but with steroids 💪.
 * [material-about-library](https://github.com/daniel-stoneuk/material-about-library) Makes it easy to create beautiful about screens for your apps.
 * [material-dialogs](https://github.com/afollestad/material-dialogs) A beautiful, fluid, and customizable dialogs API.
