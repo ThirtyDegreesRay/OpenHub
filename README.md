@@ -69,7 +69,7 @@ An **open source** GitHub Android client app, faster and concise.
 |:-:|:-:|:-:|
 | ![repo](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/repo.png?raw=true) | ![commit](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/commit.png?raw=true) | ![code](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/code.png?raw=true) |
 
-## Open source
+## Thanks for open source
 
 * [ButterKnife](https://github.com/JakeWharton/butterknife) Bind Android views and callbacks to fields and methods.
 * [GreenDao](https://github.com/greenrobot/greenDAO) A light & fast ORM solution for Android that maps objects to SQLite databases.
