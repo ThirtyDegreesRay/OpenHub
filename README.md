@@ -69,7 +69,7 @@ An **open source** GitHub Android client app, faster and concise.
 |:-:|:-:|:-:|
 | ![repo](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/repo.png?raw=true) | ![commit](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/commit.png?raw=true) | ![code](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/code.png?raw=true) |
 
-## Open source library
+## Open source
 
 * [ButterKnife](https://github.com/JakeWharton/butterknife) Bind Android views and callbacks to fields and methods.
 * [GreenDao](https://github.com/greenrobot/greenDAO) A light & fast ORM solution for Android that maps objects to SQLite databases.
@@ -86,6 +86,8 @@ An **open source** GitHub Android client app, faster and concise.
 * [material-about-library](https://github.com/daniel-stoneuk/material-about-library) Makes it easy to create beautiful about screens for your apps.
 * [material-dialogs](https://github.com/afollestad/material-dialogs) A beautiful, fluid, and customizable dialogs API.
 * [GitHub-Trending](https://github.com/thedillonb/GitHub-Trending) Scrapes GitHub's Trending Pages.
+* [FastHub](https://github.com/k0shk0sh/FastHub) FastHub the ultimate GitHub client for Android.
+* [OctoDroid](https://github.com/slapperwan/gh4a) This application provides access to GitHub and lets you stay connected with your network.
 
 ## License
     Copyright 2017 ThirtyDegreesRay

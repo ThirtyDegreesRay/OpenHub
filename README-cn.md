@@ -3,7 +3,7 @@
 [![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
-一个**开源**的GitHub Android客户端应用程序，更快更简洁。
+一个**开源**的GitHub Android客户端应，快速简洁。
 <!-- ![OpenHub](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/openhub.png) -->
 
 [酷安下载](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
@@ -68,7 +68,7 @@
 |:-:|:-:|:-:|
 | ![repo](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/repo.png?raw=true) | ![commit](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/commit.png?raw=true) | ![code](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/code.png?raw=true) |
 
-## 开源库
+## 开源
 
 * [ButterKnife](https://github.com/JakeWharton/butterknife) 视图绑定
 * [GreenDao](https://github.com/greenrobot/greenDAO) 一个轻量级而且更快的Android ORM解决方案
