@@ -19,6 +19,7 @@ package com.thirtydegreesray.openhub;
 import android.app.Application;
 import android.content.Context;
 
+import com.orhanobut.logger.Logger;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -29,7 +30,6 @@ import com.thirtydegreesray.openhub.ui.activity.AboutActivity;
 import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
 import com.thirtydegreesray.openhub.ui.activity.MainActivity;
 import com.thirtydegreesray.openhub.ui.widget.UpgradeDialog;
-import com.thirtydegreesray.openhub.util.Logger;
 import com.thirtydegreesray.openhub.util.NetHelper;
 
 /**

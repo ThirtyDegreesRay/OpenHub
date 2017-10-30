@@ -33,7 +33,7 @@ import com.thirtydegreesray.openhub.mvp.contract.ILoginContract;
 import com.thirtydegreesray.openhub.mvp.model.BasicToken;
 import com.thirtydegreesray.openhub.mvp.presenter.LoginPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
-import com.thirtydegreesray.openhub.util.AppHelper;
+import com.thirtydegreesray.openhub.util.AppOpener;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewUtils;
 import com.unstoppable.submitbuttonview.SubmitButton;
@@ -153,7 +153,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
 
     @OnClick(R.id.oauth_login_bn)
     public void onOauthLoginClick(){
-        AppHelper.openInBrowser(getActivity(), mPresenter.getOAuth2Url());
+        AppOpener.openInBrowser(getActivity(), mPresenter.getOAuth2Url());
     }
 
     @OnClick(R.id.login_bn)

@@ -20,8 +20,8 @@ import com.thirtydegreesray.openhub.ui.activity.MarkdownEditorActivity;
 import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.IssueTimelineAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
-import com.thirtydegreesray.openhub.util.AppHelper;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.AppOpener;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 
 import java.util.ArrayList;
 
@@ -34,7 +34,7 @@ public class IssueTimelineFragment extends ListFragment<IssueTimelinePresenter, 
 
     public static IssueTimelineFragment create(@NonNull Issue issue){
         IssueTimelineFragment fragment = new IssueTimelineFragment();
-        fragment.setArguments(BundleBuilder.builder().put("issue", issue).build());
+        fragment.setArguments(BundleHelper.builder().put("issue", issue).build());
         return fragment;
     }
 
@@ -124,7 +124,7 @@ public class IssueTimelineFragment extends ListFragment<IssueTimelinePresenter, 
                         dialog.dismiss();
                         switch (which){
                             case 0:
-                                AppHelper.shareText(getActivity(), issueEvent.getHtmlUrl());
+                                AppOpener.shareText(getActivity(), issueEvent.getHtmlUrl());
                                 break;
                             case 1:
                                 editingCommentId = issueEvent.getId();

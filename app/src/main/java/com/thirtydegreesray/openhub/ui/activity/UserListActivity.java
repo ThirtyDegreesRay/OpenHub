@@ -25,7 +25,7 @@ import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.ui.activity.base.SingleFragmentActivity;
 import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/16 17:22:44
@@ -41,7 +41,7 @@ public class UserListActivity extends SingleFragmentActivity<IBaseContract.Prese
     public static void show(Activity context, UserListFragment.UserListType type,
                             String user, String repo){
         Intent intent = new Intent(context, UserListActivity.class);
-        intent.putExtras(BundleBuilder.builder()
+        intent.putExtras(BundleHelper.builder()
                 .put("type", type)
                 .put("user", user)
                 .put("repo", repo)

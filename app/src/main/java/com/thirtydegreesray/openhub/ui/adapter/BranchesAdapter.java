@@ -27,7 +27,7 @@ import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.model.Branch;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
-import com.thirtydegreesray.openhub.util.ViewHelper;
+import com.thirtydegreesray.openhub.util.ViewUtils;
 
 import butterknife.BindView;
 
@@ -61,7 +61,7 @@ public class BranchesAdapter extends BaseAdapter<BranchesAdapter.ViewHolder, Bra
         holder.icon.setImageResource(branch.isBranch() ? R.drawable.ic_branch : R.drawable.ic_tag);
         holder.name.setText(branch.getName());
         if(branch.getName().equals(curBranch)){
-            holder.rootLayout.setBackgroundColor(ViewHelper.getSelectedColor(context));
+            holder.rootLayout.setBackgroundColor(ViewUtils.getSelectedColor(context));
         }else{
             holder.rootLayout.setBackground(null);
         }

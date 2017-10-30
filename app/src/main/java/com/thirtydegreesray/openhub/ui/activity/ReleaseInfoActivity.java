@@ -23,10 +23,10 @@ import com.thirtydegreesray.openhub.mvp.presenter.ReleaseInfoPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.widget.DownloadSourceDialog;
 import com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView;
-import com.thirtydegreesray.openhub.util.AppHelper;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.AppOpener;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
-import com.thirtydegreesray.openhub.util.ViewHelper;
+import com.thirtydegreesray.openhub.util.ViewUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -40,7 +40,7 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
 
     public static void show(Activity activity,  String repoName, Release release){
         Intent intent = new Intent(activity, ReleaseInfoActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("release", release)
+        intent.putExtras(BundleHelper.builder().put("release", release)
                 .put("repoName", repoName).build());
         activity.startActivity(intent);
     }
@@ -72,7 +72,7 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
 
         String str = release.getAuthor().getLogin().concat(" ").concat(timeStr);
         SpannableStringBuilder spannable = new SpannableStringBuilder(str);
-        ForegroundColorSpan colorSpan = new ForegroundColorSpan(ViewHelper.getAccentColor(getActivity()));
+        ForegroundColorSpan colorSpan = new ForegroundColorSpan(ViewUtils.getAccentColor(getActivity()));
         spannable.setSpan(colorSpan, 0, release.getAuthor().getLogin().length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         userName.setText(spannable);
@@ -111,7 +111,7 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
         if(mPresenter.getRelease() == null) return true;
         switch (item.getItemId()) {
             case R.id.action_download_zip:
-                AppHelper.openInBrowser(getActivity(), mPresenter.getRelease().getZipballUrl());
+                AppOpener.openInBrowser(getActivity(), mPresenter.getRelease().getZipballUrl());
                 return true;
             case R.id.action_download_tar:
 

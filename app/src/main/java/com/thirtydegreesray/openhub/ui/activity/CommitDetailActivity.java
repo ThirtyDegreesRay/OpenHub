@@ -40,8 +40,9 @@ import com.thirtydegreesray.openhub.mvp.model.RepoCommitExt;
 import com.thirtydegreesray.openhub.mvp.presenter.CommitDetailPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.fragment.CommitFilesFragment;
-import com.thirtydegreesray.openhub.util.AppHelper;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.AppOpener;
+import com.thirtydegreesray.openhub.util.AppUtils;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import butterknife.BindView;
@@ -58,7 +59,7 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
     public static void show(@NonNull Activity activity, @NonNull String user, @NonNull String repo,
                             @NonNull RepoCommit commit, @NonNull View userAvatar) {
         Intent intent = new Intent(activity, CommitDetailActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("user", user).put("repo", repo)
+        intent.putExtras(BundleHelper.builder().put("user", user).put("repo", repo)
                 .put("commit", commit).build());
         ActivityOptionsCompat optionsCompat = ActivityOptionsCompat
                 .makeSceneTransitionAnimation(activity, userAvatar, "userAvatar");
@@ -68,7 +69,7 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
     public static void show(@NonNull Activity activity, @NonNull String user, @NonNull String repo,
                             @NonNull String commitSha, @NonNull View userAvatar, @NonNull String userAvatarUrl) {
         Intent intent = new Intent(activity, CommitDetailActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("user", user).put("repo", repo)
+        intent.putExtras(BundleHelper.builder().put("user", user).put("repo", repo)
                 .put("commitSha", commitSha).put("userAvatarUrl", userAvatarUrl).build());
         ActivityOptionsCompat optionsCompat = ActivityOptionsCompat
                 .makeSceneTransitionAnimation(activity, userAvatar, "userAvatar");
@@ -186,13 +187,13 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_open_in_browser:
-                AppHelper.openInBrowser(getActivity(), mPresenter.getCommit().getHtmlUrl());
+                AppOpener.openInBrowser(getActivity(), mPresenter.getCommit().getHtmlUrl());
                 return true;
             case R.id.action_share:
-                AppHelper.shareText(getActivity(), mPresenter.getCommit().getHtmlUrl());
+                AppOpener.shareText(getActivity(), mPresenter.getCommit().getHtmlUrl());
                 return true;
             case R.id.action_copy_url:
-                AppHelper.copyToClipboard(getActivity(), mPresenter.getCommit().getHtmlUrl());
+                AppUtils.copyToClipboard(getActivity(), mPresenter.getCommit().getHtmlUrl());
                 return true;
         }
         return super.onOptionsItemSelected(item);

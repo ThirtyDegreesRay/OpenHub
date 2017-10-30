@@ -35,7 +35,7 @@ import com.thirtydegreesray.openhub.mvp.presenter.RepositoriesPresenter;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.adapter.RepositoriesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 
 import java.util.ArrayList;
 
@@ -55,14 +55,14 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     public static RepositoriesFragment create(@NonNull RepositoriesType type,
                                               @NonNull String user){
         RepositoriesFragment fragment = new RepositoriesFragment();
-        fragment.setArguments(BundleBuilder.builder().put("type", type)
+        fragment.setArguments(BundleHelper.builder().put("type", type)
                 .put("user", user).build());
         return fragment;
     }
 
     public static RepositoriesFragment createForForks(@NonNull String user, @NonNull String repo){
         RepositoriesFragment fragment = new RepositoriesFragment();
-        fragment.setArguments(BundleBuilder.builder()
+        fragment.setArguments(BundleHelper.builder()
                 .put("type", RepositoriesType.FORKS)
                 .put("user", user)
                 .put("repo", repo)
@@ -73,7 +73,7 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     public static RepositoriesFragment createForSearch(@NonNull SearchModel searchModel){
         RepositoriesFragment fragment = new RepositoriesFragment();
         fragment.setArguments(
-                BundleBuilder.builder()
+                BundleHelper.builder()
                         .put("type", RepositoriesType.SEARCH)
                         .put("searchModel", searchModel)
                         .build()
@@ -84,7 +84,7 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     public static RepositoriesFragment createForTrending(@NonNull String since){
         RepositoriesFragment fragment = new RepositoriesFragment();
         fragment.setArguments(
-                BundleBuilder.builder()
+                BundleHelper.builder()
                         .put("type", RepositoriesType.TRENDING)
                         .put("since", since)
                         .build()

@@ -12,9 +12,9 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
+import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.openhub.R;
-import com.thirtydegreesray.openhub.util.AppHelper;
-import com.thirtydegreesray.openhub.util.Logger;
+import com.thirtydegreesray.openhub.util.AppUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -43,7 +43,7 @@ public class Downloader {
 
     private Downloader(Context context){
         this.mContext = context;
-        AppHelper.updateAppLanguage(context);
+        AppUtils.updateAppLanguage(context);
     }
 
     public void start(String url, String fileName) {
@@ -55,10 +55,10 @@ public class Downloader {
             this.url = url;
             this.fileName = fileName;
 
-            if(!AppHelper.checkDownloadServiceEnabled(mContext)){
+            if(!AppUtils.checkDownloadServiceEnabled(mContext)){
                 Toasty.warning(mContext, mContext.getString(R.string.enable_download_service_tip),
                         Toast.LENGTH_LONG).show();
-                AppHelper.showDownloadServiceSetting(mContext);
+                AppUtils.showDownloadServiceSetting(mContext);
                 return ;
             }
 
@@ -146,7 +146,7 @@ public class Downloader {
             }
             c.close();
         }catch (SQLiteException e){
-            Logger.e(e);
+            Logger.d(e);
             unregister();
         }
 

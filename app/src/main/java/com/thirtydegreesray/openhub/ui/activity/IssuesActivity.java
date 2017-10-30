@@ -23,8 +23,8 @@ import com.thirtydegreesray.openhub.mvp.presenter.IssuesActPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.PagerWithDrawerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.ui.fragment.IssuesFragment;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
-import com.thirtydegreesray.openhub.util.ViewHelper;
+import com.thirtydegreesray.openhub.util.BundleHelper;
+import com.thirtydegreesray.openhub.util.ViewUtils;
 
 import java.util.ArrayList;
 
@@ -40,7 +40,7 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
     public static void showForRepo(@NonNull Activity activity, @NonNull String userId,
                                    @NonNull String repoName){
         Intent intent = new Intent(activity, IssuesActivity.class);
-        intent.putExtras(BundleBuilder.builder()
+        intent.putExtras(BundleHelper.builder()
                 .put("issuesType", IssuesFilter.Type.Repo)
                 .put("userId", userId)
                 .put("repoName", repoName).build());
@@ -49,7 +49,7 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
 
     public static void showForUser(@NonNull Activity activity){
         Intent intent = new Intent(activity, IssuesActivity.class);
-        intent.putExtras(BundleBuilder.builder()
+        intent.putExtras(BundleHelper.builder()
                 .put("issuesType", IssuesFilter.Type.User).build());
         activity.startActivity(intent);
     }
@@ -116,7 +116,7 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        ViewHelper.selectMenuItem(navView.getMenu(), item.getItemId(), true);
+        ViewUtils.selectMenuItem(navView.getMenu(), item.getItemId(), true);
         return super.onNavigationItemSelected(item);
     }
 
@@ -146,7 +146,7 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
         IssuesFilter issuesFilter = new IssuesFilter(issuesType, open ? Issue.IssueState.open
                 : Issue.IssueState.closed);
         if(IssuesFilter.Type.User.equals(issuesType)){
-            MenuItem selectedUserFilterMenu = ViewHelper.getSelectedMenu(
+            MenuItem selectedUserFilterMenu = ViewUtils.getSelectedMenu(
                     navView.getMenu().findItem(R.id.nav_type_chooser));
             if(selectedUserFilterMenu != null) {
                 IssuesFilter.UserIssuesFilterType userFilterType =
@@ -154,7 +154,7 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
                 issuesFilter.setUserIssuesFilterType(userFilterType);
             }
         }
-        MenuItem sortMenu = ViewHelper.getSelectedMenu(navView.getMenu().findItem(R.id.nav_sort));
+        MenuItem sortMenu = ViewUtils.getSelectedMenu(navView.getMenu().findItem(R.id.nav_sort));
         IssuesFilter.SortType sortType = IssuesFilter.SortType.Created;
         SortDirection sortDirection = SortDirection.Desc ;
         if(sortMenu != null) {

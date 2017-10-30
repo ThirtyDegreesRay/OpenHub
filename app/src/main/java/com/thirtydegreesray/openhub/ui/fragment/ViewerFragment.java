@@ -36,8 +36,8 @@ import com.thirtydegreesray.openhub.mvp.presenter.ViewerPresenter;
 import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
-import com.thirtydegreesray.openhub.util.PrefHelper;
+import com.thirtydegreesray.openhub.util.BundleHelper;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import butterknife.BindView;
@@ -58,7 +58,7 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     @NonNull
     public static ViewerFragment createForMd(@NonNull String title, @NonNull String mdSource) {
         ViewerFragment fragment = new ViewerFragment();
-        fragment.setArguments(BundleBuilder.builder().put("viewerType", ViewerActivity.ViewerType.MarkDown)
+        fragment.setArguments(BundleHelper.builder().put("viewerType", ViewerActivity.ViewerType.MarkDown)
                 .put("title", title).put("mdSource", mdSource).build());
         return fragment;
     }
@@ -66,7 +66,7 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     @NonNull
     public static ViewerFragment create(@NonNull FileModel fileModel) {
         ViewerFragment fragment = new ViewerFragment();
-        fragment.setArguments(BundleBuilder.builder().put("viewerType", ViewerActivity.ViewerType.RepoFile)
+        fragment.setArguments(BundleHelper.builder().put("viewerType", ViewerActivity.ViewerType.RepoFile)
                 .put("fileModel", fileModel).build());
         return fragment;
     }
@@ -74,7 +74,7 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     @NonNull
     public static ViewerFragment createForDiff(@NonNull CommitFile commitFile) {
         ViewerFragment fragment = new ViewerFragment();
-        fragment.setArguments(BundleBuilder.builder().put("viewerType", ViewerActivity.ViewerType.DiffFile)
+        fragment.setArguments(BundleHelper.builder().put("viewerType", ViewerActivity.ViewerType.DiffFile)
                 .put("commitFile", commitFile).build());
         return fragment;
     }
@@ -101,7 +101,7 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-        wrap = PrefHelper.isCodeWrap();
+        wrap = PrefUtils.isCodeWrap();
         loader.setVisibility(View.VISIBLE);
         loader.setIndeterminate(true);
     }
@@ -133,7 +133,7 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
         if(item.getItemId() == R.id.action_wrap_lines){
             item.setChecked(!item.isChecked());
             wrap = item.isChecked();
-            PrefHelper.set(PrefHelper.CODE_WRAP, wrap);
+            PrefUtils.set(PrefUtils.CODE_WRAP, wrap);
             if(ViewerActivity.ViewerType.RepoFile.equals(mPresenter.getViewerType())){
                 loadCode(mPresenter.getDownloadSource(), mPresenter.getExtension());
             } else if(ViewerActivity.ViewerType.DiffFile.equals(mPresenter.getViewerType())){

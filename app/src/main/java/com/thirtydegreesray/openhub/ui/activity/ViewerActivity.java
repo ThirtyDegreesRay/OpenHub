@@ -32,8 +32,9 @@ import com.thirtydegreesray.openhub.mvp.model.CommitFile;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.ui.activity.base.SingleFragmentActivity;
 import com.thirtydegreesray.openhub.ui.fragment.ViewerFragment;
-import com.thirtydegreesray.openhub.util.AppHelper;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.AppOpener;
+import com.thirtydegreesray.openhub.util.AppUtils;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 /**
@@ -49,7 +50,7 @@ public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Present
     public static void showMdSource(@NonNull Context context, @NonNull String title,
                                     @NonNull String mdSource){
         Intent intent = new Intent(context, ViewerActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("viewerType", ViewerType.MarkDown)
+        intent.putExtras(BundleHelper.builder().put("viewerType", ViewerType.MarkDown)
                 .put("title", title).put("mdSource", mdSource).build());
         context.startActivity(intent);
     }
@@ -81,14 +82,14 @@ public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Present
     public static void show(@NonNull Context context, @NonNull FileModel fileModel
             , @Nullable String repoName){
         Intent intent = new Intent(context, ViewerActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("viewerType", ViewerType.RepoFile)
+        intent.putExtras(BundleHelper.builder().put("viewerType", ViewerType.RepoFile)
                 .put("fileModel", fileModel).put("repoName", repoName).build());
         context.startActivity(intent);
     }
 
     public static void showForDiff(@NonNull Context context, @NonNull CommitFile commitFile){
         Intent intent = new Intent(context, ViewerActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("viewerType", ViewerType.DiffFile)
+        intent.putExtras(BundleHelper.builder().put("viewerType", ViewerType.DiffFile)
                 .put("commitFile", commitFile).build());
         context.startActivity(intent);
     }
@@ -149,13 +150,13 @@ public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Present
         if(!StringUtils.isBlank(htmlUrl)){
             switch (item.getItemId()) {
                 case R.id.action_open_in_browser:
-                    AppHelper.openInBrowser(getActivity(), htmlUrl);
+                    AppOpener.openInBrowser(getActivity(), htmlUrl);
                     return true;
                 case R.id.action_share:
-                    AppHelper.shareText(getActivity(), htmlUrl);
+                    AppOpener.shareText(getActivity(), htmlUrl);
                     return true;
                 case R.id.action_copy_url:
-                    AppHelper.copyToClipboard(getActivity(), htmlUrl);
+                    AppUtils.copyToClipboard(getActivity(), htmlUrl);
                     return true;
             }
         }

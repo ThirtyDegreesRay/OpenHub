@@ -31,12 +31,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
-import com.thirtydegreesray.openhub.util.Logger;
 
 import javax.inject.Inject;
 

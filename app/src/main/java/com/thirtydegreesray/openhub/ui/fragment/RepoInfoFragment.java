@@ -43,9 +43,9 @@ import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.activity.UserListActivity;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
-import com.thirtydegreesray.openhub.util.ViewHelper;
+import com.thirtydegreesray.openhub.util.ViewUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -61,7 +61,7 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
 
     public static RepoInfoFragment create(Repository repository) {
         RepoInfoFragment fragment = new RepoInfoFragment();
-        fragment.setArguments(BundleBuilder.builder().put("repository", repository).build());
+        fragment.setArguments(BundleHelper.builder().put("repository", repository).build());
         return fragment;
     }
 
@@ -137,7 +137,7 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
 
         String fullName = repository.getFullName();
         SpannableStringBuilder spannable = new SpannableStringBuilder(fullName);
-        spannable.setSpan(new ForegroundColorSpan(ViewHelper.getAccentColor(getContext())),
+        spannable.setSpan(new ForegroundColorSpan(ViewUtils.getAccentColor(getContext())),
                 0, fullName.indexOf("/"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannable.setSpan(new ClickableSpan() {
             @Override

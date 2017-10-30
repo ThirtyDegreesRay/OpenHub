@@ -40,7 +40,7 @@ import com.thirtydegreesray.openhub.ui.adapter.FilePathAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.RepoFilesAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 
 import java.util.ArrayList;
 
@@ -58,7 +58,7 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
 
     public static RepoFilesFragment create(Repository repository) {
         RepoFilesFragment fragment = new RepoFilesFragment();
-        fragment.setArguments(BundleBuilder.builder().put("repo", repository).build());
+        fragment.setArguments(BundleHelper.builder().put("repo", repository).build());
         return fragment;
     }
 

@@ -31,7 +31,7 @@ import com.thirtydegreesray.openhub.mvp.presenter.UserListPresenter;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.adapter.UsersAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 
 import java.util.ArrayList;
 
@@ -50,7 +50,7 @@ public class UserListFragment extends ListFragment<UserListPresenter, UsersAdapt
                                           @NonNull String repo){
         UserListFragment fragment = new UserListFragment();
         fragment.setArguments(
-                BundleBuilder.builder()
+                BundleHelper.builder()
                 .put("type", type)
                 .put("user", user)
                 .put("repo", repo)
@@ -62,7 +62,7 @@ public class UserListFragment extends ListFragment<UserListPresenter, UsersAdapt
     public static UserListFragment createForSearch(@NonNull SearchModel searchModel){
         UserListFragment fragment = new UserListFragment();
         fragment.setArguments(
-                BundleBuilder.builder()
+                BundleHelper.builder()
                         .put("type", UserListType.SEARCH)
                         .put("searchModel", searchModel)
                         .build()

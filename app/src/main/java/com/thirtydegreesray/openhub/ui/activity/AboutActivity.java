@@ -32,8 +32,9 @@ import com.tencent.bugly.beta.Beta;
 import com.thirtydegreesray.openhub.BuildConfig;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.ui.widget.UpgradeDialog;
-import com.thirtydegreesray.openhub.util.AppHelper;
-import com.thirtydegreesray.openhub.util.ThemeEngine;
+import com.thirtydegreesray.openhub.util.AppOpener;
+import com.thirtydegreesray.openhub.util.AppUtils;
+import com.thirtydegreesray.openhub.util.ThemeHelper;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/29.
@@ -48,7 +49,7 @@ public class AboutActivity extends MaterialAboutActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        ThemeEngine.applyForAboutActivity(this);
+        ThemeHelper.applyForAboutActivity(this);
         super.onCreate(savedInstanceState);
         UpgradeDialog.INSTANCE.setShowDialogActivity(this);
     }
@@ -103,7 +104,7 @@ public class AboutActivity extends MaterialAboutActivity {
                 .setOnClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
                     public void onClick() {
-                        AppHelper.openInMarket(context);
+                        AppOpener.openInMarket(context);
                     }
                 })
                 .build());
@@ -141,13 +142,13 @@ public class AboutActivity extends MaterialAboutActivity {
                 .setOnClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
                     public void onClick() {
-                        AppHelper.launchEmail(context, getString(R.string.auth_email_address));
+                        AppOpener.launchEmail(context, getString(R.string.auth_email_address));
                     }
                 })
                 .setOnLongClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
                     public void onClick() {
-                        AppHelper.copyToClipboard(context, getString(R.string.auth_email_address));
+                        AppUtils.copyToClipboard(context, getString(R.string.auth_email_address));
                     }
                 })
                 .build());

@@ -80,7 +80,7 @@ public class StringUtils {
     }
 
     public static String getDateStr(@NonNull Date date){
-        Locale locale = AppHelper.getLocale(PrefHelper.getLanguage());
+        Locale locale = AppUtils.getLocale(PrefUtils.getLanguage());
         String regex ;
         regex = "yyyy-MM-dd";
 //        if(locale.equals(Locale.CHINA)){

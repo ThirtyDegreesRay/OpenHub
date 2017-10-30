@@ -26,7 +26,7 @@ import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.ui.activity.base.SingleFragmentActivity;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/23 18:15:40
@@ -38,14 +38,14 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
                             @NonNull RepositoriesFragment.RepositoriesType type,
                             @NonNull String user){
         Intent intent = new Intent(context, RepoListActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("type", type).put("user", user).build());
+        intent.putExtras(BundleHelper.builder().put("type", type).put("user", user).build());
         context.startActivity(intent);
     }
 
     public static void showForks(@NonNull Context context,
                             @NonNull String user, @NonNull String repo){
         Intent intent = new Intent(context, RepoListActivity.class);
-        intent.putExtras(BundleBuilder.builder()
+        intent.putExtras(BundleHelper.builder()
                 .put("type", RepositoriesFragment.RepositoriesType.FORKS)
                 .put("user", user)
                 .put("repo", repo)

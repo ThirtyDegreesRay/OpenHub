@@ -33,7 +33,7 @@ import com.thirtydegreesray.openhub.mvp.contract.IEditIssueContract;
 import com.thirtydegreesray.openhub.mvp.model.Issue;
 import com.thirtydegreesray.openhub.mvp.presenter.EditIssuePresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import butterknife.BindView;
@@ -54,14 +54,14 @@ public class EditIssueActivity extends BaseActivity<EditIssuePresenter>
     public static void showForAdd(@NonNull Activity activity, @NonNull String userId,
                                   @NonNull String repoName, int requestCode) {
         Intent intent = new Intent(activity, EditIssueActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("addMode", true).put("userId", userId)
+        intent.putExtras(BundleHelper.builder().put("addMode", true).put("userId", userId)
                 .put("repoName", repoName).build());
         activity.startActivityForResult(intent, requestCode);
     }
 
     public static void showForEdit(@NonNull Activity activity, @NonNull Issue issue, int requestCode) {
         Intent intent = new Intent(activity, EditIssueActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("addMode", false).put("issue", issue).build());
+        intent.putExtras(BundleHelper.builder().put("addMode", false).put("issue", issue).build());
         activity.startActivityForResult(intent, requestCode);
     }
 

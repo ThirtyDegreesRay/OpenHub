@@ -1,24 +1,35 @@
 /*
- *   Copyright (C) 2017 Kosh.
- *   Licensed under the GPL-3.0 license.
- *   (See the LICENSE(https://github.com/k0shk0sh/FastHub/blob/master/LICENSE) file for the whole license text.)
+ *    Copyright 2017 ThirtyDegreesRay
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 
 package com.thirtydegreesray.openhub.util;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.thirtydegreesray.openhub.AppApplication;
 
+import java.util.Set;
+
 /**
- * Created on 2017/8/3.
+ * Created by ThirtyDegreesRay on 2017/10/30 11:59:38
  */
-public class PrefHelper {
+
+public class PrefUtils {
 
     public final static int LIGHT = 0;
     public final static int DARK = 1;
@@ -55,16 +66,15 @@ public class PrefHelper {
     public final static String POP_VERSION_TIME = "popVersionTime";
     public final static String LAST_POP_TIME = "lastPopTime";
 
-    @SuppressLint("ApplySharedPref") public static <T> void set(@NonNull String key, @Nullable T value) {
-        if (StringUtils.isBlank(key)) {
-            throw new NullPointerException("Key must not be null! (key = " + key + "), (value = " + value + ")");
+    public static SharedPreferences getDefaultSp(){
+        return PreferenceManager.getDefaultSharedPreferences(AppApplication.get());
+    }
+
+    public static void set(@NonNull String key, @NonNull Object value) {
+        if (StringUtils.isBlank(key) || value == null) {
+            throw new NullPointerException(String.format("Key and value not be null key=%s, value=%s", key, value));
         }
-        SharedPreferences.Editor edit
-                = PreferenceManager.getDefaultSharedPreferences(AppApplication.get()).edit();
-//        if (StringUtils.isBlank(key)) {
-//            clearKey(key);
-//            return;
-//        }
+        SharedPreferences.Editor edit = getDefaultSp().edit();
         if (value instanceof String) {
             edit.putString(key, (String) value);
         } else if (value instanceof Integer) {
@@ -75,10 +85,11 @@ public class PrefHelper {
             edit.putBoolean(key, (Boolean) value);
         } else if (value instanceof Float) {
             edit.putFloat(key, (Float) value);
+        } else if(value instanceof Set && ((Set) value).toArray() instanceof String[]){
+            edit.putStringSet(key, (Set<String>) value);
         } else {
-            edit.putString(key, value.toString());
+            throw new IllegalArgumentException(String.format("Type of value unsupported key=%s, value=%s", key, value));
         }
-//        edit.commit();//apply on UI
         edit.apply();
     }
 
@@ -87,18 +98,15 @@ public class PrefHelper {
     }
 
     public static int getTheme(){
-        int theme = getDefaultSp(AppApplication.get()).getInt(THEME, 0);
-        return theme;
+        return getDefaultSp(AppApplication.get()).getInt(THEME, 0);
     }
 
     public static String getLanguage(){
-        String language = getDefaultSp(AppApplication.get()).getString(LANGUAGE, "en");
-        return language;
+        return getDefaultSp(AppApplication.get()).getString(LANGUAGE, "en");
     }
 
     public static int getAccentColor(){
-        int accentColor = getDefaultSp(AppApplication.get()).getInt(ACCENT_COLOR, 11);
-        return accentColor;
+        return getDefaultSp(AppApplication.get()).getInt(ACCENT_COLOR, 11);
     }
 
     public static boolean isCacheFirstEnable(){

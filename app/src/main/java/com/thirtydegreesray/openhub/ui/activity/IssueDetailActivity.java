@@ -29,8 +29,9 @@ import com.thirtydegreesray.openhub.mvp.model.IssueEvent;
 import com.thirtydegreesray.openhub.mvp.presenter.IssueDetailPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.fragment.IssueTimelineFragment;
-import com.thirtydegreesray.openhub.util.AppHelper;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.AppOpener;
+import com.thirtydegreesray.openhub.util.AppUtils;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -49,19 +50,19 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         Pair<View, String> titlePair = Pair.create(titleView, "issueTitle");
         ActivityOptionsCompat optionsCompat = ActivityOptionsCompat
                 .makeSceneTransitionAnimation(activity, avatarPair, titlePair);
-        intent.putExtras(BundleBuilder.builder().put("issue", issue).build());
+        intent.putExtras(BundleHelper.builder().put("issue", issue).build());
         activity.startActivity(intent, optionsCompat.toBundle());
     }
 
     public static void show(@NonNull Activity activity, @NonNull Issue issue){
         Intent intent = new Intent(activity, IssueDetailActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("issue", issue).build());
+        intent.putExtras(BundleHelper.builder().put("issue", issue).build());
         activity.startActivity(intent);
     }
 
     public static void show(@NonNull Activity activity, @NonNull String issueUrl){
         Intent intent = new Intent(activity, IssueDetailActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("issueUrl", issueUrl).build());
+        intent.putExtras(BundleHelper.builder().put("issueUrl", issueUrl).build());
         activity.startActivity(intent);
     }
 
@@ -136,13 +137,13 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
                 supportFinishAfterTransition();
                 return true;
             case R.id.action_open_in_browser:
-                AppHelper.openInBrowser(getActivity(), mPresenter.getIssue().getHtmlUrl());
+                AppOpener.openInBrowser(getActivity(), mPresenter.getIssue().getHtmlUrl());
                 return true;
             case R.id.action_share:
-                AppHelper.shareText(getActivity(), mPresenter.getIssue().getHtmlUrl());
+                AppOpener.shareText(getActivity(), mPresenter.getIssue().getHtmlUrl());
                 return true;
             case R.id.action_copy_url:
-                AppHelper.copyToClipboard(getActivity(), mPresenter.getIssue().getHtmlUrl());
+                AppUtils.copyToClipboard(getActivity(), mPresenter.getIssue().getHtmlUrl());
                 return true;
             case R.id.action_issue_toggle:
                 mPresenter.toggleIssueState();

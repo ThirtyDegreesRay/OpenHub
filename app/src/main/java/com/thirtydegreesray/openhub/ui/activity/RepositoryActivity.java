@@ -52,8 +52,9 @@ import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 import com.thirtydegreesray.openhub.ui.fragment.CommitsFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoFilesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoInfoFragment;
-import com.thirtydegreesray.openhub.util.AppHelper;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.AppOpener;
+import com.thirtydegreesray.openhub.util.AppUtils;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.ArrayList;
@@ -71,7 +72,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
     public static void show(@NonNull Context activity, @NonNull String owner,
                             @NonNull String repoName) {
         Intent intent = new Intent(activity, RepositoryActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("owner", owner).put("repoName", repoName).build());
+        intent.putExtras(BundleHelper.builder().put("owner", owner).put("repoName", repoName).build());
         activity.startActivity(intent);
     }
 
@@ -155,16 +156,16 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                 mPresenter.loadBranchesAndTags();
                 return true;
             case R.id.action_share:
-                AppHelper.shareText(getActivity(), mPresenter.getRepository().getHtmlUrl());
+                AppOpener.shareText(getActivity(), mPresenter.getRepository().getHtmlUrl());
                 return true;
             case R.id.action_open_in_browser:
-                AppHelper.openInBrowser(getActivity(), mPresenter.getRepository().getHtmlUrl());
+                AppOpener.openInBrowser(getActivity(), mPresenter.getRepository().getHtmlUrl());
                 return true;
             case R.id.action_copy_url:
-                AppHelper.copyToClipboard(getActivity(), mPresenter.getRepository().getHtmlUrl());
+                AppUtils.copyToClipboard(getActivity(), mPresenter.getRepository().getHtmlUrl());
                 return true;
             case R.id.action_copy_clone_url:
-                AppHelper.copyToClipboard(getActivity(), mPresenter.getRepository().getCloneUrl());
+                AppUtils.copyToClipboard(getActivity(), mPresenter.getRepository().getCloneUrl());
                 return true;
             case R.id.action_watch:
                 mPresenter.watchRepo(!mPresenter.isWatched());

@@ -20,6 +20,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
+import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.model.Issue;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
@@ -36,7 +37,6 @@ import com.thirtydegreesray.openhub.ui.fragment.RepoInfoFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
-import com.thirtydegreesray.openhub.util.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;

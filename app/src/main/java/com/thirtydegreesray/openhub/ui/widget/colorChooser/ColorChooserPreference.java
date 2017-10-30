@@ -27,7 +27,7 @@ import android.view.View;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
-import com.thirtydegreesray.openhub.util.PrefHelper;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +95,7 @@ public class ColorChooserPreference extends Preference implements ColorChooserDi
 
     @Override
     public void onColorSelection(@NonNull ColorChooserDialog dialog, @ColorInt int selectedColor) {
-        PrefHelper.set(PrefHelper.ACCENT_COLOR, getColorIndex(selectedColor));
+        PrefUtils.set(PrefUtils.ACCENT_COLOR, getColorIndex(selectedColor));
 //        colorView.getBackground().setColorFilter(selectedColor, PorterDuff.Mode.SRC_IN);
         if (colorChooserCallback != null && oriColor != selectedColor) {
             colorChooserCallback.onColorChanged(oriColor, selectedColor);
@@ -124,7 +124,7 @@ public class ColorChooserPreference extends Preference implements ColorChooserDi
     }
 
     private int getSelectedColor() {
-        return getColorByIndex(PrefHelper.getAccentColor());
+        return getColorByIndex(PrefUtils.getAccentColor());
     }
 
     private List<Integer> getColorList() {

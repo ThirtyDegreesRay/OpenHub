@@ -34,7 +34,7 @@ import com.thirtydegreesray.openhub.ui.activity.CommitsListActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.adapter.CommitAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 
 import java.util.ArrayList;
 
@@ -47,7 +47,7 @@ public class CommitsFragment extends ListFragment<CommitsPresenter, CommitAdapte
 
     public static CommitsFragment createForRepo(@NonNull String user, @NonNull String repo, String branch){
         CommitsFragment fragment = new CommitsFragment();
-        fragment.setArguments(BundleBuilder.builder().put("type", CommitsListActivity.CommitsListType.Repo)
+        fragment.setArguments(BundleHelper.builder().put("type", CommitsListActivity.CommitsListType.Repo)
                 .put("user", user).put("repo", repo).put("branch", branch).build());
         return fragment;
     }
@@ -55,7 +55,7 @@ public class CommitsFragment extends ListFragment<CommitsPresenter, CommitAdapte
     public static CommitsFragment createForCompare(@NonNull String user, @NonNull String repo,
                                                    @NonNull String before, @NonNull String head){
         CommitsFragment fragment = new CommitsFragment();
-        fragment.setArguments(BundleBuilder.builder().put("type", CommitsListActivity.CommitsListType.Compare)
+        fragment.setArguments(BundleHelper.builder().put("type", CommitsListActivity.CommitsListType.Compare)
                 .put("user", user).put("repo", repo).put("before", before).put("head", head).build());
         return fragment;
     }

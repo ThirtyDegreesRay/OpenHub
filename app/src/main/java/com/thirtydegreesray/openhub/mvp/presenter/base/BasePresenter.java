@@ -25,6 +25,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 
+import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
 import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.AppData;
@@ -48,9 +49,8 @@ import com.thirtydegreesray.openhub.http.error.HttpErrorCode;
 import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
 import com.thirtydegreesray.openhub.http.error.UnauthorizedError;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
-import com.thirtydegreesray.openhub.util.Logger;
 import com.thirtydegreesray.openhub.util.NetHelper;
-import com.thirtydegreesray.openhub.util.PrefHelper;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import org.apache.http.conn.ConnectTimeoutException;
@@ -305,7 +305,7 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
             }
         };
 
-        boolean cacheFirstEnable = PrefHelper.isCacheFirstEnable();
+        boolean cacheFirstEnable = PrefUtils.isCacheFirstEnable();
 //        cacheFirstEnable = cacheFirstEnable || !NetHelper.INSTANCE.getNetEnabled();
         generalRxHttpExecute(observableCreator.createObservable(!cacheFirstEnable || !readCacheFirst),
                 getHttpSubscriber(tempObserver, progressDialog));

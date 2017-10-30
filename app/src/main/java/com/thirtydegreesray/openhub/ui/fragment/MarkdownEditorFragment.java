@@ -10,7 +10,7 @@ import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.ui.activity.MarkdownEditorCallback;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import butterknife.BindView;
@@ -26,7 +26,7 @@ public class MarkdownEditorFragment extends BaseFragment
 
     public static MarkdownEditorFragment create(@Nullable String text) {
         MarkdownEditorFragment fragment = new MarkdownEditorFragment();
-        fragment.setArguments(BundleBuilder.builder().put("text", text).build());
+        fragment.setArguments(BundleHelper.builder().put("text", text).build());
         return fragment;
     }
 

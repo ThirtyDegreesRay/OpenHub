@@ -16,7 +16,7 @@ import com.thirtydegreesray.openhub.ui.activity.IssueDetailActivity;
 import com.thirtydegreesray.openhub.ui.activity.IssuesActivity;
 import com.thirtydegreesray.openhub.ui.adapter.IssuesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 
 import java.util.ArrayList;
 
@@ -30,7 +30,7 @@ public class IssuesFragment extends ListFragment<IssuePresenter, IssuesAdapter>
     public static IssuesFragment createForRepo(@NonNull Issue.IssueState issueState,
                                                @NonNull String userId, @NonNull String repoName){
         IssuesFragment fragment = new IssuesFragment();
-        fragment.setArguments(BundleBuilder.builder()
+        fragment.setArguments(BundleHelper.builder()
                 .put("issuesFilter", new IssuesFilter(IssuesFilter.Type.Repo, issueState))
                 .put("userId", userId)
                 .put("repoName", repoName).build());
@@ -39,7 +39,7 @@ public class IssuesFragment extends ListFragment<IssuePresenter, IssuesAdapter>
 
     public static IssuesFragment createForUser(@NonNull Issue.IssueState issueState){
         IssuesFragment fragment = new IssuesFragment();
-        fragment.setArguments(BundleBuilder.builder()
+        fragment.setArguments(BundleHelper.builder()
                 .put("issuesFilter", new IssuesFilter(IssuesFilter.Type.User, issueState))
                 .put("issueState", issueState).build());
         return fragment;

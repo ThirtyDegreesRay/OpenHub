@@ -19,10 +19,10 @@ package com.thirtydegreesray.openhub.ui.activity.base;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
+import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
-import com.thirtydegreesray.openhub.util.Logger;
 
 /**
  * Created by ThirtyDegreesRay on 2017/10/21 10:03:15

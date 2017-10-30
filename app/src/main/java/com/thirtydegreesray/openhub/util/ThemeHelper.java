@@ -1,7 +1,17 @@
 /*
- *   Copyright (C) 2017 Kosh.
- *   Licensed under the GPL-3.0 license.
- *   (See the LICENSE(https://github.com/k0shk0sh/FastHub/blob/master/LICENSE) file for the whole license text.)
+ *    Copyright 2017 ThirtyDegreesRay
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 
 package com.thirtydegreesray.openhub.util;
@@ -14,111 +24,105 @@ import com.thirtydegreesray.openhub.ui.activity.SplashActivity;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 
 /**
- * Created on 2017/8/8.
+ * Created by ThirtyDegreesRay on 2017/10/30 13:26:25
  */
 
-public class ThemeEngine {
+public class ThemeHelper {
 
     public static void apply(BaseActivity activity){
-        if(ignorePage(activity)){
-            return ;
-        }
-        int theme = PrefHelper.getTheme();
-        int accentColor = PrefHelper.getAccentColor();
+        if(ignorePage(activity)) return ;
+        int theme = PrefUtils.getTheme();
+        int accentColor = PrefUtils.getAccentColor();
         activity.setTheme(getTheme(theme, accentColor));
     }
 
     public static void applyForAboutActivity(Activity activity){
-        int theme = PrefHelper.getTheme();
+        int theme = PrefUtils.getTheme();
         activity.setTheme(getAboutTheme(theme));
     }
 
     @StyleRes
     public static int getAboutTheme(int theme){
-        if(theme == PrefHelper.LIGHT){
-            return R.style.ThemeLight_AboutActivity;
-        }else{
-            return R.style.ThemeDark_AboutActivity;
-        }
+        return theme == PrefUtils.LIGHT ? R.style.ThemeLight_AboutActivity : R.style.ThemeDark_AboutActivity;
     }
 
     @StyleRes
     public static int getTheme(int theme, int accentColor){
         switch (theme){
-            case PrefHelper.LIGHT:
+            case PrefUtils.LIGHT:
                 switch (accentColor){
-                    case PrefHelper.LIGHT_BLUE:
+                    case PrefUtils.LIGHT_BLUE:
                         return R.style.ThemeLight_LightBlue;
-                    case PrefHelper.BLUE:
+                    case PrefUtils.BLUE:
                         return R.style.ThemeLight_Blue;
-                    case PrefHelper.INDIGO:
+                    case PrefUtils.INDIGO:
                         return R.style.ThemeLight_Indigo;
-                    case PrefHelper.ORANGE:
+                    case PrefUtils.ORANGE:
                         return R.style.ThemeLight_Orange;
 
-                    case PrefHelper.YELLOW:
+                    case PrefUtils.YELLOW:
                         return R.style.ThemeLight_Yellow;
-                    case PrefHelper.AMBER:
+                    case PrefUtils.AMBER:
                         return R.style.ThemeLight_Amber;
-                    case PrefHelper.GREY:
+                    case PrefUtils.GREY:
                         return R.style.ThemeLight_Grey;
-                    case PrefHelper.BROWN:
+                    case PrefUtils.BROWN:
                         return R.style.ThemeLight_Brown;
 
-                    case PrefHelper.CYAN:
+                    case PrefUtils.CYAN:
                         return R.style.ThemeLight_Cyan;
-                    case PrefHelper.TEAL:
+                    case PrefUtils.TEAL:
                         return R.style.ThemeLight_Teal;
-                    case PrefHelper.LIME:
+                    case PrefUtils.LIME:
                         return R.style.ThemeLight_Lime;
-                    case PrefHelper.GREEN:
+                    case PrefUtils.GREEN:
                         return R.style.ThemeLight_Green;
 
-                    case PrefHelper.PINK:
+                    case PrefUtils.PINK:
                         return R.style.ThemeLight_Pink;
-                    case PrefHelper.RED:
+                    case PrefUtils.RED:
                         return R.style.ThemeLight_Red;
-                    case PrefHelper.PURPLE:
+                    case PrefUtils.PURPLE:
                         return R.style.ThemeLight_Purple;
-                    case PrefHelper.DEEP_PURPLE:
+                    case PrefUtils.DEEP_PURPLE:
                         return R.style.ThemeLight_DeepPurple;
                 }
-            case PrefHelper.DARK:
+            case PrefUtils.DARK:
                 switch (accentColor){
-                    case PrefHelper.LIGHT_BLUE:
+                    case PrefUtils.LIGHT_BLUE:
                         return R.style.ThemeDark_LightBlue;
-                    case PrefHelper.BLUE:
+                    case PrefUtils.BLUE:
                         return R.style.ThemeDark_Blue;
-                    case PrefHelper.INDIGO:
+                    case PrefUtils.INDIGO:
                         return R.style.ThemeDark_Indigo;
-                    case PrefHelper.ORANGE:
+                    case PrefUtils.ORANGE:
                         return R.style.ThemeDark_Orange;
 
-                    case PrefHelper.YELLOW:
+                    case PrefUtils.YELLOW:
                         return R.style.ThemeDark_Yellow;
-                    case PrefHelper.AMBER:
+                    case PrefUtils.AMBER:
                         return R.style.ThemeDark_Amber;
-                    case PrefHelper.GREY:
+                    case PrefUtils.GREY:
                         return R.style.ThemeDark_Grey;
-                    case PrefHelper.BROWN:
+                    case PrefUtils.BROWN:
                         return R.style.ThemeDark_Brown;
 
-                    case PrefHelper.CYAN:
+                    case PrefUtils.CYAN:
                         return R.style.ThemeDark_Cyan;
-                    case PrefHelper.TEAL:
+                    case PrefUtils.TEAL:
                         return R.style.ThemeDark_Teal;
-                    case PrefHelper.LIME:
+                    case PrefUtils.LIME:
                         return R.style.ThemeDark_Lime;
-                    case PrefHelper.GREEN:
+                    case PrefUtils.GREEN:
                         return R.style.ThemeDark_Green;
 
-                    case PrefHelper.PINK:
+                    case PrefUtils.PINK:
                         return R.style.ThemeDark_Pink;
-                    case PrefHelper.RED:
+                    case PrefUtils.RED:
                         return R.style.ThemeDark_Red;
-                    case PrefHelper.PURPLE:
+                    case PrefUtils.PURPLE:
                         return R.style.ThemeDark_Purple;
-                    case PrefHelper.DEEP_PURPLE:
+                    case PrefUtils.DEEP_PURPLE:
                         return R.style.ThemeDark_DeepPurple;
                 }
         }

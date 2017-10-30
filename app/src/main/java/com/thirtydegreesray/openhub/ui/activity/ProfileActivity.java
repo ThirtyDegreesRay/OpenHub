@@ -43,8 +43,9 @@ import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 import com.thirtydegreesray.openhub.ui.fragment.ProfileInfoFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
-import com.thirtydegreesray.openhub.util.AppHelper;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.AppOpener;
+import com.thirtydegreesray.openhub.util.AppUtils;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import butterknife.BindView;
@@ -68,7 +69,7 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
     public static void show(@NonNull Activity activity, @Nullable View userAvatarView,
                             @NonNull String loginId, @Nullable String userAvatar){
         Intent intent = new Intent(activity, ProfileActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("loginId", loginId).put("userAvatar", userAvatar).build());
+        intent.putExtras(BundleHelper.builder().put("loginId", loginId).put("userAvatar", userAvatar).build());
         if(userAvatarView != null){
             ActivityOptionsCompat optionsCompat = ActivityOptionsCompat
                     .makeSceneTransitionAnimation(activity, userAvatarView, "userAvatar");
@@ -144,13 +145,13 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
                         getString(R.string.followed) : getString(R.string.unfollowed));
                 break;
             case R.id.action_share:
-                AppHelper.shareText(getActivity(), mPresenter.getUser().getHtmlUrl());
+                AppOpener.shareText(getActivity(), mPresenter.getUser().getHtmlUrl());
                 break;
             case R.id.action_open_in_browser:
-                AppHelper.openInBrowser(getActivity(), mPresenter.getUser().getHtmlUrl());
+                AppOpener.openInBrowser(getActivity(), mPresenter.getUser().getHtmlUrl());
                 break;
             case R.id.action_copy_url:
-                AppHelper.copyToClipboard(getActivity(), mPresenter.getUser().getHtmlUrl());
+                AppUtils.copyToClipboard(getActivity(), mPresenter.getUser().getHtmlUrl());
                 break;
             default:
                 break;

@@ -24,11 +24,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 
+import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentViewPagerAdapter;
-import com.thirtydegreesray.openhub.util.Logger;
 
 import java.util.ArrayList;
 

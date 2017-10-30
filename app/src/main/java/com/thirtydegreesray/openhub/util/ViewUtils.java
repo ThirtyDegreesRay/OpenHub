@@ -16,8 +16,21 @@
 
 package com.thirtydegreesray.openhub.util;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.support.annotation.ColorInt;
+import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.SubMenu;
 import android.view.View;
+import android.widget.TextView;
+
+import com.thirtydegreesray.openhub.R;
 
 /**
  * Created on 2017/8/1.
@@ -47,6 +60,133 @@ public class ViewUtils {
 
         downEvent.recycle();
         upEvent.recycle();
+    }
+
+    public static void setLongClickCopy(@NonNull TextView textView) {
+        textView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                TextView text = (TextView) v;
+                AppUtils.copyToClipboard(text.getContext(), text.getText().toString());
+                return true;
+            }
+        });
+    }
+
+    public static void setTextView(@NonNull TextView textView, String text) {
+        if (!StringUtils.isBlank(text)) {
+            textView.setText(text);
+            textView.setVisibility(View.VISIBLE);
+        } else {
+            textView.setVisibility(View.GONE);
+        }
+    }
+
+    public static MenuItem getSelectedMenu(@NonNull MenuItem menuItem) {
+        if (menuItem.getSubMenu() == null || menuItem.getSubMenu().size() == 0) {
+            return null;
+        }
+        MenuItem selected = null;
+        for (int i = 0; i < menuItem.getSubMenu().size(); i++) {
+            MenuItem item = menuItem.getSubMenu().getItem(i);
+            if (item.isChecked()) {
+                selected = item;
+                break;
+            }
+        }
+        return selected;
+    }
+
+    public static void selectMenuItem(@NonNull Menu menu, @IdRes int itemId, boolean findSub) {
+        boolean find = false;
+        for (int i = 0; i < menu.size(); i++) {
+            if (!findSub) {
+                menu.getItem(i).setChecked(menu.getItem(i).getItemId() == itemId);
+            } else {
+                if (menu.getItem(i).getItemId() == itemId) {
+                    find = true;
+                }
+            }
+        }
+
+        if (!findSub) {
+            return;
+        } else if (find) {
+            selectMenuItem(menu, itemId, false);
+        } else {
+            for (int i = 0; i < menu.size(); i++) {
+                SubMenu subMenu = menu.getItem(i).getSubMenu();
+                if(subMenu != null)
+                    selectMenuItem(subMenu, itemId, true);
+            }
+        }
+    }
+
+    public static int[] getRefreshLayoutColors(Context context) {
+        return new int[]{
+                getAccentColor(context),
+                getPrimaryColor(context),
+                getPrimaryDarkColor(context)
+        };
+    }
+
+    @ColorInt
+    public static int getPrimaryColor(@NonNull Context context) {
+        return getColorAttr(context, R.attr.colorPrimary);
+    }
+
+    @ColorInt
+    public static int getPrimaryDarkColor(@NonNull Context context) {
+        return getColorAttr(context, R.attr.colorPrimaryDark);
+    }
+
+    @ColorInt
+    public static int getAccentColor(@NonNull Context context) {
+        return getColorAttr(context, R.attr.colorAccent);
+    }
+
+    @ColorInt
+    public static int getPrimaryTextColor(@NonNull Context context) {
+        return getColorAttr(context, android.R.attr.textColorPrimary);
+    }
+
+    @ColorInt
+    public static int getSecondaryTextColor(@NonNull Context context) {
+        return getColorAttr(context, android.R.attr.textColorSecondary);
+    }
+
+    @ColorInt
+    public static int getWindowBackground(@NonNull Context context) {
+        return getColorAttr(context, android.R.attr.windowBackground);
+    }
+
+    @ColorInt
+    public static int getCardBackground(@NonNull Context context) {
+        return getColorAttr(context, R.attr.card_background);
+    }
+
+    @ColorInt
+    public static int getIconColor(@NonNull Context context) {
+        return getColorAttr(context, R.attr.icon_color);
+    }
+
+    @ColorInt
+    public static int getSubTitleColor(@NonNull Context context) {
+        return getColorAttr(context, R.attr.subtitle_color);
+    }
+
+    @ColorInt
+    public static int getSelectedColor(@NonNull Context context) {
+        return getColorAttr(context, R.attr.selected_color);
+    }
+
+    @ColorInt
+    private static int getColorAttr(@NonNull Context context, int attr) {
+        Resources.Theme theme = context.getTheme();
+        TypedArray typedArray = theme.obtainStyledAttributes(new int[]{attr});
+        final int color = typedArray.getColor(0, Color.LTGRAY);
+        typedArray.recycle();
+        return color;
     }
 
 

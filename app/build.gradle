@@ -121,4 +121,6 @@ dependencies {
     compile "com.zzhoujay.richtext:richtext:${RICKTEXT_VERSION}"
     compile 'com.zzhoujay.glideimagegetter:glideimagegetter:1.0.5'
 
+    compile "com.orhanobut:logger:${LOGGER_VERSION}"
+
 }

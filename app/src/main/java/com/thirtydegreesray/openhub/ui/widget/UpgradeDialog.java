@@ -14,7 +14,7 @@ import com.tencent.bugly.beta.upgrade.UpgradeListener;
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
-import com.thirtydegreesray.openhub.util.PrefHelper;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.Date;
@@ -49,6 +49,8 @@ public enum UpgradeDialog implements UpgradeListener {
         if (!checkPop(upgradeInfo, isManual)) return;
 
         Activity tempActivity = getTempActivity();
+        if(tempActivity == null) return;
+
         String title = tempActivity.getString(R.string.upgrade)
                 .concat("(").concat(upgradeInfo.versionName).concat(")");
         View content = tempActivity.getLayoutInflater().inflate(R.layout.layout_update_dialog, null);
@@ -59,10 +61,11 @@ public enum UpgradeDialog implements UpgradeListener {
 
         String publishTime = StringUtils.getDateStr(new Date(Beta.getUpgradeInfo().publishTime));
         String fileSize = StringUtils.getSizeString(Beta.getUpgradeInfo().fileSize);
+        String infoTextStr = Beta.getUpgradeInfo().newFeature;
         versionText.setText(versionText.getText().toString().concat(" ").concat(Beta.getUpgradeInfo().versionName));
         sizeText.setText(sizeText.getText().toString().concat(" ").concat(fileSize));
         timeText.setText(timeText.getText().toString().concat(" ").concat(publishTime));
-        infoText.setText(Beta.getUpgradeInfo().newFeature);
+        infoText.setText(infoTextStr);
 
         int confirmTextId = Beta.getStrategyTask().getStatus() == DownloadTask.COMPLETE ?
                 R.string.install : R.string.upgrade;
@@ -99,9 +102,9 @@ public enum UpgradeDialog implements UpgradeListener {
     private boolean checkPop(UpgradeInfo upgradeInfo, boolean isManual) {
         if(isManual) return true;
 
-        int localPopTimes = PrefHelper.getPopTimes();
-        long localPopVersionTime = PrefHelper.getPopVersionTime();
-        long localLastPopTime = PrefHelper.getLastPopTime();
+        int localPopTimes = PrefUtils.getPopTimes();
+        long localPopVersionTime = PrefUtils.getPopVersionTime();
+        long localLastPopTime = PrefUtils.getLastPopTime();
 
         int serverMaxPopTimes = upgradeInfo.popTimes;
         long serverPopVersionTime = upgradeInfo.publishTime;
@@ -117,9 +120,9 @@ public enum UpgradeDialog implements UpgradeListener {
                 System.currentTimeMillis() - localLastPopTime >= serverPopInterval){
             localPopTimes++;
             localLastPopTime = System.currentTimeMillis();
-            PrefHelper.set(PrefHelper.POP_TIMES, localPopTimes);
-            PrefHelper.set(PrefHelper.POP_VERSION_TIME, localPopVersionTime);
-            PrefHelper.set(PrefHelper.LAST_POP_TIME, localLastPopTime);
+            PrefUtils.set(PrefUtils.POP_TIMES, localPopTimes);
+            PrefUtils.set(PrefUtils.POP_VERSION_TIME, localPopVersionTime);
+            PrefUtils.set(PrefUtils.LAST_POP_TIME, localLastPopTime);
             return true;
         }
 

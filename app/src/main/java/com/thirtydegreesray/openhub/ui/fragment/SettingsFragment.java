@@ -28,7 +28,7 @@ import android.util.Log;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.widget.colorChooser.ColorChooserPreference;
-import com.thirtydegreesray.openhub.util.PrefHelper;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -71,18 +71,18 @@ public class SettingsFragment extends PreferenceFragmentCompat
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.settings);
-        findPreference(PrefHelper.THEME).setOnPreferenceClickListener(this);
-        findPreference(PrefHelper.LANGUAGE).setOnPreferenceClickListener(this);
-        findPreference(PrefHelper.LOGOUT).setOnPreferenceClickListener(this);
-        findPreference(PrefHelper.CACHE_FIRST_ENABLE).setOnPreferenceChangeListener(this);
-        ((ColorChooserPreference)findPreference(PrefHelper.ACCENT_COLOR))
+        findPreference(PrefUtils.THEME).setOnPreferenceClickListener(this);
+        findPreference(PrefUtils.LANGUAGE).setOnPreferenceClickListener(this);
+        findPreference(PrefUtils.LOGOUT).setOnPreferenceClickListener(this);
+        findPreference(PrefUtils.CACHE_FIRST_ENABLE).setOnPreferenceChangeListener(this);
+        ((ColorChooserPreference)findPreference(PrefUtils.ACCENT_COLOR))
                 .setColorChooserCallback(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         switch (preference.getKey()){
-            case PrefHelper.CACHE_FIRST_ENABLE:
+            case PrefUtils.CACHE_FIRST_ENABLE:
 
                 return true;
         }
@@ -92,13 +92,13 @@ public class SettingsFragment extends PreferenceFragmentCompat
     @Override
     public boolean onPreferenceClick(Preference preference) {
         switch (preference.getKey()){
-            case PrefHelper.THEME:
+            case PrefUtils.THEME:
                 showThemeChooser();
                 return true;
-            case PrefHelper.LANGUAGE:
+            case PrefUtils.LANGUAGE:
                 showLanguageList();
                 return true;
-            case PrefHelper.LOGOUT:
+            case PrefUtils.LOGOUT:
                 logout();
                 return true;
         }
@@ -108,7 +108,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
     private void showThemeChooser(){
         final List<String> valueList
                 = Arrays.asList(getResources().getStringArray(R.array.theme_array));
-        int theme = PrefHelper.getTheme();
+        int theme = PrefUtils.getTheme();
         AlertDialog dialog = new AlertDialog.Builder(getContext())
                 .setCancelable(true)
                 .setTitle(R.string.choose_theme)
@@ -116,7 +116,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        PrefHelper.set(PrefHelper.THEME, which);
+                        PrefUtils.set(PrefUtils.THEME, which);
                         recreateMain();
                     }
                 })
@@ -126,7 +126,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
     private void showLanguageList(){
         final List<String> valueList
                 = Arrays.asList(getResources().getStringArray(R.array.language_id_array));
-        String language = PrefHelper.getLanguage();
+        String language = PrefUtils.getLanguage();
         int index = valueList.indexOf(language);
 
         if(getContext() instanceof BaseActivity){
@@ -140,7 +140,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        PrefHelper.set(PrefHelper.LANGUAGE, valueList.get(which));
+                        PrefUtils.set(PrefUtils.LANGUAGE, valueList.get(which));
                         recreateMain();
                     }
                 })

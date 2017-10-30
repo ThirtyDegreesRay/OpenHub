@@ -15,7 +15,7 @@ import com.thirtydegreesray.openhub.ui.activity.ReleaseInfoActivity;
 import com.thirtydegreesray.openhub.ui.adapter.ReleasesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
 import com.thirtydegreesray.openhub.ui.widget.DownloadSourceDialog;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ public class ReleasesFragment extends ListFragment<ReleasesPresenter, ReleasesAd
 
     public static ReleasesFragment create(String owner, String repo){
         ReleasesFragment fragment = new ReleasesFragment();
-        fragment.setArguments(BundleBuilder.builder().put("owner", owner).put("repo", repo).build());
+        fragment.setArguments(BundleHelper.builder().put("owner", owner).put("repo", repo).build());
         return fragment;
     }
 

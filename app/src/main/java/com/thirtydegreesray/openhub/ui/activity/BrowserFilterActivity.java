@@ -25,7 +25,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.thirtydegreesray.openhub.AppData;
-import com.thirtydegreesray.openhub.util.AppHelper;
+import com.thirtydegreesray.openhub.util.AppOpener;
 
 /**
  * Created by ThirtyDegreesRay on 2017/10/19 17:31:18
@@ -53,7 +53,7 @@ public class BrowserFilterActivity extends AppCompatActivity {
         } else if (uri.toString().equals("search")){
             activity.startActivity(new Intent(activity, SearchActivity.class));
         } else {
-            AppHelper.launchUrl(activity, uri);
+            AppOpener.launchUrl(activity, uri);
         }
     }
 

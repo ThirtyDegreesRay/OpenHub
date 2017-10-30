@@ -36,7 +36,7 @@ import com.thirtydegreesray.openhub.ui.activity.ReleaseInfoActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.adapter.ActivitiesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 
 import java.util.ArrayList;
 
@@ -58,7 +58,7 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
     public static ActivityFragment create(@NonNull ActivityType type, @NonNull String user,
                                           @Nullable String repo){
         ActivityFragment fragment = new ActivityFragment();
-        fragment.setArguments(BundleBuilder.builder().put("type", type)
+        fragment.setArguments(BundleHelper.builder().put("type", type)
                 .put("user", user).put("repo", repo).build());
         return fragment;
     }
@@ -134,6 +134,12 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
                 RepositoryActivity.show(getContext(), owner, event.getRepo().getName());
                 break;
         }
+    }
+
+    @Override
+    public boolean onItemLongClick(int position, @NonNull View view) {
+        //TODO long click to show options can go
+        return super.onItemLongClick(position, view);
     }
 
     @Override

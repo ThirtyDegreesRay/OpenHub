@@ -39,10 +39,10 @@ import com.thirtydegreesray.openhub.ui.activity.UserListActivity;
 import com.thirtydegreesray.openhub.ui.adapter.UsersAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
-import com.thirtydegreesray.openhub.util.AppHelper;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.AppOpener;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
-import com.thirtydegreesray.openhub.util.ViewHelper;
+import com.thirtydegreesray.openhub.util.ViewUtils;
 
 import java.util.ArrayList;
 
@@ -80,7 +80,7 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
 
     public static ProfileInfoFragment create(User user) {
         ProfileInfoFragment fragment = new ProfileInfoFragment();
-        fragment.setArguments(BundleBuilder.builder().put("user", user).build());
+        fragment.setArguments(BundleHelper.builder().put("user", user).build());
         return fragment;
     }
 
@@ -100,8 +100,8 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-        ViewHelper.setLongClickCopy(email);
-        ViewHelper.setLongClickCopy(link);
+        ViewUtils.setLongClickCopy(email);
+        ViewUtils.setLongClickCopy(link);
         orgsLay.setVisibility(View.GONE);
     }
 
@@ -129,10 +129,10 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
                 showInfoToast(getString(R.string.developing));
                 break;
             case R.id.email:
-                AppHelper.launchEmail(getActivity(), mPresenter.getUser().getEmail());
+                AppOpener.launchEmail(getActivity(), mPresenter.getUser().getEmail());
                 break;
             case R.id.link:
-                AppHelper.openInBrowser(getActivity(), mPresenter.getUser().getBlog());
+                AppOpener.openInBrowser(getActivity(), mPresenter.getUser().getBlog());
                 break;
             case R.id.members_lay:
                 UserListActivity.show(getActivity(), UserListFragment.UserListType.ORG_MEMBERS,
@@ -164,8 +164,8 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
             membersLay.setVisibility(View.GONE);
         }
 
-        ViewHelper.setTextView(email, user.getEmail());
-        ViewHelper.setTextView(link, user.getBlog());
+        ViewUtils.setTextView(email, user.getEmail());
+        ViewUtils.setTextView(link, user.getBlog());
     }
 
     @Override

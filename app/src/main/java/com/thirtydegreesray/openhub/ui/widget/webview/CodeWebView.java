@@ -32,9 +32,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.thirtydegreesray.openhub.R;
-import com.thirtydegreesray.openhub.util.AppHelper;
+import com.thirtydegreesray.openhub.util.AppOpener;
+import com.thirtydegreesray.openhub.util.AppUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
-import com.thirtydegreesray.openhub.util.ViewHelper;
+import com.thirtydegreesray.openhub.util.ViewUtils;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/20 12:10:56
@@ -77,7 +78,7 @@ public class CodeWebView extends WebView {
             TypedArray tp = getContext().obtainStyledAttributes(attrs, R.styleable.CodeWebView);
             try {
                 backgroundColor = tp.getColor(R.styleable.CodeWebView_webview_background,
-                        ViewHelper.getWindowBackground(getContext()));
+                        ViewUtils.getWindowBackground(getContext()));
                 setBackgroundColor(backgroundColor);
             } finally {
                 tp.recycle();
@@ -103,7 +104,7 @@ public class CodeWebView extends WebView {
             public boolean onLongClick(View v) {
                 WebView.HitTestResult result = getHitTestResult();
                 if (hitLinkResult(result) && !StringUtils.isBlank(result.getExtra())) {
-                    AppHelper.copyToClipboard(getContext(), result.getExtra());
+                    AppUtils.copyToClipboard(getContext(), result.getExtra());
                     return true;
                 }
                 return false;
@@ -132,7 +133,7 @@ public class CodeWebView extends WebView {
 
     public void setMdSource(@NonNull String source, @Nullable String baseUrl) {
         if (StringUtils.isBlank(source)) return;
-        String page = HtmlHelper.generateMdHtml(source, baseUrl, AppHelper.isNightMode(),
+        String page = HtmlHelper.generateMdHtml(source, baseUrl, AppUtils.isNightMode(),
                 getCodeBackgroundColor(), getAccentColor());
         loadMd(page);
     }
@@ -145,7 +146,7 @@ public class CodeWebView extends WebView {
         settings.setSupportZoom(true);
         settings.setBuiltInZoomControls(true);
         settings.setDisplayZoomControls(false);
-        String page = HtmlHelper.generateCodeHtml(source, extension, AppHelper.isNightMode(),
+        String page = HtmlHelper.generateCodeHtml(source, extension, AppUtils.isNightMode(),
                 getCodeBackgroundColor(), wrap);
         loadCode(page);
     }
@@ -159,7 +160,7 @@ public class CodeWebView extends WebView {
         settings.setSupportZoom(true);
         settings.setBuiltInZoomControls(true);
         settings.setDisplayZoomControls(false);
-        String page = HtmlHelper.generateCodeHtml(source, null, AppHelper.isNightMode(),
+        String page = HtmlHelper.generateCodeHtml(source, null, AppUtils.isNightMode(),
                 getCodeBackgroundColor(), wrap);
         loadCode(page);
     }
@@ -218,12 +219,12 @@ public class CodeWebView extends WebView {
         return "#" + Integer.toHexString(backgroundColor).substring(2).toUpperCase();
     }
     private String getAccentColor(){
-        return "#" + Integer.toHexString(ViewHelper.getAccentColor(getContext())).substring(2).toUpperCase();
+        return "#" + Integer.toHexString(ViewUtils.getAccentColor(getContext())).substring(2).toUpperCase();
     }
 
     private void startActivity(Uri uri){
         if(uri == null) return;
-        AppHelper.launchUrl(getContext(), uri);
+        AppOpener.launchUrl(getContext(), uri);
     }
 }
 

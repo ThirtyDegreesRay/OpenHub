@@ -26,7 +26,7 @@ import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.ui.activity.base.SingleFragmentActivity;
 import com.thirtydegreesray.openhub.ui.fragment.CommitsFragment;
-import com.thirtydegreesray.openhub.util.BundleBuilder;
+import com.thirtydegreesray.openhub.util.BundleHelper;
 
 /**
  * Created by ThirtyDegreesRay on 2017/10/20 11:30:58
@@ -37,7 +37,7 @@ public class CommitsListActivity extends SingleFragmentActivity<IBaseContract.Pr
     public static void showForCompare(@NonNull Activity activity, @NonNull String user,
                                       @NonNull String repo, @NonNull String before, @NonNull String head){
         Intent intent = new Intent(activity, CommitsListActivity.class);
-        intent.putExtras(BundleBuilder.builder().put("type", CommitsListActivity.CommitsListType.Compare)
+        intent.putExtras(BundleHelper.builder().put("type", CommitsListActivity.CommitsListType.Compare)
                 .put("user", user).put("repo", repo).put("before", before).put("head", head).build());
         activity.startActivity(intent);
     }
