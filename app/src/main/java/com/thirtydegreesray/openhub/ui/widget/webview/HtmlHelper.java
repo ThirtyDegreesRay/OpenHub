@@ -85,14 +85,15 @@ class HtmlHelper {
 
     static String generateMdHtml(@NonNull String mdSource, @Nullable String baseUrl,
                                  boolean isDark, @NonNull String backgroundColor,
-                                 @NonNull String accentColor){
+                                 @NonNull String accentColor, boolean wrapCode ){
         String skin = isDark ? "markdown_dark.css" : "markdown_white.css";
         //FIXME fix image url or link url which incompletely
-        return generateMdHtml(mdSource, skin, backgroundColor, accentColor);
+        return generateMdHtml(mdSource, skin, backgroundColor, accentColor, wrapCode);
     }
 
     private static String generateMdHtml(@NonNull String mdSource, String skin,
-                                         @NonNull String backgroundColor, @NonNull String accentColor){
+                                         @NonNull String backgroundColor,
+                                         @NonNull String accentColor, boolean wrapCode ){
         return "<html>\n" +
                 "<head>\n" +
                     "<meta charset=\"utf-8\" />\n" +
@@ -102,6 +103,10 @@ class HtmlHelper {
                     "<style>" +
                         "body{background: " + backgroundColor + ";}" +
                         "a {color:" + accentColor + " !important;}" +
+                        ".highlight pre, pre {" +
+                            " word-wrap: " + (wrapCode ? "break-word" : "normal") + "; " +
+                            " white-space: " + (wrapCode ? "pre-wrap" : "pre") + "; " +
+                        "}" +
                     "</style>" +
                 "</head>\n" +
                 "<body>\n" +

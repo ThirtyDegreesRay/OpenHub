@@ -23,5 +23,112 @@ body {
     font-size: 16px;
     padding: 8px;
     line-height: 1.5;
-    word-wrap: break-word
+    word-wrap: break-word;
+}
+
+/* hide title link icon */
+.anchor{
+    display:none;
+}
+
+/* code */
+.highlight pre, pre {
+    padding: 16px;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f6f8fa;
+    border-radius: 4px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    overflow: auto;
+}
+
+body pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    background: transparent;
+    border: 0;
+    word-break: normal;
+}
+
+.pl-k {
+    color: #d73a49;
+}
+.pl-smi, .pl-s, .pl-s1 {
+    color: #24292e;
+}
+.pl-en, .pl-e {
+    color: #6f42c1;
+}
+.pl-c {
+    color: #6a737d;
+}
+.pl-c1, .pl-s, .pl-v {
+    color: #005cc5;
+}
+.pl-v, .pl-smw {
+    color: #e36209;
+}
+
+.pl-s, .pl-pds, .pl-s, .pl-pse, .pl-s1, .pl-sr, .pl-sr, .pl-cce, .pl-sr, .pl-sre, .pl-sr, .pl-sra {
+    color: #032f62;
+}
+.pl-ent {
+    color: #22863a;
+}
+
+/* table */
+table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+}
+
+.markdown-body table tr {
+    border-top: 1px solid #c6cbd1;
+}
+
+.markdown-body table th, .markdown-body table td{
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+
+/* title */
+.markdown-body h1 {
+    padding-bottom: 0.3em;
+    font-size: 2em;
+    border-bottom: 1px solid #eaecef;
+}
+
+.markdown-body h2 {
+    padding-bottom: 0.3em;
+    font-size: 1.5em;
+    border-bottom: 1px solid #eaecef;
+}
+
+.markdown-body h3 {
+    font-size: 1.25em;
+}
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+/* list */
+.markdown-body ul, .markdown-body ol {
+    padding-left: 2em;
+}
+
+.markdown-body p, .markdown-body blockquote, .markdown-body ul, .markdown-body ol, .markdown-body dl, .markdown-body table, .markdown-body pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
 }
