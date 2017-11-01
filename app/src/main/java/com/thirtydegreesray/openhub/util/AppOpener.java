@@ -29,8 +29,11 @@ import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.mvp.model.GitHubName;
 import com.thirtydegreesray.openhub.ui.activity.IssueDetailActivity;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
+import com.thirtydegreesray.openhub.ui.activity.ReleaseInfoActivity;
+import com.thirtydegreesray.openhub.ui.activity.ReleasesActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 
@@ -100,22 +103,31 @@ public class AppOpener {
 
     public static void launchUrl(@NonNull Context context, @NonNull Uri uri){
         if(StringUtils.isBlank(uri.toString())) return;
-        String loginId;
-        if(GitHubHelper.isImage(uri.toString())){
-            ViewerActivity.show(context, uri.toString());
-        } else if((loginId = GitHubHelper.getUserFromUrl(uri.toString())) != null){
-            ProfileActivity.show((Activity) context, loginId);
-        } else if(GitHubHelper.isRepoUrl(uri.toString())){
-            String fullName = GitHubHelper.getRepoFullNameFromUrl(uri.toString());
-            if(StringUtils.isBlank(fullName)){
-                openInBrowser(context, uri.toString());
-            } else {
-                RepositoryActivity.show(context, fullName.split("/")[0], fullName.split("/")[1]);
-            }
-        } else if (GitHubHelper.isIssueUrl(uri.toString())) {
-            IssueDetailActivity.show((Activity) context, uri.toString());
+        GitHubName gitHubName = GitHubName.fromUrl(uri.toString());
+        String url = uri.toString();
+        String userName ;
+        String repoName ;
+        if(gitHubName == null){
+            openInBrowser(context, uri.toString());
+            return;
         } else {
-            String url = uri.toString();
+            userName = gitHubName.getUserName();
+            repoName = gitHubName.getRepoName();
+        }
+
+        if(GitHubHelper.isImage(url)){
+            ViewerActivity.show(context, url);
+        } else if(GitHubHelper.isUserUrl(url)){
+            ProfileActivity.show((Activity) context, userName);
+        } else if(GitHubHelper.isRepoUrl(url)){
+            RepositoryActivity.show(context, userName, repoName);
+        } else if (GitHubHelper.isIssueUrl(url)) {
+            IssueDetailActivity.show((Activity) context, url);
+        } else if (GitHubHelper.isReleasesUrl(url)) {
+            ReleasesActivity.show((Activity) context, userName, repoName);
+        } else if (GitHubHelper.isReleaseTagUrl(url)) {
+            ReleaseInfoActivity.show((Activity) context, userName, repoName, gitHubName.getReleaseTagName());
+        } else {
             openInBrowser(context, url);
         }
     }

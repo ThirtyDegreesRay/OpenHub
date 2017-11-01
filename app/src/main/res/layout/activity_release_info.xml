@@ -64,6 +64,17 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/spacing_large"/>
 
+        <ProgressBar
+            android:id="@+id/loader"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:indeterminate="true"
+            android:paddingEnd="@dimen/spacing_large"
+            android:paddingStart="@dimen/spacing_large"
+            android:visibility="gone"/>
+
     </FrameLayout>
 
 </LinearLayout>

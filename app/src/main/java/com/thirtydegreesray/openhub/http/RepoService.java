@@ -202,4 +202,13 @@ public interface RepoService {
             @Query("page") int page
     );
 
+    @NonNull @GET("repos/{owner}/{repo}/releases/tags/{tag}")
+    @Headers("Accept: application/vnd.github.html")
+    Observable<Response<Release>> getReleaseByTagName(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("owner") String owner,
+            @Path("repo") String repo,
+            @Path("tag") String tag
+    );
+
 }

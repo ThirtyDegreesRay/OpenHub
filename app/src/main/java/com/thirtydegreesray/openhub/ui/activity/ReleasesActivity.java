@@ -29,7 +29,8 @@ public class ReleasesActivity extends SingleFragmentActivity<IBaseContract.Prese
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        setToolbarTitle(getString(R.string.releases));
+        String subTitle = owner.concat("/").concat(repo);
+        setToolbarTitle(getString(R.string.releases), subTitle);
     }
 
     @Override

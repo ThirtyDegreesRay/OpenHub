@@ -19,7 +19,9 @@ package com.thirtydegreesray.openhub;
 import android.app.Application;
 import android.content.Context;
 
+import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
+import com.orhanobut.logger.PrettyFormatStrategy;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -38,7 +40,7 @@ import com.thirtydegreesray.openhub.util.NetHelper;
  */
 public class AppApplication extends Application {
 
-    private final String TAG = "AppApplication";
+    private final String TAG = AppApplication.class.getSimpleName();
 
     private static AppApplication application;
     private AppComponent mAppComponent;
@@ -55,14 +57,36 @@ public class AppApplication extends Application {
         application = this;
         //init application
         long startTime = System.currentTimeMillis();
-        Logger.i(TAG, "startTime:" + startTime);
+        initLogger();
+        Logger.t(TAG).i("startTime:" + startTime);
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
         NetHelper.INSTANCE.init(this);
         initBugly();
         startTime = System.currentTimeMillis();
-        Logger.i(TAG, "application ok:" + (System.currentTimeMillis() - startTime));
+        Logger.t(TAG).i("application ok:" + (System.currentTimeMillis() - startTime));
+
+    }
+
+    private void initLogger(){
+        PrettyFormatStrategy strategy = PrettyFormatStrategy.newBuilder()
+                        .showThreadInfo(false)
+                        .methodCount(0)
+                        .methodOffset(0)
+                        .tag("OpenHub_Logger")
+                        .build();
+        Logger.addLogAdapter(new AndroidLogAdapter(strategy){
+            @Override
+            public boolean isLoggable(int priority, String tag) {
+                return BuildConfig.DEBUG;
+            }
+
+            @Override
+            public void log(int priority, String tag, String message) {
+                super.log(priority, tag, message);
+            }
+        });
     }
 
     private void initBugly(){

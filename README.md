@@ -21,6 +21,7 @@ An **open source** GitHub Android client app, faster and concise.
 * Offline mode
 * Trending repositories
 * Search repos and users
+* Shortcuts support
 
 ### Repositories
 * View repo info 

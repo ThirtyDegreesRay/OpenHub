@@ -81,4 +81,7 @@ public class ReleasesPresenter extends BasePresenter<IReleasesContract.View>
         return repo;
     }
 
+    public String getOwner() {
+        return owner;
+    }
 }

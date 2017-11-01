@@ -29,12 +29,15 @@ import java.util.List;
 
 public class GitHubName {
 
-    private String userName = "";
-    private String repoName = "";
+    private String url;
+    private String userName ;
+    private String repoName ;
 
     public static GitHubName fromUrl(@NonNull String url){
         if(!GitHubHelper.isGitHubUrl(url)) return null;
         GitHubName gitHubName = new GitHubName();
+        url = url.endsWith("/") ? url.substring(0, url.length() - 1) : url;
+        gitHubName.url = url;
         try{
             Uri uri = Uri.parse(url);
             List<String> list = uri.getPathSegments();
@@ -52,5 +55,12 @@ public class GitHubName {
 
     public String getRepoName() {
         return repoName;
+    }
+
+    public String getReleaseTagName(){
+        if(!GitHubHelper.isReleaseTagUrl(url)){
+            return null;
+        }
+        return url.substring(url.lastIndexOf("/") + 1);
     }
 }

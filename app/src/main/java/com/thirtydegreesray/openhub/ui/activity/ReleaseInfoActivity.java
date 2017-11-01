@@ -3,13 +3,16 @@ package com.thirtydegreesray.openhub.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
@@ -23,7 +26,6 @@ import com.thirtydegreesray.openhub.mvp.presenter.ReleaseInfoPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.widget.DownloadSourceDialog;
 import com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView;
-import com.thirtydegreesray.openhub.util.AppOpener;
 import com.thirtydegreesray.openhub.util.BundleHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewUtils;
@@ -38,19 +40,31 @@ import butterknife.OnClick;
 public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
         implements IReleaseInfoContract.View{
 
-    public static void show(Activity activity,  String repoName, Release release){
+    public static void show(Activity activity, @NonNull String owner, @NonNull String repoName,
+                            @NonNull String tagName){
+        Intent intent = new Intent(activity, ReleaseInfoActivity.class);
+        intent.putExtras(BundleHelper.builder().put("tagName", tagName)
+                .put("owner", owner).put("repoName", repoName).build());
+        activity.startActivity(intent);
+    }
+
+    public static void show(Activity activity,  @NonNull String owner,
+                            @NonNull String repoName, @Nullable Release release){
         Intent intent = new Intent(activity, ReleaseInfoActivity.class);
         intent.putExtras(BundleHelper.builder().put("release", release)
-                .put("repoName", repoName).build());
+                .put("owner", owner).put("repoName", repoName).build());
         activity.startActivity(intent);
     }
 
     @BindView(R.id.web_view) CodeWebView webView;
     @BindView(R.id.user_avatar) ImageView userAvatar;
     @BindView(R.id.user_name) TextView userName;
+    @BindView(R.id.download_bn) FloatingActionButton downloadBn;
+    @BindView(R.id.loader) ProgressBar loader;
 
     @Override
     public void showReleaseInfo(Release release) {
+        downloadBn.setVisibility(View.VISIBLE);
         webView.setMdSource(StringUtils.isBlank(release.getBodyHtml()) ?
                 release.getBody() : release.getBodyHtml(), null);
 
@@ -97,27 +111,14 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         setToolbarBackEnable();
-        setToolbarTitle(mPresenter.getTagName());
+        setToolbarTitle(mPresenter.getTagName(),
+                mPresenter.getOwner().concat("/").concat(mPresenter.getRepoName()));
+        downloadBn.setVisibility(View.GONE);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_release_info, menu);
         return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(mPresenter.getRelease() == null) return true;
-        switch (item.getItemId()) {
-            case R.id.action_download_zip:
-                AppOpener.openInBrowser(getActivity(), mPresenter.getRelease().getZipballUrl());
-                return true;
-            case R.id.action_download_tar:
-
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @OnClick(R.id.download_bn)
@@ -132,4 +133,15 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
                 mPresenter.getRelease().getAuthor().getAvatarUrl());
     }
 
+    @Override
+    public void showLoading() {
+        super.showLoading();
+        loader.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        super.hideLoading();
+        loader.setVisibility(View.GONE);
+    }
 }

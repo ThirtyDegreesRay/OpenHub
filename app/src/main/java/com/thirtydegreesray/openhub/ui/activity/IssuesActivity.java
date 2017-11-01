@@ -88,7 +88,11 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
         super.initView(savedInstanceState);
         setToolbarScrollAble(true);
         setToolbarBackEnable();
-        setToolbarTitle(getString(R.string.issues));
+        if(IssuesFilter.Type.Repo.equals(issuesType)){
+            setToolbarTitle(getString(R.string.issues), userId.concat("/").concat(repoName));
+        }else{
+            setToolbarTitle(getString(R.string.issues));
+        }
         addBn.setVisibility(IssuesFilter.Type.Repo.equals(issuesType) ? View.VISIBLE : View.GONE);
 
             if(IssuesFilter.Type.User.equals(issuesType)){

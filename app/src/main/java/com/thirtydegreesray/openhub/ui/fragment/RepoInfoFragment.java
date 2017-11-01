@@ -203,7 +203,7 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
                         mPresenter.getRepository().getName());
                 break;
             case R.id.watchers_lay:
-                if(mPresenter.getRepository().getWatchersCount() == 0) return;
+                if(mPresenter.getRepository().getSubscribersCount() == 0) return;
                 UserListActivity.show(getActivity(), UserListFragment.UserListType.WATCHERS,
                         mPresenter.getRepository().getOwner().getLogin(),
                         mPresenter.getRepository().getName());

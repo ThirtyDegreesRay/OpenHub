@@ -26,6 +26,7 @@ import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.ui.activity.base.SingleFragmentActivity;
 import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
 import com.thirtydegreesray.openhub.util.BundleHelper;
+import com.thirtydegreesray.openhub.util.StringUtils;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/16 17:22:44
@@ -56,7 +57,9 @@ public class UserListActivity extends SingleFragmentActivity<IBaseContract.Prese
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        setToolbarTitle(getListTitle());
+        String title = getListTitle();
+        String subTitle = StringUtils.isBlank(repo) ? user : user.concat("/").concat(repo);
+        setToolbarTitle(title, subTitle);
     }
 
     @Override

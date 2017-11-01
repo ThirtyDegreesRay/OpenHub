@@ -63,6 +63,8 @@
     <string name="settings">Settings</string>
     <string name="about">About</string>
 
+    <string name="public_repositories">Public repositories</string>
+    <string name="starred_repositories">Starred repositories</string>
 
     <string name="no_cache_and_network">Network and cache is unavailable.</string>
     <string name="page_no_found">Page not found.</string>

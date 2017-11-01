@@ -27,6 +27,7 @@ import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.ui.activity.base.SingleFragmentActivity;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.util.BundleHelper;
+import com.thirtydegreesray.openhub.util.StringUtils;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/23 18:15:40
@@ -60,7 +61,9 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        setToolbarTitle(getListTitle());
+        String title = getListTitle();
+        String subTitle = StringUtils.isBlank(repo) ? user : user.concat("/").concat(repo);
+        setToolbarTitle(title, subTitle);
     }
 
     @Override
@@ -73,9 +76,9 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
 
     private String getListTitle(){
         if(type.equals(RepositoriesFragment.RepositoriesType.OWNED)){
-            return getString(R.string.owned);
+            return getString(R.string.public_repositories);
         }else if(type.equals(RepositoriesFragment.RepositoriesType.STARRED)){
-            return getString(R.string.starred);
+            return getString(R.string.starred_repositories);
         }else if(type.equals(RepositoriesFragment.RepositoriesType.FORKS)){
             return getString(R.string.forks);
         }

@@ -71,7 +71,7 @@ public class ReleasesFragment extends ListFragment<ReleasesPresenter, ReleasesAd
     @Override
     public void onItemClick(int position, @NonNull View view) {
         super.onItemClick(position, view);
-        ReleaseInfoActivity.show(getActivity(), mPresenter.getRepoName(),
+        ReleaseInfoActivity.show(getActivity(), mPresenter.getOwner(), mPresenter.getRepoName(),
                 adapter.getData().get(position));
     }
 

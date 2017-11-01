@@ -110,7 +110,7 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
                 RepositoryActivity.show(getContext(), actorId, event.getRepo().getName());
                 break;
             case ReleaseEvent:
-                ReleaseInfoActivity.show(getActivity(), repoName,
+                ReleaseInfoActivity.show(getActivity(), owner, repoName,
                         event.getPayload().getRelease());
                 break;
             case IssueCommentEvent:
