@@ -205,4 +205,9 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
         return true;
     }
 
+    @OnClick(R.id.commit_message)
+    public void onCommitMessageClick(){
+        commitMessage.setMaxLines(commitMessage.getMaxLines() == 6 ? 20 : 6);
+    }
+
 }

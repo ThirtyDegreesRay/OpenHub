@@ -140,7 +140,8 @@ class HtmlHelper {
                 continue;
             }
 
-            String fixedUrl = "https://github.com/" + owner + "/" + repo + "/blob/" + branch + oriUrl;
+            String subUrl= oriUrl.startsWith("/") ? oriUrl : "/".concat(oriUrl);
+            String fixedUrl = "https://github.com/" + owner + "/" + repo + "/blob/" + branch + subUrl;
             source = source.replace("href=\"" + oriUrl +"\"", "href=\"" + fixedUrl +"\"");
         }
 
@@ -151,7 +152,8 @@ class HtmlHelper {
                 continue;
             }
 
-            String fixedUrl = "https://raw.githubusercontent.com/" + owner + "/" + repo + "/" + branch + oriUrl;
+            String subUrl= oriUrl.startsWith("/") ? oriUrl : "/".concat(oriUrl);
+            String fixedUrl = "https://raw.githubusercontent.com/" + owner + "/" + repo + "/" + branch + subUrl;
             source = source.replace("src=\"" + oriUrl +"\"", "src=\"" + fixedUrl +"\"");
         }
 

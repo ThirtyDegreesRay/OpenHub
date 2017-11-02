@@ -129,14 +129,13 @@
                     android:id="@+id/commit_message"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
                     android:textSize="@dimen/text_small"
                     android:textColor="?title_color"
                     android:layout_below="@+id/state_lay"
                     android:layout_toEndOf="@+id/user_avatar"
                     android:layout_marginStart="@dimen/spacing_normal"
                     android:transitionName="issueTitle"
-                    android:maxLines="10"
+                    android:maxLines="6"
                     android:ellipsize="end"/>
 
             </RelativeLayout>
