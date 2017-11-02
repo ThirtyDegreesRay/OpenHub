@@ -84,6 +84,7 @@
     <string name="theme_accent_color">Theme Accent Color</string>
     <string name="cache_controller">Cache Controller</string>
     <string name="cache_controller_desc">Load cache first if cache available, then load from network.</string>
+    <string name="use_system_downloader">Use System Downloader</string>
     <string name="language">Language</string>
     <string name="logout">Logout</string>
 
@@ -127,6 +128,7 @@
     <string name="share_to">Share to</string>
     <string name="no_share_clients">There are no share clients installed.</string>
     <string name="no_browser_clients">There are no browser clients installed.</string>
+    <string name="no_download_clients">There are no download clients installed.</string>
     <string name="send_email">Send email</string>
     <string name="open_in_market">Open in market</string>
     <string name="no_email_clients">There are no email clients installed.</string>

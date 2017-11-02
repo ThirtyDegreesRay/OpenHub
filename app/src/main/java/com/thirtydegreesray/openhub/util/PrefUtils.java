@@ -58,6 +58,7 @@ public class PrefUtils {
     public final static String THEME = "theme";
     public final static String ACCENT_COLOR = "accentColor";
     public final static String CACHE_FIRST_ENABLE = "cacheFirstEnable";
+    public final static String SYSTEM_DOWNLOADER = "systemDownloader";
     public final static String LANGUAGE = "language";
     public final static String LOGOUT = "logout";
     public final static String CODE_WRAP = "codeWrap";
@@ -115,6 +116,10 @@ public class PrefUtils {
 
     public static boolean isCodeWrap(){
         return getDefaultSp(AppApplication.get()).getBoolean(CODE_WRAP, false);
+    }
+
+    public static boolean isSystemDownloader(){
+        return getDefaultSp(AppApplication.get()).getBoolean(SYSTEM_DOWNLOADER, true);
     }
 
     public static int getPopTimes(){

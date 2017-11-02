@@ -38,6 +38,7 @@ import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -50,18 +51,26 @@ import es.dmoral.toasty.Toasty;
 public class AppOpener {
 
     public static void openInBrowser(@NonNull Context context, @NonNull String url){
-        Intent intent = new Intent(Intent.ACTION_VIEW);
         Uri uri = Uri.parse(url);
-        intent.setData(uri);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri).addCategory(Intent.CATEGORY_BROWSABLE);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
         intent = createActivityChooserIntent(context, intent, uri);
-        try{
+        if(intent != null){
             context.startActivity(intent);
-        }catch (ActivityNotFoundException ae){
-            Toasty.warning(context, context.getString(R.string.no_share_clients)).show();
-        }catch (Exception e){
-            Toasty.warning(context, context.getString(R.string.failed_to_open_url), Toast.LENGTH_LONG).show();
+        } else {
+            Toasty.warning(context, context.getString(R.string.no_browser_clients), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public static void openDownloader(@NonNull Context context, @NonNull String url) {
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri).addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent = createActivityChooserIntent(context, intent, uri);
+        if(intent != null){
+            context.startActivity(intent);
+        } else {
+            Toasty.warning(context, context.getString(R.string.no_download_clients), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -162,6 +171,9 @@ public class AppOpener {
             if (info.packageName.equals(ourPackageName)) {
                 continue;
             }
+            if (IGNORE_PACKAGE.contains(info.packageName)) {
+                continue;
+            }
 
             Intent targetIntent = new Intent(intent);
             targetIntent.setPackage(info.packageName);
@@ -184,5 +196,9 @@ public class AppOpener {
                 chooserIntents.toArray(new Intent[chooserIntents.size()]));
         return chooserIntent;
     }
+
+    private static final List<String> IGNORE_PACKAGE = Arrays.asList(
+            "com.gh4a", "com.fastaccess"
+    );
 
 }

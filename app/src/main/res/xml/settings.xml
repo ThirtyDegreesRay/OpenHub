@@ -33,10 +33,18 @@
         android:summary="@string/cache_controller_desc"
         android:key="cacheFirstEnable"
         android:defaultValue="true"/>
+
+    <SwitchPreference
+        android:icon="@drawable/ic_download"
+        android:title="@string/use_system_downloader"
+        android:key="systemDownloader"
+        android:defaultValue="true"/>
+
     <Preference
         android:icon="@drawable/ic_menu_explore"
         android:title="@string/language"
         android:key="language"/>
+
     <Preference
         android:icon="@drawable/ic_logout"
         android:title="@string/logout"
