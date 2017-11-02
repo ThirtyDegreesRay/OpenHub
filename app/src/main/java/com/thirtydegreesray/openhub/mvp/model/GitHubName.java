@@ -21,7 +21,7 @@ import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.util.GitHubHelper;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by ThirtyDegreesRay on 2017/10/30 13:49:02
@@ -40,7 +40,8 @@ public class GitHubName {
         gitHubName.url = url;
         try{
             Uri uri = Uri.parse(url);
-            List<String> list = uri.getPathSegments();
+            ArrayList<String> list = new ArrayList<>(uri.getPathSegments());
+            list.remove("repos");
             if(list.size() > 0) gitHubName.userName = list.get(0);
             if(list.size() > 1) gitHubName.repoName = list.get(1);
         }catch (Exception e){

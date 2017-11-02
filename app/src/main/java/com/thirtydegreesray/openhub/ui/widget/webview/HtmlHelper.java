@@ -19,10 +19,12 @@ package com.thirtydegreesray.openhub.ui.widget.webview;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.thirtydegreesray.openhub.mvp.model.GitHubName;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -37,8 +39,8 @@ class HtmlHelper {
             "xsl"
     );
 
-    private static Pattern LINK_MATCHER = Pattern.compile("href=\"(.*?)\"");
-    private static Pattern IMAGE_MATCHER = Pattern.compile("src=\"(.*?)\"");
+    private static Pattern LINK_PATTERN = Pattern.compile("href=\"(.*?)\"");
+    private static Pattern IMAGE_PATTERN = Pattern.compile("src=\"(.*?)\"");
 
     static String generateImageHtml(@NonNull String imageUrl, @NonNull String backgroundColor){
         return "<html>" +
@@ -87,7 +89,7 @@ class HtmlHelper {
                                  boolean isDark, @NonNull String backgroundColor,
                                  @NonNull String accentColor, boolean wrapCode ){
         String skin = isDark ? "markdown_dark.css" : "markdown_white.css";
-        //FIXME fix image url or link url which incompletely
+        mdSource = StringUtils.isBlank(baseUrl) ? mdSource : fixLinks(mdSource, baseUrl);
         return generateMdHtml(mdSource, skin, backgroundColor, accentColor, wrapCode);
     }
 
@@ -122,6 +124,38 @@ class HtmlHelper {
     private static String formatCode(@NonNull String codeSource){
         if(StringUtils.isBlank(codeSource)) return  codeSource;
         return codeSource.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+    }
+
+    private static String fixLinks(@NonNull String source, @NonNull String baseUrl){
+        GitHubName gitHubName = GitHubName.fromUrl(baseUrl);
+        if(gitHubName == null) return source;
+        String owner = gitHubName.getUserName();
+        String repo = gitHubName.getRepoName();
+        String branch = baseUrl.substring(baseUrl.indexOf("blob") + 5, baseUrl.lastIndexOf("/"));
+
+        Matcher linksMatcher = LINK_PATTERN.matcher(source);
+        while (linksMatcher.find()){
+            String oriUrl=  linksMatcher.group(1);
+            if(oriUrl.contains("http://") || oriUrl.contains("https://")){
+                continue;
+            }
+
+            String fixedUrl = "https://github.com/" + owner + "/" + repo + "/blob/" + branch + oriUrl;
+            source = source.replace("href=\"" + oriUrl +"\"", "href=\"" + fixedUrl +"\"");
+        }
+
+        Matcher imagesMatcher = IMAGE_PATTERN.matcher(source);
+        while (imagesMatcher.find()){
+            String oriUrl=  imagesMatcher.group(1);
+            if(oriUrl.contains("http://") || oriUrl.contains("https://")){
+                continue;
+            }
+
+            String fixedUrl = "https://raw.githubusercontent.com/" + owner + "/" + repo + "/" + branch + oriUrl;
+            source = source.replace("src=\"" + oriUrl +"\"", "src=\"" + fixedUrl +"\"");
+        }
+
+        return source;
     }
 
 }

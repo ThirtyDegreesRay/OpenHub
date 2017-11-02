@@ -69,7 +69,9 @@ public class RepoInfoPresenter extends BasePagerPresenter<IRepoInfoContract.View
         final String readmeFileUrl = AppConfig.GITHUB_API_BASE_URL + "repos/" + repository.getFullName()
                 + "/" + "readme" + (StringUtils.isBlank(curBranch) ? "" : "?ref=" + curBranch);
 
-        final String baseUrl = AppConfig.GITHUB_BASE_URL + repository.getFullName();
+        String branch = StringUtils.isBlank(curBranch) ? repository.getDefaultBranch() : curBranch;
+        final String baseUrl = AppConfig.GITHUB_BASE_URL + repository.getFullName()
+                + "/blob/" + branch  + "/" + "README.md";
 
 //        if(!StringUtils.isBlank(readmeSource)){
 //            mView.showReadMe(readmeSource, baseUrl);

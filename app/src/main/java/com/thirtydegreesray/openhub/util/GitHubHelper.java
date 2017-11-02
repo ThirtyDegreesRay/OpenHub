@@ -54,9 +54,7 @@ public class GitHubHelper {
     private static final Pattern RELEASE_TAG_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR
             + "/([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.|_)*/releases/tag/([^/])*(/)?");
 
-
-    private static final Pattern GITHUB_URL_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR
-            + "(.)*");
+    private static final Pattern GITHUB_URL_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR + "(.)*");
 
     public static boolean isImage(@Nullable String name) {
         if (StringUtils.isBlank(name)) return false;
