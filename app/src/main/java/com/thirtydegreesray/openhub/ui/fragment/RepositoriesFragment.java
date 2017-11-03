@@ -137,7 +137,12 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     @Override
     public void onItemClick(int position, @NonNull View view) {
         super.onItemClick(position, view);
-        RepositoryActivity.show(getActivity(), adapter.getData().get(position));
+        if(RepositoriesType.TRENDING.equals(mPresenter.getType())){
+            RepositoryActivity.show(getActivity(), adapter.getData().get(position).getOwner().getLogin(),
+                    adapter.getData().get(position).getName());
+        } else {
+            RepositoryActivity.show(getActivity(), adapter.getData().get(position));
+        }
     }
 
     @Override

@@ -121,6 +121,7 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
         String commitDateStr = getString(R.string.committed).concat(" ").concat(
                 StringUtils.getNewsTimeStr(getActivity(), commit.getCommit().getAuthor().getDate()));
         commitMessage.setText(commitDateStr.concat("\n").concat(commit.getCommit().getMessage()));
+        invalidateOptionsMenu();
     }
 
     private CommitFilesFragment commitFilesFragment;
@@ -201,7 +202,8 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_commit_detail, menu);
+        if(mPresenter.getCommit() != null)
+            getMenuInflater().inflate(R.menu.menu_commit_detail, menu);
         return true;
     }
 

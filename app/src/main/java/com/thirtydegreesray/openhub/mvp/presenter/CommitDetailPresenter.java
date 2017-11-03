@@ -95,6 +95,6 @@ public class CommitDetailPresenter extends BasePresenter<ICommitDetailContract.V
     }
 
     public RepoCommit getCommit() {
-        return commit;
+        return commit == null ? commitExt : commit;
     }
 }

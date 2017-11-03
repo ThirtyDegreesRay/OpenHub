@@ -109,17 +109,14 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
     }
 
     @Override
-    public boolean onCreatePanelMenu(int featureId, Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_profile, menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if(mPresenter.getUser() != null){
+            getMenuInflater().inflate(R.menu.menu_profile, menu);
+            MenuItem followItem = menu.findItem(R.id.action_follow);
+            followItem.setVisible(mPresenter.isUser() && !mPresenter.isMe());
+            followItem.setTitle(mPresenter.isFollowing() ? R.string.unfollow : R.string.follow);
+        }
         return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem followItem = menu.findItem(R.id.action_follow);
-        followItem.setVisible(mPresenter.isUser() && !mPresenter.isMe());
-        followItem.setTitle(mPresenter.isFollowing() ? R.string.unfollow : R.string.follow);
-        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -133,10 +130,6 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(mPresenter.getUser() == null && item.getItemId() != android.R.id.home){
-            showWarningToast(getString(R.string.no_data));
-            return super.onOptionsItemSelected(item);
-        }
         switch (item.getItemId()){
             case R.id.action_follow:
                 mPresenter.followUser(!mPresenter.isFollowing());

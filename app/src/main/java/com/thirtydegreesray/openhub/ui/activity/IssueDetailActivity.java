@@ -106,27 +106,19 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
     public boolean onCreateOptionsMenu(Menu menu) {
         if(mPresenter.getIssue() != null) {
             getMenuInflater().inflate(R.menu.menu_issue_detail, menu);
+            boolean isCanToggle = AppData.INSTANCE.getLoggedUser().getLogin()
+                    .equals(mPresenter.getIssue().getUser().getLogin()) ||
+                    AppData.INSTANCE.getLoggedUser().getLogin()
+                            .equals(mPresenter.getIssue().getRepoAuthorName());
+            boolean isOpen = mPresenter.getIssue().getState().equals(Issue.IssueState.open);
+            if(isCanToggle){
+                MenuItem item = menu.findItem(R.id.action_issue_toggle);
+                item.setTitle(isOpen ? R.string.close : R.string.reopen);
+            }else{
+                menu.removeItem(R.id.action_issue_toggle);
+            }
         }
         return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        if(mPresenter.getIssue() == null){
-            return true;
-        }
-        boolean isCanToggle = AppData.INSTANCE.getLoggedUser().getLogin()
-                .equals(mPresenter.getIssue().getUser().getLogin()) ||
-                AppData.INSTANCE.getLoggedUser().getLogin()
-                        .equals(mPresenter.getIssue().getRepoAuthorName());
-        boolean isOpen = mPresenter.getIssue().getState().equals(Issue.IssueState.open);
-        if(isCanToggle){
-            MenuItem item = menu.findItem(R.id.action_issue_toggle);
-            item.setTitle(isOpen ? R.string.close : R.string.reopen);
-        }else{
-            menu.removeItem(R.id.action_issue_toggle);
-        }
-        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override

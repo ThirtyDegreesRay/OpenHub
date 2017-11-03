@@ -111,22 +111,19 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_repository, menu);
+        if(mPresenter.getRepository() != null){
+            getMenuInflater().inflate(R.menu.menu_repository, menu);
+            MenuItem starItem = menu.findItem(R.id.action_star);
+            starItem.setTitle(mPresenter.isStarred() ? R.string.unstar : R.string.star);
+            starItem.setIcon(mPresenter.isStarred() ?
+                    R.drawable.ic_star_title : R.drawable.ic_un_star_title);
+            menu.findItem(R.id.action_watch).setTitle(mPresenter.isWatched() ?
+                    R.string.unwatch : R.string.watch);
+            menu.findItem(R.id.action_fork).setTitle(mPresenter.isFork() ?
+                    R.string.forked : R.string.fork);
+            menu.findItem(R.id.action_fork).setVisible(mPresenter.isForkEnable());
+        }
         return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem starItem = menu.findItem(R.id.action_star);
-        starItem.setTitle(mPresenter.isStarred() ? R.string.unstar : R.string.star);
-        starItem.setIcon(mPresenter.isStarred() ?
-                R.drawable.ic_star_title : R.drawable.ic_un_star_title);
-        menu.findItem(R.id.action_watch).setTitle(mPresenter.isWatched() ?
-                R.string.unwatch : R.string.watch);
-        menu.findItem(R.id.action_fork).setTitle(mPresenter.isFork() ?
-                R.string.forked : R.string.fork);
-        menu.findItem(R.id.action_fork).setVisible(mPresenter.isForkEnable());
-        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -141,10 +138,6 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(mPresenter.getRepository() == null && item.getItemId() != android.R.id.home){
-            showWarningToast(getString(R.string.no_data));
-            return super.onOptionsItemSelected(item);
-        }
         switch (item.getItemId()) {
             case R.id.action_star:
                 mPresenter.starRepo(!mPresenter.isStarred());
@@ -215,6 +208,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         } else {
             noticeRepositoryUpdated(repo);
         }
+        invalidateOptionsMenu();
     }
 
     @Override
