@@ -120,8 +120,12 @@ public class AppOpener {
 
     public static void launchUrl(@NonNull Context context, @NonNull Uri uri){
         if(StringUtils.isBlank(uri.toString())) return;
-        GitHubName gitHubName = GitHubName.fromUrl(uri.toString());
         String url = uri.toString();
+        if(GitHubHelper.isImage(url)){
+            ViewerActivity.show(context, url);
+            return;
+        }
+        GitHubName gitHubName = GitHubName.fromUrl(url);
         String userName ;
         String repoName ;
         if(gitHubName == null){
@@ -132,9 +136,7 @@ public class AppOpener {
             repoName = gitHubName.getRepoName();
         }
 
-        if(GitHubHelper.isImage(url)){
-            ViewerActivity.show(context, url);
-        } else if(GitHubHelper.isUserUrl(url)){
+        if(GitHubHelper.isUserUrl(url)){
             ProfileActivity.show((Activity) context, userName);
         } else if(GitHubHelper.isRepoUrl(url)){
             RepositoryActivity.show(context, userName, repoName);

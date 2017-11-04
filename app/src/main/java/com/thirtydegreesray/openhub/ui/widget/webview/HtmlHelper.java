@@ -20,6 +20,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.thirtydegreesray.openhub.mvp.model.GitHubName;
+import com.thirtydegreesray.openhub.util.GitHubHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.Arrays;
@@ -141,7 +142,13 @@ class HtmlHelper {
             }
 
             String subUrl= oriUrl.startsWith("/") ? oriUrl : "/".concat(oriUrl);
-            String fixedUrl = "https://github.com/" + owner + "/" + repo + "/blob/" + branch + subUrl;
+            String fixedUrl;
+            if(!GitHubHelper.isImage(oriUrl)){
+                fixedUrl = "https://github.com/" + owner + "/" + repo + "/blob/" + branch + subUrl;
+            } else {
+                //if link url is a image
+                fixedUrl = "https://raw.githubusercontent.com/" + owner + "/" + repo + "/" + branch + subUrl;
+            }
             source = source.replace("href=\"" + oriUrl +"\"", "href=\"" + fixedUrl +"\"");
         }
 
