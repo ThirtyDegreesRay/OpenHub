@@ -315,7 +315,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         super.onToolbarDoubleClick();
         Fragment fragment = getVisibleFragment();
         if(fragment != null && fragment instanceof BaseFragment){
-            ((BaseFragment)fragment).onToolbarDoubleClick();
+            ((BaseFragment)fragment).scrollToTop();
         }
     }
 }

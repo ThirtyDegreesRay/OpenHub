@@ -43,7 +43,8 @@ import butterknife.BindView;
 
 public abstract class PagerActivity<P extends BasePresenter> extends BaseActivity<P>
         implements IBaseContract.View,
-        ViewPager.OnPageChangeListener{
+        ViewPager.OnPageChangeListener,
+        TabLayout.OnTabSelectedListener{
 
     @Inject protected FragmentViewPagerAdapter pagerAdapter;
 
@@ -63,6 +64,7 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         viewPager.addOnPageChangeListener(this);
+        tabLayout.addOnTabSelectedListener(this);
     }
 
     @Override
@@ -80,10 +82,29 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
     @Override
     protected void onToolbarDoubleClick() {
         super.onToolbarDoubleClick();
+        scrollToTop();
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+        scrollToTop();
+    }
+
+    private void scrollToTop(){
         Fragment fragment = pagerAdapter.getCurFragment();
         if(fragment != null && fragment instanceof BaseFragment){
-            ((BaseFragment)fragment).onToolbarDoubleClick();
+            ((BaseFragment)fragment).scrollToTop();
         }
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
     }
 
     @Override

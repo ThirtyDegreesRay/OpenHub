@@ -79,7 +79,7 @@ public abstract class SingleFragmentActivity<P extends IBaseContract.Presenter, 
     protected void onToolbarDoubleClick() {
         super.onToolbarDoubleClick();
         if (mFragment instanceof BaseFragment){
-            ((BaseFragment)mFragment).onToolbarDoubleClick();
+            ((BaseFragment)mFragment).scrollToTop();
         }
     }
 }

@@ -313,7 +313,7 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
         startActivity(intent);
     }
 
-    public void onToolbarDoubleClick(){
+    public void scrollToTop(){
 
     }
 

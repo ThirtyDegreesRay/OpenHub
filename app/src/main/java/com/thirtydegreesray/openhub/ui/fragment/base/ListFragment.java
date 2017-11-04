@@ -233,8 +233,8 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
     }
 
     @Override
-    public void onToolbarDoubleClick() {
-        super.onToolbarDoubleClick();
+    public void scrollToTop() {
+        super.scrollToTop();
         recyclerView.smoothScrollToPosition(0);
     }
 }
