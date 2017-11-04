@@ -233,5 +233,11 @@
     <string name="no_commits">没有提交</string>
     <string name="no_readme">没有描述</string>
     <string name="view_file">查看文件</string>
+    <string name="public_repositories">公开的版本库</string>
+    <string name="starred_repositories">星标的版本库</string>
+    <string name="use_system_downloader">使用系统默认下载器</string>
+    <string name="no_download_clients">未安装下载客户端</string>
+    <string name="invalid_url">无效链接</string>
+    <string name="nothing_to_preview">无可预览内容</string>
 
 </resources>
