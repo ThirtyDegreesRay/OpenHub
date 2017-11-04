@@ -232,4 +232,9 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
             adapter.unregisterAdapterDataObserver(observer);
     }
 
+    @Override
+    public void onToolbarDoubleClick() {
+        super.onToolbarDoubleClick();
+        recyclerView.smoothScrollToPosition(0);
+    }
 }

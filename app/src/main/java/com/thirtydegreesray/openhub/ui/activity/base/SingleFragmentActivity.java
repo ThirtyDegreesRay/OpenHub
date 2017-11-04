@@ -23,6 +23,7 @@ import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
+import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 
 /**
  * Created by ThirtyDegreesRay on 2017/10/21 10:03:15
@@ -72,5 +73,13 @@ public abstract class SingleFragmentActivity<P extends IBaseContract.Presenter, 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
 
+    }
+
+    @Override
+    protected void onToolbarDoubleClick() {
+        super.onToolbarDoubleClick();
+        if (mFragment instanceof BaseFragment){
+            ((BaseFragment)mFragment).onToolbarDoubleClick();
+        }
     }
 }

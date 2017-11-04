@@ -50,6 +50,7 @@ import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
 import com.thirtydegreesray.openhub.ui.activity.SplashActivity;
+import com.thirtydegreesray.openhub.ui.widget.DoubleClickHandler;
 import com.thirtydegreesray.openhub.util.AppUtils;
 import com.thirtydegreesray.openhub.util.ThemeHelper;
 import com.thirtydegreesray.openhub.util.WindowUtil;
@@ -160,7 +161,17 @@ BaseActivity<P extends IBaseContract.Presenter>
     protected void initView(Bundle savedInstanceState){
         if(toolbar != null){
             setSupportActionBar(toolbar);
+            DoubleClickHandler.setDoubleClickListener(toolbar, new DoubleClickHandler.DoubleClickListener() {
+                @Override
+                public void onDoubleClick(View view) {
+                    onToolbarDoubleClick();
+                }
+            });
         }
+    }
+
+    protected void onToolbarDoubleClick(){
+
     }
 
     @Override

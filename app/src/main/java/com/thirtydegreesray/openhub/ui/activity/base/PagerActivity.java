@@ -29,6 +29,7 @@ import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentViewPagerAdapter;
+import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 
 import java.util.ArrayList;
 
@@ -74,6 +75,15 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
             return true;
         }
         return onMainKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onToolbarDoubleClick() {
+        super.onToolbarDoubleClick();
+        Fragment fragment = pagerAdapter.getCurFragment();
+        if(fragment != null && fragment instanceof BaseFragment){
+            ((BaseFragment)fragment).onToolbarDoubleClick();
+        }
     }
 
     @Override
@@ -151,5 +161,6 @@ public abstract class PagerActivity<P extends BasePresenter> extends BaseActivit
     public abstract int getPagerSize();
 
     protected abstract int getFragmentPosition(Fragment fragment);
+
 
 }

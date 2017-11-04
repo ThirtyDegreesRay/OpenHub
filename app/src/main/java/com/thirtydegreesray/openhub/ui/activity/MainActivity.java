@@ -49,6 +49,7 @@ import com.thirtydegreesray.openhub.mvp.presenter.MainPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
+import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.HashMap;
@@ -309,4 +310,12 @@ public class MainActivity extends BaseActivity<MainPresenter>
         }
     }
 
+    @Override
+    protected void onToolbarDoubleClick() {
+        super.onToolbarDoubleClick();
+        Fragment fragment = getVisibleFragment();
+        if(fragment != null && fragment instanceof BaseFragment){
+            ((BaseFragment)fragment).onToolbarDoubleClick();
+        }
+    }
 }
