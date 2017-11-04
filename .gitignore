@@ -9,3 +9,4 @@
 .externalNativeBuild
 app/libs/
 *.apk
+/app/release

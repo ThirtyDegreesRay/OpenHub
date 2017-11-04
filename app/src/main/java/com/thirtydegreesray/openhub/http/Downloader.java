@@ -14,9 +14,7 @@ import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.openhub.R;
-import com.thirtydegreesray.openhub.util.AppOpener;
 import com.thirtydegreesray.openhub.util.AppUtils;
-import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -52,11 +50,6 @@ public class Downloader {
         try{
             if(StringUtils.isBlank(url) || StringUtils.isBlank(fileName)){
                 Toasty.error(mContext, mContext.getString(R.string.download_empty_tip)).show();
-                return;
-            }
-            if(!PrefUtils.isSystemDownloader()){
-                AppOpener.openDownloader(mContext, url);
-                mContext = null;
                 return;
             }
 

@@ -29,6 +29,7 @@ import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.http.Downloader;
 import com.thirtydegreesray.openhub.mvp.model.GitHubName;
 import com.thirtydegreesray.openhub.ui.activity.IssueDetailActivity;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
@@ -63,6 +64,14 @@ public class AppOpener {
             context.startActivity(intent);
         } else {
             Toasty.warning(context, context.getString(R.string.no_browser_clients), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public static void startDownload(@NonNull Context context, @NonNull String url, String fileName) {
+        if(PrefUtils.isSystemDownloader()){
+            Downloader.create(context.getApplicationContext()).start(url, fileName);
+        }else{
+            openDownloader(context, url);
         }
     }
 

@@ -11,6 +11,7 @@ import com.thirtydegreesray.openhub.http.Downloader;
 import com.thirtydegreesray.openhub.mvp.model.DownloadSource;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
+import com.thirtydegreesray.openhub.util.AppOpener;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import butterknife.BindView;
@@ -70,7 +71,7 @@ public class DownloadSourcesAdapter extends BaseAdapter<DownloadSourcesAdapter.V
             DownloadSource source = data.get(getAdapterPosition());
             String fileName = repoName.concat("-").concat(tagName)
                     .concat("-").concat(source.getName());
-            Downloader.create(context.getApplicationContext()).start(source.getUrl(), fileName);
+            AppOpener.startDownload(context, source.getUrl(), fileName);
         }
 
     }

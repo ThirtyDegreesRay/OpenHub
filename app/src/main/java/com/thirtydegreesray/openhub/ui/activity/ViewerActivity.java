@@ -26,7 +26,6 @@ import android.view.MenuItem;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.R;
-import com.thirtydegreesray.openhub.http.Downloader;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.model.CommitFile;
 import com.thirtydegreesray.openhub.mvp.model.FileModel;
@@ -169,8 +168,7 @@ public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Present
             case R.id.action_download:
                 String fileName = fileModel.getName();
                 if(!StringUtils.isBlank(repoName)) fileName = repoName.concat("-").concat(fileName);
-                Downloader.create(getApplicationContext())
-                        .start(fileModel.getDownloadUrl(), fileName);
+                AppOpener.startDownload(getActivity(), fileModel.getDownloadUrl(), fileName);
                 return true;
         }
         return super.onOptionsItemSelected(item);

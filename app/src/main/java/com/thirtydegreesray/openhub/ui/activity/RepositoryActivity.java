@@ -173,12 +173,12 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                 showReleases();
                 return true;
             case R.id.action_download_source_zip:
-                Downloader.create(getApplicationContext())
-                        .start(mPresenter.getZipSourceUrl(), mPresenter.getZipSourceName());
+                AppOpener.startDownload(getActivity(), mPresenter.getZipSourceUrl(),
+                        mPresenter.getZipSourceName());
                 return true;
             case R.id.action_download_source_tar:
-                Downloader.create(getApplicationContext())
-                        .start(mPresenter.getTarSourceUrl(), mPresenter.getTarSourceName());
+                AppOpener.startDownload(getActivity(), mPresenter.getTarSourceUrl(),
+                        mPresenter.getTarSourceName());
                 return true;
         }
         return super.onOptionsItemSelected(item);
