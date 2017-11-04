@@ -21,6 +21,8 @@ import com.thirtydegreesray.openhub.ui.fragment.MarkdownEditorFragment;
 import com.thirtydegreesray.openhub.ui.fragment.MarkdownPreviewFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
+import java.util.ArrayList;
+
 import es.dmoral.toasty.Toasty;
 
 /**
@@ -34,15 +36,25 @@ public class MarkdownEditorActivity extends PagerActivity implements MarkdownEdi
 
     public static void show(@NonNull Activity activity, @StringRes int title,
                             int requestCode, @Nullable String text) {
+        show(activity, title, requestCode, text, null);
+    }
+
+    public static void show(@NonNull Activity activity, @StringRes int title,
+                            int requestCode, @Nullable String text,
+                            @Nullable ArrayList<String> mentionUsers) {
         Intent intent = new Intent(activity, MarkdownEditorActivity.class);
         intent.putExtra("text", text);
         intent.putExtra("title", title);
+        intent.putExtra("mentionUsers", mentionUsers);
         activity.startActivityForResult(intent, requestCode);
     }
 
+
     @AutoAccess String text;
     @AutoAccess @StringRes int title;
+    @AutoAccess ArrayList<String> mentionUsers;
     private MarkdownEditorCallback markdownEditorCallback;
+    private boolean isKeyBoardShow = true;
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
@@ -62,10 +74,11 @@ public class MarkdownEditorActivity extends PagerActivity implements MarkdownEdi
         setToolbarTitle(getString(title));
 
         pagerAdapter.setPagerList(FragmentPagerModel
-                .createMarkdownEditorPagerList(getActivity(), text, getFragments()));
+                .createMarkdownEditorPagerList(getActivity(), text, getFragments(), mentionUsers));
         tabLayout.setVisibility(View.VISIBLE);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setAdapter(pagerAdapter);
+
     }
 
     @Override
@@ -133,4 +146,5 @@ public class MarkdownEditorActivity extends PagerActivity implements MarkdownEdi
     public boolean isTextChanged() {
         return markdownEditorCallback.isTextChanged();
     }
+
 }

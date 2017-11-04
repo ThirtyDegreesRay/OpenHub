@@ -193,4 +193,18 @@ public class IssueTimelinePresenter extends BasePresenter<IIssueTimelineContract
     public void setIssue(Issue issue) {
         this.issue = issue;
     }
+
+    public ArrayList<String> getIssueUsersExceptMe(){
+        if(timeline == null) return null;
+        ArrayList<String> users = new ArrayList<String>();
+        for(IssueEvent event : timeline){
+            if(!AppData.INSTANCE.getLoggedUser().getLogin().equals(event.getUser().getLogin())
+                    && !users.contains(event.getUser().getLogin())){
+                users.add(event.getUser().getLogin());
+            }
+        }
+        return users;
+    }
+
+
 }

@@ -203,7 +203,8 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
 
     @Override
     public void showAddCommentPage(@Nullable String text) {
-        MarkdownEditorActivity.show(getActivity(), R.string.comment, ADD_COMMENT_REQUEST_CODE, text);
+        MarkdownEditorActivity.show(getActivity(), R.string.comment, ADD_COMMENT_REQUEST_CODE,
+                text, issueTimelineFragment == null ? null : issueTimelineFragment.getIssueUsersExceptMe());
     }
 
     @OnClick(R.id.comment_bn)

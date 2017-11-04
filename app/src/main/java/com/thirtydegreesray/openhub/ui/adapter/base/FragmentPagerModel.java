@@ -218,13 +218,13 @@ public class FragmentPagerModel {
     }
 
     public static List<FragmentPagerModel> createMarkdownEditorPagerList(@NonNull Context context
-            , final String text, @NonNull ArrayList<Fragment> fragments) {
+            , final String text, @NonNull ArrayList<Fragment> fragments, final ArrayList<String> mentionUsers) {
         return setPagerFragmentFlag(Arrays.asList(
                 new FragmentPagerModel(context.getString(R.string.write),
                         getFragment(fragments, 0, new FragmentCreator() {
                             @Override
                             public Fragment createFragment() {
-                                return MarkdownEditorFragment.create(text);
+                                return MarkdownEditorFragment.create(text, mentionUsers);
                             }
                         })),
                 new FragmentPagerModel(context.getString(R.string.preview),

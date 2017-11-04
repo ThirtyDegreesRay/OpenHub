@@ -2,6 +2,11 @@ package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.PopupMenu;
+import android.text.Editable;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
@@ -10,8 +15,11 @@ import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.ui.activity.MarkdownEditorCallback;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
+import com.thirtydegreesray.openhub.ui.widget.ToastAbleImageButton;
 import com.thirtydegreesray.openhub.util.BundleHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -24,15 +32,19 @@ import butterknife.OnTextChanged;
 public class MarkdownEditorFragment extends BaseFragment
         implements MarkdownEditorCallback {
 
-    public static MarkdownEditorFragment create(@Nullable String text) {
+    public static MarkdownEditorFragment create(@Nullable String text, ArrayList<String> mentionUsers) {
         MarkdownEditorFragment fragment = new MarkdownEditorFragment();
-        fragment.setArguments(BundleHelper.builder().put("text", text).build());
+        fragment.setArguments(BundleHelper.builder().put("text", text).put("mentionUsers", mentionUsers).build());
         return fragment;
     }
 
     @BindView(R.id.markdown_edit) EditText markdownEdit;
+    @BindView(R.id.add_mention) ToastAbleImageButton addMention;
     @AutoAccess boolean isTextChanged = false;
     @AutoAccess String text;
+    @AutoAccess ArrayList<String> mentionUsers;
+
+    private PopupMenu popupMenu;
 
     @Override
     protected int getLayoutId() {
@@ -56,6 +68,17 @@ public class MarkdownEditorFragment extends BaseFragment
     @OnTextChanged(R.id.markdown_edit)
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         isTextChanged = true;
+    }
+    @OnTextChanged(value = R.id.markdown_edit, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    public void afterTextChanged(Editable s){
+        int cursorIndex = markdownEdit.getSelectionStart();
+        String curContent = markdownEdit.getText().toString();
+        String preStr = curContent.substring(0, cursorIndex);
+        if(preStr.endsWith("@")){
+            showMentionView();
+        }else{
+            if(popupMenu != null) popupMenu.dismiss();
+        }
     }
 
     @Override
@@ -103,6 +126,7 @@ public class MarkdownEditorFragment extends BaseFragment
                 break;
             case R.id.add_mention:
                 addKeyWord("@", 1);
+                afterTextChanged(markdownEdit.getText());
                 break;
         }
     }
@@ -112,11 +136,16 @@ public class MarkdownEditorFragment extends BaseFragment
     }
 
     private void addKeyWord(String keyWord, int cursorPosition){
+        addKeyWord(keyWord, cursorPosition, true);
+    }
+
+    private void addKeyWord(String keyWord, int cursorPosition, boolean preBlankEnable){
         int cursorIndex = markdownEdit.getSelectionStart();
         String curContent = markdownEdit.getText().toString();
         String preStr = curContent.substring(0, cursorIndex);
         String sufStr = curContent.substring(cursorIndex);
-        boolean needPreBlank = !StringUtils.isBlank(preStr)
+        boolean needPreBlank = preBlankEnable
+                &&!StringUtils.isBlank(preStr)
                 && preStr.charAt(preStr.length() - 1) != ' '
                 && preStr.charAt(preStr.length() - 1) != '\n';
         String newStr = preStr;
@@ -128,6 +157,27 @@ public class MarkdownEditorFragment extends BaseFragment
                 + (cursorPosition == -1 ? keyWord.length() + 1 : cursorPosition);
         markdownEdit.setText(newStr);
         markdownEdit.setSelection(newCursorIndex);
+    }
+
+    private void showMentionView(){
+        if(mentionUsers != null && mentionUsers.size() > 0){
+            if(popupMenu == null){
+                popupMenu = new PopupMenu(getActivity(), addMention, Gravity.BOTTOM);
+                Menu menu = popupMenu.getMenu();
+                for(String loginId : mentionUsers){
+                    menu.add("@" + loginId);
+                }
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        String loginId = item.getTitle().toString().substring(1);
+                        addKeyWord(loginId, -1, false);
+                        return false;
+                    }
+                });
+            }
+            popupMenu.show();
+        }
     }
 
 }

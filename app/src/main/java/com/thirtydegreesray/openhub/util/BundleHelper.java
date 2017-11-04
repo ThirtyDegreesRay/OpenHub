@@ -16,7 +16,6 @@
 
 package com.thirtydegreesray.openhub.util;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Parcel;
@@ -158,27 +157,25 @@ public class BundleHelper {
     }
 
     //ArrayList
-    public BundleHelper put(@NonNull String key, @Nullable ArrayList<?> value){
-        if (value == null) {
-            return this;
-        }
-        Object[] listArray = value.toArray();
-        if (listArray instanceof String[]) {
-            bundle.putStringArrayList(key, (ArrayList<String>) value);
-        } else if (listArray instanceof Integer[]) {
-            bundle.putIntegerArrayList(key, (ArrayList<Integer>) value);
-        } else if (listArray instanceof Parcelable[]) {
-            bundle.putParcelableArrayList(key, (ArrayList<? extends Parcelable>) value);
-        } else if (listArray instanceof CharSequence[]) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
-                bundle.putCharSequenceArrayList(key, (ArrayList<CharSequence>) value);
-            }
-        } else {
-            throw new IllegalArgumentException("unable to put array list " + value);
-        }
+    public  BundleHelper putStringList(@NonNull String key, @Nullable ArrayList<String> value){
+        bundle.putStringArrayList(key, value);
         return this;
     }
 
+    public  BundleHelper putIntegerList(@NonNull String key, @Nullable ArrayList<Integer> value){
+        bundle.putIntegerArrayList(key, value);
+        return this;
+    }
+
+    public  BundleHelper putParcelableList(@NonNull String key, @Nullable ArrayList<? extends Parcelable> value){
+        bundle.putParcelableArrayList(key, value);
+        return this;
+    }
+
+    public  BundleHelper putCharSequenceList(@NonNull String key, @Nullable ArrayList<CharSequence> value){
+        bundle.putCharSequenceArrayList(key, value);
+        return this;
+    }
 
     public BundleHelper put(@NonNull String key, @Nullable android.util.Size value){
         bundle.putSize(key, value);

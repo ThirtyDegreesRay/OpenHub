@@ -258,4 +258,12 @@ public class User implements Parcelable {
             return new User[size];
         }
     };
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null && obj instanceof User){
+            return ((User)obj).getLogin().equals(login);
+        }
+        return super.equals(obj);
+    }
 }

@@ -137,6 +137,7 @@
     <string name="view_archive_file_error">Archive file is not supported, please download the file to view its content.</string>
     <string name="fork_warning_msg">Fork this repository?</string>
     <string name="invalid_repo_url">Invalid repository url!</string>
+    <string name="invalid_url">Invalid url!</string>
 
     <!-- Profile -->
     <string name="follow">Follow</string>
@@ -293,6 +294,7 @@
     <string name="insert_a_quote">Insert a quote</string>
     <string name="add_a_bulleted_list">Add a bulleted list</string>
     <string name="mention">Directly mention a user or team</string>
+    <string name="nothing_to_preview">Nothing to preview</string>
 
     <string name="title">Title</string>
     <string name="leave_a_comment">Leave a comment</string>

@@ -7,6 +7,7 @@ import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.ui.activity.MarkdownEditorCallback;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
+import com.thirtydegreesray.openhub.util.StringUtils;
 import com.zzhoujay.richtext.RichText;
 
 import butterknife.BindView;
@@ -36,7 +37,7 @@ public class MarkdownPreviewFragment extends BaseFragment{
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-
+        previewText.setText(R.string.nothing_to_preview);
     }
 
     private MarkdownEditorCallback getMarkdownEditorCallback(){
@@ -47,7 +48,11 @@ public class MarkdownPreviewFragment extends BaseFragment{
     public void onFragmentShowed() {
         super.onFragmentShowed();
         if(getMarkdownEditorCallback().isTextChanged()){
-            RichText.fromMarkdown(getMarkdownEditorCallback().getText()).into(previewText);
+            if(StringUtils.isBlank(getMarkdownEditorCallback().getText())){
+                previewText.setText(R.string.nothing_to_preview);
+            }else{
+                RichText.fromMarkdown(getMarkdownEditorCallback().getText()).into(previewText);
+            }
         }
     }
 

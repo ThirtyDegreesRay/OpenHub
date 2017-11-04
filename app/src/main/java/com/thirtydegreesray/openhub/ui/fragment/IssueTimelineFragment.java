@@ -174,4 +174,9 @@ public class IssueTimelineFragment extends ListFragment<IssueTimelinePresenter, 
         mPresenter.setIssue(issue);
     }
 
+    public ArrayList<String> getIssueUsersExceptMe(){
+        return mPresenter.getIssueUsersExceptMe();
+    }
+
+
 }

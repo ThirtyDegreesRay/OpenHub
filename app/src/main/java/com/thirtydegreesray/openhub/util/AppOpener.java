@@ -51,6 +51,10 @@ import es.dmoral.toasty.Toasty;
 public class AppOpener {
 
     public static void openInBrowser(@NonNull Context context, @NonNull String url){
+        if(StringUtils.isBlank(url)){
+            Toasty.warning(context, context.getString(R.string.invalid_url), Toast.LENGTH_LONG).show();
+            return;
+        }
         Uri uri = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri).addCategory(Intent.CATEGORY_BROWSABLE);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -63,6 +67,10 @@ public class AppOpener {
     }
 
     public static void openDownloader(@NonNull Context context, @NonNull String url) {
+        if(StringUtils.isBlank(url)){
+            Toasty.warning(context, context.getString(R.string.invalid_url), Toast.LENGTH_LONG).show();
+            return;
+        }
         Uri uri = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri).addCategory(Intent.CATEGORY_BROWSABLE);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
