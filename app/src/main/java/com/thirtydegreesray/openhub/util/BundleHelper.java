@@ -205,7 +205,7 @@ public class BundleHelper {
     public Bundle build(){
         Parcel parcel = Parcel.obtain();
         bundle.writeToParcel(parcel, 0);
-        if (parcel.dataSize() > 128 * 1024) {
+        if (parcel.dataSize() > 256 * 1024) {
             bundle.clear();
             throw new IllegalArgumentException("bundle data is too large, please reduce date size to avoid Exception");
         }

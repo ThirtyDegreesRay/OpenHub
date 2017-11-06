@@ -139,7 +139,7 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.container, commitFilesFragment)
-                    .commit();
+                    .commitAllowingStateLoss();
         }else{
             commitFilesFragment.showCommitFiles(commitExt.getFiles());
         }

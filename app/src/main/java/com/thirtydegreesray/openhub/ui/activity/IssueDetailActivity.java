@@ -175,7 +175,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
                     getSupportFragmentManager()
                             .beginTransaction()
                             .add(R.id.container, issueTimelineFragment)
-                            .commit();
+                            .commitAllowingStateLoss();
                 }
             }, 500);
         }

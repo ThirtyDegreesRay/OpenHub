@@ -127,7 +127,6 @@ BaseActivity<P extends IBaseContract.Presenter>
         if(curActivity.equals(this)){
             DataAutoAccess.saveData(AppData.INSTANCE, outState);
         }
-
     }
 
     @Override
