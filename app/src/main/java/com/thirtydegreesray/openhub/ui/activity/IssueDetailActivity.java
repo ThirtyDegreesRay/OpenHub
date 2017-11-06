@@ -254,4 +254,14 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         super.hideLoading();
         loader.setVisibility(View.GONE);
     }
+
+    @OnClick(R.id.user_avatar)
+    public void onUserAvatarClick(){
+        if(mPresenter.getIssue() != null){
+            Issue issue = mPresenter.getIssue();
+            ProfileActivity.show(getActivity(), userImageView,
+                    issue.getUser().getLogin(), issue.getUser().getAvatarUrl());
+        }
+    }
+
 }

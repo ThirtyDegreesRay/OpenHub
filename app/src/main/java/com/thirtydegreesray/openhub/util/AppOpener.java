@@ -131,7 +131,7 @@ public class AppOpener {
         if(StringUtils.isBlank(uri.toString())) return;
         String url = uri.toString();
         if(GitHubHelper.isImage(url)){
-            ViewerActivity.show(context, url);
+            ViewerActivity.showImage(context, url);
             return;
         }
         GitHubName gitHubName = GitHubName.fromUrl(url);
@@ -206,7 +206,7 @@ public class AppOpener {
 
         final Intent lastIntent = chooserIntents.remove(chooserIntents.size() - 1);
         if (chooserIntents.isEmpty()) {
-            // there was only one, no need to show the chooser
+            // there was only one, no need to showImage the chooser
             return lastIntent;
         }
 

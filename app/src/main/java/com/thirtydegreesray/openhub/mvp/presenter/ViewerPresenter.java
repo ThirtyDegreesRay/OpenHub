@@ -51,6 +51,7 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
 
     @AutoAccess String title;
     @AutoAccess String mdSource;
+    @AutoAccess String imageUrl;
 
     @AutoAccess CommitFile commitFile;
 
@@ -66,6 +67,8 @@ public class ViewerPresenter extends BasePresenter<IViewerContract.View>
             load(false);
         } else if(ViewerActivity.ViewerType.DiffFile.equals(viewerType)) {
             mView.loadDiffFile(commitFile.getPatch());
+        } else if(ViewerActivity.ViewerType.Image.equals(viewerType)) {
+            mView.loadImageUrl(imageUrl);
         } else {
             mView.loadMdText(mdSource, null);
         }

@@ -64,6 +64,14 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     }
 
     @NonNull
+    public static ViewerFragment createForImage(@NonNull String title, @NonNull String imageUrl) {
+        ViewerFragment fragment = new ViewerFragment();
+        fragment.setArguments(BundleHelper.builder().put("viewerType", ViewerActivity.ViewerType.Image)
+                .put("title", title).put("imageUrl", imageUrl).build());
+        return fragment;
+    }
+
+    @NonNull
     public static ViewerFragment create(@NonNull FileModel fileModel) {
         ViewerFragment fragment = new ViewerFragment();
         fragment.setArguments(BundleHelper.builder().put("viewerType", ViewerActivity.ViewerType.RepoFile)
@@ -124,6 +132,10 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
             menuItem.setChecked(wrap);
             menuItemDownload.setVisible(false);
             menuItemViewFile.setVisible(true);
+            menuItemRefresh.setVisible(false);
+        } else if(ViewerActivity.ViewerType.Image.equals(mPresenter.getViewerType())) {
+            menuItem.setVisible(false);
+            menuItemViewFile.setVisible(false);
             menuItemRefresh.setVisible(false);
         }
     }

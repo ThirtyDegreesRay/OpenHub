@@ -138,7 +138,7 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
 
     @Override
     public boolean onItemLongClick(int position, @NonNull View view) {
-        //TODO long click to show options can go
+        //TODO long click to showImage options can go
         return super.onItemLongClick(position, view);
     }
 

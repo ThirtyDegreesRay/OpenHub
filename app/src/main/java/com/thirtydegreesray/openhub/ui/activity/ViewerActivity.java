@@ -43,7 +43,7 @@ import com.thirtydegreesray.openhub.util.StringUtils;
 public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Presenter, ViewerFragment> {
 
     public enum ViewerType{
-        RepoFile, MarkDown, DiffFile
+        RepoFile, MarkDown, DiffFile, Image
     }
 
     public static void showMdSource(@NonNull Context context, @NonNull String title,
@@ -54,8 +54,17 @@ public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Present
         context.startActivity(intent);
     }
 
-    public static void show(@NonNull Context context, @NonNull String imageUrl){
-        show(context, imageUrl, imageUrl, imageUrl);
+    public static void showImage(@NonNull Context context, @NonNull String imageUrl){
+        String title = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
+        showImage(context, title, imageUrl);
+    }
+
+    public static void showImage(@NonNull Context context, @NonNull String title,
+                                 @NonNull String imageUrl){
+        Intent intent = new Intent(context, ViewerActivity.class);
+        intent.putExtras(BundleHelper.builder().put("viewerType", ViewerType.Image)
+                .put("title", title).put("imageUrl", imageUrl).build());
+        context.startActivity(intent);
     }
 
     public static void show(@NonNull Context context, @NonNull String url
@@ -102,9 +111,11 @@ public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Present
     @AutoAccess String title;
     @AutoAccess String mdSource;
 
+    @AutoAccess String imageUrl;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(fileModel != null || commitFile != null)
+        if(fileModel != null || commitFile != null || imageUrl != null)
             getMenuInflater().inflate(R.menu.menu_viewer, menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -127,13 +138,12 @@ public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Present
     protected ViewerFragment createFragment() {
         ViewerFragment fragment;
         if(ViewerType.RepoFile.equals(viewerType)){
-            title = fileModel.getName();
             fragment = ViewerFragment.create(fileModel);
         } else if(ViewerType.DiffFile.equals(viewerType)){
-            title = commitFile.getShortFileName();
             fragment = ViewerFragment.createForDiff(commitFile);
+        } else if(ViewerType.Image.equals(viewerType)){
+            fragment = ViewerFragment.createForImage(title, imageUrl);
         } else {
-            title = this.title;
             fragment = ViewerFragment.createForMd(title, mdSource);
         }
         return fragment;
@@ -146,6 +156,7 @@ public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Present
         String htmlUrl = null;
         if(fileModel != null) htmlUrl = fileModel.getHtmlUrl();
         if(commitFile != null) htmlUrl = commitFile.getBlobUrl();
+        if(imageUrl != null) htmlUrl = imageUrl;
         if(!StringUtils.isBlank(htmlUrl)){
             switch (item.getItemId()) {
                 case R.id.action_open_in_browser:
@@ -166,9 +177,17 @@ public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Present
                         commitFile.getBlobUrl(), commitFile.getRawUrl());
                 return true;
             case R.id.action_download:
-                String fileName = fileModel.getName();
-                if(!StringUtils.isBlank(repoName)) fileName = repoName.concat("-").concat(fileName);
-                AppOpener.startDownload(getActivity(), fileModel.getDownloadUrl(), fileName);
+                String downloadUrl ;
+                String fileName ;
+                if(fileModel != null){
+                    downloadUrl = fileModel.getDownloadUrl();
+                    fileName = fileModel.getName();
+                    if(!StringUtils.isBlank(repoName)) fileName = repoName.concat("-").concat(fileName);
+                } else {
+                    downloadUrl = imageUrl;
+                    fileName = title;
+                }
+                AppOpener.startDownload(getActivity(), downloadUrl, fileName);
                 return true;
         }
         return super.onOptionsItemSelected(item);

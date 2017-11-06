@@ -49,6 +49,7 @@ import com.thirtydegreesray.openhub.util.BundleHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/23 11:39:13
@@ -204,7 +205,7 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
     @Override
     protected void onResume() {
         super.onResume();
-        //TODO Don't know why loader show automatic when resume from other page, conflict with screen transition
+        //TODO Don't know why loader showImage automatic when resume from other page, conflict with screen transition
 //        loader.setVisibility(View.GONE);
     }
 
@@ -223,6 +224,14 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
             return 2;
         }else
             return -1;
+    }
+
+    @OnClick(R.id.user_avatar)
+    public void onUserAvatarClick(){
+        if(!StringUtils.isBlank(mPresenter.getUserAvatar())){
+            ViewerActivity.showImage(getActivity(), mPresenter.getLoginId(),
+                    mPresenter.getUserAvatar());
+        }
     }
 
 }

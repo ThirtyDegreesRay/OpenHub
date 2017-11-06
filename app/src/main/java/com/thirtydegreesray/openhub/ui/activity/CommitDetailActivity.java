@@ -212,4 +212,13 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
         commitMessage.setMaxLines(commitMessage.getMaxLines() == 6 ? 20 : 6);
     }
 
+    @OnClick(R.id.user_avatar)
+    public void onUserAvatarClick(){
+        if(mPresenter.getCommit() != null && mPresenter.getCommit().getAuthor() != null){
+            RepoCommit commit = mPresenter.getCommit();
+            ProfileActivity.show(getActivity(), userAvatar,
+                    commit.getAuthor().getLogin(), commit.getAuthor().getAvatarUrl());
+        }
+    }
+
 }

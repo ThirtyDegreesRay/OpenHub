@@ -65,7 +65,7 @@ import butterknife.BindView;
 /**
  * Created by ThirtyDegreesRay on 2017/8/9 21:39:20
  */
-//FIXME fix fragment not show from background
+//FIXME fix fragment not showImage from background
 public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         implements IRepositoryContract.View {
 
