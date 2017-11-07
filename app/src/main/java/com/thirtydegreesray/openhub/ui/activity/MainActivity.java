@@ -193,6 +193,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
             case R.id.nav_issues:
                 IssuesActivity.showForUser(getActivity());
                 break;
+            case R.id.nav_notifications:
+                NotificationsActivity.show(getActivity());
+                break;
             case R.id.nav_news:
             case R.id.nav_owned:
             case R.id.nav_starred:

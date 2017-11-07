@@ -127,6 +127,7 @@
         <activity android:name=".ui.activity.EditIssueActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateVisible"/>
         <activity android:name=".ui.activity.CommitDetailActivity" android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.CommitsListActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.NotificationsActivity" android:screenOrientation="portrait"/>
 
     </application>
 

@@ -56,13 +56,15 @@ class HtmlHelper {
     }
 
     static String generateCodeHtml(@NonNull String codeSource, @Nullable String extension,
-                                   boolean isDark, @NonNull String backgroundColor, boolean wrap){
+                                   boolean isDark, @NonNull String backgroundColor,
+                                   boolean wrap, boolean lineNums){
         String skin = isDark ? "sons-of-obsidian" : "prettify";
-        return generateCodeHtml(codeSource, extension, skin, backgroundColor, wrap);
+        return generateCodeHtml(codeSource, extension, skin, backgroundColor, wrap, lineNums);
     }
 
     private static String generateCodeHtml(@NonNull String codeSource, @Nullable String extension,
-                                           @Nullable String skin, @NonNull String backgroundColor, boolean wrap ){
+                                           @Nullable String skin, @NonNull String backgroundColor,
+                                           boolean wrap, boolean lineNums){
         return "<html>\n" +
                 "<head>\n" +
                     "<meta charset=\"utf-8\" />\n" +
@@ -78,7 +80,7 @@ class HtmlHelper {
                     "</style>" +
                 "</head>\n" +
                 "<body>\n" +
-                    "<?prettify lang=" + getExtension(extension) + " linenums=false?>\n" +
+                    "<?prettify lang=" + getExtension(extension) + " linenums=" + lineNums + "?>\n" +
                     "<pre class=\"prettyprint\">\n" +
                         formatCode(codeSource) +
                     "</pre>\n" +

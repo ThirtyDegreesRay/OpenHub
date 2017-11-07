@@ -108,6 +108,7 @@
     <string name="unwatch">Unwatch</string>
     <string name="unwatched">Unwatched</string>
     <string name="fork">Fork</string>
+    <string name="fork_tag">Fork</string>
     <string name="forked">Forked</string>
     <string name="forked_from">Forked from</string>
     <string name="wrap_lines">Wrap lines</string>
@@ -260,7 +261,7 @@
     <string name="created">Created</string>
     <string name="assigned">Assigned</string>
     <string name="mentioned">Mentioned</string>
-    <string name="participating">Participating</string>
+    <string name="participating">Participant</string>
 
     <string name="recently_created">Recently created</string>
     <string name="previously_created">Previously created</string>
@@ -316,5 +317,8 @@
     <string name="failed_to_recognize">Failed to recognize the github url, please open in browser after long press copied.</string>
     <string name="failed_to_open_url">Failed to open the url, please open in browser after long press copied.</string>
     <string name="compare">Compare view</string>
+
+    <string name="unread">Unread</string>
+    <string name="no_notifications_tip">No new notifications.</string>
 
 </resources>

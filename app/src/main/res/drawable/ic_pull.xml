@@ -1,0 +1,20 @@
+<!--
+  ~    Copyright 2017 ThirtyDegreesRay
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+
+<vector android:height="24dp" android:viewportHeight="1024.0"
+    android:viewportWidth="1024.0" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="?icon_color" android:pathData="M1024,832c0,106 -86,192 -192,192s-192,-86 -192,-192c0,-83.5 53.6,-153.8 128,-180.2L768,320c0,-35.4 -28.6,-64 -64,-64l0,63.9c0,25.9 -15.6,49.3 -39.5,59.1 -23.9,9.9 -51.5,4.4 -69.8,-13.8l-128,-128.1C454.3,224.7 448,208.4 448,191.9c0,-16.3 6.3,-32.7 18.8,-45.2l128,-128c18.3,-18.3 45.8,-23.7 69.8,-13.9C688.4,14.7 704,38.1 704,63.9L704,128c106,0 192,86 192,192l0,331.8C970.4,678.2 1024,748.5 1024,832zM832,768c-35.4,0 -64,28.6 -64,64s28.6,64 64,64 64,-28.6 64,-64S867.4,768 832,768zM384,832c0,106 -86,192 -192,192s-192,-86 -192,-192c0,-83.5 53.6,-153.8 128,-180.2L128,372.2C53.6,345.8 0,275.5 0,192c0,-106 86,-192 192,-192s192,86 192,192c0,83.5 -53.6,153.8 -128,180.2l0,279.5C330.4,678.2 384,748.5 384,832zM192,128C156.7,128 128,156.6 128,192s28.7,64 64,64 64,-28.6 64,-64S227.3,128 192,128zM192,768c-35.3,0 -64,28.6 -64,64s28.7,64 64,64 64,-28.6 64,-64S227.3,768 192,768z"/>
+</vector>

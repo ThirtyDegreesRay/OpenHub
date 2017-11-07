@@ -151,7 +151,7 @@ public class CodeWebView extends WebView {
         settings.setBuiltInZoomControls(true);
         settings.setDisplayZoomControls(false);
         String page = HtmlHelper.generateCodeHtml(source, extension, AppUtils.isNightMode(),
-                getCodeBackgroundColor(), wrap);
+                getCodeBackgroundColor(), wrap, true);
         loadCode(page);
     }
 
@@ -165,7 +165,7 @@ public class CodeWebView extends WebView {
         settings.setBuiltInZoomControls(true);
         settings.setDisplayZoomControls(false);
         String page = HtmlHelper.generateCodeHtml(source, null, AppUtils.isNightMode(),
-                getCodeBackgroundColor(), wrap);
+                getCodeBackgroundColor(), wrap, false);
         loadCode(page);
     }
 

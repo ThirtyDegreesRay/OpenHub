@@ -35,6 +35,7 @@ import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.CommitService;
 import com.thirtydegreesray.openhub.http.IssueService;
 import com.thirtydegreesray.openhub.http.LoginService;
+import com.thirtydegreesray.openhub.http.NotificationsService;
 import com.thirtydegreesray.openhub.http.OpenHubService;
 import com.thirtydegreesray.openhub.http.RepoService;
 import com.thirtydegreesray.openhub.http.SearchService;
@@ -188,6 +189,10 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
 
     protected CommitService getCommitService() {
         return getServices(CommitService.class);
+    }
+
+    protected NotificationsService getNOtificationsService() {
+        return getServices(NotificationsService.class);
     }
 
     private <T> T getServices(Class<T> serviceClass){

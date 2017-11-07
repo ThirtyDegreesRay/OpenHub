@@ -31,6 +31,7 @@ import android.widget.Toast;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.http.Downloader;
 import com.thirtydegreesray.openhub.mvp.model.GitHubName;
+import com.thirtydegreesray.openhub.ui.activity.CommitDetailActivity;
 import com.thirtydegreesray.openhub.ui.activity.IssueDetailActivity;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.activity.ReleaseInfoActivity;
@@ -155,6 +156,8 @@ public class AppOpener {
             ReleasesActivity.show((Activity) context, userName, repoName);
         } else if (GitHubHelper.isReleaseTagUrl(url)) {
             ReleaseInfoActivity.show((Activity) context, userName, repoName, gitHubName.getReleaseTagName());
+        } else if (GitHubHelper.isCommitUrl(url)) {
+            CommitDetailActivity.show((Activity) context, url);
         } else {
             openInBrowser(context, url);
         }

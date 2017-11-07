@@ -1,0 +1,20 @@
+<!--
+  ~    Copyright 2017 ThirtyDegreesRay
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+
+<vector android:height="24dp" android:viewportHeight="1024.0"
+    android:viewportWidth="1024.0" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="?icon_color" android:pathData="M947.2,320l-416,-249.6C524.8,64 518.4,64 512,64s-12.8,0 -19.2,6.4L76.8,320c-6.4,6.4 -12.8,19.2 -12.8,32v512c0,51.2 44.8,96 96,96h704c51.2,0 96,-44.8 96,-96V352c0,-12.8 -6.4,-25.6 -12.8,-32zM512,134.4L876.8,352 512,601.6l-364.8,-256L512,134.4z"/>
+</vector>

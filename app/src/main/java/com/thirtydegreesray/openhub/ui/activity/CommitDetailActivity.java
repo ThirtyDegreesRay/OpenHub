@@ -56,6 +56,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
         implements ICommitDetailContract.View {
 
+    public static void show(@NonNull Activity activity, @NonNull String commitUrl) {
+        Intent intent = new Intent(activity, CommitDetailActivity.class);
+        intent.putExtras(BundleHelper.builder().put("commitUrl", commitUrl).build());
+        activity.startActivity(intent);
+    }
+
     public static void show(@NonNull Activity activity, @NonNull String user, @NonNull String repo,
                             @NonNull RepoCommit commit, @NonNull View userAvatar) {
         Intent intent = new Intent(activity, CommitDetailActivity.class);

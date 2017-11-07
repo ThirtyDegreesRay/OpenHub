@@ -160,7 +160,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_micro"
                         android:textColor="?android:textColorPrimary"
-                        android:text="@string/fork"
+                        android:text="@string/fork_tag"
                         android:layout_marginStart="@dimen/spacing_micro"/>
                 </LinearLayout>
             </LinearLayout>

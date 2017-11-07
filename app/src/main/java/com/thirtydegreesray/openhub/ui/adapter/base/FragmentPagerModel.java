@@ -20,7 +20,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
-import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.model.Issue;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
@@ -31,6 +30,7 @@ import com.thirtydegreesray.openhub.ui.fragment.CommitsFragment;
 import com.thirtydegreesray.openhub.ui.fragment.IssuesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.MarkdownEditorFragment;
 import com.thirtydegreesray.openhub.ui.fragment.MarkdownPreviewFragment;
+import com.thirtydegreesray.openhub.ui.fragment.NotificationsFragment;
 import com.thirtydegreesray.openhub.ui.fragment.ProfileInfoFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoFilesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoInfoFragment;
@@ -237,6 +237,33 @@ public class FragmentPagerModel {
         ));
     }
 
+    public static List<FragmentPagerModel> createNotificationsPagerList(
+            @NonNull Context context, @NonNull ArrayList<Fragment> fragments) {
+        return setPagerFragmentFlag(Arrays.asList(
+                new FragmentPagerModel(context.getString(R.string.unread),
+                        getFragment(fragments, 0, new FragmentCreator() {
+                            @Override
+                            public Fragment createFragment() {
+                                return NotificationsFragment.create(NotificationsFragment.NotificationsType.Unread);
+                            }
+                        })),
+                new FragmentPagerModel(context.getString(R.string.participating),
+                        getFragment(fragments, 1, new FragmentCreator() {
+                            @Override
+                            public Fragment createFragment() {
+                                return NotificationsFragment.create(NotificationsFragment.NotificationsType.Participating);
+                            }
+                        })),
+                new FragmentPagerModel(context.getString(R.string.all),
+                        getFragment(fragments, 2, new FragmentCreator() {
+                            @Override
+                            public Fragment createFragment() {
+                                return NotificationsFragment.create(NotificationsFragment.NotificationsType.All);
+                            }
+                        }))
+        ));
+    }
+
     private static List<FragmentPagerModel> setPagerFragmentFlag(List<FragmentPagerModel> list) {
         for (FragmentPagerModel model : list) {
             model.getFragment().setPagerFragment(true);
@@ -249,9 +276,9 @@ public class FragmentPagerModel {
         Fragment fragment  = fragments.get(position);
         if(fragment == null){
             fragment = fragmentCreator.createFragment();
-            Logger.d("create fragment " + fragment + (Math.random() * 1000 * 1000));
+//            Logger.d("create fragment " + fragment + (Math.random() * 1000 * 1000));
         }else{
-            Logger.d("reuse fragment" + fragment + (Math.random() * 1000 * 1000));
+//            Logger.d("reuse fragment" + fragment + (Math.random() * 1000 * 1000));
         }
         return (BaseFragment) fragment;
     }

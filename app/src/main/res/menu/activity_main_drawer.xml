@@ -21,12 +21,11 @@
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_menu_person"
         android:title="@string/profile"/>
+    <item
+        android:id="@+id/nav_notifications"
+        android:icon="@drawable/ic_menu_notifications"
+        android:title="@string/notifications"/>
     <group android:checkableBehavior="single">
-        <!--<item-->
-            <!--android:id="@+id/nav_notifications"-->
-            <!--android:icon="@drawable/ic_menu_notifications"-->
-            <!--android:title="@string/notifications"-->
-            <!--android:visible="false"/>-->
         <item
             android:id="@+id/nav_news"
             android:icon="@drawable/ic_menu_news"

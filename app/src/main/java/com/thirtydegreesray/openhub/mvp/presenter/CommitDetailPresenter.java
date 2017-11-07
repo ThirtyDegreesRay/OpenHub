@@ -19,13 +19,17 @@ package com.thirtydegreesray.openhub.mvp.presenter;
 import android.os.Handler;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
+import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.ICommitDetailContract;
+import com.thirtydegreesray.openhub.mvp.model.GitHubName;
 import com.thirtydegreesray.openhub.mvp.model.RepoCommit;
 import com.thirtydegreesray.openhub.mvp.model.RepoCommitExt;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
+import com.thirtydegreesray.openhub.util.GitHubHelper;
+import com.thirtydegreesray.openhub.util.StringUtils;
 
 import javax.inject.Inject;
 
@@ -44,7 +48,9 @@ public class CommitDetailPresenter extends BasePresenter<ICommitDetailContract.V
     @AutoAccess RepoCommit commit;
     @AutoAccess String commitSha;
     @AutoAccess String userAvatarUrl;
+    @AutoAccess String commitUrl;
     private RepoCommitExt commitExt;
+
 
     @Inject
     public CommitDetailPresenter(DaoSession daoSession) {
@@ -54,6 +60,10 @@ public class CommitDetailPresenter extends BasePresenter<ICommitDetailContract.V
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
+        if(!StringUtils.isBlank(commitUrl)){
+            if(getInfoFromCommitUrl()) loadCommitInfo();
+            return;
+        }
         if(commit != null) {
             mView.showCommit(commit);
             commitSha = commit.getSha();
@@ -97,4 +107,19 @@ public class CommitDetailPresenter extends BasePresenter<ICommitDetailContract.V
     public RepoCommit getCommit() {
         return commit == null ? commitExt : commit;
     }
+
+    //https://api.github.com/repos/ThirtyDegreesRay/OpenHub/commits/c4dbb2eade18b510378e46c7281822fc88517105",
+    private boolean getInfoFromCommitUrl(){
+        commitUrl = commitUrl.replace("api.github.com/repos", "github.com");
+        GitHubName gitHubName = GitHubName.fromUrl(commitUrl);
+        if(!GitHubHelper.isCommitUrl(commitUrl) || gitHubName == null){
+            mView.showErrorToast(getString(R.string.invalid_url));
+            return false;
+        }
+        user = gitHubName.getUserName();
+        repo = gitHubName.getRepoName();
+        commitSha = gitHubName.getCommitShaName();
+        return true;
+    }
+
 }

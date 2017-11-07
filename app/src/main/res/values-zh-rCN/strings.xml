@@ -24,7 +24,7 @@
     <string name="user_name_warning">用户名不可用！</string>
     <string name="password_warning">密码不可用！</string>
     <string name="profile">主页</string>
-    <string name="notifications">提醒</string>
+    <string name="notifications">通知</string>
     <string name="news">动态</string>
     <string name="issues">问题</string>
     <string name="repositories">版本库</string>
@@ -68,7 +68,7 @@
     <string name="share_to">未安装邮件客户端</string>
     <string name="url_invalid">链接不可用</string>
     <string name="view_archive_file_error">文件不支持，请下载后查看。</string>
-    <string name="invalid_repo_url">版本库链接没有效</string>
+    <string name="invalid_repo_url">版本库链接无效</string>
     <string name="follow">跟随</string>
     <string name="followed">已跟随</string>
     <string name="unfollow">取消跟随</string>
@@ -88,7 +88,7 @@
     <string name="days_ago">天前</string>
     <string name="search">搜索</string>
     <string name="sort">分类</string>
-    <string name="logout_warning">确认要登出？</string>
+    <string name="logout_warning">确定要登出？</string>
     <string name="unknown">未知</string>
     <string name="organizations">组织</string>
     <string name="no_user">没有用户</string>
@@ -117,9 +117,10 @@
     <string name="watch" >关注</string>
     <string name="watched">已关注</string>
     <string name="watchers" >关注者</string>
-    <string name="fork" >添加到我的版本库</string>
-    <string name="fork_warning_msg">添加到我的版本库？</string>
-    <string name="forked">已添加到我的版本库</string>
+    <string name="fork" >创建版本库分支</string>
+    <string name="fork_tag" >分支</string>
+    <string name="fork_warning_msg">创建版本库分支？</string>
+    <string name="forked">已创建版本库分支</string>
     <string name="forks">版本库分支</string>
     <string name="forked_from">版本库分支从</string>
     <string name="gists">主题帖</string>
@@ -131,7 +132,7 @@
     <string name="publish_time">发布时间：</string>
     <string name="upgrade_info">升级信息：</string>
     <string name="no_upgrade_tip">你已经安装了最新版本</string>
-    <string name="fork_failed">添加到我的版本库失败</string>
+    <string name="fork_failed">创建版本库分支失败</string>
     <string name="no_browser_clients">未安装浏览器客户端</string>
     <string name="releases">已发布版本</string>
     <string name="download">下载</string>
@@ -169,7 +170,7 @@
     <string name="created">我创建的</string>
     <string name="assigned">分配给我的</string>
     <string name="mentioned">提到我的</string>
-    <string name="participating">参与的</string>
+    <string name="participating">参与</string>
     <string name="recently_created">最近创建的</string>
     <string name="previously_created">以前创建的</string>
     <string name="most_comments">评论最多的</string>
@@ -239,5 +240,7 @@
     <string name="no_download_clients">未安装下载客户端</string>
     <string name="invalid_url">无效链接</string>
     <string name="nothing_to_preview">无可预览内容</string>
+    <string name="unread">未读</string>
+    <string name="no_notifications_tip">没有新通知了</string>
 
 </resources>

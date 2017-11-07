@@ -54,6 +54,9 @@ public class GitHubHelper {
     private static final Pattern RELEASE_TAG_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR
             + "/([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.|_)*/releases/tag/([^/])*(/)?");
 
+    private static final Pattern COMMIT_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR
+            + "/([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.|_)*/commit(s)?/([a-z]|\\d)*(/)?");
+
     private static final Pattern GITHUB_URL_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR + "(.)*");
 
     public static boolean isImage(@Nullable String name) {
@@ -120,6 +123,10 @@ public class GitHubHelper {
 
     public static boolean isReleaseTagUrl(@NonNull String url){
         return RELEASE_TAG_PATTERN.matcher(url).matches();
+    }
+
+    public static boolean isCommitUrl(@NonNull String url){
+        return COMMIT_PATTERN.matcher(url).matches();
     }
 
     @Nullable
