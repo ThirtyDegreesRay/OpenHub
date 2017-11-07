@@ -264,4 +264,9 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         }
     }
 
+    @Override
+    protected void onToolbarDoubleClick() {
+        super.onToolbarDoubleClick();
+        if(issueTimelineFragment != null) issueTimelineFragment.scrollToTop();
+    }
 }

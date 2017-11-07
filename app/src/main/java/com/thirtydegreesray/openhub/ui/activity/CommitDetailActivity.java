@@ -227,4 +227,10 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
         }
     }
 
+    @Override
+    protected void onToolbarDoubleClick() {
+        super.onToolbarDoubleClick();
+        if(commitFilesFragment != null) commitFilesFragment.scrollToTop();
+    }
+
 }

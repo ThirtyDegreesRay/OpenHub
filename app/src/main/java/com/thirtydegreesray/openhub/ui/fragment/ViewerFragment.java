@@ -222,4 +222,10 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     public void onScrollChanged(boolean reachedTop, int scroll) {
 
     }
+
+    @Override
+    public void scrollToTop() {
+        super.scrollToTop();
+        webView.scrollTo(0, 0);
+    }
 }

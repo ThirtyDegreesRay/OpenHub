@@ -18,6 +18,7 @@ package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.widget.NestedScrollView;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
@@ -65,6 +66,7 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         return fragment;
     }
 
+    @BindView(R.id.scroll_view) NestedScrollView nestedScrollView;
     @BindView(R.id.repo_title_text) TextView repoTitleText;
     @BindView(R.id.fork_info_text) TextView forkInfoText;
 //    @BindView(R.id.repo_desc_text) TextView repoDescText;
@@ -256,4 +258,9 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         }
     }
 
+    @Override
+    public void scrollToTop() {
+        super.scrollToTop();
+        nestedScrollView.scrollTo(0, 0);
+    }
 }
