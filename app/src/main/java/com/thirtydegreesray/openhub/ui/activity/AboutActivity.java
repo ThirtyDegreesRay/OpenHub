@@ -61,7 +61,9 @@ public class AboutActivity extends MaterialAboutActivity {
         buildApp(appBuilder, context);
         MaterialAboutCard.Builder authorBuilder = new MaterialAboutCard.Builder();
         buildAuthor(authorBuilder, context);
-        return new MaterialAboutList(appBuilder.build(), authorBuilder.build());
+        MaterialAboutCard.Builder shareBuilder = new MaterialAboutCard.Builder();
+        buildShare(shareBuilder, context);
+        return new MaterialAboutList(appBuilder.build(), authorBuilder.build(), shareBuilder.build());
     }
 
     @Nullable
@@ -95,16 +97,6 @@ public class AboutActivity extends MaterialAboutActivity {
                     @Override
                     public void onClick() {
                         RepositoryActivity.show(context, getString(R.string.author_login_id), getString(R.string.app_name));
-                    }
-                })
-                .build());
-        appBuilder.addItem(new MaterialAboutActionItem.Builder()
-                .text(R.string.rate_in_market)
-                .icon(R.drawable.ic_menu_star)
-                .setOnClickAction(new MaterialAboutItemOnClickAction() {
-                    @Override
-                    public void onClick() {
-                        AppOpener.openInMarket(context);
                     }
                 })
                 .build());
@@ -149,6 +141,41 @@ public class AboutActivity extends MaterialAboutActivity {
                     @Override
                     public void onClick() {
                         AppUtils.copyToClipboard(context, getString(R.string.auth_email_address));
+                    }
+                })
+                .build());
+    }
+
+    private void buildShare(MaterialAboutCard.Builder appBuilder, final Context context) {
+        appBuilder.title(R.string.feedback_and_share);
+        appBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .text(R.string.share_to_friends)
+                .icon(R.drawable.ic_share)
+                .setOnClickAction(new MaterialAboutItemOnClickAction() {
+                    @Override
+                    public void onClick() {
+                        AppOpener.shareText(AboutActivity.this, getString(R.string.cookapk_download_url));
+                    }
+                })
+                .build());
+        appBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .text(R.string.rate_in_market)
+                .icon(R.drawable.ic_menu_star)
+                .setOnClickAction(new MaterialAboutItemOnClickAction() {
+                    @Override
+                    public void onClick() {
+                        AppOpener.openInMarket(context);
+                    }
+                })
+                .build());
+        appBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .text(R.string.feedback)
+                .icon(R.drawable.ic_feedback)
+                .setOnClickAction(new MaterialAboutItemOnClickAction() {
+                    @Override
+                    public void onClick() {
+                        IssuesActivity.showForRepo(AboutActivity.this,
+                                getString(R.string.author_login_id), getString(R.string.app_name));
                     }
                 })
                 .build());
