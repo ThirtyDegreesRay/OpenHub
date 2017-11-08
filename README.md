@@ -88,6 +88,7 @@ An **open source** GitHub Android client app, faster and concise.
 * [material-dialogs](https://github.com/afollestad/material-dialogs) A beautiful, fluid, and customizable dialogs API.
 * [GitHub-Trending](https://github.com/thedillonb/GitHub-Trending) Scrapes GitHub's Trending Pages.
 * [OctoDroid](https://github.com/slapperwan/gh4a) This application provides access to GitHub and lets you stay connected with your network.
+* [FastHub](https://github.com/k0shk0sh/FastHub) FastHub the ultimate GitHub client for Android.
 
 ## License
     Copyright (C) 2017 ThirtyDegreesRay
