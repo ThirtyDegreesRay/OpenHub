@@ -36,7 +36,6 @@ import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.GlideApp;
-import com.thirtydegreesray.openhub.http.Downloader;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
 import com.thirtydegreesray.openhub.inject.module.ActivityModule;
@@ -55,6 +54,7 @@ import com.thirtydegreesray.openhub.ui.fragment.RepoInfoFragment;
 import com.thirtydegreesray.openhub.util.AppOpener;
 import com.thirtydegreesray.openhub.util.AppUtils;
 import com.thirtydegreesray.openhub.util.BundleHelper;
+import com.thirtydegreesray.openhub.util.StarWishesHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.ArrayList;
@@ -140,10 +140,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_star:
-                mPresenter.starRepo(!mPresenter.isStarred());
-                invalidateOptionsMenu();
-                showSuccessToast(mPresenter.isStarred() ?
-                        getString(R.string.starred) : getString(R.string.unstarred));
+                starRepo(!mPresenter.isStarred());
                 return true;
             case R.id.action_branch:
                 mPresenter.loadBranchesAndTags();
@@ -182,6 +179,13 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void starRepo(boolean star){
+        mPresenter.starRepo(star);
+        invalidateOptionsMenu();
+        showSuccessToast(mPresenter.isStarred() ?
+                getString(R.string.starred) : getString(R.string.unstarred));
     }
 
     @Override
@@ -244,6 +248,28 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
             }
         });
 
+    }
+
+    @Override
+    public void showStarWishes() {
+        new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.openhub_wishes)
+                .setMessage(R.string.star_wishes)
+                .setNegativeButton(R.string.next_time, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton(R.string.star, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        starRepo(true);
+                        showSuccessToast(getString(R.string.star_thanks));
+                    }
+                })
+                .show();
+        StarWishesHelper.addStarWishesTipTimes();
     }
 
     private void forkRepo(){

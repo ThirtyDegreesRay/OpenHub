@@ -126,7 +126,7 @@
     <string name="gists">主题帖</string>
     <string name="upgrade">升级</string>
     <string name="install">安装</string>
-    <string name="next_time">暂不更新</string>
+    <string name="next_time">下一次</string>
     <string name="upgrade_version">版本：</string>
     <string name="upgrade_apk_size">Apk大小：</string>
     <string name="publish_time">发布时间：</string>
@@ -245,5 +245,12 @@
     <string name="feedback_and_share">分享 &#038; 反馈</string>
     <string name="share_to_friends">分享OpenHub给你的朋友</string>
     <string name="feedback">反馈</string>
+
+    <string name="openhub_wishes">OpenHub的祝福</string>
+    <string name="star_wishes">
+        谢谢你使用OpenHub，OpenHub会努力成为更适合你的GitHub app。
+        \n\n如果你可以星标OpenHub来支持我们，那就太棒了！
+    </string>
+    <string name="star_thanks">谢谢你的支持！</string>
 
 </resources>

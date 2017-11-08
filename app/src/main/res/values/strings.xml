@@ -325,5 +325,11 @@
     <string name="cookapk_download_url" translatable="false">https://www.coolapk.com/apk/com.thirtydegreesray.openhub</string>
     <string name="feedback">Feedback</string>
 
+    <string name="openhub_wishes">OpenHub wishes</string>
+    <string name="star_wishes">
+        Thank you for using OpenHub, OpenHub will strive to become a more convenient GitHub app for you.
+        \n\nIf you can star OpenHub to support us, it would be awesome!
+    </string>
+    <string name="star_thanks">Thank you for your support!</string>
 
 </resources>

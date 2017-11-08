@@ -67,6 +67,9 @@ public class PrefUtils {
     public final static String POP_VERSION_TIME = "popVersionTime";
     public final static String LAST_POP_TIME = "lastPopTime";
 
+    public final static String STAR_WISHES_TIP_TIMES = "starWishesTipFlag";
+    public final static String LAST_STAR_WISHES_TIP_TIME = "lastStarWishesTipTime";
+
     public static SharedPreferences getDefaultSp(){
         return PreferenceManager.getDefaultSharedPreferences(AppApplication.get());
     }
@@ -132,6 +135,14 @@ public class PrefUtils {
 
     public static long getLastPopTime(){
         return getDefaultSp(AppApplication.get()).getLong(LAST_POP_TIME, 0);
+    }
+
+    public static int getStarWishesTipTimes(){
+        return getDefaultSp(AppApplication.get()).getInt(STAR_WISHES_TIP_TIMES, 0);
+    }
+
+    public static long getLastStarWishesTipTime(){
+        return getDefaultSp(AppApplication.get()).getLong(LAST_STAR_WISHES_TIP_TIME, 0);
     }
 
     public static SharedPreferences getDefaultSp(Context context){

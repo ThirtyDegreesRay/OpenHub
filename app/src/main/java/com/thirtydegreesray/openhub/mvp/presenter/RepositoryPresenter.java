@@ -28,6 +28,7 @@ import com.thirtydegreesray.openhub.mvp.model.Branch;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
+import com.thirtydegreesray.openhub.util.StarWishesHelper;
 
 import java.util.ArrayList;
 
@@ -218,6 +219,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
                     public void onChecked(boolean status) {
                         starred = status;
                         mView.invalidateOptionsMenu();
+                        starWishes();
                     }
                 }
         );
@@ -284,6 +286,21 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
 
     public String getRepoName() {
         return repository == null ? repoName : repository.getName();
+    }
+
+    private void starWishes(){
+        if(!starred && getString(R.string.author_login_id).equals(owner)
+                && getString(R.string.app_name).equals(repoName)
+                && StarWishesHelper.isStarWishesTipable()){
+            new android.os.Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(!starred && mView != null){
+                        mView.showStarWishes();
+                    }
+                }
+            }, 3000);
+        }
     }
 
 }

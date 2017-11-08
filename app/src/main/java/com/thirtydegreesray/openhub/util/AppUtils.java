@@ -21,12 +21,14 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -138,6 +140,18 @@ public class AppUtils {
     public static void hideKeyboard(@NonNull View view) {
         InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    @Nullable public static long getFirstInstallTime(){
+        long time = 0;
+        try {
+            PackageInfo packageInfo = AppApplication.get().getPackageManager()
+                    .getPackageInfo(AppApplication.get().getPackageName(), 0);
+            time = packageInfo.firstInstallTime;
+        } catch (PackageManager.NameNotFoundException e1) {
+            e1.printStackTrace();
+        }
+        return time;
     }
 
 }
