@@ -44,11 +44,17 @@ public interface RepoService {
             @Query("page") int page
     );
 
+    @NonNull @GET("user/repos")
+    Observable<retrofit2.Response<ArrayList<Repository>>> getUserRepos(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Query("page") int page
+    );
+
     /**
      * List user repositories
      */
     @NonNull @GET("users/{user}/repos")
-    Observable<retrofit2.Response<ArrayList<Repository>>> getUserRepos(
+    Observable<retrofit2.Response<ArrayList<Repository>>> getUserPublicRepos(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("user") @NonNull String user,
             @Query("page") int page

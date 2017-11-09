@@ -30,6 +30,7 @@ import com.thirtydegreesray.openhub.http.core.HttpSubscriber;
 import com.thirtydegreesray.openhub.ui.widget.UpgradeDialog;
 import com.thirtydegreesray.openhub.util.AppOpener;
 import com.thirtydegreesray.openhub.util.AppUtils;
+import com.thirtydegreesray.openhub.util.NetHelper;
 import com.thirtydegreesray.openhub.util.StarWishesHelper;
 import com.thirtydegreesray.openhub.util.ThemeHelper;
 
@@ -194,13 +195,17 @@ public class AboutActivity extends MaterialAboutActivity {
         super.onDestroy();
     }
 
+    private boolean isStarWishesTipable(){
+        return isAlive && StarWishesHelper.isStarWishesTipable()
+                && NetHelper.INSTANCE.getNetEnabled();
+    }
+
     private void checkStarWishes(){
+        if(!isStarWishesTipable()) return;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(isAlive && StarWishesHelper.isStarWishesTipable()){
-                    checkStar();
-                }
+                if(isStarWishesTipable()) checkStar();
             }
         }, 3000);
     }
@@ -247,6 +252,7 @@ public class AboutActivity extends MaterialAboutActivity {
                         Toasty.success(AboutActivity.this, getString(R.string.star_thanks)).show();
                     }
                 })
+                .setCancelable(false)
                 .show();
         StarWishesHelper.addStarWishesTipTimes();
     }

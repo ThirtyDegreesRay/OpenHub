@@ -254,6 +254,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                         showSuccessToast(getString(R.string.star_thanks));
                     }
                 })
+                .setCancelable(false)
                 .show();
         StarWishesHelper.addStarWishesTipTimes();
     }

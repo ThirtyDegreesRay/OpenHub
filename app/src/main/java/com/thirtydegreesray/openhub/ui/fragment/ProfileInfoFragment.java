@@ -107,7 +107,7 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
                 break;
             case R.id.repos_lay:
                 if(mPresenter.getUser().getPublicRepos() == 0) return;
-                RepoListActivity.show(getContext(), RepositoriesFragment.RepositoriesType.OWNED,
+                RepoListActivity.show(getContext(), RepositoriesFragment.RepositoriesType.PUBLIC,
                         mPresenter.getUser().getLogin());
                 break;
             case R.id.gists_lay:

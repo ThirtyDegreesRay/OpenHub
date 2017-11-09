@@ -35,7 +35,7 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
             implements IRepositoriesContract.View{
 
     public enum RepositoriesType{
-        OWNED, STARRED, TRENDING, SEARCH, FORKS
+        OWNED, PUBLIC, STARRED, TRENDING, SEARCH, FORKS
     }
 
     public static RepositoriesFragment create(@NonNull RepositoriesType type,

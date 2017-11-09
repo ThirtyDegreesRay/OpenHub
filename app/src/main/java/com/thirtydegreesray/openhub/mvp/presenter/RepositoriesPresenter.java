@@ -119,7 +119,9 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
     private Observable<Response<ArrayList<Repository>>> getObservable(boolean forceNetWork, int page) {
         switch (type) {
             case OWNED:
-                return getRepoService().getUserRepos(forceNetWork, user, page);
+                return getRepoService().getUserRepos(forceNetWork, page);
+            case PUBLIC:
+                return getRepoService().getUserPublicRepos(forceNetWork, user, page);
             case STARRED:
                 return getRepoService().getStarredRepos(forceNetWork, user, page);
             case TRENDING:

@@ -61,7 +61,7 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
     }
 
     private String getListTitle(){
-        if(type.equals(RepositoriesFragment.RepositoriesType.OWNED)){
+        if(type.equals(RepositoriesFragment.RepositoriesType.PUBLIC)){
             return getString(R.string.public_repositories);
         }else if(type.equals(RepositoriesFragment.RepositoriesType.STARRED)){
             return getString(R.string.starred_repositories);
