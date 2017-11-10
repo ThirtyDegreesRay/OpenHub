@@ -15,6 +15,7 @@ import com.thirtydegreesray.openhub.mvp.contract.IRepositoriesContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.SearchResult;
+import com.thirtydegreesray.openhub.mvp.model.filter.RepositoriesFilter;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePagerPresenter;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
@@ -46,6 +47,8 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
     @AutoAccess SearchModel searchModel;
     @AutoAccess String since;
 
+    @AutoAccess RepositoriesFilter filter;
+
     @Inject
     public RepositoriesPresenter(DaoSession daoSession) {
         super(daoSession);
@@ -75,6 +78,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
 
     @Override
     public void loadRepositories(final boolean isReLoad, final int page) {
+        filter = getFilter();
         if (type.equals(RepositoriesFragment.RepositoriesType.SEARCH)) {
             searchRepos(page);
             return;
@@ -93,7 +97,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
             @Override
             public void onSuccess(@NonNull HttpResponse<ArrayList<Repository>> response) {
                 mView.hideLoading();
-                if (isReLoad || readCacheFirst || repos == null) {
+                if (isReLoad || readCacheFirst || repos == null || page == 1) {
                     repos = response.body();
                 } else {
                     repos.addAll(response.body());
@@ -116,14 +120,23 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
 
     }
 
+    @Override
+    public void loadRepositories(RepositoriesFilter filter) {
+        this.filter = filter;
+        loadRepositories(false, 1);
+    }
+
     private Observable<Response<ArrayList<Repository>>> getObservable(boolean forceNetWork, int page) {
         switch (type) {
             case OWNED:
-                return getRepoService().getUserRepos(forceNetWork, page);
+                return getRepoService().getUserRepos(forceNetWork, page, filter.getType(),
+                        filter.getSort(), filter.getSortDirection());
             case PUBLIC:
-                return getRepoService().getUserPublicRepos(forceNetWork, user, page);
+                return getRepoService().getUserPublicRepos(forceNetWork, user, page,
+                        filter.getType(), filter.getSort(), filter.getSortDirection());
             case STARRED:
-                return getRepoService().getStarredRepos(forceNetWork, user, page);
+                return getRepoService().getStarredRepos(forceNetWork, user, page,
+                        filter.getSort(), filter.getSortDirection());
             case TRENDING:
                 return getOpenHubService().getTrendingRepos(since);
             case FORKS:
@@ -195,4 +208,11 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         return type;
     }
 
+    public RepositoriesFilter getFilter() {
+        if(filter == null){
+            filter = RepositoriesFragment.RepositoriesType.STARRED.equals(type) ?
+                    RepositoriesFilter.DEFAULT_STARRED_REPO : RepositoriesFilter.DEFAULT;
+        }
+        return filter;
+    }
 }

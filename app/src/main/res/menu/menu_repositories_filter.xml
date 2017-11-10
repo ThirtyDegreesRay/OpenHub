@@ -11,27 +11,37 @@
                     android:title="@string/all"
                     android:checked="true"/>
                 <item
-                    android:id="@+id/nav_created"
-                    android:title="@string/created"/>
+                    android:id="@+id/nav_owner"
+                    android:title="@string/owner_repo"/>
                 <item
-                    android:id="@+id/nav_assigned"
-                    android:title="@string/assigned"/>
+                    android:id="@+id/nav_public"
+                    android:title="@string/public_repo"/>
                 <item
-                    android:id="@+id/nav_mentioned"
-                    android:title="@string/mentioned"/>
+                    android:id="@+id/nav_private"
+                    android:title="@string/private_repo"/>
+                <item
+                    android:id="@+id/nav_member"
+                    android:title="@string/member_repo"/>
             </group>
         </menu>
     </item>
 
+    <!--created, updated, pushed, full_name.-->
     <item
         android:id="@+id/nav_sort"
         android:title="@string/sort_order">
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/nav_recently_created"
-                    android:title="@string/recently_created"
+                    android:id="@+id/nav_full_name_asc"
+                    android:title="@string/full_name_asc"
                     android:checked="true"/>
+                <item
+                    android:id="@+id/nav_full_name_desc"
+                    android:title="@string/full_name_desc"/>
+                <item
+                    android:id="@+id/nav_recently_created"
+                    android:title="@string/recently_created"/>
                 <item
                     android:id="@+id/nav_previously_created"
                     android:title="@string/previously_created"/>
@@ -42,11 +52,11 @@
                     android:id="@+id/nav_least_recently_updated"
                     android:title="@string/least_recently_updated"/>
                 <item
-                    android:id="@+id/nav_most_comments"
-                    android:title="@string/most_comments"/>
+                    android:id="@+id/nav_most_pushed"
+                    android:title="@string/most_pushed"/>
                 <item
-                    android:id="@+id/nav_fewest_comments"
-                    android:title="@string/fewest_comments"/>
+                    android:id="@+id/nav_fewest_pushed"
+                    android:title="@string/fewest_pushed"/>
             </group>
         </menu>
     </item>

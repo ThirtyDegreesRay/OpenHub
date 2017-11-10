@@ -6,12 +6,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
+import com.thirtydegreesray.openhub.mvp.model.filter.RepositoriesFilter;
 import com.thirtydegreesray.openhub.ui.activity.base.SingleFragmentActivity;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
+import com.thirtydegreesray.openhub.ui.fragment.base.OnDrawerSelectedListener;
 import com.thirtydegreesray.openhub.util.BundleHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
@@ -44,12 +48,58 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
     @AutoAccess String user;
     @AutoAccess String repo;
 
+    private OnDrawerSelectedListener listener;
+
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_single_fragment_with_drawer;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected RepositoriesFragment getFragment() {
+        return super.getFragment();
+    }
+
+    @Override
+    protected void onNavItemSelected(@NonNull MenuItem item, boolean isStartDrawer) {
+        super.onNavItemSelected(item, isStartDrawer);
+        listener.onDrawerSelected(navViewEnd, item);
+    }
+
+    @Override
+    protected boolean isEndDrawerMultiSelect() {
+        return true;
+    }
+
+    @Override
+    protected int getEndDrawerToggleMenuItemId() {
+        return R.id.nav_sort;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if(isFilterEnable()) getMenuInflater().inflate(R.menu.menu_sort, menu);
+        return true;
+    }
+
+    @Override
+    protected void initActivity() {
+        super.initActivity();
+        setEndDrawerEnable(isFilterEnable());
+    }
+
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         String title = getListTitle();
         String subTitle = StringUtils.isBlank(repo) ? user : user.concat("/").concat(repo);
         setToolbarTitle(title, subTitle);
+        intiFilter();
     }
 
     @Override
@@ -57,6 +107,7 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
         RepositoriesFragment fragment = RepositoriesFragment.RepositoriesType.FORKS.equals(type) ?
                 RepositoriesFragment.createForForks(user, repo) :
                 RepositoriesFragment.create(type, user);
+        listener = fragment;
         return fragment;
     }
 
@@ -70,4 +121,17 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
         }
         return getString(R.string.repositories);
     }
+
+    private boolean isFilterEnable(){
+        return RepositoriesFragment.RepositoriesType.OWNED.equals(type) ||
+                RepositoriesFragment.RepositoriesType.PUBLIC.equals(type);
+    }
+
+    private void intiFilter(){
+        if(isFilterEnable()){
+            updateEndDrawerContent(R.menu.menu_repositories_filter);
+            RepositoriesFilter.initDrawer(navViewEnd, type);
+        }
+    }
+
 }

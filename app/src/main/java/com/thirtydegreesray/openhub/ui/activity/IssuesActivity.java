@@ -20,7 +20,7 @@ import com.thirtydegreesray.openhub.mvp.model.Issue;
 import com.thirtydegreesray.openhub.mvp.model.filter.IssuesFilter;
 import com.thirtydegreesray.openhub.mvp.model.filter.SortDirection;
 import com.thirtydegreesray.openhub.mvp.presenter.IssuesActPresenter;
-import com.thirtydegreesray.openhub.ui.activity.base.PagerWithDrawerActivity;
+import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.ui.fragment.IssuesFragment;
 import com.thirtydegreesray.openhub.util.BundleHelper;
@@ -35,7 +35,7 @@ import butterknife.OnClick;
  * Created by ThirtyDegreesRay on 2017/9/20 14:42:31
  */
 
-public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> {
+public class IssuesActivity extends PagerActivity<IssuesActPresenter> {
 
     public static void showForRepo(@NonNull Activity activity, @NonNull String userId,
                                    @NonNull String repoName){
@@ -66,6 +66,7 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
     @Override
     protected void initActivity() {
         super.initActivity();
+        setEndDrawerEnable(true);
     }
 
     @Override
@@ -86,6 +87,7 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        updateEndDrawerContent(R.menu.menu_issues);
         setToolbarScrollAble(true);
         setToolbarBackEnable();
         if(IssuesFilter.Type.Repo.equals(issuesType)){
@@ -101,7 +103,7 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
         } else {
             pagerAdapter.setPagerList(FragmentPagerModel
                     .createRepoIssuesPagerList(getActivity(), userId, repoName, getFragments()));
-            navView.getMenu().findItem(R.id.nav_type_chooser).setVisible(false);
+            navViewEnd.getMenu().findItem(R.id.nav_type_chooser).setVisible(false);
         }
         listeners = new ArrayList<>();
         for(FragmentPagerModel pagerModel : pagerAdapter.getPagerList()){
@@ -114,25 +116,19 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
     }
 
     @Override
-    protected int getDrawerMenuId() {
-        return R.menu.menu_issues;
+    protected boolean isEndDrawerMultiSelect() {
+        return true;
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        ViewUtils.selectMenuItem(navView.getMenu(), item.getItemId(), true);
-        return super.onNavigationItemSelected(item);
+    protected int getEndDrawerToggleMenuItemId() {
+        return R.id.nav_sort;
     }
 
     @Override
-    protected void onNavItemSelected(@NonNull MenuItem item) {
+    protected void onNavItemSelected(@NonNull MenuItem item, boolean isStartDrawer) {
         listeners.get(0).onIssuesFilterChanged(getIssuesFilter(true));
         listeners.get(1).onIssuesFilterChanged(getIssuesFilter(false));
-    }
-
-    @Override
-    protected boolean isMultiGroup() {
-        return true;
     }
 
     @Override
@@ -151,14 +147,14 @@ public class IssuesActivity extends PagerWithDrawerActivity<IssuesActPresenter> 
                 : Issue.IssueState.closed);
         if(IssuesFilter.Type.User.equals(issuesType)){
             MenuItem selectedUserFilterMenu = ViewUtils.getSelectedMenu(
-                    navView.getMenu().findItem(R.id.nav_type_chooser));
+                    navViewEnd.getMenu().findItem(R.id.nav_type_chooser));
             if(selectedUserFilterMenu != null) {
                 IssuesFilter.UserIssuesFilterType userFilterType =
                         getUserIssuesFilterType(selectedUserFilterMenu.getItemId());
                 issuesFilter.setUserIssuesFilterType(userFilterType);
             }
         }
-        MenuItem sortMenu = ViewUtils.getSelectedMenu(navView.getMenu().findItem(R.id.nav_sort));
+        MenuItem sortMenu = ViewUtils.getSelectedMenu(navViewEnd.getMenu().findItem(R.id.nav_sort));
         IssuesFilter.SortType sortType = IssuesFilter.SortType.Created;
         SortDirection sortDirection = SortDirection.Desc ;
         if(sortMenu != null) {

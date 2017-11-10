@@ -16,7 +16,7 @@ import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
  */
 
 public abstract class SingleFragmentActivity<P extends IBaseContract.Presenter, F extends Fragment>
-        extends BaseActivity<P> implements IBaseContract.View{
+        extends BaseDrawerActivity<P> implements IBaseContract.View{
 
     private F mFragment;
     private final String FRAGMENT_TAG = "mFragment";

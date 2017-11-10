@@ -6,6 +6,7 @@ import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseListContract;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBasePagerContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
+import com.thirtydegreesray.openhub.mvp.model.filter.RepositoriesFilter;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,7 @@ public interface IRepositoriesContract {
 
     interface Presenter extends IBasePagerContract.Presenter<IRepositoriesContract.View> {
         void loadRepositories(boolean isReLoad, int page);
+        void loadRepositories(RepositoriesFilter filter);
     }
 
 }

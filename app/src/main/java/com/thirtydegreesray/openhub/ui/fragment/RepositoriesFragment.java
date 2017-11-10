@@ -5,6 +5,7 @@ package com.thirtydegreesray.openhub.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,10 +18,12 @@ import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IRepositoriesContract;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
+import com.thirtydegreesray.openhub.mvp.model.filter.RepositoriesFilter;
 import com.thirtydegreesray.openhub.mvp.presenter.RepositoriesPresenter;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.adapter.RepositoriesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
+import com.thirtydegreesray.openhub.ui.fragment.base.OnDrawerSelectedListener;
 import com.thirtydegreesray.openhub.util.BundleHelper;
 
 import java.util.ArrayList;
@@ -32,7 +35,7 @@ import java.util.ArrayList;
  */
 
 public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, RepositoriesAdapter>
-            implements IRepositoriesContract.View{
+            implements IRepositoriesContract.View, OnDrawerSelectedListener{
 
     public enum RepositoriesType{
         OWNED, PUBLIC, STARRED, TRENDING, SEARCH, FORKS
@@ -158,6 +161,12 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     public void onFragmentShowed() {
         super.onFragmentShowed();
         if(mPresenter != null) mPresenter.prepareLoadData();
+    }
+
+    @Override
+    public void onDrawerSelected(@NonNull NavigationView navView, @NonNull MenuItem item) {
+        RepositoriesFilter filter = RepositoriesFilter.generateFromDrawer(navView);
+        mPresenter.loadRepositories(filter);
     }
 
 }

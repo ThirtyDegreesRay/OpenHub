@@ -41,13 +41,18 @@ public interface RepoService {
     Observable<Response<ArrayList<Repository>>> getStarredRepos(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("user") @NonNull String user,
-            @Query("page") int page
+            @Query("page") int page,
+            @Query("sort") String sort,
+            @Query("direction") String direction
     );
 
     @NonNull @GET("user/repos")
     Observable<retrofit2.Response<ArrayList<Repository>>> getUserRepos(
             @Header("forceNetWork") boolean forceNetWork,
-            @Query("page") int page
+            @Query("page") int page,
+            @Query("type") String type,
+            @Query("sort") String sort,
+            @Query("direction") String direction
     );
 
     /**
@@ -57,7 +62,10 @@ public interface RepoService {
     Observable<retrofit2.Response<ArrayList<Repository>>> getUserPublicRepos(
             @Header("forceNetWork") boolean forceNetWork,
             @Path("user") @NonNull String user,
-            @Query("page") int page
+            @Query("page") int page,
+            @Query("type") String type,
+            @Query("sort") String sort,
+            @Query("direction") String direction
     );
 
     /**

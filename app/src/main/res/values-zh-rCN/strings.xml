@@ -73,7 +73,7 @@
     <string name="hours_ago">小时前</string>
     <string name="days_ago">天前</string>
     <string name="search">搜索</string>
-    <string name="sort">分类</string>
+    <string name="sort">排序</string>
     <string name="logout_warning">确定要登出？</string>
     <string name="unknown">未知</string>
     <string name="organizations">组织</string>
@@ -238,5 +238,16 @@
         \n\n如果你可以星标OpenHub来支持我们，那就太棒了！
     </string>
     <string name="star_thanks">谢谢你的支持！</string>
+    <string name="owner_repo">自己的</string>
+    <string name="public_repo">公开的</string>
+    <string name="private_repo">私有的</string>
+    <string name="member_repo">会员</string>
+    <string name="most_pushed">最多提交的</string>
+    <string name="fewest_pushed">最少提交的</string>
+    <string name="full_name_asc">名称升序</string>
+    <string name="full_name_desc">名称降序</string>
+    <string name="sort_order">排序</string>
+    <string name="recently_starred">最近星标的</string>
+    <string name="previously_starred">以前星标的</string>
 
 </resources>

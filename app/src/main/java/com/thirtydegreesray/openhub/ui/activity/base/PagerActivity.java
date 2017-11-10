@@ -27,7 +27,7 @@ import butterknife.BindView;
  * Created by ThirtyDegreesRay on 2017/8/14 17:51:00
  */
 
-public abstract class PagerActivity<P extends BasePresenter> extends BaseActivity<P>
+public abstract class PagerActivity<P extends BasePresenter> extends BaseDrawerActivity<P>
         implements IBaseContract.View,
         ViewPager.OnPageChangeListener,
         TabLayout.OnTabSelectedListener{

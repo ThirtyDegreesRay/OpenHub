@@ -150,6 +150,7 @@
 
     <string name="search">Search</string>
     <string name="sort">Sort</string>
+    <string name="sort_order">Sort order</string>
 
     <string name="best_match">Best match</string>
     <string name="most_stars">Most stars</string>
@@ -317,5 +318,16 @@
         \n\nIf you can star OpenHub to support us, it would be awesome!
     </string>
     <string name="star_thanks">Thank you for your support!</string>
+
+    <string name="owner_repo">Owner</string>
+    <string name="public_repo">Public</string>
+    <string name="private_repo">Private</string>
+    <string name="member_repo">Member</string>
+    <string name="most_pushed">Most pushed</string>
+    <string name="fewest_pushed">Fewest pushed</string>
+    <string name="full_name_asc">Full name asc</string>
+    <string name="full_name_desc">Full name desc</string>
+    <string name="recently_starred">Recently starred</string>
+    <string name="previously_starred">Previously starred</string>
 
 </resources>

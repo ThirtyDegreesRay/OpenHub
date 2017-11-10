@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
@@ -107,8 +108,10 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
                 break;
             case R.id.repos_lay:
                 if(mPresenter.getUser().getPublicRepos() == 0) return;
-                RepoListActivity.show(getContext(), RepositoriesFragment.RepositoriesType.PUBLIC,
-                        mPresenter.getUser().getLogin());
+                RepositoriesFragment.RepositoriesType type =
+                        AppData.INSTANCE.getLoggedUser().getLogin().equals(mPresenter.getUser().getLogin()) ?
+                        RepositoriesFragment.RepositoriesType.OWNED : RepositoriesFragment.RepositoriesType.PUBLIC;
+                RepoListActivity.show(getContext(), type, mPresenter.getUser().getLogin());
                 break;
             case R.id.gists_lay:
 //                if(mPresenter.getUser().getPublicGists() == 0) return;

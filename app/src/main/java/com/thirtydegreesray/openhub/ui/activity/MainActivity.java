@@ -4,15 +4,10 @@ package com.thirtydegreesray.openhub.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,8 +26,9 @@ import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
 import com.thirtydegreesray.openhub.inject.module.ActivityModule;
 import com.thirtydegreesray.openhub.mvp.contract.IMainContract;
 import com.thirtydegreesray.openhub.mvp.model.User;
+import com.thirtydegreesray.openhub.mvp.model.filter.RepositoriesFilter;
 import com.thirtydegreesray.openhub.mvp.presenter.MainPresenter;
-import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
+import com.thirtydegreesray.openhub.ui.activity.base.BaseDrawerActivity;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
@@ -43,14 +39,12 @@ import java.util.Map;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity<MainPresenter>
-        implements NavigationView.OnNavigationItemSelectedListener, IMainContract.View {
+public class MainActivity extends BaseDrawerActivity<MainPresenter>
+        implements IMainContract.View {
 
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.tab_layout) TabLayout tabLayout;
     @BindView(R.id.frame_layout_content) FrameLayout frameLayoutContent;
-    @BindView(R.id.nav_view) NavigationView navView;
-    @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
 
     private final Map<Integer, String> TAG_MAP = new HashMap<>();
 
@@ -82,6 +76,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
         if (AppData.INSTANCE.getLoggedUser() != null)
             CrashReport.putUserData(getApplicationContext(),
                     "GitHubId", AppData.INSTANCE.getLoggedUser().getLogin());
+
+        setStartDrawerEnable(true);
+        setEndDrawerEnable(true);
     }
 
     /**
@@ -103,19 +100,16 @@ public class MainActivity extends BaseActivity<MainPresenter>
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.setDrawerListener(toggle);
-        toggle.syncState();
-        navView.setNavigationItemSelectedListener(this);
-
-        navView.setCheckedItem(selectedPage);
+        updateStartDrawerContent(R.menu.activity_main_drawer);
+        removeEndDrawer();
+        navViewStart.setCheckedItem(selectedPage);
         updateTitle(selectedPage);
         loadFragment(selectedPage);
+        updateFilter(selectedPage);
 
-        ImageView avatar = (ImageView) navView.getHeaderView(0).findViewById(R.id.avatar);
-        TextView name = (TextView) navView.getHeaderView(0).findViewById(R.id.name);
-        TextView mail = (TextView) navView.getHeaderView(0).findViewById(R.id.mail);
+        ImageView avatar =  navViewStart.getHeaderView(0).findViewById(R.id.avatar);
+        TextView name =  navViewStart.getHeaderView(0).findViewById(R.id.name);
+        TextView mail =  navViewStart.getHeaderView(0).findViewById(R.id.mail);
 
         User loginUser = AppData.INSTANCE.getLoggedUser();
         GlideApp.with(getActivity())
@@ -131,45 +125,30 @@ public class MainActivity extends BaseActivity<MainPresenter>
     }
 
     @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-//        if (item.getItemId() == R.id.action_search) {
-//            SearchActivity.showForRepo(getActivity());
-//            return true;
-//        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(final MenuItem item) {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                onNavItemSelected(item);
-            }
-        }, 250);
+        getMenuInflater().inflate(R.menu.menu_sort, menu);
+        MenuItem menuItem = menu.findItem(R.id.nav_sort);
+        menuItem.setVisible(selectedPage == R.id.nav_owned || selectedPage == R.id.nav_starred);
         return true;
     }
 
-    private void onNavItemSelected(MenuItem item) {
+    @Override
+    protected boolean isEndDrawerMultiSelect() {
+        return true;
+    }
+
+    @Override
+    protected int getEndDrawerToggleMenuItemId() {
+        return R.id.nav_sort;
+    }
+
+    protected void onNavItemSelected(@NonNull MenuItem item, boolean isStartDrawer) {
+        super.onNavItemSelected(item, isStartDrawer);
+        if(!isStartDrawer){
+            handlerEndDrawerClick(item);
+            return;
+        }
+
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_profile:
@@ -187,6 +166,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
             case R.id.nav_starred:
                 updateTitle(id);
                 loadFragment(id);
+                updateFilter(id);
                 break;
             case R.id.nav_trending:
                 TrendingActivity.show(getActivity());
@@ -203,6 +183,19 @@ public class MainActivity extends BaseActivity<MainPresenter>
             default:
                 break;
         }
+    }
+
+    private void updateFilter(int itemId){
+        if(itemId == R.id.nav_owned){
+            updateEndDrawerContent(R.menu.menu_repositories_filter);
+            RepositoriesFilter.initDrawer(navViewEnd, RepositoriesFragment.RepositoriesType.OWNED);
+        }else if(itemId == R.id.nav_starred){
+            updateEndDrawerContent(R.menu.menu_repositories_filter);
+            RepositoriesFilter.initDrawer(navViewEnd, RepositoriesFragment.RepositoriesType.STARRED);
+        }else {
+            removeEndDrawer();
+        }
+        invalidateOptionsMenu();
     }
 
     private void updateTitle(int itemId) {
@@ -307,4 +300,13 @@ public class MainActivity extends BaseActivity<MainPresenter>
             ((BaseFragment)fragment).scrollToTop();
         }
     }
+
+    private void handlerEndDrawerClick(MenuItem item){
+        Fragment fragment = getVisibleFragment();
+        if(fragment!= null && fragment instanceof RepositoriesFragment
+            &&(selectedPage == R.id.nav_owned || selectedPage == R.id.nav_starred)){
+            ((RepositoriesFragment)fragment).onDrawerSelected(navViewEnd, item);
+        }
+    }
+
 }
