@@ -8,10 +8,6 @@ package com.thirtydegreesray.openhub.util;
 
 public class StarWishesHelper {
 
-    private final static int STAR_WISHES_TIP_MAX_TIMES = 3;
-
-    private final static long TIP_START_TIME = 10 * 24 * 60 * 60 * 1000;
-
     private final static long TIP_INTERVAL = 10 * 24 * 60 * 60 * 1000;
 
     public static boolean isStarWishesTipable(){
@@ -19,12 +15,11 @@ public class StarWishesHelper {
         int tipTimes = PrefUtils.getStarWishesTipTimes();
         long curTime = System.currentTimeMillis();
         long firstInstallTime = AppUtils.getFirstInstallTime();
-        if(curTime - firstInstallTime > TIP_START_TIME
-                && tipTimes < STAR_WISHES_TIP_MAX_TIMES
-                && curTime - lastTipTime > TIP_INTERVAL){
-            return true;
-        }
-        return false;
+        long preTime = Math.max(lastTipTime, firstInstallTime);
+        //1, 2, 9, 64, 625...
+        double intervalTimes = Math.pow(tipTimes + 1, tipTimes);
+
+        return curTime - preTime > TIP_INTERVAL * intervalTimes;
     }
 
     public static void addStarWishesTipTimes(){
@@ -32,6 +27,15 @@ public class StarWishesHelper {
         times++;
         PrefUtils.set(PrefUtils.STAR_WISHES_TIP_TIMES, times);
         PrefUtils.set(PrefUtils.LAST_STAR_WISHES_TIP_TIME, System.currentTimeMillis());
+    }
+
+    public static int getInstalledDays(){
+        long installTime = AppUtils.getFirstInstallTime();
+        long subTime = System.currentTimeMillis() - installTime;
+        int dayTime = 24 * 60 * 60 * 1000;
+        int dayNum = (int) (subTime / dayTime);
+        dayNum = subTime % dayTime == 0 ? dayNum : dayNum + 1 ;
+        return dayNum;
     }
 
 }

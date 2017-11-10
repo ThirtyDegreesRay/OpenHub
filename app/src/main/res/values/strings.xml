@@ -183,7 +183,7 @@
     <string name="developing">Developing</string>
     <string name="version" >Version</string>
     <string name="source_code" >Source code</string>
-    <string name="source_code_wishes" >Star OpenHub to support us</string>
+    <string name="source_code_wishes" >Star to support me</string>
     <string name="rate_in_market" >Rate or comment in market</string>
     <string name="author" >Author</string>
     <string name="author_name" translatable="false">Rays Yu</string>
@@ -308,16 +308,19 @@
     <string name="unread">Unread</string>
     <string name="no_notifications_tip">No new notifications.</string>
     <string name="feedback_and_share">Share &#038; Feedback</string>
-    <string name="share_to_friends">Share OpenHub to your friends</string>
+    <string name="share_to_friends">Share to your friends</string>
     <string name="cookapk_download_url" translatable="false">https://www.coolapk.com/apk/com.thirtydegreesray.openhub</string>
     <string name="feedback">Feedback</string>
 
-    <string name="openhub_wishes">OpenHub wishes</string>
+    <string name="openhub_wishes">Wishes From OpenHub</string>
     <string name="star_wishes">
-        Thank you for using OpenHub, OpenHub will strive to become a more convenient GitHub app for you.
-        \n\nIf you can star OpenHub to support us, it would be awesome!
+        Hi %s, today is your %dth day at OpenHub,
+        thanks for your using, I will strive to become a more convenient GitHub app for you.
+        \n\nIf you can star to support me, it would be awesome!
     </string>
     <string name="star_thanks">Thank you for your support!</string>
+    <string name="star_me">Star me</string>
+    <string name="star_next_time">Keep moving</string>
 
     <string name="owner_repo">Owner</string>
     <string name="public_repo">Public</string>

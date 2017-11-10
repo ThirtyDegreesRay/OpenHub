@@ -199,7 +199,7 @@
     <string name="unauthorized">未授权。</string>
     <string name="open_in_market">在应用市场中打开</string>
     <string name="rate_in_market">在应用市场中评分或评论</string>
-    <string name="source_code_wishes">星标OpenHub来支持</string>
+    <string name="source_code_wishes">星标来支持我</string>
     <string name="no_market_clients">未安装应用市场客户端</string>
     <string name="create_issue">创建问题</string>
     <string name="create_issue_success">创建问题成功</string>
@@ -229,15 +229,17 @@
     <string name="unread">未读</string>
     <string name="no_notifications_tip">没有新通知了</string>
     <string name="feedback_and_share">分享 &#038; 反馈</string>
-    <string name="share_to_friends">分享OpenHub给你的朋友</string>
+    <string name="share_to_friends">分享给你的朋友</string>
     <string name="feedback">反馈</string>
 
-    <string name="openhub_wishes">OpenHub的祝福</string>
+    <string name="openhub_wishes">来自OpenHub的祝福</string>
     <string name="star_wishes">
-        谢谢你使用OpenHub，OpenHub会努力成为更适合你的GitHub app。
-        \n\n如果你可以星标OpenHub来支持我们，那就太棒了！
+        您好%s，今天是你在OpenHub的第%d天，谢谢你的使用，我会努力成为更适合你的GitHub app。
+        \n\n如果你可以星标来支持我，那就太棒了！
     </string>
     <string name="star_thanks">谢谢你的支持！</string>
+    <string name="star_me">星标我</string>
+    <string name="star_next_time">继续努力</string>
     <string name="owner_repo">自己的</string>
     <string name="public_repo">公开的</string>
     <string name="private_repo">私有的</string>

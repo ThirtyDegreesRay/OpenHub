@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.GlideApp;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
@@ -238,16 +239,20 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
 
     @Override
     public void showStarWishes() {
+        String message = getString(R.string.star_wishes);
+        String user = AppData.INSTANCE.getLoggedUser().getName();
+        user = StringUtils.isBlank(user) ? AppData.INSTANCE.getLoggedUser().getLogin() : user;
+        message = String.format(message, user, StarWishesHelper.getInstalledDays());
         new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.openhub_wishes)
-                .setMessage(R.string.star_wishes)
-                .setNegativeButton(R.string.next_time, new DialogInterface.OnClickListener() {
+                .setMessage(message)
+                .setNegativeButton(R.string.star_next_time, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
                 })
-                .setPositiveButton(R.string.star, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.star_me, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         starRepo(true);

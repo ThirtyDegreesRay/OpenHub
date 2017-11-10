@@ -32,6 +32,7 @@ import com.thirtydegreesray.openhub.util.AppOpener;
 import com.thirtydegreesray.openhub.util.AppUtils;
 import com.thirtydegreesray.openhub.util.NetHelper;
 import com.thirtydegreesray.openhub.util.StarWishesHelper;
+import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ThemeHelper;
 
 import es.dmoral.toasty.Toasty;
@@ -236,16 +237,20 @@ public class AboutActivity extends MaterialAboutActivity {
     }
 
     public void showStarWishes() {
+        String message = getString(R.string.star_wishes);
+        String user = AppData.INSTANCE.getLoggedUser().getName();
+        user = StringUtils.isBlank(user) ? AppData.INSTANCE.getLoggedUser().getLogin() : user;
+        message = String.format(message, user, StarWishesHelper.getInstalledDays());
         new AlertDialog.Builder(this)
                 .setTitle(R.string.openhub_wishes)
-                .setMessage(R.string.star_wishes)
-                .setNegativeButton(R.string.next_time, new DialogInterface.OnClickListener() {
+                .setMessage(message)
+                .setNegativeButton(R.string.star_next_time, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
                 })
-                .setPositiveButton(R.string.star, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.star_me, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         starRepo();
