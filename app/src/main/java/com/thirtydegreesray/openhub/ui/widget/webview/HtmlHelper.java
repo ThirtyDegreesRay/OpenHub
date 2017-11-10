@@ -30,13 +30,13 @@ class HtmlHelper {
     private static Pattern LINK_PATTERN = Pattern.compile("href=\"(.*?)\"");
     private static Pattern IMAGE_PATTERN = Pattern.compile("src=\"(.*?)\"");
 
-    static String generateImageHtml(@NonNull String imageUrl, @NonNull String backgroundColor){
+    static String generateImageHtml(@NonNull String imageUrl, @NonNull String backgroundColor) {
         return "<html>" +
                 "<head>" +
-                    "<style>" +
-                        "img{height: auto; width: 100%;}" +
-                        "body{background: " + backgroundColor + ";}" +
-                    "</style>" +
+                "<style>" +
+                "img{height: auto; width: 100%;}" +
+                "body{background: " + backgroundColor + ";}" +
+                "</style>" +
                 "</head>" +
                 "<body><img src=\"" + imageUrl + "\"/></body>" +
                 "</html>";
@@ -44,40 +44,40 @@ class HtmlHelper {
 
     static String generateCodeHtml(@NonNull String codeSource, @Nullable String extension,
                                    boolean isDark, @NonNull String backgroundColor,
-                                   boolean wrap, boolean lineNums){
+                                   boolean wrap, boolean lineNums) {
         String skin = isDark ? "sons-of-obsidian" : "prettify";
         return generateCodeHtml(codeSource, extension, skin, backgroundColor, wrap, lineNums);
     }
 
     private static String generateCodeHtml(@NonNull String codeSource, @Nullable String extension,
                                            @Nullable String skin, @NonNull String backgroundColor,
-                                           boolean wrap, boolean lineNums){
+                                           boolean wrap, boolean lineNums) {
         return "<html>\n" +
-                "<head>\n" +
-                    "<meta charset=\"utf-8\" />\n" +
-                    "<title>Code WebView</title>\n" +
-                    "<meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0;\"/>" +
-                    "<script src=\"./core/run_prettify.js?autoload=true&amp;" +
-                    "skin=" + skin + "&amp;" +
-                    "lang=" + getExtension(extension) + "&amp;\" defer></script>\n" +
-                    "<style>" +
-                        "body {background: " + backgroundColor + ";}" +
-                        ".prettyprint {background: " + backgroundColor + ";}" +
-                        "pre.prettyprint { white-space: " + (wrap ? "pre-wrap" : "no-wrap") + "; }" +
-                    "</style>" +
-                "</head>\n" +
-                "<body>\n" +
-                    "<?prettify lang=" + getExtension(extension) + " linenums=" + lineNums + "?>\n" +
-                    "<pre class=\"prettyprint\">\n" +
-                        formatCode(codeSource) +
-                    "</pre>\n" +
-                "</body>\n" +
+                    "<head>\n" +
+                        "<meta charset=\"utf-8\" />\n" +
+                        "<title>Code View</title>\n" +
+                        "<meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0;\"/>" +
+                        "<script src=\"./core/run_prettify.js?autoload=true&amp;" +
+                            "skin=" + skin + "&amp;" +
+                            "lang=" + getExtension(extension) + "&amp;\" defer></script>\n" +
+                        "<style>" +
+                            "body {background: " + backgroundColor + ";}" +
+                            ".prettyprint {background: " + backgroundColor + ";}" +
+                            "pre.prettyprint { white-space: " + (wrap ? "pre-wrap" : "no-wrap") + "; }" +
+                        "</style>" +
+                    "</head>\n" +
+                    "<body>\n" +
+                        "<?prettify lang=" + getExtension(extension) + " linenums=" + lineNums + "?>\n" +
+                        "<pre class=\"prettyprint\">\n" +
+                            formatCode(codeSource) +
+                        "</pre>\n" +
+                    "</body>\n" +
                 "</html>";
     }
 
     static String generateMdHtml(@NonNull String mdSource, @Nullable String baseUrl,
                                  boolean isDark, @NonNull String backgroundColor,
-                                 @NonNull String accentColor, boolean wrapCode ){
+                                 @NonNull String accentColor, boolean wrapCode) {
         String skin = isDark ? "markdown_dark.css" : "markdown_white.css";
         mdSource = StringUtils.isBlank(baseUrl) ? mdSource : fixLinks(mdSource, baseUrl);
         return generateMdHtml(mdSource, skin, backgroundColor, accentColor, wrapCode);
@@ -85,75 +85,174 @@ class HtmlHelper {
 
     private static String generateMdHtml(@NonNull String mdSource, String skin,
                                          @NonNull String backgroundColor,
-                                         @NonNull String accentColor, boolean wrapCode ){
+                                         @NonNull String accentColor, boolean wrapCode) {
         return "<html>\n" +
-                "<head>\n" +
-                    "<meta charset=\"utf-8\" />\n" +
-                    "<title>Code WebView</title>\n" +
-                    "<meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;\"/>" +
-                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"./" + skin + "\">\n" +
-                    "<style>" +
-                        "body{background: " + backgroundColor + ";}" +
-                        "a {color:" + accentColor + " !important;}" +
-                        ".highlight pre, pre {" +
+                    "<head>\n" +
+                        "<meta charset=\"utf-8\" />\n" +
+                        "<title>MD View</title>\n" +
+                        "<meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;\"/>" +
+                        "<link rel=\"stylesheet\" type=\"text/css\" href=\"./" + skin + "\">\n" +
+                        "<style>" +
+                            "body{background: " + backgroundColor + ";}" +
+                            "a {color:" + accentColor + " !important;}" +
+                            ".highlight pre, pre {" +
                             " word-wrap: " + (wrapCode ? "break-word" : "normal") + "; " +
                             " white-space: " + (wrapCode ? "pre-wrap" : "pre") + "; " +
-                        "}" +
-                    "</style>" +
-                "</head>\n" +
-                "<body>\n" +
-                    mdSource +
-                "</body>\n" +
+                            "}" +
+                        "</style>" +
+                    "</head>\n" +
+                    "<body>\n" +
+                        mdSource +
+                    "</body>\n" +
                 "</html>";
     }
 
-    private static String getExtension(@Nullable String extension){
+    private static String getExtension(@Nullable String extension) {
         return SUPPORTED_CODE_FILE_EXTENSIONS.contains(extension) ? extension : "";
     }
 
-    private static String formatCode(@NonNull String codeSource){
-        if(StringUtils.isBlank(codeSource)) return  codeSource;
+    private static String formatCode(@NonNull String codeSource) {
+        if (StringUtils.isBlank(codeSource)) return codeSource;
         return codeSource.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
     }
 
-    private static String fixLinks(@NonNull String source, @NonNull String baseUrl){
+    private static String fixLinks(@NonNull String source, @NonNull String baseUrl) {
         GitHubName gitHubName = GitHubName.fromUrl(baseUrl);
-        if(gitHubName == null) return source;
+        if (gitHubName == null) return source;
         String owner = gitHubName.getUserName();
         String repo = gitHubName.getRepoName();
         String branch = baseUrl.substring(baseUrl.indexOf("blob") + 5, baseUrl.lastIndexOf("/"));
 
         Matcher linksMatcher = LINK_PATTERN.matcher(source);
-        while (linksMatcher.find()){
-            String oriUrl=  linksMatcher.group(1);
-            if(oriUrl.contains("http://") || oriUrl.contains("https://")){
+        while (linksMatcher.find()) {
+            String oriUrl = linksMatcher.group(1);
+            if (oriUrl.contains("http://") || oriUrl.contains("https://")) {
                 continue;
             }
 
-            String subUrl= oriUrl.startsWith("/") ? oriUrl : "/".concat(oriUrl);
+            String subUrl = oriUrl.startsWith("/") ? oriUrl : "/".concat(oriUrl);
             String fixedUrl;
-            if(!GitHubHelper.isImage(oriUrl)){
+            if (!GitHubHelper.isImage(oriUrl)) {
                 fixedUrl = "https://github.com/" + owner + "/" + repo + "/blob/" + branch + subUrl;
             } else {
                 //if link url is a image
                 fixedUrl = "https://raw.githubusercontent.com/" + owner + "/" + repo + "/" + branch + subUrl;
             }
-            source = source.replace("href=\"" + oriUrl +"\"", "href=\"" + fixedUrl +"\"");
+            source = source.replace("href=\"" + oriUrl + "\"", "href=\"" + fixedUrl + "\"");
         }
 
         Matcher imagesMatcher = IMAGE_PATTERN.matcher(source);
-        while (imagesMatcher.find()){
-            String oriUrl=  imagesMatcher.group(1);
-            if(oriUrl.contains("http://") || oriUrl.contains("https://")){
+        while (imagesMatcher.find()) {
+            String oriUrl = imagesMatcher.group(1);
+            if (oriUrl.contains("http://") || oriUrl.contains("https://")) {
                 continue;
             }
 
-            String subUrl= oriUrl.startsWith("/") ? oriUrl : "/".concat(oriUrl);
+            String subUrl = oriUrl.startsWith("/") ? oriUrl : "/".concat(oriUrl);
             String fixedUrl = "https://raw.githubusercontent.com/" + owner + "/" + repo + "/" + branch + subUrl;
-            source = source.replace("src=\"" + oriUrl +"\"", "src=\"" + fixedUrl +"\"");
+            source = source.replace("src=\"" + oriUrl + "\"", "src=\"" + fixedUrl + "\"");
         }
 
         return source;
+    }
+
+    static String generateDiffHtml(@NonNull String diffSource, boolean isDark,
+                                   @NonNull String backgroundColor, boolean wrap) {
+        String skin = isDark ? "diff_dark.css" : "diff_light.css";
+        return generateDiffHtml(diffSource, backgroundColor, skin, wrap);
+    }
+
+    private static String generateDiffHtml(@NonNull String diffSource, @NonNull String backgroundColor,
+                                           String skin, boolean wrap) {
+        return "<html>\n" +
+                    "<head>\n" +
+                        "<meta charset=\"utf-8\" />\n" +
+                        "<title>Diff View</title>\n" +
+                        "<meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0;\"/>" +
+                        "<link rel=\"stylesheet\" type=\"text/css\" href=\"./" + skin + "\">\n" +
+                        "<style>" +
+                            "body {background: " + backgroundColor + ";}" +
+                            ".pre {" +
+                                    "background: " + backgroundColor + "; " +
+                                    " word-wrap: " + (wrap ? "break-word" : "normal") + "; " +
+                                    " white-space: " + (wrap ? "pre-wrap" : "pre") + "; " +
+                            "}" +
+                        "</style>" +
+                    "</head>\n" +
+
+                    "<body>\n" +
+                        "<pre class=\"pre\">\n" +
+                            parseDiffSource(diffSource, wrap) +
+                        "</pre>\n" +
+                    "</body>\n" +
+                "</html>";
+    }
+
+    private static String parseDiffSource(@NonNull String diffSource, boolean wrap) {
+        String source = "";
+        String[] lines = diffSource.split("\\n");
+
+        int addStartLine = -1;
+        int removeStartLine = -1;
+        int addLineNum = 0;
+        int removeLineNum = 0;
+        int normalLineNum = 0;
+
+        for (int i = 0; i < lines.length; i++) {
+            String line = lines[i];
+
+            String lineNumberStr = "";
+            String classStr = "";
+            int curAddNumber = -1;
+            int curRemoveNumber = -1;
+
+            if (line.startsWith("+")) {
+                classStr = "class=\"add\";";
+                curAddNumber = addStartLine + normalLineNum + addLineNum;
+                addLineNum++;
+            } else if (line.startsWith("-")) {
+                classStr = "class=\"remove\";";
+                curRemoveNumber = removeStartLine + normalLineNum + removeLineNum;
+                removeLineNum++;
+            } else if (line.startsWith("@@")) {
+                classStr = "class=\"change\";";
+                removeStartLine = Integer.parseInt(line.substring(line.indexOf("-") + 1, line.indexOf(",")));
+                addStartLine = Integer.parseInt(line.substring(line.indexOf("+") + 1, line.indexOf(",", line.indexOf("+"))));
+                addLineNum = 0;
+                removeLineNum = 0;
+                normalLineNum = 0;
+            } else {
+                curAddNumber = addStartLine + normalLineNum + addLineNum;
+                curRemoveNumber = removeStartLine + normalLineNum + removeLineNum;
+                normalLineNum++;
+            }
+            lineNumberStr = getDiffLineNumber(curRemoveNumber == -1 ? "" : String.valueOf(curRemoveNumber),
+                    curAddNumber == -1 ? "" : String.valueOf(curAddNumber));
+
+
+            String lineHtml = "<div " + classStr + ">"
+                    + (wrap ? "" : lineNumberStr + getBlank(1))
+                    + line
+                    + "</div>";
+            source += "\n" + lineHtml;
+        }
+
+        return source;
+    }
+
+    private static String getDiffLineNumber(String removeNumber, String addNumber){
+        int minLength = 4;
+        return getBlank(minLength - removeNumber.length()) + removeNumber +
+                getBlank(1) +
+                getBlank(minLength - addNumber.length()) + addNumber;
+    }
+
+    private static String getBlank(int num){
+        StringBuilder builder = new StringBuilder("");
+        for(int i = 0; i < num; i++){
+            builder.append(" ");
+        }
+        return builder.toString();
     }
 
 }

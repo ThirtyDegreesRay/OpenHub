@@ -114,7 +114,7 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
             menuItemViewFile.setVisible(false);
             menuItemRefresh.setVisible(true);
         } else if(ViewerActivity.ViewerType.DiffFile.equals(mPresenter.getViewerType())){
-            menuItem.setVisible(mPresenter.isCode());
+            menuItem.setVisible(true);
             menuItem.setChecked(wrap);
             menuItemDownload.setVisible(false);
             menuItemViewFile.setVisible(true);

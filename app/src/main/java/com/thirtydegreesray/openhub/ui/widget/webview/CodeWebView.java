@@ -126,7 +126,7 @@ public class CodeWebView extends WebView {
         if (StringUtils.isBlank(source)) return;
         String page = HtmlHelper.generateMdHtml(source, baseUrl, AppUtils.isNightMode(),
                 getCodeBackgroundColor(), getAccentColor(), wrapCode);
-        loadMd(page);
+        loadPage(page);
     }
 
     public void setCodeSource(@NonNull String source, boolean wrap, @Nullable String extension) {
@@ -139,10 +139,9 @@ public class CodeWebView extends WebView {
         settings.setDisplayZoomControls(false);
         String page = HtmlHelper.generateCodeHtml(source, extension, AppUtils.isNightMode(),
                 getCodeBackgroundColor(), wrap, true);
-        loadCode(page);
+        loadPage(page);
     }
 
-    //TODO better diff view
     public void setDiffFileSource(@NonNull String source, boolean wrap) {
         if (StringUtils.isBlank(source)) return;
         WebSettings settings = getSettings();
@@ -151,9 +150,9 @@ public class CodeWebView extends WebView {
         settings.setSupportZoom(true);
         settings.setBuiltInZoomControls(true);
         settings.setDisplayZoomControls(false);
-        String page = HtmlHelper.generateCodeHtml(source, null, AppUtils.isNightMode(),
-                getCodeBackgroundColor(), wrap, false);
-        loadCode(page);
+        String page = HtmlHelper.generateDiffHtml(source, AppUtils.isNightMode(),
+                getCodeBackgroundColor(), wrap);
+        loadPage(page);
     }
 
     private void loadPageWithBaseUrl(final String baseUrl, final String page){
@@ -165,12 +164,8 @@ public class CodeWebView extends WebView {
         });
     }
 
-    private void loadCode(String page) {
+    private void loadPage(String page) {
         loadPageWithBaseUrl("file:///android_asset/code_prettify/", page);
-    }
-
-    private void loadMd(String page){
-        loadPageWithBaseUrl("file:///android_asset/code_prettify/md/", page);
     }
 
     private boolean hitLinkResult(WebView.HitTestResult result) {

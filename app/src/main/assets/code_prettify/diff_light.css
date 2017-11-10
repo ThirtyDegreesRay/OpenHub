@@ -1,0 +1,29 @@
+
+/**
+ * Created by ThirtyDegreesRay on 2017/11/10 16:00:00
+ */
+
+body {
+    font-size: 12px;
+    line-height: 1.5;
+    color:#212121;
+}
+
+.pre {
+    display: table;
+    min-width: 100%;
+    padding-right: 8px;
+}
+
+.add {
+    background:#ACF2BD;
+}
+
+.remove {
+    background:#FDB8C0;
+}
+
+.change {
+    background:#EAEAEA;
+    color:#757575;
+}
