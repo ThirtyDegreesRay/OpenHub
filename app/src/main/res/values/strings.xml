@@ -223,7 +223,7 @@
     <string name="releases">Releases</string>
     <string name="no_releases">No releases</string>
     <string name="source_code_zip">Source code (zip)</string>
-    <string name="source_code_tar">Source code (tra.gz)</string>
+    <string name="source_code_tar">Source code (tar.gz)</string>
     <string name="download_source_zip">Download source (zip)</string>
     <string name="download_source_tar">Download source (tar.gz)</string>
     <string name="released_this">released this</string>
