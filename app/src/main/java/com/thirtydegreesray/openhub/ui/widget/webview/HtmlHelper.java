@@ -5,6 +5,7 @@ package com.thirtydegreesray.openhub.ui.widget.webview;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.openhub.mvp.model.GitHubName;
 import com.thirtydegreesray.openhub.util.GitHubHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
@@ -171,13 +172,13 @@ class HtmlHelper {
                         "<meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0;\"/>" +
                         "<link rel=\"stylesheet\" type=\"text/css\" href=\"./" + skin + "\">\n" +
                         "<style>" +
-                            "body {background: " + backgroundColor + ";}" +
-                            ".pre {" +
-                                    "background: " + backgroundColor + "; " +
-                                    " word-wrap: " + (wrap ? "break-word" : "normal") + "; " +
-                                    " white-space: " + (wrap ? "pre-wrap" : "pre") + "; " +
-                            "}" +
-                        "</style>" +
+                            "body {background: " + backgroundColor + ";}\n" +
+                            ".pre {\n" +
+                                    "background: " + backgroundColor + ";\n" +
+                                    " word-wrap: " + (wrap ? "break-word" : "normal") + ";\n" +
+                                    " white-space: " + (wrap ? "pre-wrap" : "pre") + ";\n" +
+                            "}\n" +
+                        "</style>\n" +
                     "</head>\n" +
 
                     "<body>\n" +
@@ -189,7 +190,7 @@ class HtmlHelper {
     }
 
     private static String parseDiffSource(@NonNull String diffSource, boolean wrap) {
-        String source = "";
+        StringBuilder source = new StringBuilder();
         String[] lines = diffSource.split("\\n");
 
         int addStartLine = -1;
@@ -221,7 +222,7 @@ class HtmlHelper {
                 addLineNum = 0;
                 removeLineNum = 0;
                 normalLineNum = 0;
-            } else {
+            } else if (!line.startsWith("\\")) {
                 curAddNumber = addStartLine + normalLineNum + addLineNum;
                 curRemoveNumber = removeStartLine + normalLineNum + removeLineNum;
                 normalLineNum++;
@@ -229,22 +230,24 @@ class HtmlHelper {
             lineNumberStr = getDiffLineNumber(curRemoveNumber == -1 ? "" : String.valueOf(curRemoveNumber),
                     curAddNumber == -1 ? "" : String.valueOf(curAddNumber));
 
-
-            String lineHtml = "<div " + classStr + ">"
-                    + (wrap ? "" : lineNumberStr + getBlank(1))
-                    + line
-                    + "</div>";
-            source += "\n" + lineHtml;
+            source.append("\n")
+                    .append("<div ").append(classStr).append(">")
+                    .append(wrap ? "" : lineNumberStr + getBlank(1))
+                    .append(line)
+                    .append("</div>");
         }
-
-        return source;
+        return source.toString();
     }
+
 
     private static String getDiffLineNumber(String removeNumber, String addNumber){
         int minLength = 4;
-        return getBlank(minLength - removeNumber.length()) + removeNumber +
-                getBlank(1) +
-                getBlank(minLength - addNumber.length()) + addNumber;
+        return new StringBuilder().append(getBlank(minLength - removeNumber.length()))
+                .append(removeNumber)
+                .append(getBlank(1))
+                .append(getBlank(minLength - addNumber.length()))
+                .append(addNumber)
+                .toString();
     }
 
     private static String getBlank(int num){
