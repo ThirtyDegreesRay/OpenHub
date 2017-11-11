@@ -22,6 +22,7 @@ An **open source** GitHub Android client app, faster and concise.
 * Trending repositories
 * Search repos and users
 * Shortcuts support
+* Notifications support
 
 ### Repositories
 * View repo info 
@@ -36,6 +37,7 @@ An **open source** GitHub Android client app, faster and concise.
 * View user info
 * View user followers, following, organizations
 * View user public repositories, starred repositories and activity
+* View your private repositories
 * Follow/Unfollow users
 * Search users
 
@@ -107,6 +109,3 @@ An **open source** GitHub Android client app, faster and concise.
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-
-

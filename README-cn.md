@@ -21,6 +21,7 @@
 * 可以查看最热版本库
 * 搜索版本库和用户
 * 支持7.1以上快捷方式创建
+* 支持消息通知
 
 ### 版本库
 * 查看版本库信息
@@ -35,6 +36,7 @@
 * 查看用户信息
 * 查看用户的跟随者、跟随的人和属于的组织
 * 查看用户公公的、星标的项目和活动
+* 查看你的私有项目
 * 跟随和取消跟随用户
 * 搜索用户
 
@@ -81,7 +83,7 @@
 * [Glide](https://github.com/bumptech/glide) 一个图像加载和缓存库为了Android中更平滑的滚动
 * [code-prettify](https://github.com/google/code-prettify) 代码美化
 * [DataAutoAccess](https://github.com/ThirtyDegreesRay/DataAutoAccess) 一个简单的方法去自动存取Android bundle中的数据
-* [RoundedImageView](https://github.com/vinc3m1/RoundedImageView) 一个快速ImageView支持圆角,椭圆形,圆形
+* [CircleImageView](https://github.com/vinc3m1/RoundedImageView) 圆形ImageView
 * [Toasty](https://github.com/GrenderG/Toasty) 美化的Toast
 * [material-about-library](https://github.com/daniel-stoneuk/material-about-library) 让你更容易的创建美丽的关于页面
 * [material-dialogs](https://github.com/afollestad/material-dialogs) 一个美丽、流畅的和可自定义的对话框的API
@@ -104,6 +106,3 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-
-
