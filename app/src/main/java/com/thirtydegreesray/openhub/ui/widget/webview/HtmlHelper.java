@@ -5,7 +5,6 @@ package com.thirtydegreesray.openhub.ui.widget.webview;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.openhub.mvp.model.GitHubName;
 import com.thirtydegreesray.openhub.util.GitHubHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
@@ -183,7 +182,7 @@ class HtmlHelper {
 
                     "<body>\n" +
                         "<pre class=\"pre\">\n" +
-                            parseDiffSource(diffSource, wrap) +
+                            parseDiffSource(formatCode(diffSource), wrap) +
                         "</pre>\n" +
                     "</body>\n" +
                 "</html>";
