@@ -23,6 +23,7 @@ import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
+import com.thirtydegreesray.openhub.util.AppUtils;
 
 import javax.inject.Inject;
 
@@ -67,6 +68,8 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        //some page contain WebView will make default language changed
+        AppUtils.updateAppLanguage(getActivity());
         View fragmentView = inflater.inflate(getLayoutId(), container, false);
         unbinder = ButterKnife.bind(this, fragmentView);
         initFragment(savedInstanceState);

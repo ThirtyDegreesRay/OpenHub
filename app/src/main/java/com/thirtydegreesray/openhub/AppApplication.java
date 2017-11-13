@@ -18,6 +18,7 @@ import com.thirtydegreesray.openhub.ui.activity.AboutActivity;
 import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
 import com.thirtydegreesray.openhub.ui.activity.MainActivity;
 import com.thirtydegreesray.openhub.ui.widget.UpgradeDialog;
+import com.thirtydegreesray.openhub.util.AppUtils;
 import com.thirtydegreesray.openhub.util.NetHelper;
 
 /**
@@ -43,6 +44,8 @@ public class AppApplication extends Application {
         application = this;
         //init application
         long startTime = System.currentTimeMillis();
+        //apply language for application context, bugly used it
+        AppUtils.updateAppLanguage(getApplicationContext());
         initLogger();
         Logger.t(TAG).i("startTime:" + startTime);
         mAppComponent = DaggerAppComponent.builder()
@@ -52,7 +55,6 @@ public class AppApplication extends Application {
         initBugly();
         startTime = System.currentTimeMillis();
         Logger.t(TAG).i("application ok:" + (System.currentTimeMillis() - startTime));
-
     }
 
     private void initLogger(){

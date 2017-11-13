@@ -62,6 +62,7 @@ public class SettingsActivity extends SingleFragmentActivity<SettingsPresenter, 
                 }
             });
             setResult(Activity.RESULT_OK);
+            recreated = false;
         }
 
     }
@@ -108,6 +109,10 @@ public class SettingsActivity extends SingleFragmentActivity<SettingsPresenter, 
 //      finish setting activity to avoid  java.io.NotSerializableException
 //      com.thirtydegreesray.openhub.ui.widget.colorChooser.ColorChooserPreference
 //      android.os.Parcel.writeSerializable(Parcel.java:1761)
-        finish();
+        if(recreated){
+            super.onSaveInstanceState(outState);
+        } else {
+            finish();
+        }
     }
 }

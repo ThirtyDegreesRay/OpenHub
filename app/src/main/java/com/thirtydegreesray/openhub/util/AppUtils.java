@@ -34,23 +34,23 @@ public class AppUtils {
 
     private static final String DOWNLOAD_SERVICE_PACKAGE_NAME = "com.android.providers.downloads";
 
-    public static boolean checkApplicationEnabledSetting(Context context, String packageName){
+    public static boolean checkApplicationEnabledSetting(Context context, String packageName) {
         int state = context.getPackageManager().getApplicationEnabledSetting(packageName);
         return state == PackageManager.COMPONENT_ENABLED_STATE_DEFAULT ||
                 state == PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
     }
 
-    public static boolean checkDownloadServiceEnabled(Context context){
+    public static boolean checkDownloadServiceEnabled(Context context) {
         return checkApplicationEnabledSetting(context, DOWNLOAD_SERVICE_PACKAGE_NAME);
     }
 
-    public static void showDownloadServiceSetting(Context context){
+    public static void showDownloadServiceSetting(Context context) {
         try {
             Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
             intent.setData(Uri.parse("package:" + DOWNLOAD_SERVICE_PACKAGE_NAME));
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
-        } catch (ActivityNotFoundException e){
+        } catch (ActivityNotFoundException e) {
             Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
@@ -82,8 +82,9 @@ public class AppUtils {
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 
-    @NonNull public static Locale getLocale(String language) {
-        Locale locale ;
+    @NonNull
+    public static Locale getLocale(String language) {
+        Locale locale;
         if (language.equalsIgnoreCase("zh-rCN")) {
             return Locale.SIMPLIFIED_CHINESE;
         } else if (language.equalsIgnoreCase("zh-rTW")) {
@@ -98,9 +99,9 @@ public class AppUtils {
         return locale;
     }
 
-    public static boolean isNightMode(){
+    public static boolean isNightMode() {
         int theme = PrefUtils.getTheme();
-        return theme == PrefUtils.DARK ;
+        return theme == PrefUtils.DARK;
     }
 
     public static void copyToClipboard(@NonNull Context context, @NonNull String uri) {
@@ -129,7 +130,8 @@ public class AppUtils {
         inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    @Nullable public static long getFirstInstallTime(){
+    @Nullable
+    public static long getFirstInstallTime() {
         long time = 0;
         try {
             PackageInfo packageInfo = AppApplication.get().getPackageManager()
