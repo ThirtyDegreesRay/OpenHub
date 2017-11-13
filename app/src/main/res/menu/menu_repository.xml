@@ -25,11 +25,13 @@
     <item
         android:id="@+id/action_copy_url"
         android:title="@string/copy_url"
-        app:showAsAction="never"/>
+        app:showAsAction="never"
+        android:visible="false"/>
     <item
         android:id="@+id/action_copy_clone_url"
         android:title="@string/copy_clone_url"
-        app:showAsAction="never"/>
+        app:showAsAction="never"
+        android:visible="true"/>
     <item
         android:id="@+id/action_watch"
         android:title="@string/watch"
@@ -49,5 +51,10 @@
     <item
         android:id="@+id/action_download_source_tar"
         android:title="@string/download_source_tar"
+        app:showAsAction="never"
+        android:visible="false"/>
+    <item
+        android:id="@+id/action_bookmark"
+        android:title="@string/bookmark"
         app:showAsAction="never"/>
 </menu>

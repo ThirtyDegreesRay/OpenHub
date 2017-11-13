@@ -270,6 +270,26 @@ public class FragmentPagerModel {
         ));
     }
 
+    public static List<FragmentPagerModel> createBookmarksPagerList(
+            @NonNull Context context, @NonNull ArrayList<Fragment> fragments) {
+        return setPagerFragmentFlag(Arrays.asList(
+                new FragmentPagerModel(context.getString(R.string.repositories),
+                        getFragment(fragments, 0, new FragmentCreator() {
+                            @Override
+                            public Fragment createFragment() {
+                                return RepositoriesFragment.createForBookmark();
+                            }
+                        })),
+                new FragmentPagerModel(context.getString(R.string.users),
+                        getFragment(fragments, 1, new FragmentCreator() {
+                            @Override
+                            public Fragment createFragment() {
+                                return UserListFragment.createForBookmark();
+                            }
+                        }))
+        ));
+    }
+
     private static List<FragmentPagerModel> setPagerFragmentFlag(List<FragmentPagerModel> list) {
         for (FragmentPagerModel model : list) {
             model.getFragment().setPagerFragment(true);

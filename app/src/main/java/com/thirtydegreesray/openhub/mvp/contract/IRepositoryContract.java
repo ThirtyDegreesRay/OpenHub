@@ -27,6 +27,8 @@ public interface IRepositoryContract {
         void watchRepo(boolean watch);
         void createFork();
         boolean isForkEnable();
+        boolean isBookmarked();
+        void bookmark(boolean bookmark);
     }
 
 }

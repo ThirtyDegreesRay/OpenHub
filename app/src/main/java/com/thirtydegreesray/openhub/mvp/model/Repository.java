@@ -6,6 +6,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.thirtydegreesray.openhub.dao.BookMarkRepo;
 import com.thirtydegreesray.openhub.dao.TraceRepo;
 
 import java.util.Date;
@@ -78,6 +79,22 @@ public class Repository implements Parcelable {
         return traceRepo;
     }
 
+    public BookMarkRepo toBookmarkRepo(){
+        BookMarkRepo bookMarkRepo = new BookMarkRepo();
+        bookMarkRepo.setId(id);
+        bookMarkRepo.setName(name);
+        bookMarkRepo.setDescription(description);
+        bookMarkRepo.setLanguage(language);
+        bookMarkRepo.setStargazersCount(stargazersCount);
+        bookMarkRepo.setWatchersCount(watchersCount);
+        bookMarkRepo.setForksCount(forksCount);
+        bookMarkRepo.setFork(fork);
+        bookMarkRepo.setOwnerLogin(owner.getLogin());
+        bookMarkRepo.setOwnerAvatarUrl(owner.getAvatarUrl());
+        bookMarkRepo.setMarkTime(new Date());
+        return bookMarkRepo;
+    }
+
     public static Repository generateFromTrace(TraceRepo trace){
         Repository repo = new Repository();
         repo.setId((int) trace.getId());
@@ -91,6 +108,23 @@ public class Repository implements Parcelable {
         User user = new User();
         user.setLogin(trace.getOwnerLogin());
         user.setAvatarUrl(trace.getOwnerAvatarUrl());
+        repo.setOwner(user);
+        return repo;
+    }
+
+    public static Repository generateFromBookmark(BookMarkRepo bookMark){
+        Repository repo = new Repository();
+        repo.setId((int) bookMark.getId());
+        repo.setName(bookMark.getName());
+        repo.setDescription(bookMark.getDescription());
+        repo.setLanguage(bookMark.getLanguage());
+        repo.setStargazersCount(bookMark.getStargazersCount());
+        repo.setWatchersCount(bookMark.getWatchersCount());
+        repo.setForksCount(bookMark.getForksCount());
+        repo.setFork(bookMark.getFork());
+        User user = new User();
+        user.setLogin(bookMark.getOwnerLogin());
+        user.setAvatarUrl(bookMark.getOwnerAvatarUrl());
         repo.setOwner(user);
         return repo;
     }

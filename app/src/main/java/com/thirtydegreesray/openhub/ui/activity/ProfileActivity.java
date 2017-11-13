@@ -100,8 +100,11 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
         if(mPresenter.getUser() != null){
             getMenuInflater().inflate(R.menu.menu_profile, menu);
             MenuItem followItem = menu.findItem(R.id.action_follow);
+            MenuItem bookmark = menu.findItem(R.id.action_bookmark);
             followItem.setVisible(mPresenter.isUser() && !mPresenter.isMe());
             followItem.setTitle(mPresenter.isFollowing() ? R.string.unfollow : R.string.follow);
+            bookmark.setTitle(mPresenter.isBookmarked() ?
+                    getString(R.string.remove_bookmark) : getString(R.string.bookmark));
         }
         return true;
     }
@@ -123,6 +126,12 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
                 invalidateOptionsMenu();
                 showSuccessToast(mPresenter.isFollowing() ?
                         getString(R.string.followed) : getString(R.string.unfollowed));
+                break;
+            case R.id.action_bookmark:
+                mPresenter.bookmark(!mPresenter.isBookmarked());
+                invalidateOptionsMenu();
+                showSuccessToast(mPresenter.isBookmarked() ?
+                        getString(R.string.bookmark_saved) : getString(R.string.bookmark_removed));
                 break;
             case R.id.action_share:
                 AppOpener.shareText(getActivity(), mPresenter.getUser().getHtmlUrl());

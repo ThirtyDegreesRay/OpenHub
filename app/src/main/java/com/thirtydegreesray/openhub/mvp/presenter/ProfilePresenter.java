@@ -39,6 +39,9 @@ public class ProfilePresenter extends BasePresenter<IProfileContract.View>
     private boolean isWaitForTransition = false;
     @AutoAccess boolean isTraceSaved = false;
 
+    private boolean isBookmarkQueried = false;
+    private boolean bookmarked = false;
+
     @Inject
     public ProfilePresenter(DaoSession daoSession) {
         super(daoSession);
@@ -131,6 +134,25 @@ public class ProfilePresenter extends BasePresenter<IProfileContract.View>
         following = follow;
         executeSimpleRequest(follow ?
                 getUserService().followUser(loginId) : getUserService().unfollowUser(loginId));
+    }
+
+    @Override
+    public boolean isBookmarked() {
+        if(!isBookmarkQueried){
+            bookmarked = daoSession.getBookMarkUserDao().load(loginId) != null;
+            isBookmarkQueried = true;
+        }
+        return bookmarked;
+    }
+
+    @Override
+    public void bookmark(boolean bookmark) {
+        bookmarked = bookmark;
+        if(bookmark){
+            daoSession.getBookMarkUserDao().insert(user.toBookmarkUser());
+        } else {
+            daoSession.getBookMarkUserDao().deleteByKey(loginId);
+        }
     }
 
     private void saveTrace(){

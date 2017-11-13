@@ -101,6 +101,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         if(mPresenter.getRepository() != null){
             getMenuInflater().inflate(R.menu.menu_repository, menu);
             MenuItem starItem = menu.findItem(R.id.action_star);
+            MenuItem bookmark = menu.findItem(R.id.action_bookmark);
             starItem.setTitle(mPresenter.isStarred() ? R.string.unstar : R.string.star);
             starItem.setIcon(mPresenter.isStarred() ?
                     R.drawable.ic_star_title : R.drawable.ic_un_star_title);
@@ -109,6 +110,8 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
             menu.findItem(R.id.action_fork).setTitle(mPresenter.isFork() ?
                     R.string.forked : R.string.fork);
             menu.findItem(R.id.action_fork).setVisible(mPresenter.isForkEnable());
+            bookmark.setTitle(mPresenter.isBookmarked() ?
+                    getString(R.string.remove_bookmark) : getString(R.string.bookmark));
         }
         return true;
     }
@@ -163,6 +166,12 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
             case R.id.action_download_source_tar:
                 AppOpener.startDownload(getActivity(), mPresenter.getTarSourceUrl(),
                         mPresenter.getTarSourceName());
+                return true;
+            case R.id.action_bookmark:
+                mPresenter.bookmark(!mPresenter.isBookmarked());
+                invalidateOptionsMenu();
+                showSuccessToast(mPresenter.isBookmarked() ?
+                        getString(R.string.bookmark_saved) : getString(R.string.bookmark_removed));
                 return true;
         }
         return super.onOptionsItemSelected(item);

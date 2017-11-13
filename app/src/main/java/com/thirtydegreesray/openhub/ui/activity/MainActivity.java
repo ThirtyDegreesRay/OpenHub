@@ -177,6 +177,9 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
             case R.id.nav_trace:
                 TraceActivity.show(getActivity());
                 break;
+            case R.id.nav_bookmarks:
+                BookmarksActivity.show(getActivity());
+                break;
             case R.id.nav_settings:
                 SettingsActivity.show(getActivity(), SETTINGS_REQUEST_CODE);
                 break;

@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.common.Event;
+import com.thirtydegreesray.openhub.dao.BookMarkRepo;
+import com.thirtydegreesray.openhub.dao.BookMarkRepoDao;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.dao.TraceRepo;
 import com.thirtydegreesray.openhub.dao.TraceRepoDao;
@@ -76,6 +78,10 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
             loadTrace(1);
             return;
         }
+        if (RepositoriesFragment.RepositoriesType.BOOKMARK.equals(type)) {
+            loadBookmarks(1);
+            return;
+        }
         if (repos != null) {
             mView.showRepositories(repos);
             mView.hideLoading();
@@ -93,6 +99,10 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         }
         if (RepositoriesFragment.RepositoriesType.TRACE.equals(type)) {
             loadTrace(page);
+            return;
+        }
+        if (RepositoriesFragment.RepositoriesType.BOOKMARK.equals(type)) {
+            loadBookmarks(page);
             return;
         }
         mView.showLoading();
@@ -241,14 +251,31 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         for (TraceRepo traceRepo : traceRepos) {
             queryRepos.add(Repository.generateFromTrace(traceRepo));
         }
+        Logger.t("loadTrace").d(System.currentTimeMillis() - start);
+        showQueryRepos(queryRepos, page);
+    }
 
+    private void loadBookmarks(int page) {
+        List<BookMarkRepo> bookMarkRepos = daoSession.getBookMarkRepoDao().queryBuilder()
+                .orderDesc(BookMarkRepoDao.Properties.MarkTime)
+                .offset((page - 1) * 30)
+                .limit(page * 30)
+                .list();
+
+        ArrayList<Repository> queryRepos = new ArrayList<>();
+        for (BookMarkRepo bookMarkRepo : bookMarkRepos) {
+            queryRepos.add(Repository.generateFromBookmark(bookMarkRepo));
+        }
+        showQueryRepos(queryRepos, page);
+    }
+
+    private void showQueryRepos(ArrayList<Repository> queryRepos, int page){
         if(repos == null || page == 1){
             repos = queryRepos;
         } else {
             repos.addAll(queryRepos);
         }
 
-        Logger.t("loadTrace").d(System.currentTimeMillis() - start);
         mView.showRepositories(repos);
         mView.hideLoading();
     }

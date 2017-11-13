@@ -47,6 +47,9 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
     private boolean isStatusChecked = false;
     @AutoAccess boolean isTraceSaved = false;
 
+    private boolean isBookmarkQueried = false;
+    private boolean bookmarked = false;
+
     @Inject
     public RepositoryPresenter(DaoSession daoSession) {
         super(daoSession);
@@ -156,6 +159,26 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean isBookmarked() {
+        if(!isBookmarkQueried && repository != null){
+            bookmarked = daoSession.getBookMarkRepoDao().load((long) repository.getId()) != null;
+            isBookmarkQueried = true;
+        }
+        return bookmarked;
+    }
+
+    @Override
+    public void bookmark(boolean bookmark) {
+        if(repository == null) return;
+        bookmarked = bookmark;
+        if(bookmark){
+            daoSession.getBookMarkRepoDao().insert(repository.toBookmarkRepo());
+        } else {
+            daoSession.getBookMarkRepoDao().deleteByKey((long) repository.getId());
+        }
     }
 
     private void setTags(ArrayList<Branch> list) {

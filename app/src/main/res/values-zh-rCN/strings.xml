@@ -255,5 +255,10 @@
     <string name="my_repos">我的版本库</string>
     <string name="starred_repos">星标版本库</string>
     <string name="trending_repos">趋势版本库</string>
+    <string name="bookmarks">书签</string>
+    <string name="bookmark">添加书签</string>
+    <string name="remove_bookmark">删除书签</string>
+    <string name="bookmark_saved">书签已保存</string>
+    <string name="bookmark_removed">书签已删除</string>
 
 </resources>

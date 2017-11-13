@@ -13,6 +13,8 @@ public class AppDaoGenerator {
         addAuthUser(rootSchema);
         addTraceUser(rootSchema);
         addTraceRepo(rootSchema);
+        addBookMarkUser(rootSchema);
+        addBookMarkRepo(rootSchema);
         System.out.println("AppDaoGenerator");
         try {
             new DaoGenerator().generateAll(rootSchema, "E:/Work/Android/github/OpenHub/OpenHub/app/src/main/java");
@@ -68,6 +70,34 @@ public class AppDaoGenerator {
         entity.addDateProperty("startTime");
         entity.addDateProperty("latestTime");
         entity.addIntProperty("traceNum");
+    }
+
+    private static void addBookMarkUser(Schema schema){
+        Entity entity = schema.addEntity("BookMarkUser");
+        entity.addStringProperty("login").primaryKey().notNull();
+        entity.addStringProperty("name");
+        entity.addStringProperty("avatarUrl");
+        entity.addIntProperty("followers");
+        entity.addIntProperty("following");
+
+        entity.addDateProperty("markTime");
+    }
+
+    private static void addBookMarkRepo(Schema schema){
+        Entity entity = schema.addEntity("BookMarkRepo");
+        entity.addLongProperty("id").primaryKey().notNull();
+        entity.addStringProperty("name").notNull();
+        entity.addStringProperty("description");
+        entity.addStringProperty("language");
+        entity.addIntProperty("stargazersCount");
+        entity.addIntProperty("watchersCount");
+        entity.addIntProperty("forksCount");
+        entity.addBooleanProperty("fork");
+
+        entity.addStringProperty("ownerLogin");
+        entity.addStringProperty("ownerAvatarUrl");
+
+        entity.addDateProperty("markTime");
     }
 
 }

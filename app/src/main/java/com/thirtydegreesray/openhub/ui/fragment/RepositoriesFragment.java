@@ -38,7 +38,7 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
             implements IRepositoriesContract.View, OnDrawerSelectedListener{
 
     public enum RepositoriesType{
-        OWNED, PUBLIC, STARRED, TRENDING, SEARCH, FORKS, TRACE
+        OWNED, PUBLIC, STARRED, TRENDING, SEARCH, FORKS, TRACE, BOOKMARK
     }
 
     public static RepositoriesFragment create(@NonNull RepositoriesType type,
@@ -87,6 +87,12 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
         return fragment;
     }
 
+    public static RepositoriesFragment createForBookmark(){
+        RepositoriesFragment fragment = new RepositoriesFragment();
+        fragment.setArguments(BundleHelper.builder().put("type", RepositoriesType.BOOKMARK).build());
+        return fragment;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,8 +138,9 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     @Override
     public void onItemClick(int position, @NonNull View view) {
         super.onItemClick(position, view);
-        if(RepositoriesType.TRENDING.equals(mPresenter.getType()) ||
-                RepositoriesType.TRACE.equals(mPresenter.getType())){
+        if(RepositoriesType.TRENDING.equals(mPresenter.getType())
+                || RepositoriesType.TRACE.equals(mPresenter.getType())
+                || RepositoriesType.BOOKMARK.equals(mPresenter.getType())){
             RepositoryActivity.show(getActivity(), adapter.getData().get(position).getOwner().getLogin(),
                     adapter.getData().get(position).getName());
         } else {

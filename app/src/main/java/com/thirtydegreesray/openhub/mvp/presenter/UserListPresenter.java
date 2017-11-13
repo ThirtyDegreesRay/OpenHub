@@ -4,6 +4,8 @@ package com.thirtydegreesray.openhub.mvp.presenter;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.common.Event;
+import com.thirtydegreesray.openhub.dao.BookMarkUser;
+import com.thirtydegreesray.openhub.dao.BookMarkUserDao;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.dao.TraceUser;
 import com.thirtydegreesray.openhub.dao.TraceUserDao;
@@ -62,6 +64,8 @@ public class UserListPresenter extends BasePagerPresenter<IUserListContract.View
             if(searchModel != null) searchUsers(1);
         } else if(UserListFragment.UserListType.TRACE.equals(type)){
             loadTrace(1);
+        } else if(UserListFragment.UserListType.BOOKMARK.equals(type)){
+            loadBookmarks(1);
         } else {
             loadUsers(1, false);
         }
@@ -75,6 +79,10 @@ public class UserListPresenter extends BasePagerPresenter<IUserListContract.View
         }
         if(UserListFragment.UserListType.TRACE.equals(type)){
             loadTrace(page);
+            return;
+        }
+        if(UserListFragment.UserListType.BOOKMARK.equals(type)){
+            loadBookmarks(page);
             return;
         }
         mView.showLoading();
@@ -184,6 +192,23 @@ public class UserListPresenter extends BasePagerPresenter<IUserListContract.View
         for(TraceUser traceUser : traceUsers){
             queryUsers.add(User.generateFromTrace(traceUser));
         }
+        showQueryUsers(queryUsers, page);
+    }
+
+    private void loadBookmarks(int page){
+        List<BookMarkUser> bookMarkUsers = daoSession.getBookMarkUserDao().queryBuilder()
+                .orderDesc(BookMarkUserDao.Properties.MarkTime)
+                .offset((page - 1) * 30)
+                .limit(page * 30)
+                .list();
+        ArrayList<User> queryUsers = new ArrayList<>();
+        for(BookMarkUser bookMarkUser : bookMarkUsers){
+            queryUsers.add(User.generateFromBookmark(bookMarkUser));
+        }
+        showQueryUsers(queryUsers, page);
+    }
+
+    private void showQueryUsers(ArrayList<User> queryUsers, int page){
         if(users == null || page == 1){
             users = queryUsers;
         } else {

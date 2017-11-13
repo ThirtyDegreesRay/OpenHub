@@ -48,13 +48,17 @@
         android:id="@+id/search"
         android:checkableBehavior="none">
         <item
-            android:id="@+id/nav_search"
-            android:icon="@drawable/ic_search_title"
-            android:title="@string/search"/>
+            android:id="@+id/nav_bookmarks"
+            android:icon="@drawable/ic_bookmark"
+            android:title="@string/bookmarks"/>
         <item
             android:id="@+id/nav_trace"
             android:icon="@drawable/ic_menu_trace"
             android:title="@string/trace"/>
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@drawable/ic_search_title"
+            android:title="@string/search"/>
     </group>
 
     <group
