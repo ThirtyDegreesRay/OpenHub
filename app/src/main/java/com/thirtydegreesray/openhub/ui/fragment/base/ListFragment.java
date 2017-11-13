@@ -223,4 +223,14 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
         super.scrollToTop();
         recyclerView.smoothScrollToPosition(0);
     }
+
+    protected void postNotifyDataSetChanged(){
+        recyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
 }

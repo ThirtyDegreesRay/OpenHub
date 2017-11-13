@@ -1,63 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_menu_person"
-        android:title="@string/profile"/>
-    <item
-        android:id="@+id/nav_notifications"
-        android:icon="@drawable/ic_menu_notifications"
-        android:title="@string/notifications"/>
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/my"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_menu_person"
+            android:title="@string/profile"
+            android:checkable="false"/>
+        <item
+            android:id="@+id/nav_notifications"
+            android:icon="@drawable/ic_menu_notifications"
+            android:title="@string/notifications"
+            android:checkable="false"/>
         <item
             android:id="@+id/nav_news"
             android:icon="@drawable/ic_menu_news"
             android:title="@string/news"/>
+        <item
+            android:id="@+id/nav_issues"
+            android:icon="@drawable/ic_issues"
+            android:title="@string/issues"
+            android:visible="true"
+            android:checkable="false"/>
     </group>
-    <item
-        android:id="@+id/nav_issues"
-        android:icon="@drawable/ic_issues"
-        android:title="@string/issues"
-        android:visible="true"/>
 
-    <item android:title="@string/repositories">
-        <menu >
-            <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/nav_owned"
-                    android:icon="@drawable/ic_menu_repo"
-                    android:title="@string/owned"/>
-                <item
-                    android:id="@+id/nav_starred"
-                    android:icon="@drawable/ic_menu_star"
-                    android:title="@string/starred"/>
+    <group
+        android:id="@+id/repositories"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_owned"
+            android:icon="@drawable/ic_menu_repo"
+            android:title="@string/my_repos"/>
+        <item
+            android:id="@+id/nav_starred"
+            android:icon="@drawable/ic_menu_star"
+            android:title="@string/starred_repos"/>
+        <item
+            android:id="@+id/nav_trending"
+            android:icon="@drawable/ic_menu_trending"
+            android:title="@string/trending_repos"
+            android:checkable="false"/>
+    </group>
 
-            </group>
-            <item
-                android:id="@+id/nav_trending"
-                android:icon="@drawable/ic_menu_trending"
-                android:title="@string/trending"/>
-            <item
-                android:id="@+id/nav_search"
-                android:icon="@drawable/ic_search_title"
-                android:title="@string/search"/>
-        </menu>
-    </item>
+    <group
+        android:id="@+id/search"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@drawable/ic_search_title"
+            android:title="@string/search"/>
+        <item
+            android:id="@+id/nav_trace"
+            android:icon="@drawable/ic_menu_trace"
+            android:title="@string/trace"/>
+    </group>
 
-    <item android:title="@string/info_and_repositories">
-        <menu>
-            <item
-                android:id="@+id/nav_settings"
-                android:icon="@drawable/ic_menu_settings"
-                android:title="@string/settings"/>
-            <item
-                android:id="@+id/nav_about"
-                android:icon="@drawable/ic_menu_about"
-                android:title="@string/about"/>
-        </menu>
-    </item>
+    <group
+        android:id="@+id/setting"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_settings"
+            android:title="@string/settings"/>
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_menu_about"
+            android:title="@string/about"/>
+    </group>
 
 </menu>

@@ -6,6 +6,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.thirtydegreesray.openhub.dao.TraceRepo;
 
 import java.util.Date;
 
@@ -55,6 +56,43 @@ public class Repository implements Parcelable {
     @SerializedName("has_pages") private boolean hasPages;
 
     public Repository() {
+    }
+
+    public TraceRepo toTraceRepo(){
+        TraceRepo traceRepo = new TraceRepo();
+        traceRepo.setId(id);
+        traceRepo.setName(name);
+        traceRepo.setDescription(description);
+        traceRepo.setLanguage(language);
+        traceRepo.setStargazersCount(stargazersCount);
+        traceRepo.setWatchersCount(watchersCount);
+        traceRepo.setForksCount(forksCount);
+        traceRepo.setFork(fork);
+        traceRepo.setOwnerLogin(owner.getLogin());
+        traceRepo.setOwnerAvatarUrl(owner.getAvatarUrl());
+
+        Date date = new Date();
+        traceRepo.setStartTime(date);
+        traceRepo.setLatestTime(date);
+        traceRepo.setTraceNum(1);
+        return traceRepo;
+    }
+
+    public static Repository generateFromTrace(TraceRepo trace){
+        Repository repo = new Repository();
+        repo.setId((int) trace.getId());
+        repo.setName(trace.getName());
+        repo.setDescription(trace.getDescription());
+        repo.setLanguage(trace.getLanguage());
+        repo.setStargazersCount(trace.getStargazersCount());
+        repo.setWatchersCount(trace.getWatchersCount());
+        repo.setForksCount(trace.getForksCount());
+        repo.setFork(trace.getFork());
+        User user = new User();
+        user.setLogin(trace.getOwnerLogin());
+        user.setAvatarUrl(trace.getOwnerAvatarUrl());
+        repo.setOwner(user);
+        return repo;
     }
 
     public int getId() {

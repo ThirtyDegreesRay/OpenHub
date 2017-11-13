@@ -1,10 +1,10 @@
-
-
 apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = "com.thirtydereesray.AppDaoGenerator"
 
 dependencies {
     compile "org.greenrobot:greendao-generator:${GREEN_DAO_VERSION}"
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

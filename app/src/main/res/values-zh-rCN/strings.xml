@@ -233,7 +233,7 @@
     <string name="feedback">反馈</string>
 
     <string name="openhub_wishes">来自OpenHub的祝福</string>
-    <string name="star_wishes">
+    <string name="star_wishes" formatted="false">
         您好%s，今天是你在OpenHub的第%d天，谢谢你的使用，我会努力成为更适合你的GitHub app。
         \n\n如果你可以星标来支持我，那就太棒了！
     </string>
@@ -251,5 +251,9 @@
     <string name="sort_order">排序</string>
     <string name="recently_starred">最近星标的</string>
     <string name="previously_starred">以前星标的</string>
+    <string name="trace">足迹</string>
+    <string name="my_repos">我的版本库</string>
+    <string name="starred_repos">星标版本库</string>
+    <string name="trending_repos">趋势版本库</string>
 
 </resources>

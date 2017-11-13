@@ -29,7 +29,7 @@ public class UserListFragment extends ListFragment<UserListPresenter, UsersAdapt
         implements IUserListContract.View{
 
     public enum UserListType{
-        STARGAZERS, WATCHERS, FOLLOWERS, FOLLOWING, SEARCH, ORG_MEMBERS
+        STARGAZERS, WATCHERS, FOLLOWERS, FOLLOWING, SEARCH, ORG_MEMBERS, TRACE
     }
 
     public static UserListFragment create(@NonNull UserListType type, @NonNull String user,
@@ -53,6 +53,12 @@ public class UserListFragment extends ListFragment<UserListPresenter, UsersAdapt
                         .put("searchModel", searchModel)
                         .build()
         );
+        return fragment;
+    }
+
+    public static UserListFragment createForTrace(){
+        UserListFragment fragment = new UserListFragment();
+        fragment.setArguments(BundleHelper.builder().put("type", UserListType.TRACE).build());
         return fragment;
     }
 
@@ -89,7 +95,7 @@ public class UserListFragment extends ListFragment<UserListPresenter, UsersAdapt
     @Override
     public void showUsers(ArrayList<User> users) {
         adapter.setData(users);
-        adapter.notifyDataSetChanged();
+        postNotifyDataSetChanged();
     }
 
     @Override

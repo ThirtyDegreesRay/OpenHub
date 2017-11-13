@@ -7,14 +7,22 @@ import org.greenrobot.greendao.generator.Entity;
 import org.greenrobot.greendao.generator.Schema;
 
 public class AppDaoGenerator {
-    public static void main(String...args) throws Exception {
-        Schema rootSchema = new Schema(1, "com.thirtydegreesray.openhub.dao");
+
+    public static void main(String...args){
+        Schema rootSchema = new Schema(3, "com.thirtydegreesray.openhub.dao");
         addAuthUser(rootSchema);
-        new DaoGenerator().generateAll(rootSchema, "app/src/main/java");
+        addTraceUser(rootSchema);
+        addTraceRepo(rootSchema);
+        System.out.println("AppDaoGenerator");
+        try {
+            new DaoGenerator().generateAll(rootSchema, "E:/Work/Android/github/OpenHub/OpenHub/app/src/main/java");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
-     * add use
+     * add user
      * @param schema
      */
     private static void addAuthUser(Schema schema){
@@ -29,4 +37,37 @@ public class AppDaoGenerator {
         entity.addStringProperty("name");
         entity.addStringProperty("avatar");
     }
+
+    private static void addTraceUser(Schema schema){
+        Entity entity = schema.addEntity("TraceUser");
+        entity.addStringProperty("login").primaryKey().notNull();
+        entity.addStringProperty("name");
+        entity.addStringProperty("avatarUrl");
+        entity.addIntProperty("followers");
+        entity.addIntProperty("following");
+
+        entity.addDateProperty("startTime");
+        entity.addDateProperty("latestTime");
+        entity.addIntProperty("traceNum");
+    }
+
+    private static void addTraceRepo(Schema schema){
+        Entity entity = schema.addEntity("TraceRepo");
+        entity.addLongProperty("id").primaryKey().notNull();
+        entity.addStringProperty("name").notNull();
+        entity.addStringProperty("description");
+        entity.addStringProperty("language");
+        entity.addIntProperty("stargazersCount");
+        entity.addIntProperty("watchersCount");
+        entity.addIntProperty("forksCount");
+        entity.addBooleanProperty("fork");
+
+        entity.addStringProperty("ownerLogin");
+        entity.addStringProperty("ownerAvatarUrl");
+
+        entity.addDateProperty("startTime");
+        entity.addDateProperty("latestTime");
+        entity.addIntProperty("traceNum");
+    }
+
 }

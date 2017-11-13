@@ -5,6 +5,8 @@ package com.thirtydegreesray.openhub.mvp.presenter;
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.common.Event;
 import com.thirtydegreesray.openhub.dao.DaoSession;
+import com.thirtydegreesray.openhub.dao.TraceUser;
+import com.thirtydegreesray.openhub.dao.TraceUserDao;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
@@ -19,6 +21,7 @@ import com.thirtydegreesray.openhub.util.StringUtils;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -57,6 +60,8 @@ public class UserListPresenter extends BasePagerPresenter<IUserListContract.View
     protected void loadData() {
         if(UserListFragment.UserListType.SEARCH.equals(type)){
             if(searchModel != null) searchUsers(1);
+        } else if(UserListFragment.UserListType.TRACE.equals(type)){
+            loadTrace(1);
         } else {
             loadUsers(1, false);
         }
@@ -66,6 +71,10 @@ public class UserListPresenter extends BasePagerPresenter<IUserListContract.View
     public void loadUsers(final int page, final boolean isReload) {
         if (type.equals(UserListFragment.UserListType.SEARCH)) {
             searchUsers(page);
+            return;
+        }
+        if(UserListFragment.UserListType.TRACE.equals(type)){
+            loadTrace(page);
             return;
         }
         mView.showLoading();
@@ -163,6 +172,26 @@ public class UserListPresenter extends BasePagerPresenter<IUserListContract.View
         } else {
             mView.showLoadError(getErrorTip(error));
         }
+    }
+
+    private void loadTrace(int page){
+        List<TraceUser> traceUsers = daoSession.getTraceUserDao().queryBuilder()
+                .orderDesc(TraceUserDao.Properties.LatestTime)
+                .offset((page - 1) * 30)
+                .limit(page * 30)
+                .list();
+        ArrayList<User> queryUsers = new ArrayList<>();
+        for(TraceUser traceUser : traceUsers){
+            queryUsers.add(User.generateFromTrace(traceUser));
+        }
+        if(users == null || page == 1){
+            users = queryUsers;
+        } else {
+            users.addAll(queryUsers);
+        }
+
+        mView.showUsers(users);
+        mView.hideLoading();
     }
 
 }

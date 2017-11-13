@@ -6,6 +6,7 @@ import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.dao.DaoSession;
+import com.thirtydegreesray.openhub.dao.TraceRepo;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpProgressSubscriber;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
@@ -17,6 +18,7 @@ import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.util.StarWishesHelper;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -43,6 +45,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
     private boolean watched;
 
     private boolean isStatusChecked = false;
+    @AutoAccess boolean isTraceSaved = false;
 
     @Inject
     public RepositoryPresenter(DaoSession daoSession) {
@@ -178,6 +181,7 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
                         initCurBranch();
                         mView.showRepo(repository);
                         checkStatus();
+                        saveTrace();
                     }
                 };
 
@@ -287,6 +291,21 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
                 }
             }, 3000);
         }
+    }
+
+    private void saveTrace(){
+        TraceRepo traceRepo = daoSession.getTraceRepoDao().load((long) repository.getId());
+        if(traceRepo == null){
+            traceRepo = repository.toTraceRepo();
+            daoSession.getTraceRepoDao().insert(traceRepo);
+        } else {
+            TraceRepo updatedTraceRepo = repository.toTraceRepo();
+            updatedTraceRepo.setStartTime(traceRepo.getStartTime());
+            updatedTraceRepo.setLatestTime(new Date());
+            updatedTraceRepo.setTraceNum(isTraceSaved ? traceRepo.getTraceNum() : traceRepo.getTraceNum() + 1);
+            daoSession.getTraceRepoDao().update(updatedTraceRepo);
+        }
+        isTraceSaved = true;
     }
 
 }

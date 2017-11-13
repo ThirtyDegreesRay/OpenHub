@@ -6,6 +6,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.thirtydegreesray.openhub.dao.TraceUser;
 
 import java.util.Date;
 
@@ -42,6 +43,31 @@ public class User implements Parcelable {
 
     public User() {
 
+    }
+
+    public TraceUser toTraceUser(){
+        TraceUser traceUser = new TraceUser();
+        traceUser.setLogin(login);
+        traceUser.setName(name);
+        traceUser.setAvatarUrl(avatarUrl);
+        traceUser.setFollowers(followers);
+        traceUser.setFollowing(following);
+
+        Date date = new Date();
+        traceUser.setStartTime(date);
+        traceUser.setLatestTime(date);
+        traceUser.setTraceNum(1);
+        return traceUser;
+    }
+
+    public static User generateFromTrace(TraceUser trace){
+        User user = new User();
+        user.setLogin(trace.getLogin());
+        user.setName(trace.getName());
+        user.setFollowers(trace.getFollowers());
+        user.setFollowing(trace.getFollowing());
+        user.setAvatarUrl(trace.getAvatarUrl());
+        return user;
     }
 
     public String getLogin() {

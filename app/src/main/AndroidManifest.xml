@@ -113,6 +113,7 @@
         <activity android:name=".ui.activity.CommitDetailActivity" android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.CommitsListActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.activity.NotificationsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.TraceActivity" android:screenOrientation="portrait"/>
 
     </application>
 

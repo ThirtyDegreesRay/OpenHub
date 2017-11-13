@@ -47,13 +47,11 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
 
     public BaseAdapter(Context context){
         this.context = context;
-        handler = getHandler();
     }
 
     public BaseAdapter(Context context, BaseFragment fragment){
         this.context = context;
         this.fragment = fragment;
-        handler = getHandler();
     }
 
     /**
@@ -148,37 +146,6 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
          * @return
          */
         boolean onItemLongClick(int position, @NonNull View view);
-    }
-
-    private Handler handler ;
-
-    private Handler getHandler(){
-        return new Handler(){
-            @Override
-            public void handleMessage(@NonNull Message msg) {
-                super.handleMessage(msg);
-                switch (msg.what){
-                    case 0:
-                        notifyDataSetChanged();
-                        break;
-                    case 1:
-                        notifyItemChanged((Integer) msg.obj);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        };
-    }
-
-    protected void postNotifyDataSetChanged(){
-        Message message = handler.obtainMessage(0);
-        message.sendToTarget();
-    }
-
-    protected void postNotifyItemChanged(int position){
-        Message message = handler.obtainMessage(1, position);
-        message.sendToTarget();
     }
 
     protected void showShortToast(String msg){

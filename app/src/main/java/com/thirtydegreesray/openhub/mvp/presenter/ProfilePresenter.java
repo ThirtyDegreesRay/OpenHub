@@ -7,11 +7,14 @@ import android.os.Handler;
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.dao.DaoSession;
+import com.thirtydegreesray.openhub.dao.TraceUser;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.IProfileContract;
 import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
+
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -34,6 +37,7 @@ public class ProfilePresenter extends BasePresenter<IProfileContract.View>
 
     private boolean isTransitionComplete = false;
     private boolean isWaitForTransition = false;
+    @AutoAccess boolean isTraceSaved = false;
 
     @Inject
     public ProfilePresenter(DaoSession daoSession) {
@@ -54,7 +58,6 @@ public class ProfilePresenter extends BasePresenter<IProfileContract.View>
                 checkFollowingStatus();
             }
         }, 500);
-
     }
 
     private void getProfileInfo(){
@@ -75,6 +78,7 @@ public class ProfilePresenter extends BasePresenter<IProfileContract.View>
                 } else {
                     isWaitForTransition = true;
                 }
+                saveTrace();
             }
         };
         generalRxHttpExecute(new IObservableCreator<User>() {
@@ -128,4 +132,20 @@ public class ProfilePresenter extends BasePresenter<IProfileContract.View>
         executeSimpleRequest(follow ?
                 getUserService().followUser(loginId) : getUserService().unfollowUser(loginId));
     }
+
+    private void saveTrace(){
+        TraceUser traceUser = daoSession.getTraceUserDao().load(user.getLogin());
+        if(traceUser == null){
+            traceUser = user.toTraceUser();
+            daoSession.getTraceUserDao().insert(traceUser);
+        } else {
+            TraceUser updatedTraceUser = user.toTraceUser();
+            updatedTraceUser.setStartTime(traceUser.getStartTime());
+            updatedTraceUser.setLatestTime(new Date());
+            updatedTraceUser.setTraceNum(isTraceSaved ? traceUser.getTraceNum() : traceUser.getTraceNum() + 1);
+            daoSession.getTraceUserDao().update(updatedTraceUser);
+        }
+        isTraceSaved = true;
+    }
+
 }

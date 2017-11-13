@@ -1,12 +1,9 @@
-
-
 package com.thirtydegreesray.openhub.ui.activity;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
@@ -16,16 +13,17 @@ import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentViewPagerAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
+import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
 
 /**
- * Created by ThirtyDegreesRay on 2017/8/26 16:56:35
+ * Created by ThirtyDegreesRay on 2017/11/13 11:35:50
  */
 
-public class TrendingActivity extends PagerActivity {
+public class TraceActivity extends PagerActivity {
 
-    public static void show(@NonNull Context context){
-        Intent intent = new Intent(context, TrendingActivity.class);
-        context.startActivity(intent);
+    public static void show(@NonNull Activity activity){
+        Intent intent = new Intent(activity, TraceActivity.class);
+        activity.startActivity(intent);
     }
 
     @Override
@@ -39,7 +37,6 @@ public class TrendingActivity extends PagerActivity {
 
     }
 
-    @Nullable
     @Override
     protected int getContentView() {
         return R.layout.activity_view_pager;
@@ -50,8 +47,8 @@ public class TrendingActivity extends PagerActivity {
         super.initView(savedInstanceState);
         setToolbarScrollAble(true);
         setToolbarBackEnable();
-        setToolbarTitle(getString(R.string.trending_repos));
-        pagerAdapter.setPagerList(FragmentPagerModel.createTrendingPagerList(getActivity(), getFragments()));
+        setToolbarTitle(getString(R.string.trace));
+        pagerAdapter.setPagerList(FragmentPagerModel.createTracePagerList(getActivity(), getFragments()));
         tabLayout.setVisibility(View.VISIBLE);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setAdapter(pagerAdapter);
@@ -60,26 +57,16 @@ public class TrendingActivity extends PagerActivity {
 
     @Override
     public int getPagerSize() {
-        return 3;
+        return 2;
     }
 
     @Override
     protected int getFragmentPosition(Fragment fragment) {
         if(fragment instanceof RepositoriesFragment){
-            String since = fragment.getArguments().getString("since");
-            if(since == null){
-                return -1;
-            }else if(since.equals("daily")){
-                return 0;
-            } else if(since.equals("weekly")){
-                return 1;
-            } else if(since.equals("monthly")){
-                return 2;
-            } else {
-                return -1;
-            }
-        }else
+            return 0;
+        } else if(fragment instanceof UserListFragment){
+            return 1;
+        } else
             return -1;
     }
-
 }

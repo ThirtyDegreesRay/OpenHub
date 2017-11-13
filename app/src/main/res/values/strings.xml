@@ -313,7 +313,7 @@
     <string name="feedback">Feedback</string>
 
     <string name="openhub_wishes">Wishes From OpenHub</string>
-    <string name="star_wishes">
+    <string name="star_wishes" formatted="false">
         Hi %s, today is your %dth day at OpenHub,
         thanks for your using, I will strive to become a more convenient GitHub app for you.
         \n\nIf you can star to support me, it would be awesome!
@@ -332,5 +332,10 @@
     <string name="full_name_desc">Full name desc</string>
     <string name="recently_starred">Recently starred</string>
     <string name="previously_starred">Previously starred</string>
+
+    <string name="trace">Trace</string>
+    <string name="my_repos">My repos</string>
+    <string name="starred_repos">Starred repos</string>
+    <string name="trending_repos">Trending repos</string>
 
 </resources>

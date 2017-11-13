@@ -20,7 +20,7 @@ public class AuthUserDao extends AbstractDao<AuthUser, String> {
     /**
      * Properties of entity AuthUser.<br/>
      * Can be used for QueryBuilder and for referencing column names.
-    */
+     */
     public static class Properties {
         public final static Property AccessToken = new Property(0, String.class, "accessToken", true, "ACCESS_TOKEN");
         public final static Property AuthTime = new Property(1, java.util.Date.class, "authTime", false, "AUTH_TIME");
@@ -30,7 +30,7 @@ public class AuthUserDao extends AbstractDao<AuthUser, String> {
         public final static Property LoginId = new Property(5, String.class, "loginId", false, "LOGIN_ID");
         public final static Property Name = new Property(6, String.class, "name", false, "NAME");
         public final static Property Avatar = new Property(7, String.class, "avatar", false, "AVATAR");
-    };
+    }
 
 
     public AuthUserDao(DaoConfig config) {
@@ -147,6 +147,11 @@ public class AuthUserDao extends AbstractDao<AuthUser, String> {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public boolean hasKey(AuthUser entity) {
+        throw new UnsupportedOperationException("Unsupported for entities with a non-null key");
     }
 
     @Override

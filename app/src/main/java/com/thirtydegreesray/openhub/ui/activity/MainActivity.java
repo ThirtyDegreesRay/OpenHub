@@ -174,6 +174,9 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
             case R.id.nav_search:
                 SearchActivity.show(getActivity());
                 break;
+            case R.id.nav_trace:
+                TraceActivity.show(getActivity());
+                break;
             case R.id.nav_settings:
                 SettingsActivity.show(getActivity(), SETTINGS_REQUEST_CODE);
                 break;
@@ -204,10 +207,10 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
                 setToolbarTitle(getString(R.string.news));
                 break;
             case R.id.nav_owned:
-                setToolbarTitle(getString(R.string.owned));
+                setToolbarTitle(getString(R.string.my_repos));
                 break;
             case R.id.nav_starred:
-                setToolbarTitle(getString(R.string.starred));
+                setToolbarTitle(getString(R.string.starred_repos));
                 break;
             default:
                 setToolbarTitle(getString(R.string.app_name));

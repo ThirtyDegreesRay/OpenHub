@@ -52,7 +52,7 @@ public class SplashPresenter extends BasePresenter<ISplashContract.View>
 
         AuthUser selectedUser = users != null && users.size() > 0 ? users.get(0) : null;
 
-        if (selectedUser != null && selectedUser.isExpired()) {
+        if (selectedUser != null && isExpired(selectedUser)) {
             authUserDao.delete(selectedUser);
             selectedUser = null;
         }
@@ -110,6 +110,11 @@ public class SplashPresenter extends BasePresenter<ISplashContract.View>
             }
         }, httpObserver, true);
 
+    }
+
+    private boolean isExpired(AuthUser selectedUser){
+        return selectedUser.getAuthTime().getTime() + selectedUser.getExpireIn() * 1000
+                < System.currentTimeMillis();
     }
 
 }

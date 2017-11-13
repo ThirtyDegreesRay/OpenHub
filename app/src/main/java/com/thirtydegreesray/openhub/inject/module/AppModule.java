@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.AppConfig;
+import com.thirtydegreesray.openhub.dao.DBOpenHelper;
 import com.thirtydegreesray.openhub.dao.DaoMaster;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 
@@ -38,11 +39,10 @@ public class AppModule {
     @Provides
     @Singleton
     public DaoSession provideDaoSession() {
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(application, AppConfig.DB_NAME, null);
+        DBOpenHelper helper = new DBOpenHelper(application, AppConfig.DB_NAME, null);
         SQLiteDatabase db = helper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(db);
-        DaoSession daoSession = daoMaster.newSession();
-        return daoSession;
+        return daoMaster.newSession();
     }
 
 

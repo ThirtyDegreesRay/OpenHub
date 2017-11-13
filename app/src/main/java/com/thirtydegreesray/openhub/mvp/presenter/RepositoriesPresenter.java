@@ -5,9 +5,12 @@ package com.thirtydegreesray.openhub.mvp.presenter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.common.Event;
 import com.thirtydegreesray.openhub.dao.DaoSession;
+import com.thirtydegreesray.openhub.dao.TraceRepo;
+import com.thirtydegreesray.openhub.dao.TraceRepoDao;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
@@ -23,6 +26,7 @@ import com.thirtydegreesray.openhub.util.StringUtils;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -64,9 +68,13 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
 
     @Override
     protected void loadData() {
-        if(RepositoriesFragment.RepositoriesType.SEARCH.equals(type)){
-            if(searchModel != null) searchRepos(1);
-            return ;
+        if (RepositoriesFragment.RepositoriesType.SEARCH.equals(type)) {
+            if (searchModel != null) searchRepos(1);
+            return;
+        }
+        if (RepositoriesFragment.RepositoriesType.TRACE.equals(type)) {
+            loadTrace(1);
+            return;
         }
         if (repos != null) {
             mView.showRepositories(repos);
@@ -81,6 +89,10 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         filter = getFilter();
         if (type.equals(RepositoriesFragment.RepositoriesType.SEARCH)) {
             searchRepos(page);
+            return;
+        }
+        if (RepositoriesFragment.RepositoriesType.TRACE.equals(type)) {
+            loadTrace(page);
             return;
         }
         mView.showLoading();
@@ -102,7 +114,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
                 } else {
                     repos.addAll(response.body());
                 }
-                if(response.body().size() == 0 && repos.size() != 0){
+                if (response.body().size() == 0 && repos.size() != 0) {
                     mView.setCanLoadMore(false);
                 } else {
                     mView.showRepositories(repos);
@@ -165,7 +177,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
                         } else {
                             repos.addAll(response.body().getItems());
                         }
-                        if(response.body().getItems().size() == 0 && repos.size() != 0){
+                        if (response.body().getItems().size() == 0 && repos.size() != 0) {
                             mView.setCanLoadMore(false);
                         } else {
                             mView.showRepositories(repos);
@@ -190,12 +202,12 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         prepareLoadData();
     }
 
-    private void handleError(Throwable error){
-        if(!StringUtils.isBlankList(repos)){
+    private void handleError(Throwable error) {
+        if (!StringUtils.isBlankList(repos)) {
             mView.showErrorToast(getErrorTip(error));
-        } else if(error instanceof HttpPageNoFoundError){
+        } else if (error instanceof HttpPageNoFoundError) {
             mView.showRepositories(new ArrayList<Repository>());
-        }else{
+        } else {
             mView.showLoadError(getErrorTip(error));
         }
     }
@@ -209,10 +221,36 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
     }
 
     public RepositoriesFilter getFilter() {
-        if(filter == null){
+        if (filter == null) {
             filter = RepositoriesFragment.RepositoriesType.STARRED.equals(type) ?
                     RepositoriesFilter.DEFAULT_STARRED_REPO : RepositoriesFilter.DEFAULT;
         }
         return filter;
     }
+
+    private void loadTrace(int page) {
+        long start = System.currentTimeMillis();
+
+        List<TraceRepo> traceRepos = daoSession.getTraceRepoDao().queryBuilder()
+                .orderDesc(TraceRepoDao.Properties.LatestTime)
+                .offset((page - 1) * 30)
+                .limit(page * 30)
+                .list();
+
+        ArrayList<Repository> queryRepos = new ArrayList<>();
+        for (TraceRepo traceRepo : traceRepos) {
+            queryRepos.add(Repository.generateFromTrace(traceRepo));
+        }
+
+        if(repos == null || page == 1){
+            repos = queryRepos;
+        } else {
+            repos.addAll(queryRepos);
+        }
+
+        Logger.t("loadTrace").d(System.currentTimeMillis() - start);
+        mView.showRepositories(repos);
+        mView.hideLoading();
+    }
+
 }

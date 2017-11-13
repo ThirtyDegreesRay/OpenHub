@@ -38,7 +38,7 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
             implements IRepositoriesContract.View, OnDrawerSelectedListener{
 
     public enum RepositoriesType{
-        OWNED, PUBLIC, STARRED, TRENDING, SEARCH, FORKS
+        OWNED, PUBLIC, STARRED, TRENDING, SEARCH, FORKS, TRACE
     }
 
     public static RepositoriesFragment create(@NonNull RepositoriesType type,
@@ -81,6 +81,12 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
         return fragment;
     }
 
+    public static RepositoriesFragment createForTrace(){
+        RepositoriesFragment fragment = new RepositoriesFragment();
+        fragment.setArguments(BundleHelper.builder().put("type", RepositoriesType.TRACE).build());
+        return fragment;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +96,7 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     @Override
     public void showRepositories(ArrayList<Repository> repositoryList) {
         adapter.setData(repositoryList);
-        adapter.notifyDataSetChanged();
+        postNotifyDataSetChanged();
     }
 
     @Override
@@ -126,7 +132,8 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     @Override
     public void onItemClick(int position, @NonNull View view) {
         super.onItemClick(position, view);
-        if(RepositoriesType.TRENDING.equals(mPresenter.getType())){
+        if(RepositoriesType.TRENDING.equals(mPresenter.getType()) ||
+                RepositoriesType.TRACE.equals(mPresenter.getType())){
             RepositoryActivity.show(getActivity(), adapter.getData().get(position).getOwner().getLogin(),
                     adapter.getData().get(position).getName());
         } else {
