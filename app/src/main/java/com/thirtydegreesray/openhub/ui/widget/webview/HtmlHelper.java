@@ -216,8 +216,8 @@ class HtmlHelper {
                 removeLineNum++;
             } else if (line.startsWith("@@")) {
                 classStr = "class=\"change\";";
-                removeStartLine = Integer.parseInt(line.substring(line.indexOf("-") + 1, line.indexOf(",")));
-                addStartLine = Integer.parseInt(line.substring(line.indexOf("+") + 1, line.indexOf(",", line.indexOf("+"))));
+                removeStartLine = getRemoveStartLine(line);
+                addStartLine = getAddStartLine(line);
                 addLineNum = 0;
                 removeLineNum = 0;
                 normalLineNum = 0;
@@ -238,6 +238,22 @@ class HtmlHelper {
         return source.toString();
     }
 
+    private static int getRemoveStartLine(String line){
+        try {
+            return Integer.parseInt(line.substring(line.indexOf("-") + 1, line.indexOf(",")));
+        } catch (Exception e){
+            return 1;
+        }
+    }
+
+    private static int getAddStartLine(String line){
+        try {
+            return Integer.parseInt(line.substring(line.indexOf("+") + 1,
+                    line.indexOf(",", line.indexOf("+"))));
+        } catch (Exception e){
+            return 1;
+        }
+    }
 
     private static String getDiffLineNumber(String removeNumber, String addNumber){
         int minLength = 4;
