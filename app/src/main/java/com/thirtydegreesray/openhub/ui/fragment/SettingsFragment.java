@@ -158,5 +158,4 @@ public class SettingsFragment extends PreferenceFragmentCompat
                 .show();
     }
 
-
 }
