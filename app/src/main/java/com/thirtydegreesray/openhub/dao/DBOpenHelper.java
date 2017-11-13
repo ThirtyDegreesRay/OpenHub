@@ -24,9 +24,14 @@ public class DBOpenHelper extends DaoMaster.DevOpenHelper {
         if(oldVersion == 2 && newVersion == 3){
             TraceUserDao.dropTable(db, true);
             TraceRepoDao.dropTable(db, true);
+            BookMarkUserDao.dropTable(db, true);
+            BookMarkRepoDao.dropTable(db, true);
+
             AuthUserDao.createTable(db, true);
             TraceUserDao.createTable(db, false);
             TraceRepoDao.createTable(db, false);
+            BookMarkUserDao.createTable(db, false);
+            BookMarkRepoDao.createTable(db, false);
         } else {
             super.onUpgrade(db, oldVersion, newVersion);
         }

@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
-Properties buildProperties = new Properties()
+Properties properties = new Properties()
 //read properties
-buildProperties.load(project.rootProject.file('local.properties').newDataInputStream())
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
@@ -17,28 +17,42 @@ android {
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled false
 
-        buildConfigField "String", "OPENHUB_CLIENT_ID", buildProperties.getProperty("openhub_client_id")
-        buildConfigField "String", "OPENHUB_CLIENT_SECRET", buildProperties.getProperty("openhub_client_secret")
-        buildConfigField "String", "BUGLY_ID", buildProperties.getProperty("bugly_appid")
-        buildConfigField "String", "DEBUG_BUGLY_ID", buildProperties.getProperty("debug_bugly_appid")
+        buildConfigField "String", "OPENHUB_CLIENT_ID", properties.getProperty("openhub_client_id")
+        buildConfigField "String", "OPENHUB_CLIENT_SECRET", properties.getProperty("openhub_client_secret")
+        buildConfigField "String", "BUGLY_ID", properties.getProperty("bugly_appid")
+        buildConfigField "String", "DEBUG_BUGLY_ID", properties.getProperty("debug_bugly_appid")
 
         ndk {
             abiFilters 'armeabi', 'armeabi-v7a', 'x86'
 //            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         }
     }
+
+    signingConfigs  {
+        release {
+            storeFile file(properties.getProperty("sign_path"))
+            storePassword properties.getProperty("store_password")
+            keyAlias properties.getProperty("key_alias")
+            keyPassword properties.getProperty("key_password")
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
 //            multiDexKeepProguard file('proguard-rules.pro')
 //            multiDexKeepFile file('multidex-config.txt')
+        }
+        debug {
+            signingConfig signingConfigs.release
         }
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     lintOptions {

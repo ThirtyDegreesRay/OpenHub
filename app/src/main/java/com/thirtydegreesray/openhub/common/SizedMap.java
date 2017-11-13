@@ -3,6 +3,7 @@
 package com.thirtydegreesray.openhub.common;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/22 18:46:06
@@ -23,9 +24,8 @@ public class SizedMap<K,V> extends LinkedHashMap<K,V> {
         this.maxSize = maxSize;
     }
 
-
     @Override
-    protected boolean removeEldestEntry(Entry<K, V> eldest) {
+    protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
         return size() > maxSize;
     }
 
