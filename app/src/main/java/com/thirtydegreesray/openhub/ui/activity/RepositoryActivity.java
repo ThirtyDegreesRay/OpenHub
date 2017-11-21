@@ -58,8 +58,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
 
     public static void show(@NonNull Context activity, @NonNull String owner,
                             @NonNull String repoName) {
-        Intent intent = new Intent(activity, RepositoryActivity.class);
-        intent.putExtras(BundleHelper.builder().put("owner", owner).put("repoName", repoName).build());
+        Intent intent = createIntent(activity, owner, repoName);
         activity.startActivity(intent);
     }
 
@@ -74,6 +73,15 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
         Intent intent = new Intent(activity, RepositoryActivity.class);
         intent.putExtra("repository", repository);
         activity.startActivity(intent);
+    }
+
+    public static Intent createIntent(@NonNull Context activity, @NonNull String owner,
+                            @NonNull String repoName) {
+        return new Intent(activity, RepositoryActivity.class)
+                .putExtras(BundleHelper.builder()
+                        .put("owner", owner)
+                        .put("repoName", repoName)
+                        .build());
     }
 
     @BindView(R.id.user_avatar_bg) ImageView userImageViewBg;

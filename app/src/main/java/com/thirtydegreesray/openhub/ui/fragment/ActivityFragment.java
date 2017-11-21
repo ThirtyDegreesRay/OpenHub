@@ -2,9 +2,12 @@
 
 package com.thirtydegreesray.openhub.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.thirtydegreesray.openhub.R;
@@ -12,16 +15,20 @@ import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IActivityContract;
+import com.thirtydegreesray.openhub.mvp.model.ActivityRedirectionModel;
 import com.thirtydegreesray.openhub.mvp.model.Event;
 import com.thirtydegreesray.openhub.mvp.presenter.ActivityPresenter;
 import com.thirtydegreesray.openhub.ui.activity.CommitDetailActivity;
 import com.thirtydegreesray.openhub.ui.activity.CommitsListActivity;
 import com.thirtydegreesray.openhub.ui.activity.IssueDetailActivity;
+import com.thirtydegreesray.openhub.ui.activity.IssuesActivity;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.activity.ReleaseInfoActivity;
+import com.thirtydegreesray.openhub.ui.activity.ReleasesActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.adapter.ActivitiesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
+import com.thirtydegreesray.openhub.ui.widget.ContextMenuRecyclerView;
 import com.thirtydegreesray.openhub.util.BundleHelper;
 
 import java.util.ArrayList;
@@ -37,12 +44,12 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
         News, User, Repository
     }
 
-    public static ActivityFragment create(@NonNull ActivityType type, @NonNull String user){
+    public static ActivityFragment create(@NonNull ActivityType type, @NonNull String user) {
         return create(type, user, null);
     }
 
     public static ActivityFragment create(@NonNull ActivityType type, @NonNull String user,
-                                          @Nullable String repo){
+                                          @Nullable String repo) {
         ActivityFragment fragment = new ActivityFragment();
         fragment.setArguments(BundleHelper.builder().put("type", type)
                 .put("user", user).put("repo", repo).build());
@@ -67,6 +74,7 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
     protected void initFragment(Bundle savedInstanceState) {
         super.initFragment(savedInstanceState);
         setLoadMoreEnable(true);
+        registerForContextMenu(recyclerView);
     }
 
     @Override
@@ -83,35 +91,36 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
     public void onItemClick(int position, @NonNull View view) {
         super.onItemClick(position, view);
         Event event = adapter.getData().get(position);
-        if(event.getRepo() == null){
+        if (event.getRepo() == null) {
             ProfileActivity.show(getActivity(), null, event.getActor().getLogin(), event.getActor().getAvatarUrl());
-            return ;
+            return;
         }
         //TODO to be better redirection
         String owner = event.getRepo().getFullName().split("/")[0];
         String repoName = event.getRepo().getFullName().split("/")[1];
-        switch (event.getType()){
+        switch (event.getType()) {
             case ForkEvent:
                 String actorId = event.getActor().getLogin();
                 RepositoryActivity.show(getContext(), actorId, event.getRepo().getName());
                 break;
             case ReleaseEvent:
                 ReleaseInfoActivity.show(getActivity(), owner, repoName,
-                        event.getPayload().getRelease());
+                        event.getPayload().getRelease().getTagName());
                 break;
             case IssueCommentEvent:
             case IssuesEvent:
-                IssueDetailActivity.show(getActivity(), event.getPayload().getIssue());
+                IssueDetailActivity.show(getActivity(), owner, repoName,
+                        event.getPayload().getIssue().getNumber());
                 break;
             case PushEvent:
-                if(event.getPayload().getCommits() == null){
+                if (event.getPayload().getCommits() == null) {
                     RepositoryActivity.show(getContext(), owner, event.getRepo().getName());
-                } else if(event.getPayload().getCommits().size() == 1){
+                } else if (event.getPayload().getCommits().size() == 1) {
                     View userAvatar = view.findViewById(R.id.user_avatar);
                     CommitDetailActivity.show(getActivity(), owner, repoName,
                             event.getPayload().getCommits().get(0).getSha(), userAvatar,
                             event.getActor().getAvatarUrl());
-                }else{
+                } else {
                     CommitsListActivity.showForCompare(getActivity(), owner, repoName,
                             event.getPayload().getBefore(), event.getPayload().getHead());
                 }
@@ -123,9 +132,82 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
     }
 
     @Override
-    public boolean onItemLongClick(int position, @NonNull View view) {
-        //TODO long click to showImage options can go
-        return super.onItemLongClick(position, view);
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle(R.string.go_to);
+        ContextMenuRecyclerView.RecyclerViewContextMenuInfo info =
+                (ContextMenuRecyclerView.RecyclerViewContextMenuInfo) menuInfo;
+        Event event = adapter.getData().get(info.getPosition());
+        ArrayList<ActivityRedirectionModel> redirectionModels = mPresenter.getRedirectionList(event);
+        for (ActivityRedirectionModel model : redirectionModels) {
+            addRedirectionMenuItem(menu, model);
+        }
+    }
+
+    private void addRedirectionMenuItem(ContextMenu menu, ActivityRedirectionModel model) {
+        String text = null;
+        Intent intent = null;
+        String owner = model.getOwner();
+        String repo = model.getRepoName();
+        switch (model.getType()) {
+            case User:
+                text = getString(R.string.user) + " " + model.getActor();
+                intent = ProfileActivity.createIntent(getActivity(), model.getActor());
+                break;
+            case Repo:
+                text = getString(R.string.repo) + " " + repo;
+                intent = RepositoryActivity.createIntent(getActivity(), owner, repo);
+                break;
+            case Fork:
+                text = getString(R.string.forks) + " " + repo;
+                intent = RepositoryActivity.createIntent(getActivity(), model.getActor(), repo);
+                break;
+
+            case Issues:
+                text = getString(R.string.issues_list);
+                intent = IssuesActivity.createIntentForRepo(getActivity(), owner, repo);
+                break;
+            case Issue:
+                text = getString(R.string.issue) + " " + model.getIssue().getNumber();
+                intent = IssueDetailActivity.createIntent(getActivity(), owner,
+                        repo, model.getIssue().getNumber());
+                break;
+
+            case Commits:
+                text = getString(R.string.commits_list);
+                intent = CommitsListActivity.createIntentForRepo(getActivity(), owner,
+                        repo, model.getBranch());
+                break;
+            case CommitCompare:
+                text = getString(R.string.compare);
+                intent = CommitsListActivity.createIntentForCompare(getActivity(), owner,
+                        repo, model.getDiffBefore(), model.getDiffHead());
+                break;
+            case Commit:
+                text = getString(R.string.commit) + " " + model.getCommitSha().substring(0, 7);
+                intent = CommitDetailActivity.createIntent(getActivity(), owner,
+                        repo, model.getCommitSha());
+                break;
+
+            case Releases:
+                text = getString(R.string.releases_list);
+                intent = ReleasesActivity.createIntent(getActivity(), owner, repo);
+                break;
+            case Release:
+                text = getString(R.string.release) + " " + model.getRelease().getTagName();
+                intent = ReleaseInfoActivity.createIntent(getActivity(), owner,
+                        repo, model.getRelease().getTagName());
+                break;
+        }
+        menu.add(text).setIntent(intent);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getIntent() != null) {
+            startActivity(item.getIntent());
+        }
+        return true;
     }
 
     @Override
@@ -143,7 +225,7 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
     @Override
     public void onFragmentShowed() {
         super.onFragmentShowed();
-        if(mPresenter != null) mPresenter.prepareLoadData();
+        if (mPresenter != null) mPresenter.prepareLoadData();
     }
 
 }

@@ -344,4 +344,12 @@
     <string name="bookmark_saved">Bookmark saved</string>
     <string name="bookmark_removed">Bookmark removed</string>
 
+    <string name="user">User</string>
+    <string name="repo">Repo</string>
+    <string name="issues_list">Issues list</string>
+    <string name="commits_list">Commits list</string>
+    <string name="releases_list">Releases list</string>
+    <string name="release">Release</string>
+    <string name="go_to">Go to</string>
+
 </resources>

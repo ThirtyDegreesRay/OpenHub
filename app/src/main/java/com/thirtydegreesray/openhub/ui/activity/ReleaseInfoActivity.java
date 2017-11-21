@@ -38,22 +38,29 @@ import butterknife.OnClick;
  */
 
 public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
-        implements IReleaseInfoContract.View{
+        implements IReleaseInfoContract.View {
 
     public static void show(Activity activity, @NonNull String owner, @NonNull String repoName,
-                            @NonNull String tagName){
-        Intent intent = new Intent(activity, ReleaseInfoActivity.class);
-        intent.putExtras(BundleHelper.builder().put("tagName", tagName)
-                .put("owner", owner).put("repoName", repoName).build());
+                            @NonNull String tagName) {
+        Intent intent = createIntent(activity, owner, repoName, tagName);
         activity.startActivity(intent);
     }
 
-    public static void show(Activity activity,  @NonNull String owner,
-                            @NonNull String repoName, @Nullable Release release){
+    public static void show(Activity activity, @NonNull String owner,
+                            @NonNull String repoName, @Nullable Release release) {
         Intent intent = new Intent(activity, ReleaseInfoActivity.class);
         intent.putExtras(BundleHelper.builder().put("release", release)
                 .put("owner", owner).put("repoName", repoName).build());
         activity.startActivity(intent);
+    }
+
+    public static Intent createIntent(Activity activity, @NonNull String owner, @NonNull String repoName,
+                                      @NonNull String tagName) {
+        return new Intent(activity, ReleaseInfoActivity.class)
+                .putExtras(BundleHelper.builder()
+                        .put("tagName", tagName)
+                        .put("owner", owner)
+                        .put("repoName", repoName).build());
     }
 
     @BindView(R.id.web_view) CodeWebView webView;
@@ -75,11 +82,11 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
 
         String time = StringUtils.getNewsTimeStr(getActivity(), release.getCreatedAt());
         String timeStr = "";
-        if(time.contains("-")){
+        if (time.contains("-")) {
             timeStr = getString(R.string.released_this)
                     .concat(" ").concat(getString(R.string.on))
                     .concat(" ").concat(time);
-        }else{
+        } else {
             timeStr = getString(R.string.released_this)
                     .concat(" ").concat(time);
         }
@@ -122,13 +129,13 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
     }
 
     @OnClick(R.id.download_bn)
-    public void showDownloadDialog(){
+    public void showDownloadDialog() {
         DownloadSourceDialog.show(getActivity(), mPresenter.getRepoName(),
                 mPresenter.getRelease().getTagName(), mPresenter.getRelease());
     }
 
     @OnClick({R.id.user_name, R.id.user_avatar})
-    public void onUserClick(){
+    public void onUserClick() {
         ProfileActivity.show(getActivity(), userAvatar, mPresenter.getRelease().getAuthor().getLogin(),
                 mPresenter.getRelease().getAuthor().getAvatarUrl());
     }

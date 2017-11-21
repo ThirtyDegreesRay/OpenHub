@@ -10,3 +10,4 @@
 app/libs/
 *.apk
 /app/release
+/todo.txt

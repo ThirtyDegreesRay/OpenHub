@@ -38,20 +38,25 @@ import butterknife.OnClick;
 public class IssuesActivity extends PagerActivity<IssuesActPresenter> {
 
     public static void showForRepo(@NonNull Activity activity, @NonNull String userId,
-                                   @NonNull String repoName){
-        Intent intent = new Intent(activity, IssuesActivity.class);
-        intent.putExtras(BundleHelper.builder()
-                .put("issuesType", IssuesFilter.Type.Repo)
-                .put("userId", userId)
-                .put("repoName", repoName).build());
+                                   @NonNull String repoName) {
+        Intent intent = createIntentForRepo(activity, userId, repoName);
         activity.startActivity(intent);
     }
 
-    public static void showForUser(@NonNull Activity activity){
+    public static void showForUser(@NonNull Activity activity) {
         Intent intent = new Intent(activity, IssuesActivity.class);
         intent.putExtras(BundleHelper.builder()
                 .put("issuesType", IssuesFilter.Type.User).build());
         activity.startActivity(intent);
+    }
+
+    public static Intent createIntentForRepo(@NonNull Activity activity, @NonNull String userId,
+                                             @NonNull String repoName) {
+        return new Intent(activity, IssuesActivity.class)
+                .putExtras(BundleHelper.builder()
+                        .put("issuesType", IssuesFilter.Type.Repo)
+                        .put("userId", userId)
+                        .put("repoName", repoName).build());
     }
 
     private final static int ADD_ISSUE_REQUEST_CODE = 100;
@@ -61,7 +66,7 @@ public class IssuesActivity extends PagerActivity<IssuesActPresenter> {
     @AutoAccess IssuesFilter.Type issuesType;
     @BindView(R.id.add_issue_bn) FloatingActionButton addBn;
 
-    private ArrayList<IssuesListListener> listeners ;
+    private ArrayList<IssuesListListener> listeners;
 
     @Override
     protected void initActivity() {
@@ -90,14 +95,14 @@ public class IssuesActivity extends PagerActivity<IssuesActPresenter> {
         updateEndDrawerContent(R.menu.menu_issues);
         setToolbarScrollAble(true);
         setToolbarBackEnable();
-        if(IssuesFilter.Type.Repo.equals(issuesType)){
+        if (IssuesFilter.Type.Repo.equals(issuesType)) {
             setToolbarTitle(getString(R.string.issues), userId.concat("/").concat(repoName));
-        }else{
+        } else {
             setToolbarTitle(getString(R.string.issues));
         }
         addBn.setVisibility(IssuesFilter.Type.Repo.equals(issuesType) ? View.VISIBLE : View.GONE);
 
-            if(IssuesFilter.Type.User.equals(issuesType)){
+        if (IssuesFilter.Type.User.equals(issuesType)) {
             pagerAdapter.setPagerList(FragmentPagerModel
                     .createUserIssuesPagerList(getActivity(), getFragments()));
         } else {
@@ -106,7 +111,7 @@ public class IssuesActivity extends PagerActivity<IssuesActPresenter> {
             navViewEnd.getMenu().findItem(R.id.nav_type_chooser).setVisible(false);
         }
         listeners = new ArrayList<>();
-        for(FragmentPagerModel pagerModel : pagerAdapter.getPagerList()){
+        for (FragmentPagerModel pagerModel : pagerAdapter.getPagerList()) {
             listeners.add((IssuesListListener) pagerModel.getFragment());
         }
         tabLayout.setVisibility(View.VISIBLE);
@@ -138,17 +143,17 @@ public class IssuesActivity extends PagerActivity<IssuesActPresenter> {
     }
 
     @OnClick(R.id.add_issue_bn)
-    public void onAddIssueClick(){
+    public void onAddIssueClick() {
         EditIssueActivity.showForAdd(getActivity(), userId, repoName, ADD_ISSUE_REQUEST_CODE);
     }
 
-    private IssuesFilter getIssuesFilter(boolean open){
+    private IssuesFilter getIssuesFilter(boolean open) {
         IssuesFilter issuesFilter = new IssuesFilter(issuesType, open ? Issue.IssueState.open
                 : Issue.IssueState.closed);
-        if(IssuesFilter.Type.User.equals(issuesType)){
+        if (IssuesFilter.Type.User.equals(issuesType)) {
             MenuItem selectedUserFilterMenu = ViewUtils.getSelectedMenu(
                     navViewEnd.getMenu().findItem(R.id.nav_type_chooser));
-            if(selectedUserFilterMenu != null) {
+            if (selectedUserFilterMenu != null) {
                 IssuesFilter.UserIssuesFilterType userFilterType =
                         getUserIssuesFilterType(selectedUserFilterMenu.getItemId());
                 issuesFilter.setUserIssuesFilterType(userFilterType);
@@ -156,8 +161,8 @@ public class IssuesActivity extends PagerActivity<IssuesActPresenter> {
         }
         MenuItem sortMenu = ViewUtils.getSelectedMenu(navViewEnd.getMenu().findItem(R.id.nav_sort));
         IssuesFilter.SortType sortType = IssuesFilter.SortType.Created;
-        SortDirection sortDirection = SortDirection.Desc ;
-        if(sortMenu != null) {
+        SortDirection sortDirection = SortDirection.Desc;
+        if (sortMenu != null) {
             switch (sortMenu.getItemId()) {
                 case R.id.nav_recently_created:
                     sortType = IssuesFilter.SortType.Created;
@@ -190,8 +195,8 @@ public class IssuesActivity extends PagerActivity<IssuesActPresenter> {
         return issuesFilter;
     }
 
-    private IssuesFilter.UserIssuesFilterType getUserIssuesFilterType(int itemId){
-        switch (itemId){
+    private IssuesFilter.UserIssuesFilterType getUserIssuesFilterType(int itemId) {
+        switch (itemId) {
             case R.id.nav_all:
                 return IssuesFilter.UserIssuesFilterType.All;
             case R.id.nav_created:
@@ -207,6 +212,7 @@ public class IssuesActivity extends PagerActivity<IssuesActPresenter> {
 
     public interface IssuesListListener {
         void onIssuesFilterChanged(@NonNull IssuesFilter issuesFilter);
+
         void onCreateIssue(@NonNull Issue issue);
     }
 
@@ -223,22 +229,22 @@ public class IssuesActivity extends PagerActivity<IssuesActPresenter> {
 
     @Override
     protected int getFragmentPosition(Fragment fragment) {
-        if(fragment instanceof IssuesFragment){
+        if (fragment instanceof IssuesFragment) {
             IssuesFilter issuesFilter = fragment.getArguments().getParcelable("issuesFilter");
-            if(issuesFilter == null){
+            if (issuesFilter == null) {
                 return -1;
-            }else{
+            } else {
                 return Issue.IssueState.open.equals(issuesFilter.getIssueState()) ? 0 : 1;
             }
-        }else
+        } else
             return -1;
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode != RESULT_OK) return;
-        if(requestCode == ADD_ISSUE_REQUEST_CODE){
+        if (resultCode != RESULT_OK) return;
+        if (requestCode == ADD_ISSUE_REQUEST_CODE) {
             Issue issue = data.getParcelableExtra("issue");
             listeners.get(0).onCreateIssue(issue);
         }

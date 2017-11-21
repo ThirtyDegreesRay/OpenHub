@@ -260,5 +260,12 @@
     <string name="remove_bookmark">删除书签</string>
     <string name="bookmark_saved">书签已保存</string>
     <string name="bookmark_removed">书签已删除</string>
+    <string name="user">用户</string>
+    <string name="repo">版本库</string>
+    <string name="issues_list">问题列表</string>
+    <string name="commits_list">提交列表</string>
+    <string name="releases_list">版本列表</string>
+    <string name="release">版本</string>
+    <string name="go_to">跳转到</string>
 
 </resources>

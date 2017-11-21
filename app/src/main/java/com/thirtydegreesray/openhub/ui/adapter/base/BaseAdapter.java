@@ -3,9 +3,8 @@
 package com.thirtydegreesray.openhub.ui.adapter.base;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -164,6 +163,10 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
 
     protected int getPositionByView(View view){
         return (int) view.getTag(TAG_POSITION);
+    }
+
+    @NonNull protected String getString(@StringRes int resId){
+        return context.getString(resId);
     }
 
 }

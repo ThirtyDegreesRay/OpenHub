@@ -19,7 +19,6 @@ import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
  *
  * @author ThirtyDegreesRay
  */
-//TODO detection clipboard content
 public class SplashActivity extends BaseActivity<SplashPresenter> implements ISplashContract.View {
 
     private final String TAG = "SplashActivity";

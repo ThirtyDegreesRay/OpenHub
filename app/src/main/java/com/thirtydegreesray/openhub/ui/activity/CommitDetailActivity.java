@@ -60,12 +60,27 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
 
     public static void show(@NonNull Activity activity, @NonNull String user, @NonNull String repo,
                             @NonNull String commitSha, @NonNull View userAvatar, @NonNull String userAvatarUrl) {
-        Intent intent = new Intent(activity, CommitDetailActivity.class);
-        intent.putExtras(BundleHelper.builder().put("user", user).put("repo", repo)
-                .put("commitSha", commitSha).put("userAvatarUrl", userAvatarUrl).build());
+        Intent intent = createIntent(activity, user, repo, commitSha, userAvatarUrl);
         ActivityOptionsCompat optionsCompat = ActivityOptionsCompat
                 .makeSceneTransitionAnimation(activity, userAvatar, "userAvatar");
         activity.startActivity(intent, optionsCompat.toBundle());
+    }
+
+    public static Intent createIntent(@NonNull Activity activity, @NonNull String user, @NonNull String repo,
+                                      @NonNull String commitSha) {
+        return createIntent(activity, user, repo, commitSha, null);
+
+    }
+
+    public static Intent createIntent(@NonNull Activity activity, @NonNull String user, @NonNull String repo,
+                                      @NonNull String commitSha, @NonNull String userAvatarUrl) {
+        return new Intent(activity, CommitDetailActivity.class)
+                .putExtras(BundleHelper.builder()
+                        .put("user", user)
+                        .put("repo", repo)
+                        .put("commitSha", commitSha)
+                        .put("userAvatarUrl", userAvatarUrl).build());
+
     }
 
     @BindView(R.id.user_avatar) CircleImageView userAvatar;
@@ -102,7 +117,7 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
     @Override
     public void showCommit(RepoCommit commit) {
         setToolbarTitle(getString(R.string.commit).concat(" ").concat(commit.getShortSha()));
-        if(commit.getAuthor() != null){
+        if (commit.getAuthor() != null) {
             GlideApp.with(getActivity())
                     .load(commit.getAuthor().getAvatarUrl())
                     .placeholder(R.mipmap.logo)
@@ -126,13 +141,13 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
         addtionsCount.setText(String.valueOf(commitExt.getStats().getAdditions()));
         deletionsCount.setText(String.valueOf(commitExt.getStats().getDeletions()));
 
-        if(commitFilesFragment == null){
+        if (commitFilesFragment == null) {
             commitFilesFragment = CommitFilesFragment.create(commitExt.getFiles());
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.container, commitFilesFragment)
                     .commitAllowingStateLoss();
-        }else{
+        } else {
             commitFilesFragment.showCommitFiles(commitExt.getFiles());
         }
 
@@ -141,7 +156,7 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
     @Override
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
-        if(fragment instanceof CommitFilesFragment){
+        if (fragment instanceof CommitFilesFragment) {
             commitFilesFragment = (CommitFilesFragment) fragment;
         }
     }
@@ -178,7 +193,7 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_open_in_browser:
                 AppOpener.openInBrowser(getActivity(), mPresenter.getCommit().getHtmlUrl());
                 return true;
@@ -194,19 +209,19 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(mPresenter.getCommit() != null)
+        if (mPresenter.getCommit() != null)
             getMenuInflater().inflate(R.menu.menu_commit_detail, menu);
         return true;
     }
 
     @OnClick(R.id.commit_message)
-    public void onCommitMessageClick(){
+    public void onCommitMessageClick() {
         commitMessage.setMaxLines(commitMessage.getMaxLines() == 6 ? 20 : 6);
     }
 
     @OnClick(R.id.user_avatar)
-    public void onUserAvatarClick(){
-        if(mPresenter.getCommit() != null && mPresenter.getCommit().getAuthor() != null){
+    public void onUserAvatarClick() {
+        if (mPresenter.getCommit() != null && mPresenter.getCommit().getAuthor() != null) {
             RepoCommit commit = mPresenter.getCommit();
             ProfileActivity.show(getActivity(), userAvatar,
                     commit.getAuthor().getLogin(), commit.getAuthor().getAvatarUrl());
@@ -216,7 +231,7 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
     @Override
     protected void onToolbarDoubleClick() {
         super.onToolbarDoubleClick();
-        if(commitFilesFragment != null) commitFilesFragment.scrollToTop();
+        if (commitFilesFragment != null) commitFilesFragment.scrollToTop();
     }
 
 }

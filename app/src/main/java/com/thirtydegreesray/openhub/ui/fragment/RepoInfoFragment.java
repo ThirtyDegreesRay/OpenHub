@@ -143,6 +143,7 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         repoTitleText.setText(spannable);
     }
 
+    //TODO fix scroll conflict when have tables
     @Override
     public void showReadMe(String source, String baseUrl) {
         if (!isReadmeSetted) {

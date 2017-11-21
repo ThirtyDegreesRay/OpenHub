@@ -2,9 +2,12 @@
 
 package com.thirtydegreesray.openhub.mvp.contract;
 
+import android.support.annotation.NonNull;
+
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseListContract;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBasePagerContract;
+import com.thirtydegreesray.openhub.mvp.model.ActivityRedirectionModel;
 import com.thirtydegreesray.openhub.mvp.model.Event;
 
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ public interface IActivityContract {
 
     interface Presenter extends IBasePagerContract.Presenter<IActivityContract.View>{
         void loadEvents(boolean isReload, int page);
+        ArrayList<ActivityRedirectionModel> getRedirectionList(@NonNull Event event);
     }
 
 }

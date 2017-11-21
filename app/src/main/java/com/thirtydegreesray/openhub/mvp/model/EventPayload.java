@@ -6,6 +6,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.ArrayList;
 
@@ -68,6 +69,10 @@ public class EventPayload implements Parcelable {
 
     public String getRef() {
         return ref;
+    }
+
+    public String getBranch(){
+        return StringUtils.isBlank(ref) ? null : ref.substring(ref.lastIndexOf("/") + 1);
     }
 
     public void setRef(String ref) {

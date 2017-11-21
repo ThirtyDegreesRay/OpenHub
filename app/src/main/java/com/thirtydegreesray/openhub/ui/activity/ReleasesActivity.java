@@ -17,10 +17,16 @@ import com.thirtydegreesray.openhub.util.BundleHelper;
 
 public class ReleasesActivity extends SingleFragmentActivity<IBaseContract.Presenter, ReleasesFragment> {
 
-    public static void show(Activity activity, String owner, String repo){
-        Intent intent = new Intent(activity, ReleasesActivity.class);
-        intent.putExtras(BundleHelper.builder().put("owner", owner).put("repo", repo).build());
+    public static void show(Activity activity, String owner, String repo) {
+        Intent intent = createIntent(activity, owner, repo);
         activity.startActivity(intent);
+    }
+
+    public static Intent createIntent(Activity activity, String owner, String repo) {
+        return new Intent(activity, ReleasesActivity.class)
+                .putExtras(BundleHelper.builder()
+                        .put("owner", owner)
+                        .put("repo", repo).build());
     }
 
     @AutoAccess String owner;

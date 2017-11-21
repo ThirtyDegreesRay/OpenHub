@@ -41,10 +41,10 @@ import butterknife.OnClick;
  */
 
 public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
-        implements IIssueDetailContract.View{
+        implements IIssueDetailContract.View {
 
     public static void show(@NonNull Activity activity, @NonNull View avatarView,
-                            @NonNull View titleView, @NonNull Issue issue){
+                            @NonNull View titleView, @NonNull Issue issue) {
         Intent intent = new Intent(activity, IssueDetailActivity.class);
         Pair<View, String> avatarPair = Pair.create(avatarView, "userAvatar");
         Pair<View, String> titlePair = Pair.create(titleView, "issueTitle");
@@ -54,16 +54,31 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         activity.startActivity(intent, optionsCompat.toBundle());
     }
 
-    public static void show(@NonNull Activity activity, @NonNull Issue issue){
+    public static void show(@NonNull Activity activity, @NonNull Issue issue) {
         Intent intent = new Intent(activity, IssueDetailActivity.class);
         intent.putExtras(BundleHelper.builder().put("issue", issue).build());
         activity.startActivity(intent);
     }
 
-    public static void show(@NonNull Activity activity, @NonNull String issueUrl){
+    public static void show(@NonNull Activity activity, @NonNull String issueUrl) {
         Intent intent = new Intent(activity, IssueDetailActivity.class);
         intent.putExtras(BundleHelper.builder().put("issueUrl", issueUrl).build());
         activity.startActivity(intent);
+    }
+
+    public static void show(@NonNull Activity activity, @NonNull String owner,
+                            @NonNull String repoName, int issueNumber) {
+        Intent intent = createIntent(activity, owner, repoName, issueNumber);
+        activity.startActivity(intent);
+    }
+
+    public static Intent createIntent(@NonNull Activity activity, @NonNull String owner,
+                                      @NonNull String repoName, int issueNumber) {
+        return new Intent(activity, IssueDetailActivity.class)
+                .putExtras(BundleHelper.builder()
+                        .put("owner", owner)
+                        .put("repoName", repoName)
+                        .put("issueNumber", issueNumber).build());
     }
 
     @BindView(R.id.user_avatar) ImageView userImageView;
@@ -104,17 +119,17 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(mPresenter.getIssue() != null) {
+        if (mPresenter.getIssue() != null) {
             getMenuInflater().inflate(R.menu.menu_issue_detail, menu);
             boolean isCanToggle = AppData.INSTANCE.getLoggedUser().getLogin()
                     .equals(mPresenter.getIssue().getUser().getLogin()) ||
                     AppData.INSTANCE.getLoggedUser().getLogin()
                             .equals(mPresenter.getIssue().getRepoAuthorName());
             boolean isOpen = mPresenter.getIssue().getState().equals(Issue.IssueState.open);
-            if(isCanToggle){
+            if (isCanToggle) {
                 MenuItem item = menu.findItem(R.id.action_issue_toggle);
                 item.setTitle(isOpen ? R.string.close : R.string.reopen);
-            }else{
+            } else {
                 menu.removeItem(R.id.action_issue_toggle);
             }
         }
@@ -123,7 +138,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 editBn.setVisibility(View.GONE);
                 supportFinishAfterTransition();
@@ -157,7 +172,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
 
         String commentStr = String.valueOf(issue.getCommentNum()).concat(" ")
                 .concat(getString(R.string.comments).toLowerCase());
-        if(Issue.IssueState.open.equals(issue.getState())){
+        if (Issue.IssueState.open.equals(issue.getState())) {
             issueStateImg.setImageResource(R.drawable.ic_issues);
             issueStateText.setText(getString(R.string.open).concat("    ").concat(commentStr));
         } else {
@@ -166,12 +181,12 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         }
         invalidateOptionsMenu();
 
-        if(issueTimelineFragment == null){
+        if (issueTimelineFragment == null) {
             issueTimelineFragment = IssueTimelineFragment.create(issue);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if(!isAlive) return;
+                    if (!isAlive) return;
                     getSupportFragmentManager()
                             .beginTransaction()
                             .add(R.id.container, issueTimelineFragment)
@@ -191,7 +206,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
     @Override
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
-        if(fragment instanceof  IssueTimelineFragment){
+        if (fragment instanceof IssueTimelineFragment) {
             issueTimelineFragment = (IssueTimelineFragment) fragment;
         }
     }
@@ -208,27 +223,27 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
     }
 
     @OnClick(R.id.comment_bn)
-    public void onCommentBnClicked(){
+    public void onCommentBnClicked() {
         showAddCommentPage(null);
     }
 
     @OnClick(R.id.edit_bn)
-    public void onEditBnClicked(){
+    public void onEditBnClicked() {
         EditIssueActivity.showForEdit(getActivity(), mPresenter.getIssue(), EDIT_ISSUE_REQUEST_CODE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode != RESULT_OK) return;
-        if(requestCode == ADD_COMMENT_REQUEST_CODE){
+        if (resultCode != RESULT_OK) return;
+        if (requestCode == ADD_COMMENT_REQUEST_CODE) {
             String text = data.getExtras().getString("text");
             mPresenter.addComment(text);
-            return ;
-        } else if(requestCode == EDIT_COMMENT_REQUEST_CODE){
+            return;
+        } else if (requestCode == EDIT_COMMENT_REQUEST_CODE) {
             String text = data.getExtras().getString("text");
             issueTimelineFragment.onEditComment(text);
-            return ;
-        } else if(requestCode == EDIT_ISSUE_REQUEST_CODE){
+            return;
+        } else if (requestCode == EDIT_ISSUE_REQUEST_CODE) {
             Issue issue = data.getParcelableExtra("issue");
             mPresenter.setIssue(issue);
             issueTitle.setText(issue.getTitle());
@@ -256,8 +271,8 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
     }
 
     @OnClick(R.id.user_avatar)
-    public void onUserAvatarClick(){
-        if(mPresenter.getIssue() != null){
+    public void onUserAvatarClick() {
+        if (mPresenter.getIssue() != null) {
             Issue issue = mPresenter.getIssue();
             ProfileActivity.show(getActivity(), userImageView,
                     issue.getUser().getLogin(), issue.getUser().getAvatarUrl());
@@ -267,6 +282,6 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
     @Override
     protected void onToolbarDoubleClick() {
         super.onToolbarDoubleClick();
-        if(issueTimelineFragment != null) issueTimelineFragment.scrollToTop();
+        if (issueTimelineFragment != null) issueTimelineFragment.scrollToTop();
     }
 }

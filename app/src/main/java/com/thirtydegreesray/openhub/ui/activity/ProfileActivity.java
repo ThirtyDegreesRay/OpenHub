@@ -42,22 +42,21 @@ import butterknife.OnClick;
  */
 
 public class ProfileActivity extends PagerActivity<ProfilePresenter>
-        implements IProfileContract.View{
+        implements IProfileContract.View {
 
-    public static void show(@NonNull Activity activity, @NonNull String loginId){
+    public static void show(@NonNull Activity activity, @NonNull String loginId) {
         show(activity, loginId, null);
     }
 
     public static void show(@NonNull Activity activity,
-                            @NonNull String loginId, @Nullable String userAvatar){
+                            @NonNull String loginId, @Nullable String userAvatar) {
         show(activity, null, loginId, userAvatar);
     }
 
     public static void show(@NonNull Activity activity, @Nullable View userAvatarView,
-                            @NonNull String loginId, @Nullable String userAvatar){
-        Intent intent = new Intent(activity, ProfileActivity.class);
-        intent.putExtras(BundleHelper.builder().put("loginId", loginId).put("userAvatar", userAvatar).build());
-        if(userAvatarView != null){
+                            @NonNull String loginId, @Nullable String userAvatar) {
+        Intent intent = createIntent(activity, loginId, userAvatar);
+        if (userAvatarView != null) {
             ActivityOptionsCompat optionsCompat = ActivityOptionsCompat
                     .makeSceneTransitionAnimation(activity, userAvatarView, "userAvatar");
             activity.startActivity(intent, optionsCompat.toBundle());
@@ -65,6 +64,19 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
             activity.startActivity(intent);
         }
 
+    }
+
+    public static Intent createIntent(@NonNull Activity activity, @NonNull String loginId) {
+        return createIntent(activity, loginId, null);
+    }
+
+    public static Intent createIntent(@NonNull Activity activity, @NonNull String loginId,
+                                      @Nullable String userAvatar) {
+        return new Intent(activity, ProfileActivity.class)
+                .putExtras(BundleHelper.builder()
+                        .put("loginId", loginId)
+                        .put("userAvatar", userAvatar)
+                        .build());
     }
 
     private boolean isAvatarSetted = false;
@@ -97,7 +109,7 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(mPresenter.getUser() != null){
+        if (mPresenter.getUser() != null) {
             getMenuInflater().inflate(R.menu.menu_profile, menu);
             MenuItem followItem = menu.findItem(R.id.action_follow);
             MenuItem bookmark = menu.findItem(R.id.action_bookmark);
@@ -120,7 +132,7 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_follow:
                 mPresenter.followUser(!mPresenter.isFollowing());
                 invalidateOptionsMenu();
@@ -184,8 +196,8 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
         supportFinishAfterTransition();
     }
 
-    private void setUserAvatar(){
-        if(isAvatarSetted || StringUtils.isBlank(mPresenter.getUserAvatar())) return;
+    private void setUserAvatar() {
+        if (isAvatarSetted || StringUtils.isBlank(mPresenter.getUserAvatar())) return;
         isAvatarSetted = true;
         GlideApp.with(getActivity())
                 .load(mPresenter.getUserAvatar())
@@ -211,19 +223,19 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
 
     @Override
     protected int getFragmentPosition(Fragment fragment) {
-        if(fragment instanceof ProfileInfoFragment){
+        if (fragment instanceof ProfileInfoFragment) {
             return 0;
-        }else if(fragment instanceof ActivityFragment){
+        } else if (fragment instanceof ActivityFragment) {
             return 1;
-        }else if(fragment instanceof RepositoriesFragment){
+        } else if (fragment instanceof RepositoriesFragment) {
             return 2;
-        }else
+        } else
             return -1;
     }
 
     @OnClick(R.id.user_avatar)
-    public void onUserAvatarClick(){
-        if(!StringUtils.isBlank(mPresenter.getUserAvatar())){
+    public void onUserAvatarClick() {
+        if (!StringUtils.isBlank(mPresenter.getUserAvatar())) {
             ViewerActivity.showImage(getActivity(), mPresenter.getLoginId(),
                     mPresenter.getUserAvatar());
         }

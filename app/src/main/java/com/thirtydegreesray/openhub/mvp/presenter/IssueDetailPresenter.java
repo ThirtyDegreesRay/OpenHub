@@ -14,6 +14,7 @@ import com.thirtydegreesray.openhub.mvp.model.IssueEvent;
 import com.thirtydegreesray.openhub.mvp.model.request.CommentRequestModel;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
 import com.thirtydegreesray.openhub.util.GitHubHelper;
+import com.thirtydegreesray.openhub.util.StringUtils;
 
 import javax.inject.Inject;
 
@@ -25,10 +26,14 @@ import rx.Observable;
  */
 
 public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.View>
-        implements IIssueDetailContract.Presenter{
+        implements IIssueDetailContract.Presenter {
 
     @AutoAccess Issue issue;
     @AutoAccess String issueUrl;
+
+    @AutoAccess String owner;
+    @AutoAccess String repoName;
+    @AutoAccess int issueNumber;
 
     @Inject
     public IssueDetailPresenter(DaoSession daoSession) {
@@ -38,9 +43,9 @@ public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.Vie
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
-        if(issue == null || issue.getBodyHtml() == null){
+        if (issue == null || issue.getBodyHtml() == null) {
             loadIssueInfo();
-        }else{
+        } else {
             mView.showIssue(issue);
         }
     }
@@ -53,7 +58,7 @@ public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.Vie
         this.issue = issue;
     }
 
-    private void loadIssueInfo(final String user, final String repo, final int issueNumber){
+    private void loadIssueInfo(final String user, final String repo, final int issueNumber) {
         HttpObserver<Issue> httpObserver = new HttpObserver<Issue>() {
             @Override
             public void onError(Throwable error) {
@@ -78,18 +83,20 @@ public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.Vie
     }
 
 
-    private void loadIssueInfo(){
-        if(issue != null){
-            loadIssueInfo(issue.getRepoAuthorName(), issue.getRepoName(), issue.getNumber());
-        }else{
+    private void loadIssueInfo() {
+        if (issue != null) {
+            owner = issue.getRepoAuthorName();
+            repoName = issue.getRepoName();
+            issueNumber = issue.getNumber();
+        } else if (!StringUtils.isBlank(issueUrl)) {
             issueUrl = issueUrl.replace("api.github.com/repos", "github.com");
-            if(!GitHubHelper.isIssueUrl(issueUrl)) return;
+            if (!GitHubHelper.isIssueUrl(issueUrl)) return;
             String[] arrays = issueUrl.substring(issueUrl.indexOf("com/") + 4).split("/");
-            final String user = arrays[0];
-            final String repo = arrays[1];
-            final int issueNumber = Integer.parseInt(arrays[3]);
-            loadIssueInfo(user, repo, issueNumber);
+            owner = arrays[0];
+            repoName = arrays[1];
+            issueNumber = Integer.parseInt(arrays[3]);
         }
+        loadIssueInfo(owner, repoName, issueNumber);
     }
 
     @Override

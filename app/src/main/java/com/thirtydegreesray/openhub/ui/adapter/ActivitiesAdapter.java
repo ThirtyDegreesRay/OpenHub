@@ -172,9 +172,8 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
                     break;
 
                 case PushEvent:
-                    String ref = model.getPayload().getRef();
-                    ref = ref.substring(ref.lastIndexOf("/") + 1);
-                    actionStr = "Push to " + ref +
+                    String branch = model.getPayload().getBranch();
+                    actionStr = "Push to " + branch +
                             " at " + model.getRepo().getFullName();
 
                     descSpan = new SpannableStringBuilder("");

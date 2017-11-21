@@ -2,12 +2,15 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
+import android.support.annotation.NonNull;
+
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
 import com.thirtydegreesray.openhub.mvp.contract.IActivityContract;
+import com.thirtydegreesray.openhub.mvp.model.ActivityRedirectionModel;
 import com.thirtydegreesray.openhub.mvp.model.Event;
 import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePagerPresenter;
@@ -93,6 +96,38 @@ public class ActivityPresenter extends BasePagerPresenter<IActivityContract.View
                 return getObservable(forceNetWork, page);
             }
         }, httpObserver, readCacheFirst);
+    }
+
+    @Override
+    public ArrayList<ActivityRedirectionModel> getRedirectionList(@NonNull Event event) {
+        ArrayList<ActivityRedirectionModel> list = new ArrayList<>();
+        list.add(ActivityRedirectionModel.generateForUser(event));
+        list.add(ActivityRedirectionModel.generateForRepo(event));
+        switch (event.getType()){
+            case ForkEvent:
+                list.add(ActivityRedirectionModel.generateForFork(event));
+                break;
+            case ReleaseEvent:
+                list.add(ActivityRedirectionModel.generateRepoInfo(event, ActivityRedirectionModel.Type.Releases));
+                list.add(ActivityRedirectionModel.generateForRelease(event));
+                break;
+            case IssueCommentEvent:
+            case IssuesEvent:
+                list.add(ActivityRedirectionModel.generateRepoInfo(event, ActivityRedirectionModel.Type.Issues));
+                list.add(ActivityRedirectionModel.generateForIssues(event));
+                break;
+            case PushEvent:
+                list.add(ActivityRedirectionModel.generateForCommits(event));
+                if(event.getPayload().getCommits() == null) break;
+                if(event.getPayload().getCommits().size() != 1){
+                    list.add(ActivityRedirectionModel.generateForCommitCompare(event));
+                }
+                for(int i = 0; i < event.getPayload().getCommits().size(); i++){
+                    list.add(ActivityRedirectionModel.generateForCommit(event, i));
+                }
+                break;
+        }
+        return list;
     }
 
     private Observable<Response<ArrayList<Event>>> getObservable(boolean forceNetWork, int page){
