@@ -231,7 +231,6 @@
     <string name="feedback_and_share">分享 &#038; 反馈</string>
     <string name="share_to_friends">分享给你的朋友</string>
     <string name="feedback">反馈</string>
-
     <string name="openhub_wishes">来自OpenHub的祝福</string>
     <string name="star_wishes" formatted="false">
         您好%s，今天是你在OpenHub的第%d天，谢谢你的使用，我会努力成为更适合你的GitHub app。
@@ -267,5 +266,11 @@
     <string name="releases_list">版本列表</string>
     <string name="release">版本</string>
     <string name="go_to">跳转到</string>
+    <string name="tips">提示</string>
+    <string name="activity_click_tip">
+        您可以单机列表查看默认页面，或者长按列表以查看可跳转的页面。
+    </string>
+    <string name="double_click_toolbar_tip">在列表页面，您可以双击标题来返回顶部。</string>
+    <string name="releases_click_tip">您可以长按列表以查看可以下载资源。</string>
 
 </resources>

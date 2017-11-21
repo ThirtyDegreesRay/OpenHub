@@ -38,6 +38,7 @@ import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
 import com.thirtydegreesray.openhub.ui.activity.SplashActivity;
 import com.thirtydegreesray.openhub.ui.widget.DoubleClickHandler;
 import com.thirtydegreesray.openhub.util.AppUtils;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.ThemeHelper;
 import com.thirtydegreesray.openhub.util.WindowUtil;
 
@@ -156,7 +157,7 @@ BaseActivity<P extends IBaseContract.Presenter>
     }
 
     protected void onToolbarDoubleClick(){
-
+        PrefUtils.set(PrefUtils.DOUBLE_CLICK_TITLE_TIP_ABLE, false);
     }
 
     @Override

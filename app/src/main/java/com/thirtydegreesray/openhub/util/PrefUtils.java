@@ -57,6 +57,11 @@ public class PrefUtils {
     public final static String STAR_WISHES_TIP_TIMES = "starWishesTipFlag";
     public final static String LAST_STAR_WISHES_TIP_TIME = "lastStarWishesTipTime";
 
+
+    public final static String DOUBLE_CLICK_TITLE_TIP_ABLE = "doubleClickTitleTipAble";
+    public final static String ACTIVITY_LONG_CLICK_TIP_ABLE = "activityLongClickTipAble";
+    public final static String RELEASES_LONG_CLICK_TIP_ABLE = "releasesLongClickTipAble";
+
     public static SharedPreferences getDefaultSp(){
         return PreferenceManager.getDefaultSharedPreferences(AppApplication.get());
     }
@@ -108,8 +113,16 @@ public class PrefUtils {
         return getDefaultSp(AppApplication.get()).getBoolean(CODE_WRAP, false);
     }
 
-    public static boolean isSystemDownloader(){
-        return getDefaultSp(AppApplication.get()).getBoolean(SYSTEM_DOWNLOADER, true);
+    public static boolean isDoubleClickTitleTipAble(){
+        return getDefaultSp(AppApplication.get()).getBoolean(DOUBLE_CLICK_TITLE_TIP_ABLE, true);
+    }
+
+    public static boolean isActivityLongClickTipAble(){
+        return getDefaultSp(AppApplication.get()).getBoolean(ACTIVITY_LONG_CLICK_TIP_ABLE, true);
+    }
+
+    public static boolean isReleasesLongClickTipAble(){
+        return getDefaultSp(AppApplication.get()).getBoolean(RELEASES_LONG_CLICK_TIP_ABLE, true);
     }
 
     public static int getPopTimes(){
@@ -131,6 +144,12 @@ public class PrefUtils {
     public static long getLastStarWishesTipTime(){
         return getDefaultSp(AppApplication.get()).getLong(LAST_STAR_WISHES_TIP_TIME, 0);
     }
+
+    public static boolean isSystemDownloader(){
+        return getDefaultSp(AppApplication.get()).getBoolean(SYSTEM_DOWNLOADER, true);
+    }
+
+
 
     public static SharedPreferences getDefaultSp(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context);

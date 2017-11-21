@@ -30,6 +30,7 @@ import com.thirtydegreesray.openhub.ui.adapter.ActivitiesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
 import com.thirtydegreesray.openhub.ui.widget.ContextMenuRecyclerView;
 import com.thirtydegreesray.openhub.util.BundleHelper;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 
 import java.util.ArrayList;
 
@@ -132,6 +133,12 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
     }
 
     @Override
+    public boolean onItemLongClick(int position, @NonNull View view) {
+        PrefUtils.set(PrefUtils.ACTIVITY_LONG_CLICK_TIP_ABLE, false);
+        return super.onItemLongClick(position, view);
+    }
+
+    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.setHeaderTitle(R.string.go_to);
@@ -220,6 +227,10 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
     public void showEvents(ArrayList<Event> events) {
         adapter.setData(events);
         adapter.notifyDataSetChanged();
+        if(getCurPage() == 2 && PrefUtils.isActivityLongClickTipAble()){
+            showOperationTip(R.string.activity_click_tip);
+            PrefUtils.set(PrefUtils.ACTIVITY_LONG_CLICK_TIP_ABLE, false);
+        }
     }
 
     @Override

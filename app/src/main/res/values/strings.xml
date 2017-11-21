@@ -352,4 +352,11 @@
     <string name="release">Release</string>
     <string name="go_to">Go to</string>
 
+    <string name="tips">Tips</string>
+    <string name="activity_click_tip">
+        You can single click item to view default page, or long click item to view available pages.
+    </string>
+    <string name="double_click_toolbar_tip">You can double click title to back top in list page.</string>
+    <string name="releases_click_tip">You can long click item to view available downloads.</string>
+
 </resources>

@@ -16,6 +16,8 @@ import com.thirtydegreesray.openhub.ui.adapter.ReleasesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
 import com.thirtydegreesray.openhub.ui.widget.DownloadSourceDialog;
 import com.thirtydegreesray.openhub.util.BundleHelper;
+import com.thirtydegreesray.openhub.util.PrefUtils;
+import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.ArrayList;
 
@@ -36,6 +38,11 @@ public class ReleasesFragment extends ListFragment<ReleasesPresenter, ReleasesAd
     public void showReleases(ArrayList<Release> releases) {
         adapter.setData(releases);
         adapter.notifyDataSetChanged();
+        if(getCurPage() == 1 && !StringUtils.isBlankList(releases)
+                && PrefUtils.isReleasesLongClickTipAble()){
+            showOperationTip(R.string.releases_click_tip);
+            PrefUtils.set(PrefUtils.RELEASES_LONG_CLICK_TIP_ABLE, false);
+        }
     }
 
     @Override

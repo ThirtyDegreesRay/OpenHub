@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
 import com.thirtydegreesray.openhub.AppApplication;
+import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
@@ -296,4 +298,14 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
+
+    protected final void showOperationTip(@StringRes int msgResId){
+        new AlertDialog.Builder(getActivity())
+                .setCancelable(true)
+                .setTitle(R.string.tips)
+                .setMessage(msgResId)
+                .setPositiveButton(R.string.ok, (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+
 }
