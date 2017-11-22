@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.GlideApp;
 import com.thirtydegreesray.openhub.mvp.model.Event;
+import com.thirtydegreesray.openhub.mvp.model.EventPayload;
 import com.thirtydegreesray.openhub.mvp.model.PushEventCommit;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
@@ -91,90 +92,110 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
         void setActionAndDesc(Event model) {
             String actionStr = null;
             SpannableStringBuilder descSpan = null;
+            String fullName = model.getRepo() != null ? model.getRepo().getFullName() : null;
+            EventPayload.RefType refType = model.getPayload().getRefType();
+            String action = model.getPayload() != null ? model.getPayload().getAction() : null;
+
             switch (model.getType()) {
                 case CommitCommentEvent:
-                    actionStr = "Commit comment at " + model.getRepo().getFullName();
+                    actionStr = String.format(getString(R.string.created_comment_on_commit), fullName);
+                    descSpan = new SpannableStringBuilder(model.getPayload().getComment().getBody());
                     break;
                 case CreateEvent:
-                    if (model.getPayload().getRefType().equals("repository")) {
-                        actionStr = "Created repository " + model.getRepo().getFullName();
-                    } else {
-                        actionStr = "Created " + model.getPayload().getRefType() + " "
-                                + model.getPayload().getRef() + " at "
-                                + model.getRepo().getFullName();
+                    if (EventPayload.RefType.repository.equals(refType)) {
+                        actionStr = String.format(getString(R.string.created_repo), fullName);
+                    } else if (EventPayload.RefType.branch.equals(refType)) {
+                        actionStr = String.format(getString(R.string.created_branch_at),
+                                model.getPayload().getRef(), fullName);
+                    } else if (EventPayload.RefType.tag.equals(refType))  {
+                        actionStr = String.format(getString(R.string.created_tag_at),
+                                model.getPayload().getRef(), fullName);
                     }
                     break;
                 case DeleteEvent:
-                    actionStr = "Delete " + model.getPayload().getRefType() + " " + model.getPayload().getRef()
-                            + " at " + model.getRepo().getFullName();
+                    if (EventPayload.RefType.branch.equals(refType)) {
+                        actionStr = String.format(getString(R.string.delete_branch_at),
+                                model.getPayload().getRef(), fullName);
+                    } else if (EventPayload.RefType.tag.equals(refType))  {
+                        actionStr = String.format(getString(R.string.delete_tag_at),
+                                model.getPayload().getRef(), fullName);
+                    }
                     break;
                 case ForkEvent:
                     String oriRepo = model.getRepo().getFullName();
                     String newRepo = model.getActor().getLogin() + "/" + model.getRepo().getName();
-                    actionStr = "Forked " + oriRepo + " to " + newRepo;
+                    actionStr = String.format(getString(R.string.forked_to), oriRepo, newRepo);
                     break;
                 case GollumEvent:
-                    actionStr = model.getPayload().getAction() + " a wiki page ";
+                    actionStr = action + " a wiki page ";
                     break;
 
                 case InstallationEvent:
-                    actionStr = model.getPayload().getAction() + " an GitHub App ";
+                    actionStr = action + " an GitHub App ";
                     break;
                 case InstallationRepositoriesEvent:
-                    actionStr = model.getPayload().getAction() + " repository from an installation ";
+                    actionStr = action + " repository from an installation ";
                     break;
                 case IssueCommentEvent:
-                    actionStr = model.getPayload().getAction() + " comment on issue "
-                            + model.getPayload().getIssue().getNumber() +  " in " +
-                            model.getRepo().getFullName();
+                    actionStr = String.format(getString(R.string.created_comment_on_issue),
+                            model.getPayload().getIssue().getNumber(), model.getRepo().getFullName());
                     descSpan = new SpannableStringBuilder(model.getPayload().getComment().getBody());
                     break;
                 case IssuesEvent:
-                    actionStr = model.getPayload().getAction() + " issue "
-                            + model.getPayload().getIssue().getNumber() + " in " +
-                            model.getRepo().getFullName();
+                    String issueEventStr = getIssueEventStr(action);
+                    actionStr = String.format(issueEventStr,
+                            model.getPayload().getIssue().getNumber(), model.getRepo().getFullName());
                     descSpan = new SpannableStringBuilder(model.getPayload().getIssue().getTitle());
                     break;
 
                 case MarketplacePurchaseEvent:
-                    actionStr = model.getPayload().getAction() + " marketplace plan ";
+                    actionStr = action + " marketplace plan ";
                     break;
                 case MemberEvent:
-                    actionStr = model.getPayload().getAction() + " member to " +
-                            model.getRepo().getFullName();
+                    String memberEventStr = getMemberEventStr(action);
+                    actionStr = String.format(memberEventStr,
+                            model.getPayload().getMember().getLogin(), fullName);
                     break;
                 case OrgBlockEvent:
-                    actionStr = model.getPayload().getAction() + " a user ";
+                    String orgBlockEventStr ;
+                    if(EventPayload.OrgBlockEventActionType.blocked.name().equals(action)){
+                        orgBlockEventStr = getString(R.string.org_blocked_user);
+                    }else{
+                        orgBlockEventStr = getString(R.string.org_unblocked_user);
+                    }
+                    actionStr = String.format(orgBlockEventStr,
+                            model.getPayload().getOrganization().getLogin(),
+                            model.getPayload().getBlockedUser().getLogin());
                     break;
                 case ProjectCardEvent:
-                    actionStr = model.getPayload().getAction() + " a project ";
+                    actionStr = action + " a project ";
                     break;
                 case ProjectColumnEvent:
-                    actionStr = model.getPayload().getAction() + " a project ";
+                    actionStr = action + " a project ";
                     break;
 
                 case ProjectEvent:
-                    actionStr = model.getPayload().getAction() + " a project ";
+                    actionStr = action + " a project ";
                     break;
                 case PublicEvent:
-                    actionStr = "Made " + model.getRepo().getFullName() + "public";
+                    actionStr = String.format(getString(R.string.made_repo_public), fullName);
                     break;
                 case PullRequestEvent:
-                    actionStr = model.getPayload().getAction() + " pull request " + model.getRepo().getFullName();
+                    actionStr = action + " pull request " + model.getRepo().getFullName();
                     break;
                 case PullRequestReviewEvent:
-                    actionStr = model.getPayload().getAction() + " pull request review at"
-                            + model.getRepo().getFullName();
+                    String pullRequestReviewStr = getPullRequestReviewEventStr(action);
+                    actionStr = String.format(pullRequestReviewStr, fullName);
                     break;
                 case PullRequestReviewCommentEvent:
-                    actionStr = model.getPayload().getAction() + " pull request review comment at"
-                            + model.getRepo().getFullName();
+                    String pullRequestCommentStr = getPullRequestReviewCommentEventStr(action);
+                    actionStr = String.format(pullRequestCommentStr, fullName);
+                    descSpan = new SpannableStringBuilder(model.getPayload().getComment().getBody());
                     break;
 
                 case PushEvent:
                     String branch = model.getPayload().getBranch();
-                    actionStr = "Push to " + branch +
-                            " at " + model.getRepo().getFullName();
+                    actionStr = String.format(getString(R.string.push_to), branch, fullName);
 
                     descSpan = new SpannableStringBuilder("");
                     int count = model.getPayload().getCommits().size();
@@ -204,16 +225,15 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
                     }
                     break;
                 case ReleaseEvent:
-                    actionStr = model.getPayload().getAction() + " release " +
-                            model.getPayload().getRelease().getTagName() + " at " +
-                            model.getRepo().getFullName();
+                    actionStr = String.format(getString(R.string.published_release_at),
+                            model.getPayload().getRelease().getTagName(), fullName);
                     break;
                 case WatchEvent:
-                    actionStr = model.getPayload().getAction() + " " + model.getRepo().getFullName();
+                    actionStr = String.format(getString(R.string.starred_repo), fullName);
                     break;
             }
 
-            action.setVisibility(View.VISIBLE);
+            this.action.setVisibility(View.VISIBLE);
             if(descSpan != null){
                 desc.setVisibility(View.VISIBLE);
                 desc.setText(descSpan);
@@ -229,12 +249,86 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
                 span.setSpan(new StyleSpan(Typeface.BOLD), matcher.start(), matcher.end(),
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
-            action.setText(span);
+            this.action.setText(span);
         }
 
         private String getFirstLine(String str){
             if(str == null || !str.contains("\n")) return str;
             return str.substring(0, str.indexOf("\n"));
+        }
+
+        private String getPullRequestReviewEventStr(String action){
+            EventPayload.PullRequestReviewEventActionType actionType =
+                    EventPayload.PullRequestReviewEventActionType.valueOf(action);
+            switch (actionType){
+                case submitted:
+                    return getString(R.string.submitted_pull_request_review_at);
+                case edited:
+                    return getString(R.string.edited_pull_request_review_at);
+                case dismissed:
+                    return getString(R.string.dismissed_pull_request_review_at);
+                default:
+                    return getString(R.string.submitted_pull_request_review_at);
+            }
+        }
+
+        private String getPullRequestReviewCommentEventStr(String action){
+            EventPayload.PullRequestReviewCommentEventActionType actionType =
+                    EventPayload.PullRequestReviewCommentEventActionType.valueOf(action);
+            switch (actionType){
+                case created:
+                    return getString(R.string.created_pull_request_comment_at);
+                case edited:
+                    return getString(R.string.edited_pull_request_comment_at);
+                case deleted:
+                    return getString(R.string.deleted_pull_request_comment_at);
+                default:
+                    return getString(R.string.created_pull_request_comment_at);
+            }
+        }
+
+        private String getMemberEventStr(String action){
+            EventPayload.MemberEventActionType actionType = EventPayload.MemberEventActionType.valueOf(action);
+            switch (actionType){
+                case added:
+                    return getString(R.string.added_member_to);
+                case deleted:
+                    return getString(R.string.deleted_member_at);
+                case edited:
+                    return getString(R.string.edited_member_at);
+                default:
+                    return getString(R.string.added_member_to);
+            }
+        }
+
+        private String getIssueEventStr(String action){
+            EventPayload.IssueEventActionType actionType = EventPayload.IssueEventActionType.valueOf(action);
+            switch (actionType){
+                case assigned:
+                    return getString(R.string.assigned_issue_at);
+                case unassigned:
+                    return getString(R.string.unassigned_issue_at);
+                case labeled:
+                    return getString(R.string.labeled_issue_at);
+                case unlabeled:
+                    return getString(R.string.unlabeled_issue_at);
+                case opened:
+                    return getString(R.string.opened_issue_at);
+
+                case edited:
+                    return getString(R.string.edited_issue_at);
+                case milestoned:
+                    return getString(R.string.milestoned_issue_at);
+                case demilestoned:
+                    return getString(R.string.demilestoned_issue_at);
+                case closed:
+                    return getString(R.string.closed_issue_at);
+                case reopened:
+                    return getString(R.string.reopened_issue_at);
+
+                default:
+                    return getString(R.string.opened_issue_at);
+            }
         }
 
     }

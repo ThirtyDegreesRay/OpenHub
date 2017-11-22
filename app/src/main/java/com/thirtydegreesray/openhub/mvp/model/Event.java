@@ -106,8 +106,6 @@ public class Event implements Parcelable {
 
     }
 
-
-
     private String id;
     private EventType type;
     private User actor;

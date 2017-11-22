@@ -273,4 +273,38 @@
     <string name="double_click_toolbar_tip">在列表页面，您可以双击标题来返回顶部。</string>
     <string name="releases_click_tip">您可以长按列表以查看可以下载资源。</string>
 
+    <string name="created_comment_on_commit">发表评论在 %s 的提交中</string>
+    <string name="created_comment_on_issue">发表评论在问题 %d %s</string>
+    <string name="created_repository">创建 %s</string>
+    <string name="forked_to">创建分支 %s 从 %s </string>
+    <string name="starred_repo">星标 %s</string>
+    <string name="push_to">提交到分支 %s 在 %s</string>
+    <string name="created_tag_at">创建标签 %s 在 %s</string>
+    <string name="created_branch_at">创建分支 %s 在 %s</string>
+    <string name="delete_tag_at">删除标签 %s 在 %s</string>
+    <string name="delete_branch_at">删除分支 %s 在 %s</string>
+    <string name="published_release_at">发布版本 %s 在 %s</string>
+    <string name="opened_issue_at">开放问题 %d 在 %s</string>
+    <string name="closed_issue_at">关闭问题 %d 在 %s</string>
+    <string name="reopened_issue_at">重新开放问题 %d 在 %s</string>
+    <string name="edited_issue_at">编辑问题 %d 在 %s</string>
+    <string name="assigned_issue_at">分配问题 %d 在 %s</string>
+    <string name="unassigned_issue_at">取消分配问题 %d 在 %s</string>
+    <string name="labeled_issue_at">标记问题 %d 在 %s</string>
+    <string name="unlabeled_issue_at">取消标记 问题 %d 在 %s</string>
+    <string name="milestoned_issue_at">设置里程碑 问题 %d 在 %s</string>
+    <string name="demilestoned_issue_at">取消设置里程碑 问题 %d 在 %s</string>
+    <string name="added_member_to">添加成员 %s 到 %s</string>
+    <string name="deleted_member_at">删除成员 %s 在 %s</string>
+    <string name="edited_member_at">编辑成员 %s 在 %s</string>
+    <string name="made_repo_public">公开 %s</string>
+    <string name="org_blocked_user">组织 %s 屏蔽用户 %s</string>
+    <string name="org_unblocked_user">组织 %s 取消屏蔽用户 %s</string>
+    <string name="created_pull_request_comment_at">创建拉取请求审查评论在 %s</string>
+    <string name="deleted_pull_request_comment_at">删除拉取请求审查评论在 %s</string>
+    <string name="edited_pull_request_comment_at">编辑拉取请求审查评论在 %s</string>
+    <string name="submitted_pull_request_review_at">提交拉取请求审查在 %s</string>
+    <string name="edited_pull_request_review_at">编辑拉取请求审查在 %s</string>
+    <string name="dismissed_pull_request_review_at">取消拉取请求审查在 %s</string>
+
 </resources>

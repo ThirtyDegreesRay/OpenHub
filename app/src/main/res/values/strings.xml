@@ -359,4 +359,39 @@
     <string name="double_click_toolbar_tip">You can double click title to back top in list page.</string>
     <string name="releases_click_tip">You can long click item to view available downloads.</string>
 
+    <string name="created_comment_on_commit">Created comment on commit in %s</string>
+    <string name="created_comment_on_issue">Created comment on issue %d in %s</string>
+    <string name="created_repo">Created repository %s</string>
+    <string name="forked_to">Forked %s to %s</string>
+    <string name="starred_repo">Starred %s</string>
+    <string name="push_to">Push to %s at %s</string>
+    <string name="created_tag_at">Created tag %s at %s</string>
+    <string name="created_branch_at">Created branch %s at %s</string>
+    <string name="delete_tag_at">Delete tag %s at %s</string>
+    <string name="delete_branch_at">Delete branch %s at %s</string>
+    <string name="published_release_at">Published release %s at %s</string>
+    <string name="opened_issue_at">Opened issue %d in %s</string>
+    <string name="closed_issue_at">Closed issue %d in %s</string>
+    <string name="reopened_issue_at">Reopened issue %d in %s</string>
+    <string name="edited_issue_at">Edited issue %d in %s</string>
+    <string name="assigned_issue_at">Assigned issue %d in %s</string>
+    <string name="unassigned_issue_at">Unassigned issue %d in %s</string>
+    <string name="labeled_issue_at">Labeled issue %d in %s</string>
+    <string name="unlabeled_issue_at">Unlabeled issue %d in %s</string>
+    <string name="milestoned_issue_at">Milestoned issue %d in %s</string>
+    <string name="demilestoned_issue_at">Demilestoned issue %d in %s</string>
+    <string name="added_member_to">Added member %s to %s</string>
+    <string name="deleted_member_at">Deleted member %s at %s</string>
+    <string name="edited_member_at">Edited member %s at %s</string>
+    <string name="made_repo_public">Made %s public</string>
+    <string name="org_blocked_user">Org %s blocked user %s</string>
+    <string name="org_unblocked_user">Org %s unblocked user %s</string>
+    <string name="created_pull_request_comment_at">Created pull request review comment at %s</string>
+    <string name="deleted_pull_request_comment_at">Deleted pull request review comment at %s</string>
+    <string name="edited_pull_request_comment_at">Edited pull request review comment at %s</string>
+    <string name="submitted_pull_request_review_at">Submitted pull request review at %s</string>
+    <string name="edited_pull_request_review_at">Edited pull request review at %s</string>
+    <string name="dismissed_pull_request_review_at">Dismissed pull request review at %s</string>
+
+
 </resources>
