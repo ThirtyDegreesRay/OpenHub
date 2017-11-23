@@ -275,7 +275,7 @@
 
     <string name="created_comment_on_commit">发表评论在 %s 的提交中</string>
     <string name="created_comment_on_issue">发表评论在问题 %d %s</string>
-    <string name="created_repository">创建 %s</string>
+    <string name="created_repo">创建 %s</string>
     <string name="forked_to">创建分支 %s 从 %s </string>
     <string name="starred_repo">星标 %s</string>
     <string name="push_to">提交到分支 %s 在 %s</string>
