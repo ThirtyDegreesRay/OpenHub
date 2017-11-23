@@ -25,14 +25,20 @@ import butterknife.BindView;
 
 public class UsersAdapter extends BaseAdapter<UsersAdapter.ViewHolder, User> {
 
+    private boolean cardEnable = true;
+
     @Inject
     public UsersAdapter(Context context, BaseFragment fragment){
         super(context, fragment);
     }
 
+    public void setCardEnable(boolean cardEnable) {
+        this.cardEnable = cardEnable;
+    }
+
     @Override
     protected int getLayoutId(int viewType) {
-        return R.layout.layout_item_user;
+        return cardEnable ? R.layout.layout_item_user : R.layout.layout_item_user_no_card;
     }
 
     @Override

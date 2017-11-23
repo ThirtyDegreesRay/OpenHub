@@ -164,6 +164,7 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
             orgsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             orgsRecyclerView.setAdapter(orgsAdapter);
             orgsAdapter.setOnItemClickListener(this);
+            orgsAdapter.setCardEnable(false);
         }
         orgsAdapter.setData(orgs);
         orgsAdapter.notifyDataSetChanged();
