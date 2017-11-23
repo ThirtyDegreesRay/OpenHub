@@ -7,6 +7,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 import com.thirtydegreesray.openhub.dao.BookMarkUser;
+import com.thirtydegreesray.openhub.dao.LocalUser;
 import com.thirtydegreesray.openhub.dao.TraceUser;
 
 import java.util.Date;
@@ -46,30 +47,24 @@ public class User implements Parcelable {
 
     }
 
-    public TraceUser toTraceUser(){
-        TraceUser traceUser = new TraceUser();
-        traceUser.setLogin(login);
-        traceUser.setName(name);
-        traceUser.setAvatarUrl(avatarUrl);
-        traceUser.setFollowers(followers);
-        traceUser.setFollowing(following);
-
-        Date date = new Date();
-        traceUser.setStartTime(date);
-        traceUser.setLatestTime(date);
-        traceUser.setTraceNum(1);
-        return traceUser;
+    public LocalUser toLocalUser(){
+        LocalUser localUser = new LocalUser();
+        localUser.setLogin(login);
+        localUser.setName(name);
+        localUser.setAvatarUrl(avatarUrl);
+        localUser.setFollowers(followers);
+        localUser.setFollowing(following);
+        return localUser;
     }
 
-    public BookMarkUser toBookmarkUser(){
-        BookMarkUser bookMarkUser = new BookMarkUser();
-        bookMarkUser.setLogin(login);
-        bookMarkUser.setName(name);
-        bookMarkUser.setAvatarUrl(avatarUrl);
-        bookMarkUser.setFollowers(followers);
-        bookMarkUser.setFollowing(following);
-        bookMarkUser.setMarkTime(new Date());
-        return bookMarkUser;
+    public static User generateFromLocalUser(LocalUser localUser){
+        User user = new User();
+        user.setLogin(localUser.getLogin());
+        user.setName(localUser.getName());
+        user.setFollowers(localUser.getFollowers());
+        user.setFollowing(localUser.getFollowing());
+        user.setAvatarUrl(localUser.getAvatarUrl());
+        return user;
     }
 
     public static User generateFromTrace(TraceUser trace){

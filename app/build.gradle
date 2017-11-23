@@ -142,5 +142,6 @@ dependencies {
     compile 'com.zzhoujay.glideimagegetter:glideimagegetter:1.0.5'
 
     compile "com.orhanobut:logger:${LOGGER_VERSION}"
+    compile "com.timehop.stickyheadersrecyclerview:library:${STICKY_HEAD_VERSION}"
 
 }

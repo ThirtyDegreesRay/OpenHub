@@ -5,8 +5,12 @@ package com.thirtydegreesray.openhub.mvp.presenter;
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.dao.Bookmark;
+import com.thirtydegreesray.openhub.dao.BookmarkDao;
 import com.thirtydegreesray.openhub.dao.DaoSession;
-import com.thirtydegreesray.openhub.dao.TraceRepo;
+import com.thirtydegreesray.openhub.dao.LocalRepo;
+import com.thirtydegreesray.openhub.dao.Trace;
+import com.thirtydegreesray.openhub.dao.TraceDao;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpProgressSubscriber;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
@@ -19,6 +23,7 @@ import com.thirtydegreesray.openhub.util.StarWishesHelper;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
@@ -161,26 +166,6 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
         return false;
     }
 
-    @Override
-    public boolean isBookmarked() {
-        if(!isBookmarkQueried && repository != null){
-            bookmarked = daoSession.getBookMarkRepoDao().load((long) repository.getId()) != null;
-            isBookmarkQueried = true;
-        }
-        return bookmarked;
-    }
-
-    @Override
-    public void bookmark(boolean bookmark) {
-        if(repository == null) return;
-        bookmarked = bookmark;
-        if(bookmark){
-            daoSession.getBookMarkRepoDao().insert(repository.toBookmarkRepo());
-        } else {
-            daoSession.getBookMarkRepoDao().deleteByKey((long) repository.getId());
-        }
-    }
-
     private void setTags(ArrayList<Branch> list) {
         for (Branch branch : list) {
             branch.setBranch(false);
@@ -316,18 +301,66 @@ public class RepositoryPresenter extends BasePresenter<IRepositoryContract.View>
         }
     }
 
-    private void saveTrace(){
-        TraceRepo traceRepo = daoSession.getTraceRepoDao().load((long) repository.getId());
-        if(traceRepo == null){
-            traceRepo = repository.toTraceRepo();
-            daoSession.getTraceRepoDao().insert(traceRepo);
-        } else {
-            TraceRepo updatedTraceRepo = repository.toTraceRepo();
-            updatedTraceRepo.setStartTime(traceRepo.getStartTime());
-            updatedTraceRepo.setLatestTime(new Date());
-            updatedTraceRepo.setTraceNum(isTraceSaved ? traceRepo.getTraceNum() : traceRepo.getTraceNum() + 1);
-            daoSession.getTraceRepoDao().update(updatedTraceRepo);
+    @Override
+    public boolean isBookmarked() {
+        if(!isBookmarkQueried && repository != null){
+            bookmarked = daoSession.getBookmarkDao().queryBuilder()
+                    .where(BookmarkDao.Properties.RepoId.eq(repository.getId()))
+                    .unique() != null;
+            isBookmarkQueried = true;
         }
+        return bookmarked;
+    }
+
+    @Override
+    public void bookmark(boolean bookmark) {
+        if(repository == null) return;
+        bookmarked = bookmark;
+        Bookmark bookmarkModel = daoSession.getBookmarkDao().queryBuilder()
+                .where(BookmarkDao.Properties.RepoId.eq(repository.getId()))
+                .unique();
+        if(bookmark && bookmarkModel == null){
+            bookmarkModel = new Bookmark(UUID.randomUUID().toString());
+            bookmarkModel.setType("repo");
+            bookmarkModel.setRepoId((long) repository.getId());
+            bookmarkModel.setMarkTime(new Date());
+            daoSession.getBookmarkDao().insert(bookmarkModel);
+        } else if(!bookmark && bookmarkModel != null){
+            daoSession.getBookmarkDao().delete(bookmarkModel);
+        }
+    }
+
+    private void saveTrace(){
+        daoSession.runInTx(() ->{
+            if(!isTraceSaved){
+                Trace trace = daoSession.getTraceDao().queryBuilder()
+                        .where(TraceDao.Properties.RepoId.eq(repository.getId()))
+                        .unique();
+
+                if(trace == null){
+                    trace = new Trace(UUID.randomUUID().toString());
+                    trace.setType("repo");
+                    trace.setRepoId((long) repository.getId());
+                    Date curDate = new Date();
+                    trace.setStartTime(curDate);
+                    trace.setLatestTime(curDate);
+                    trace.setTraceNum(1);
+                    daoSession.getTraceDao().insert(trace);
+                } else {
+                    trace.setTraceNum(trace.getTraceNum() + 1);
+                    trace.setLatestTime(new Date());
+                    daoSession.getTraceDao().update(trace);
+                }
+            }
+
+            LocalRepo localRepo = daoSession.getLocalRepoDao().load((long) repository.getId());
+            LocalRepo updateRepo = repository.toLocalRepo();
+            if(localRepo == null){
+                daoSession.getLocalRepoDao().insert(updateRepo);
+            } else {
+                daoSession.getLocalRepoDao().update(updateRepo);
+            }
+        });
         isTraceSaved = true;
     }
 

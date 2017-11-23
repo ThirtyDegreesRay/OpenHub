@@ -9,12 +9,16 @@ import org.greenrobot.greendao.generator.Schema;
 public class AppDaoGenerator {
 
     public static void main(String...args){
-        Schema rootSchema = new Schema(3, "com.thirtydegreesray.openhub.dao");
+        Schema rootSchema = new Schema(4, "com.thirtydegreesray.openhub.dao");
         addAuthUser(rootSchema);
         addTraceUser(rootSchema);
         addTraceRepo(rootSchema);
         addBookMarkUser(rootSchema);
         addBookMarkRepo(rootSchema);
+        addLocalUser(rootSchema);
+        addLocalRepo(rootSchema);
+        addTrace(rootSchema);
+        addBookmark(rootSchema);
         System.out.println("AppDaoGenerator");
         try {
             new DaoGenerator().generateAll(rootSchema, "E:/Work/Android/github/OpenHub/OpenHub/app/src/main/java");
@@ -24,7 +28,7 @@ public class AppDaoGenerator {
     }
 
     /**
-     * add user
+     * add auth user
      * @param schema
      */
     private static void addAuthUser(Schema schema){
@@ -96,6 +100,52 @@ public class AppDaoGenerator {
 
         entity.addStringProperty("ownerLogin");
         entity.addStringProperty("ownerAvatarUrl");
+
+        entity.addDateProperty("markTime");
+    }
+
+    private static void addLocalUser(Schema schema){
+        Entity entity = schema.addEntity("LocalUser");
+        entity.addStringProperty("login").primaryKey().notNull();
+        entity.addStringProperty("name");
+        entity.addStringProperty("avatarUrl");
+        entity.addIntProperty("followers");
+        entity.addIntProperty("following");
+    }
+
+    private static void addLocalRepo(Schema schema){
+        Entity entity = schema.addEntity("LocalRepo");
+        entity.addLongProperty("id").primaryKey().notNull();
+        entity.addStringProperty("name").notNull();
+        entity.addStringProperty("description");
+        entity.addStringProperty("language");
+        entity.addIntProperty("stargazersCount");
+        entity.addIntProperty("watchersCount");
+        entity.addIntProperty("forksCount");
+        entity.addBooleanProperty("fork");
+
+        entity.addStringProperty("ownerLogin");
+        entity.addStringProperty("ownerAvatarUrl");
+    }
+
+    private static void addTrace(Schema schema){
+        Entity entity = schema.addEntity("Trace");
+        entity.addStringProperty("id").primaryKey().notNull();
+        entity.addStringProperty("type");
+        entity.addStringProperty("userId");
+        entity.addLongProperty("repoId");
+
+        entity.addDateProperty("startTime");
+        entity.addDateProperty("latestTime");
+        entity.addIntProperty("traceNum");
+    }
+
+    private static void addBookmark(Schema schema){
+        Entity entity = schema.addEntity("Bookmark");
+        entity.addStringProperty("id").primaryKey().notNull();
+        entity.addStringProperty("type").notNull();
+        entity.addStringProperty("userId");
+        entity.addLongProperty("repoId");
 
         entity.addDateProperty("markTime");
     }

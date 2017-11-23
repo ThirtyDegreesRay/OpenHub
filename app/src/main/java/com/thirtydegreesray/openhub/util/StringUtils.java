@@ -10,6 +10,7 @@ import com.thirtydegreesray.openhub.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -101,6 +102,20 @@ public class StringUtils {
     public static String upCaseFisrtChar(String str){
         if(isBlank(str)) return null;
         return str.substring(0, 1).toUpperCase().concat(str.substring(1));
+    }
+
+    @NonNull public static Date getDateByTime(@NonNull Date time){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(time);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar.getTime();
+    }
+
+    @NonNull public static Date getTodayDate(){
+        return getDateByTime(new Date());
     }
 
 }

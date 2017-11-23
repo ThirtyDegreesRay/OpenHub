@@ -5,6 +5,7 @@ package com.thirtydegreesray.openhub.inject.component;
 import com.thirtydegreesray.openhub.inject.FragmentScope;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
+import com.thirtydegreesray.openhub.ui.fragment.BookmarksFragment;
 import com.thirtydegreesray.openhub.ui.fragment.CommitFilesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.CommitsFragment;
 import com.thirtydegreesray.openhub.ui.fragment.IssueTimelineFragment;
@@ -15,6 +16,7 @@ import com.thirtydegreesray.openhub.ui.fragment.ReleasesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoFilesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoInfoFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
+import com.thirtydegreesray.openhub.ui.fragment.TraceFragment;
 import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
 import com.thirtydegreesray.openhub.ui.fragment.ViewerFragment;
 
@@ -42,4 +44,6 @@ public interface FragmentComponent {
     void inject(CommitsFragment fragment);
     void inject(CommitFilesFragment fragment);
     void inject(NotificationsFragment fragment);
+    void inject(BookmarksFragment fragment);
+    void inject(TraceFragment fragment);
 }

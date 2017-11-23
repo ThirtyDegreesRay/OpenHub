@@ -1,5 +1,3 @@
-
-
 <resources>
     <string name="app_name" translatable="false">OpenHub</string>
     <string name="navigation_drawer_open" translatable="false">navigation_drawer_open</string>
@@ -393,5 +391,11 @@
     <string name="edited_pull_request_review_at">Edited pull request review at %s</string>
     <string name="dismissed_pull_request_review_at">Dismissed pull request review at %s</string>
 
+    <string name="undo">Undo</string>
+    <string name="no_bookmarks">No bookmarks</string>
+    <string name="no_trace">No trace</string>
+    <string name="trace_deleted">Trace deleted</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
 
 </resources>

@@ -46,7 +46,7 @@
 
     <group
         android:id="@+id/search"
-        android:checkableBehavior="none">
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_bookmarks"
             android:icon="@drawable/ic_bookmark"
@@ -58,7 +58,8 @@
         <item
             android:id="@+id/nav_search"
             android:icon="@drawable/ic_search_title"
-            android:title="@string/search"/>
+            android:title="@string/search"
+            android:checkable="false"/>
     </group>
 
     <group

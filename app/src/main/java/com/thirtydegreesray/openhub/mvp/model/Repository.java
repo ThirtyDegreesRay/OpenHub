@@ -7,6 +7,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 import com.thirtydegreesray.openhub.dao.BookMarkRepo;
+import com.thirtydegreesray.openhub.dao.LocalRepo;
 import com.thirtydegreesray.openhub.dao.TraceRepo;
 
 import java.util.Date;
@@ -59,40 +60,36 @@ public class Repository implements Parcelable {
     public Repository() {
     }
 
-    public TraceRepo toTraceRepo(){
-        TraceRepo traceRepo = new TraceRepo();
-        traceRepo.setId(id);
-        traceRepo.setName(name);
-        traceRepo.setDescription(description);
-        traceRepo.setLanguage(language);
-        traceRepo.setStargazersCount(stargazersCount);
-        traceRepo.setWatchersCount(watchersCount);
-        traceRepo.setForksCount(forksCount);
-        traceRepo.setFork(fork);
-        traceRepo.setOwnerLogin(owner.getLogin());
-        traceRepo.setOwnerAvatarUrl(owner.getAvatarUrl());
-
-        Date date = new Date();
-        traceRepo.setStartTime(date);
-        traceRepo.setLatestTime(date);
-        traceRepo.setTraceNum(1);
-        return traceRepo;
+    public LocalRepo toLocalRepo(){
+        LocalRepo localRepo = new LocalRepo();
+        localRepo.setId(id);
+        localRepo.setName(name);
+        localRepo.setDescription(description);
+        localRepo.setLanguage(language);
+        localRepo.setStargazersCount(stargazersCount);
+        localRepo.setWatchersCount(watchersCount);
+        localRepo.setForksCount(forksCount);
+        localRepo.setFork(fork);
+        localRepo.setOwnerLogin(owner.getLogin());
+        localRepo.setOwnerAvatarUrl(owner.getAvatarUrl());
+        return localRepo;
     }
 
-    public BookMarkRepo toBookmarkRepo(){
-        BookMarkRepo bookMarkRepo = new BookMarkRepo();
-        bookMarkRepo.setId(id);
-        bookMarkRepo.setName(name);
-        bookMarkRepo.setDescription(description);
-        bookMarkRepo.setLanguage(language);
-        bookMarkRepo.setStargazersCount(stargazersCount);
-        bookMarkRepo.setWatchersCount(watchersCount);
-        bookMarkRepo.setForksCount(forksCount);
-        bookMarkRepo.setFork(fork);
-        bookMarkRepo.setOwnerLogin(owner.getLogin());
-        bookMarkRepo.setOwnerAvatarUrl(owner.getAvatarUrl());
-        bookMarkRepo.setMarkTime(new Date());
-        return bookMarkRepo;
+    public static Repository generateFromLocalRepo(LocalRepo localRepo){
+        Repository repo = new Repository();
+        repo.setId((int) localRepo.getId());
+        repo.setName(localRepo.getName());
+        repo.setDescription(localRepo.getDescription());
+        repo.setLanguage(localRepo.getLanguage());
+        repo.setStargazersCount(localRepo.getStargazersCount());
+        repo.setWatchersCount(localRepo.getWatchersCount());
+        repo.setForksCount(localRepo.getForksCount());
+        repo.setFork(localRepo.getFork());
+        User user = new User();
+        user.setLogin(localRepo.getOwnerLogin());
+        user.setAvatarUrl(localRepo.getOwnerAvatarUrl());
+        repo.setOwner(user);
+        return repo;
     }
 
     public static Repository generateFromTrace(TraceRepo trace){

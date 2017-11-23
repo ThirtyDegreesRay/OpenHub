@@ -30,7 +30,9 @@ import com.thirtydegreesray.openhub.mvp.model.filter.RepositoriesFilter;
 import com.thirtydegreesray.openhub.mvp.presenter.MainPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseDrawerActivity;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
+import com.thirtydegreesray.openhub.ui.fragment.BookmarksFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
+import com.thirtydegreesray.openhub.ui.fragment.TraceFragment;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
@@ -73,6 +75,8 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
         TAG_MAP.put(R.id.nav_news, ActivityFragment.class.getSimpleName());
         TAG_MAP.put(R.id.nav_owned, RepositoriesFragment.RepositoriesType.OWNED.name());
         TAG_MAP.put(R.id.nav_starred, RepositoriesFragment.RepositoriesType.STARRED.name());
+        TAG_MAP.put(R.id.nav_bookmarks, BookmarksFragment.class.getSimpleName());
+        TAG_MAP.put(R.id.nav_trace, TraceFragment.class.getSimpleName());
         if (AppData.INSTANCE.getLoggedUser() != null)
             CrashReport.putUserData(getApplicationContext(),
                     "GitHubId", AppData.INSTANCE.getLoggedUser().getLogin());
@@ -164,6 +168,8 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
             case R.id.nav_news:
             case R.id.nav_owned:
             case R.id.nav_starred:
+            case R.id.nav_bookmarks:
+            case R.id.nav_trace:
                 updateTitle(id);
                 loadFragment(id);
                 updateFilter(id);
@@ -173,12 +179,6 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
                 break;
             case R.id.nav_search:
                 SearchActivity.show(getActivity());
-                break;
-            case R.id.nav_trace:
-                TraceActivity.show(getActivity());
-                break;
-            case R.id.nav_bookmarks:
-                BookmarksActivity.show(getActivity());
                 break;
             case R.id.nav_settings:
                 SettingsActivity.show(getActivity(), SETTINGS_REQUEST_CODE);
@@ -214,6 +214,12 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
                 break;
             case R.id.nav_starred:
                 setToolbarTitle(getString(R.string.starred_repos));
+                break;
+            case R.id.nav_bookmarks:
+                setToolbarTitle(getString(R.string.bookmarks));
+                break;
+            case R.id.nav_trace:
+                setToolbarTitle(getString(R.string.trace));
                 break;
             default:
                 setToolbarTitle(getString(R.string.app_name));
@@ -254,6 +260,10 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
             case R.id.nav_starred:
                 return RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.STARRED,
                         AppData.INSTANCE.getLoggedUser().getLogin());
+            case R.id.nav_bookmarks:
+                return BookmarksFragment.create();
+            case R.id.nav_trace:
+                return TraceFragment.create();
         }
         return null;
     }
