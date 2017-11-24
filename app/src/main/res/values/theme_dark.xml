@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
- ~ Copyright (C) 2017 Kosh.
+ ~ Copied from Copyright (C) 2017 Kosh.
+ ~ Modified by Copyright (C) 2017 ThirtyDegreesRay.
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <color name="dark_color_primary">#2D3035</color>
     <color name="dark_color_primary_blur">#DD2D3035</color>
@@ -34,6 +35,7 @@
         <item name="color_primary_blur">@color/dark_color_primary_blur</item>
         <item name="popup_theme">@style/PopupThemeDark</item>
         <item name="appbar_theme">@style/AppbarThemeDark</item>
+        <item name="android:contextPopupMenuStyle" tools:targetApi="n">@style/ContextPopupThemeDark</item>
     </style>
 
     <style name="DialogThemeDark" parent="Theme.AppCompat.Dialog.Alert">
@@ -51,6 +53,15 @@
 
     <style name="PopupThemeDark" parent="ThemeOverlay.AppCompat.Dark">
         <item name="android:colorBackground">@color/dark_color_window_background</item>
+    </style>
+
+    <style name="ContextPopupThemeDark" parent="PopupThemeDark">
+        <item name="android:popupBackground">@color/dark_color_window_background</item>
+        <!--
+         ~  Context menu of a RecyclerView is displayed in the wrong location when setting
+         ~  a contextPopupMenuStyle on Android N, set bellow can fix it.
+        -->
+        <item name="android:overlapAnchor">true</item>
     </style>
 
     <style name="ThemeDark.LightBlue" parent="ThemeDark">

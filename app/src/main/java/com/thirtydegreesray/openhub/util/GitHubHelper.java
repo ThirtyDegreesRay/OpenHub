@@ -9,8 +9,9 @@ import android.webkit.MimeTypeMap;
 import java.util.regex.Pattern;
 
 /**
- * Created by Kosh on 2017/8/19 17:24:29
- * Copyright (C) 2017 Kosh.
+ * Created on 2017/8/19 17:24:29
+ * Copied from Copyright (C) 2017 Kosh.
+ * Modified by Copyright (C) 2017 ThirtyDegreesRay.
  */
 
 public class GitHubHelper {

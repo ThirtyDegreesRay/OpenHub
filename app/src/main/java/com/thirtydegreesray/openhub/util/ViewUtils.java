@@ -19,8 +19,9 @@ import android.widget.TextView;
 import com.thirtydegreesray.openhub.R;
 
 /**
- * Created by Kosh on 2017/8/1.
- * Copyright (C) 2017 Kosh.
+ * Created on 2017/8/1.
+ * Copied from Copyright (C) 2017 Kosh.
+ * Modified by Copyright (C) 2017 ThirtyDegreesRay.
  */
 
 public class ViewUtils {

@@ -24,8 +24,9 @@ import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewUtils;
 
 /**
- * Created by Kosh on 2017/8/20 12:10:56
- * Copyright (C) 2017 Kosh.
+ * Created on 2017/8/20 12:10:56
+ * Copied from Copyright (C) 2017 Kosh.
+ * Modified by Copyright (C) 2017 ThirtyDegreesRay.
  */
 
 public class CodeWebView extends WebView {

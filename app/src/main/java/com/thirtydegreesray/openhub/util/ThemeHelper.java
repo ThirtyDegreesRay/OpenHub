@@ -10,8 +10,9 @@ import com.thirtydegreesray.openhub.ui.activity.SplashActivity;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 
 /**
- * Created by Kosh on 2017/10/30 13:26:25
- * Copyright (C) 2017 Kosh.
+ * Created on 2017/10/30 13:26:25
+ * Copied from Copyright (C) 2017 Kosh.
+ * Modified by Copyright (C) 2017 ThirtyDegreesRay.
  */
 
 public class ThemeHelper {

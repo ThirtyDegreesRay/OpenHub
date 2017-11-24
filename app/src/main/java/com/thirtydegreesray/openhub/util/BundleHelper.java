@@ -15,8 +15,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Created by Kosh on 2017/10/30 9:42:40
- * Copyright (C) 2017 Kosh.
+ * Created on 2017/10/30 9:42:40
+ * Copied from Copyright (C) 2017 Kosh.
+ * Modified by Copyright (C) 2017 ThirtyDegreesRay.
  */
 
 public class BundleHelper {

@@ -12,8 +12,9 @@ import com.thirtydegreesray.openhub.AppApplication;
 import java.util.Set;
 
 /**
- * Created by Kosh on 2017/10/30 11:59:38
- * Copyright (C) 2017 Kosh.
+ * Created on 2017/10/30 11:59:38
+ * Copied from Copyright (C) 2017 Kosh.
+ * Modified by Copyright (C) 2017 ThirtyDegreesRay.
  */
 
 public class PrefUtils {

@@ -15,8 +15,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by Kosh on 2017/8/20 12:58:43
- * Copyright (C) 2017 Kosh.
+ * Created on 2017/8/20 12:58:43
+ * Copied from Copyright (C) 2017 Kosh.
+ * Modified by Copyright (C) 2017 ThirtyDegreesRay.
  */
 
 class HtmlHelper {

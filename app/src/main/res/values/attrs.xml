@@ -1,7 +1,7 @@
 <!--
- ~ Copyright (C) 2017 Kosh.
+ ~ Copied from Copyright (C) 2017 Kosh.
+ ~ Modified by Copyright (C) 2017 ThirtyDegreesRay.
 -->
-
 <resources>
 
     <!-- Declare custom theme attributes that allow changing which styles are

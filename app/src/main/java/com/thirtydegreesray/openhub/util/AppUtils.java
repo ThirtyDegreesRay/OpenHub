@@ -26,8 +26,9 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /**
- * Created by Kosh on 2017/10/30 11:23:03
- * Copyright (C) 2017 Kosh.
+ * Created on 2017/10/30 11:23:03
+ * Copied from Copyright (C) 2017 Kosh.
+ * Modified by Copyright (C) 2017 ThirtyDegreesRay.
  */
 
 public class AppUtils {
