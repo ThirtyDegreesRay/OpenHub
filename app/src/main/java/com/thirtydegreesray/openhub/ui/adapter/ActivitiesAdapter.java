@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
@@ -83,9 +84,11 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
 
         @OnClick({R.id.user_avatar, R.id.user_name})
         void onUserClick() {
-            String loginId = data.get(getAdapterPosition()).getActor().getLogin();
-            String userAvatar = data.get(getAdapterPosition()).getActor().getAvatarUrl();
-            ProfileActivity.show((Activity)context, ViewHolder.this.userAvatar, loginId, userAvatar);
+            if(getAdapterPosition() != RecyclerView.NO_POSITION) {
+                String loginId = data.get(getAdapterPosition()).getActor().getLogin();
+                String userAvatar = data.get(getAdapterPosition()).getActor().getAvatarUrl();
+                ProfileActivity.show((Activity) context, ViewHolder.this.userAvatar, loginId, userAvatar);
+            }
         }
 
         //TODO to be better event action and desc

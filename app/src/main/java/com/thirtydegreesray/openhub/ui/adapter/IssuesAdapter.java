@@ -3,6 +3,7 @@ package com.thirtydegreesray.openhub.ui.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -82,9 +83,11 @@ public class IssuesAdapter extends BaseAdapter<IssuesAdapter.ViewHolder, Issue> 
 
         @OnClick({R.id.user_avatar, R.id.user_name})
         public void onUserClick(){
-            Issue issue = data.get(getAdapterPosition());
-            ProfileActivity.show((Activity) context, userAvatar, issue.getUser().getLogin(),
-                    issue.getUser().getAvatarUrl());
+            if(getAdapterPosition() != RecyclerView.NO_POSITION) {
+                Issue issue = data.get(getAdapterPosition());
+                ProfileActivity.show((Activity) context, userAvatar, issue.getUser().getLogin(),
+                        issue.getUser().getAvatarUrl());
+            }
         }
 
     }

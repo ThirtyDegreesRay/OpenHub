@@ -5,6 +5,7 @@ package com.thirtydegreesray.openhub.ui.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -80,12 +81,14 @@ public class CommitAdapter extends BaseAdapter<CommitAdapter.ViewHolder, RepoCom
 
         @OnClick({R.id.user_avatar, R.id.user_name})
         void onUserClick() {
-            RepoCommit commit = data.get(getAdapterPosition());
-            String loginId = commit.getAuthor() == null ?
-                    commit.getCommit().getAuthor().getName() : commit.getAuthor().getLogin();
-            String userAvatar = commit.getAuthor() == null ?
-                    null : commit.getAuthor().getAvatarUrl();
-            ProfileActivity.show((Activity)context, ViewHolder.this.userAvatar, loginId, userAvatar);
+            if(getAdapterPosition() != RecyclerView.NO_POSITION) {
+                RepoCommit commit = data.get(getAdapterPosition());
+                String loginId = commit.getAuthor() == null ?
+                        commit.getCommit().getAuthor().getName() : commit.getAuthor().getLogin();
+                String userAvatar = commit.getAuthor() == null ?
+                        null : commit.getAuthor().getAvatarUrl();
+                ProfileActivity.show((Activity) context, ViewHolder.this.userAvatar, loginId, userAvatar);
+            }
         }
 
     }

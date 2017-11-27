@@ -130,14 +130,18 @@ public class NotificationsAdapter extends BaseAdapter<RecyclerView.ViewHolder,
 
         @OnClick(R.id.user_avatar)
         public void onUserClicked() {
-            ProfileActivity.show((Activity) context, userAvatar,
-                    getRepository().getOwner().getLogin(), getRepository().getOwner().getAvatarUrl());
+            if(getAdapterPosition() != RecyclerView.NO_POSITION) {
+                ProfileActivity.show((Activity) context, userAvatar,
+                        getRepository().getOwner().getLogin(), getRepository().getOwner().getAvatarUrl());
+            }
         }
 
         @OnClick(R.id.repo_name)
         public void onRepoClicked() {
-            RepositoryActivity.show(context, getRepository().getOwner().getLogin(),
-                    getRepository().getName());
+            if(getAdapterPosition() != RecyclerView.NO_POSITION) {
+                RepositoryActivity.show(context, getRepository().getOwner().getLogin(),
+                        getRepository().getName());
+            }
         }
 
         private Repository getRepository(){

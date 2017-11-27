@@ -160,9 +160,11 @@ public class TraceAdapter extends BaseAdapter<RecyclerView.ViewHolder, TraceExt>
 
         @OnClick(R.id.iv_user_avatar)
         public void onUserClick(){
-            ProfileActivity.show((Activity) context, ivUserAvatar,
-                    data.get(getAdapterPosition()).getRepository().getOwner().getLogin(),
-                    data.get(getAdapterPosition()).getRepository().getOwner().getAvatarUrl());
+            if(getAdapterPosition() != RecyclerView.NO_POSITION) {
+                ProfileActivity.show((Activity) context, ivUserAvatar,
+                        data.get(getAdapterPosition()).getRepository().getOwner().getLogin(),
+                        data.get(getAdapterPosition()).getRepository().getOwner().getAvatarUrl());
+            }
         }
     }
 

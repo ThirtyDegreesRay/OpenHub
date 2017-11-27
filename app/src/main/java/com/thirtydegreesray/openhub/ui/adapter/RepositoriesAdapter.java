@@ -5,6 +5,7 @@ package com.thirtydegreesray.openhub.ui.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -65,8 +66,10 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
 
         @OnClick(R.id.iv_user_avatar)
         public void onUserClick(){
-            ProfileActivity.show((Activity) context, ivUserAvatar, data.get(getAdapterPosition()).getOwner().getLogin(),
-                    data.get(getAdapterPosition()).getOwner().getAvatarUrl());
+            if(getAdapterPosition() != RecyclerView.NO_POSITION){
+                ProfileActivity.show((Activity) context, ivUserAvatar, data.get(getAdapterPosition()).getOwner().getLogin(),
+                        data.get(getAdapterPosition()).getOwner().getAvatarUrl());
+            }
         }
     }
 
