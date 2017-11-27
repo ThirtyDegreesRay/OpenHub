@@ -22,6 +22,8 @@ public interface ISearchContract {
     interface Presenter extends IBaseContract.Presenter<ISearchContract.View>{
         ArrayList<SearchModel> getQueryModels(@NonNull String query);
         SearchModel getSortModel(int page, int sortId);
+        @NonNull ArrayList<String> getSearchRecordList();
+        void addSearchRecord(@NonNull String record);
     }
 
 }

@@ -63,6 +63,8 @@ public class PrefUtils {
     public final static String ACTIVITY_LONG_CLICK_TIP_ABLE = "activityLongClickTipAble";
     public final static String RELEASES_LONG_CLICK_TIP_ABLE = "releasesLongClickTipAble";
 
+    public final static String SEARCH_RECORDS = "searchRecords";
+
     public static SharedPreferences getDefaultSp(){
         return PreferenceManager.getDefaultSharedPreferences(AppApplication.get());
     }
@@ -82,7 +84,7 @@ public class PrefUtils {
             edit.putBoolean(key, (Boolean) value);
         } else if (value instanceof Float) {
             edit.putFloat(key, (Float) value);
-        } else if(value instanceof Set && ((Set) value).toArray() instanceof String[]){
+        } else if(value instanceof Set){
             edit.putStringSet(key, (Set<String>) value);
         } else {
             throw new IllegalArgumentException(String.format("Type of value unsupported key=%s, value=%s", key, value));
@@ -150,6 +152,9 @@ public class PrefUtils {
         return getDefaultSp(AppApplication.get()).getBoolean(SYSTEM_DOWNLOADER, true);
     }
 
+    public static String getSearchRecords(){
+        return getDefaultSp(AppApplication.get()).getString(SEARCH_RECORDS, null);
+    }
 
 
     public static SharedPreferences getDefaultSp(Context context){

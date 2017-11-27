@@ -19,7 +19,6 @@ public class AppDaoGenerator {
         addLocalRepo(rootSchema);
         addTrace(rootSchema);
         addBookmark(rootSchema);
-        System.out.println("AppDaoGenerator");
         try {
             new DaoGenerator().generateAll(rootSchema, "E:/Work/Android/github/OpenHub/OpenHub/app/src/main/java");
         } catch (Exception e) {

@@ -4,6 +4,7 @@ package com.thirtydegreesray.openhub.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,8 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.R;
@@ -30,6 +33,7 @@ import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
+import com.thirtydegreesray.openhub.util.ViewUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -104,6 +108,17 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
             MenuItemCompat.collapseActionView(searchItem);
         }
         MenuItemCompat.setOnActionExpandListener(searchItem, this);
+
+        AutoCompleteTextView autoCompleteTextView = searchView
+                .findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        autoCompleteTextView.setThreshold(0);
+        autoCompleteTextView.setAdapter(new ArrayAdapter<>(this,
+                R.layout.layout_item_simple_list, mPresenter.getSearchRecordList()));
+        autoCompleteTextView.setDropDownBackgroundDrawable(new ColorDrawable(ViewUtils.getWindowBackground(getActivity())));
+        autoCompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
+            onQueryTextSubmit(parent.getAdapter().getItem(position).toString());
+        });
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -160,6 +175,7 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
         invalidateOptionsMenu();
         search(query);
         setSubTitle(viewPager.getCurrentItem());
+        mPresenter.addSearchRecord(query);
         return true;
     }
 
