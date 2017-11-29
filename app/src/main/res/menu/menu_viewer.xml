@@ -6,16 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_open_in_browser"
-        android:title="@string/open_in_browser"
-        android:icon="@drawable/ic_explore_title"
-        app:showAsAction="ifRoom"/>
-
-    <item
         android:id="@+id/action_fullscreen"
         android:title="@string/fullscreen"
         android:icon="@drawable/ic_fullscreen_title"
         app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_open_in_browser"
+        android:title="@string/open_in_browser"
+        android:icon="@drawable/ic_explore_title"
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_refresh"
