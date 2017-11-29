@@ -139,6 +139,10 @@ public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Present
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == android.R.id.home)
             return super.onOptionsItemSelected(item);
+        if(item.getItemId() == R.id.action_fullscreen){
+            intoFullScreen();
+            return true;
+        }
         String htmlUrl = null;
         if(fileModel != null) htmlUrl = fileModel.getHtmlUrl();
         if(commitFile != null) htmlUrl = commitFile.getBlobUrl();

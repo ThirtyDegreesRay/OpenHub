@@ -73,7 +73,6 @@
             android:name=".ui.activity.BrowserFilterActivity"
             android:excludeFromRecents="true"
             android:taskAffinity=""
-            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
@@ -95,27 +94,27 @@
         </activity>
 
         <activity android:name=".ui.activity.MainActivity" android:label="@string/app_name" android:launchMode="singleTask"/>
-        <activity android:name=".ui.activity.SettingsActivity" android:label="@string/settings" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.RepositoryActivity" android:label="@string/repository" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.UserListActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.RepoListActivity" android:label="@string/users" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.ProfileActivity" android:label="@string/profile" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.SearchActivity" android:label="@string/search" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.TrendingActivity" android:label="@string/trending" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.AboutActivity" android:label="@string/about" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.ReleasesActivity" android:label="@string/releases" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.ViewerActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.ReleaseInfoActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.IssuesActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.IssueDetailActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.MarkdownEditorActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateVisible"/>
-        <activity android:name=".ui.activity.EditIssueActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateVisible"/>
-        <activity android:name=".ui.activity.CommitDetailActivity" android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.CommitsListActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.NotificationsActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.TraceActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.BookmarksActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.LanguagesEditorActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.SettingsActivity" android:label="@string/settings"/>
+        <activity android:name=".ui.activity.RepositoryActivity" android:label="@string/repository"/>
+        <activity android:name=".ui.activity.UserListActivity"/>
+        <activity android:name=".ui.activity.RepoListActivity" android:label="@string/users"/>
+        <activity android:name=".ui.activity.ProfileActivity" android:label="@string/profile"/>
+        <activity android:name=".ui.activity.SearchActivity" android:label="@string/search"/>
+        <activity android:name=".ui.activity.TrendingActivity" android:label="@string/trending"/>
+        <activity android:name=".ui.activity.AboutActivity" android:label="@string/about"/>
+        <activity android:name=".ui.activity.ReleasesActivity" android:label="@string/releases"/>
+        <activity android:name=".ui.activity.ViewerActivity"/>
+        <activity android:name=".ui.activity.ReleaseInfoActivity"/>
+        <activity android:name=".ui.activity.IssuesActivity"/>
+        <activity android:name=".ui.activity.IssueDetailActivity"/>
+        <activity android:name=".ui.activity.MarkdownEditorActivity" android:windowSoftInputMode="stateVisible"/>
+        <activity android:name=".ui.activity.EditIssueActivity" android:windowSoftInputMode="stateVisible"/>
+        <activity android:name=".ui.activity.CommitDetailActivity"/>
+        <activity android:name=".ui.activity.CommitsListActivity"/>
+        <activity android:name=".ui.activity.NotificationsActivity"/>
+        <activity android:name=".ui.activity.TraceActivity"/>
+        <activity android:name=".ui.activity.BookmarksActivity"/>
+        <activity android:name=".ui.activity.LanguagesEditorActivity"/>
 
     </application>
 

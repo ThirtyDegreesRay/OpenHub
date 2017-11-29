@@ -12,6 +12,12 @@
         app:showAsAction="ifRoom"/>
 
     <item
+        android:id="@+id/action_fullscreen"
+        android:title="@string/fullscreen"
+        android:icon="@drawable/ic_fullscreen_title"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/action_refresh"
         android:title="@string/refresh"
         android:icon="@drawable/ic_refresh_title"

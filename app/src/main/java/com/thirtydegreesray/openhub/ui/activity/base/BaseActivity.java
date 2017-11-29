@@ -25,9 +25,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.bumptech.glide.Glide;
 import com.thirtydegreesray.dataautoaccess.DataAutoAccess;
+import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
@@ -102,7 +104,9 @@ BaseActivity<P extends IBaseContract.Presenter>
         initActivity();
         initView(savedInstanceState);
         if(mPresenter != null) mPresenter.onViewInitialized();
-
+        if(isFullScreen){
+            intoFullScreen();
+        }
     }
 
     @Override
@@ -459,5 +463,36 @@ BaseActivity<P extends IBaseContract.Presenter>
 
     public boolean isAlive() {
         return isAlive;
+    }
+
+    @AutoAccess boolean isFullScreen = false;
+
+    protected void exitFullScreen() {
+        showStatusBar();
+        if(toolbar != null) toolbar.setVisibility(View.VISIBLE);
+        isFullScreen = false;
+    }
+
+    protected void intoFullScreen() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if(toolbar != null) toolbar.setVisibility(View.GONE);
+        isFullScreen = true;
+    }
+
+    private void showStatusBar() {
+        final WindowManager.LayoutParams attrs = getWindow().getAttributes();
+        attrs.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setAttributes(attrs);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(isFullScreen){
+            exitFullScreen();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
