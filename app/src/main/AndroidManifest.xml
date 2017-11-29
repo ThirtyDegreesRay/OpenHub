@@ -115,6 +115,7 @@
         <activity android:name=".ui.activity.NotificationsActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.activity.TraceActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.activity.BookmarksActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.LanguagesEditorActivity" android:screenOrientation="portrait"/>
 
     </application>
 

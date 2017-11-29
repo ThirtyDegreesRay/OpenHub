@@ -16,6 +16,7 @@ import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.activity.SearchActivity;
 import com.thirtydegreesray.openhub.ui.activity.SettingsActivity;
 import com.thirtydegreesray.openhub.ui.activity.SplashActivity;
+import com.thirtydegreesray.openhub.ui.activity.TrendingActivity;
 
 import dagger.Component;
 
@@ -38,4 +39,5 @@ public interface ActivityComponent {
     void inject(IssueDetailActivity activity);
     void inject(EditIssueActivity activity);
     void inject(CommitDetailActivity activity);
+    void inject(TrendingActivity activity);
 }

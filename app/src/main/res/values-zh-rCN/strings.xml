@@ -312,5 +312,10 @@
     <string name="trace_deleted">足迹已删除</string>
     <string name="today">今天</string>
     <string name="yesterday">昨天</string>
+    <string name="my_languages">我的语言</string>
+    <string name="choose_languages">选择语言</string>
+    <string name="language_removed">语言 %s 已删除</string>
+    <string name="no_choose_language_warning">至少选择一种语言！</string>
+    <string name="languages_editor_tip">你可以向左或向右滑动来删除语言，长按来拖动排序。</string>
 
 </resources>

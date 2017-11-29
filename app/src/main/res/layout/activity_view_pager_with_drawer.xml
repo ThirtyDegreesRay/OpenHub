@@ -34,7 +34,7 @@
             android:layout_gravity="bottom|end"
             app:srcCompat="@drawable/ic_add"
             android:tint="?title_color"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
 
     </android.support.design.widget.CoordinatorLayout>
 

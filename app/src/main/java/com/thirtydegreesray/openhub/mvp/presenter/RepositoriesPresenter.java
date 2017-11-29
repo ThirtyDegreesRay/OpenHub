@@ -55,6 +55,8 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
 
     @AutoAccess RepositoriesFilter filter;
 
+    @AutoAccess String language;
+
     @Inject
     public RepositoriesPresenter(DaoSession daoSession) {
         super(daoSession);
@@ -82,9 +84,13 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
             loadBookmarks(1);
             return;
         }
-        if (repos != null) {
-            mView.showRepositories(repos);
-            mView.hideLoading();
+//        if (repos != null) {
+//            mView.showRepositories(repos);
+//            mView.hideLoading();
+//            return;
+//        }
+        if(RepositoriesFragment.RepositoriesType.TRENDING.equals(type)
+                && StringUtils.isBlank(language)){
             return;
         }
         loadRepositories(false, 1);
@@ -160,7 +166,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
                 return getRepoService().getStarredRepos(forceNetWork, user, page,
                         filter.getSort(), filter.getSortDirection());
             case TRENDING:
-                return getOpenHubService().getTrendingRepos(since);
+                return getOpenHubService().getTrendingRepos(since, language);
             case FORKS:
                 return getRepoService().getForks(forceNetWork, user, repo, page);
             default:
@@ -280,4 +286,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         mView.hideLoading();
     }
 
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 }

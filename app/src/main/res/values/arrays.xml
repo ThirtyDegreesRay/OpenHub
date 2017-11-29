@@ -35,4 +35,45 @@
         <item >Dark</item>
     </array>
 
+    <string name="trending_languages" translatable="false">
+        [
+            {
+                \"name\": \"All Languages\",
+                \"slug\": \"all\"
+            },
+            {
+                \"name\": \"JavaScript\",
+                \"slug\": \"javascript\"
+            },
+            {
+                \"name\": \"Java\",
+                \"slug\": \"java\"
+            },
+            {
+                \"name\": \"Python\",
+                \"slug\": \"python\"
+            },
+            {
+                \"name\": \"CSS\",
+                \"slug\": \"css\"
+            },
+            {
+                \"name\": \"PHP\",
+                \"slug\": \"php\"
+            },
+            {
+                \"name\": \"C++\",
+                \"slug\": \"c++\"
+            },
+            {
+                \"name\": \"Kotlin\",
+                \"slug\": \"kotlin\"
+            },
+            {
+                \"name\": \"Unknown\",
+                \"slug\": \"unknown\"
+            }
+        ]
+    </string>
+
 </resources>

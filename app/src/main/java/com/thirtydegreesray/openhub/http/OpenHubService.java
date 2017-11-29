@@ -5,6 +5,7 @@ package com.thirtydegreesray.openhub.http;
 import android.support.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.mvp.model.Repository;
+import com.thirtydegreesray.openhub.mvp.model.TrendingLanguage;
 
 import java.util.ArrayList;
 
@@ -24,13 +25,22 @@ import rx.Observable;
 public interface OpenHubService {
 
     /**
-     * get trending repos
+     * get trending repos, update every 6 hour
      * @param since daily, weekly, monthly
+     * @param language language
      */
-    @Headers("Cache-Control: public, max-age=3600")
+    @Headers("Cache-Control: public, max-age=21600")
     @NonNull @GET("trending")
     Observable<Response<ArrayList<Repository>>> getTrendingRepos(
-            @Query("since") String since
+            @Query("since") String since,
+            @Query("language") String language
     );
+
+    /**
+     * get trending languages, update every day
+     */
+    @Headers("Cache-Control: public, max-age=86400")
+    @NonNull @GET("languages")
+    Observable<Response<ArrayList<TrendingLanguage>>> getTrendingLanguages();
 
 }

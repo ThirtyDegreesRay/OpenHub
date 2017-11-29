@@ -92,7 +92,7 @@ public class IssuesActivity extends PagerActivity<IssuesActPresenter> {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        updateEndDrawerContent(R.menu.menu_issues);
+        updateEndDrawerContent(R.menu.drawer_menu_issues);
         setToolbarScrollAble(true);
         setToolbarBackEnable();
         if (IssuesFilter.Type.Repo.equals(issuesType)) {

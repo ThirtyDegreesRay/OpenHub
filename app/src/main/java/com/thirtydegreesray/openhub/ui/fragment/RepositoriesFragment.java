@@ -21,6 +21,7 @@ import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.filter.RepositoriesFilter;
 import com.thirtydegreesray.openhub.mvp.presenter.RepositoriesPresenter;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
+import com.thirtydegreesray.openhub.ui.activity.TrendingActivity;
 import com.thirtydegreesray.openhub.ui.adapter.RepositoriesAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
 import com.thirtydegreesray.openhub.ui.fragment.base.OnDrawerSelectedListener;
@@ -35,7 +36,8 @@ import java.util.ArrayList;
  */
 
 public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, RepositoriesAdapter>
-            implements IRepositoriesContract.View, OnDrawerSelectedListener{
+            implements IRepositoriesContract.View, OnDrawerSelectedListener,
+        TrendingActivity.LanguageUpdateListener{
 
     public enum RepositoriesType{
         OWNED, PUBLIC, STARRED, TRENDING, SEARCH, FORKS, TRACE, BOOKMARK
@@ -181,6 +183,17 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     public void onDrawerSelected(@NonNull NavigationView navView, @NonNull MenuItem item) {
         RepositoriesFilter filter = RepositoriesFilter.generateFromDrawer(navView);
         mPresenter.loadRepositories(filter);
+    }
+
+    @Override
+    public void onLanguageUpdate(String language) {
+        if(mPresenter != null){
+            mPresenter.setLanguage(language);
+            mPresenter.setLoaded(false);
+            mPresenter.prepareLoadData();
+        } else {
+            getArguments().putString("language", language);
+        }
     }
 
 }

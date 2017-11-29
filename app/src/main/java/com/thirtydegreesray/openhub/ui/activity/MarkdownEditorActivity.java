@@ -112,7 +112,7 @@ public class MarkdownEditorActivity extends PagerActivity implements MarkdownEdi
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_markdown_editor, menu);
+        getMenuInflater().inflate(R.menu.menu_confirm, menu);
         return true;
     }
 

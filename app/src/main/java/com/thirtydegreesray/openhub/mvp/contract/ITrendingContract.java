@@ -3,6 +3,9 @@
 package com.thirtydegreesray.openhub.mvp.contract;
 
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
+import com.thirtydegreesray.openhub.mvp.model.TrendingLanguage;
+
+import java.util.ArrayList;
 
 /**
  * Created on 2017/7/18.
@@ -17,7 +20,7 @@ public interface ITrendingContract {
     }
 
     interface Presenter extends IBaseContract.Presenter<ITrendingContract.View>{
-
+        ArrayList<TrendingLanguage> getLanguagesFromLocal();
     }
 
 }

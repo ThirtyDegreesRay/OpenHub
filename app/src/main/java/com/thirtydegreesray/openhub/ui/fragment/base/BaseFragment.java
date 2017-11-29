@@ -301,7 +301,7 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
 
     protected final void showOperationTip(@StringRes int msgResId){
         new AlertDialog.Builder(getActivity())
-                .setCancelable(true)
+                .setCancelable(false)
                 .setTitle(R.string.tips)
                 .setMessage(msgResId)
                 .setPositiveButton(R.string.ok, (dialog, which) -> dialog.dismiss())

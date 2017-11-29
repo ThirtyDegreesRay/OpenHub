@@ -58,10 +58,10 @@ public class PrefUtils {
     public final static String STAR_WISHES_TIP_TIMES = "starWishesTipFlag";
     public final static String LAST_STAR_WISHES_TIP_TIME = "lastStarWishesTipTime";
 
-
     public final static String DOUBLE_CLICK_TITLE_TIP_ABLE = "doubleClickTitleTipAble";
     public final static String ACTIVITY_LONG_CLICK_TIP_ABLE = "activityLongClickTipAble";
     public final static String RELEASES_LONG_CLICK_TIP_ABLE = "releasesLongClickTipAble";
+    public final static String LANGUAGES_EDITOR_TIP_ABLE = "languagesEditorTipAble";
 
     public final static String SEARCH_RECORDS = "searchRecords";
 
@@ -126,6 +126,10 @@ public class PrefUtils {
 
     public static boolean isReleasesLongClickTipAble(){
         return getDefaultSp(AppApplication.get()).getBoolean(RELEASES_LONG_CLICK_TIP_ABLE, true);
+    }
+
+    public static boolean isLanguagesEditorTipAble(){
+        return getDefaultSp(AppApplication.get()).getBoolean(LANGUAGES_EDITOR_TIP_ABLE, true);
     }
 
     public static int getPopTimes(){
