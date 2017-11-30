@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
+import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 import com.thirtydegreesray.openhub.util.NetHelper;
 import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.ViewUtils;
@@ -32,8 +33,8 @@ import butterknife.OnClick;
 
 public abstract class ListFragment <P extends IBaseContract.Presenter, A extends BaseAdapter>
         extends BaseFragment<P> implements IBaseContract.View,
-        BaseAdapter.OnItemClickListener,
-        BaseAdapter.OnItemLongClickListener,
+        BaseViewHolder.OnItemClickListener,
+        BaseViewHolder.OnItemLongClickListener,
         SwipeRefreshLayout.OnRefreshListener{
 
     @BindView(R.id.refresh_layout) protected SwipeRefreshLayout refreshLayout;

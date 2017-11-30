@@ -11,6 +11,7 @@ import android.view.View;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
+import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 
 import javax.inject.Inject;
 
@@ -24,8 +25,8 @@ import butterknife.BindView;
 
 public abstract class ListActivity <P extends IBaseContract.Presenter, A extends BaseAdapter>
         extends BaseActivity<P> implements IBaseContract.View,
-        BaseAdapter.OnItemClickListener,
-        BaseAdapter.OnItemLongClickListener {
+        BaseViewHolder.OnItemClickListener,
+        BaseViewHolder.OnItemLongClickListener {
 
     @BindView(R.id.recycler_view) protected RecyclerView recyclerView;
     @Inject protected A adapter;

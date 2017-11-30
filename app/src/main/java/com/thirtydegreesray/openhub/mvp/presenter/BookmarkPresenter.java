@@ -17,7 +17,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by ThirtyDegreesRay on 2017/11/22 15:59:45
@@ -81,13 +80,14 @@ public class BookmarkPresenter extends BasePresenter<IBookmarkContract.View>
     public void removeBookmark(int position) {
         removedBookmark = bookmarks.remove(position);
         removedPosition = position;
-        daoSession.getBookmarkDao().deleteByKey(removedBookmark.getId());
+        rxDBExecute(() -> daoSession.getBookmarkDao().deleteByKey(removedBookmark.getId()));
     }
 
     @Override
     public void undoRemoveBookmark() {
         bookmarks.add(removedPosition, removedBookmark);
-        daoSession.getBookmarkDao().insert(removedBookmark);
         mView.notifyItemAdded(removedPosition);
+        rxDBExecute(() -> daoSession.getBookmarkDao().insert(removedBookmark));
     }
+
 }

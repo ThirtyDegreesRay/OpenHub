@@ -34,7 +34,7 @@ import butterknife.OnClick;
  * Created by ThirtyDegreesRay on 2017/11/23 10:35:13
  */
 
-public class TraceAdapter extends BaseAdapter<RecyclerView.ViewHolder, TraceExt>
+public class TraceAdapter extends BaseAdapter<BaseViewHolder, TraceExt>
         implements StickyRecyclerHeadersAdapter<TraceAdapter.HeadViewHolder>{
 
     @Inject
@@ -52,7 +52,7 @@ public class TraceAdapter extends BaseAdapter<RecyclerView.ViewHolder, TraceExt>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         TraceExt model = data.get(position);
         if(getItemViewType(position) == 0){
@@ -91,7 +91,7 @@ public class TraceAdapter extends BaseAdapter<RecyclerView.ViewHolder, TraceExt>
     }
 
     @Override
-    protected RecyclerView.ViewHolder getViewHolder(View itemView, int viewType) {
+    protected BaseViewHolder getViewHolder(View itemView, int viewType) {
         if(viewType == 0){
             return new UserViewHolder(itemView);
         } else {

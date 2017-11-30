@@ -29,6 +29,7 @@ import butterknife.BindView;
 public class SettingsAdapter extends BaseAdapter<SettingsAdapter.ViewHolder, SettingModel> {
 
     private ItemEventListener itemEventListener;
+    private final int TAG_POSITION = R.id.position_tag;
 
     @Inject
     public SettingsAdapter(Context context) {

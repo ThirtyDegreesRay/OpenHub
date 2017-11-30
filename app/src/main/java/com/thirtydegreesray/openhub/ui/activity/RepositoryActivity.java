@@ -32,7 +32,7 @@ import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.presenter.RepositoryPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.BranchesAdapter;
-import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
+import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 import com.thirtydegreesray.openhub.ui.fragment.CommitsFragment;
@@ -240,7 +240,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                 })
                 .show();
 
-        branchesAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
+        branchesAdapter.setOnItemClickListener(new BaseViewHolder.OnItemClickListener() {
             @Override
             public void onItemClick(int position, @NonNull View view) {
                 Branch branch = list.get(position);

@@ -322,6 +322,10 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
         return false;
     }
 
+    public void rxDBExecute(@NonNull Runnable runnable){
+        daoSession.rxTx().run(runnable).subscribe();
+    }
+
 
     @NonNull
     protected String getLoadTip() {

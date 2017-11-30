@@ -24,7 +24,7 @@ import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepoListActivity;
 import com.thirtydegreesray.openhub.ui.activity.UserListActivity;
 import com.thirtydegreesray.openhub.ui.adapter.UsersAdapter;
-import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
+import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.util.AppOpener;
 import com.thirtydegreesray.openhub.util.BundleHelper;
@@ -44,7 +44,7 @@ import butterknife.OnClick;
 
 public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
         implements IProfileInfoContract.View,
-        BaseAdapter.OnItemClickListener{
+        BaseViewHolder.OnItemClickListener{
 
     @BindView(R.id.name) TextView name;
     @BindView(R.id.bio) TextView bio;

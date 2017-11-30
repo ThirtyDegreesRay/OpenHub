@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 
 import java.util.ArrayList;
@@ -21,15 +20,15 @@ import java.util.ArrayList;
  * 适配器基类
  * Created by ThirtyDegreesRay on 2016/7/27 19:49
  */
-public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends Object>
+public abstract class BaseAdapter<VH extends BaseViewHolder, D extends Object>
         extends RecyclerView.Adapter<VH>
-        implements View.OnClickListener, View.OnLongClickListener{
+        implements BaseViewHolder.OnItemClickListener, BaseViewHolder.OnItemLongClickListener{
 
     //item点击回调
-    private OnItemClickListener mOnItemClickListener;
+    private BaseViewHolder.OnItemClickListener mOnItemClickListener;
 
     //item长按回调
-    private OnItemLongClickListener mOnItemLongClickListener;
+    private BaseViewHolder.OnItemLongClickListener mOnItemLongClickListener;
 
     /**
      * 数据列表
@@ -41,8 +40,6 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
      */
     protected Context context;
     protected BaseFragment fragment;
-
-    protected final int TAG_POSITION = R.id.position_tag;
 
     public BaseAdapter(Context context){
         this.context = context;
@@ -69,7 +66,7 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
      * 设置item点击事件
      * @param onItemClickListener
      */
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+    public void setOnItemClickListener(BaseViewHolder.OnItemClickListener onItemClickListener) {
         this.mOnItemClickListener = onItemClickListener;
     }
 
@@ -77,7 +74,7 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
      * 设置item长按事件
      * @param onItemLongClickListener
      */
-    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+    public void setOnItemLongClickListener(BaseViewHolder.OnItemLongClickListener onItemLongClickListener) {
         this.mOnItemLongClickListener = onItemLongClickListener;
     }
 
@@ -92,14 +89,12 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
     @Override
     public void onBindViewHolder(@NonNull VH holder, final int position) {
 
-        holder.itemView.setTag(TAG_POSITION, position);
-
         if(mOnItemClickListener != null){
-            holder.itemView.setOnClickListener(this);
+            holder.setOnItemClickListener(this);
         }
 
         if(mOnItemLongClickListener != null){
-            holder.itemView.setOnLongClickListener(this);
+            holder.setOnItemLongClickListener(this);
         }
 
     }
@@ -124,45 +119,20 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, D extends 
      */
     protected abstract VH getViewHolder(View itemView, int viewType);
 
-    /**
-     * RecyclerView item点击监听
-     */
-    public interface OnItemClickListener{
-        /**
-         * RecyclerView item点击
-         * @param position 位置
-         */
-        void onItemClick(int position, @NonNull View view);
-    }
 
-    /**
-     * RecyclerView item长按监听
-     */
-    public interface OnItemLongClickListener{
-        /**
-         * RecyclerView item长按
-         * @param position 位置
-         * @return
-         */
-        boolean onItemLongClick(int position, @NonNull View view);
-    }
 
     protected void showShortToast(String msg){
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onClick(View v) {
-        mOnItemClickListener.onItemClick(getPositionByView(v), v);
+    public void onItemClick(int position, @NonNull View view) {
+        mOnItemClickListener.onItemClick(position, view);
     }
 
     @Override
-    public boolean onLongClick(View v) {
-        return mOnItemLongClickListener.onItemLongClick(getPositionByView(v), v);
-    }
-
-    protected int getPositionByView(View view){
-        return (int) view.getTag(TAG_POSITION);
+    public boolean onItemLongClick(int position, @NonNull View view) {
+        return mOnItemLongClickListener.onItemLongClick(position, view);
     }
 
     @NonNull protected String getString(@StringRes int resId){

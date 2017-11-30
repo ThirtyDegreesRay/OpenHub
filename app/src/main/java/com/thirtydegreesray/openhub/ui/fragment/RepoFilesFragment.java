@@ -24,7 +24,6 @@ import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.FilePathAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.RepoFilesAdapter;
-import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
 import com.thirtydegreesray.openhub.util.BundleHelper;
 
@@ -100,12 +99,9 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
         pathRecyclerView.setLayoutManager(
                 new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         pathRecyclerView.setAdapter(filePathAdapter);
-        filePathAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, @NonNull View view) {
-                mPresenter.loadFiles(filePathAdapter.getData().get(position).getFullPath(), false);
-            }
-        });
+        filePathAdapter.setOnItemClickListener((position, view) ->
+                mPresenter.loadFiles(filePathAdapter.getData().get(position).getFullPath(), false)
+        );
     }
 
     @Override

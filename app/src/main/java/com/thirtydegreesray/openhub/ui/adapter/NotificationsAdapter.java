@@ -36,7 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by ThirtyDegreesRay on 2017/11/6 20:05:32
  */
 
-public class NotificationsAdapter extends BaseAdapter<RecyclerView.ViewHolder,
+public class NotificationsAdapter extends BaseAdapter<BaseViewHolder,
         DoubleTypesModel<Repository, Notification>> {
 
     @Inject
@@ -54,7 +54,7 @@ public class NotificationsAdapter extends BaseAdapter<RecyclerView.ViewHolder,
     }
 
     @Override
-    protected RecyclerView.ViewHolder getViewHolder(View itemView, int viewType) {
+    protected BaseViewHolder getViewHolder(View itemView, int viewType) {
         if(viewType == 0){
             return new RepoViewHolder(itemView);
         } else {
@@ -68,7 +68,7 @@ public class NotificationsAdapter extends BaseAdapter<RecyclerView.ViewHolder,
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull BaseViewHolder viewHolder, int position) {
         super.onBindViewHolder(viewHolder, position);
         if(viewHolder instanceof RepoViewHolder){
             RepoViewHolder holder = (RepoViewHolder) viewHolder;

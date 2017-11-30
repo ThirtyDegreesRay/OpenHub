@@ -79,14 +79,14 @@ public class TracePresenter extends BasePresenter<ITraceContract.View>
     public void removeTrace(int position) {
         removedTrace = traceList.remove(position);
         removedPosition = position;
-        daoSession.getTraceDao().deleteByKey(removedTrace.getId());
+        rxDBExecute(() -> daoSession.getTraceDao().deleteByKey(removedTrace.getId()));
     }
 
     @Override
     public void undoRemoveTrace() {
         traceList.add(removedPosition, removedTrace);
-        daoSession.getTraceDao().insert(removedTrace);
         mView.notifyItemAdded(removedPosition);
+        rxDBExecute(() -> daoSession.getTraceDao().insert(removedTrace));
     }
 
     @Override

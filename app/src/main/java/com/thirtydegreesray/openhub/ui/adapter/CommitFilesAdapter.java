@@ -7,7 +7,6 @@ import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,7 +28,7 @@ import butterknife.BindView;
  * Created by ThirtyDegreesRay on 2017/10/18 15:09:19
  */
 
-public class CommitFilesAdapter extends BaseAdapter<RecyclerView.ViewHolder,
+public class CommitFilesAdapter extends BaseAdapter<BaseViewHolder,
         DoubleTypesModel<CommitFilesPathModel, CommitFile>> {
 
     @Inject
@@ -47,7 +46,7 @@ public class CommitFilesAdapter extends BaseAdapter<RecyclerView.ViewHolder,
     }
 
     @Override
-    protected RecyclerView.ViewHolder getViewHolder(View itemView, int viewType) {
+    protected BaseViewHolder getViewHolder(View itemView, int viewType) {
         if(viewType == 0){
             return new PathViewHolder(itemView);
         }else{
@@ -61,7 +60,7 @@ public class CommitFilesAdapter extends BaseAdapter<RecyclerView.ViewHolder,
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull BaseViewHolder viewHolder, int position) {
         super.onBindViewHolder(viewHolder, position);
         if (viewHolder instanceof PathViewHolder) {
             PathViewHolder holder = (PathViewHolder) viewHolder;
