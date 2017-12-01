@@ -137,6 +137,8 @@ public class ActivityPresenter extends BasePagerPresenter<IActivityContract.View
             return getUserService().getUserEvents(forceNetWork, user, page);
         } else if(type.equals(ActivityFragment.ActivityType.Repository)){
             return getRepoService().getRepoEvent(forceNetWork, user, repo, page);
+        } else if(type.equals(ActivityFragment.ActivityType.PublicNews)){
+            return getUserService().getPublicEvent(forceNetWork, page);
         } else {
             return null;
         }

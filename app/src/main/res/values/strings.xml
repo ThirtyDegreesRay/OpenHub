@@ -405,4 +405,6 @@
     <string name="languages_editor_tip">You can swipe left or right to remove items, long click items to drag the sort.</string>
     <string name="fullscreen">Fullscreen</string>
 
+    <string name="public_news">Global news</string>
+
 </resources>

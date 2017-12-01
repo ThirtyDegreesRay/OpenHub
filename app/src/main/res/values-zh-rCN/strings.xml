@@ -318,5 +318,6 @@
     <string name="no_choose_language_warning">至少选择一种语言！</string>
     <string name="languages_editor_tip">你可以向左或向右滑动来删除语言，长按来拖动排序。</string>
     <string name="fullscreen">全屏</string>
+    <string name="public_news">全球动态</string>
 
 </resources>

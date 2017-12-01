@@ -42,7 +42,7 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
         implements IActivityContract.View {
 
     public enum ActivityType {
-        News, User, Repository
+        News, User, Repository, PublicNews
     }
 
     public static ActivityFragment create(@NonNull ActivityType type, @NonNull String user) {

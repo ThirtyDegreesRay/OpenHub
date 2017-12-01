@@ -24,6 +24,7 @@
             android:title="@string/issues"
             android:visible="true"
             android:checkable="false"/>
+
     </group>
 
     <group
@@ -60,6 +61,10 @@
             android:icon="@drawable/ic_search_title"
             android:title="@string/search"
             android:checkable="false"/>
+        <item
+            android:id="@+id/nav_public_news"
+            android:icon="@drawable/ic_public"
+            android:title="@string/public_news"/>
     </group>
 
     <group

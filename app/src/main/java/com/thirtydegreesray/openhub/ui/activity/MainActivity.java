@@ -72,11 +72,12 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
     @Override
     protected void initActivity() {
         super.initActivity();
-        TAG_MAP.put(R.id.nav_news, ActivityFragment.class.getSimpleName());
+        TAG_MAP.put(R.id.nav_news, ActivityFragment.ActivityType.News.name());
         TAG_MAP.put(R.id.nav_owned, RepositoriesFragment.RepositoriesType.OWNED.name());
         TAG_MAP.put(R.id.nav_starred, RepositoriesFragment.RepositoriesType.STARRED.name());
         TAG_MAP.put(R.id.nav_bookmarks, BookmarksFragment.class.getSimpleName());
         TAG_MAP.put(R.id.nav_trace, TraceFragment.class.getSimpleName());
+        TAG_MAP.put(R.id.nav_public_news, ActivityFragment.ActivityType.PublicNews.name());
         if (AppData.INSTANCE.getLoggedUser() != null)
             CrashReport.putUserData(getApplicationContext(),
                     "GitHubId", AppData.INSTANCE.getLoggedUser().getLogin());
@@ -170,6 +171,7 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
             case R.id.nav_starred:
             case R.id.nav_bookmarks:
             case R.id.nav_trace:
+            case R.id.nav_public_news:
                 updateTitle(id);
                 loadFragment(id);
                 updateFilter(id);
@@ -221,6 +223,9 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
             case R.id.nav_trace:
                 setToolbarTitle(getString(R.string.trace));
                 break;
+            case R.id.nav_public_news:
+                setToolbarTitle(getString(R.string.public_news));
+                break;
             default:
                 setToolbarTitle(getString(R.string.app_name));
                 break;
@@ -253,6 +258,9 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
         switch (itemId) {
             case R.id.nav_news:
                 return ActivityFragment.create(ActivityFragment.ActivityType.News,
+                        AppData.INSTANCE.getLoggedUser().getLogin());
+            case R.id.nav_public_news:
+                return ActivityFragment.create(ActivityFragment.ActivityType.PublicNews,
                         AppData.INSTANCE.getLoggedUser().getLogin());
             case R.id.nav_owned:
                 return RepositoriesFragment.create(RepositoriesFragment.RepositoriesType.OWNED,

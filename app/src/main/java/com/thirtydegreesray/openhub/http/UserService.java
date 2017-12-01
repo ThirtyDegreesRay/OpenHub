@@ -88,8 +88,14 @@ public interface UserService {
     );
 
     /**
-     * List events that a user has received
+     * List github public events
      */
+    @NonNull @GET("events")
+    Observable<Response<ArrayList<Event>>> getPublicEvent(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Query("page") int page
+    );
+
     @NonNull @GET("users/{user}/received_events")
     Observable<Response<ArrayList<Event>>> getNewsEvent(
             @Header("forceNetWork") boolean forceNetWork,
