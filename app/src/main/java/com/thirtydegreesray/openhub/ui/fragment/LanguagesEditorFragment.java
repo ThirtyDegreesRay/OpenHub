@@ -51,7 +51,6 @@ public class LanguagesEditorFragment extends ListFragment<LanguagesEditorPresent
     protected void initFragment(Bundle savedInstanceState) {
         super.initFragment(savedInstanceState);
         setHasOptionsMenu(true);
-        setRefreshEnable(false);
         setCanLoadMore(false);
         if(LanguagesEditorActivity.LanguageEditorMode.Sort.equals(mPresenter.getMode())){
             ItemTouchHelperCallback callback = new ItemTouchHelperCallback(
@@ -82,7 +81,7 @@ public class LanguagesEditorFragment extends ListFragment<LanguagesEditorPresent
 
     @Override
     protected void onReLoadData() {
-
+        mPresenter.loadLanguages();
     }
 
     @Override

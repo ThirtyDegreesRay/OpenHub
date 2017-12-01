@@ -108,6 +108,7 @@ public class LanguagesEditorPresenter extends BasePresenter<ILanguagesEditorCont
     private void loadSelectedLanguages(){
         languages = getSelectedLanguages();
         mView.showLanguages(languages);
+        mView.hideLoading();
     }
 
     private void loadAllLanguages(){
