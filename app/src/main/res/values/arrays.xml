@@ -42,6 +42,10 @@
                 \"slug\": \"all\"
             },
             {
+                \"name\": \"Unknown\",
+                \"slug\": \"unknown\"
+            },
+            {
                 \"name\": \"JavaScript\",
                 \"slug\": \"javascript\"
             },
@@ -68,10 +72,6 @@
             {
                 \"name\": \"Kotlin\",
                 \"slug\": \"kotlin\"
-            },
-            {
-                \"name\": \"Unknown\",
-                \"slug\": \"unknown\"
             }
         ]
     </string>
