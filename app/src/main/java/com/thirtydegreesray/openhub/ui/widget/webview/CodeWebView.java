@@ -119,6 +119,18 @@ public class CodeWebView extends WebView {
         loadData(html, "text/html", null);
     }
 
+    public void setHtmlSource(@NonNull String htmlSource) {
+        WebSettings settings = getSettings();
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        settings.setSupportZoom(true);
+        settings.setBuiltInZoomControls(true);
+        settings.setDisplayZoomControls(false);
+        String html = HtmlHelper.generateHtmlSourceHtml(htmlSource,
+                getCodeBackgroundColor(), getAccentColor());
+        loadData(html, "text/html", null);
+    }
+
     public void setMdSource(@NonNull String source, @Nullable String baseUrl) {
         setMdSource(source, baseUrl, false);
     }

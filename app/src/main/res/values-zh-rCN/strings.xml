@@ -319,5 +319,7 @@
     <string name="languages_editor_tip">你可以向左或向右滑动来删除语言，长按来拖动排序。</string>
     <string name="fullscreen">全屏</string>
     <string name="public_news">全球动态</string>
+    <string name="recent_wiki_updates">Wiki最近更新</string>
+    <string name="no_recent_wiki_updates">Wiki最近无更新</string>
 
 </resources>

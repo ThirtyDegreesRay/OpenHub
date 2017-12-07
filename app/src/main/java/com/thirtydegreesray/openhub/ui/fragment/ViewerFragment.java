@@ -42,10 +42,18 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     @AutoAccess boolean wrap = false;
 
     @NonNull
+    public static ViewerFragment createForHtml(@NonNull String title, @NonNull String htmlSource) {
+        ViewerFragment fragment = new ViewerFragment();
+        fragment.setArguments(BundleHelper.builder().put("viewerType", ViewerActivity.ViewerType.HtmlSource)
+                .put("title", title).put("source", htmlSource).build());
+        return fragment;
+    }
+
+    @NonNull
     public static ViewerFragment createForMd(@NonNull String title, @NonNull String mdSource) {
         ViewerFragment fragment = new ViewerFragment();
         fragment.setArguments(BundleHelper.builder().put("viewerType", ViewerActivity.ViewerType.MarkDown)
-                .put("title", title).put("mdSource", mdSource).build());
+                .put("title", title).put("source", mdSource).build());
         return fragment;
     }
 
@@ -173,6 +181,14 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
         webView.setDiffFileSource(text, wrap);
         webView.setContentChangedListener(this);
         getActivity().invalidateOptionsMenu();
+        loader.setVisibility(View.VISIBLE);
+        loader.setIndeterminate(false);
+    }
+
+    @Override
+    public void loadHtmlSource(@NonNull String htmlSource) {
+        webView.setHtmlSource(htmlSource);
+        webView.setContentChangedListener(this);
         loader.setVisibility(View.VISIBLE);
         loader.setIndeterminate(false);
     }

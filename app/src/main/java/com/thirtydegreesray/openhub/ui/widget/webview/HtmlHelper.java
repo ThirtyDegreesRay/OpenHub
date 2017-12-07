@@ -43,6 +43,23 @@ class HtmlHelper {
                 "</html>";
     }
 
+    static String generateHtmlSourceHtml(@NonNull String htmlSource, @NonNull String backgroundColor,
+                                         @NonNull String accentColor) {
+        return "<html>" +
+                    "<head>" +
+                        "<meta charset=\"utf-8\" />\n" +
+                        "<meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0;\"/>" +
+                        "<style>" +
+                            "body{background: " + backgroundColor + ";}" +
+                            "a {color:" + accentColor + " !important;}" +
+                        "</style>" +
+                    "</head>" +
+                    "<body>" +
+                        htmlSource +
+                    "</body>" +
+                "</html>";
+    }
+
     static String generateCodeHtml(@NonNull String codeSource, @Nullable String extension,
                                    boolean isDark, @NonNull String backgroundColor,
                                    boolean wrap, boolean lineNums) {

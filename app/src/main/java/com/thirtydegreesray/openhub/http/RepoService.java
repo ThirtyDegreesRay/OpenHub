@@ -10,6 +10,7 @@ import com.thirtydegreesray.openhub.mvp.model.FileModel;
 import com.thirtydegreesray.openhub.mvp.model.Release;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.User;
+import com.thirtydegreesray.openhub.mvp.model.WikiFeedModel;
 
 import java.util.ArrayList;
 
@@ -209,6 +210,13 @@ public interface RepoService {
             @Path("owner") String owner,
             @Path("repo") String repo,
             @Path("tag") String tag
+    );
+
+    @NonNull @GET("{owner}/{repo}/wiki.atom")
+    Observable<Response<WikiFeedModel>> getWiki(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("owner") String owner,
+            @Path("repo") String repo
     );
 
 }

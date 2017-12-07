@@ -120,6 +120,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
             menu.findItem(R.id.action_fork).setVisible(mPresenter.isForkEnable());
             bookmark.setTitle(mPresenter.isBookmarked() ?
                     getString(R.string.remove_bookmark) : getString(R.string.bookmark));
+            menu.findItem(R.id.action_wiki).setVisible(mPresenter.getRepository().isHasWiki());
         }
         return true;
     }
@@ -166,6 +167,10 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                 return true;
             case R.id.action_releases:
                 showReleases();
+                return true;
+            case R.id.action_wiki:
+                WikiActivity.show(getActivity(), mPresenter.getRepository().getOwner().getLogin(),
+                        mPresenter.getRepository().getName());
                 return true;
             case R.id.action_download_source_zip:
                 AppOpener.startDownload(getActivity(), mPresenter.getZipSourceUrl(),

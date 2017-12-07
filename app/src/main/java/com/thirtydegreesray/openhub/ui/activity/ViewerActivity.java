@@ -29,14 +29,22 @@ import com.thirtydegreesray.openhub.util.StringUtils;
 public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Presenter, ViewerFragment> {
 
     public enum ViewerType{
-        RepoFile, MarkDown, DiffFile, Image
+        RepoFile, MarkDown, DiffFile, Image, HtmlSource
+    }
+
+    public static void showHtmlSource(@NonNull Context context, @NonNull String title,
+                                    @NonNull String htmlSource){
+        Intent intent = new Intent(context, ViewerActivity.class);
+        intent.putExtras(BundleHelper.builder().put("viewerType", ViewerType.HtmlSource)
+                .put("title", title).put("source", htmlSource).build());
+        context.startActivity(intent);
     }
 
     public static void showMdSource(@NonNull Context context, @NonNull String title,
                                     @NonNull String mdSource){
         Intent intent = new Intent(context, ViewerActivity.class);
         intent.putExtras(BundleHelper.builder().put("viewerType", ViewerType.MarkDown)
-                .put("title", title).put("mdSource", mdSource).build());
+                .put("title", title).put("source", mdSource).build());
         context.startActivity(intent);
     }
 
@@ -95,7 +103,7 @@ public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Present
     @AutoAccess String repoName;
 
     @AutoAccess String title;
-    @AutoAccess String mdSource;
+    @AutoAccess String source;
 
     @AutoAccess String imageUrl;
 
@@ -129,8 +137,10 @@ public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Present
             fragment = ViewerFragment.createForDiff(commitFile);
         } else if(ViewerType.Image.equals(viewerType)){
             fragment = ViewerFragment.createForImage(title, imageUrl);
+        } else if(ViewerType.HtmlSource.equals(viewerType)){
+            fragment = ViewerFragment.createForHtml(title, source);
         } else {
-            fragment = ViewerFragment.createForMd(title, mdSource);
+            fragment = ViewerFragment.createForMd(title, source);
         }
         return fragment;
     }

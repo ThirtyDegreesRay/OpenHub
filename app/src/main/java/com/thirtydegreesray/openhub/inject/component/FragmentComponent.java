@@ -20,6 +20,7 @@ import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.TraceFragment;
 import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
 import com.thirtydegreesray.openhub.ui.fragment.ViewerFragment;
+import com.thirtydegreesray.openhub.ui.fragment.WikiFragment;
 
 import dagger.Component;
 
@@ -48,4 +49,5 @@ public interface FragmentComponent {
     void inject(BookmarksFragment fragment);
     void inject(TraceFragment fragment);
     void inject(LanguagesEditorFragment fragment);
+    void inject(WikiFragment fragment);
 }

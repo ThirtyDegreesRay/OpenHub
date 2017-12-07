@@ -115,6 +115,7 @@
         <activity android:name=".ui.activity.TraceActivity"/>
         <activity android:name=".ui.activity.BookmarksActivity"/>
         <activity android:name=".ui.activity.LanguagesEditorActivity"/>
+        <activity android:name=".ui.activity.WikiActivity"/>
 
     </application>
 

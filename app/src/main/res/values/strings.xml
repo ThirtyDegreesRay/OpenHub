@@ -406,5 +406,9 @@
     <string name="fullscreen">Fullscreen</string>
 
     <string name="public_news">Global news</string>
+    <string name="wiki" translatable="false">Wiki</string>
+    <string name="recent_wiki_updates">Recent Wiki Updates</string>
+    <string name="no_recent_wiki_updates">No recent Wiki Updates</string>
+
 
 </resources>

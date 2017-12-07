@@ -31,7 +31,7 @@
         android:id="@+id/action_copy_clone_url"
         android:title="@string/copy_clone_url"
         app:showAsAction="never"
-        android:visible="true"/>
+        android:visible="false"/>
     <item
         android:id="@+id/action_watch"
         android:title="@string/watch"
@@ -43,6 +43,10 @@
     <item
         android:id="@+id/action_releases"
         android:title="@string/releases"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_wiki"
+        android:title="@string/wiki"
         app:showAsAction="never"/>
     <item
         android:id="@+id/action_download_source_zip"

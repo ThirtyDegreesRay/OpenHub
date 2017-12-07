@@ -18,6 +18,7 @@ public interface IViewerContract {
         void loadMdText(@NonNull String text, @Nullable String baseUrl);
         void loadCode(@NonNull String text, @Nullable String extension);
         void loadDiffFile(@NonNull String text);
+        void loadHtmlSource(@NonNull String htmlSource);
     }
 
     interface Presenter extends IBaseContract.Presenter<IViewerContract.View>{

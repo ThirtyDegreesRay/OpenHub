@@ -109,6 +109,7 @@ dependencies {
     //Type-safe HTTP client for Android and Java by Square, Inc.
     compile "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
     compile "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
+    compile "com.squareup.retrofit2:converter-simplexml:${RETROFIT_VERSION}"
     compile "com.squareup.retrofit2:adapter-rxjava:${RETROFIT_VERSION}"
 
     //dagger依赖注入

@@ -30,6 +30,7 @@ import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 /**
  * Retrofit 网络请求
@@ -43,7 +44,7 @@ public enum  AppRetrofit {
     private HashMap<String, Retrofit> retrofitMap = new HashMap<>();
     private String token;
 
-    private void createRetrofit(@NonNull String baseUrl) {
+    private void createRetrofit(@NonNull String baseUrl, boolean isJson) {
         int timeOut = AppConfig.HTTP_TIME_OUT;
         Cache cache = new Cache(FileUtil.getHttpImageCacheDir(AppApplication.get()),
                 AppConfig.HTTP_MAX_CACHE_SIZE);
@@ -55,21 +56,31 @@ public enum  AppRetrofit {
                 .cache(cache)
                 .build();
 
-        Retrofit retrofit = new Retrofit.Builder()
+        Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .client(okHttpClient)
-                .build();
-        retrofitMap.put(baseUrl, retrofit);
+                .client(okHttpClient);
+
+        if(isJson){
+            builder.addConverterFactory(GsonConverterFactory.create());
+        } else {
+            builder.addConverterFactory(SimpleXmlConverterFactory.createNonStrict());
+        }
+
+        retrofitMap.put(baseUrl + "-" + isJson, builder.build());
+    }
+
+    public Retrofit getRetrofit(@NonNull String baseUrl, @Nullable String token, boolean isJson) {
+        this.token = token;
+        String key = baseUrl + "-" + isJson;
+        if (!retrofitMap.containsKey(key)) {
+            createRetrofit(baseUrl, isJson);
+        }
+        return retrofitMap.get(key);
     }
 
     public Retrofit getRetrofit(@NonNull String baseUrl, @Nullable String token) {
-        this.token = token;
-        if (!retrofitMap.containsKey(baseUrl)) {
-            createRetrofit(baseUrl);
-        }
-        return retrofitMap.get(baseUrl);
+        return getRetrofit(baseUrl, token, true);
     }
 
     /**
