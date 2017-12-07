@@ -2,7 +2,6 @@ package com.thirtydegreesray.openhub.ui.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
@@ -42,7 +41,10 @@ public class WikiAdapter extends BaseAdapter<WikiAdapter.ViewHolder, WikiModel> 
         super.onBindViewHolder(holder, position);
         WikiModel model = data.get(position);
         holder.wikiTitle.setText(model.getName());
-        holder.wikiDesc.setText(Html.fromHtml(model.getContent()));
+        long start = System.currentTimeMillis();
+        String textContent = model.getSimpleTextContent();
+        com.orhanobut.logger.Logger.t("textContent").d(System.currentTimeMillis() - start);
+        holder.wikiDesc.setText(textContent);
     }
 
     class ViewHolder extends BaseViewHolder {

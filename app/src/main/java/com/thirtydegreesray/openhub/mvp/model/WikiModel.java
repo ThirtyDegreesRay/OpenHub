@@ -17,6 +17,7 @@ public class WikiModel implements Parcelable {
     @Element(name = "published") private String published;
     @Element(name = "updated") private String updated;
     @Element(name = "content") private String content;
+    private String simpleTextContent;
 
     public String getId() {
         return id;
@@ -44,6 +45,16 @@ public class WikiModel implements Parcelable {
 
     public String getContent() {
         return content;
+    }
+
+    public String getSimpleTextContent() {
+        if(simpleTextContent == null){
+            int DEFAULT_MAX_LENGTH = 1024;
+            int maxLength = content.length() > DEFAULT_MAX_LENGTH ? DEFAULT_MAX_LENGTH : content.length();
+            simpleTextContent =  content.substring(0, maxLength)
+                    .replaceAll("<(.*?)>", "").trim();
+        }
+        return simpleTextContent;
     }
 
     public String getContentWithTitle() {
