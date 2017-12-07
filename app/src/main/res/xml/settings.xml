@@ -27,7 +27,7 @@
         android:defaultValue="true"/>
 
     <Preference
-        android:icon="@drawable/ic_menu_explore"
+        android:icon="@drawable/ic_global"
         android:title="@string/language"
         android:key="language"/>
 

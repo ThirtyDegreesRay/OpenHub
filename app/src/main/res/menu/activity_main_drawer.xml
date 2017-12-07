@@ -63,7 +63,7 @@
             android:checkable="false"/>
         <item
             android:id="@+id/nav_public_news"
-            android:icon="@drawable/ic_public"
+            android:icon="@drawable/ic_global"
             android:title="@string/public_news"/>
     </group>
 
