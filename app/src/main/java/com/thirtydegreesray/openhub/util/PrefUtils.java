@@ -42,6 +42,7 @@ public class PrefUtils {
     public final static int PURPLE = 14;
     public final static int DEEP_PURPLE = 15;
 
+    public final static String FIRST_USE = "first_use";
 
     public final static String THEME = "theme";
     public final static String ACCENT_COLOR = "accentColor";
@@ -158,6 +159,10 @@ public class PrefUtils {
 
     public static String getSearchRecords(){
         return getDefaultSp(AppApplication.get()).getString(SEARCH_RECORDS, null);
+    }
+
+    public static boolean isFirstUse(){
+        return getDefaultSp(AppApplication.get()).getBoolean(FIRST_USE, true);
     }
 
 

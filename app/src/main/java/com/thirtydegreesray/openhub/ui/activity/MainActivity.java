@@ -107,6 +107,9 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
 
         updateStartDrawerContent(R.menu.activity_main_drawer);
         removeEndDrawer();
+        if(mPresenter.isFirstUseAndNoNewsUser()){
+            selectedPage = R.id.nav_public_news;
+        }
         navViewStart.setCheckedItem(selectedPage);
         updateTitle(selectedPage);
         loadFragment(selectedPage);
