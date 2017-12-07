@@ -183,4 +183,9 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
         if(mPresenter != null) mPresenter.prepareLoadData();
     }
 
+    public void updateProfileInfo(User user){
+        mPresenter.setUser(user);
+        showProfileInfo(user);
+    }
+
 }

@@ -175,7 +175,15 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
             viewPager.setAdapter(pagerAdapter);
             showFirstPager();
         } else {
-//            AppEventBus.INSTANCE.getEventBus().post(new Event.RepoInfoUpdatedEvent(repo));
+            notifyUserInfoUpdated(user);
+        }
+    }
+
+    private void notifyUserInfoUpdated(User user){
+        for(Fragment fragment : getFragments()){
+            if(fragment != null && fragment instanceof ProfileInfoFragment){
+                ((ProfileInfoFragment)fragment).updateProfileInfo(user);
+            }
         }
     }
 

@@ -74,4 +74,7 @@ public class ProfileInfoPresenter extends BasePagerPresenter<IProfileInfoContrac
         }, httpObserver, true);
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
