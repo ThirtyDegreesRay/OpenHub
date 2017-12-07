@@ -41,9 +41,7 @@ public class WikiAdapter extends BaseAdapter<WikiAdapter.ViewHolder, WikiModel> 
         super.onBindViewHolder(holder, position);
         WikiModel model = data.get(position);
         holder.wikiTitle.setText(model.getName());
-        long start = System.currentTimeMillis();
         String textContent = model.getSimpleTextContent();
-        com.orhanobut.logger.Logger.t("textContent").d(System.currentTimeMillis() - start);
         holder.wikiDesc.setText(textContent);
     }
 
