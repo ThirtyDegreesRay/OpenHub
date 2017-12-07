@@ -11,10 +11,11 @@ import com.thirtydegreesray.openhub.mvp.model.WikiFeedModel;
 import com.thirtydegreesray.openhub.mvp.model.WikiModel;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePresenter;
 
+import org.xmlpull.v1.XmlPullParserException;
+
 import java.util.ArrayList;
 
 import javax.inject.Inject;
-import javax.xml.stream.XMLStreamException;
 
 /**
  * Created by ThirtyDegreesRay on 2017/12/6 16:41:32
@@ -45,7 +46,7 @@ public class WikiPresenter extends BasePresenter<IWikiContract.View>
             @Override
             public void onError(Throwable error) {
                 mView.hideLoading();
-                if(error.getCause() !=null && error.getCause() instanceof XMLStreamException){
+                if(error.getCause() != null && error.getCause() instanceof XmlPullParserException){
                     mView.showWiki(null);
                 } else {
                     mView.showLoadError(getErrorTip(error));

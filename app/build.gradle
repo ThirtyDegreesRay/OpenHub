@@ -109,8 +109,12 @@ dependencies {
     //Type-safe HTTP client for Android and Java by Square, Inc.
     compile "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
     compile "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
-    compile "com.squareup.retrofit2:converter-simplexml:${RETROFIT_VERSION}"
     compile "com.squareup.retrofit2:adapter-rxjava:${RETROFIT_VERSION}"
+    compile ("com.squareup.retrofit2:converter-simplexml:${RETROFIT_VERSION}"){
+        exclude group: 'xpp3', module: 'xpp3'
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+    }
 
     //dagger依赖注入
     compile "com.google.dagger:dagger:${DAGGER_VERSION}"

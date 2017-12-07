@@ -101,3 +101,5 @@ public static java.lang.String TABLENAME;
 -keepattributes EnclosingMethod
 -keep class com.thirtydegreesray.openhub.mvp.model.**{*;}
 -keep class com.thirtydegreesray.openhub.dao.**{*;}
+# SimpleXml
+-keep class org.simpleframework.xml.core.**{ *; }

@@ -4,7 +4,6 @@
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
 一个**开源**的GitHub Android客户端应，快速简洁。
-<!-- ![OpenHub](https://github.com/ThirtyDegreesRay/OpenHub/raw/master/art/openhub.png) -->
 
 [酷安下载](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 
@@ -33,6 +32,7 @@
 * 查看你私有的、公开的、forked和星标的版本库
 * 查看每日、每周和每月的最热版本库
 * 搜索版本库
+* 查看Wiki最近更新
 
 ### 用户
 * 查看用户信息

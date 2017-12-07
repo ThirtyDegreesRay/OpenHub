@@ -32,6 +32,7 @@ An **open source** GitHub Android client app, faster and concise.
 * View your private, public, forked and starred repos
 * View trending repos of daily, weekly and monthly
 * Search repos
+* View recent wiki updates
 
 ### Users
 * View user info
