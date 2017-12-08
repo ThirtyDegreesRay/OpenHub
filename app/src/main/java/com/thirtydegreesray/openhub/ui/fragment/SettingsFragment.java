@@ -94,17 +94,15 @@ public class SettingsFragment extends PreferenceFragmentCompat
     private void showThemeChooser(){
         final List<String> valueList
                 = Arrays.asList(getResources().getStringArray(R.array.theme_array));
-        int theme = PrefUtils.getTheme();
-        AlertDialog dialog = new AlertDialog.Builder(getContext())
+        String theme = PrefUtils.getTheme();
+        int selectIndex = valueList.indexOf(theme);
+        new AlertDialog.Builder(getContext())
                 .setCancelable(true)
                 .setTitle(R.string.choose_theme)
-                .setSingleChoiceItems(R.array.theme_array, theme, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        PrefUtils.set(PrefUtils.THEME, which);
-                        recreateMain();
-                    }
+                .setSingleChoiceItems(R.array.theme_array, selectIndex, (dialog1, which) -> {
+                    dialog1.dismiss();
+                    PrefUtils.set(PrefUtils.THEME, valueList.get(which));
+                    recreateMain();
                 })
                 .show();
     }

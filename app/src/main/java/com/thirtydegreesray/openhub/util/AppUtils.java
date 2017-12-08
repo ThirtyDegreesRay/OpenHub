@@ -101,8 +101,8 @@ public class AppUtils {
     }
 
     public static boolean isNightMode() {
-        int theme = PrefUtils.getTheme();
-        return theme == PrefUtils.DARK;
+        String theme = PrefUtils.getTheme();
+        return PrefUtils.DARK.equals(theme);
     }
 
     public static void copyToClipboard(@NonNull Context context, @NonNull String uri) {

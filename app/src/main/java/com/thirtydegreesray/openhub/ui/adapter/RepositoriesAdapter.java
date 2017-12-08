@@ -85,7 +85,7 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
         holder.tvOwnerName.setText(repository.getOwner().getLogin());
         GlideApp.with(fragment)
                 .load(repository.getOwner().getAvatarUrl())
-                .placeholder(R.mipmap.logo)
+                .placeholder(R.mipmap.logo_round)
                 .into(holder.ivUserAvatar);
         holder.forkMark.setVisibility(repository.isFork() ? View.VISIBLE : View.GONE);
     }

@@ -51,7 +51,7 @@ public class UsersAdapter extends BaseAdapter<UsersAdapter.ViewHolder, User> {
         super.onBindViewHolder(holder, position);
         GlideApp.with(fragment)
                 .load(data.get(position).getAvatarUrl())
-                .placeholder(R.mipmap.logo)
+                .placeholder(R.mipmap.logo_round)
                 .into(holder.avatar);
         holder.name.setText(data.get(position).getLogin());
     }

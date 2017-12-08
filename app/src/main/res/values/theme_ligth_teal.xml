@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ ~ Created by ThirtyDegreesRay on 2017/12/08 15:30:00.
+ ~ Copyright (C) 2017 ThirtyDegreesRay.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <color name="light_teal_color_primary">@color/material_teal_500</color>
+    <color name="light_teal_color_primary_blur">#DD009688</color>
+    <color name="light_teal_color_primary_dark">@color/material_teal_700</color>
+    <color name="light_teal_color_accent">@color/material_green_accent_700</color>
+    <color name="light_teal_window_background">#F4F4F4</color>
+    <color name="light_teal_icon_color">@color/material_light_black</color>
+    <color name="light_teal_card_background">@color/material_white</color>
+    <color name="light_teal_title_color">@color/material_light_white</color>
+    <color name="light_teal_subtitle_color">@color/material_grey_350</color>
+    <color name="light_teal_selected_color">@color/material_grey_350</color>
+    <color name="light_teal_text_color_primary">#212121</color>
+    <color name="light_teal_text_color_secondary">#757575</color>
+
+    <style name="ThemeLightTeal" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/light_teal_color_primary</item>
+        <item name="colorPrimaryDark">@color/light_teal_color_primary_dark</item>
+        <item name="colorAccent">@color/light_teal_color_accent</item>
+        <item name="android:windowBackground">@color/light_teal_window_background</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="android:textColorPrimary">@color/light_teal_text_color_primary</item>
+        <item name="android:textColorSecondary">@color/light_teal_text_color_secondary</item>
+        <item name="android:textColorTertiary">@color/material_grey_700</item>
+        <item name="icon_color">@color/light_teal_icon_color</item>
+        <item name="card_background">@color/light_teal_card_background</item>
+        <item name="title_color">@color/light_teal_title_color</item>
+        <item name="subtitle_color">@color/light_teal_subtitle_color</item>
+        <item name="selected_color">@color/light_teal_selected_color</item>
+        <item name="color_primary_blur">@color/light_teal_color_primary_blur</item>
+        <item name="popup_theme">@style/PopupThemeLightTeal</item>
+        <item name="appbar_theme">@style/AppbarThemeLightTeal</item>
+        <item name="android:contextPopupMenuStyle" tools:targetApi="n">@style/ContextPopupThemeLightTeal</item>
+    </style>
+
+    <style name="DialogThemeLightTeal" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="icon_color">@color/light_teal_icon_color</item>
+        <item name="colorPrimary">@color/light_teal_color_primary</item>
+        <item name="colorPrimaryDark">@color/light_teal_color_primary_dark</item>
+        <item name="colorAccent">@color/light_teal_color_accent</item>
+        <item name="android:windowBackground">@color/light_teal_window_background</item>
+    </style>
+
+    <style name="AppbarThemeLightTeal" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    </style>
+
+    <style name="PopupThemeLightTeal" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:colorBackground">@color/light_teal_window_background</item>
+    </style>
+
+    <style name="ContextPopupThemeLightTeal" parent="PopupThemeLightTeal">
+        <item name="android:popupBackground">@color/light_teal_window_background</item>
+        <!--
+         ~  Context menu of a RecyclerView is displayed in the wrong location when setting
+         ~  a contextPopupMenuStyle on Android N, set bellow can fix it.
+        -->
+        <item name="android:overlapAnchor">true</item>
+    </style>
+
+    <style name="ThemeLightTeal.LightBlue" parent="ThemeLightTeal" >
+        <item name="colorAccent">@color/material_light_blue_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.LightBlue</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.LightBlue</item>
+    </style>
+    <style name="ThemeLightTeal.Blue" parent="ThemeLightTeal" >
+        <item name="colorAccent">@color/material_blue_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.Blue</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.Blue</item>
+    </style>
+    <style name="ThemeLightTeal.Indigo" parent="ThemeLightTeal" >
+        <item name="colorAccent">@color/material_indigo_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.Indigo</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.Indigo</item>
+    </style>
+    <style name="ThemeLightTeal.Orange" parent="ThemeLightTeal" >
+        <item name="colorAccent">@color/material_orange_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.Orange</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.Orange</item>
+    </style>
+
+    <style name="ThemeLightTeal.Yellow" parent="ThemeLightTeal" >
+        <item name="colorAccent">@color/material_yellow_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.Yellow</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.Yellow</item>
+    </style>
+    <style name="ThemeLightTeal.Amber" parent="ThemeLightTeal" >
+        <item name="colorAccent">@color/material_amber_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.Amber</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.Amber</item>
+    </style>
+    <style name="ThemeLightTeal.Grey" parent="ThemeLightTeal" >
+        <item name="colorAccent">@color/material_grey_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.Grey</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.Grey</item>
+    </style>
+    <style name="ThemeLightTeal.Brown" parent="ThemeLightTeal" >
+        <item name="colorAccent">@color/material_brown_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.Brown</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.Brown</item>
+    </style>
+
+    <style name="ThemeLightTeal.Cyan" parent="ThemeLightTeal" >
+        <item name="colorAccent">@color/material_cyan_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.Cyan</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.Cyan</item>
+    </style>
+    <style name="ThemeLightTeal.Teal" parent="ThemeLightTeal" >
+        <item name="colorAccent">@color/material_teal_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.Teal</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.Teal</item>
+    </style>
+    <style name="ThemeLightTeal.Lime" parent="ThemeLightTeal" >
+        <item name="colorAccent">@color/material_lime_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.Lime</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.Lime</item>
+    </style>
+    <style name="ThemeLightTeal.Green" parent="ThemeLightTeal" >
+        <item name="colorAccent">@color/material_green_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.Green</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.Green</item>
+    </style>
+
+    <style name="ThemeLightTeal.Pink" parent="ThemeLightTeal" >
+        <item name="colorAccent">@color/material_pink_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.Pink</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.Pink</item>
+    </style>
+    <style name="ThemeLightTeal.Red" parent="ThemeLightTeal" >
+        <item name="colorAccent">@color/material_red_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.Red</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.Red</item>
+    </style>
+    <style name="ThemeLightTeal.Purple" parent="ThemeLightTeal" >
+        <item name="colorAccent">@color/material_purple_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.Purple</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.Purple</item>
+    </style>
+    <style name="ThemeLightTeal.DeepPurple" parent="ThemeLightTeal" >
+        <item name="colorAccent">@color/material_deep_purple_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.DeepPurple</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.DeepPurple</item>
+    </style>
+
+
+    <style name="DialogThemeLightTeal.LightBlue" parent="DialogThemeLightTeal" >
+        <item name="colorAccent">@color/material_light_blue_accent_700</item>
+    </style>
+    <style name="DialogThemeLightTeal.Blue" parent="DialogThemeLightTeal" >
+        <item name="colorAccent">@color/material_blue_accent_700</item>
+    </style>
+    <style name="DialogThemeLightTeal.Indigo" parent="DialogThemeLightTeal" >
+        <item name="colorAccent">@color/material_indigo_accent_700</item>
+    </style>
+    <style name="DialogThemeLightTeal.Orange" parent="DialogThemeLightTeal" >
+        <item name="colorAccent">@color/material_orange_accent_700</item>
+    </style>
+
+    <style name="DialogThemeLightTeal.Yellow" parent="DialogThemeLightTeal" >
+        <item name="colorAccent">@color/material_yellow_accent_700</item>
+    </style>
+    <style name="DialogThemeLightTeal.Amber" parent="DialogThemeLightTeal" >
+        <item name="colorAccent">@color/material_amber_accent_700</item>
+    </style>
+    <style name="DialogThemeLightTeal.Grey" parent="DialogThemeLightTeal" >
+        <item name="colorAccent">@color/material_grey_700</item>
+    </style>
+    <style name="DialogThemeLightTeal.Brown" parent="DialogThemeLightTeal" >
+        <item name="colorAccent">@color/material_brown_700</item>
+    </style>
+
+    <style name="DialogThemeLightTeal.Cyan" parent="DialogThemeLightTeal" >
+        <item name="colorAccent">@color/material_cyan_accent_700</item>
+    </style>
+    <style name="DialogThemeLightTeal.Teal" parent="DialogThemeLightTeal" >
+        <item name="colorAccent">@color/material_teal_accent_700</item>
+    </style>
+    <style name="DialogThemeLightTeal.Lime" parent="DialogThemeLightTeal" >
+        <item name="colorAccent">@color/material_lime_accent_700</item>
+    </style>
+    <style name="DialogThemeLightTeal.Green" parent="DialogThemeLightTeal" >
+        <item name="colorAccent">@color/material_green_accent_700</item>
+    </style>
+
+    <style name="DialogThemeLightTeal.Pink" parent="DialogThemeLightTeal" >
+        <item name="colorAccent">@color/material_pink_accent_700</item>
+    </style>
+    <style name="DialogThemeLightTeal.Red" parent="DialogThemeLightTeal" >
+        <item name="colorAccent">@color/material_red_accent_700</item>
+    </style>
+    <style name="DialogThemeLightTeal.Purple" parent="DialogThemeLightTeal" >
+        <item name="colorAccent">@color/material_purple_accent_700</item>
+    </style>
+    <style name="DialogThemeLightTeal.DeepPurple" parent="DialogThemeLightTeal" >
+        <item name="colorAccent">@color/material_deep_purple_accent_700</item>
+    </style>
+
+    <style name="ThemeLightTeal.AboutActivity" parent="ThemeLightTeal">
+        <item name="mal_toolbarPopupTheme">@style/Theme.Mal.Toolbar.Light</item>
+        <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Dark</item>
+        <item name="mal_color_primary">@color/light_teal_text_color_primary</item>
+        <item name="mal_color_secondary">@color/light_teal_text_color_secondary</item>
+        <item name="mal_card_background">@color/light_teal_card_background</item>
+        <item name="alertDialogTheme">@style/DialogThemeLightTeal.Green</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeLightTeal.Green</item>
+    </style>
+
+</resources>

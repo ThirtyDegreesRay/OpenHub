@@ -60,7 +60,7 @@ public class TraceAdapter extends BaseAdapter<BaseViewHolder, TraceExt>
             UserViewHolder userViewHolder = (UserViewHolder) holder;
             GlideApp.with(fragment)
                     .load(user.getAvatarUrl())
-                    .placeholder(R.mipmap.logo)
+                    .placeholder(R.mipmap.logo_round)
                     .into(userViewHolder.avatar);
             userViewHolder.name.setText(user.getLogin());
             userViewHolder.name.setTextColor(ViewUtils.getAccentColor(context));
@@ -75,7 +75,7 @@ public class TraceAdapter extends BaseAdapter<BaseViewHolder, TraceExt>
             repoViewHolder.tvOwnerName.setText(repository.getOwner().getLogin());
             GlideApp.with(fragment)
                     .load(repository.getOwner().getAvatarUrl())
-                    .placeholder(R.mipmap.logo)
+                    .placeholder(R.mipmap.logo_round)
                     .into(repoViewHolder.ivUserAvatar);
             repoViewHolder.forkMark.setVisibility(repository.isFork() ? View.VISIBLE : View.GONE);
         }

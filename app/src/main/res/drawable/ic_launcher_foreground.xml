@@ -1,0 +1,81 @@
+<!--
+ ~ Created by ThirtyDegreesRay on 2017/12/08 12:00:00.
+ ~ Copyright (C) 2017 ThirtyDegreesRay.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:aapt="http://schemas.android.com/aapt"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:width="108dp"
+        android:height="108dp"
+        android:viewportWidth="1347.3684"
+        android:viewportHeight="1347.3684">
+    <group android:translateX="161.6842"
+            android:translateY="161.6842">
+
+        <!--
+             path:
+                M350,570, \\start from left cheek
+                L735,330,1429,1024, \\line to right ear, 45 degrees to bottom
+                L1024,1386, 327,689, \\line to left bottom, line to tail
+                L310,654, 260,604, \\line to tip of the tail
+                L318,610, 395,687, \\ line at the right of tail
+                L438,658, Z \\line to tail start, end path
+             -->
+
+        <path
+            android:fillType="evenOdd"
+            android:pathData="
+                M350,570,
+                L735,330,1429,1024,
+                L1024,1386, 327,689,
+                L310,654, 260,604,
+                L318,610, 395,687,
+                L438,658, Z"
+            android:strokeColor="#00FF0000"
+            android:strokeWidth="1">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:endX="900"
+                    android:endY="852"
+                    android:startX="460"
+                    android:startY="412"
+                    android:type="linear">
+                    <item
+                        android:color="#55000000"
+                        android:offset="0.0" />
+                    <item
+                        android:color="#00000000"
+                        android:offset="1.0" />
+                </gradient>
+            </aapt:attr>
+        </path>
+
+        <path
+            android:fillColor="#FFFFFF"
+            tools:ignore="VectorPath"
+            android:pathData="M490.874,799.711,
+                c-28.964,0.103,-52.556,-23.242,-52.755,-52.202l-0.208,-37.364,
+                c-103.68,22.551,-125.55,-43.973,-125.55,-43.973,
+                c-16.961,-43.057,-41.389,-54.501,-41.389,-54.501,
+                c-33.813,-23.146,2.558,-22.678,2.558,-22.678,
+                c37.393,2.615,57.094,38.407,57.094,38.407,
+                c33.237,56.958,87.192,40.498,108.437,30.985,
+                c3.344,-24.088,13.011,-40.521,23.673,-49.851,
+                c-82.777,-9.403,-169.789,-41.384,-169.789,-184.146,
+                c0,-40.682,14.556,-73.916,38.413,-100.017,
+                c-3.869,-9.405,-16.619,-47.293,3.605,-98.605,
+                c0,0,31.301,-10.009,102.503,38.196,
+                c30.405,-8.271,61.772,-12.487,93.283,-12.541,
+                c31.639,0.132,63.544,4.261,93.333,12.541,
+                c71.153,-48.205,102.399,-38.196,102.399,-38.196,
+                c20.277,51.34,7.527,89.225,3.658,98.605,
+                c23.884,26.074,38.358,59.334,38.358,100.017,
+                c0,143.127,-87.191,174.637,-170.153,183.86,
+                c13.35,11.574,25.265,34.226,25.265,69.006,
+                c0,49.874,-0.183,70.229,-0.183,70.229,
+                c-0.2,28.944,-23.754,52.288,-52.701,52.228,
+                H490.874z,
+                M490.874,799.711"/>
+
+    </group>
+</vector>

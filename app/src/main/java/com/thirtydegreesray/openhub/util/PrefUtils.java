@@ -19,8 +19,9 @@ import java.util.Set;
 
 public class PrefUtils {
 
-    public final static int LIGHT = 0;
-    public final static int DARK = 1;
+    public final static String LIGHT_INDIGO = "Light indigo";
+    public final static String DARK = "Dark";
+    public final static String LIGHT_TEAL = "Light teal";
 
     public final static int LIGHT_BLUE = 0;
     public final static int BLUE = 1;
@@ -42,9 +43,9 @@ public class PrefUtils {
     public final static int PURPLE = 14;
     public final static int DEEP_PURPLE = 15;
 
-    public final static String FIRST_USE = "first_use";
+    public final static String FIRST_USE = "firstUse";
 
-    public final static String THEME = "theme";
+    public final static String THEME = "appTheme";
     public final static String ACCENT_COLOR = "accentColor";
     public final static String CACHE_FIRST_ENABLE = "cacheFirstEnable";
     public final static String SYSTEM_DOWNLOADER = "systemDownloader";
@@ -97,8 +98,8 @@ public class PrefUtils {
         getDefaultSp(AppApplication.get()).edit().remove(key).apply();
     }
 
-    public static int getTheme(){
-        return getDefaultSp(AppApplication.get()).getInt(THEME, 0);
+    public static String getTheme(){
+        return getDefaultSp(AppApplication.get()).getString(THEME, LIGHT_TEAL);
     }
 
     public static String getLanguage(){

@@ -122,7 +122,7 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
         User loginUser = AppData.INSTANCE.getLoggedUser();
         GlideApp.with(getActivity())
                 .load(loginUser.getAvatarUrl())
-                .placeholder(R.mipmap.logo)
+                .placeholder(R.mipmap.logo_round)
                 .into(avatar);
         name.setText(StringUtils.isBlank(loginUser.getName()) ? loginUser.getLogin() : loginUser.getName());
         String joinTime = getString(R.string.joined_at).concat(" ")

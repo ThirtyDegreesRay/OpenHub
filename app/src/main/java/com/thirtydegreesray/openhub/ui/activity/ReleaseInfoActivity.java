@@ -77,7 +77,7 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
 
         GlideApp.with(getActivity())
                 .load(release.getAuthor().getAvatarUrl())
-                .placeholder(R.mipmap.logo)
+                .placeholder(R.mipmap.logo_round)
                 .into(userAvatar);
 
         String time = StringUtils.getNewsTimeStr(getActivity(), release.getCreatedAt());
