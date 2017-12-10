@@ -16,7 +16,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/logo_round"
+        android:roundIcon="@mipmap/logo"
         android:supportsRtl="false"
         android:theme="@style/SplashTheme"
         tools:replace="android:supportsRtl">

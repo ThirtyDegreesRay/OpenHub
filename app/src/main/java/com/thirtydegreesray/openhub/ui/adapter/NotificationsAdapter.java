@@ -76,7 +76,7 @@ public class NotificationsAdapter extends BaseAdapter<BaseViewHolder,
             holder.repoName.setText(model.getFullName());
             GlideApp.with(fragment)
                     .load(model.getOwner().getAvatarUrl())
-                    .placeholder(R.mipmap.logo_round)
+                    .placeholder(R.mipmap.logo)
                     .into(holder.userAvatar);
         } else {
             NotificationViewHolder holder = (NotificationViewHolder) viewHolder;

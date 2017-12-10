@@ -120,7 +120,7 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
         if (commit.getAuthor() != null) {
             GlideApp.with(getActivity())
                     .load(commit.getAuthor().getAvatarUrl())
-                    .placeholder(R.mipmap.logo_round)
+                    .placeholder(R.mipmap.logo)
                     .into(userAvatar);
         } else {
             userAvatar.setImageResource(R.drawable.ic_question);
@@ -165,7 +165,7 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
     public void showUserAvatar(String userAvatarUrl) {
         GlideApp.with(getActivity())
                 .load(userAvatarUrl)
-                .placeholder(R.mipmap.logo_round)
+                .placeholder(R.mipmap.logo)
                 .into(userAvatar);
     }
 

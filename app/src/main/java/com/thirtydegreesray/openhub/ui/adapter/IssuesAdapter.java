@@ -55,7 +55,7 @@ public class IssuesAdapter extends BaseAdapter<IssuesAdapter.ViewHolder, Issue> 
         Issue model = data.get(position);
         GlideApp.with(fragment)
                 .load(model.getUser().getAvatarUrl())
-                .placeholder(R.mipmap.logo_round)
+                .placeholder(R.mipmap.logo)
                 .into(holder.userAvatar);
         holder.userName.setText(model.getUser().getLogin());
         holder.issueTitle.setText(model.getTitle());

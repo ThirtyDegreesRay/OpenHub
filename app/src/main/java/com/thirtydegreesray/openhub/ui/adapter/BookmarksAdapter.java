@@ -72,7 +72,7 @@ public class BookmarksAdapter extends BaseAdapter<BaseViewHolder, BookmarkExt> {
             UserViewHolder userViewHolder = (UserViewHolder) holder;
             GlideApp.with(fragment)
                     .load(user.getAvatarUrl())
-                    .placeholder(R.mipmap.logo_round)
+                    .placeholder(R.mipmap.logo)
                     .into(userViewHolder.avatar);
             userViewHolder.name.setText(user.getLogin());
             userViewHolder.name.setTextColor(ViewUtils.getAccentColor(context));
@@ -87,7 +87,7 @@ public class BookmarksAdapter extends BaseAdapter<BaseViewHolder, BookmarkExt> {
             repoViewHolder.tvOwnerName.setText(repository.getOwner().getLogin());
             GlideApp.with(fragment)
                     .load(repository.getOwner().getAvatarUrl())
-                    .placeholder(R.mipmap.logo_round)
+                    .placeholder(R.mipmap.logo)
                     .into(repoViewHolder.ivUserAvatar);
             repoViewHolder.forkMark.setVisibility(repository.isFork() ? View.VISIBLE : View.GONE);
         }

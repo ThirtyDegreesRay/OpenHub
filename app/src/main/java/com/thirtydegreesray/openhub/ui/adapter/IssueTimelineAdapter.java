@@ -50,7 +50,7 @@ public class IssueTimelineAdapter extends BaseAdapter<IssueTimelineAdapter.ViewH
         IssueEvent model = data.get(position);
         GlideApp.with(fragment)
                 .load(model.getUser().getAvatarUrl())
-                .placeholder(R.mipmap.logo_round)
+                .placeholder(R.mipmap.logo)
                 .into(holder.userAvatar);
         holder.userName.setText(model.getUser().getLogin());
         holder.time.setText(StringUtils.getNewsTimeStr(context, model.getCreatedAt()));

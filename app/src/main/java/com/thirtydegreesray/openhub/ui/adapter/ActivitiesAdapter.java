@@ -62,7 +62,7 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
         Event model = data.get(position);
         GlideApp.with(fragment)
                 .load(model.getActor().getAvatarUrl())
-                .placeholder(R.mipmap.logo_round)
+                .placeholder(R.mipmap.logo)
                 .into(holder.userAvatar);
         holder.userName.setText(model.getActor().getLogin());
         holder.time.setText(StringUtils.getNewsTimeStr(context, model.getCreatedAt()));

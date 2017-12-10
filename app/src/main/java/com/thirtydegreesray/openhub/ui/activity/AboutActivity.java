@@ -84,7 +84,7 @@ public class AboutActivity extends MaterialAboutActivity {
         appBuilder.addItem(new MaterialAboutTitleItem.Builder()
                 .text(getString(R.string.app_name))
                 .desc(getString(R.string.app_copyright))
-                .icon(R.mipmap.logo_round)
+                .icon(R.mipmap.logo_big)
                 .build());
         appBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text(R.string.version)

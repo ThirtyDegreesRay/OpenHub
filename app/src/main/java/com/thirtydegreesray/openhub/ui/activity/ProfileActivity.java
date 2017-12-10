@@ -213,7 +213,7 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
                 .into(userImageViewBg);
         GlideApp.with(getActivity())
                 .load(mPresenter.getUserAvatar())
-                .placeholder(R.mipmap.logo_round)
+                .placeholder(R.mipmap.logo)
                 .into(userImageView);
     }
 

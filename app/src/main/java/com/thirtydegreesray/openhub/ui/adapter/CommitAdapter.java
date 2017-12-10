@@ -52,7 +52,7 @@ public class CommitAdapter extends BaseAdapter<CommitAdapter.ViewHolder, RepoCom
         if(model.getAuthor() != null){
             GlideApp.with(fragment)
                     .load(model.getAuthor().getAvatarUrl())
-                    .placeholder(R.mipmap.logo_round)
+                    .placeholder(R.mipmap.logo)
                     .into(holder.userAvatar);
         } else {
             holder.userAvatar.setImageResource(R.drawable.ic_question);

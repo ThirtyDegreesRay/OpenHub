@@ -165,7 +165,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         setToolbarTitle(getString(R.string.issue).concat(" #").concat(String.valueOf(issue.getNumber())));
         GlideApp.with(getActivity())
                 .load(issue.getUser().getAvatarUrl())
-                .placeholder(R.mipmap.logo_round)
+                .placeholder(R.mipmap.logo)
                 .into(userImageView);
         issueTitle.setText(issue.getTitle());
         commentBn.setVisibility(issue.isLocked() ? View.GONE : View.VISIBLE);
