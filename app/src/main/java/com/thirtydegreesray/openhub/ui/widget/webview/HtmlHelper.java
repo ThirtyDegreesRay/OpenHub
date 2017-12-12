@@ -81,7 +81,10 @@ class HtmlHelper {
                         "<style>" +
                             "body {background: " + backgroundColor + ";}" +
                             ".prettyprint {background: " + backgroundColor + ";}" +
-                            "pre.prettyprint { white-space: " + (wrap ? "pre-wrap" : "no-wrap") + "; }" +
+                            "pre.prettyprint {" +
+                                " word-wrap: " + (wrap ? "break-word" : "normal") + "; " +
+                                " white-space: " + (wrap ? "pre-wrap" : "no-wrap") + "; " +
+                            "}" +
                         "</style>" +
                     "</head>\n" +
                     "<body>\n" +
