@@ -89,13 +89,13 @@
     <string name="send_email">发送邮件</string>
     <string name="version">版本</string>
     <string name="follow_on_github">在GitHub上跟随我</string>
-    <string name="invalid_query">没有效的查询内容</string>
+    <string name="invalid_query">无效的查询内容</string>
     <string name="no_email_clients">未安装邮件客户端</string>
     <string name="no_share_clients">未安装分享软件</string>
     <string name="tap_to_retry">点击重试</string>
     <string name="loading">加载中</string>
     <string name="stargazers">星标</string>
-    <string name="theme_accent_color">主色调</string>
+    <string name="theme_accent_color">主题强调色</string>
     <string name="unstar">取消星标</string>
     <string name="unstarred" >已取消星标</string>
     <string name="unwatch" >取消关注</string>
