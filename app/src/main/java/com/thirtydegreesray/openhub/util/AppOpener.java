@@ -46,7 +46,7 @@ public class AppOpener {
         Uri uri = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri).addCategory(Intent.CATEGORY_BROWSABLE);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent = createActivityChooserIntent(context, intent, uri);
+        intent = createActivityChooserIntent(context, intent, uri, VIEW_IGNORE_PACKAGE);
         if(intent != null){
             context.startActivity(intent);
         } else {
@@ -70,7 +70,7 @@ public class AppOpener {
         Uri uri = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri).addCategory(Intent.CATEGORY_BROWSABLE);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent = createActivityChooserIntent(context, intent, uri);
+        intent = createActivityChooserIntent(context, intent, uri, VIEW_IGNORE_PACKAGE);
         if(intent != null){
             context.startActivity(intent);
         } else {
@@ -162,7 +162,8 @@ public class AppOpener {
         return false;
     }
 
-    private static Intent createActivityChooserIntent(Context context, Intent intent, Uri uri) {
+    private static Intent createActivityChooserIntent(Context context, Intent intent,
+                                                      Uri uri, List<String> ignorPackageList) {
         final PackageManager pm = context.getPackageManager();
         final List<ResolveInfo> activities = pm.queryIntentActivities(intent,
                 PackageManager.MATCH_DEFAULT_ONLY);
@@ -179,7 +180,7 @@ public class AppOpener {
             if (info.packageName.equals(ourPackageName)) {
                 continue;
             }
-            if (IGNORE_PACKAGE.contains(info.packageName)) {
+            if (ignorPackageList != null && ignorPackageList.contains(info.packageName)) {
                 continue;
             }
 
@@ -205,8 +206,8 @@ public class AppOpener {
         return chooserIntent;
     }
 
-    private static final List<String> IGNORE_PACKAGE = Arrays.asList(
-            "com.gh4a", "com.fastaccess"
+    private static final List<String> VIEW_IGNORE_PACKAGE = Arrays.asList(
+            "com.gh4a", "com.fastaccess", "com.taobao.taobao"
     );
 
 }
