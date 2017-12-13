@@ -57,7 +57,7 @@ public class CommitsFragment extends ListFragment<CommitsPresenter, CommitAdapte
     @Override
     public void showCommits(ArrayList<RepoCommit> commits) {
         adapter.setData(commits);
-        adapter.notifyDataSetChanged();
+        postNotifyDataSetChanged();
     }
 
     @Override

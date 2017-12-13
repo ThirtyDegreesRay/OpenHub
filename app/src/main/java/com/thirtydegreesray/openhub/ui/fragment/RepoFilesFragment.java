@@ -53,7 +53,7 @@ public class RepoFilesFragment extends ListFragment<RepoFilesPresenter, RepoFile
     @Override
     public void showFiles(ArrayList<FileModel> files) {
         adapter.setData(files);
-        adapter.notifyDataSetChanged();
+        postNotifyDataSetChanged();
     }
 
     @Override

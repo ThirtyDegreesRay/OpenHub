@@ -79,7 +79,7 @@ public class IssuesFragment extends ListFragment<IssuePresenter, IssuesAdapter>
     @Override
     public void showIssues(ArrayList<Issue> issues) {
         adapter.setData(issues);
-        adapter.notifyDataSetChanged();
+        postNotifyDataSetChanged();
     }
 
     @Override

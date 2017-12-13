@@ -49,7 +49,7 @@ public class IssueTimelineFragment extends ListFragment<IssueTimelinePresenter, 
     @Override
     public void showTimeline(ArrayList<IssueEvent> events) {
         adapter.setData(events);
-        adapter.notifyDataSetChanged();
+        postNotifyDataSetChanged();
     }
 
     @Override
@@ -103,7 +103,7 @@ public class IssueTimelineFragment extends ListFragment<IssueTimelinePresenter, 
 
     public void addComment(IssueEvent event){
         mPresenter.getTimeline().add(event);
-        adapter.notifyDataSetChanged();
+        postNotifyDataSetChanged();
         recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
     }
 

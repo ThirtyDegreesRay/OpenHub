@@ -68,7 +68,7 @@ public class CommitFilesFragment extends ListFragment<CommitFilesPresenter, Comm
         setRefreshEnable(false);
         if(commitFiles != null){
             adapter.setData(mPresenter.getSortedList(commitFiles));
-            adapter.notifyDataSetChanged();
+            postNotifyDataSetChanged();
         }
     }
 
@@ -88,7 +88,7 @@ public class CommitFilesFragment extends ListFragment<CommitFilesPresenter, Comm
     public void showCommitFiles(@NonNull ArrayList<CommitFile> commitFiles){
         this.commitFiles = commitFiles;
         adapter.setData(mPresenter.getSortedList(commitFiles));
-        adapter.notifyDataSetChanged();
+        postNotifyDataSetChanged();
     }
 
 }

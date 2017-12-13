@@ -52,7 +52,7 @@ public class NotificationsFragment extends ListFragment<NotificationsPresenter, 
     @Override
     public void showNotifications(ArrayList<DoubleTypesModel<Repository, Notification>> notifications) {
         adapter.setData(notifications);
-        adapter.notifyDataSetChanged();
+        postNotifyDataSetChanged();
     }
 
     @Override

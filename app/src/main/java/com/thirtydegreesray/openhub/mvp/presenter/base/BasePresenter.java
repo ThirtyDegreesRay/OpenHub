@@ -271,8 +271,6 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
 
             @Override
             public void onSuccess(@NonNull HttpResponse<T> response) {
-                Logger.d(TAG, "get data ok:" + System.currentTimeMillis());
-                Logger.d(TAG, "data:" + response.body());
                 if (response.isSuccessful()) {
                     if (readCacheFirst && response.isFromCache()
                             && NetHelper.INSTANCE.getNetEnabled()
@@ -299,7 +297,6 @@ public abstract class BasePresenter<V extends IBaseContract.View> implements IBa
 //        cacheFirstEnable = cacheFirstEnable || !NetHelper.INSTANCE.getNetEnabled();
         generalRxHttpExecute(observableCreator.createObservable(!cacheFirstEnable || !readCacheFirst),
                 getHttpSubscriber(tempObserver, progressDialog));
-        Logger.d(TAG, "get date start:" + System.currentTimeMillis());
     }
 
     private <T> HttpSubscriber<T> getHttpSubscriber(HttpObserver<T> httpObserver, ProgressDialog progressDialog) {

@@ -37,7 +37,7 @@ public class ReleasesFragment extends ListFragment<ReleasesPresenter, ReleasesAd
     @Override
     public void showReleases(ArrayList<Release> releases) {
         adapter.setData(releases);
-        adapter.notifyDataSetChanged();
+        postNotifyDataSetChanged();
         if(getCurPage() == 1 && !StringUtils.isBlankList(releases)
                 && PrefUtils.isReleasesLongClickTipAble()){
             showOperationTip(R.string.releases_click_tip);

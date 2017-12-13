@@ -226,7 +226,7 @@ public class ActivityFragment extends ListFragment<ActivityPresenter, Activities
     @Override
     public void showEvents(ArrayList<Event> events) {
         adapter.setData(events);
-        adapter.notifyDataSetChanged();
+        postNotifyDataSetChanged();
         if(getCurPage() == 2 && PrefUtils.isActivityLongClickTipAble()){
             showOperationTip(R.string.activity_click_tip);
             PrefUtils.set(PrefUtils.ACTIVITY_LONG_CLICK_TIP_ABLE, false);
