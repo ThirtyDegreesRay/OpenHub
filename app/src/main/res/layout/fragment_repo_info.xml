@@ -16,13 +16,13 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_micro"
-            android:layout_marginEnd="@dimen/spacing_small"
-            android:layout_marginStart="@dimen/spacing_small"
-            android:layout_marginTop="@dimen/spacing_micro"
+            android:layout_marginBottom="@dimen/card_view_vertical_margin"
+            android:layout_marginEnd="@dimen/card_view_horizontal_margin"
+            android:layout_marginStart="@dimen/card_view_horizontal_margin"
+            android:layout_marginTop="@dimen/card_view_vertical_margin"
             android:background="?card_background"
             app:cardBackgroundColor="?card_background"
-            app:cardCornerRadius="@dimen/spacing_micro"
+            app:cardCornerRadius="@dimen/card_view_corner_radius"
             app:contentPadding="@dimen/spacing_normal">
 
             <LinearLayout
@@ -169,13 +169,13 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_micro"
-            android:layout_marginEnd="@dimen/spacing_small"
-            android:layout_marginStart="@dimen/spacing_small"
-            android:layout_marginTop="@dimen/spacing_micro"
+            android:layout_marginBottom="@dimen/card_view_vertical_margin"
+            android:layout_marginEnd="@dimen/card_view_horizontal_margin"
+            android:layout_marginStart="@dimen/card_view_horizontal_margin"
+            android:layout_marginTop="@dimen/card_view_vertical_margin"
             android:background="?card_background"
             app:cardBackgroundColor="?card_background"
-            app:cardCornerRadius="@dimen/spacing_micro"
+            app:cardCornerRadius="@dimen/card_view_corner_radius"
             app:contentPaddingTop="@dimen/spacing_normal"
             app:contentPaddingBottom="@dimen/spacing_normal">
             <RelativeLayout
