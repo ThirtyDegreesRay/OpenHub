@@ -80,7 +80,7 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
                 .placeholder(R.mipmap.logo)
                 .into(userAvatar);
 
-        String time = StringUtils.getNewsTimeStr(getActivity(), release.getCreatedAt());
+        String time = StringUtils.getNewsTimeStr(getActivity(), release.getPublishedAt());
         String timeStr = "";
         if (time.contains("-")) {
             timeStr = getString(R.string.released_this)
