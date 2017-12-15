@@ -5,9 +5,9 @@ English | [中文](http://blog.csdn.net/a550906320/article/details/77891443)
 
 An **open source** GitHub Android client app, faster and concise.
 
-[Coolapk Download](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
+[![Google Play](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/google_play.png?raw=true)](https://play.google.com/store/apps/details?id=com.thirtydegreesray.openhub)
 
-[Download Apk From Releases](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
+[Coolapk Download](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 
 ## Features
 

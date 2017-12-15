@@ -7,7 +7,7 @@
 
 [酷安下载](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 
-[从已发布版本中下载](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
+[![Google Play](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/google_play.png?raw=true)](https://play.google.com/store/apps/details?id=com.thirtydegreesray.openhub)
 
 ## 特点
 
