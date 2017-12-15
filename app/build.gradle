@@ -67,6 +67,9 @@ android {
 repositories {
     maven { url "https://jitpack.io" }
 //    google()
+    flatDir {
+        dirs 'libs' //aar
+    }
 }
 
 dependencies {
@@ -140,9 +143,8 @@ dependencies {
     compile "com.afollestad.material-dialogs:core:${MATERIAL_DIALOG_VERSION}"
     compile "com.afollestad.material-dialogs:commons:${MATERIAL_DIALOG_VERSION}"
 
-//    compile "com.tencent.bugly:crashreport:${BUGGLY_VERSION}"
-    compile "com.tencent.bugly:crashreport_upgrade:${BUGGLY_VERSION}"
-    compile "com.tencent.bugly:nativecrashreport:${BUGGLY_VERSION}"
+    compile (name: 'bugly_crashreport_upgrade-1.3.4', ext: 'aar')
+    compile "com.tencent.bugly:nativecrashreport:${BUGGLY_NATIVE_VERSION}"
     compile "com.zzhoujay.richtext:richtext:${RICKTEXT_VERSION}"
     compile 'com.zzhoujay.glideimagegetter:glideimagegetter:1.0.5'
 
