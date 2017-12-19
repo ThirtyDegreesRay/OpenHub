@@ -22,9 +22,9 @@ public class GitHubHelper {
             ".md", ".mkdn", ".mdwn", ".mdown", ".markdown", ".mkd", ".mkdown", ".ron", ".rst", "adoc"
     };
 
-        private static final String[] ARCHIVE_EXTENSIONS = {
+    private static final String[] ARCHIVE_EXTENSIONS = {
             ".zip", ".zipx", ".7z", "s7z", "zz", ".rar", ".tar.gz", ".tgz", ".tar.Z", ".tar.bz2", ".tbz2", ".tar.lzma",
-            ".tlz", ".apk", ".jar", ".dmg", "ipa", "war", "cab", "dar"
+            ".tlz", ".apk", ".jar", ".dmg", "ipa", "war", "cab", "dar", "aar"
     };
 
     private static final String GITHUB_BASE_URL_PATTERN_STR = "(https://)?(http://)?(www.)?github.com";
