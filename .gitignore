@@ -7,7 +7,6 @@
 /build
 /captures
 .externalNativeBuild
-app/libs/
 *.apk
 /app/release
 /todo.txt
