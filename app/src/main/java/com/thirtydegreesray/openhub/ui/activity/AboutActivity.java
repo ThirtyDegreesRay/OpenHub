@@ -82,7 +82,7 @@ public class AboutActivity extends MaterialAboutActivity {
 
     private void buildApp(MaterialAboutCard.Builder appBuilder, final Context context){
         appBuilder.addItem(new MaterialAboutTitleItem.Builder()
-                .text(getString(R.string.app_name))
+                .text(getString(R.string.app_github_name))
                 .desc(getString(R.string.app_copyright))
                 .icon(R.mipmap.logo)
                 .build());
@@ -104,7 +104,7 @@ public class AboutActivity extends MaterialAboutActivity {
                 .setOnClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
                     public void onClick() {
-                        RepositoryActivity.show(context, getString(R.string.author_login_id), getString(R.string.app_name));
+                        RepositoryActivity.show(context, getString(R.string.author_login_id), getString(R.string.app_github_name));
                     }
                 })
                 .build());

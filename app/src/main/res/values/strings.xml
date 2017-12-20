@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">OpenHub</string>
+    <string name="app_github_name" translatable="false">OpenHub</string>
     <string name="navigation_drawer_open" translatable="false">navigation_drawer_open</string>
     <string name="navigation_drawer_close" translatable="false">navigation_drawer_close</string>
 
