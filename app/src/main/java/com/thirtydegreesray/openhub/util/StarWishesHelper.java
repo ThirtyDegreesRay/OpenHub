@@ -8,7 +8,7 @@ package com.thirtydegreesray.openhub.util;
 
 public class StarWishesHelper {
 
-    private final static long TIP_INTERVAL = 30 * 24 * 60 * 60 * 1000;
+    private final static long TIP_INTERVAL = 30L * 24 * 60 * 60 * 1000;
 
     public static boolean isStarWishesTipable(){
         long lastTipTime = PrefUtils.getLastStarWishesTipTime();
