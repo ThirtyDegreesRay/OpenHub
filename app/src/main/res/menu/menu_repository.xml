@@ -31,7 +31,7 @@
         android:id="@+id/action_copy_clone_url"
         android:title="@string/copy_clone_url"
         app:showAsAction="never"
-        android:visible="false"/>
+        android:visible="true"/>
     <item
         android:id="@+id/action_watch"
         android:title="@string/watch"
