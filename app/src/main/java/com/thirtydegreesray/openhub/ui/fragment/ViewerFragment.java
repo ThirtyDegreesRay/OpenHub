@@ -40,6 +40,8 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     @BindView(R.id.loader) ProgressBar loader;
 
     @AutoAccess boolean wrap = false;
+    //store scroll y percent, recover position when needed
+    @AutoAccess float scrollYPercent = 0;
 
     @NonNull
     public static ViewerFragment createForHtml(@NonNull String title, @NonNull String htmlSource) {
@@ -216,6 +218,11 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
             loader.setProgress(progress);
             if (progress == 100) {
                 loader.setVisibility(View.GONE);
+                //delay 300 mills, in case of content height unavailable
+                webView.postDelayed(() -> {
+                    int scrollY = (int) (webView.getContentHeight() * scrollYPercent);
+                    webView.scrollTo(0, scrollY);
+                }, 300);
             }
         }
     }
@@ -229,5 +236,12 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     public void scrollToTop() {
         super.scrollToTop();
         webView.scrollTo(0, 0);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        int scrollY = webView.getScrollY();
+        scrollYPercent = scrollY * 1.0f / webView.getContentHeight();
     }
 }
