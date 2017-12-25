@@ -178,5 +178,4 @@ public class IssueTimelineFragment extends ListFragment<IssueTimelinePresenter, 
         return mPresenter.getIssueUsersExceptMe();
     }
 
-
 }

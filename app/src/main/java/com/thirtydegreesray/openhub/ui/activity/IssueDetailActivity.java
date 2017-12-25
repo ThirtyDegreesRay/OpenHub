@@ -29,6 +29,8 @@ import com.thirtydegreesray.openhub.mvp.model.IssueEvent;
 import com.thirtydegreesray.openhub.mvp.presenter.IssueDetailPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.fragment.IssueTimelineFragment;
+import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
+import com.thirtydegreesray.openhub.ui.widget.ZoomAbleFloatingActionButton;
 import com.thirtydegreesray.openhub.util.AppOpener;
 import com.thirtydegreesray.openhub.util.AppUtils;
 import com.thirtydegreesray.openhub.util.BundleHelper;
@@ -41,7 +43,8 @@ import butterknife.OnClick;
  */
 
 public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
-        implements IIssueDetailContract.View {
+        implements IIssueDetailContract.View,
+        ListFragment.ListScrollListener{
 
     public static void show(@NonNull Activity activity, @NonNull View avatarView,
                             @NonNull View titleView, @NonNull Issue issue) {
@@ -85,7 +88,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
     @BindView(R.id.issue_title) TextView issueTitle;
     @BindView(R.id.issue_state_img) ImageView issueStateImg;
     @BindView(R.id.issue_state_text) TextView issueStateText;
-    @BindView(R.id.comment_bn) FloatingActionButton commentBn;
+    @BindView(R.id.comment_bn) ZoomAbleFloatingActionButton commentBn;
     @BindView(R.id.edit_bn) FloatingActionButton editBn;
     @BindView(R.id.loader) ProgressBar loader;
 
@@ -193,6 +196,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
                             .commitAllowingStateLoss();
                 }
             }, 500);
+            issueTimelineFragment.setListScrollListener(this);
         }
 
         String loggedUser = AppData.INSTANCE.getLoggedUser().getLogin();
@@ -284,4 +288,15 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         super.onToolbarDoubleClick();
         if (issueTimelineFragment != null) issueTimelineFragment.scrollToTop();
     }
+
+    @Override
+    public void onScrollUp() {
+        commentBn.zoomIn();
+    }
+
+    @Override
+    public void onScrollDown() {
+        commentBn.zoomOut();
+    }
+
 }

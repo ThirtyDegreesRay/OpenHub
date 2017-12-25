@@ -92,6 +92,7 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
         adapter.registerAdapterDataObserver(observer);
         recyclerView.setOnScrollListener(new ScrollListener());
         refreshLayout.setRefreshing(true);
+        initScrollListener();
     }
 
     private class ScrollListener extends RecyclerView.OnScrollListener{
@@ -231,6 +232,34 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
 
     protected void postNotifyDataSetChanged(){
         recyclerView.post(() -> adapter.notifyDataSetChanged());
+    }
+
+    private ListScrollListener mListScrollListener;
+
+    public void setListScrollListener(ListScrollListener listScrollListener){
+        mListScrollListener = listScrollListener;
+        initScrollListener();
+    }
+
+    private void initScrollListener(){
+        if(recyclerView == null || mListScrollListener == null) return;
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy > 0){
+                    mListScrollListener.onScrollUp();
+                } else {
+                    mListScrollListener.onScrollDown();
+                }
+            }
+        });
+    }
+
+    public interface ListScrollListener{
+        void onScrollUp();
+
+        void onScrollDown();
     }
 
 }

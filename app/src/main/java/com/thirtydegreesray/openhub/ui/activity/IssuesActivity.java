@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,10 +22,13 @@ import com.thirtydegreesray.openhub.mvp.presenter.IssuesActPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.ui.fragment.IssuesFragment;
+import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
+import com.thirtydegreesray.openhub.ui.widget.ZoomAbleFloatingActionButton;
 import com.thirtydegreesray.openhub.util.BundleHelper;
 import com.thirtydegreesray.openhub.util.ViewUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -35,7 +37,8 @@ import butterknife.OnClick;
  * Created by ThirtyDegreesRay on 2017/9/20 14:42:31
  */
 
-public class IssuesActivity extends PagerActivity<IssuesActPresenter> {
+public class IssuesActivity extends PagerActivity<IssuesActPresenter>
+    implements ListFragment.ListScrollListener{
 
     public static void showForRepo(@NonNull Activity activity, @NonNull String userId,
                                    @NonNull String repoName) {
@@ -64,7 +67,7 @@ public class IssuesActivity extends PagerActivity<IssuesActPresenter> {
     @AutoAccess String userId;
     @AutoAccess String repoName;
     @AutoAccess IssuesFilter.Type issuesType;
-    @BindView(R.id.add_issue_bn) FloatingActionButton addBn;
+    @BindView(R.id.add_issue_bn) ZoomAbleFloatingActionButton addBn;
 
     private ArrayList<IssuesListListener> listeners;
 
@@ -106,9 +109,11 @@ public class IssuesActivity extends PagerActivity<IssuesActPresenter> {
             pagerAdapter.setPagerList(FragmentPagerModel
                     .createUserIssuesPagerList(getActivity(), getFragments()));
         } else {
-            pagerAdapter.setPagerList(FragmentPagerModel
-                    .createRepoIssuesPagerList(getActivity(), userId, repoName, getFragments()));
+            List<FragmentPagerModel> fragmentPagerModels = FragmentPagerModel
+                    .createRepoIssuesPagerList(getActivity(), userId, repoName, getFragments());
+            pagerAdapter.setPagerList(fragmentPagerModels);
             navViewEnd.getMenu().findItem(R.id.nav_type_chooser).setVisible(false);
+            ((ListFragment)fragmentPagerModels.get(0).getFragment()).setListScrollListener(this);
         }
         listeners = new ArrayList<>();
         for (FragmentPagerModel pagerModel : pagerAdapter.getPagerList()) {
@@ -208,6 +213,16 @@ public class IssuesActivity extends PagerActivity<IssuesActPresenter> {
             default:
                 return IssuesFilter.UserIssuesFilterType.All;
         }
+    }
+
+    @Override
+    public void onScrollUp() {
+        addBn.zoomIn();
+    }
+
+    @Override
+    public void onScrollDown() {
+        addBn.zoomOut();
     }
 
     public interface IssuesListListener {
