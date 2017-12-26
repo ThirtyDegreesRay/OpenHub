@@ -42,8 +42,6 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-//            multiDexKeepProguard file('proguard-rules.pro')
-//            multiDexKeepFile file('multidex-config.txt')
         }
         debug {
             signingConfig signingConfigs.release
