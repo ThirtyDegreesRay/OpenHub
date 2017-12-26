@@ -133,3 +133,9 @@ blockquote {
 blockquote {
     margin: 0;
 }
+
+/* image */
+img {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
