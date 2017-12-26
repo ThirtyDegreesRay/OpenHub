@@ -11,6 +11,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -40,7 +41,7 @@ import es.dmoral.toasty.Toasty;
  */
 
 public abstract class BaseFragment<P extends IBaseContract.Presenter>
-        extends Fragment implements IBaseContract.View{
+        extends Fragment implements IBaseContract.View {
 
     private final String TAG = BaseFragment.class.getSimpleName();
 
@@ -52,8 +53,8 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     /**
      * fragment for viewpager
      */
-    private boolean isPagerFragment  = false;
-    private boolean isFragmentShowed  = false;
+    private boolean isPagerFragment = false;
+    private boolean isFragmentShowed = false;
 
     public BaseFragment() {
 
@@ -75,7 +76,7 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
         View fragmentView = inflater.inflate(getLayoutId(), container, false);
         unbinder = ButterKnife.bind(this, fragmentView);
         initFragment(savedInstanceState);
-        if(mPresenter != null) mPresenter.onViewInitialized();
+        if (mPresenter != null) mPresenter.onViewInitialized();
         return fragmentView;
     }
 
@@ -83,11 +84,11 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupFragmentComponent(getAppComponent());
-        if(mPresenter != null) mPresenter.attachView(this);
+        if (mPresenter != null) mPresenter.attachView(this);
         DataAutoAccess.getData(this, savedInstanceState);
         DataAutoAccess.getData(this, getArguments());
-        if(mPresenter != null) mPresenter.onRestoreInstanceState(getArguments());
-        if(mPresenter != null) mPresenter.onRestoreInstanceState(savedInstanceState);
+        if (mPresenter != null) mPresenter.onRestoreInstanceState(getArguments());
+        if (mPresenter != null) mPresenter.onRestoreInstanceState(savedInstanceState);
     }
 
     @Override
@@ -109,7 +110,7 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         DataAutoAccess.saveData(this, outState);
-        if(mPresenter != null) mPresenter.onSaveInstanceState(outState);
+        if (mPresenter != null) mPresenter.onSaveInstanceState(outState);
     }
 
     @Override
@@ -121,7 +122,7 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-        if(mPresenter != null) mPresenter.detachView();
+        if (mPresenter != null) mPresenter.detachView();
     }
 
     @Override
@@ -160,11 +161,11 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
         Glide.with(this).onLowMemory();
     }
 
-    public void onFragmentShowed(){
+    public void onFragmentShowed() {
         isFragmentShowed = true;
     }
 
-    public void onFragmentHided(){
+    public void onFragmentHided() {
         isFragmentShowed = false;
     }
 
@@ -172,7 +173,7 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
         return AppApplication.get();
     }
 
-    protected AppComponent getAppComponent(){
+    protected AppComponent getAppComponent() {
         return getAppApplication().getAppComponent();
     }
 
@@ -194,15 +195,15 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
 
     @Override
     public void dismissProgressDialog() {
-        if(mProgressDialog != null){
+        if (mProgressDialog != null) {
             mProgressDialog.dismiss();
-        }else{
+        } else {
             throw new NullPointerException("dismissProgressDialog: can't dismiss a null dialog, must showForRepo dialog first!");
         }
     }
 
     @Override
-    public ProgressDialog getProgressDialog(String content){
+    public ProgressDialog getProgressDialog(String content) {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(getActivity());
             mProgressDialog.setCancelable(false);
@@ -212,7 +213,7 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
     }
 
     @Override
-    public void showToast(String message){
+    public void showToast(String message) {
         Toasty.normal(getActivity(), message).show();
     }
 
@@ -290,7 +291,7 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
         startActivity(intent);
     }
 
-    public void scrollToTop(){
+    public void scrollToTop() {
 
     }
 
@@ -299,13 +300,14 @@ public abstract class BaseFragment<P extends IBaseContract.Presenter>
         return super.onOptionsItemSelected(item);
     }
 
-    protected final void showOperationTip(@StringRes int msgResId){
-        new AlertDialog.Builder(getActivity())
-                .setCancelable(false)
-                .setTitle(R.string.tips)
-                .setMessage(msgResId)
-                .setPositiveButton(R.string.ok, (dialog, which) -> dialog.dismiss())
-                .show();
+    protected final void showOperationTip(@StringRes int msgResId) {
+        if (getView() != null) {
+            Snackbar snackbar = Snackbar.make(getView(), msgResId, Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.ok, v -> {
+
+                    });
+            snackbar.show();
+        }
     }
 
 }
