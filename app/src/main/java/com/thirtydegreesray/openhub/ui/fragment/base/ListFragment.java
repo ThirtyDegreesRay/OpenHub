@@ -16,6 +16,7 @@ import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
+import com.thirtydegreesray.openhub.ui.adapter.base.CatchableLinearLayoutManager;
 import com.thirtydegreesray.openhub.util.NetHelper;
 import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.ViewUtils;
@@ -59,7 +60,7 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setColorSchemeColors(ViewUtils.getRefreshLayoutColors(getContext()));
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new CatchableLinearLayoutManager(getActivity()));
         adapter.setOnItemLongClickListener(this);
         adapter.setOnItemClickListener(this);
         recyclerView.setAdapter(adapter);
