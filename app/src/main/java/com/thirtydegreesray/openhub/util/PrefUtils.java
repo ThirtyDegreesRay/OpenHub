@@ -64,6 +64,7 @@ public class PrefUtils {
     public final static String ACTIVITY_LONG_CLICK_TIP_ABLE = "activityLongClickTipAble";
     public final static String RELEASES_LONG_CLICK_TIP_ABLE = "releasesLongClickTipAble";
     public final static String LANGUAGES_EDITOR_TIP_ABLE = "languagesEditorTipAble";
+    public final static String COLLECTIONS_TIP_ABLE = "collectionsTipAble";
 
     public final static String SEARCH_RECORDS = "searchRecords";
 
@@ -164,6 +165,10 @@ public class PrefUtils {
 
     public static boolean isFirstUse(){
         return getDefaultSp(AppApplication.get()).getBoolean(FIRST_USE, true);
+    }
+
+    public static boolean isCollectionsTipAble(){
+        return getDefaultSp(AppApplication.get()).getBoolean(COLLECTIONS_TIP_ABLE, true);
     }
 
 

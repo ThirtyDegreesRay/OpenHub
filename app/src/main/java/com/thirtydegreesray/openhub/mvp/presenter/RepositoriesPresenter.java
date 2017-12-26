@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 
 import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
+import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.common.Event;
 import com.thirtydegreesray.openhub.dao.BookMarkRepo;
 import com.thirtydegreesray.openhub.dao.BookMarkRepoDao;
@@ -17,23 +18,34 @@ import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.http.error.HttpPageNoFoundError;
 import com.thirtydegreesray.openhub.mvp.contract.IRepositoriesContract;
+import com.thirtydegreesray.openhub.mvp.model.Collection;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.SearchResult;
+import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.mvp.model.filter.RepositoriesFilter;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePagerPresenter;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import org.greenrobot.eventbus.Subscribe;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.nodes.TextNode;
+import org.jsoup.select.Elements;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import okhttp3.ResponseBody;
 import retrofit2.Response;
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created on 2017/7/18.
@@ -56,6 +68,8 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
     @AutoAccess RepositoriesFilter filter;
 
     @AutoAccess String language;
+
+    @AutoAccess Collection collection;
 
     @Inject
     public RepositoriesPresenter(DaoSession daoSession) {
@@ -84,6 +98,10 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
             loadBookmarks(1);
             return;
         }
+        if (RepositoriesFragment.RepositoriesType.COLLECTION.equals(type)) {
+            loadCollection(false);
+            return;
+        }
 //        if (repos != null) {
 //            mView.showRepositories(repos);
 //            mView.hideLoading();
@@ -109,6 +127,10 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         }
         if (RepositoriesFragment.RepositoriesType.BOOKMARK.equals(type)) {
             loadBookmarks(page);
+            return;
+        }
+        if (RepositoriesFragment.RepositoriesType.COLLECTION.equals(type)) {
+            loadCollection(isReLoad);
             return;
         }
         mView.showLoading();
@@ -289,4 +311,89 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
     public void setLanguage(String language) {
         this.language = language;
     }
+
+    private void loadCollection(boolean isReload){
+        mView.showLoading();
+        HttpObserver<ResponseBody> httpObserver = new HttpObserver<ResponseBody>() {
+            @Override
+            public void onError(Throwable error) {
+                mView.hideLoading();
+                mView.showLoadError(getErrorTip(error));
+            }
+
+            @Override
+            public void onSuccess(HttpResponse<ResponseBody> response) {
+                mView.hideLoading();
+                try {
+                    parsePageData(response.body().string());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    mView.showLoadError(getErrorTip(e));
+                }
+            }
+        };
+
+        generalRxHttpExecute(forceNetWork -> getGitHubWebPageService()
+                        .getCollectionInfo(forceNetWork, collection.getId()),
+                httpObserver, !isReload);
+
+    }
+
+    private void parsePageData(String page) {
+        Observable.just(page)
+                .map(s -> {
+                    ArrayList<Repository> repos = new ArrayList<>();
+                    Document doc = Jsoup.parse(s, AppConfig.GITHUB_BASE_URL);
+                    Elements elements = doc.getElementsByTag("article");
+                    for (Element element : elements) {
+                        try{
+                            String fullName = element.select("div > div > a").attr("href");
+                            String owner = fullName.substring(1, fullName.lastIndexOf("/"));
+                            String repoName = fullName.substring(fullName.lastIndexOf("/") + 1);
+                            String ownerAvatar = element.select("div > div > a > img").attr("src");
+
+                            Elements articleElements = element.getElementsByTag("div");
+                            Element descElement = articleElements.get(articleElements.size() - 2);
+                            StringBuilder desc = new StringBuilder("");
+                            for(TextNode textNode : descElement.textNodes()){
+                                desc.append(textNode.getWholeText());
+                            }
+
+                            Element numElement = articleElements.last();
+                            String starNumStr =  numElement.select("a").get(0).textNodes().get(1).toString();
+                            String forkNumStr =  numElement.select("a").get(1).textNodes().get(1).toString();
+                            String language = "";
+                            Elements languageElements = numElement.select("span > span");
+                            if(languageElements.size() > 0){
+                                language = numElement.select("span > span").get(1).textNodes().get(0).toString();
+                            }
+
+                            Repository repo = new Repository();
+                            repo.setFullName(fullName);
+                            repo.setName(repoName);
+                            User user = new User();
+                            user.setLogin(owner);
+                            user.setAvatarUrl(ownerAvatar);
+                            repo.setOwner(user);
+
+                            repo.setDescription(desc.toString());
+                            repo.setStargazersCount(Integer.parseInt(starNumStr.replaceAll(" ", "")));
+                            repo.setForksCount(Integer.parseInt(forkNumStr.replaceAll(" ", "")));
+                            repo.setLanguage(language);
+
+                            repos.add(repo);
+                        } catch (Exception e){
+
+                        }
+                    }
+                    return repos;
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(results -> {
+                    repos = results;
+                    mView.showRepositories(repos);
+                });
+    }
+
 }

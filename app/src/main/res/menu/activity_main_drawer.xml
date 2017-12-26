@@ -62,6 +62,10 @@
             android:title="@string/search"
             android:checkable="false"/>
         <item
+            android:id="@+id/nav_collections"
+            android:icon="@drawable/ic_collections"
+            android:title="@string/repo_collections"/>
+        <item
             android:id="@+id/nav_public_news"
             android:icon="@drawable/ic_global"
             android:title="@string/public_news"/>

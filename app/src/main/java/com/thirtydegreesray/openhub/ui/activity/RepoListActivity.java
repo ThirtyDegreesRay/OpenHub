@@ -10,12 +10,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
+import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
+import com.thirtydegreesray.openhub.mvp.model.Collection;
 import com.thirtydegreesray.openhub.mvp.model.filter.RepositoriesFilter;
 import com.thirtydegreesray.openhub.ui.activity.base.SingleFragmentActivity;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.base.OnDrawerSelectedListener;
+import com.thirtydegreesray.openhub.util.AppOpener;
 import com.thirtydegreesray.openhub.util.BundleHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
@@ -33,6 +36,15 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
         context.startActivity(intent);
     }
 
+    public static void showCollection(@NonNull Context context, @NonNull Collection collection){
+        Intent intent = new Intent(context, RepoListActivity.class);
+        intent.putExtras(BundleHelper.builder()
+                .put("type", RepositoriesFragment.RepositoriesType.COLLECTION)
+                .put("collection", collection)
+                .build());
+        context.startActivity(intent);
+    }
+
     public static void showForks(@NonNull Context context,
                             @NonNull String user, @NonNull String repo){
         Intent intent = new Intent(context, RepoListActivity.class);
@@ -47,6 +59,7 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
     @AutoAccess RepositoriesFragment.RepositoriesType type;
     @AutoAccess String user;
     @AutoAccess String repo;
+    @AutoAccess Collection collection;
 
     private OnDrawerSelectedListener listener;
 
@@ -57,6 +70,11 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_open_in_browser){
+            String collectionUrl = AppConfig.GITHUB_BASE_URL.concat("collections/").concat(collection.getId());
+            AppOpener.openInBrowser(getActivity(), collectionUrl);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -83,9 +101,15 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(isFilterEnable()) getMenuInflater().inflate(R.menu.menu_sort, menu);
+        if(isFilterEnable()){
+            getMenuInflater().inflate(R.menu.menu_sort, menu);
+        } else if(RepositoriesFragment.RepositoriesType.COLLECTION.equals(type)){
+            getMenuInflater().inflate(R.menu.menu_open_in_browser, menu);
+        }
         return true;
     }
+
+
 
     @Override
     protected void initActivity() {
@@ -104,10 +128,15 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
 
     @Override
     protected RepositoriesFragment createFragment() {
-        RepositoriesFragment fragment = RepositoriesFragment.RepositoriesType.FORKS.equals(type) ?
-                RepositoriesFragment.createForForks(user, repo) :
-                RepositoriesFragment.create(type, user);
-        listener = fragment;
+        RepositoriesFragment fragment;
+        if(RepositoriesFragment.RepositoriesType.COLLECTION.equals(type)){
+            fragment = RepositoriesFragment.createForCollection(collection);
+        } else {
+            fragment = RepositoriesFragment.RepositoriesType.FORKS.equals(type) ?
+                    RepositoriesFragment.createForForks(user, repo) :
+                    RepositoriesFragment.create(type, user);
+            listener = fragment;
+        }
         return fragment;
     }
 
@@ -118,6 +147,8 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
             return getString(R.string.starred_repositories);
         }else if(type.equals(RepositoriesFragment.RepositoriesType.FORKS)){
             return getString(R.string.forks);
+        }else if(type.equals(RepositoriesFragment.RepositoriesType.COLLECTION)){
+            return collection.getName();
         }
         return getString(R.string.repositories);
     }

@@ -151,7 +151,7 @@ public class IssueTimelineFragment extends ListFragment<IssueTimelinePresenter, 
                         dialog.dismiss();
                     }
                 })
-                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

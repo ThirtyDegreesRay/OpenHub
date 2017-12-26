@@ -109,6 +109,7 @@
     <string name="cancel">Cancel</string>
     <string name="close">Close</string>
     <string name="ok">OK</string>
+    <string name="confirm">OK</string>
     <string name="select_branch">Select branch or tag</string>
     <string name="share_to">Share to</string>
     <string name="no_share_clients">There are no share clients installed.</string>
@@ -410,5 +411,8 @@
     <string name="recent_wiki_updates">Recent Wiki Updates</string>
     <string name="no_recent_wiki_updates">No recent Wiki Updates</string>
 
+    <string name="repo_collections">Repo collections</string>
+    <string name="no_repo_collections">No repo collections</string>
+    <string name="collections_tip">Curated lists and insight into burgeoning industries, topics, and communities.</string>
 
 </resources>

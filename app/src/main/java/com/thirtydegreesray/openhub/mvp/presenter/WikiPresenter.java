@@ -1,9 +1,7 @@
 package com.thirtydegreesray.openhub.mvp.presenter;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
-import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.dao.DaoSession;
-import com.thirtydegreesray.openhub.http.RepoService;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
 import com.thirtydegreesray.openhub.mvp.contract.IWikiContract;
@@ -46,7 +44,7 @@ public class WikiPresenter extends BasePresenter<IWikiContract.View>
             @Override
             public void onError(Throwable error) {
                 mView.hideLoading();
-                if(error.getCause() != null && error.getCause() instanceof XmlPullParserException){
+                if (error.getCause() != null && error.getCause() instanceof XmlPullParserException) {
                     mView.showWiki(null);
                 } else {
                     mView.showLoadError(getErrorTip(error));
@@ -60,8 +58,8 @@ public class WikiPresenter extends BasePresenter<IWikiContract.View>
                 mView.showWiki(wikiList);
             }
         };
-        generalRxHttpExecute(forceNetWork -> getServices(RepoService.class, AppConfig.GITHUB_BASE_URL, false)
-                .getWiki(forceNetWork, owner, repo)
+        generalRxHttpExecute(forceNetWork -> getGitHubWebPageService()
+                        .getWiki(forceNetWork, owner, repo)
                 , httpObserver, !isReload);
 
     }

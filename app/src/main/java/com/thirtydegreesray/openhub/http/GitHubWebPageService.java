@@ -1,0 +1,38 @@
+package com.thirtydegreesray.openhub.http;
+
+import android.support.annotation.NonNull;
+
+import com.thirtydegreesray.openhub.mvp.model.WikiFeedModel;
+
+import okhttp3.ResponseBody;
+import retrofit2.Response;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Path;
+import rx.Observable;
+
+/**
+ * Created by ThirtyDegreesRay on 2017/12/25 15:30:56
+ */
+
+public interface GitHubWebPageService {
+
+    @NonNull @GET("{owner}/{repo}/wiki.atom")
+    Observable<Response<WikiFeedModel>> getWiki(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("owner") String owner,
+            @Path("repo") String repo
+    );
+
+    @NonNull @GET("collections")
+    Observable<Response<ResponseBody>> getCollections(
+            @Header("forceNetWork") boolean forceNetWork
+    );
+
+    @NonNull @GET("collections/{collectionId}")
+    Observable<Response<ResponseBody>> getCollectionInfo(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("collectionId") String collectionId
+    );
+
+}

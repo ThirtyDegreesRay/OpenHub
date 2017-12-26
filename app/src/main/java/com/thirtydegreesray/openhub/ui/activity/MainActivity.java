@@ -31,6 +31,7 @@ import com.thirtydegreesray.openhub.mvp.presenter.MainPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseDrawerActivity;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 import com.thirtydegreesray.openhub.ui.fragment.BookmarksFragment;
+import com.thirtydegreesray.openhub.ui.fragment.CollectionsFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.TraceFragment;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
@@ -78,6 +79,7 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
         TAG_MAP.put(R.id.nav_bookmarks, BookmarksFragment.class.getSimpleName());
         TAG_MAP.put(R.id.nav_trace, TraceFragment.class.getSimpleName());
         TAG_MAP.put(R.id.nav_public_news, ActivityFragment.ActivityType.PublicNews.name());
+        TAG_MAP.put(R.id.nav_collections, CollectionsFragment.class.getSimpleName());
         if (AppData.INSTANCE.getLoggedUser() != null)
             CrashReport.putUserData(getApplicationContext(),
                     "GitHubId", AppData.INSTANCE.getLoggedUser().getLogin());
@@ -175,6 +177,7 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
             case R.id.nav_bookmarks:
             case R.id.nav_trace:
             case R.id.nav_public_news:
+            case R.id.nav_collections:
                 updateTitle(id);
                 loadFragment(id);
                 updateFilter(id);
@@ -229,6 +232,9 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
             case R.id.nav_public_news:
                 setToolbarTitle(getString(R.string.public_news));
                 break;
+            case R.id.nav_collections:
+                setToolbarTitle(getString(R.string.repo_collections));
+                break;
             default:
                 setToolbarTitle(getString(R.string.app_name));
                 break;
@@ -275,6 +281,8 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
                 return BookmarksFragment.create();
             case R.id.nav_trace:
                 return TraceFragment.create();
+            case R.id.nav_collections:
+                return CollectionsFragment.create();
         }
         return null;
     }

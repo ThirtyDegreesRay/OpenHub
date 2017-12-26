@@ -82,11 +82,11 @@ public class NotificationsPresenter extends BasePagerPresenter<INotificationsCon
             @Override
             public Observable<Response<ArrayList<Notification>>> createObservable(boolean forceNetWork) {
                 if (NotificationsFragment.NotificationsType.Unread.equals(type)) {
-                    return getNOtificationsService().getMyNotifications(forceNetWork, false, false);
+                    return getNotificationsService().getMyNotifications(forceNetWork, false, false);
                 } else if (NotificationsFragment.NotificationsType.Participating.equals(type)) {
-                    return getNOtificationsService().getMyNotifications(forceNetWork, true, true);
+                    return getNotificationsService().getMyNotifications(forceNetWork, true, true);
                 } else if (NotificationsFragment.NotificationsType.All.equals(type)) {
-                    return getNOtificationsService().getMyNotifications(forceNetWork, true, false);
+                    return getNotificationsService().getMyNotifications(forceNetWork, true, false);
                 } else {
                     return null;
                 }
@@ -97,7 +97,7 @@ public class NotificationsPresenter extends BasePagerPresenter<INotificationsCon
 
     @Override
     public void markNotificationAsRead(String threadId) {
-        generalRxHttpExecute(getNOtificationsService().markNotificationAsRead(threadId), null);
+        generalRxHttpExecute(getNotificationsService().markNotificationAsRead(threadId), null);
     }
 
     private ArrayList<DoubleTypesModel<Repository, Notification>> sortNotifications(

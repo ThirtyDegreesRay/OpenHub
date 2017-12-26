@@ -16,6 +16,7 @@ import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerFragmentComponent;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.mvp.contract.IRepositoriesContract;
+import com.thirtydegreesray.openhub.mvp.model.Collection;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.filter.RepositoriesFilter;
@@ -40,7 +41,7 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
         TrendingActivity.LanguageUpdateListener{
 
     public enum RepositoriesType{
-        OWNED, PUBLIC, STARRED, TRENDING, SEARCH, FORKS, TRACE, BOOKMARK
+        OWNED, PUBLIC, STARRED, TRENDING, SEARCH, FORKS, TRACE, BOOKMARK, COLLECTION
     }
 
     public static RepositoriesFragment create(@NonNull RepositoriesType type,
@@ -48,6 +49,15 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
         RepositoriesFragment fragment = new RepositoriesFragment();
         fragment.setArguments(BundleHelper.builder().put("type", type)
                 .put("user", user).build());
+        return fragment;
+    }
+
+    public static RepositoriesFragment createForCollection(@NonNull Collection collection){
+        RepositoriesFragment fragment = new RepositoriesFragment();
+        fragment.setArguments(BundleHelper.builder()
+                .put("type", RepositoriesType.COLLECTION)
+                .put("collection", collection)
+                .build());
         return fragment;
     }
 
@@ -124,7 +134,7 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     @Override
     protected void initFragment(Bundle savedInstanceState){
         super.initFragment(savedInstanceState);
-        setLoadMoreEnable(true);
+        setLoadMoreEnable(!RepositoriesType.COLLECTION.equals(mPresenter.getType()));
     }
 
     @Override
@@ -142,7 +152,8 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
         super.onItemClick(position, view);
         if(RepositoriesType.TRENDING.equals(mPresenter.getType())
                 || RepositoriesType.TRACE.equals(mPresenter.getType())
-                || RepositoriesType.BOOKMARK.equals(mPresenter.getType())){
+                || RepositoriesType.BOOKMARK.equals(mPresenter.getType())
+                || RepositoriesType.COLLECTION.equals(mPresenter.getType())){
             RepositoryActivity.show(getActivity(), adapter.getData().get(position).getOwner().getLogin(),
                     adapter.getData().get(position).getName());
         } else {

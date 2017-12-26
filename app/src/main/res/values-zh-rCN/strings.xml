@@ -49,7 +49,8 @@
     <string name="success_copied">已复制</string>
     <string name="warning_dialog_tile">警告</string>
     <string name="cancel">取消</string>
-    <string name="ok">确认</string>
+    <string name="ok">好的</string>
+    <string name="confirm">确认</string>
     <string name="select_branch">选择分支或标签</string>
     <string name="share_to">未安装邮件客户端</string>
     <string name="url_invalid">链接不可用</string>
@@ -321,5 +322,8 @@
     <string name="public_news">全球动态</string>
     <string name="recent_wiki_updates">Wiki最近更新</string>
     <string name="no_recent_wiki_updates">Wiki最近无更新</string>
+    <string name="repo_collections">版本库集合</string>
+    <string name="no_repo_collections">没有版本库集合</string>
+    <string name="collections_tip">策划清单和洞察新兴产业、主题和社区。</string>
 
 </resources>
