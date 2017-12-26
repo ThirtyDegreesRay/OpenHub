@@ -147,7 +147,9 @@ class HtmlHelper {
         Matcher linksMatcher = LINK_PATTERN.matcher(source);
         while (linksMatcher.find()) {
             String oriUrl = linksMatcher.group(1);
-            if (oriUrl.contains("http://") || oriUrl.contains("https://")) {
+            if (oriUrl.contains("http://") || oriUrl.contains("https://")
+                    || oriUrl.startsWith("#") //filter markdown inner link
+                    ) {
                 continue;
             }
 
