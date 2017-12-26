@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppConfig;
+import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.Event;
 import com.thirtydegreesray.openhub.dao.BookMarkRepo;
 import com.thirtydegreesray.openhub.dao.BookMarkRepoDao;
@@ -327,8 +328,6 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
                     parsePageData(response.body().string());
                 } catch (IOException e) {
                     e.printStackTrace();
-                    mView.showLoadError(getErrorTip(e));
-                    mView.hideLoading();
                 }
             }
         };
@@ -339,62 +338,77 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
 
     }
 
-    private void parsePageData(String page) {
+    private void parsePageData(String page){
         Observable.just(page)
                 .map(s -> {
                     ArrayList<Repository> repos = new ArrayList<>();
-                    Document doc = Jsoup.parse(s, AppConfig.GITHUB_BASE_URL);
-                    Elements elements = doc.getElementsByTag("article");
-                    for (Element element : elements) {
-                        try{
-                            String fullName = element.select("div > div > a").attr("href");
-                            String owner = fullName.substring(1, fullName.lastIndexOf("/"));
-                            String repoName = fullName.substring(fullName.lastIndexOf("/") + 1);
-                            String ownerAvatar = element.select("div > div > a > img").attr("src");
-
-                            Elements articleElements = element.getElementsByTag("div");
-                            Element descElement = articleElements.get(articleElements.size() - 2);
-                            StringBuilder desc = new StringBuilder("");
-                            for(TextNode textNode : descElement.textNodes()){
-                                desc.append(textNode.getWholeText());
+                    try {
+                        Document doc = Jsoup.parse(s, AppConfig.GITHUB_BASE_URL);
+                        Elements elements = doc.getElementsByTag("article");
+                        for (Element element : elements) {
+                            //maybe a user or an org, so add catch
+                            try{
+                                repos.add(parseRepositoryData(element));
+                            } catch (Exception e){
+                                e.printStackTrace();
                             }
-
-                            Element numElement = articleElements.last();
-                            String starNumStr =  numElement.select("a").get(0).textNodes().get(1).toString();
-                            String forkNumStr =  numElement.select("a").get(1).textNodes().get(1).toString();
-                            String language = "";
-                            Elements languageElements = numElement.select("span > span");
-                            if(languageElements.size() > 0){
-                                language = numElement.select("span > span").get(1).textNodes().get(0).toString();
-                            }
-
-                            Repository repo = new Repository();
-                            repo.setFullName(fullName);
-                            repo.setName(repoName);
-                            User user = new User();
-                            user.setLogin(owner);
-                            user.setAvatarUrl(ownerAvatar);
-                            repo.setOwner(user);
-
-                            repo.setDescription(desc.toString());
-                            repo.setStargazersCount(Integer.parseInt(starNumStr.replaceAll(" ", "")));
-                            repo.setForksCount(Integer.parseInt(forkNumStr.replaceAll(" ", "")));
-                            repo.setLanguage(language);
-
-                            repos.add(repo);
-                        } catch (Exception e){
-                            e.printStackTrace();
                         }
+                    } catch (Exception e){
+                        e.printStackTrace();
                     }
+
                     return repos;
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(results -> {
-                    repos = results;
-                    mView.hideLoading();
-                    mView.showRepositories(repos);
+                    if(results.size() != 0){
+                        repos = results;
+                        mView.hideLoading();
+                        mView.showRepositories(repos);
+                    } else {
+                        mView.showLoadError(getString(R.string.collections_page_parse_error));
+                        mView.hideLoading();
+                    }
                 });
+    }
+
+    private Repository parseRepositoryData(Element element) throws Exception{
+        String fullName = element.select("div > div > a").attr("href");
+        String owner = fullName.substring(1, fullName.lastIndexOf("/"));
+        String repoName = fullName.substring(fullName.lastIndexOf("/") + 1);
+        String ownerAvatar = element.select("div > div > a > img").attr("src");
+
+        Elements articleElements = element.getElementsByTag("div");
+        Element descElement = articleElements.get(articleElements.size() - 2);
+        StringBuilder desc = new StringBuilder("");
+        for(TextNode textNode : descElement.textNodes()){
+            desc.append(textNode.getWholeText());
+        }
+
+        Element numElement = articleElements.last();
+        String starNumStr =  numElement.select("a").get(0).textNodes().get(1).toString();
+        String forkNumStr =  numElement.select("a").get(1).textNodes().get(1).toString();
+        String language = "";
+        Elements languageElements = numElement.select("span > span");
+        if(languageElements.size() > 0){
+            language = numElement.select("span > span").get(1).textNodes().get(0).toString();
+        }
+
+        Repository repo = new Repository();
+        repo.setFullName(fullName);
+        repo.setName(repoName);
+        User user = new User();
+        user.setLogin(owner);
+        user.setAvatarUrl(ownerAvatar);
+        repo.setOwner(user);
+
+        repo.setDescription(desc.toString());
+        repo.setStargazersCount(Integer.parseInt(starNumStr.replaceAll(" ", "")));
+        repo.setForksCount(Integer.parseInt(forkNumStr.replaceAll(" ", "")));
+        repo.setLanguage(language);
+
+        return repo;
     }
 
 }

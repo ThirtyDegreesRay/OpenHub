@@ -1,6 +1,7 @@
 package com.thirtydegreesray.openhub.mvp.presenter;
 
 import com.thirtydegreesray.openhub.AppConfig;
+import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
@@ -59,8 +60,6 @@ public class CollectionsPresenter extends BasePresenter<ICollectionsContract.Vie
                     parsePageData(response.body().string());
                 } catch (IOException e) {
                     e.printStackTrace();
-                    mView.showLoadError(getErrorTip(e));
-                    mView.hideLoading();
                 }
             }
         };
@@ -74,27 +73,36 @@ public class CollectionsPresenter extends BasePresenter<ICollectionsContract.Vie
         Observable.just(page)
                 .map(s -> {
                     ArrayList<Collection> collections = new ArrayList<>();
-                    Document doc = Jsoup.parse(s, AppConfig.GITHUB_BASE_URL);
-                    Elements elements = doc.getElementsByClass(
-                            "d-flex border-bottom border-gray-light pb-4 mb-5");
-                    for (Element element : elements) {
-                        Element titleElement = element.select("div > h2 > a").first();
-                        Element descElement = element.select("div > p").first();
-                        String id = titleElement.attr("href");
-                        id = id.substring(id.lastIndexOf("/") + 1);
-                        String title = titleElement.textNodes().get(0).toString();
-                        String desc = descElement.textNodes().get(0).toString();
-                        Collection collection = new Collection(id, title, desc);
-                        collections.add(collection);
+                    try {
+                        Document doc = Jsoup.parse(s, AppConfig.GITHUB_BASE_URL);
+                        Elements elements = doc.getElementsByClass(
+                                "d-flex border-bottom border-gray-light pb-4 mb-5");
+                        for (Element element : elements) {
+                            Element titleElement = element.select("div > h2 > a").first();
+                            Element descElement = element.select("div > p").first();
+                            String id = titleElement.attr("href");
+                            id = id.substring(id.lastIndexOf("/") + 1);
+                            String title = titleElement.textNodes().get(0).toString();
+                            String desc = descElement.textNodes().get(0).toString();
+                            Collection collection = new Collection(id, title, desc);
+                            collections.add(collection);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                     return collections;
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(results -> {
-                    collections = results;
-                    mView.hideLoading();
-                    mView.showCollections(collections);
+                    if(results.size() != 0){
+                        collections = results;
+                        mView.hideLoading();
+                        mView.showCollections(collections);
+                    } else {
+                        mView.showLoadError(getString(R.string.collections_page_parse_error));
+                        mView.hideLoading();
+                    }
                 });
     }
 

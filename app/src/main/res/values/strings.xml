@@ -414,5 +414,9 @@
     <string name="repo_collections">Repo collections</string>
     <string name="no_repo_collections">No repo collections</string>
     <string name="collections_tip">Curated lists and insight into burgeoning industries, topics, and communities.</string>
+    <string name="collections_page_parse_error">
+        Repository collections page parse error, this page may be changed by github,
+        please concat me to solve the problem!
+    </string>
 
 </resources>

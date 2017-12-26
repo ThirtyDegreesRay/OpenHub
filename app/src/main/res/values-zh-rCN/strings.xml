@@ -325,5 +325,8 @@
     <string name="repo_collections">版本库集合</string>
     <string name="no_repo_collections">没有版本库集合</string>
     <string name="collections_tip">策划清单和洞察新兴产业、主题和社区。</string>
+    <string name="collections_page_parse_error">
+        版本库集合页面解析错误，这个页面可能被github修改了，请联系我来解决这个问题！
+    </string>
 
 </resources>
