@@ -1,6 +1,3 @@
-
-
-
 /**
  * Created by ThirtyDegreesRay on 2017/10/30 15:00:00
  */
@@ -118,4 +115,21 @@ table {
 li {
     display: list-item;
     text-align: -webkit-match-parent;
+}
+
+/* blockquote */
+.markdown-body blockquote {
+    padding: 0 1em;
+    color: #9e9e9e;
+    border-left: 0.25em solid #343434;
+}
+
+blockquote {
+    padding: 0 1em;
+    color: #9e9e9e;
+    border-left: 0.25em solid #343434;
+}
+
+blockquote {
+    margin: 0;
 }
