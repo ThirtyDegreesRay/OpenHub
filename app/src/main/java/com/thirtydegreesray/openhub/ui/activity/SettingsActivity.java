@@ -90,6 +90,12 @@ public class SettingsActivity extends SingleFragmentActivity<SettingsPresenter, 
 
     @Override
     public void onLogout() {
+        /*
+         * if set RESULT_OK, then called finishAffinity(), will caused crash:
+         *      IllegalStateException Can not be called to deliver a result
+         * set RESULT_CANCELED can solve the problem
+         */
+        setResult(Activity.RESULT_CANCELED);
         mPresenter.logout();
     }
 
