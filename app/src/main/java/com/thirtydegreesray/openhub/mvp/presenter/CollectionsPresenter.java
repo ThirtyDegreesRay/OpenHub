@@ -55,12 +55,12 @@ public class CollectionsPresenter extends BasePresenter<ICollectionsContract.Vie
 
             @Override
             public void onSuccess(HttpResponse<ResponseBody> response) {
-                mView.hideLoading();
                 try {
                     parsePageData(response.body().string());
                 } catch (IOException e) {
                     e.printStackTrace();
                     mView.showLoadError(getErrorTip(e));
+                    mView.hideLoading();
                 }
             }
         };
@@ -93,6 +93,7 @@ public class CollectionsPresenter extends BasePresenter<ICollectionsContract.Vie
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(results -> {
                     collections = results;
+                    mView.hideLoading();
                     mView.showCollections(collections);
                 });
     }

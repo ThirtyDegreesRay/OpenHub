@@ -323,12 +323,12 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
 
             @Override
             public void onSuccess(HttpResponse<ResponseBody> response) {
-                mView.hideLoading();
                 try {
                     parsePageData(response.body().string());
                 } catch (IOException e) {
                     e.printStackTrace();
                     mView.showLoadError(getErrorTip(e));
+                    mView.hideLoading();
                 }
             }
         };
@@ -383,7 +383,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
 
                             repos.add(repo);
                         } catch (Exception e){
-
+                            e.printStackTrace();
                         }
                     }
                     return repos;
@@ -392,6 +392,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(results -> {
                     repos = results;
+                    mView.hideLoading();
                     mView.showRepositories(repos);
                 });
     }
