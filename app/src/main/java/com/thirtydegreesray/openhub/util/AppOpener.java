@@ -43,6 +43,10 @@ public class AppOpener {
             Toasty.warning(context, context.getString(R.string.invalid_url), Toast.LENGTH_LONG).show();
             return;
         }
+        //check http prefix
+        if(!url.contains("//")){
+            url = "http://".concat(url);
+        }
         Uri uri = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri).addCategory(Intent.CATEGORY_BROWSABLE);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
