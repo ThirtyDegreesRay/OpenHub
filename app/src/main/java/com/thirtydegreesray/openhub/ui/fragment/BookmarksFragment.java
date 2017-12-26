@@ -18,6 +18,7 @@ import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.adapter.BookmarksAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.ItemTouchHelperCallback;
 import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 
 import java.util.ArrayList;
 
@@ -92,6 +93,11 @@ public class BookmarksFragment extends ListFragment<BookmarkPresenter, Bookmarks
     public void showBookmarks(ArrayList<BookmarkExt> bookmarks) {
         adapter.setData(bookmarks);
         postNotifyDataSetChanged();
+
+        if(bookmarks != null && bookmarks.size() > 0 && PrefUtils.isBookmarksTipAble()){
+            showOperationTip(R.string.bookmarks_tip);
+            PrefUtils.set(PrefUtils.BOOKMARKS_TIP_ABLE, false);
+        }
     }
 
     @Override

@@ -419,4 +419,6 @@
         please concat me to solve the problem!
     </string>
 
+    <string name="bookmarks_tip">You can swipe left or right to remove bookmark.</string>
+
 </resources>

@@ -328,5 +328,6 @@
     <string name="collections_page_parse_error">
         版本库集合页面解析错误，这个页面可能被github修改了，请联系我来解决这个问题！
     </string>
+    <string name="bookmarks_tip">你可以向左或向右滑动来删除书签。</string>
 
 </resources>
