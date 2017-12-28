@@ -21,7 +21,7 @@ public class NetBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, @NonNull Intent intent) {
         String action = intent.getAction();
-        if (action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
+        if (ConnectivityManager.CONNECTIVITY_ACTION.equals(action)) {
             int preNetStatus = NetHelper.INSTANCE.getNetStatus();
             NetHelper.INSTANCE.checkNet();
             int curNetStatus = NetHelper.INSTANCE.getNetStatus();

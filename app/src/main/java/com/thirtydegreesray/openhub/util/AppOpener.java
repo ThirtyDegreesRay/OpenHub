@@ -1,9 +1,8 @@
-
-
 package com.thirtydegreesray.openhub.util;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +18,8 @@ import android.widget.Toast;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.http.Downloader;
 import com.thirtydegreesray.openhub.mvp.model.GitHubName;
+import com.thirtydegreesray.openhub.service.CopyBroadcastReceiver;
+import com.thirtydegreesray.openhub.service.ShareBroadcastReceiver;
 import com.thirtydegreesray.openhub.ui.activity.CommitDetailActivity;
 import com.thirtydegreesray.openhub.ui.activity.IssueDetailActivity;
 import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
@@ -52,10 +53,19 @@ public class AppOpener {
 
         String customTabsPackageName = CustomTabsHelper.INSTANCE.getBestPackageName(context);
         if (customTabsPackageName != null) {
-            Bitmap bitmap = ViewUtils.getBitmapFromResource(context, R.drawable.ic_arrow_back_title);
+            Bitmap backIconBitmap = ViewUtils.getBitmapFromResource(context, R.drawable.ic_arrow_back_title);
+            Intent shareIntent = new Intent(context.getApplicationContext(), ShareBroadcastReceiver.class);
+            PendingIntent sharePendingIntent = PendingIntent.getBroadcast(
+                    context.getApplicationContext(), 0, shareIntent, 0);
+            Intent copyIntent = new Intent(context.getApplicationContext(), CopyBroadcastReceiver.class);
+            PendingIntent copyPendingIntent = PendingIntent.getBroadcast(
+                    context.getApplicationContext(), 0, copyIntent, 0);
+
             CustomTabsIntent customTabsIntent = new CustomTabsIntent.Builder()
                     .setToolbarColor(ViewUtils.getPrimaryColor(context))
-                    .setCloseButtonIcon(bitmap)
+                    .setCloseButtonIcon(backIconBitmap)
+                    .addMenuItem(context.getString(R.string.share), sharePendingIntent)
+                    .addMenuItem(context.getString(R.string.copy_url), copyPendingIntent)
 //                    .setStartAnimations(context, R.anim.slide_in_right, R.anim.slide_out_left)
 //                    .setExitAnimations(context, android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                     .build();

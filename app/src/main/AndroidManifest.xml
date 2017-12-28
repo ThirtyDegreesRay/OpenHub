@@ -30,6 +30,8 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
             </intent-filter>
         </receiver>
+        <receiver android:name=".service.ShareBroadcastReceiver"/>
+        <receiver android:name=".service.CopyBroadcastReceiver"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
