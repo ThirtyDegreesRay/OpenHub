@@ -147,7 +147,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
                 supportFinishAfterTransition();
                 return true;
             case R.id.action_open_in_browser:
-                AppOpener.openInBrowser(getActivity(), mPresenter.getIssue().getHtmlUrl());
+                AppOpener.openInCustomTabsOrBrowser(getActivity(), mPresenter.getIssue().getHtmlUrl());
                 return true;
             case R.id.action_share:
                 AppOpener.shareText(getActivity(), mPresenter.getIssue().getHtmlUrl());

@@ -195,7 +195,7 @@ public class CommitDetailActivity extends BaseActivity<CommitDetailPresenter>
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_open_in_browser:
-                AppOpener.openInBrowser(getActivity(), mPresenter.getCommit().getHtmlUrl());
+                AppOpener.openInCustomTabsOrBrowser(getActivity(), mPresenter.getCommit().getHtmlUrl());
                 return true;
             case R.id.action_share:
                 AppOpener.shareText(getActivity(), mPresenter.getCommit().getHtmlUrl());

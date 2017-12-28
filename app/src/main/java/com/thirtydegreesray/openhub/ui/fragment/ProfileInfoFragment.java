@@ -122,7 +122,7 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
                 AppOpener.launchEmail(getActivity(), mPresenter.getUser().getEmail());
                 break;
             case R.id.link:
-                AppOpener.openInBrowser(getActivity(), mPresenter.getUser().getBlog());
+                AppOpener.openInCustomTabsOrBrowser(getActivity(), mPresenter.getUser().getBlog());
                 break;
             case R.id.members_lay:
                 UserListActivity.show(getActivity(), UserListFragment.UserListType.ORG_MEMBERS,

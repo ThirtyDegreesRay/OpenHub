@@ -139,7 +139,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
 
     @OnClick(R.id.oauth_login_bn)
     public void onOauthLoginClick(){
-        AppOpener.openInBrowser(getActivity(), mPresenter.getOAuth2Url());
+        AppOpener.openInCustomTabsOrBrowser(getActivity(), mPresenter.getOAuth2Url());
     }
 
     @OnClick(R.id.login_bn)

@@ -72,7 +72,7 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.action_open_in_browser){
             String collectionUrl = AppConfig.GITHUB_BASE_URL.concat("collections/").concat(collection.getId());
-            AppOpener.openInBrowser(getActivity(), collectionUrl);
+            AppOpener.openInCustomTabsOrBrowser(getActivity(), collectionUrl);
             return true;
         }
         return super.onOptionsItemSelected(item);

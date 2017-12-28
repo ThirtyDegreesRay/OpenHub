@@ -106,6 +106,7 @@ dependencies {
     compile "com.android.support:support-vector-drawable:${ANDROID_SUPPORT_VERSION}"
     compile "com.android.support:preference-v7:${ANDROID_SUPPORT_VERSION}"
     compile "com.android.support:preference-v14:${ANDROID_SUPPORT_VERSION}"
+    compile "com.android.support:customtabs:${ANDROID_SUPPORT_VERSION}"
 
     compile "com.android.support.constraint:constraint-layout:${CONSTRAINT_VERSION}"
 //    compile "com.android.support:multidex:${MULTIDEX_VERSION}"

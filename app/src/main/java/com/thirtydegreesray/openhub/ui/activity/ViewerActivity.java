@@ -160,7 +160,7 @@ public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Present
         if(!StringUtils.isBlank(htmlUrl)){
             switch (item.getItemId()) {
                 case R.id.action_open_in_browser:
-                    AppOpener.openInBrowser(getActivity(), htmlUrl);
+                    AppOpener.openInCustomTabsOrBrowser(getActivity(), htmlUrl);
                     return true;
                 case R.id.action_share:
                     AppOpener.shareText(getActivity(), htmlUrl);

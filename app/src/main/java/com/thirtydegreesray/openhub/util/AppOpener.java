@@ -10,8 +10,10 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.customtabs.CustomTabsIntent;
 import android.widget.Toast;
 
 import com.thirtydegreesray.openhub.R;
@@ -38,7 +40,7 @@ import es.dmoral.toasty.Toasty;
 
 public class AppOpener {
 
-    public static void openInBrowser(@NonNull Context context, @NonNull String url){
+    public static void openInCustomTabsOrBrowser(@NonNull Context context, @NonNull String url){
         if(StringUtils.isBlank(url)){
             Toasty.warning(context, context.getString(R.string.invalid_url), Toast.LENGTH_LONG).show();
             return;
@@ -47,6 +49,25 @@ public class AppOpener {
         if(!url.contains("//")){
             url = "http://".concat(url);
         }
+
+        String customTabsPackageName = CustomTabsHelper.INSTANCE.getBestPackageName(context);
+        if (customTabsPackageName != null) {
+            Bitmap bitmap = ViewUtils.getBitmapFromResource(context, R.drawable.ic_arrow_back_title);
+            CustomTabsIntent customTabsIntent = new CustomTabsIntent.Builder()
+                    .setToolbarColor(ViewUtils.getPrimaryColor(context))
+                    .setCloseButtonIcon(bitmap)
+//                    .setStartAnimations(context, R.anim.slide_in_right, R.anim.slide_out_left)
+//                    .setExitAnimations(context, android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                    .build();
+            customTabsIntent.intent.setPackage(customTabsPackageName);
+            customTabsIntent.launchUrl(context, Uri.parse(url));
+        } else {
+            openInBrowser(context,url);
+        }
+
+    }
+
+    public static void openInBrowser(@NonNull Context context, @NonNull String url){
         Uri uri = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri).addCategory(Intent.CATEGORY_BROWSABLE);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -129,7 +150,7 @@ public class AppOpener {
         String userName ;
         String repoName ;
         if(gitHubName == null){
-            openInBrowser(context, uri.toString());
+            openInCustomTabsOrBrowser(context, uri.toString());
             return;
         } else {
             userName = gitHubName.getUserName();
@@ -149,7 +170,7 @@ public class AppOpener {
         } else if (GitHubHelper.isCommitUrl(url)) {
             CommitDetailActivity.show((Activity) context, url);
         } else {
-            openInBrowser(context, url);
+            openInCustomTabsOrBrowser(context, url);
         }
     }
 

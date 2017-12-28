@@ -148,7 +148,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
                 AppOpener.shareText(getActivity(), mPresenter.getRepository().getHtmlUrl());
                 return true;
             case R.id.action_open_in_browser:
-                AppOpener.openInBrowser(getActivity(), mPresenter.getRepository().getHtmlUrl());
+                AppOpener.openInCustomTabsOrBrowser(getActivity(), mPresenter.getRepository().getHtmlUrl());
                 return true;
             case R.id.action_copy_url:
                 AppUtils.copyToClipboard(getActivity(), mPresenter.getRepository().getHtmlUrl());

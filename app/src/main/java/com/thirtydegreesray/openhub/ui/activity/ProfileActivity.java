@@ -149,7 +149,7 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
                 AppOpener.shareText(getActivity(), mPresenter.getUser().getHtmlUrl());
                 break;
             case R.id.action_open_in_browser:
-                AppOpener.openInBrowser(getActivity(), mPresenter.getUser().getHtmlUrl());
+                AppOpener.openInCustomTabsOrBrowser(getActivity(), mPresenter.getUser().getHtmlUrl());
                 break;
             case R.id.action_copy_url:
                 AppUtils.copyToClipboard(getActivity(), mPresenter.getUser().getHtmlUrl());
