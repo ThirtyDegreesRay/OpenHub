@@ -39,27 +39,28 @@
             android:icon="@drawable/ic_menu_star"
             android:title="@string/starred_repos"/>
         <item
-            android:id="@+id/nav_trending"
-            android:icon="@drawable/ic_menu_trending"
-            android:title="@string/trending_repos"
-            android:checkable="false"/>
+            android:id="@+id/nav_bookmarks"
+            android:icon="@drawable/ic_bookmark"
+            android:title="@string/bookmarks"/>
+
     </group>
 
     <group
         android:id="@+id/search"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_bookmarks"
-            android:icon="@drawable/ic_bookmark"
-            android:title="@string/bookmarks"/>
+            android:id="@+id/nav_search"
+            android:icon="@drawable/ic_search_title"
+            android:title="@string/search"
+            android:checkable="false"/>
         <item
             android:id="@+id/nav_trace"
             android:icon="@drawable/ic_menu_trace"
             android:title="@string/trace"/>
         <item
-            android:id="@+id/nav_search"
-            android:icon="@drawable/ic_search_title"
-            android:title="@string/search"
+            android:id="@+id/nav_trending"
+            android:icon="@drawable/ic_menu_trending"
+            android:title="@string/trending_repos"
             android:checkable="false"/>
         <item
             android:id="@+id/nav_collections"
