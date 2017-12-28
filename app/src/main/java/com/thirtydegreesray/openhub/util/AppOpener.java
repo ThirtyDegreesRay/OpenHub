@@ -51,8 +51,9 @@ public class AppOpener {
             url = "http://".concat(url);
         }
 
-        String customTabsPackageName = CustomTabsHelper.INSTANCE.getBestPackageName(context);
-        if (customTabsPackageName != null) {
+        String customTabsPackageName ;
+        if (PrefUtils.isCustomTabsEnable() &&
+                (customTabsPackageName = CustomTabsHelper.INSTANCE.getBestPackageName(context) ) != null) {
             Bitmap backIconBitmap = ViewUtils.getBitmapFromResource(context, R.drawable.ic_arrow_back_title);
             Intent shareIntent = new Intent(context.getApplicationContext(), ShareBroadcastReceiver.class);
             PendingIntent sharePendingIntent = PendingIntent.getBroadcast(
@@ -71,6 +72,12 @@ public class AppOpener {
                     .build();
             customTabsIntent.intent.setPackage(customTabsPackageName);
             customTabsIntent.launchUrl(context, Uri.parse(url));
+
+            if(PrefUtils.isCustomTabsTipsEnable()){
+                Toasty.info(context, context.getString(R.string.use_custom_tabs_tips), Toast.LENGTH_LONG).show();
+                PrefUtils.set(PrefUtils.CUSTOM_TABS_TIPS_ENABLE, false);
+            }
+
         } else {
             openInBrowser(context,url);
         }

@@ -329,5 +329,8 @@
         版本库集合页面解析错误，这个页面可能被github修改了，请联系我来解决这个问题！
     </string>
     <string name="bookmarks_tip">你可以向左或向右滑动来删除书签。</string>
+    <string name="use_custom_tabs">使用自定义标签</string>
+    <string name="custom_tabs_desc">使用自定义标签来代替在外部浏览器中打开。</string>
+    <string name="use_custom_tabs_tips">如果您想直接在外部浏览器中打开，您可以在设置改变。</string>
 
 </resources>

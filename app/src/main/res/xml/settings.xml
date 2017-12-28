@@ -26,8 +26,15 @@
         android:key="systemDownloader"
         android:defaultValue="true"/>
 
+    <SwitchPreference
+        android:icon="@drawable/ic_open_in_browser"
+        android:title="@string/use_custom_tabs"
+        android:summary="@string/custom_tabs_desc"
+        android:key="customTabsEnable"
+        android:defaultValue="true"/>
+
     <Preference
-        android:icon="@drawable/ic_global"
+        android:icon="@drawable/ic_language"
         android:title="@string/language"
         android:key="language"/>
 

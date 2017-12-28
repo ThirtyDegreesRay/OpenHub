@@ -52,6 +52,8 @@ public class PrefUtils {
     public final static String LANGUAGE = "language";
     public final static String LOGOUT = "logout";
     public final static String CODE_WRAP = "codeWrap";
+    public final static String CUSTOM_TABS_ENABLE = "customTabsEnable";
+
 
     public final static String POP_TIMES = "popTimes";
     public final static String POP_VERSION_TIME = "popVersionTime";
@@ -66,6 +68,8 @@ public class PrefUtils {
     public final static String LANGUAGES_EDITOR_TIP_ABLE = "languagesEditorTipAble";
     public final static String COLLECTIONS_TIP_ABLE = "collectionsTipAble";
     public final static String BOOKMARKS_TIP_ABLE = "bookmarksTipAble";
+    public final static String CUSTOM_TABS_TIPS_ENABLE = "customTabsTipsEnable";
+
 
     public final static String SEARCH_RECORDS = "searchRecords";
 
@@ -160,6 +164,10 @@ public class PrefUtils {
         return getDefaultSp(AppApplication.get()).getBoolean(SYSTEM_DOWNLOADER, true);
     }
 
+    public static boolean isCustomTabsEnable(){
+        return getDefaultSp(AppApplication.get()).getBoolean(CUSTOM_TABS_ENABLE, true);
+    }
+
     public static String getSearchRecords(){
         return getDefaultSp(AppApplication.get()).getString(SEARCH_RECORDS, null);
     }
@@ -174,6 +182,10 @@ public class PrefUtils {
 
     public static boolean isBookmarksTipAble(){
         return getDefaultSp(AppApplication.get()).getBoolean(BOOKMARKS_TIP_ABLE, true);
+    }
+
+    public static boolean isCustomTabsTipsEnable(){
+        return getDefaultSp(AppApplication.get()).getBoolean(CUSTOM_TABS_TIPS_ENABLE, true);
     }
 
 
