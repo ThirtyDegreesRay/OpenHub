@@ -55,6 +55,19 @@
                     android:paddingTop="@dimen/spacing_small"/>
 
                 <TextView
+                    android:id="@+id/company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_group_secondary"
+                    android:paddingBottom="@dimen/spacing_small"
+                    android:paddingEnd="@dimen/spacing_small"
+                    android:paddingStart="@dimen/spacing_small"
+                    android:paddingTop="@dimen/spacing_small"
+                    android:drawablePadding="@dimen/spacing_large"
+                    android:textSize="@dimen/text_small"
+                    android:textColor="?android:textColorPrimary"/>
+
+                <TextView
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

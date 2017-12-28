@@ -48,6 +48,7 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
 
     @BindView(R.id.name) TextView name;
     @BindView(R.id.bio) TextView bio;
+    @BindView(R.id.company) TextView company;
     @BindView(R.id.email) TextView email;
     @BindView(R.id.link) TextView link;
 
@@ -153,6 +154,7 @@ public class ProfileInfoFragment extends BaseFragment<ProfileInfoPresenter>
             membersLay.setVisibility(View.GONE);
         }
 
+        ViewUtils.setTextView(company, user.getCompany());
         ViewUtils.setTextView(email, user.getEmail());
         ViewUtils.setTextView(link, user.getBlog());
     }
