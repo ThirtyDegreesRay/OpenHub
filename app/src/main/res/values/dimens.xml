@@ -15,7 +15,8 @@
     <dimen name="divider_width">0.6dp</dimen>
 
 
-    <dimen name="spacing_micro">4dp</dimen>
+    <dimen name="spacing_micro">2dp</dimen>
+    <dimen name="spacing_mini">4dp</dimen>
     <dimen name="spacing_small">8dp</dimen>
     <dimen name="spacing_normal">12dp</dimen>
     <dimen name="spacing_large">16dp</dimen>
@@ -24,7 +25,8 @@
     <dimen name="spacing_xxx_large">48dp</dimen>
     <dimen name="spacing_huge">64dp</dimen>
 
-    <dimen name="text_micro">12sp</dimen>
+    <dimen name="text_micro">10sp</dimen>
+    <dimen name="text_mini">12sp</dimen>
     <dimen name="text_small">14sp</dimen>
     <dimen name="text_normal">16sp</dimen>
     <dimen name="text_large">18sp</dimen>

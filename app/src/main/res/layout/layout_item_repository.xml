@@ -50,9 +50,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
-                    android:textSize="@dimen/text_micro"
+                    android:textSize="@dimen/text_mini"
                     android:textColor="?android:textColorSecondary"
-                    android:layout_marginStart="@dimen/spacing_micro"
+                    android:layout_marginStart="@dimen/spacing_mini"
                     android:layout_gravity="top"/>
             </LinearLayout>
 
@@ -63,8 +63,8 @@
                 android:text="OpenHub description"
                 android:textSize="@dimen/text_small"
                 android:maxLines="4"
-                android:paddingTop="@dimen/spacing_micro"
-                android:paddingBottom="@dimen/spacing_micro"
+                android:paddingTop="@dimen/spacing_mini"
+                android:paddingBottom="@dimen/spacing_mini"
                 android:textColor="?android:textColorPrimary"/>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -85,10 +85,10 @@
                         android:id="@+id/tv_star_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_micro"
+                        android:textSize="@dimen/text_mini"
                         android:textColor="?android:textColorSecondary"
                         android:text="1123"
-                        android:layout_marginStart="@dimen/spacing_micro"/>
+                        android:layout_marginStart="@dimen/spacing_mini"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -105,10 +105,10 @@
                         android:id="@+id/tv_fork_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_micro"
+                        android:textSize="@dimen/text_mini"
                         android:textColor="?android:textColorSecondary"
                         android:text="1123"
-                        android:layout_marginLeft="@dimen/spacing_micro"/>
+                        android:layout_marginLeft="@dimen/spacing_mini"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -125,10 +125,10 @@
                         android:id="@+id/tv_owner_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_micro"
+                        android:textSize="@dimen/text_mini"
                         android:textColor="?android:textColorSecondary"
                         android:text="ThirtyDegreesRay"
-                        android:layout_marginLeft="@dimen/spacing_micro"/>
+                        android:layout_marginLeft="@dimen/spacing_mini"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/fork_mark"
@@ -136,8 +136,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/spacing_micro"
-                    android:layout_marginRight="@dimen/spacing_micro">
+                    android:layout_marginLeft="@dimen/spacing_mini"
+                    android:layout_marginRight="@dimen/spacing_mini">
                     <android.support.v7.widget.AppCompatImageView
                         android:layout_width="12dp"
                         android:layout_height="12dp"
@@ -146,10 +146,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_micro"
+                        android:textSize="@dimen/text_mini"
                         android:textColor="?android:textColorPrimary"
                         android:text="@string/fork_tag"
-                        android:layout_marginStart="@dimen/spacing_micro"/>
+                        android:layout_marginStart="@dimen/spacing_mini"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

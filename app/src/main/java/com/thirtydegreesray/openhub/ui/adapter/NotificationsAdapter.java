@@ -22,6 +22,7 @@ import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 import com.thirtydegreesray.openhub.ui.adapter.base.DoubleTypesModel;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
+import com.thirtydegreesray.openhub.ui.widget.ToastAbleImageButton;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewUtils;
 import com.thirtydegreesray.openhub.util.WindowUtil;
@@ -39,9 +40,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class NotificationsAdapter extends BaseAdapter<BaseViewHolder,
         DoubleTypesModel<Repository, Notification>> {
 
+    private NotificationAdapterListener listener;
+
     @Inject
     public NotificationsAdapter(Context context, BaseFragment fragment) {
         super(context, fragment);
+    }
+
+    public void setListener(NotificationAdapterListener listener) {
+        this.listener = listener;
     }
 
     @Override
@@ -123,6 +130,7 @@ public class NotificationsAdapter extends BaseAdapter<BaseViewHolder,
 
         @BindView(R.id.user_avatar) CircleImageView userAvatar;
         @BindView(R.id.repo_name) TextView repoName;
+        @BindView(R.id.mark_as_read_bn) ToastAbleImageButton markAsReadBn;
 
         public RepoViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -144,10 +152,21 @@ public class NotificationsAdapter extends BaseAdapter<BaseViewHolder,
             }
         }
 
+        @OnClick(R.id.mark_as_read_bn)
+        public void onMarkAsReadClicked() {
+            if(getAdapterPosition() != RecyclerView.NO_POSITION) {
+                listener.onRepoMarkAsReadClicked(data.get(getAdapterPosition()).getM1());
+            }
+        }
+
         private Repository getRepository(){
             return data.get(getAdapterPosition()).getM1();
         }
 
+    }
+
+    public interface NotificationAdapterListener{
+        void onRepoMarkAsReadClicked(@NonNull Repository repository);
     }
 
 }

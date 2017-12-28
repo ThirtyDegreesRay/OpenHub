@@ -5,6 +5,9 @@ package com.thirtydegreesray.openhub.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.thirtydegreesray.openhub.R;
@@ -31,7 +34,7 @@ import java.util.ArrayList;
  */
 
 public class NotificationsFragment extends ListFragment<NotificationsPresenter, NotificationsAdapter>
-        implements INotificationsContract.View {
+        implements INotificationsContract.View, NotificationsAdapter.NotificationAdapterListener {
 
     public enum NotificationsType{
         Unread, Participating, All
@@ -47,12 +50,15 @@ public class NotificationsFragment extends ListFragment<NotificationsPresenter, 
     protected void initFragment(Bundle savedInstanceState) {
         super.initFragment(savedInstanceState);
         setLoadMoreEnable(true);
+        setHasOptionsMenu(NotificationsType.Unread.equals(mPresenter.getType()));
+        adapter.setListener(this);
     }
 
     @Override
     public void showNotifications(ArrayList<DoubleTypesModel<Repository, Notification>> notifications) {
         adapter.setData(notifications);
         postNotifyDataSetChanged();
+        getActivity().invalidateOptionsMenu();
     }
 
     @Override
@@ -111,9 +117,33 @@ public class NotificationsFragment extends ListFragment<NotificationsPresenter, 
                 mPresenter.markNotificationAsRead(notification.getId());
                 notification.setUnread(false);
                 adapter.notifyItemChanged(position);
+                getActivity().invalidateOptionsMenu();
             }
 
         }
 
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        if(!mPresenter.isNotificationsAllRead()){
+            inflater.inflate(R.menu.menu_notifications, menu);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_mark_all_as_read){
+            mPresenter.markAllNotificationsAsRead();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRepoMarkAsReadClicked(@NonNull Repository repository) {
+        mPresenter.markRepoNotificationsAsRead(repository);
+    }
+
 }

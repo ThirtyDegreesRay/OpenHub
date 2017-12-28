@@ -42,13 +42,13 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_small"
                     android:textColor="?colorAccent"
-                    android:layout_marginTop="@dimen/spacing_micro"/>
+                    android:layout_marginTop="@dimen/spacing_mini"/>
 
                 <TextView
                     android:id="@+id/repo_desc_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_micro"
+                    android:layout_marginTop="@dimen/spacing_mini"
                     android:textColor="?android:textColorSecondary"
                     android:textSize="@dimen/text_small"
                     android:visibility="gone"/>
@@ -57,7 +57,7 @@
                     android:id="@+id/repo_created_info_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_micro"
+                    android:layout_marginTop="@dimen/spacing_mini"
                     android:textSize="@dimen/text_small"/>
 
                 <LinearLayout
@@ -69,7 +69,7 @@
                         android:id="@+id/issues_lay"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/spacing_micro"
+                        android:layout_margin="@dimen/spacing_mini"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:gravity="center"
@@ -86,14 +86,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/issues"
-                            android:textSize="@dimen/text_micro"/>
+                            android:textSize="@dimen/text_mini"/>
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/stargazers_lay"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/spacing_micro"
+                        android:layout_margin="@dimen/spacing_mini"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:gravity="center"
@@ -110,14 +110,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/stargazers"
-                            android:textSize="@dimen/text_micro"/>
+                            android:textSize="@dimen/text_mini"/>
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/froks_lay"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/spacing_micro"
+                        android:layout_margin="@dimen/spacing_mini"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:gravity="center"
@@ -134,14 +134,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/forks"
-                            android:textSize="@dimen/text_micro"/>
+                            android:textSize="@dimen/text_mini"/>
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/watchers_lay"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/spacing_micro"
+                        android:layout_margin="@dimen/spacing_mini"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:gravity="center"
@@ -158,7 +158,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/watchers"
-                            android:textSize="@dimen/text_micro"/>
+                            android:textSize="@dimen/text_mini"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -188,7 +188,7 @@
                     android:textColor="?android:colorAccent"
                     android:text="@string/readme"
                     android:textSize="@dimen/text_large"
-                    android:layout_marginBottom="@dimen/spacing_micro"
+                    android:layout_marginBottom="@dimen/spacing_mini"
                     android:layout_marginStart="@dimen/spacing_normal"/>
                 <com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView
                     android:id="@+id/web_view"

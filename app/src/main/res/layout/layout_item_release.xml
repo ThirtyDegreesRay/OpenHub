@@ -39,7 +39,7 @@
                 android:layout_weight="1"
                 android:gravity="end"
                 android:layout_gravity="top"
-                android:textSize="@dimen/text_micro"
+                android:textSize="@dimen/text_mini"
                 android:textColor="?android:textColorSecondary"/>
         </LinearLayout>
 
@@ -50,8 +50,8 @@
             android:textSize="@dimen/text_small"
             android:textColor="?android:textColorPrimary"
             android:maxLines="6"
-            android:paddingStart="@dimen/spacing_micro"
-            android:paddingEnd="@dimen/spacing_micro"
+            android:paddingStart="@dimen/spacing_mini"
+            android:paddingEnd="@dimen/spacing_mini"
             android:ellipsize="end"/>
 
     </LinearLayout>

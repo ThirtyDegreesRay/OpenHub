@@ -20,7 +20,7 @@
         android:layout_height="24dp"
         app:srcCompat="@drawable/ic_folder"
         android:tint="?android:colorAccent"
-        android:layout_marginStart="@dimen/spacing_micro"/>
+        android:layout_marginStart="@dimen/spacing_mini"/>
 
     <TextView
         android:id="@+id/file_name"

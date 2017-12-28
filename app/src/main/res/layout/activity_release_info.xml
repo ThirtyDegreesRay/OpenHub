@@ -30,7 +30,7 @@
                         android:layout_marginStart="@dimen/spacing_normal"
                         android:layout_marginEnd="@dimen/spacing_normal"
                         android:layout_marginTop="@dimen/spacing_normal"
-                        android:layout_marginBottom="@dimen/spacing_micro">
+                        android:layout_marginBottom="@dimen/spacing_mini">
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/user_avatar"
                             android:layout_width="32dp"

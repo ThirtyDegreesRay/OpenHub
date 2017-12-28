@@ -2,6 +2,8 @@
 
 package com.thirtydegreesray.openhub.mvp.contract;
 
+import android.support.annotation.NonNull;
+
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseListContract;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBasePagerContract;
@@ -24,6 +26,9 @@ public interface INotificationsContract {
     interface Presenter extends IBasePagerContract.Presenter<INotificationsContract.View> {
         void loadNotifications(int page, boolean isReload);
         void markNotificationAsRead(String threadId);
+        void markAllNotificationsAsRead();
+        boolean isNotificationsAllRead();
+        void markRepoNotificationsAsRead(@NonNull Repository repository);
     }
 
 }

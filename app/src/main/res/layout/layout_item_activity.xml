@@ -45,7 +45,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:layout_gravity="top"
-                android:textSize="@dimen/text_micro"
+                android:textSize="@dimen/text_mini"
                 android:textColor="?android:textColorSecondary"/>
         </LinearLayout>
 
@@ -56,7 +56,7 @@
             android:textSize="@dimen/text_normal"
             android:textColor="?android:textColorPrimary"
             android:layout_marginTop="@dimen/spacing_small"
-            android:layout_marginBottom="@dimen/spacing_micro"/>
+            android:layout_marginBottom="@dimen/spacing_mini"/>
 
         <TextView
             android:id="@+id/desc"
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_small"
             android:textColor="?android:textColorSecondary"
-            android:layout_marginBottom="@dimen/spacing_micro"
+            android:layout_marginBottom="@dimen/spacing_mini"
             android:maxLines="4"
             android:ellipsize="end"/>
 

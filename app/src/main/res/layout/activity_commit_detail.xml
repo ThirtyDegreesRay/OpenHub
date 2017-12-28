@@ -71,9 +71,9 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_normal"
                         android:textColor="?title_color"
-                        android:layout_marginStart="@dimen/spacing_micro"
+                        android:layout_marginStart="@dimen/spacing_mini"
                         android:minWidth="36dp"
-                        android:layout_marginEnd="@dimen/spacing_micro"/>
+                        android:layout_marginEnd="@dimen/spacing_mini"/>
 
                     <android.support.v7.widget.AppCompatImageView
                         android:layout_width="18dp"
@@ -88,9 +88,9 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_normal"
                         android:textColor="?title_color"
-                        android:layout_marginStart="@dimen/spacing_micro"
+                        android:layout_marginStart="@dimen/spacing_mini"
                         android:minWidth="36dp"
-                        android:layout_marginEnd="@dimen/spacing_micro"/>
+                        android:layout_marginEnd="@dimen/spacing_mini"/>
 
                     <android.support.v7.widget.AppCompatImageView
                         android:layout_width="18dp"
@@ -105,9 +105,9 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_normal"
                         android:textColor="?title_color"
-                        android:layout_marginStart="@dimen/spacing_micro"
+                        android:layout_marginStart="@dimen/spacing_mini"
                         android:minWidth="36dp"
-                        android:layout_marginEnd="@dimen/spacing_micro"/>
+                        android:layout_marginEnd="@dimen/spacing_mini"/>
 
                 </LinearLayout>
 

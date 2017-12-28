@@ -420,5 +420,7 @@
     </string>
 
     <string name="bookmarks_tip">You can swipe left or right to remove bookmark.</string>
+    <string name="mark_all_as_read">Mark all as read</string>
+    <string name="mark_as_read">Mark as read</string>
 
 </resources>

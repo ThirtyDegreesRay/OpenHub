@@ -6,7 +6,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="@dimen/spacing_micro">
+    android:layout_marginEnd="@dimen/spacing_mini">
     <View
         android:id="@+id/color_view"
         android:layout_width="36dp"

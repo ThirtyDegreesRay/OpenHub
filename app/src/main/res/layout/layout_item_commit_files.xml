@@ -54,7 +54,7 @@
             android:text="-65"
             android:textColor="@color/commit_file_removed_color"
             android:textSize="@dimen/text_normal"
-            android:layout_marginStart="@dimen/spacing_micro"/>
+            android:layout_marginStart="@dimen/spacing_mini"/>
 
     </LinearLayout>
 

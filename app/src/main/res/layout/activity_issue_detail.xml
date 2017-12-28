@@ -68,7 +68,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_normal"
                         android:textColor="?title_color"
-                        android:layout_marginStart="@dimen/spacing_micro"/>
+                        android:layout_marginStart="@dimen/spacing_mini"/>
 
                 </LinearLayout>
 

@@ -29,12 +29,23 @@
 
         <TextView
             android:id="@+id/repo_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="OpenHub"
             android:textSize="@dimen/text_normal"
             android:textColor="?colorAccent"
             android:layout_marginStart="@dimen/spacing_normal"/>
+
+        <com.thirtydegreesray.openhub.ui.widget.ToastAbleImageButton
+            android:id="@+id/mark_as_read_bn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_micro"
+            app:srcCompat="@drawable/ic_done_title"
+            android:tint="?colorAccent"
+            app:toast_text="@string/mark_as_read"
+            android:background="?android:selectableItemBackgroundBorderless"/>
 
     </LinearLayout>
 

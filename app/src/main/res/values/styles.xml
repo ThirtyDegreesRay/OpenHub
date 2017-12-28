@@ -27,7 +27,7 @@
     </style>
 
     <style name="Toolbar.Subtitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
-        <item name="android:textSize">@dimen/text_micro</item>
+        <item name="android:textSize">@dimen/text_mini</item>
         <item name="android:textColor">?subtitle_color</item>
     </style>
 

@@ -92,7 +92,7 @@
                         android:id="@+id/members_lay"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/spacing_micro"
+                        android:layout_margin="@dimen/spacing_mini"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:gravity="center"
@@ -108,14 +108,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/members"
-                            android:textSize="@dimen/text_micro"/>
+                            android:textSize="@dimen/text_mini"/>
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/followers_lay"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/spacing_micro"
+                        android:layout_margin="@dimen/spacing_mini"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:gravity="center"
@@ -132,14 +132,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/followers"
-                            android:textSize="@dimen/text_micro"/>
+                            android:textSize="@dimen/text_mini"/>
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/following_lay"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/spacing_micro"
+                        android:layout_margin="@dimen/spacing_mini"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:gravity="center"
@@ -156,14 +156,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/following"
-                            android:textSize="@dimen/text_micro"/>
+                            android:textSize="@dimen/text_mini"/>
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/repos_lay"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/spacing_micro"
+                        android:layout_margin="@dimen/spacing_mini"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:gravity="center"
@@ -180,14 +180,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/repositories"
-                            android:textSize="@dimen/text_micro"/>
+                            android:textSize="@dimen/text_mini"/>
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/gists_lay"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/spacing_micro"
+                        android:layout_margin="@dimen/spacing_mini"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:gravity="center"
@@ -204,7 +204,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/gists"
-                            android:textSize="@dimen/text_micro"/>
+                            android:textSize="@dimen/text_mini"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -235,7 +235,7 @@
                     android:textColor="?android:colorAccent"
                     android:text="@string/organizations"
                     android:textSize="@dimen/text_large"
-                    android:layout_marginBottom="@dimen/spacing_micro"
+                    android:layout_marginBottom="@dimen/spacing_mini"
                     android:layout_marginStart="@dimen/spacing_normal"/>
 
                 <android.support.v7.widget.RecyclerView

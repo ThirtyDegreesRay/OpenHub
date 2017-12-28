@@ -38,6 +38,6 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_download_title"
         android:tint="?icon_color"
-        android:padding="@dimen/spacing_micro"
+        android:padding="@dimen/spacing_mini"
         android:background="?android:selectableItemBackgroundBorderless"/>
 </LinearLayout>

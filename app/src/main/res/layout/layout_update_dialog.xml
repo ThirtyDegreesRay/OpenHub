@@ -18,7 +18,7 @@
         android:textColor="?android:textColorPrimary"
         android:textSize="@dimen/text_normal"
         android:text="@string/upgrade_version"
-        android:layout_marginBottom="@dimen/spacing_micro"/>
+        android:layout_marginBottom="@dimen/spacing_mini"/>
 
     <TextView
         android:id="@+id/size_text"
@@ -27,7 +27,7 @@
         android:textColor="?android:textColorPrimary"
         android:textSize="@dimen/text_normal"
         android:text="@string/upgrade_apk_size"
-        android:layout_marginBottom="@dimen/spacing_micro"/>
+        android:layout_marginBottom="@dimen/spacing_mini"/>
 
     <TextView
         android:id="@+id/time_text"
@@ -51,6 +51,6 @@
         android:layout_height="wrap_content"
         android:textColor="?android:textColorPrimary"
         android:textSize="@dimen/text_normal"
-        android:layout_marginTop="@dimen/spacing_micro"/>
+        android:layout_marginTop="@dimen/spacing_mini"/>
 
 </LinearLayout>

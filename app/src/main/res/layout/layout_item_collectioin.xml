@@ -34,7 +34,7 @@
             android:textSize="@dimen/text_small"
             android:textColor="?android:textColorPrimary"
             android:layout_marginTop="@dimen/spacing_small"
-            android:layout_marginBottom="@dimen/spacing_micro"/>
+            android:layout_marginBottom="@dimen/spacing_mini"/>
     </LinearLayout>
 
 </android.support.v7.widget.CardView>
