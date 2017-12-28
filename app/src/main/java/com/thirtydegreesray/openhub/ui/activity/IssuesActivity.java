@@ -234,7 +234,13 @@ public class IssuesActivity extends PagerActivity<IssuesActPresenter>
     @Override
     public void onPageSelected(int position) {
         super.onPageSelected(position);
-        addBn.setVisibility(IssuesFilter.Type.Repo.equals(issuesType) && position == 0 ? View.VISIBLE : View.GONE);
+        if(IssuesFilter.Type.Repo.equals(issuesType)){
+            if(position == 0){
+                addBn.zoomOut();
+            } else {
+                addBn.zoomIn();
+            }
+        }
     }
 
     @Override
