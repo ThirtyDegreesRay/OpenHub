@@ -6,7 +6,7 @@
     <string name="password">密码</string>
     <string name="login">登录</string>
     <string name="login_in_browser">在浏览器中登录</string>
-    <string name="oauth_tip">使用你的默认浏览器登录(OAuth)</string>
+    <string name="oauth_tip">使用您的默认浏览器登录(OAuth)</string>
     <string name="user_name_warning">用户名不可用！</string>
     <string name="password_warning">密码不可用！</string>
     <string name="profile">主页</string>
@@ -118,7 +118,7 @@
     <string name="upgrade_apk_size">Apk大小：</string>
     <string name="publish_time">发布时间：</string>
     <string name="upgrade_info">升级信息：</string>
-    <string name="no_upgrade_tip">你已经安装了最新版本</string>
+    <string name="no_upgrade_tip">您已经安装了最新版本</string>
     <string name="fork_failed">创建版本库分支失败</string>
     <string name="no_browser_clients">未安装浏览器客户端</string>
     <string name="releases">已发布版本</string>
@@ -230,14 +230,14 @@
     <string name="unread">未读</string>
     <string name="no_notifications_tip">没有新通知了</string>
     <string name="feedback_and_share">分享 &#038; 反馈</string>
-    <string name="share_to_friends">分享给你的朋友</string>
+    <string name="share_to_friends">分享给您的朋友</string>
     <string name="feedback">反馈</string>
     <string name="openhub_wishes">来自OpenHub的祝福</string>
     <string name="star_wishes" formatted="false">
-        您好%s，今天是你在OpenHub的第%d天，谢谢你的使用，我会努力成为更适合你的GitHub app。
-        \n\n如果你可以星标来支持我，那就太棒了！
+        您好%s，今天是您在OpenHub的第%d天，谢谢您的使用，我会努力成为更适合您的GitHub app。
+        \n\n如果您可以星标来支持我，那就太棒了！
     </string>
-    <string name="star_thanks">谢谢你的支持！</string>
+    <string name="star_thanks">谢谢您的支持！</string>
     <string name="star_me">星标我</string>
     <string name="star_next_time">继续努力</string>
     <string name="owner_repo">自己的</string>
@@ -317,7 +317,7 @@
     <string name="choose_languages">选择语言</string>
     <string name="language_removed">语言 %s 已删除</string>
     <string name="no_choose_language_warning">至少选择一种语言！</string>
-    <string name="languages_editor_tip">你可以向左或向右滑动来删除语言，长按来拖动排序。</string>
+    <string name="languages_editor_tip">您可以向左或向右滑动来删除语言，长按来拖动排序。</string>
     <string name="fullscreen">全屏</string>
     <string name="public_news">全球动态</string>
     <string name="recent_wiki_updates">Wiki最近更新</string>
@@ -328,7 +328,7 @@
     <string name="collections_page_parse_error">
         版本库集合页面解析错误，这个页面可能被github修改了，请联系我来解决这个问题！
     </string>
-    <string name="bookmarks_tip">你可以向左或向右滑动来删除书签。</string>
+    <string name="bookmarks_tip">您可以向左或向右滑动来删除书签。</string>
     <string name="use_custom_tabs">使用自定义标签</string>
     <string name="custom_tabs_desc">使用自定义标签来代替在外部浏览器中打开。</string>
     <string name="use_custom_tabs_tips">如果您想直接在外部浏览器中打开，您可以在设置改变。</string>
