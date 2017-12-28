@@ -8,7 +8,6 @@ import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
-import com.thirtydegreesray.openhub.http.core.HttpSubscriber;
 import com.thirtydegreesray.openhub.mvp.contract.INotificationsContract;
 import com.thirtydegreesray.openhub.mvp.model.Notification;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
@@ -25,7 +24,6 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import okhttp3.ResponseBody;
 import retrofit2.Response;
 import rx.Observable;
 
@@ -133,21 +131,9 @@ public class NotificationsPresenter extends BasePagerPresenter<INotificationsCon
 
     @Override
     public void markRepoNotificationsAsRead(@NonNull Repository repository) {
-        HttpSubscriber<ResponseBody>  httpSubscriber = new HttpSubscriber<ResponseBody>(){
-            @Override
-            public void onError(Throwable e) {
-                super.onError(e);
-            }
-
-            @Override
-            public void onNext(Response<ResponseBody> r) {
-                super.onNext(r);
-            }
-        };
-
         generalRxHttpExecute(getNotificationsService().markRepoNotificationsAsRead(
                 MarkNotificationReadRequestModel.newInstance(),
-                repository.getOwner().getLogin(), repository.getName()), httpSubscriber);
+                repository.getOwner().getLogin(), repository.getName()), null);
 
         for(DoubleTypesModel<Repository, Notification> model : sortedNotifications){
             if(model.getM2() != null && model.getM2().getRepository().getId() == repository.getId()){
