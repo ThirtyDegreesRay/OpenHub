@@ -330,7 +330,7 @@
     </string>
     <string name="bookmarks_tip">您可以向左或向右滑动来删除书签。</string>
     <string name="use_custom_tabs">使用自定义标签</string>
-    <string name="custom_tabs_desc">使用自定义标签来代替在外部浏览器中打开。</string>
+    <string name="custom_tabs_desc">使用自定义标签来代替在外部浏览器中打开（支持chrome、firefox…）。</string>
     <string name="use_custom_tabs_tips">如果您想直接在外部浏览器中打开，您可以在设置改变。</string>
 
 </resources>
