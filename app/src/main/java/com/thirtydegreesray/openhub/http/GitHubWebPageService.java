@@ -35,4 +35,9 @@ public interface GitHubWebPageService {
             @Path("collectionId") String collectionId
     );
 
+    @NonNull @GET("topics")
+    Observable<Response<ResponseBody>> getTopics(
+            @Header("forceNetWork") boolean forceNetWork
+    );
+
 }

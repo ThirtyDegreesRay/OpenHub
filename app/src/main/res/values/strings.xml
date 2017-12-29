@@ -417,13 +417,19 @@
     <string name="repo_collections">Repo collections</string>
     <string name="no_repo_collections">No repo collections</string>
     <string name="collections_tip">Curated lists and insight into burgeoning industries, topics, and communities.</string>
-    <string name="collections_page_parse_error">
-        Repository collections page parse error, this page may be changed by github,
-        please concat me to solve the problem!
+    <string name="github_page_parse_error">
+        %s page parse error, this page may be changed by github,
+        please update your application to latest version, if not, please concat me to solve the problem!
     </string>
 
     <string name="bookmarks_tip">You can swipe left or right to remove bookmark.</string>
     <string name="mark_all_as_read">Mark all as read</string>
     <string name="mark_as_read">Mark as read</string>
+
+    <string name="topic">Topic</string>
+    <string name="topics">Featured topics</string>
+    <string name="topics_tip">Browse the top used topics on GitHub.</string>
+    <string name="no_topics">No topics</string>
+
 
 </resources>

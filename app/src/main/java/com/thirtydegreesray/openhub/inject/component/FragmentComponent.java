@@ -18,6 +18,7 @@ import com.thirtydegreesray.openhub.ui.fragment.ReleasesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoFilesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepoInfoFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
+import com.thirtydegreesray.openhub.ui.fragment.TopicsFragment;
 import com.thirtydegreesray.openhub.ui.fragment.TraceFragment;
 import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
 import com.thirtydegreesray.openhub.ui.fragment.ViewerFragment;
@@ -52,4 +53,5 @@ public interface FragmentComponent {
     void inject(LanguagesEditorFragment fragment);
     void inject(WikiFragment fragment);
     void inject(CollectionsFragment fragment);
+    void inject(TopicsFragment fragment);
 }

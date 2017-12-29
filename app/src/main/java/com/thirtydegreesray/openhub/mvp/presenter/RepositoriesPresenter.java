@@ -23,6 +23,7 @@ import com.thirtydegreesray.openhub.mvp.model.Collection;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.SearchResult;
+import com.thirtydegreesray.openhub.mvp.model.Topic;
 import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.mvp.model.filter.RepositoriesFilter;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePagerPresenter;
@@ -71,6 +72,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
     @AutoAccess String language;
 
     @AutoAccess Collection collection;
+    @AutoAccess Topic topic;
 
     @Inject
     public RepositoriesPresenter(DaoSession daoSession) {
@@ -103,6 +105,11 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
             loadCollection(false);
             return;
         }
+        if (RepositoriesFragment.RepositoriesType.TOPIC.equals(type)) {
+            initSearchModelForTopic();
+            searchRepos(1);
+            return;
+        }
 //        if (repos != null) {
 //            mView.showRepositories(repos);
 //            mView.hideLoading();
@@ -119,7 +126,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
     public void loadRepositories(final boolean isReLoad, final int page) {
         filter = getFilter();
         if (type.equals(RepositoriesFragment.RepositoriesType.SEARCH)) {
-            searchRepos(page);
+
             return;
         }
         if (RepositoriesFragment.RepositoriesType.TRACE.equals(type)) {
@@ -132,6 +139,11 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         }
         if (RepositoriesFragment.RepositoriesType.COLLECTION.equals(type)) {
             loadCollection(isReLoad);
+            return;
+        }
+        if (RepositoriesFragment.RepositoriesType.TOPIC.equals(type)) {
+            initSearchModelForTopic();
+            searchRepos(page);
             return;
         }
         mView.showLoading();
@@ -367,7 +379,9 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
                         mView.hideLoading();
                         mView.showRepositories(repos);
                     } else {
-                        mView.showLoadError(getString(R.string.collections_page_parse_error));
+                        String errorTip = String.format(getString(R.string.github_page_parse_error),
+                                getString(R.string.repo_collections));
+                        mView.showLoadError(errorTip);
                         mView.hideLoading();
                     }
                 });
@@ -409,6 +423,13 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         repo.setLanguage(language);
 
         return repo;
+    }
+
+    private void initSearchModelForTopic(){
+        if(searchModel == null){
+            searchModel = new SearchModel(SearchModel.SearchType.Repository);
+            searchModel.setQuery("topic:" + topic.getId());
+        }
     }
 
 }

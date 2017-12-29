@@ -33,6 +33,7 @@ import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 import com.thirtydegreesray.openhub.ui.fragment.BookmarksFragment;
 import com.thirtydegreesray.openhub.ui.fragment.CollectionsFragment;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
+import com.thirtydegreesray.openhub.ui.fragment.TopicsFragment;
 import com.thirtydegreesray.openhub.ui.fragment.TraceFragment;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
@@ -80,6 +81,7 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
         TAG_MAP.put(R.id.nav_trace, TraceFragment.class.getSimpleName());
         TAG_MAP.put(R.id.nav_public_news, ActivityFragment.ActivityType.PublicNews.name());
         TAG_MAP.put(R.id.nav_collections, CollectionsFragment.class.getSimpleName());
+        TAG_MAP.put(R.id.nav_topics, TopicsFragment.class.getSimpleName());
         if (AppData.INSTANCE.getLoggedUser() != null)
             CrashReport.putUserData(getApplicationContext(),
                     "GitHubId", AppData.INSTANCE.getLoggedUser().getLogin());
@@ -178,6 +180,7 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
             case R.id.nav_trace:
             case R.id.nav_public_news:
             case R.id.nav_collections:
+            case R.id.nav_topics:
                 updateTitle(id);
                 loadFragment(id);
                 updateFilter(id);
@@ -235,6 +238,9 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
             case R.id.nav_collections:
                 setToolbarTitle(getString(R.string.repo_collections));
                 break;
+            case R.id.nav_topics:
+                setToolbarTitle(getString(R.string.topics));
+                break;
             default:
                 setToolbarTitle(getString(R.string.app_name));
                 break;
@@ -283,6 +289,8 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
                 return TraceFragment.create();
             case R.id.nav_collections:
                 return CollectionsFragment.create();
+            case R.id.nav_topics:
+                return TopicsFragment.create();
         }
         return null;
     }

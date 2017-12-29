@@ -19,6 +19,7 @@ import com.thirtydegreesray.openhub.mvp.contract.IRepositoriesContract;
 import com.thirtydegreesray.openhub.mvp.model.Collection;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
+import com.thirtydegreesray.openhub.mvp.model.Topic;
 import com.thirtydegreesray.openhub.mvp.model.filter.RepositoriesFilter;
 import com.thirtydegreesray.openhub.mvp.presenter.RepositoriesPresenter;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
@@ -41,7 +42,7 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
         TrendingActivity.LanguageUpdateListener{
 
     public enum RepositoriesType{
-        OWNED, PUBLIC, STARRED, TRENDING, SEARCH, FORKS, TRACE, BOOKMARK, COLLECTION
+        OWNED, PUBLIC, STARRED, TRENDING, SEARCH, FORKS, TRACE, BOOKMARK, COLLECTION, TOPIC
     }
 
     public static RepositoriesFragment create(@NonNull RepositoriesType type,
@@ -57,6 +58,15 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
         fragment.setArguments(BundleHelper.builder()
                 .put("type", RepositoriesType.COLLECTION)
                 .put("collection", collection)
+                .build());
+        return fragment;
+    }
+
+    public static RepositoriesFragment createForTopic(@NonNull Topic topic){
+        RepositoriesFragment fragment = new RepositoriesFragment();
+        fragment.setArguments(BundleHelper.builder()
+                .put("type", RepositoriesType.TOPIC)
+                .put("topic", topic)
                 .build());
         return fragment;
     }

@@ -100,7 +100,9 @@ public class CollectionsPresenter extends BasePresenter<ICollectionsContract.Vie
                         mView.hideLoading();
                         mView.showCollections(collections);
                     } else {
-                        mView.showLoadError(getString(R.string.collections_page_parse_error));
+                        String errorTip = String.format(getString(R.string.github_page_parse_error),
+                                getString(R.string.repo_collections));
+                        mView.showLoadError(errorTip);
                         mView.hideLoading();
                     }
                 });

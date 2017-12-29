@@ -14,6 +14,7 @@ import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.model.Collection;
+import com.thirtydegreesray.openhub.mvp.model.Topic;
 import com.thirtydegreesray.openhub.mvp.model.filter.RepositoriesFilter;
 import com.thirtydegreesray.openhub.ui.activity.base.SingleFragmentActivity;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
@@ -45,6 +46,15 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
         context.startActivity(intent);
     }
 
+    public static void showTopic(@NonNull Context context, @NonNull Topic topic){
+        Intent intent = new Intent(context, RepoListActivity.class);
+        intent.putExtras(BundleHelper.builder()
+                .put("type", RepositoriesFragment.RepositoriesType.TOPIC)
+                .put("topic", topic)
+                .build());
+        context.startActivity(intent);
+    }
+
     public static void showForks(@NonNull Context context,
                             @NonNull String user, @NonNull String repo){
         Intent intent = new Intent(context, RepoListActivity.class);
@@ -60,6 +70,7 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
     @AutoAccess String user;
     @AutoAccess String repo;
     @AutoAccess Collection collection;
+    @AutoAccess Topic topic;
 
     private OnDrawerSelectedListener listener;
 
@@ -71,8 +82,15 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.action_open_in_browser){
-            String collectionUrl = AppConfig.GITHUB_BASE_URL.concat("collections/").concat(collection.getId());
-            AppOpener.openInCustomTabsOrBrowser(getActivity(), collectionUrl);
+            String url = null;
+            if(RepositoriesFragment.RepositoriesType.COLLECTION.equals(type)){
+                url = AppConfig.GITHUB_BASE_URL.concat("collections/").concat(collection.getId());
+            } else if(RepositoriesFragment.RepositoriesType.TOPIC.equals(type)){
+                url = AppConfig.GITHUB_BASE_URL.concat("topics/").concat(topic.getId());
+            }
+            if(url != null){
+                AppOpener.openInCustomTabsOrBrowser(getActivity(), url);
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -103,7 +121,8 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
     public boolean onCreateOptionsMenu(Menu menu) {
         if(isFilterEnable()){
             getMenuInflater().inflate(R.menu.menu_sort, menu);
-        } else if(RepositoriesFragment.RepositoriesType.COLLECTION.equals(type)){
+        } else if(RepositoriesFragment.RepositoriesType.COLLECTION.equals(type)
+                || RepositoriesFragment.RepositoriesType.TOPIC.equals(type)){
             getMenuInflater().inflate(R.menu.menu_open_in_browser, menu);
         }
         return true;
@@ -131,6 +150,8 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
         RepositoriesFragment fragment;
         if(RepositoriesFragment.RepositoriesType.COLLECTION.equals(type)){
             fragment = RepositoriesFragment.createForCollection(collection);
+        } else if(RepositoriesFragment.RepositoriesType.TOPIC.equals(type)){
+            fragment = RepositoriesFragment.createForTopic(topic);
         } else {
             fragment = RepositoriesFragment.RepositoriesType.FORKS.equals(type) ?
                     RepositoriesFragment.createForForks(user, repo) :
@@ -149,6 +170,8 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
             return getString(R.string.forks);
         }else if(type.equals(RepositoriesFragment.RepositoriesType.COLLECTION)){
             return collection.getName();
+        }else if(type.equals(RepositoriesFragment.RepositoriesType.TOPIC)){
+            return topic.getName();
         }
         return getString(R.string.repositories);
     }

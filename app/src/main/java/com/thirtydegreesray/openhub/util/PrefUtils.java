@@ -69,6 +69,7 @@ public class PrefUtils {
     public final static String COLLECTIONS_TIP_ABLE = "collectionsTipAble";
     public final static String BOOKMARKS_TIP_ABLE = "bookmarksTipAble";
     public final static String CUSTOM_TABS_TIPS_ENABLE = "customTabsTipsEnable";
+    public final static String TOPICS_TIP_ABLE = "topicsTipAble";
 
 
     public final static String SEARCH_RECORDS = "searchRecords";
@@ -186,6 +187,10 @@ public class PrefUtils {
 
     public static boolean isCustomTabsTipsEnable(){
         return getDefaultSp(AppApplication.get()).getBoolean(CUSTOM_TABS_TIPS_ENABLE, true);
+    }
+
+    public static boolean isTopicsTipEnable(){
+        return getDefaultSp(AppApplication.get()).getBoolean(TOPICS_TIP_ABLE, true);
     }
 
 
