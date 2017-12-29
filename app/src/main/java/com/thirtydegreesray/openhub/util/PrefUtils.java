@@ -47,6 +47,7 @@ public class PrefUtils {
 
     public final static String THEME = "appTheme";
     public final static String ACCENT_COLOR = "accentColor";
+    public final static String START_PAGE = "startPage";
     public final static String CACHE_FIRST_ENABLE = "cacheFirstEnable";
     public final static String SYSTEM_DOWNLOADER = "systemDownloader";
     public final static String LANGUAGE = "language";
@@ -111,6 +112,10 @@ public class PrefUtils {
 
     public static String getLanguage(){
         return getDefaultSp(AppApplication.get()).getString(LANGUAGE, "en");
+    }
+
+    public static String getStartPage(){
+        return getDefaultSp(AppApplication.get()).getString(START_PAGE, "news");
     }
 
     public static int getAccentColor(){

@@ -336,5 +336,6 @@
     <string name="topics">精选主题</string>
     <string name="topics_tip">浏览GitHub上使用最多的主题。</string>
     <string name="no_topics">没有主题</string>
+    <string name="start_page">起始页面</string>
 
 </resources>

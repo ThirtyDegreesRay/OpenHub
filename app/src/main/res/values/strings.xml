@@ -66,6 +66,7 @@
     <!-- settings -->
     <string name="choose_theme">Choose Theme</string>
     <string name="theme_accent_color">Theme Accent Color</string>
+    <string name="start_page">Start Page</string>
     <string name="cache_controller">Cache Controller</string>
     <string name="cache_controller_desc">Load cache first if cache available, then load from network.</string>
     <string name="use_system_downloader">Use System Downloader</string>

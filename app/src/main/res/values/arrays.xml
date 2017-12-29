@@ -77,4 +77,58 @@
         ]
     </string>
 
+    <array name="start_pages_id">
+        <item>profile</item>
+        <item>notifications</item>
+        <item>news</item>
+        <item>issues</item>
+
+        <item>my_repos</item>
+        <item>starred_repos</item>
+        <item>bookmarks</item>
+
+        <item>search</item>
+        <item>trace</item>
+        <item>trending</item>
+        <item>collections</item>
+        <item>topics</item>
+        <item>public_news</item>
+    </array>
+
+    <array name="start_pages_nav_id">
+        <item>@id/nav_profile</item>
+        <item>@id/nav_notifications</item>
+        <item>@id/nav_news</item>
+        <item>@id/nav_issues</item>
+
+        <item>@id/nav_owned</item>
+        <item>@id/nav_starred</item>
+        <item>@id/nav_bookmarks</item>
+
+        <item>@id/nav_search</item>
+        <item>@id/nav_trace</item>
+        <item>@id/nav_trending</item>
+        <item>@id/nav_collections</item>
+        <item>@id/nav_topics</item>
+        <item>@id/nav_public_news</item>
+    </array>
+
+    <array name="start_pages_name">
+        <item>@string/profile</item>
+        <item>@string/notifications</item>
+        <item>@string/news</item>
+        <item>@string/issues</item>
+
+        <item>@string/my_repos</item>
+        <item>@string/starred_repos</item>
+        <item>@string/bookmarks</item>
+
+        <item>@string/search</item>
+        <item>@string/trace</item>
+        <item>@string/trending_repos</item>
+        <item>@string/repo_collections</item>
+        <item>@string/topics</item>
+        <item>@string/public_news</item>
+    </array>
+
 </resources>

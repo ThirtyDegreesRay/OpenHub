@@ -3,6 +3,7 @@
 package com.thirtydegreesray.openhub.ui.activity;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -36,9 +37,12 @@ import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.TopicsFragment;
 import com.thirtydegreesray.openhub.ui.fragment.TraceFragment;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -54,8 +58,34 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
 
     private final int SETTINGS_REQUEST_CODE = 100;
 
-    private final int DEFAULT_PAGE = R.id.nav_news;
-    @AutoAccess int selectedPage = DEFAULT_PAGE;
+    @AutoAccess int selectedPage ;
+
+    private final List<Integer> FRAGMENT_NAV_ID_LIST = Arrays.asList(
+            R.id.nav_news, R.id.nav_owned, R.id.nav_starred, R.id.nav_bookmarks,
+            R.id.nav_trace, R.id.nav_public_news, R.id.nav_collections, R.id.nav_topics
+    );
+
+    private final List<String> FRAGMENT_TAG_LIST = Arrays.asList(
+            ActivityFragment.ActivityType.News.name(),
+            RepositoriesFragment.RepositoriesType.OWNED.name(),
+            RepositoriesFragment.RepositoriesType.STARRED.name(),
+            BookmarksFragment.class.getSimpleName(),
+            TraceFragment.class.getSimpleName(),
+            ActivityFragment.ActivityType.PublicNews.name(),
+            CollectionsFragment.class.getSimpleName(),
+            TopicsFragment.class.getSimpleName()
+    );
+
+    private final List<Integer> FRAGMENT_TITLE_LIST = Arrays.asList(
+            R.string.news, R.string.my_repos, R.string.starred_repos, R.string.bookmarks,
+            R.string.trace, R.string.public_news, R.string.repo_collections, R.string.topics
+    );
+
+    {
+        for(int i = 0; i < FRAGMENT_NAV_ID_LIST.size(); i++){
+            TAG_MAP.put(FRAGMENT_NAV_ID_LIST.get(i), FRAGMENT_TAG_LIST.get(i));
+        }
+    }
 
     /**
      * 依赖注入的入口
@@ -74,14 +104,6 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
     @Override
     protected void initActivity() {
         super.initActivity();
-        TAG_MAP.put(R.id.nav_news, ActivityFragment.ActivityType.News.name());
-        TAG_MAP.put(R.id.nav_owned, RepositoriesFragment.RepositoriesType.OWNED.name());
-        TAG_MAP.put(R.id.nav_starred, RepositoriesFragment.RepositoriesType.STARRED.name());
-        TAG_MAP.put(R.id.nav_bookmarks, BookmarksFragment.class.getSimpleName());
-        TAG_MAP.put(R.id.nav_trace, TraceFragment.class.getSimpleName());
-        TAG_MAP.put(R.id.nav_public_news, ActivityFragment.ActivityType.PublicNews.name());
-        TAG_MAP.put(R.id.nav_collections, CollectionsFragment.class.getSimpleName());
-        TAG_MAP.put(R.id.nav_topics, TopicsFragment.class.getSimpleName());
         if (AppData.INSTANCE.getLoggedUser() != null)
             CrashReport.putUserData(getApplicationContext(),
                     "GitHubId", AppData.INSTANCE.getLoggedUser().getLogin());
@@ -111,17 +133,32 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
 
         updateStartDrawerContent(R.menu.activity_main_drawer);
         removeEndDrawer();
-        if(mPresenter.isFirstUseAndNoNewsUser()){
+        if (mPresenter.isFirstUseAndNoNewsUser()) {
             selectedPage = R.id.nav_public_news;
+            updateFragmentByNavId(selectedPage);
+        } else if(selectedPage != 0){
+            updateFragmentByNavId(selectedPage);
+        } else {
+            String startPageId = PrefUtils.getStartPage();
+            int startPageIndex = Arrays.asList(getResources().getStringArray(R.array.start_pages_id))
+                    .indexOf(startPageId);
+            TypedArray typedArray = getResources().obtainTypedArray(R.array.start_pages_nav_id);
+            int startPageNavId = typedArray.getResourceId(startPageIndex, 0);
+            typedArray.recycle();
+            if(FRAGMENT_NAV_ID_LIST.contains(startPageNavId)){
+                selectedPage = startPageNavId;
+                updateFragmentByNavId(selectedPage);
+            } else {
+                selectedPage = R.id.nav_news;
+                updateFragmentByNavId(selectedPage);
+                updateFragmentByNavId(startPageNavId);
+            }
         }
         navViewStart.setCheckedItem(selectedPage);
-        updateTitle(selectedPage);
-        loadFragment(selectedPage);
-        updateFilter(selectedPage);
 
-        ImageView avatar =  navViewStart.getHeaderView(0).findViewById(R.id.avatar);
-        TextView name =  navViewStart.getHeaderView(0).findViewById(R.id.name);
-        TextView mail =  navViewStart.getHeaderView(0).findViewById(R.id.mail);
+        ImageView avatar = navViewStart.getHeaderView(0).findViewById(R.id.avatar);
+        TextView name = navViewStart.getHeaderView(0).findViewById(R.id.name);
+        TextView mail = navViewStart.getHeaderView(0).findViewById(R.id.mail);
 
         User loginUser = AppData.INSTANCE.getLoggedUser();
         GlideApp.with(getActivity())
@@ -156,12 +193,21 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
 
     protected void onNavItemSelected(@NonNull MenuItem item, boolean isStartDrawer) {
         super.onNavItemSelected(item, isStartDrawer);
-        if(!isStartDrawer){
+        if (!isStartDrawer) {
             handlerEndDrawerClick(item);
             return;
         }
-
         int id = item.getItemId();
+        updateFragmentByNavId(id);
+    }
+
+    private void updateFragmentByNavId(int id){
+        if(FRAGMENT_NAV_ID_LIST.contains(id)){
+            updateTitle(id);
+            loadFragment(id);
+            updateFilter(id);
+            return;
+        }
         switch (id) {
             case R.id.nav_profile:
                 ProfileActivity.show(getActivity(), AppData.INSTANCE.getLoggedUser().getLogin(),
@@ -172,18 +218,6 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
                 break;
             case R.id.nav_notifications:
                 NotificationsActivity.show(getActivity());
-                break;
-            case R.id.nav_news:
-            case R.id.nav_owned:
-            case R.id.nav_starred:
-            case R.id.nav_bookmarks:
-            case R.id.nav_trace:
-            case R.id.nav_public_news:
-            case R.id.nav_collections:
-            case R.id.nav_topics:
-                updateTitle(id);
-                loadFragment(id);
-                updateFilter(id);
                 break;
             case R.id.nav_trending:
                 TrendingActivity.show(getActivity());
@@ -202,49 +236,22 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
         }
     }
 
-    private void updateFilter(int itemId){
-        if(itemId == R.id.nav_owned){
+    private void updateFilter(int itemId) {
+        if (itemId == R.id.nav_owned) {
             updateEndDrawerContent(R.menu.menu_repositories_filter);
             RepositoriesFilter.initDrawer(navViewEnd, RepositoriesFragment.RepositoriesType.OWNED);
-        }else if(itemId == R.id.nav_starred){
+        } else if (itemId == R.id.nav_starred) {
             updateEndDrawerContent(R.menu.menu_repositories_filter);
             RepositoriesFilter.initDrawer(navViewEnd, RepositoriesFragment.RepositoriesType.STARRED);
-        }else {
+        } else {
             removeEndDrawer();
         }
         invalidateOptionsMenu();
     }
 
     private void updateTitle(int itemId) {
-        switch (itemId) {
-            case R.id.nav_news:
-                setToolbarTitle(getString(R.string.news));
-                break;
-            case R.id.nav_owned:
-                setToolbarTitle(getString(R.string.my_repos));
-                break;
-            case R.id.nav_starred:
-                setToolbarTitle(getString(R.string.starred_repos));
-                break;
-            case R.id.nav_bookmarks:
-                setToolbarTitle(getString(R.string.bookmarks));
-                break;
-            case R.id.nav_trace:
-                setToolbarTitle(getString(R.string.trace));
-                break;
-            case R.id.nav_public_news:
-                setToolbarTitle(getString(R.string.public_news));
-                break;
-            case R.id.nav_collections:
-                setToolbarTitle(getString(R.string.repo_collections));
-                break;
-            case R.id.nav_topics:
-                setToolbarTitle(getString(R.string.topics));
-                break;
-            default:
-                setToolbarTitle(getString(R.string.app_name));
-                break;
-        }
+        int titleId = FRAGMENT_TITLE_LIST.get(FRAGMENT_NAV_ID_LIST.indexOf(itemId));
+        setToolbarTitle(getString(titleId));
     }
 
     private void loadFragment(int itemId) {
@@ -330,7 +337,7 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == SETTINGS_REQUEST_CODE && resultCode == RESULT_OK) {
+        if (requestCode == SETTINGS_REQUEST_CODE && resultCode == RESULT_OK) {
             recreate();
         }
     }
@@ -339,16 +346,16 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
     protected void onToolbarDoubleClick() {
         super.onToolbarDoubleClick();
         Fragment fragment = getVisibleFragment();
-        if(fragment != null && fragment instanceof BaseFragment){
-            ((BaseFragment)fragment).scrollToTop();
+        if (fragment != null && fragment instanceof BaseFragment) {
+            ((BaseFragment) fragment).scrollToTop();
         }
     }
 
-    private void handlerEndDrawerClick(MenuItem item){
+    private void handlerEndDrawerClick(MenuItem item) {
         Fragment fragment = getVisibleFragment();
-        if(fragment!= null && fragment instanceof RepositoriesFragment
-            &&(selectedPage == R.id.nav_owned || selectedPage == R.id.nav_starred)){
-            ((RepositoriesFragment)fragment).onDrawerSelected(navViewEnd, item);
+        if (fragment != null && fragment instanceof RepositoriesFragment
+                && (selectedPage == R.id.nav_owned || selectedPage == R.id.nav_starred)) {
+            ((RepositoriesFragment) fragment).onDrawerSelected(navViewEnd, item);
         }
     }
 

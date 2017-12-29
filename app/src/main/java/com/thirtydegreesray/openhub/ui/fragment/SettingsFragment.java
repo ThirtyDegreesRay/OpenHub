@@ -3,16 +3,13 @@
 package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
-import android.util.Log;
 
 import com.thirtydegreesray.openhub.R;
-import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.widget.colorChooser.ColorChooserPreference;
 import com.thirtydegreesray.openhub.util.PrefUtils;
 
@@ -28,24 +25,30 @@ import java.util.List;
 public class SettingsFragment extends PreferenceFragmentCompat
         implements Preference.OnPreferenceChangeListener,
         Preference.OnPreferenceClickListener,
-        ColorChooserPreference.ColorChooserCallback{
+        ColorChooserPreference.ColorChooserCallback {
 
     @Override
     public void onColorChanged(@ColorInt int oriColor, @ColorInt int selectedColor) {
         recreateMain();
     }
 
-    public interface SettingsCallBack{
+    public interface SettingsCallBack {
         void onLogout();
+
         void onRecreate();
     }
 
     private SettingsCallBack callBack;
 
+    private List<String> idList ;
+    private List<String> nameList ;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         callBack = (SettingsCallBack) context;
+        idList = Arrays.asList(getResources().getStringArray(R.array.start_pages_id));
+        nameList = Arrays.asList(getResources().getStringArray(R.array.start_pages_name));
     }
 
     @Override
@@ -60,24 +63,20 @@ public class SettingsFragment extends PreferenceFragmentCompat
         findPreference(PrefUtils.THEME).setOnPreferenceClickListener(this);
         findPreference(PrefUtils.LANGUAGE).setOnPreferenceClickListener(this);
         findPreference(PrefUtils.LOGOUT).setOnPreferenceClickListener(this);
-        findPreference(PrefUtils.CACHE_FIRST_ENABLE).setOnPreferenceChangeListener(this);
-        ((ColorChooserPreference)findPreference(PrefUtils.ACCENT_COLOR))
+        findPreference(PrefUtils.START_PAGE).setOnPreferenceClickListener(this);
+        findPreference(PrefUtils.START_PAGE).setSummary(nameList.get(getStartPageIndex()));
+        ((ColorChooserPreference) findPreference(PrefUtils.ACCENT_COLOR))
                 .setColorChooserCallback(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        switch (preference.getKey()){
-            case PrefUtils.CACHE_FIRST_ENABLE:
-
-                return true;
-        }
         return true;
     }
 
     @Override
     public boolean onPreferenceClick(Preference preference) {
-        switch (preference.getKey()){
+        switch (preference.getKey()) {
             case PrefUtils.THEME:
                 showThemeChooser();
                 return true;
@@ -87,11 +86,14 @@ public class SettingsFragment extends PreferenceFragmentCompat
             case PrefUtils.LOGOUT:
                 logout();
                 return true;
+            case PrefUtils.START_PAGE:
+                showChooseStartPageDialog();
+                return true;
         }
         return false;
     }
 
-    private void showThemeChooser(){
+    private void showThemeChooser() {
         final List<String> valueList
                 = Arrays.asList(getResources().getStringArray(R.array.theme_array));
         String theme = PrefUtils.getTheme();
@@ -107,53 +109,58 @@ public class SettingsFragment extends PreferenceFragmentCompat
                 .show();
     }
 
-    private void showLanguageList(){
+    private void showLanguageList() {
         final List<String> valueList
                 = Arrays.asList(getResources().getStringArray(R.array.language_id_array));
         String language = PrefUtils.getLanguage();
         int index = valueList.indexOf(language);
 
-        if(getContext() instanceof BaseActivity){
-            Log.d("TAG" , "");
-        }
-
         new AlertDialog.Builder(getContext())
                 .setCancelable(true)
                 .setTitle(R.string.language)
-                .setSingleChoiceItems(R.array.language_array, index, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        PrefUtils.set(PrefUtils.LANGUAGE, valueList.get(which));
-                        recreateMain();
-                    }
+                .setSingleChoiceItems(R.array.language_array, index, (dialog, which) -> {
+                    dialog.dismiss();
+                    PrefUtils.set(PrefUtils.LANGUAGE, valueList.get(which));
+                    recreateMain();
                 })
                 .show();
     }
 
-    private void recreateMain(){
+    private void recreateMain() {
         callBack.onRecreate();
     }
 
-    private void logout(){
+    private void logout() {
         new AlertDialog.Builder(getContext())
                 .setCancelable(true)
                 .setTitle(R.string.warning_dialog_tile)
                 .setMessage(R.string.logout_warning)
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .setPositiveButton(R.string.logout, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        callBack.onLogout();
-                        dialog.dismiss();
-                    }
+                .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss())
+                .setPositiveButton(R.string.logout, (dialog, which) -> {
+                    callBack.onLogout();
+                    dialog.dismiss();
                 })
                 .show();
+    }
+
+    private void showChooseStartPageDialog(){
+        new AlertDialog.Builder(getContext())
+                .setCancelable(true)
+                .setTitle(R.string.start_page)
+                .setSingleChoiceItems(R.array.start_pages_name, getStartPageIndex(), (dialog, which) -> {
+                    dialog.dismiss();
+                    PrefUtils.set(PrefUtils.START_PAGE, idList.get(which));
+                    findPreference(PrefUtils.START_PAGE).setSummary(nameList.get(which));
+                })
+                .setNegativeButton(R.string.cancel, (dialog, which) -> {
+
+                })
+                .show();
+    }
+
+    private int getStartPageIndex(){
+        String startPage = PrefUtils.getStartPage();
+        return idList.indexOf(startPage);
     }
 
 }

@@ -13,6 +13,11 @@
         android:title="@string/theme_accent_color"
         android:key="accentColor"/>
 
+    <Preference
+        android:icon="@drawable/ic_one"
+        android:title="@string/start_page"
+        android:key="startPage"/>
+
     <SwitchPreference
         android:icon="@drawable/ic_http"
         android:title="@string/cache_controller"
