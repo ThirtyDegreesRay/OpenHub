@@ -65,6 +65,7 @@ public class AppOpener {
             CustomTabsIntent customTabsIntent = new CustomTabsIntent.Builder()
                     .setToolbarColor(ViewUtils.getPrimaryColor(context))
                     .setCloseButtonIcon(backIconBitmap)
+                    .setShowTitle(true)
                     .addMenuItem(context.getString(R.string.share), sharePendingIntent)
                     .addMenuItem(context.getString(R.string.copy_url), copyPendingIntent)
 //                    .setStartAnimations(context, R.anim.slide_in_right, R.anim.slide_out_left)
