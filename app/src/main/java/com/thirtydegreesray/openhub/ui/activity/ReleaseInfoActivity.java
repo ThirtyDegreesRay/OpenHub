@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.NestedScrollView;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
@@ -63,6 +64,7 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
                         .put("repoName", repoName).build());
     }
 
+    @BindView(R.id.scroll_view) NestedScrollView scrollView;
     @BindView(R.id.web_view) CodeWebView webView;
     @BindView(R.id.user_avatar) ImageView userAvatar;
     @BindView(R.id.user_name) TextView userName;
@@ -151,5 +153,11 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
     public void hideLoading() {
         super.hideLoading();
         loader.setVisibility(View.GONE);
+    }
+
+    @Override
+    protected void onToolbarDoubleClick() {
+        super.onToolbarDoubleClick();
+        scrollView.scrollTo(0, 0);
     }
 }
