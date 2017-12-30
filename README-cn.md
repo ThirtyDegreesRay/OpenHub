@@ -73,7 +73,7 @@
 |:-:|:-:|:-:|
 | ![repo](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/repo.png?raw=true) | ![commit](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/commit.png?raw=true) | ![code](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/code.png?raw=true) |
 
-## 开源
+## 感谢开源
 
 * [ButterKnife](https://github.com/JakeWharton/butterknife) 视图绑定
 * [GreenDao](https://github.com/greenrobot/greenDAO) 一个轻量级而且更快的Android ORM解决方案
@@ -90,6 +90,8 @@
 * [material-about-library](https://github.com/daniel-stoneuk/material-about-library) 让你更容易的创建美丽的关于页面
 * [material-dialogs](https://github.com/afollestad/material-dialogs) 一个美丽、流畅的和可自定义的对话框的API
 * [GitHub-Trending](https://github.com/thedillonb/GitHub-Trending) 对GitHub趋势页面进行数据抓取
+* [RichText](https://github.com/zzhoujay/RichText) Android平台下的富文本解析器，支持Html和Markdown
+* [jsoup](https://github.com/jhy/jsoup) HTML解析器
 
 ## License
     Copyright (C) 2017 ThirtyDegreesRay

@@ -90,8 +90,8 @@ An **open source** GitHub Android client app, faster and concise.
 * [material-about-library](https://github.com/daniel-stoneuk/material-about-library) Makes it easy to create beautiful about screens for your apps.
 * [material-dialogs](https://github.com/afollestad/material-dialogs) A beautiful, fluid, and customizable dialogs API.
 * [GitHub-Trending](https://github.com/thedillonb/GitHub-Trending) Scrapes GitHub's Trending Pages.
-* [OctoDroid](https://github.com/slapperwan/gh4a) This application provides access to GitHub and lets you stay connected with your network.
-* [FastHub](https://github.com/k0shk0sh/FastHub) FastHub the ultimate GitHub client for Android.
+* [RichText](https://github.com/zzhoujay/RichText) Rich text parser for Android, support markdown and html.
+* [jsoup](https://github.com/jhy/jsoup) Java HTML Parser, with best of DOM, CSS, and jquery.
 
 ## License
     Copyright (C) 2017 ThirtyDegreesRay
