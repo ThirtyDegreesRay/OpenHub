@@ -73,6 +73,7 @@ public class CommitsListActivity extends SingleFragmentActivity<IBaseContract.Pr
         super.initView(savedInstanceState);
         String repoFullName = user.concat("/").concat(repo);
         setToolbarTitle(getToolbarTitle(), repoFullName);
+        setToolbarScrollAble(true);
     }
 
     private String getToolbarTitle(){

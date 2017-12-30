@@ -143,6 +143,7 @@ public class RepoListActivity extends SingleFragmentActivity<IBaseContract.Prese
         String subTitle = StringUtils.isBlank(repo) ? user : user.concat("/").concat(repo);
         setToolbarTitle(title, subTitle);
         intiFilter();
+        setToolbarScrollAble(true);
     }
 
     @Override

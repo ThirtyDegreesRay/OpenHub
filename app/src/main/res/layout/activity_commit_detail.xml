@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <android.support.design.widget.CoordinatorLayout
     android:id="@+id/root_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -158,29 +156,23 @@
         android:tint="?title_color"
         android:visibility="visible"/>
 
-    <android.support.design.widget.CoordinatorLayout
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-        <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-        <ProgressBar
-            android:id="@+id/loader"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:paddingEnd="@dimen/spacing_large"
-            android:paddingStart="@dimen/spacing_large"
-            android:indeterminate="true"
-            android:visibility="gone"/>
-
-    </android.support.design.widget.CoordinatorLayout>
-
-
+    <ProgressBar
+        android:id="@+id/loader"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom"
+        android:paddingTop="@dimen/spacing_x_large"
+        android:paddingEnd="@dimen/spacing_large"
+        android:paddingStart="@dimen/spacing_large"
+        android:indeterminate="true"
+        android:visibility="gone"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -37,6 +37,7 @@ public class ReleasesActivity extends SingleFragmentActivity<IBaseContract.Prese
         super.initView(savedInstanceState);
         String subTitle = owner.concat("/").concat(repo);
         setToolbarTitle(getString(R.string.releases), subTitle);
+        setToolbarScrollAble(true);
     }
 
     @Override

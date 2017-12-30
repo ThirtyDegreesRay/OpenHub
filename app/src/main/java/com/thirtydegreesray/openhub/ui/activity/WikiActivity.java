@@ -32,6 +32,7 @@ public class WikiActivity extends SingleFragmentActivity<IBaseContract.Presenter
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         setToolbarTitle(getString(R.string.recent_wiki_updates), owner.concat("/").concat(repo));
+        setToolbarScrollAble(true);
     }
 
     @Override

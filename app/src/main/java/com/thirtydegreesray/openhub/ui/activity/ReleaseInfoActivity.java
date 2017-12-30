@@ -121,6 +121,7 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
         setToolbarTitle(mPresenter.getTagName(),
                 mPresenter.getOwner().concat("/").concat(mPresenter.getRepoName()));
         downloadBn.setVisibility(View.GONE);
+        setToolbarScrollAble(true);
     }
 
     @Override

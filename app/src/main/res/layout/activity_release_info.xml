@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,7 +11,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -55,15 +56,6 @@
 
         </android.support.v4.widget.NestedScrollView>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/download_bn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_download_title"
-            android:tint="?title_color"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/spacing_large"/>
-
         <ProgressBar
             android:id="@+id/loader"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
@@ -77,4 +69,13 @@
 
     </FrameLayout>
 
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/download_bn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_download_title"
+        android:tint="?title_color"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/spacing_large"/>
+
+</android.support.design.widget.CoordinatorLayout>

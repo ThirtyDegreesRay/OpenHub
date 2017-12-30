@@ -131,6 +131,7 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
+        setToolbarScrollAble(true);
         updateStartDrawerContent(R.menu.activity_main_drawer);
         removeEndDrawer();
         if (mPresenter.isFirstUseAndNoNewsUser()) {
