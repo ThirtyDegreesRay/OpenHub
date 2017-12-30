@@ -126,7 +126,6 @@ public class ViewerActivity extends SingleFragmentActivity<IBaseContract.Present
             title = this.title;
         }
         setToolbarTitle(title);
-        setToolbarScrollAble(true);
     }
 
     @Override

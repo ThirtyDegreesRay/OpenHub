@@ -8,15 +8,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
     <com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView
         android:id="@+id/web_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:webview_background="?android:windowBackground"/>
-    </android.support.v4.widget.NestedScrollView>
 
     <ProgressBar
         android:id="@+id/loader"
