@@ -241,7 +241,9 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
     @Override
     public void onPause() {
         super.onPause();
-        int scrollY = webView.getScrollY();
-        scrollYPercent = scrollY * 1.0f / webView.getContentHeight();
+        if(webView != null){
+            int scrollY = webView.getScrollY();
+            scrollYPercent = scrollY * 1.0f / webView.getContentHeight();
+        }
     }
 }
