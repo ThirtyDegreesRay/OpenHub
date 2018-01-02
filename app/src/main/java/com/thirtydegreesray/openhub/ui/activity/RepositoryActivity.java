@@ -2,7 +2,6 @@
 
 package com.thirtydegreesray.openhub.ui.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -63,13 +62,6 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
     }
 
     public static void show(@NonNull Context activity, @NonNull Repository repository) {
-        Intent intent = new Intent(activity, RepositoryActivity.class);
-        intent.putExtra("repository", repository);
-        activity.startActivity(intent);
-    }
-
-    public static void show(@NonNull Activity activity, @NonNull Repository repository,
-                            @NonNull View titleView) {
         Intent intent = new Intent(activity, RepositoryActivity.class);
         intent.putExtra("repository", repository);
         activity.startActivity(intent);
