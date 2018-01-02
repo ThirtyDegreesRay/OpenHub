@@ -6,6 +6,9 @@ import android.os.Parcelable;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 /**
  * Created by ThirtyDegreesRay on 2017/12/6 15:59:31
  */
@@ -71,7 +74,13 @@ public class WikiModel implements Parcelable {
             int start = id.indexOf("wiki/") + 5;
             int end = id.lastIndexOf("/");
             if(end > start){
-                return id.substring(start, end).replaceAll("-", " ");
+                String name = id.substring(start, end).replaceAll("-", " ");
+                try {
+                    name = URLDecoder.decode(name, "utf-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                return name;
             } else {
                 return "Home";
             }
