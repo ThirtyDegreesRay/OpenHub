@@ -1,5 +1,6 @@
 package com.thirtydegreesray.openhub.http;
 
+import android.Manifest;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,18 +10,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.os.Environment;
-import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
+import com.tbruyelle.rxpermissions.RxPermissions;
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.util.AppUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
-import com.yanzhenjie.permission.AndPermission;
-import com.yanzhenjie.permission.Permission;
-import com.yanzhenjie.permission.PermissionListener;
-
-import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
@@ -62,22 +59,20 @@ public class Downloader {
                 AppUtils.showDownloadServiceSetting(mContext);
                 return ;
             }
-
-            AndPermission.with(mContext)
-                    .permission(Permission.STORAGE)
-                    .callback(new PermissionListener() {
-                        @Override
-                        public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
+            if(BaseActivity.getCurActivity() == null){
+                Toasty.error(mContext, mContext.getString(R.string.download_failed), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            new RxPermissions(BaseActivity.getCurActivity())
+                    .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    .subscribe(granted -> {
+                        if (granted) {
                             start();
-                        }
-
-                        @Override
-                        public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
+                        } else {
                             Toasty.error(mContext, mContext.getString(R.string.permission_storage_denied),
                                     Toast.LENGTH_LONG).show();
                         }
-                    })
-                    .start();
+                    });
         }catch (Exception e){
             Toasty.error(mContext, e.getMessage()).show();
         }

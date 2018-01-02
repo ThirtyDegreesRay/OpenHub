@@ -142,12 +142,7 @@ dependencies {
     compile "com.google.dagger:dagger:${DAGGER_VERSION}"
     annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
 
-    //Android6.0以上权限获取工具
-    //PermissionsDispatcher provides a simple annotation-based API to handle runtime permissions in Android Marshmallow.
-//            androidApt: 'com.neenbedankt.gradle.plugins:android-apt:1.8',
-//    compile "com.github.hotchemi:permissionsdispatcher:${PERMISSIONS_DISPATCHER_VERSION}"
-//    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:${PERMISSIONS_DISPATCHER_VERSION}"
-    compile "com.yanzhenjie:permission:${AND_PERMISSION_VERSION}"
+    compile "com.tbruyelle.rxpermissions:rxpermissions:${RX_PERMISSION_VERSION}"
 
     compile "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
     annotationProcessor "com.github.bumptech.glide:compiler:${GLIDE_VERSION}"
