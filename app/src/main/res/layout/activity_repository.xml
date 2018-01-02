@@ -38,7 +38,8 @@
                 android:layout_height="match_parent"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.5"
-                android:fitsSystemWindows="true"/>
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"/>
 
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="match_parent"

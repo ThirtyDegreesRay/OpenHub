@@ -23,6 +23,7 @@ An **open source** GitHub Android client app, faster and concise.
 * Bookmark users or repos
 * Record trace of the repos or users you have been viewed
 * View github collections
+* View github featured topics
 
 ### Repositories
 * View repo info 

@@ -209,7 +209,6 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
         isAvatarSetted = true;
         GlideApp.with(getActivity())
                 .load(mPresenter.getUserAvatar())
-                .centerCrop()
                 .into(userImageViewBg);
         GlideApp.with(getActivity())
                 .load(mPresenter.getUserAvatar())

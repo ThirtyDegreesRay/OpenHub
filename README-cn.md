@@ -22,7 +22,8 @@
 * 支持消息通知
 * 支持添加用户、版本库书签
 * 自动记录浏览过过的用户和版本库
-* 查看 github collections
+* 查看 github 集合(collections)
+* 查看 github 精选主题(featured topics)
 
 ### 版本库
 * 查看版本库信息

@@ -208,7 +208,6 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
 
             GlideApp.with(getActivity())
                     .load(repo.getOwner().getAvatarUrl())
-                    .centerCrop()
                     .into(userImageViewBg);
         } else {
             noticeRepositoryUpdated(repo);
