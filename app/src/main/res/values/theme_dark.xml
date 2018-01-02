@@ -36,6 +36,7 @@
         <item name="popup_theme">@style/PopupThemeDark</item>
         <item name="appbar_theme">@style/AppbarThemeDark</item>
         <item name="android:contextPopupMenuStyle" tools:targetApi="n">@style/ContextPopupThemeDark</item>
+        <item name="popup_menu_theme">@style/PopupMenuDark</item>
     </style>
 
     <style name="DialogThemeDark" parent="Theme.AppCompat.Dialog.Alert">
@@ -49,6 +50,11 @@
     </style>
 
     <style name="AppbarThemeDark" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    </style>
+
+
+    <style name="PopupMenuDark" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@color/dark_color_window_background</item>
     </style>
 
     <style name="PopupThemeDark" parent="ThemeOverlay.AppCompat.Dark">

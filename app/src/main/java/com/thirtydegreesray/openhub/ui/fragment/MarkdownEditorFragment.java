@@ -6,7 +6,6 @@ import android.support.v7.widget.PopupMenu;
 import android.text.Editable;
 import android.view.Gravity;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
@@ -162,18 +161,16 @@ public class MarkdownEditorFragment extends BaseFragment
     private void showMentionView(){
         if(mentionUsers != null && mentionUsers.size() > 0){
             if(popupMenu == null){
-                popupMenu = new PopupMenu(getActivity(), addMention, Gravity.BOTTOM);
+                popupMenu = new PopupMenu(getActivity(), addMention, Gravity.BOTTOM,
+                        R.attr.popup_menu_theme, 0);
                 Menu menu = popupMenu.getMenu();
                 for(String loginId : mentionUsers){
                     menu.add("@" + loginId);
                 }
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        String loginId = item.getTitle().toString().substring(1);
-                        addKeyWord(loginId, -1, false);
-                        return false;
-                    }
+                popupMenu.setOnMenuItemClickListener(item -> {
+                    String loginId = item.getTitle().toString().substring(1);
+                    addKeyWord(loginId, -1, false);
+                    return false;
                 });
             }
             popupMenu.show();

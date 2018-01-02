@@ -36,6 +36,7 @@
         <item name="popup_theme">@style/PopupThemeLight</item>
         <item name="appbar_theme">@style/AppbarThemeLight</item>
         <item name="android:contextPopupMenuStyle" tools:targetApi="n">@style/ContextPopupThemeLight</item>
+        <item name="popup_menu_theme">@style/PopupMenuLight</item>
     </style>
 
     <style name="DialogThemeLight" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -50,6 +51,10 @@
 
     <style name="AppbarThemeLight" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
 
+    </style>
+
+    <style name="PopupMenuLight" parent="Widget.AppCompat.Light.PopupMenu">
+        <item name="android:popupBackground">@color/light_window_background</item>
     </style>
 
     <style name="PopupThemeLight" parent="ThemeOverlay.AppCompat.Light">
