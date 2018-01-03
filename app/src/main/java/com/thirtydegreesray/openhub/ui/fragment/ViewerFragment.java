@@ -220,6 +220,7 @@ public class ViewerFragment extends BaseFragment<ViewerPresenter>
                 loader.setVisibility(View.GONE);
                 //delay 300 mills, in case of content height unavailable
                 webView.postDelayed(() -> {
+                    if(webView == null) return;
                     int scrollY = (int) (webView.getContentHeight() * scrollYPercent);
                     webView.scrollTo(0, scrollY);
                 }, 300);
