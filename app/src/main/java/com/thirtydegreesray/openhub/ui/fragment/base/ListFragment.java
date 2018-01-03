@@ -232,7 +232,7 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
     }
 
     protected void postNotifyDataSetChanged(){
-        recyclerView.post(() -> adapter.notifyDataSetChanged());
+        adapter.notifyDataSetChanged();
     }
 
     private ListScrollListener mListScrollListener;
