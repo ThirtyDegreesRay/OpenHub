@@ -25,11 +25,11 @@ import rx.Observable;
 public interface OpenHubService {
 
     /**
-     * get trending repos, update every 6 hour
+     * get trending repos, update every day
      * @param since daily, weekly, monthly
      * @param language language
      */
-    @Headers("Cache-Control: public, max-age=21600")
+    @Headers("Cache-Control: public, max-age=86400")
     @NonNull @GET("trending")
     Observable<Response<ArrayList<Repository>>> getTrendingRepos(
             @Query("since") String since,
