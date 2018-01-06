@@ -56,9 +56,11 @@ public class AppOpener {
                 (customTabsPackageName = CustomTabsHelper.INSTANCE.getBestPackageName(context) ) != null) {
             Bitmap backIconBitmap = ViewUtils.getBitmapFromResource(context, R.drawable.ic_arrow_back_title);
             Intent shareIntent = new Intent(context.getApplicationContext(), ShareBroadcastReceiver.class);
+            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             PendingIntent sharePendingIntent = PendingIntent.getBroadcast(
                     context.getApplicationContext(), 0, shareIntent, 0);
             Intent copyIntent = new Intent(context.getApplicationContext(), CopyBroadcastReceiver.class);
+            copyIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             PendingIntent copyPendingIntent = PendingIntent.getBroadcast(
                     context.getApplicationContext(), 0, copyIntent, 0);
 
