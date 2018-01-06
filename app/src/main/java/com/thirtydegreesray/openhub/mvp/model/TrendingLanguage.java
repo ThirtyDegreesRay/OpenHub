@@ -20,6 +20,11 @@ public class TrendingLanguage implements Parcelable {
     private int order;
     private boolean selected;
 
+    public TrendingLanguage(String name, String slug) {
+        this.name = name;
+        this.slug = slug;
+    }
+
     public static ArrayList<TrendingLanguage> generateFromDB(@NonNull List<MyTrendingLanguage> myLanguages){
         ArrayList<TrendingLanguage> languages = new ArrayList<>();
         for(MyTrendingLanguage myTrendingLanguage : myLanguages){

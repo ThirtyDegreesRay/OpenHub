@@ -19,6 +19,7 @@ public interface ILanguagesEditorContract {
 
     interface Presenter extends IBaseContract.Presenter<ILanguagesEditorContract.View>{
         void loadLanguages();
+        void searchLanguages(String key);
         void saveSelectedLanguages();
         TrendingLanguage removeLanguage(int position);
         void undoRemoveLanguage();

@@ -420,7 +420,7 @@
     <string name="collections_tip">Curated lists and insight into burgeoning industries, topics, and communities.</string>
     <string name="github_page_parse_error">
         %s page parse error, this page may be changed by github,
-        please update your application to latest version, if not, please concat me to solve the problem!
+        please update your application to latest version, if error continue, please concat me to solve the problem!
     </string>
 
     <string name="bookmarks_tip">You can swipe left or right to remove bookmark.</string>
@@ -431,6 +431,11 @@
     <string name="topics">Featured topics</string>
     <string name="topics_tip">Browse the top used topics on GitHub.</string>
     <string name="no_topics">No topics</string>
+
+    <string name="star_num_today">%s star today</string>
+    <string name="star_num_this_week">%s star this week</string>
+    <string name="star_num_this_month">%s star this month</string>
+    <string name="no_trending_repos">It looks like we don’t have any trending repositories for %s.</string>
 
 
 </resources>

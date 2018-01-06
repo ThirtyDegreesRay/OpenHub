@@ -9,6 +9,7 @@ import com.google.gson.annotations.SerializedName;
 import com.thirtydegreesray.openhub.dao.BookMarkRepo;
 import com.thirtydegreesray.openhub.dao.LocalRepo;
 import com.thirtydegreesray.openhub.dao.TraceRepo;
+import com.thirtydegreesray.openhub.mvp.model.filter.TrendingSince;
 
 import java.util.Date;
 
@@ -56,6 +57,9 @@ public class Repository implements Parcelable {
     @SerializedName("has_downloads") private boolean hasDownloads;
     @SerializedName("has_wiki") private boolean hasWiki;
     @SerializedName("has_pages") private boolean hasPages;
+
+    private int sinceStargazersCount ;
+    private TrendingSince since;
 
     public Repository() {
     }
@@ -366,6 +370,21 @@ public class Repository implements Parcelable {
         this.hasPages = hasPages;
     }
 
+    public int getSinceStargazersCount() {
+        return sinceStargazersCount;
+    }
+
+    public void setSinceStargazersCount(int sinceStargazersCount) {
+        this.sinceStargazersCount = sinceStargazersCount;
+    }
+
+    public TrendingSince getSince() {
+        return since;
+    }
+
+    public void setSince(TrendingSince since) {
+        this.since = since;
+    }
 
     @Override
     public int describeContents() {
@@ -404,6 +423,9 @@ public class Repository implements Parcelable {
         dest.writeByte(this.hasDownloads ? (byte) 1 : (byte) 0);
         dest.writeByte(this.hasWiki ? (byte) 1 : (byte) 0);
         dest.writeByte(this.hasPages ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.sinceStargazersCount);
+        dest.writeInt(this.since == null ? -1 : this.since.ordinal());
+
     }
 
     protected Repository(Parcel in) {
@@ -440,6 +462,9 @@ public class Repository implements Parcelable {
         this.hasDownloads = in.readByte() != 0;
         this.hasWiki = in.readByte() != 0;
         this.hasPages = in.readByte() != 0;
+        this.sinceStargazersCount = in.readInt();
+        int tmpTrendingSince = in.readInt();
+        this.since = tmpTrendingSince == -1 ? null : TrendingSince.values()[tmpTrendingSince];
     }
 
     public static final Creator<Repository> CREATOR = new Creator<Repository>() {

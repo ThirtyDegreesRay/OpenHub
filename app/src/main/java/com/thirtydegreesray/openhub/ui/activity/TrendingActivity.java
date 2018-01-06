@@ -168,13 +168,13 @@ public class TrendingActivity extends PagerActivity<TrendingPresenter>
         for(FragmentPagerModel fragmentPagerModel : pagerAdapter.getPagerList()){
             if(fragmentPagerModel.getFragment() instanceof LanguageUpdateListener){
                 ((LanguageUpdateListener)fragmentPagerModel.getFragment())
-                        .onLanguageUpdate(selectedLanguage.getSlug());
+                        .onLanguageUpdate(selectedLanguage);
             }
         }
     }
 
     public interface LanguageUpdateListener{
-        void onLanguageUpdate(String language);
+        void onLanguageUpdate(TrendingLanguage language);
     }
 
 }

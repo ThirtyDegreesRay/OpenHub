@@ -20,7 +20,9 @@ import com.thirtydegreesray.openhub.mvp.model.Collection;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.Topic;
+import com.thirtydegreesray.openhub.mvp.model.TrendingLanguage;
 import com.thirtydegreesray.openhub.mvp.model.filter.RepositoriesFilter;
+import com.thirtydegreesray.openhub.mvp.model.filter.TrendingSince;
 import com.thirtydegreesray.openhub.mvp.presenter.RepositoriesPresenter;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
 import com.thirtydegreesray.openhub.ui.activity.TrendingActivity;
@@ -92,7 +94,7 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
         return fragment;
     }
 
-    public static RepositoriesFragment createForTrending(@NonNull String since){
+    public static RepositoriesFragment createForTrending(@NonNull TrendingSince since){
         RepositoriesFragment fragment = new RepositoriesFragment();
         fragment.setArguments(
                 BundleHelper.builder()
@@ -154,6 +156,9 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
 
     @Override
     protected String getEmptyTip() {
+        if(RepositoriesType.TRENDING.equals(mPresenter.getType())){
+            return String.format(getString(R.string.no_trending_repos), mPresenter.getLanguage().getName());
+        }
         return getString(R.string.no_repository);
     }
 
@@ -207,13 +212,13 @@ public class RepositoriesFragment extends ListFragment<RepositoriesPresenter, Re
     }
 
     @Override
-    public void onLanguageUpdate(String language) {
+    public void onLanguageUpdate(TrendingLanguage language) {
         if(mPresenter != null){
             mPresenter.setLanguage(language);
             mPresenter.setLoaded(false);
             mPresenter.prepareLoadData();
         } else {
-            getArguments().putString("language", language);
+            getArguments().putParcelable("language", language);
         }
     }
 

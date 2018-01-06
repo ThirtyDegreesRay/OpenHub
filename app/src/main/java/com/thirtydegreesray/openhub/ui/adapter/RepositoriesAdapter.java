@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
@@ -58,6 +59,9 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
         @BindView(R.id.tv_star_num) TextView tvStarNum;
         @BindView(R.id.tv_fork_num) TextView tvForkNum;
         @BindView(R.id.tv_owner_name) TextView tvOwnerName;
+        @BindView(R.id.tv_since_star_num) TextView tvSinceStarNum;
+        @BindView(R.id.since_star_lay) LinearLayout sinceStarLay;
+        @BindView(R.id.owner_lay) LinearLayout ownerLay;
         @BindView(R.id.fork_mark) View forkMark;
 
         public ViewHolder(@NonNull View itemView) {
@@ -77,16 +81,45 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         Repository repository = data.get(position);
-        holder.tvRepoName.setText(repository.getName());
+        boolean hasOwnerAvatar = !StringUtils.isBlank(repository.getOwner().getAvatarUrl());
+        holder.tvRepoName.setText(hasOwnerAvatar ? repository.getName(): repository.getFullName());
         holder.tvLanguage.setText(StringUtils.isBlank(repository.getLanguage()) ? "" : repository.getLanguage());
         holder.tvRepoDescription.setText(repository.getDescription());
         holder.tvStarNum.setText(String.valueOf(repository.getStargazersCount()));
         holder.tvForkNum.setText(String.valueOf(repository.getForksCount()));
         holder.tvOwnerName.setText(repository.getOwner().getLogin());
-        GlideApp.with(fragment)
-                .load(repository.getOwner().getAvatarUrl())
-                .placeholder(R.mipmap.logo)
-                .into(holder.ivUserAvatar);
+        if(hasOwnerAvatar){
+            holder.ivUserAvatar.setVisibility(View.VISIBLE);
+            holder.ownerLay.setVisibility(View.VISIBLE);
+            holder.sinceStarLay.setVisibility(View.GONE);
+            GlideApp.with(fragment)
+                    .load(repository.getOwner().getAvatarUrl())
+                    .placeholder(R.mipmap.logo)
+                    .into(holder.ivUserAvatar);
+        } else {
+            holder.ivUserAvatar.setVisibility(View.GONE);
+            holder.ownerLay.setVisibility(View.GONE);
+            if (repository.getSinceStargazersCount() == 0) {
+                holder.sinceStarLay.setVisibility(View.INVISIBLE);
+            } else {
+                holder.sinceStarLay.setVisibility(View.VISIBLE);
+                switch (repository.getSince()) {
+                    case Daily:
+                        holder.tvSinceStarNum.setText(String.format(getString(R.string.star_num_today),
+                                repository.getSinceStargazersCount()));
+                        break;
+                    case Weekly:
+                        holder.tvSinceStarNum.setText(String.format(getString(R.string.star_num_this_week),
+                                repository.getSinceStargazersCount()));
+                        break;
+                    case Monthly:
+                        holder.tvSinceStarNum.setText(String.format(getString(R.string.star_num_this_month),
+                                repository.getSinceStargazersCount()));
+                        break;
+                }
+            }
+        }
+
         holder.forkMark.setVisibility(repository.isFork() ? View.VISIBLE : View.GONE);
     }
 }

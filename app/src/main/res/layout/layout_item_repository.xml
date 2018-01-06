@@ -24,13 +24,13 @@
             android:id="@+id/iv_user_avatar"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:background="?android:selectableItemBackgroundBorderless"/>
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:layout_marginEnd="@dimen/spacing_normal"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="@dimen/spacing_normal">
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,8 +77,8 @@
                     android:layout_weight="2"
                     android:gravity="center_vertical">
                     <android.support.v7.widget.AppCompatImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
                         app:srcCompat="@drawable/ic_menu_star"
                         android:tint="?android:textColorSecondary"/>
                     <TextView
@@ -97,8 +97,8 @@
                     android:layout_weight="2"
                     android:gravity="center_vertical">
                     <android.support.v7.widget.AppCompatImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
                         app:srcCompat="@drawable/ic_fork"
                         android:tint="?android:textColorSecondary"/>
                     <TextView
@@ -111,14 +111,15 @@
                         android:layout_marginLeft="@dimen/spacing_mini"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/owner_lay"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_weight="4"
                     android:gravity="center_vertical">
                     <android.support.v7.widget.AppCompatImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
                         app:srcCompat="@drawable/ic_menu_person"
                         android:tint="?android:textColorSecondary"/>
                     <TextView
@@ -127,9 +128,10 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_mini"
                         android:textColor="?android:textColorSecondary"
-                        android:text="ThirtyDegreesRay"
+                        android:text="owner"
                         android:layout_marginLeft="@dimen/spacing_mini"/>
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/fork_mark"
                     android:layout_width="wrap_content"
@@ -139,8 +141,8 @@
                     android:layout_marginLeft="@dimen/spacing_mini"
                     android:layout_marginRight="@dimen/spacing_mini">
                     <android.support.v7.widget.AppCompatImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
                         app:srcCompat="@drawable/ic_fork"
                         android:tint="?android:textColorPrimary"/>
                     <TextView
@@ -151,6 +153,30 @@
                         android:text="@string/fork_tag"
                         android:layout_marginStart="@dimen/spacing_mini"/>
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/since_star_lay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="4"
+                    android:gravity="center_vertical"
+                    android:visibility="gone">
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        app:srcCompat="@drawable/ic_menu_star"
+                        android:tint="?android:textColorSecondary"/>
+                    <TextView
+                        android:id="@+id/tv_since_star_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_mini"
+                        android:textColor="?android:textColorSecondary"
+                        android:layout_marginStart="@dimen/spacing_mini"
+                        android:layout_marginEnd="@dimen/spacing_mini"/>
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
 

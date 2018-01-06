@@ -24,8 +24,10 @@ import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.SearchResult;
 import com.thirtydegreesray.openhub.mvp.model.Topic;
+import com.thirtydegreesray.openhub.mvp.model.TrendingLanguage;
 import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.mvp.model.filter.RepositoriesFilter;
+import com.thirtydegreesray.openhub.mvp.model.filter.TrendingSince;
 import com.thirtydegreesray.openhub.mvp.presenter.base.BasePagerPresenter;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.util.StringUtils;
@@ -65,11 +67,11 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
     @AutoAccess String repo;
 
     @AutoAccess SearchModel searchModel;
-    @AutoAccess String since;
+    @AutoAccess TrendingSince since;
 
     @AutoAccess RepositoriesFilter filter;
 
-    @AutoAccess String language;
+    @AutoAccess TrendingLanguage language;
 
     @AutoAccess Collection collection;
     @AutoAccess Topic topic;
@@ -110,13 +112,8 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
             searchRepos(1);
             return;
         }
-//        if (repos != null) {
-//            mView.showRepositories(repos);
-//            mView.hideLoading();
-//            return;
-//        }
-        if(RepositoriesFragment.RepositoriesType.TRENDING.equals(type)
-                && StringUtils.isBlank(language)){
+        if(RepositoriesFragment.RepositoriesType.TRENDING.equals(type)){
+            loadTrending(false);
             return;
         }
         loadRepositories(false, 1);
@@ -146,9 +143,12 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
             searchRepos(page);
             return;
         }
+        if(RepositoriesFragment.RepositoriesType.TRENDING.equals(type)){
+            loadTrending(isReLoad);
+            return;
+        }
         mView.showLoading();
-        final boolean readCacheFirst = !isReLoad && page == 1 &&
-                !type.equals(RepositoriesFragment.RepositoriesType.TRENDING);
+        final boolean readCacheFirst = !isReLoad && page == 1;
 
         HttpObserver<ArrayList<Repository>> httpObserver = new HttpObserver<ArrayList<Repository>>() {
             @Override
@@ -200,8 +200,6 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
             case STARRED:
                 return getRepoService().getStarredRepos(forceNetWork, user, page,
                         filter.getSort(), filter.getSortDirection());
-            case TRENDING:
-                return getOpenHubService().getTrendingRepos(since, language);
             case FORKS:
                 return getRepoService().getForks(forceNetWork, user, repo, page);
             default:
@@ -321,7 +319,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         mView.hideLoading();
     }
 
-    public void setLanguage(String language) {
+    public void setLanguage(TrendingLanguage language) {
         this.language = language;
     }
 
@@ -337,7 +335,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
             @Override
             public void onSuccess(HttpResponse<ResponseBody> response) {
                 try {
-                    parsePageData(response.body().string());
+                    parseCollectionsPageData(response.body().string());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -350,7 +348,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
 
     }
 
-    private void parsePageData(String page){
+    private void parseCollectionsPageData(String page){
         Observable.just(page)
                 .map(s -> {
                     ArrayList<Repository> repos = new ArrayList<>();
@@ -360,7 +358,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
                         for (Element element : elements) {
                             //maybe a user or an org, so add catch
                             try{
-                                repos.add(parseRepositoryData(element));
+                                repos.add(parseCollectionsRepositoryData(element));
                             } catch (Exception e){
                                 e.printStackTrace();
                             }
@@ -374,6 +372,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(results -> {
+                    if(mView == null) return;
                     if(results.size() != 0){
                         repos = results;
                         mView.hideLoading();
@@ -387,7 +386,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
                 });
     }
 
-    private Repository parseRepositoryData(Element element) throws Exception{
+    private Repository parseCollectionsRepositoryData(Element element) throws Exception{
         String fullName = element.select("div > div > a").attr("href");
         String owner = fullName.substring(1, fullName.lastIndexOf("/"));
         String repoName = fullName.substring(fullName.lastIndexOf("/") + 1);
@@ -432,4 +431,119 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         }
     }
 
+    private void loadTrending(boolean isReload){
+        mView.showLoading();
+        HttpObserver<ResponseBody> httpObserver = new HttpObserver<ResponseBody>() {
+            @Override
+            public void onError(Throwable error) {
+                mView.hideLoading();
+                mView.showLoadError(getErrorTip(error));
+            }
+
+            @Override
+            public void onSuccess(HttpResponse<ResponseBody> response) {
+                try {
+                    parseTrendingPageData(response.body().string());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        generalRxHttpExecute(forceNetWork -> getGitHubWebPageService()
+                        .getTrendingRepos(forceNetWork, language.getSlug(), since.name()),
+                httpObserver, !isReload);
+    }
+
+    private void parseTrendingPageData(String page){
+        Observable.just(page)
+                .map(s -> {
+                    ArrayList<Repository> repos = new ArrayList<>();
+                    try {
+                        Document doc = Jsoup.parse(s, AppConfig.GITHUB_BASE_URL);
+                        Elements elements = doc.getElementsByClass("col-12 d-block width-full py-4 border-bottom");
+                        if(elements.size() != 0){
+                            for (Element element : elements) {
+                                try{
+                                    repos.add(parseTrendingRepositoryData(element));
+                                } catch (Exception e){
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    } catch (Exception e){
+                        e.printStackTrace();
+                        repos = null;
+                    }
+
+                    return repos;
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(results -> {
+                    if(mView == null) return;
+                    if(results != null){
+                        repos = results;
+                        mView.hideLoading();
+                        mView.showRepositories(repos);
+                    } else {
+                        String errorTip = String.format(getString(R.string.github_page_parse_error),
+                                getString(R.string.trending));
+                        mView.showLoadError(errorTip);
+                        mView.hideLoading();
+                    }
+                });
+    }
+
+    private Repository parseTrendingRepositoryData(Element element) throws Exception{
+        String fullName = element.select("div > h3 > a").attr("href");
+        fullName = fullName.substring(1);
+        String owner = fullName.substring(0, fullName.lastIndexOf("/"));
+        String repoName = fullName.substring(fullName.lastIndexOf("/") + 1);
+
+        Element descElement = element.select("div > p").first();
+        StringBuilder desc = new StringBuilder("");
+        for(TextNode textNode : descElement.textNodes()){
+            desc.append(textNode.getWholeText());
+        }
+
+        Element numElement = element.getElementsByClass("f6 text-gray mt-2").first();
+        String language = "";
+        Elements languageElements = numElement.select("span > span");
+        if(languageElements.size() > 0){
+            language = numElement.select("span > span").get(1).textNodes().get(0).toString().trim();
+        }
+        String starNumStr =  numElement.select("a").get(0).textNodes().get(1).toString()
+                .replaceAll(" ", "").replaceAll(",", "");
+        String forkNumStr =  numElement.select("a").get(1).textNodes().get(1).toString()
+                .replaceAll(" ", "").replaceAll(",", "");
+        Element periodElement =  numElement.getElementsByClass("d-inline-block float-sm-right").first();
+        String periodNumStr = "0";
+        if(periodElement != null){
+            periodNumStr = periodElement.childNodes().get(2).toString().trim();
+            periodNumStr = periodNumStr.substring(0, periodNumStr.indexOf(" "))
+                    .replaceAll(",", "");
+        }
+
+        Repository repo = new Repository();
+        repo.setFullName(fullName);
+        repo.setName(repoName);
+        User user = new User();
+        user.setLogin(owner);
+        repo.setOwner(user);
+
+        repo.setDescription(desc.toString().trim()
+                .replaceAll("\n", ""));
+        repo.setStargazersCount(Integer.parseInt(starNumStr));
+        repo.setForksCount(Integer.parseInt(forkNumStr));
+        repo.setSinceStargazersCount(Integer.parseInt(periodNumStr));
+        repo.setLanguage(language);
+        repo.setSince(since);
+
+        return repo;
+    }
+
+    public TrendingLanguage getLanguage() {
+        return language;
+    }
 }

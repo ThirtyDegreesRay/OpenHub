@@ -95,6 +95,7 @@ public class CollectionsPresenter extends BasePresenter<ICollectionsContract.Vie
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(results -> {
+                    if(mView == null) return;
                     if(results.size() != 0){
                         collections = results;
                         mView.hideLoading();

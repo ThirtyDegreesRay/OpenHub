@@ -8,7 +8,9 @@ import okhttp3.ResponseBody;
 import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -39,5 +41,16 @@ public interface GitHubWebPageService {
     Observable<Response<ResponseBody>> getTopics(
             @Header("forceNetWork") boolean forceNetWork
     );
+
+    @NonNull @GET("trending/{language}")
+    Observable<Response<ResponseBody>> getTrendingRepos(
+            @Header("forceNetWork") boolean forceNetWork,
+            @Path("language") String language,
+            @Query("since") String since
+    );
+
+    @Headers("Cache-Control: public, max-age=86400")
+    @NonNull @GET("trending")
+    Observable<Response<ResponseBody>> getTrendingLanguages();
 
 }

@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
@@ -24,12 +27,14 @@ import com.thirtydegreesray.openhub.util.PrefUtils;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+
 /**
  * Created by ThirtyDegreesRay on 2017/11/28 18:57:52
  */
 
 public class LanguagesEditorFragment extends ListFragment<LanguagesEditorPresenter, LanguagesAdapter>
-        implements ILanguagesEditorContract.View, ItemTouchHelperCallback.ItemGestureListener  {
+        implements ILanguagesEditorContract.View, ItemTouchHelperCallback.ItemGestureListener{
 
     public static LanguagesEditorFragment create(@NonNull LanguagesEditorActivity.LanguageEditorMode mode){
         LanguagesEditorFragment fragment = new LanguagesEditorFragment();
@@ -46,6 +51,7 @@ public class LanguagesEditorFragment extends ListFragment<LanguagesEditorPresent
     }
 
     private ItemTouchHelper itemTouchHelper;
+    @BindView(R.id.search_edit_text) EditText searchEditText;
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
@@ -58,16 +64,18 @@ public class LanguagesEditorFragment extends ListFragment<LanguagesEditorPresent
                     ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
             itemTouchHelper = new ItemTouchHelper(callback);
             itemTouchHelper.attachToRecyclerView(recyclerView);
+            if(PrefUtils.isLanguagesEditorTipAble()){
+                showOperationTip(R.string.languages_editor_tip);
+                PrefUtils.set(PrefUtils.LANGUAGES_EDITOR_TIP_ABLE, false);
+            }
         }
-        if(PrefUtils.isLanguagesEditorTipAble()){
-            showOperationTip(R.string.languages_editor_tip);
-            PrefUtils.set(PrefUtils.LANGUAGES_EDITOR_TIP_ABLE, false);
-        }
+
+        initSearchEditText();
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_list;
+        return R.layout.fragment_list_with_search;
     }
 
     @Override
@@ -153,6 +161,29 @@ public class LanguagesEditorFragment extends ListFragment<LanguagesEditorPresent
 
     public ArrayList<TrendingLanguage> getSelectedLanguages(){
         return adapter.getData();
+    }
+
+    private void initSearchEditText(){
+        if(LanguagesEditorActivity.LanguageEditorMode.Sort.equals(mPresenter.getMode())){
+            searchEditText.setVisibility(View.GONE);
+        } else {
+            searchEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    mPresenter.searchLanguages(searchEditText.getText().toString());
+                }
+            });
+        }
     }
 
 }

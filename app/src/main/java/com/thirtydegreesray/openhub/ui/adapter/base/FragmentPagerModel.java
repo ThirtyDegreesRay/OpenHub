@@ -11,6 +11,7 @@ import com.thirtydegreesray.openhub.mvp.model.Issue;
 import com.thirtydegreesray.openhub.mvp.model.Repository;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.model.User;
+import com.thirtydegreesray.openhub.mvp.model.filter.TrendingSince;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 import com.thirtydegreesray.openhub.ui.fragment.CommitsFragment;
 import com.thirtydegreesray.openhub.ui.fragment.IssuesFragment;
@@ -97,11 +98,11 @@ public class FragmentPagerModel {
             @NonNull Context context, @NonNull ArrayList<Fragment> fragments) {
         return setPagerFragmentFlag(Arrays.asList(
                 new FragmentPagerModel(context.getString(R.string.daily),
-                        getFragment(fragments, 0, () -> RepositoriesFragment.createForTrending("daily"))),
+                        getFragment(fragments, 0, () -> RepositoriesFragment.createForTrending(TrendingSince.Daily))),
                 new FragmentPagerModel(context.getString(R.string.weekly),
-                        getFragment(fragments, 1, () -> RepositoriesFragment.createForTrending("weekly"))),
+                        getFragment(fragments, 1, () -> RepositoriesFragment.createForTrending(TrendingSince.Weekly))),
                 new FragmentPagerModel(context.getString(R.string.monthly),
-                        getFragment(fragments, 2, () -> RepositoriesFragment.createForTrending("monthly")))
+                        getFragment(fragments, 2, () -> RepositoriesFragment.createForTrending(TrendingSince.Monthly)))
         ));
     }
 

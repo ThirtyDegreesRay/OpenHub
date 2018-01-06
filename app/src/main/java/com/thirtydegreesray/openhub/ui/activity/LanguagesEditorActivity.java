@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.view.Menu;
 import android.view.View;
 
@@ -14,6 +13,8 @@ import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.model.TrendingLanguage;
 import com.thirtydegreesray.openhub.ui.activity.base.SingleFragmentActivity;
 import com.thirtydegreesray.openhub.ui.fragment.LanguagesEditorFragment;
+import com.thirtydegreesray.openhub.ui.fragment.base.ListFragment;
+import com.thirtydegreesray.openhub.ui.widget.ZoomAbleFloatingActionButton;
 import com.thirtydegreesray.openhub.util.BundleHelper;
 
 import java.util.ArrayList;
@@ -26,7 +27,8 @@ import butterknife.OnClick;
  */
 
 public class LanguagesEditorActivity extends
-        SingleFragmentActivity<IBaseContract.Presenter, LanguagesEditorFragment> {
+        SingleFragmentActivity<IBaseContract.Presenter, LanguagesEditorFragment>
+        implements ListFragment.ListScrollListener{
 
     public static void showForChoose(@NonNull Activity activity, @NonNull LanguageEditorMode mode,
                                      @NonNull ArrayList<TrendingLanguage> selectedLanguages, int requestCode) {
@@ -43,8 +45,18 @@ public class LanguagesEditorActivity extends
         activity.startActivityForResult(intent, requestCode);
     }
 
-    @BindView(R.id.float_action_bn) FloatingActionButton floatingActionButton;
+    @BindView(R.id.float_action_bn) ZoomAbleFloatingActionButton floatingActionButton;
     private final int ADD_LANGUAGE_REQUEST_CODE = 100;
+
+    @Override
+    public void onScrollUp() {
+        floatingActionButton.zoomIn();
+    }
+
+    @Override
+    public void onScrollDown() {
+        floatingActionButton.zoomOut();
+    }
 
     public enum LanguageEditorMode {
         Sort, Choose
@@ -56,7 +68,9 @@ public class LanguagesEditorActivity extends
     @Override
     protected LanguagesEditorFragment createFragment() {
         if (LanguageEditorMode.Sort.equals(mode)) {
-            return LanguagesEditorFragment.create(mode);
+            LanguagesEditorFragment fragment = LanguagesEditorFragment.create(mode);
+            fragment.setListScrollListener(this);
+            return fragment;
         } else {
             return LanguagesEditorFragment.createForChoose(mode, selectedLanguages);
         }
@@ -72,6 +86,7 @@ public class LanguagesEditorActivity extends
         } else {
             setToolbarTitle(getString(R.string.choose_languages));
         }
+        setToolbarScrollAble(true);
     }
 
     @OnClick(R.id.float_action_bn)

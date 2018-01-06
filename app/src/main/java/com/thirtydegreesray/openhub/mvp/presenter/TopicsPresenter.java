@@ -87,6 +87,7 @@ public class TopicsPresenter extends BasePresenter<ITopicsContract.View>
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(results -> {
+                    if(mView == null) return;
                     if(results.size() != 0){
                         topics = results;
                         mView.hideLoading();
