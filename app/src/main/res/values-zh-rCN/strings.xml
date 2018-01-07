@@ -337,6 +337,9 @@
     <string name="topics_tip">浏览GitHub上使用最多的主题。</string>
     <string name="no_topics">没有主题</string>
     <string name="start_page">起始页面</string>
+    <string name="star_num_today">%s星标今日</string>
+    <string name="star_num_this_week">%s星标本周</string>
+    <string name="star_num_this_month">%s星标本月</string>
     <string name="no_trending_repos">看起来我们没有%s语言的趋势版本库。</string>
 
 </resources>

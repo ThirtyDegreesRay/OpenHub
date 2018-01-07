@@ -4,6 +4,7 @@ package com.thirtydegreesray.openhub.ui.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
+import com.thirtydegreesray.openhub.util.LanguageColorsHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import javax.inject.Inject;
@@ -53,6 +55,7 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
     public class ViewHolder extends BaseViewHolder {
 
         @BindView(R.id.iv_user_avatar) ImageView ivUserAvatar;
+        @BindView(R.id.language_color) ImageView languageColor;
         @BindView(R.id.tv_repo_name) TextView tvRepoName;
         @BindView(R.id.tv_language) TextView tvLanguage;
         @BindView(R.id.tv_repo_description) TextView tvRepoDescription;
@@ -83,11 +86,22 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
         Repository repository = data.get(position);
         boolean hasOwnerAvatar = !StringUtils.isBlank(repository.getOwner().getAvatarUrl());
         holder.tvRepoName.setText(hasOwnerAvatar ? repository.getName(): repository.getFullName());
-        holder.tvLanguage.setText(StringUtils.isBlank(repository.getLanguage()) ? "" : repository.getLanguage());
         holder.tvRepoDescription.setText(repository.getDescription());
         holder.tvStarNum.setText(String.valueOf(repository.getStargazersCount()));
         holder.tvForkNum.setText(String.valueOf(repository.getForksCount()));
         holder.tvOwnerName.setText(repository.getOwner().getLogin());
+
+        if(StringUtils.isBlank(repository.getLanguage())){
+            holder.tvLanguage.setText("");
+            holder.languageColor.setVisibility(View.INVISIBLE);
+        } else {
+            holder.languageColor.setVisibility(View.VISIBLE);
+            holder.tvLanguage.setText(repository.getLanguage());
+            int languageColor = LanguageColorsHelper.INSTANCE.getColor(context, repository.getLanguage());
+            holder.languageColor.setImageTintList(ColorStateList.valueOf(languageColor));
+        }
+
+
         if(hasOwnerAvatar){
             holder.ivUserAvatar.setVisibility(View.VISIBLE);
             holder.ownerLay.setVisibility(View.VISIBLE);
