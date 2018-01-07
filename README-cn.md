@@ -94,6 +94,9 @@
 * [RichText](https://github.com/zzhoujay/RichText) Android平台下的富文本解析器，支持Html和Markdown
 * [jsoup](https://github.com/jhy/jsoup) HTML解析器
 
+## 贡献
+* [moriel5](https://github.com/moriel5) - 希伯来语翻译
+
 ## License
     Copyright (C) 2017 ThirtyDegreesRay
 

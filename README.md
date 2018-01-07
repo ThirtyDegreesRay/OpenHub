@@ -94,6 +94,9 @@ An **open source** GitHub Android client app, faster and concise.
 * [RichText](https://github.com/zzhoujay/RichText) Rich text parser for Android, support markdown and html.
 * [jsoup](https://github.com/jhy/jsoup) Java HTML Parser, with best of DOM, CSS, and jquery.
 
+## Contributions
+* [moriel5](https://github.com/moriel5) - Hebrew translation
+
 ## License
     Copyright (C) 2017 ThirtyDegreesRay
 
