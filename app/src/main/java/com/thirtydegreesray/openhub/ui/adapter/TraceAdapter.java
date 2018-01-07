@@ -2,6 +2,7 @@ package com.thirtydegreesray.openhub.ui.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
+import com.thirtydegreesray.openhub.util.LanguageColorsHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewUtils;
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter;
@@ -45,9 +47,9 @@ public class TraceAdapter extends BaseAdapter<BaseViewHolder, TraceExt>
     @Override
     protected int getLayoutId(int viewType) {
         if(viewType == 0){
-            return R.layout.layout_item_trace_user;
+            return R.layout.layout_item_user;
         } else {
-            return R.layout.layout_item_trace_repository;
+            return R.layout.layout_item_repository;
         }
     }
 
@@ -68,7 +70,6 @@ public class TraceAdapter extends BaseAdapter<BaseViewHolder, TraceExt>
             Repository repository = model.getRepository();
             RepoViewHolder repoViewHolder = (RepoViewHolder) holder;
             repoViewHolder.tvRepoName.setText(repository.getName());
-            repoViewHolder.tvLanguage.setText(StringUtils.isBlank(repository.getLanguage()) ? "" : repository.getLanguage());
             repoViewHolder.tvRepoDescription.setText(repository.getDescription());
             repoViewHolder.tvStarNum.setText(String.valueOf(repository.getStargazersCount()));
             repoViewHolder.tvForkNum.setText(String.valueOf(repository.getForksCount()));
@@ -78,6 +79,16 @@ public class TraceAdapter extends BaseAdapter<BaseViewHolder, TraceExt>
                     .placeholder(R.mipmap.logo)
                     .into(repoViewHolder.ivUserAvatar);
             repoViewHolder.forkMark.setVisibility(repository.isFork() ? View.VISIBLE : View.GONE);
+
+            if(StringUtils.isBlank(repository.getLanguage())){
+                repoViewHolder.tvLanguage.setText("");
+                repoViewHolder.languageColor.setVisibility(View.INVISIBLE);
+            } else {
+                repoViewHolder.languageColor.setVisibility(View.VISIBLE);
+                repoViewHolder.tvLanguage.setText(repository.getLanguage());
+                int languageColor = LanguageColorsHelper.INSTANCE.getColor(context, repository.getLanguage());
+                repoViewHolder.languageColor.setImageTintList(ColorStateList.valueOf(languageColor));
+            }
         }
     }
 
@@ -146,6 +157,7 @@ public class TraceAdapter extends BaseAdapter<BaseViewHolder, TraceExt>
     public class RepoViewHolder extends BaseViewHolder {
 
         @BindView(R.id.iv_user_avatar) ImageView ivUserAvatar;
+        @BindView(R.id.language_color) ImageView languageColor;
         @BindView(R.id.tv_repo_name) TextView tvRepoName;
         @BindView(R.id.tv_language) TextView tvLanguage;
         @BindView(R.id.tv_repo_description) TextView tvRepoDescription;
