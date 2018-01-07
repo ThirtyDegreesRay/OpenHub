@@ -1,9 +1,9 @@
 package com.thirtydegreesray.openhub.ui.adapter;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,6 +12,7 @@ import com.thirtydegreesray.openhub.mvp.model.TrendingLanguage;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
+import com.thirtydegreesray.openhub.util.LanguageColorsHelper;
 
 import javax.inject.Inject;
 
@@ -44,11 +45,14 @@ public class LanguagesAdapter extends BaseAdapter<LanguagesAdapter.ViewHolder, T
         TrendingLanguage language = data.get(position);
         holder.languageName.setText(language.getName());
         holder.selectedFlag.setVisibility(language.isSelected() ? View.VISIBLE : View.INVISIBLE);
+        int languageColor = LanguageColorsHelper.INSTANCE.getColor(context, language.getName());
+        holder.languageColor.setImageTintList(ColorStateList.valueOf(languageColor));
     }
 
     class ViewHolder extends BaseViewHolder {
         @BindView(R.id.language_name) TextView languageName;
         @BindView(R.id.selected_flag) AppCompatImageView selectedFlag;
+        @BindView(R.id.language_color) AppCompatImageView languageColor;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }

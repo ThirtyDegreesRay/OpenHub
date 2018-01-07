@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,7 +10,14 @@
     android:paddingTop="@dimen/spacing_large"
     android:paddingBottom="@dimen/spacing_large"
     android:paddingStart="@dimen/spacing_x_large"
-    android:paddingEnd="@dimen/spacing_x_large">
+    android:paddingEnd="@dimen/spacing_x_large"
+    android:gravity="center_vertical">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/language_color"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        app:srcCompat="@drawable/ic_dot"/>
 
     <TextView
         android:id="@+id/language_name"
@@ -17,7 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textColor="?android:textColorPrimary"
-        android:textSize="@dimen/text_normal"/>
+        android:textSize="@dimen/text_normal"
+        android:layout_marginStart="@dimen/spacing_large"/>
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/selected_flag"

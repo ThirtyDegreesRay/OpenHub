@@ -23,12 +23,14 @@ public enum  LanguageColorsHelper {
     INSTANCE;
 
     private Map<String, Integer> colorMap;
+    private int defaultColor;
 
     public int getColor(@NonNull Context context, @NonNull String languageName){
         if(colorMap == null){
             initColorMap(context);
+            defaultColor = Color.parseColor("#CCCCCC");
         }
-        return colorMap.containsKey(languageName) ? colorMap.get(languageName) : 0;
+        return colorMap.containsKey(languageName) ? colorMap.get(languageName) : defaultColor;
     }
 
     private void initColorMap(@NonNull Context context){
@@ -43,7 +45,7 @@ public enum  LanguageColorsHelper {
                 JSONObject language = jsonObject.getJSONObject(name);
                 String colorStr = language.getString("color");
                 if(colorStr == null || colorStr.equals("null")){
-                    colorStr = "#CCCCCC";
+                    continue;
                 }
                 int color = Color.parseColor(colorStr);
                 colorMap.put(name, color);
