@@ -16,8 +16,8 @@ public class StarWishesHelper {
         long curTime = System.currentTimeMillis();
         long firstInstallTime = AppUtils.getFirstInstallTime();
         long preTime = Math.max(lastTipTime, firstInstallTime);
-        //1, 2, 9, 64, 625...
-        double intervalTimes = Math.pow(tipTimes + 1, tipTimes);
+        //2, 9, 64, 625...
+        double intervalTimes = Math.pow(tipTimes + 2, tipTimes + 1);
 
         return curTime - preTime > TIP_INTERVAL * intervalTimes;
     }
