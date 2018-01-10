@@ -1,24 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="abc_action_bar_home_description">Zur Startseite</string>
-  <string name="abc_action_bar_home_description_format">%1$s: %2$s</string>
-  <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s: %3$s</string>
-  <string name="abc_action_bar_up_description">Nach oben</string>
-  <string name="abc_action_menu_overflow_description">Weitere Optionen</string>
-  <string name="abc_action_mode_done">Fertig</string>
-  <string name="abc_activity_chooser_view_see_all">Alle ansehen</string>
-  <string name="abc_activitychooserview_choose_application">App auswählen</string>
-  <string name="abc_capital_off">Aus</string>
-  <string name="abc_capital_on">An</string>
-  <string name="abc_search_hint">Suche…</string>
-  <string name="abc_searchview_description_clear">Abfrage löschen</string>
-  <string name="abc_searchview_description_query">Suchanfrage</string>
-  <string name="abc_searchview_description_search">Suche</string>
-  <string name="abc_searchview_description_submit">Anfrage senden</string>
-  <string name="abc_searchview_description_voice">Sprachsuche</string>
-  <string name="abc_shareactionprovider_share_with">Teilen mit</string>
-  <string name="abc_shareactionprovider_share_with_application">Teilen mit %s</string>
-  <string name="abc_toolbar_collapse_description">Zusammenbruch</string>
   <string name="about">Über</string>
   <string name="activity">Aktivität</string>
   <string name="activity_click_tip">Sie können auf ein Element klicken, um die Standardseite anzuzeigen, oder auf ein Element klicken, um verfügbare Seiten anzuzeigen.</string>
@@ -31,28 +12,19 @@
   <string name="add_small_header">Füge einen kleinen Header hinzu</string>
   <string name="added_member_to" formatted="false">Mitglied hinzugefügt %s zu %s</string>
   <string name="all">Alle</string>
-  <string name="amber">Bernstein</string>
-  <string name="app_github_name">OpenHub</string>
-  <string name="app_name">OpenHub</string>
   <string name="assigned">Zugewiesen</string>
   <string name="assigned_issue_at" formatted="false">Zugewiesenes Problem %d im %s</string>
   <string name="author">Autor</string>
-  <string name="author_location">Nanjing, China</string>
-  <string name="author_login_id">ThirtyDegreesRay</string>
   <string name="best_match">Bester Treffer</string>
-  <string name="blue">Blau</string>
   <string name="bookmark">Lesezeichen</string>
   <string name="bookmark_removed">Lesezeichen entfernt</string>
   <string name="bookmark_saved">Lesezeichen gespeichert</string>
   <string name="bookmarks">Lesezeichen</string>
   <string name="bookmarks_tip">Sie können nach links oder rechts streichen, um das Lesezeichen zu entfernen.</string>
-  <string name="bottom_sheet_behavior">android.support.design.widget.BottomSheetBehavior</string>
   <string name="branch_tip">Zweige oder Tags</string>
-  <string name="brown">Braun</string>
   <string name="cache_controller">Cache-Controller</string>
   <string name="cache_controller_desc">Laden Sie den Cache zuerst, wenn der Cache verfügbar ist, und laden Sie ihn dann aus dem Netzwerk.</string>
   <string name="cancel">Stornieren</string>
-  <string name="character_counter_pattern">%1$d / %2$d</string>
   <string name="choose_languages">Wähle Sprachen</string>
   <string name="choose_theme">Thema wählen</string>
   <string name="close">Schließen</string>
@@ -82,11 +54,9 @@
   <string name="created_pull_request_comment_at">Kommentar zur Überprüfung der Pull-Anfrage erstellt unter %s</string>
   <string name="created_repo">Erstelltes Repository %s</string>
   <string name="created_tag_at" formatted="false">Erstelltes Tag %s beim %s</string>
-  <string name="custom_tabs_desc">Öffnen Sie in benutzerdefinierten Registerkarten anstelle von äußeren Browser (Support Chrome, Firefox ...).</string>
-  <string name="cyan">Cyan</string>
+  <string name="custom_tabs_desc">Öffnen Sie in benutzerdefinierten Registerkarten anstelle von äußeren Browser (Support Chrome, Firefox …).</string>
   <string name="daily">Täglich</string>
   <string name="days_ago">vor tagen</string>
-  <string name="deep_purple">Dunkellila</string>
   <string name="delete">Löschen</string>
   <string name="delete_branch_at" formatted="false">Zweig löschen %s beim %s</string>
   <string name="delete_comment_warning">Bestätigen, um den Kommentar zu löschen?</string>
@@ -128,11 +98,6 @@
   <string name="fewest_stars">Wenige Sterne</string>
   <string name="files">Dateien</string>
   <string name="filter">Filter</string>
-  <string name="filter_all">Alle</string>
-  <string name="filter_member">Mitglied</string>
-  <string name="filter_owner">Inhaber</string>
-  <string name="filter_private">Privatgelände</string>
-  <string name="filter_public">Öffentlichkeit</string>
   <string name="follow">Folgen</string>
   <string name="follow_on_github">Folge GitHub</string>
   <string name="followed">Gefolgt</string>
@@ -153,10 +118,7 @@
   <string name="gists">Gist</string>
   <string name="github_page_parse_error">%s parsing-fehler, diese seite kann von github geändert werden, bitte aktualisieren sie ihre anwendung auf die neueste version, wenn der fehler weiterhin auftritt, bitten sie mich, das problem zu lösen!</string>
   <string name="go_to">Gehe zu</string>
-  <string name="green">Grün</string>
-  <string name="grey">Grau</string>
   <string name="hours_ago">vor stunden</string>
-  <string name="indigo">Indigo</string>
   <string name="info">Info</string>
   <string name="info_and_repositories">Infos und Einstellungen</string>
   <string name="insert_a_quote">Fügen Sie ein Angebot ein</string>
@@ -180,12 +142,6 @@
   <string name="least_recently_joined">Zuletzt erst kürzlich beigetreten</string>
   <string name="least_recently_updated">Mindestens kürzlich aktualisiert</string>
   <string name="leave_a_comment">Hinterlasse einen Kommentar</string>
-  <string name="license_apache2">\n\nUrheberrechte © %1$s %2$s\n \nLizenziert unter der Apache-Lizenz, Version 2.0 (die &amp;quot;Lizenz&amp;quot;); Sie dürfen diese Datei nur in Übereinstimmung mit der Lizenz verwenden. Sie können eine Kopie der Lizenz unter erhalten\n \nhttp://www.apache.org/licenses/LICENSE-2.0\n \nSofern nicht gesetzlich vorgeschrieben oder nicht schriftlich vereinbart, wird Software, die unter der Lizenz vertrieben wird, OHNE GEWÄHRLEISTUNGEN ODER BEDINGUNGEN JEDWEDER ART, weder ausdrücklich noch implizit, &amp;quot;WIE BESEHEN&amp;quot; VERTEILT. Siehe die Lizenz für die spezifische Sprache, die die Berechtigungen und Einschränkungen unter der Lizenz regelt.</string>
-  <string name="license_bsd">\n\nUrheberrecht © %1$s %2$s\n \nWeiterverbreitung und Verwendung in Quell- und Binärform mit oder ohne Änderung sind zulässig, sofern folgende Bedingungen erfüllt sind:\n \n1. Weiterverteilungen des Quellcodes müssen den obigen Copyright-Hinweis, diese Liste der Bedingungen und den folgenden Haftungsausschluss enthalten.\n 2. Weiterverbreitungen in binärer Form müssen den obigen Urheberrechtshinweis, diese Liste von Bedingungen und den folgenden Haftungsausschluss in der Dokumentation und/oder anderen Materialien, die mit der Verteilung geliefert werden, wiedergeben.\n \nDIESE SOFTWARE WIRD VON DEN COPYRIGHT-INHABERN UND BEITRAGERN IN DER VORLIEGENDEN FORM ZUR VERFÜGUNG GESTELLT. JEGLICHE AUSDRÜCKLICHE ODER STILLSCHWEIGENDE GEWÄHRLEISTUNG, EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF DIE STILLSCHWEIGENDEN GEWÄHRLEISTUNGEN DER MARKTGÄNGIGKEIT UND DER EIGNUNG FÜR EINEN BESTIMMTEN ZWECK WIRD AUSGESCHLOSSEN. IN KEINEM FALL HAFTEN DER COPYRIGHT-EIGENTÜMER ODER DIE BEITRAGNEHMER FÜR DIREKTE, INDIREKTE, ZUFÄLLIGE, BESONDERE, BEISPIELHAFTE ODER FOLGESCHÄDEN (EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF, BESCHAFFUNG VON ERSATZGÜTERN ODER DIENSTLEISTUNGEN; VERLUST VON NUTZUNG, DATEN ODER GEWINNEN; ODER GESCHÄFTSUNTERBRECHUNG) JEDOCH AUFGRUND DER HAFTUNGSFREISTELLUNG, AUCH IM VERTRAG, AUSSCHLIESSLICHER HAFTUNG ODER TATSACHE (EINSCHLIESSLICH FAHRLÄSSIGKEIT ODER ANDERWEITIG), DIE SICH AUS DER NUTZUNG DIESER SOFTWARE ERGEBEN, SELBST WENN SIE AUF DIE MÖGLICHKEIT SOLCHER SCHÄDEN BERATEN WIRD.\n \nDie Ansichten und Schlussfolgerungen, die in der Software und Dokumentation enthalten sind, sind die der Autoren und sollten nicht so ausgelegt werden, dass sie offizielle oder stillschweigende Richtlinien des FreeBSD-Projekts darstellen\n</string>
-  <string name="license_gpl">\n\nUrheberrecht © %1$s %2$s\n \nDieses Programm ist freie Software: Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, entweder in Version 3 der Lizenz oder (nach Ihrer Wahl) in einer späteren Version neu verteilen und/oder modifizieren.\n \nDieses Programm wird in der Hoffnung verbreitet, dass es nützlich sein wird, aber OHNE JEGLICHE GARANTIE; ohne auch nur die stillschweigende Gewährleistung der MARKTGÄNGIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK.  Weitere Informationen finden Sie in der GNU General Public License.\n \nSie sollten eine Kopie der GNU General Public License zusammen mit diesem Programm erhalten haben.  If not, see http://www.gnu.org/licenses\n</string>
-  <string name="license_mit">\n\nMIT-Lizenz\n \nUrheberrecht © %1$s %2$s\n \nJeder Person, die eine Kopie dieser Software und der zugehörigen Dokumentationsdateien (die Software) erhält, wird hiermit die uneingeschränkte Erlaubnis erteilt, uneingeschränkt mit der Software zu handeln, einschließlich der Rechte zur Nutzung, Vervielfältigung, Änderung, Zusammenführung und Veröffentlichung , vertreiben, unterlizenzieren und/oder verkaufen Kopien der Software und erlauben Personen, denen die Software dies ermöglicht, vorbehaltlich der folgenden Bedingungen:\n \nDer obige Urheberrechtshinweis und dieser Erlaubnishinweis müssen in allen Kopien oder wesentlichen Teilen der Software enthalten sein.\n \nDIE SOFTWARE WIRD OHNE JEGLICHE GARANTIE, WEDER AUSDRÜCKLICH NOCH IMPLIZIT, BEREITGESTELLT, EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF DIE GEWÄHRLEISTUNG DER MARKTGÄNGIGKEIT, EIGNUNG FÜR EINEN BESTIMMTEN ZWECK UND NICHTVERLETZUNG VON RECHTEN DRITTER. IN KEINEM FALL HAFTEN DIE AUTOREN ODER COPYRIGHT - INHABER FÜR ANSPRÜCHE, SCHÄDEN ODER SONSTIGE HAFTUNGSAUSFÄLLE, UNABHÄNGIG VON VERTRAGS -, VERTRAGS - ODER SONSTIGEN VERBINDLICHKEITEN, DIE SICH AUS ODER IN VERBINDUNG MIT DER SOFTWARE ODER DER NUTZUNG ODER ANDEREN HANDLUNGEN IN DER SOFTWARE ERGEBEN SOFTWARE.</string>
-  <string name="light_blue">Hellblau</string>
-  <string name="lime">Limette</string>
   <string name="load_timeout_tip">Laden der Daten vom GitHub-Timeout.Bitte überprüfen Sie Ihre Netzwerkverbindung und versuchen Sie es erneut.</string>
   <string name="loading">wird geladen</string>
   <string name="login">Anmeldung</string>
@@ -193,24 +149,9 @@
   <string name="logout">Ausloggen</string>
   <string name="logout_warning">Bestätigen, um sich abzumelden?</string>
   <string name="made_repo_public">Gemacht %s öffentlichkeit</string>
-  <string name="mal_activity_exception">Keine Apps für die Aktion</string>
-  <string name="mal_close">Schließen</string>
-  <string name="mal_content_desc_action_icon">Aktionssymbol</string>
-  <string name="mal_content_desc_application_icon">Anwendungssymbol</string>
-  <string name="mal_send_email">E-Mail senden</string>
-  <string name="mal_title_about">Über</string>
-  <string name="mal_title_licenses">Lizenzen</string>
   <string name="mark_all_as_read">Alles als gelesen markieren</string>
   <string name="mark_as_read">Als gelesen markieren</string>
   <string name="markdown_editor">Verwenden Sie den Abschriften-Editor</string>
-  <string name="md_back_label">Zurück</string>
-  <string name="md_cancel_label">Stornieren</string>
-  <string name="md_choose_label">Wählen</string>
-  <string name="md_custom_label">Brauch</string>
-  <string name="md_done_label">Erledigt</string>
-  <string name="md_error_label">Error</string>
-  <string name="md_presets_label">Voreinstellungen</string>
-  <string name="md_storage_perm_error">Ihre App hat die Berechtigung READ_EXTERNAL_STORAGE nicht erhalten.</string>
   <string name="member_repo">Mitglied</string>
   <string name="members">Mitglieder</string>
   <string name="mention">Erwähnen Sie direkt einen Benutzer oder ein Team</string>
@@ -227,9 +168,6 @@
   <string name="most_stars">Die meisten Sterne</string>
   <string name="my_languages">Meine Sprachen</string>
   <string name="my_repos">Meine Repos</string>
-  <string name="navigation_drawer_close">navigation_drawer_close</string>
-  <string name="navigation_drawer_open">navigation_drawer_open</string>
-  <string name="new_folder">Neuer Ordner</string>
   <string name="news">Nachrichten</string>
   <string name="next_time">Nächstes Mal</string>
   <string name="no_activity">Keine Aktivitäten</string>
@@ -269,7 +207,6 @@
   <string name="open_in_market">Offen im Markt</string>
   <string name="opened_issue_at" formatted="false">Eröffnetes Problem %d im %s</string>
   <string name="openhub_wishes">Wünsche von OpenHub</string>
-  <string name="orange">Orange</string>
   <string name="org_blocked_user" formatted="false">Org %s blockierter benutzer %s</string>
   <string name="org_unblocked_user" formatted="false">Org %s nicht blockierter benutzer %s</string>
   <string name="organizations">Organisationen</string>
@@ -278,10 +215,8 @@
   <string name="page_no_found">Seite nicht gefunden.</string>
   <string name="participating">Teilnehmer</string>
   <string name="password">Passwort</string>
-  <string name="password_toggle_content_description">Sichtbarkeit des Passwortes umschalten</string>
   <string name="password_warning">Ungültiges Passwort!</string>
   <string name="permission_storage_denied">Berechtigung verweigert, bitte erlauben Sie Speichererlaubnis.</string>
-  <string name="pink">Rosa</string>
   <string name="preview">Vorschau</string>
   <string name="previously_created">Zuvor erstellt</string>
   <string name="previously_starred">Zuvor markiert</string>
@@ -292,7 +227,6 @@
   <string name="public_repositories">Öffentliche Repositories</string>
   <string name="publish_time">Veröffentlichungszeit:</string>
   <string name="published_release_at" formatted="false">Veröffentlichte Version %s beim %s</string>
-  <string name="purple">Lila</string>
   <string name="push_to" formatted="false">Drücken Sie auf %s beim %s</string>
   <string name="rate_in_market">Bewerten oder kommentieren Sie im Markt</string>
   <string name="readme">README</string>
@@ -300,7 +234,6 @@
   <string name="recently_created">Kürzlich erstellt</string>
   <string name="recently_starred">Kürzlich spielte ich die Hauptrolle</string>
   <string name="recently_updated">Kürzlich aktualisiert</string>
-  <string name="red">Rot</string>
   <string name="refresh">Aktualisierung</string>
   <string name="release">Freisetzung</string>
   <string name="released_this">hat dies veröffentlicht</string>
@@ -317,7 +250,6 @@
   <string name="repositories">Repositories</string>
   <string name="repository">Repository</string>
   <string name="search">Suche</string>
-  <string name="search_menu_title">Suche</string>
   <string name="seconds_ago">sekunden zuvor</string>
   <string name="select_branch">Wählen Sie eine Verzweigung oder ein Tag aus</string>
   <string name="send_email">E-Mail senden</string>
@@ -326,11 +258,7 @@
   <string name="share_to">Teilen mit</string>
   <string name="share_to_friends">Teile mit deinen Freunden</string>
   <string name="sort">Sortieren</string>
-  <string name="sort_created">Erstellt</string>
-  <string name="sort_full_name">Vollständiger Name</string>
   <string name="sort_order">Sortierreihenfolge</string>
-  <string name="sort_pushed">Gedrückt</string>
-  <string name="sort_updated">Aktualisiert</string>
   <string name="source_code">Quellcode</string>
   <string name="source_code_tar">Quellcode (tar.gz)</string>
   <string name="source_code_wishes">Star, um mich zu unterstützen</string>
@@ -350,41 +278,14 @@
   <string name="starred_repositories">Markierte Repositories</string>
   <string name="stars">Sterne</string>
   <string name="start_page">Startseite</string>
-  <string name="status_bar_notification_info_overflow">999+</string>
-  <string name="strNetworkTipsCancelBtn">abbrechen</string>
-  <string name="strNetworkTipsConfirmBtn">weiter zum herunterladen</string>
-  <string name="strNetworkTipsMessage">sie haben zum mobilfunknetz gewechselt, ob sie den aktuellen download fortsetzen möchten?</string>
-  <string name="strNetworkTipsTitle">webtipps</string>
-  <string name="strNotificationClickToContinue">weiter zum herunterladen</string>
-  <string name="strNotificationClickToInstall">klicken sie auf installieren</string>
-  <string name="strNotificationClickToRetry">klicken sie, um es erneut zu versuchen</string>
-  <string name="strNotificationClickToView">klicken sie, um zu sehen</string>
-  <string name="strNotificationDownloadError">download fehlgeschlagen</string>
-  <string name="strNotificationDownloading">herunterladen</string>
-  <string name="strNotificationDownloadSucc">download abgeschlossen</string>
-  <string name="strNotificationHaveNewVersion">es gibt eine neue version</string>
-  <string name="strToastCheckingUpgrade">überprüfen, bitte warten...</string>
-  <string name="strToastCheckUpgradeError">überprüfen sie, ob die neue version fehlgeschlagen ist. bitte versuchen sie es später erneut</string>
-  <string name="strToastYourAreTheLatestVersion">sie sind die neueste version</string>
-  <string name="strUpgradeDialogCancelBtn">sag es noch einmal</string>
-  <string name="strUpgradeDialogContinueBtn">fortfahren</string>
-  <string name="strUpgradeDialogFeatureLabel">aktualisiere anweisungen</string>
-  <string name="strUpgradeDialogFileSizeLabel">paketgröße</string>
-  <string name="strUpgradeDialogInstallBtn">installieren</string>
-  <string name="strUpgradeDialogRetryBtn">versuchen sie es erneut</string>
-  <string name="strUpgradeDialogUpdateTimeLabel">aktualisierungszeit</string>
-  <string name="strUpgradeDialogUpgradeBtn">jetzt aktualisieren</string>
-  <string name="strUpgradeDialogVersionLabel">version</string>
   <string name="submitted_pull_request_review_at">Eingereichte Pull-Request-Überprüfung unter %s</string>
   <string name="success_copied">Kopiert</string>
   <string name="tap_to_retry">Tippe, um es erneut zu versuchen</string>
-  <string name="teal">Knickente</string>
   <string name="theme_accent_color">Thema Akzent Farbe</string>
   <string name="tips">Tipps</string>
   <string name="title">Titel</string>
   <string name="title_activity_repository">OpenHub</string>
   <string name="title_activity_settings">Die Einstellungen</string>
-  <string name="toast_message">Toastnachricht</string>
   <string name="today">Heute</string>
   <string name="topic">Thema</string>
   <string name="topics">Ausgewählte Themen</string>
@@ -418,8 +319,6 @@
   <string name="user_name">Nutzername</string>
   <string name="user_name_warning">Ungültiger Benutzername!</string>
   <string name="users">Benutzer</string>
-  <string name="v7_preference_off">AUS</string>
-  <string name="v7_preference_on">AUF</string>
   <string name="version">Ausführung</string>
   <string name="view">Aussicht</string>
   <string name="view_archive_file_error">Die Archivdatei wird nicht unterstützt. Bitte laden Sie die Datei herunter, um ihren Inhalt anzuzeigen.</string>
@@ -429,9 +328,7 @@
   <string name="watched">Schaute</string>
   <string name="watchers">Beobachter</string>
   <string name="weekly">Wöchentlich</string>
-  <string name="wiki">Wiki</string>
   <string name="wrap_lines">Zeilen umbrechen</string>
   <string name="write">Schreiben</string>
-  <string name="yellow">Gelb</string>
   <string name="yesterday">Gestern</string>
 </resources>
