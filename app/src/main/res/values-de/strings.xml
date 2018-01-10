@@ -291,7 +291,7 @@
   <string name="trace">Spur</string>
   <string name="trace_deleted">Spur gelöscht</string>
   <string name="trending">Tendenz</string>
-  <string name="trending_repos">Trendenz Repos</string>
+  <string name="trending_repos">Tendenz Repos</string>
   <string name="type">Art</string>
   <string name="unassigned_issue_at" formatted="false">Nicht zugewiesenes Problem %d in %s</string>
   <string name="unauthorized">Nicht autorisiert.</string>
