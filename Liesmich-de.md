@@ -3,37 +3,38 @@ English | [中文](/README-cn.md) | Deustsch(/Liesmich-de.md)
 [![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
-An **open source** GitHub Android client app, faster and concise.
+Eine **Open Source** GitHub Android Client App, schneller und übersichtlicher.
 
 [![Google Play](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/google_play.png?raw=true)](https://play.google.com/store/apps/details?id=com.thirtydegreesray.openhub)
 [![Coolapk](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/coolapk.png?raw=true)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 
-## Features
+## Funktionen
 
 ### App
-* Two login types (Basic Auth) and (OAuth)
-* Light and dark theme, multiple accent color
-* Markdown and code highlighting support
-* English, simple chinese and hebrew support
-* Offline mode
-* Support trending repositories of all languages
-* Search repos and users
-* Shortcuts support
-* Notifications support
-* Bookmark users or repos
-* Record trace of the repos or users you have been viewed
-* View github collections
-* View github featured topics
+* Zwei Login-Typen (Basic Auth) und (OAuth)
+* Helles und dunkles Thema, mehrfache Akzentfarbe
+* Unterstützung für Markdown und Code-Highlighting
+* Englische, einfache chinesische/hebräische und Deutsche Unterstützung,
+* Offline-Modus
+* Unterstützt Trend-Repositories aller Sprachen
+* Suche nach Repos und Benutzern
+* Unterstützung von Shortcuts
+* Unterstützung von Benachrichtigungen
+* Lesezeichen für Benutzer oder Repos setzen
+* Aufzeichnen Sie den Trace der Repos oder Benutzer, die Sie sich angesehen haben.
+* Github-Sammlungen ansehen
+* Github Themen anzeigen
 
 ### Repositories
-* View repo info 
+* Repo-Info ansehen 
 * Star, watch and fork repos
-* View repo files, commits and activity
-* Download source code, releases and files
-* View your private, public, forked and starred repos
-* View trending repos of daily, weekly and monthly
-* Search repos
-* View recent wiki updates
+* Anzeigen von Repo-Dateien, Commits und Aktivitäten
+* Download von Quellcode, Releases und Dateien
+* Sehen Sie sich Ihre privaten, öffentlichen, vezweigten und mit Sternen versehenen Repos an.
+* Ansicht der Trend-Repos von täglich, wöchentlich und monatlich
+* Suche in Repos
+* Aktuelle Wiki-Updates anzeigen
+* Aktuelle Wiki-Updates anzeigen
 
 ### Users
 * View user info
