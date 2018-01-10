@@ -228,7 +228,7 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
     @Override
     public void scrollToTop() {
         super.scrollToTop();
-        recyclerView.scrollToPosition(0);
+        if(recyclerView != null) recyclerView.scrollToPosition(0);
     }
 
     protected void postNotifyDataSetChanged(){
