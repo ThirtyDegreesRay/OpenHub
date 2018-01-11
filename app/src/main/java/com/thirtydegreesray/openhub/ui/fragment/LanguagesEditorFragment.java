@@ -69,7 +69,7 @@ public class LanguagesEditorFragment extends ListFragment<LanguagesEditorPresent
                 PrefUtils.set(PrefUtils.LANGUAGES_EDITOR_TIP_ABLE, false);
             }
         }
-
+        addVerticalDivider();
         initSearchEditText();
     }
 
