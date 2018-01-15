@@ -13,7 +13,7 @@
     <string name="added_member_to" formatted="false">Mitglied hinzugefügt %s zu %s</string>
     <string name="all">Alle</string>
     <string name="assigned">Zugewiesen</string>
-    <string name="assigned_issue_at" formatted="false">Zugewiesenes Problem %d im %s</string>
+    <string name="assigned_issue_at" formatted="false">Zugewiesenes Problem #%d in %s</string>
     <string name="author">Autor</string>
     <string name="best_match">Bester Treffer</string>
     <string name="bookmark">Lesezeichen</string>
@@ -30,7 +30,7 @@
     <string name="close">Schließen</string>
     <string name="close_success">Erfolgreich beendet</string>
     <string name="closed">Geschlossene</string>
-    <string name="closed_issue_at" formatted="false">Geschlossenes Problem %d im %s</string>
+    <string name="closed_issue_at" formatted="false">Geschlossenes Problem #%d in %s</string>
     <string name="collections_tip">Organisierte Listen und Einblicke in aufstrebende Industrien, Themen und Gemeinschaften.</string>
     <string name="comment">Kommentar</string>
     <string name="comment_null_warning">Kommentar ist Leer!</string>
@@ -50,8 +50,8 @@
     <string name="created_at">Erstellt am</string>
     <string name="created_branch_at" formatted="false">%s Gabel(n) in %s erstellt</string>
     <string name="created_comment_on_commit">Kommentar zu Commit in %s erstellt</string>
-    <string name="created_comment_on_issue" formatted="false">Kommentar zum Problem %d erstellt in %s</string>
-    <string name="created_pull_request_comment_at">Kommentar zur Überprüfung der Pull-Anfrage erstellt unter %s</string>
+    <string name="created_comment_on_issue" formatted="false">Kommentar zum Problem #%d in %s erstellt</string>
+    <string name="created_pull_request_comment_at">Kommentar zur Überprüfung der Pull-Anfrage unter %s erstellt</string>
     <string name="created_repo">Erstelltes Repository %s</string>
     <string name="created_tag_at" formatted="false">Erstellten Tag %s bei %s</string>
     <string name="custom_tabs_desc">Öffnen Sie in benutzerdefinierten Registerkarten anstelle von äußeren Browser (Support Chrome, Firefox…).</string>
@@ -62,7 +62,7 @@
     <string name="delete_comment_warning">Bestätigen, um den Kommentar zu löschen?</string>
     <string name="delete_tag_at" formatted="false">Löschen Sie das Tag %s in %s</string>
     <string name="deleted_member_at" formatted="false">Gelöschtes Mitglied %s in %s</string>
-    <string name="demilestoned_issue_at" formatted="false">Demilestoned Problem %d in %s</string>
+    <string name="demilestoned_issue_at" formatted="false">Demilestoned Problem #%d in %s</string>
     <string name="developing">Entwicklung</string>
     <string name="double_click_toolbar_tip">Sie können auf den Titel doppelklicken, um in der Listenseite nach oben zurückzukehren.</string>
     <string name="download">Herunterladen</string>
@@ -77,7 +77,7 @@
     <string name="edit">Bearbeiten</string>
     <string name="edit_issue">Problem bearbeiten</string>
     <string name="edit_issue_success">Bearbeite den Problem-Erfolg</string>
-    <string name="edited_issue_at" formatted="false">Bearbeitetes Problem %d in %s</string>
+    <string name="edited_issue_at" formatted="false">Bearbeitetes Problem #%d in %s</string>
     <string name="edited_member_at" formatted="false">Bearbeitetes Mitglied %s in %s</string>
     <string name="edited_pull_request_comment_at">Kommentar zur Bearbeitung der Pull-Request-Überprüfung unter %s</string>
     <string name="edited_pull_request_review_at">Bearbeitete Pull-Request-Überprüfung unter %s</string>
