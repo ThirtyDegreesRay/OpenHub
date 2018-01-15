@@ -269,7 +269,7 @@
     <string name="go_to">跳转到</string>
     <string name="tips">提示</string>
     <string name="activity_click_tip">
-        您可以单机列表查看默认页面，或者长按列表以查看可跳转的页面。
+        您可以单击列表查看默认页面，或者长按列表以查看可跳转的页面。
     </string>
     <string name="double_click_toolbar_tip">在列表页面，您可以双击标题来返回顶部。</string>
     <string name="releases_click_tip">您可以长按列表以查看可以下载资源。</string>
