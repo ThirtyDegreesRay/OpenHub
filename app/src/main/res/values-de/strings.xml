@@ -4,13 +4,13 @@
 
 
     <!-- onLoginClick -->
-    <string name="user_name">Nutzername</string>
+    <string name="user_name">NutzerName</string>
     <string name="password">Passwort</string>
     <string name="login">Anmeldung</string>
-    <string name="login_in_browser">ANMELDEN IM BROWSER</string>
-    <string name="oauth_tip">Loggen Sie sich mit Ihrem Standard-Browser ein (OAuth)</string>
+    <string name="login_in_browser">IM BROWSER ANMELDEN</string>
+    <string name="oauth_tip">Melden Sie sich mit Ihrem Standard-Browser an(OAuth)</string>
     <string name="user_name_warning">Ungültiger Benutzername!</string>
-    <string name="password_warning">Ungültiges Passwort!</string>
+    <string name="password_warning">Ungültiges Kennwort!</string>
 
     <!-- menu -->
     <string name="profile">Profil</string>
@@ -24,19 +24,19 @@
     <string name="trending">Tendenz</string>
     <string name="explore">Erkunden</string>
 
-    <string name="info_and_repositories">Infos und Einstellungen</string>
+    <string name="info_and_repositories">Infos &amp; Einstellungen</string>
     <string name="settings">Einstellungen</string>
     <string name="about">Über</string>
 
-    <string name="public_repositories">Öffentliche Repositories</string>
+    <string name="public_repositories">Öffentliche Quellen</string>
     <string name="starred_repositories">Repositories Sterne</string>
 
-    <string name="no_cache_and_network">Netzwerk und Cache ist nicht verfügbar.</string>
+    <string name="no_cache_and_network">Netzwerk und Zwischenspeicher sind nicht verfügbar.</string>
     <string name="page_no_found">Seite nicht gefunden.</string>
     <string name="unauthorized">Nicht autorisiert.</string>
     <string name="no_network_tip">Laden der Daten von GitHub fehlgeschlagen. Bitte überprüfen Sie Ihre Netzwerkverbindung und versuchen Sie es erneut.</string>
     <string name="load_timeout_tip">Laden der Daten aus GitHub Zeitüberschreitung. Bitte überprüfen Sie Ihre Netzwerkverbindung und versuchen Sie es erneut.</string>
-    <string name="tap_to_retry">Tippe, um es erneut zu versuchen</string>
+    <string name="tap_to_retry">Tippen, um es erneut zu versuchen</string>
     <string name="no_data">Keine Daten</string>
 
     <string name="title_activity_repository">OpenHub</string>
@@ -50,10 +50,10 @@
     <string name="start_page">Startseite</string>
     <string name="cache_controller">Cache-Controller</string>
     <string name="cache_controller_desc">Laden Sie den Cache zuerst, wenn der Cache verfügbar ist, und laden Sie ihn dann aus dem Netzwerk.</string>
-    <string name="use_system_downloader">Verwenden Sie System Downloader</string>
+    <string name="use_system_downloader">Verwenden Sie den System Downloader</string>
     <string name="use_custom_tabs">Verwenden Sie benutzerdefinierte Registerkarten</string>
     <string name="custom_tabs_desc">Öffnen Sie in benutzerdefinierten Registerkarten anstelle von äußeren Browser (Support Chrome, Firefox…).</string>
-    <string name="use_custom_tabs_tips">Wenn Sie direkt im äußeren Browser öffnen möchten, können Sie die Einstellungen ändern.</string>
+    <string name="use_custom_tabs_tips">Wenn Sie direkt über Ihren externen Browser öffnen möchten, können Sie dies in den Einstellungen ändern.</string>
     <string name="language">Sprache</string>
     <string name="logout">Ausloggen</string>
 
@@ -74,47 +74,47 @@
     <string name="copy_clone_url">Klone-URL kopieren</string>
     <string name="watch">Beobachten</string>
     <string name="watched">Wird beobachtet</string>
-    <string name="unwatch">Nicht beobachten</string>
-    <string name="unwatched">Wird nicht beobachtet</string>
+    <string name="unwatch">Nicht mehr beobachten</string>
+    <string name="unwatched">Wird nicht mehr beobachtet</string>
     <string name="fork">Gabel</string>
     <string name="fork_tag">Gabel</string>
     <string name="forked">Vergabelt</string>
-    <string name="forked_from">Vergabelt von</string>
+    <string name="forked_from">Geforked von</string>
     <string name="wrap_lines">Zeilen umbrechen</string>
-    <string name="refresh">Aktualisierung</string>
+    <string name="refresh">Aktualisiere</string>
 
     <string name="success_copied">Kopiert</string>
 
-    <string name="stargazers">Sterne</string>
+    <string name="stargazers">Sterngucker</string>
     <string name="forks">Gabeln</string>
     <string name="watchers">Beobachter</string>
     <string name="readme">LIESMICH</string>
-    <string name="no_readme">KEINE LIESMICH</string>
+    <string name="no_readme">KEIN LIESMICH</string>
     <string name="warning_dialog_tile">Warnung</string>
     <string name="cancel">Abbrechen</string>
     <string name="close">Schließen</string>
     <string name="ok">OK</string>
     <string name="confirm">OK</string>
-    <string name="select_branch">Wählen Sie eine Vergabelung oder ein Tag aus</string>
+    <string name="select_branch">Wählen Sie einen Branch oder einen Tag aus</string>
     <string name="share_to">Teilen mit</string>
-    <string name="no_share_clients">Es sind keine Share-Clients installiert.</string>
-    <string name="no_browser_clients">Es sind keine Browser-Clients installiert.</string>
-    <string name="no_download_clients">Es sind keine Download-Clients installiert.</string>
+    <string name="no_share_clients">Es sind keine Share-Klienten installiert.</string>
+    <string name="no_browser_clients">Es sind keine Browser-Klienten installiert.</string>
+    <string name="no_download_clients">Es sind keine Download-Klienten installiert.</string>
     <string name="send_email">E-Mail senden</string>
-    <string name="open_in_market">Öffnen im Markt</string>
-    <string name="no_email_clients">Es sind keine E-Mail-Clients installiert.</string>
-    <string name="no_market_clients">Es sind keine Market-Clients installiert.</string>
+    <string name="open_in_market">Öffne im Markt</string>
+    <string name="no_email_clients">Es sind keine E-Mail-Klienten installiert.</string>
+    <string name="no_market_clients">Es sind keine Markt-Klienten installiert.</string>
     <string name="url_invalid">URL ist ungültig</string>
     <string name="view_archive_file_error">Die Archivdatei wird nicht unterstützt. Bitte laden Sie die Datei herunter, um ihren Inhalt anzuzeigen.</string>
-    <string name="fork_warning_msg">Dieses Repository vergabeln?</string>
-    <string name="invalid_repo_url">Ungültige Repository-URL!</string>
+    <string name="fork_warning_msg">Diese Quelle forken?</string>
+    <string name="invalid_repo_url">Ungültige Quellen-URL!</string>
     <string name="invalid_url">Ungültige URL!</string>
 
     <!-- Profile -->
     <string name="follow">Folgen</string>
-    <string name="followed">Wird gefolgt</string>
-    <string name="unfollow">Nicht folgen</string>
-    <string name="unfollowed">Wird nicht gefolgt</string>
+    <string name="followed">Gefolgt</string>
+    <string name="unfollow">Nicht mehr folgen</string>
+    <string name="unfollowed">Wird nicht mehr gefolgt</string>
     <string name="members">Mitglieder</string>
     <string name="view">Ansicht</string>
     <string name="followers">Anhänger</string>
@@ -129,7 +129,7 @@
     <string name="just_now">gerade jetzt</string>
     <string name="seconds_ago">Sekunden vergangen</string>
     <string name="minutes_ago">Minute(n) vergangen</string>
-    <string name="hours_ago">Stunde(n) vergangen</string>
+    <string name="hours_ago">Stunden zuvor</string>
     <string name="days_ago">Tag(e) vergangen</string>
 
     <string name="search">Suche</string>
@@ -137,19 +137,19 @@
     <string name="sort_order">Sortierreihenfolge</string>
 
     <string name="best_match">Bester Treffer</string>
-    <string name="most_stars">Die meisten Sterne</string>
-    <string name="fewest_stars">Wenige Sterne</string>
-    <string name="most_forks">Die meisten Vergabelungen</string>
-    <string name="fewest_forks">Wenig Gabeln</string>
+    <string name="most_stars">Die Meisten Sterne</string>
+    <string name="fewest_stars">Geringsten Sterne</string>
+    <string name="most_forks">Meisten Forks</string>
+    <string name="fewest_forks">Geringste Forks</string>
     <string name="recently_updated">Kürzlich aktualisiert</string>
     <string name="least_recently_updated">Schon länger aktualisiert</string>
 
-    <string name="most_followers">Die meisten Anhänger</string>
-    <string name="fewest_followers">Weniger Anhänger</string>
-    <string name="most_recently_joined">Zuletzt beigetreten</string>
+    <string name="most_followers">Meisten Verfolger</string>
+    <string name="fewest_followers">Geringste Verfolger</string>
+    <string name="most_recently_joined">Meist zuletzt beigetreten</string>
     <string name="least_recently_joined">Erst kürzlich beigetreten</string>
-    <string name="most_repositories">Die meisten Repositories</string>
-    <string name="fewest_repositories">Wenigste Repositories</string>
+    <string name="most_repositories">Die Meisten Quellen</string>
+    <string name="fewest_repositories">Geringste Quellen</string>
 
     <string name="invalid_query">Ungültiger Abfragetext!</string>
 
@@ -157,32 +157,32 @@
     <string name="weekly">Wöchentlich</string>
     <string name="monthly">Monatlich</string>
 
-    <string name="logout_warning">Bestätigen, um sich abzumelden?</string>
-    <string name="unknown">Unbekannte</string>
+    <string name="logout_warning">Abmeldung bestätigen?</string>
+    <string name="unknown">Unbekannt</string>
     <string name="organizations">Organisationen</string>
-    <string name="no_user">Keine Benutzer</string>
+    <string name="no_user">Keine Nutzer</string>
     <string name="no_activity">Keine Aktivitäten</string>
-    <string name="no_repository">Keine Repositories</string>
+    <string name="no_repository">Keine Quellen</string>
     <string name="no_file">Keine Dateien</string>
     <string name="developing">Entwicklung</string>
     <string name="version" >Version</string>
     <string name="source_code" >Quellcode</string>
-    <string name="source_code_wishes" >Star, um mich zu unterstützen</string>
+    <string name="source_code_wishes" >Markieren, um mich zu unterstützen</string>
     <string name="rate_in_market" >Bewerten oder kommentieren Sie im Markt</string>
     <string name="author" >Autor</string>
-    <string name="follow_on_github" >Folge GitHub</string>
+    <string name="follow_on_github" >Folge auf GitHub</string>
     <string name="email" >E-Mail</string>
     <string name="loading">wird geladen</string>
 
     <string name="upgrade">Aktualisierung</string>
     <string name="install">Installieren</string>
     <string name="next_time">Nächstes Mal</string>
-    <string name="upgrade_version">Ausführung:</string>
+    <string name="upgrade_version">Version:</string>
     <string name="upgrade_apk_size">Apk Größe:</string>
     <string name="publish_time">Veröffentlichungszeit:</string>
-    <string name="upgrade_info">Upgrade-Info:</string>
+    <string name="upgrade_info">Aktualisierungs-Info:</string>
     <string name="no_upgrade_tip">Sie haben die neueste Version installiert.</string>
-    <string name="fork_failed">Gabel fehlgeschlagen</string>
+    <string name="fork_failed">Fork fehlgeschlagen</string>
 
     <string name="filter">Filter</string>
     <!-- unused now -->
@@ -195,17 +195,17 @@
     <string name="source_code_tar">Quellcode (tar.gz)</string>
     <string name="download_source_zip">Quelle herunterladen (zip)</string>
     <string name="download_source_tar">Quelle herunterladen (tar.gz)</string>
-    <string name="released_this">hat dies veröffentlicht</string>
-    <string name="on">ein</string>
+    <string name="released_this">veröffentlichte dies</string>
+    <string name="on">an</string>
     <string name="download">Herunterladen</string>
-    <string name="download_complete">Download beendet</string>
+    <string name="download_complete">Herunterladen beendet</string>
     <string name="download_failed">Herunterladen fehlgeschlagen</string>
     <string name="downloading">Wird heruntergeladen</string>
-    <string name="download_empty_tip">URL oder Dateiname ist leer!</string>
-    <string name="download_start">Download starten</string>
-    <string name="download_cancel">Download abbrechen</string>
-    <string name="permission_storage_denied">Berechtigung verweigert, bitte erlauben Sie Speichererlaubnis.</string>
-    <string name="enable_download_service_tip">Bitte aktivieren Sie zuerst den Download-Service!</string>
+    <string name="download_empty_tip">URL oder Datei-Name ist leer!</string>
+    <string name="download_start">Herunterladen starten</string>
+    <string name="download_cancel">Herunterladen abbrechen</string>
+    <string name="permission_storage_denied">Zugriff verweigert, erlauben Sie bitte den Speicherzugriff.</string>
+    <string name="enable_download_service_tip">Aktivieren Sie zuerst das Herunterladen!</string>
 
     <string name="open">Geöffnet</string>
     <string name="closed">Geschlossene</string>
@@ -221,8 +221,8 @@
 
     <string name="recently_created">Kürzlich erstellt</string>
     <string name="previously_created">Schon länger erstellt</string>
-    <string name="most_comments">Die meisten Kommentare</string>
-    <string name="fewest_comments">Wenige Kommentare</string>
+    <string name="most_comments">Meisten Kommentare</string>
+    <string name="fewest_comments">Geringste Kommentare</string>
 
     <string name="comments">Kommentare</string>
     <string name="comment">Kommentar</string>
@@ -238,7 +238,7 @@
     <string name="comment_success">Kommentar Erfolg</string>
     <string name="delete_comment_warning">Bestätigen, um den Kommentar zu löschen?</string>
     <string name="reopen">Wieder öffnen</string>
-    <string name="reopen_success">Erneut den Erfolg eröffnen</string>
+    <string name="reopen_success">Wieder öffnen erfolgreich</string>
     <string name="close_success">Erfolgreich beendet</string>
 
     <string name="add_large_header">Fügen Sie eine große Kopfzeile hinzu</string>
@@ -247,10 +247,10 @@
     <string name="add_bold_text">Fetten Text hinzufügen</string>
     <string name="add_italic_text">Fügen Sie kursiven Text hinzu</string>
     <string name="add_a_link">Fügen Sie einen Link hinzu</string>
-    <string name="insert_code">Code eingeben</string>
+    <string name="insert_code">Code einfügen</string>
     <string name="insert_a_quote">Fügen Sie ein Angebot ein</string>
     <string name="add_a_bulleted_list">Fügen Sie eine Aufzählungsliste hinzu</string>
-    <string name="mention">Erwähnen Sie direkt einen Benutzer oder ein Team</string>
+    <string name="mention">Erwähnen Sie direkt einen Nutzer oder ein Team</string>
     <string name="nothing_to_preview">Nichts zu sehen</string>
 
     <string name="title">Titel</string>
@@ -258,47 +258,49 @@
     <string name="markdown_editor">Verwenden Sie den Abschriften-Editor</string>
 
     <string name="created_at">Erstellt am</string>
-    <string name="forked_at">Vergabelt am</string>
-    <string name="latest_update">Neuestes Update</string>
-    <string name="latest_commit">Letztes Commit,</string>
+    <string name="forked_at">Geforked am</string>
+    <string name="latest_update">Neueste Aktualisierung</string>
+    <string name="latest_commit">Letzter Commit</string>
     <string name="issue_title_null_tip">Der Titel des Problems darf nicht Null sein.</string>
     <string name="edit_issue">Problem bearbeiten</string>
     <string name="create_issue">Problem erstellen</string>
-    <string name="edit_issue_success">Bearbeite den Problem-Erfolg</string>
+    <string name="edit_issue_success">Bearbeite Problem Erfolg</string>
     <string name="create_issue_success">Problem erstellt</string>
 
     <string name="no_commits">Keine Commits</string>
     <string name="committed">Commit</string>
     <string name="view_file">Datei ansehen</string>
-    <string name="failed_to_recognize">Die Github-URL konnte nicht erkannt werden, bitte im Browser nach längerem Drücken öffnen.</string>
-    <string name="failed_to_open_url">Fehler beim Öffnen der URL, bitte im Browser nach langem Drücken öffnen.</string>
+    <string name="failed_to_recognize">Fehler beim Erkennen der Github-URL, bitte im Browser öffnen nachdem man es lange gedrückt hält, kopiert.</string>
+    <string name="failed_to_open_url">Fehler beim Öffnen der URL, bitte im Browser öffnen nachdem man es lange gedrückt hält, kopiert.</string>
     <string name="compare">Vergleiche anzeigen</string>
 
     <string name="unread">Ungelesen</string>
     <string name="no_notifications_tip">Keine neuen Benachrichtigungen.</string>
-    <string name="feedback_and_share">Teilen und Rückmeldung</string>
+    <string name="feedback_and_share">Teilen &amp; Rückmeldung</string>
     <string name="share_to_friends">Teilen mit Ihren Freunden</string>
     <string name="feedback">Rückmeldung</string>
 
     <string name="openhub_wishes">Wünsche von OpenHub</string>
-    <string name="star_wishes" formatted="false">"Hallo %s, heute ist Dein %d. Tag bei OpenHub, danke für Deine Nutzung. Ich werde mich bemühen, eine praktischere GitHub App für Sie zu entwickeln. Wenn Sie mich unterstützen können, wäre es großartig!"</string>
-    <string name="star_thanks">Danke für Ihre Unterstützung!</string>
+    <string name="star_wishes" formatted="false">Hallo %s, heute ist Dein %dth Tag bei OpenHub,        danke für Deine Nutzung. Ich werde mich bemühen, eine noch bessere GitHub App für Sie zu entwickeln. \n
+  \n
+  Wenn Sie mich unterstützen können, wäre es großartig!</string>
+    <string name="star_thanks">Danke für Deine Unterstützung!</string>
     <string name="star_me">Meine Stern(e)</string>
-    <string name="star_next_time">Bleib in Bewegung</string>
+    <string name="star_next_time">In Bewegung bleiben</string>
 
     <string name="owner_repo">Besitzer</string>
     <string name="public_repo">Öffentlich</string>
     <string name="private_repo">Privat</string>
     <string name="member_repo">Mitglied</string>
-    <string name="most_pushed">Am meisten aktualisiert</string>
-    <string name="fewest_pushed">Am wenigsten aktualisiert</string>
-    <string name="full_name_asc">Vollständiger Name A-Z</string>
-    <string name="full_name_desc">Vollständiger Name Z-A</string>
-    <string name="recently_starred">Kürzlich spielte ich die Hauptrolle</string>
+    <string name="most_pushed">Am Meisten Gepushed</string>
+    <string name="fewest_pushed">Am wenigsten gedrückt</string>
+    <string name="full_name_asc">Vollständigen Namen asc</string>
+    <string name="full_name_desc">Vollständigen Namen desc</string>
+    <string name="recently_starred">Kürzlich markiert</string>
     <string name="previously_starred">Schön länger markiert</string>
 
     <string name="trace">Spur</string>
-    <string name="my_repos">Meine Repos</string>
+    <string name="my_repos">Meine Quellen</string>
     <string name="starred_repos">Repos Sterne</string>
     <string name="trending_repos">Tendenz Repos</string>
 
@@ -313,20 +315,20 @@
     <string name="issues_list">Liste der Probleme</string>
     <string name="commits_list">Commitsliste</string>
     <string name="releases_list">Veröffentlichungsliste</string>
-    <string name="release">Freisetzung</string>
-    <string name="go_to">Gehe zu</string>
+    <string name="release">Veröffentlichung</string>
+    <string name="go_to">Gehe nach</string>
 
     <string name="tips">Tipps</string>
     <string name="activity_click_tip">Sie können auf ein Element klicken, um die Standardseite anzuzeigen, oder auf ein Element klicken, um verfügbare Seiten anzuzeigen.</string>
     <string name="double_click_toolbar_tip">Sie können auf den Titel doppelklicken, um in der Listenseite nach oben zurückzukehren.</string>
-    <string name="releases_click_tip">Sie können auf einen Artikel klicken, um verfügbare Downloads anzuzeigen.</string>
+    <string name="releases_click_tip">Durch längeres gedrückt halten auf einen Artikel, können Sie sich die verfügbaren Downloads anzeigen lassen.</string>
 
     <string name="created_comment_on_commit">Kommentar zu Commit in %s erstellt</string>
     <string name="created_comment_on_issue">Kommentar zum Problem #%d in %s erstellt</string>
     <string name="created_repo">Erstelltes Repository %s</string>
-    <string name="forked_to">%s vergabelt nach %s</string>
+    <string name="forked_to">geforked %s nach %s</string>
     <string name="starred_repo">%s Stern(e)</string>
-    <string name="push_to">Drücken Sie auf %s in %s</string>
+    <string name="push_to">Drücke Sie auf %s um %s</string>
     <string name="created_tag_at">Erstellten Tag %s bei %s</string>
     <string name="created_branch_at">%s Gabel(n) in %s erstellt</string>
     <string name="delete_tag_at">Löschen Sie das Tag %s in %s</string>
@@ -335,24 +337,24 @@
     <string name="opened_issue_at">Eröffnetes Problem %d in %s</string>
     <string name="closed_issue_at">Geschlossenes Problem #%d in %s</string>
     <string name="reopened_issue_at">Erneut geöffnetes Problem %d am %s</string>
-    <string name="edited_issue_at">Bearbeitetes Problem #%d in %s</string>
+    <string name="edited_issue_at">Bearbeitetes Problem %d in %s</string>
     <string name="assigned_issue_at">Zugewiesenes Problem #%d in %s</string>
     <string name="unassigned_issue_at">Nicht zugewiesenes Problem %d in %s</string>
     <string name="labeled_issue_at">Markiertes Problem %d in %s</string>
     <string name="unlabeled_issue_at">Unbeschriftetes Problem %d in %s</string>
-    <string name="milestoned_issue_at">Meilenstein-Problem %d in %s</string>
+    <string name="milestoned_issue_at">Meilenstein Problem %d in %s</string>
     <string name="demilestoned_issue_at">Demilestoned Problem #%d in %s</string>
     <string name="added_member_to">Mitglied hinzugefügt %s zu %s</string>
     <string name="deleted_member_at">Gelöschtes Mitglied %s in %s</string>
-    <string name="edited_member_at">Bearbeitetes Mitglied %s in %s</string>
+    <string name="edited_member_at">Bearbeitetes Mitglied %s unter %s</string>
     <string name="made_repo_public">%s öffentlich gemacht</string>
-    <string name="org_blocked_user">Org %s blockierter Benutzer %s</string>
-    <string name="org_unblocked_user">Org %s nicht blockierter Benutzer %s</string>
+    <string name="org_blocked_user">Org %s blockierter Nutzer %s</string>
+    <string name="org_unblocked_user">Org %s nicht blockierter Nutzer %s</string>
     <string name="created_pull_request_comment_at">Kommentar zur Überprüfung der Pull-Anfrage unter %s erstellt</string>
     <string name="deleted_pull_request_comment_at">Kommentar zur Überprüfung der Pull-Anfrage wurde unter %s gelöscht</string>
-    <string name="edited_pull_request_comment_at">Kommentar zur Bearbeitung der Pull-Request-Überprüfung unter %s</string>
-    <string name="submitted_pull_request_review_at">Eingereichte Pull-Request-Überprüfung unter %s</string>
-    <string name="edited_pull_request_review_at">Bearbeitete Pull-Request-Überprüfung unter %s</string>
+    <string name="edited_pull_request_comment_at">Bearbeitete Pull-Anfrage Kommentar lesen unter %s</string>
+    <string name="submitted_pull_request_review_at">Eingereichte Pull-Anfrage-Überprüfung unter %s</string>
+    <string name="edited_pull_request_review_at">Bearbeitete Pull-Anfrage Rezension unter %s</string>
     <string name="dismissed_pull_request_review_at">Bearbeitung der Pull-Anforderung bei %s wurde abgebrochen</string>
 
     <string name="undo">Rückgängig machen</string>
@@ -364,19 +366,19 @@
 
     <string name="my_languages">Meine Sprachen</string>
     <string name="choose_languages">Wähle Sprachen</string>
-    <string name="language_removed">Sprache (%s) entfernt</string>
+    <string name="language_removed">Sprache %s entfernt</string>
     <string name="no_choose_language_warning">Wähle mindestens eine Sprache!</string>
-    <string name="languages_editor_tip">Sie können nach links oder rechts wischen, um Elemente zu entfernen. Klicken Sie dann auf Objekte, um die Sortierung zu verschieben.</string>
+    <string name="languages_editor_tip">Sie können nach links oder rechts wischen, um Elemente zu entfernen. Halten Sie lange gedrückt, um die Sortierung zu verschieben.</string>
     <string name="fullscreen">Vollbild</string>
 
-    <string name="public_news">Globale Nachrichten</string>
-    <string name="recent_wiki_updates">Aktuelle Wiki-Updates</string>
-    <string name="no_recent_wiki_updates">Keine aktuellen Wiki-Updates</string>
+    <string name="public_news">Weltweite Nachrichten</string>
+    <string name="recent_wiki_updates">Derzeitige Wiki-Aktualisierungen</string>
+    <string name="no_recent_wiki_updates">Keine derzeitigen Wiki-Aktualisierungen</string>
 
-    <string name="repo_collections">Repo-Sammlungen</string>
-    <string name="no_repo_collections">Keine Repo-Sammlungen</string>
+    <string name="repo_collections">Quellen-Sammlungen</string>
+    <string name="no_repo_collections">Keine Quellen Sammlungen</string>
     <string name="collections_tip">Organisierte Listen und Einblicke in aufstrebende Industrien, Themen und Gemeinschaften.</string>
-    <string name="github_page_parse_error">%s Parsing-Fehler, diese Seite kann von Github geändert werden, bitte aktualisieren Sie ihre Anwendung auf die neueste Version, wenn der Fehler weiterhin auftritt, bitten Sie mich, das Problem zu lösen!</string>
+    <string name="github_page_parse_error">%s Parsing-Fehler, diese Seite kann von Github geändert werden, bitte aktualisiere Deine App auf die neueste Version, wenn der Fehler weiterhin auftritt, kontaktiere mich bitte, um das Problem zu lösen!</string>
 
     <string name="bookmarks_tip">Sie können nach links oder rechts streichen, um das Lesezeichen zu entfernen.</string>
     <string name="mark_all_as_read">Alles als gelesen markieren</string>
@@ -387,10 +389,10 @@
     <string name="topics_tip">Durchsuchen Sie die am häufigsten verwendeten Themen auf GitHub.</string>
     <string name="no_topics">Keine Themen</string>
 
-    <string name="star_num_today">Heute %s Stern(e)</string>
-    <string name="star_num_this_week">Diese Woche %s Stern(e)</string>
-    <string name="star_num_this_month">Diesen Monat %s Stern(e)</string>
-    <string name="no_trending_repos">Es sieht so aus, als hätten wir keine Trending-Repositories für %s.</string>
+    <string name="star_num_today">%s Stern heute</string>
+    <string name="star_num_this_week">%s Stern diese Woche</string>
+    <string name="star_num_this_month">%s Stern diesen Monat</string>
+    <string name="no_trending_repos">Es sieht so aus, als hätten wir keine angesagten Quellen für %s.</string>
 
 
 </resources>
