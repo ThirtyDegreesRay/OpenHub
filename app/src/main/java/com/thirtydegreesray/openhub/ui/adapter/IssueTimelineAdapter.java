@@ -22,6 +22,7 @@ import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.ui.widget.CircleBackgroundImageView;
 import com.thirtydegreesray.openhub.ui.widget.IssueLabelSpan;
 import com.thirtydegreesray.openhub.util.StringUtils;
+import com.thirtydegreesray.openhub.util.ViewUtils;
 import com.thirtydegreesray.openhub.util.WindowUtil;
 
 import java.util.ArrayList;
@@ -118,15 +119,7 @@ public class IssueTimelineAdapter extends BaseAdapter<BaseViewHolder, IssueEvent
             } else {
                 issueLabels.setVisibility(View.VISIBLE);
             }
-            SpannableStringBuilder labelsText  = new SpannableStringBuilder("");
-            int start;
-            for(int i = 0; i < labels.size(); i++){
-                Label label = labels.get(i);
-                start = labelsText.length();
-                labelsText.append(label.getName());
-                labelsText.setSpan(new IssueLabelSpan(context, label), start, start + label.getName().length(), 0);
-            }
-            issueLabels.setText(labelsText);
+            issueLabels.setText(ViewUtils.getLabelsSpan(context, labels));
         }
     }
 

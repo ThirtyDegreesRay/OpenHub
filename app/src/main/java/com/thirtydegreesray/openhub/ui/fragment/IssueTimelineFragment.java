@@ -174,10 +174,11 @@ public class IssueTimelineFragment extends ListFragment<IssueTimelinePresenter, 
     }
 
     public void onEditIssue(Issue issue){
+        mPresenter.setIssue(issue);
         adapter.getData().get(0).setBody(issue.getBody());
         adapter.getData().get(0).setBodyHtml(issue.getBodyHtml());
+        adapter.getData().get(0).setParentIssue(issue);
         adapter.notifyItemChanged(0);
-        mPresenter.setIssue(issue);
     }
 
     public ArrayList<String> getIssueUsersExceptMe(){

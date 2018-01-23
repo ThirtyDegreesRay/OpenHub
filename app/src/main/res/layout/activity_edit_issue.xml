@@ -45,7 +45,7 @@
                 android:imeOptions="actionSend"
                 android:maxLines="12"/>
         </android.support.design.widget.TextInputLayout>
-        
+
         <com.thirtydegreesray.openhub.ui.widget.ToastAbleImageButton
             android:id="@+id/markdown_editor_bn"
             android:layout_width="wrap_content"
@@ -55,19 +55,57 @@
             android:layout_gravity="start"
             app:toast_text="@string/markdown_editor"
             android:background="?android:selectableItemBackgroundBorderless"
-            android:layout_below="@id/comment_layout"/>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/add_issue_bn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/fab_margin"
-            android:layout_gravity="end"
-            app:srcCompat="@drawable/ic_done_title"
-            android:tint="?title_color"
-            android:visibility="visible"
             android:layout_below="@id/comment_layout"
-            android:layout_alignParentEnd="true"/>
+            android:tint="?android:textColorSecondary"/>
+
+        <LinearLayout
+            android:id="@+id/edit_labels"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/markdown_editor_bn"
+            android:background="?android:selectableItemBackground"
+            android:paddingTop="@dimen/spacing_mini"
+            android:paddingBottom="@dimen/spacing_mini">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_labels"
+                app:tint="?android:textColorSecondary"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:layout_marginEnd="@dimen/spacing_small"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/spacing_mini"
+                android:paddingBottom="@dimen/spacing_mini"
+                android:paddingTop="@dimen/spacing_mini">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/labels"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="@dimen/text_normal"/>
+
+                <TextView
+                    android:id="@+id/labels_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/labels"
+                    android:textColor="?android:textColorSecondary"
+                    android:textSize="@dimen/text_small"
+                    android:hint="@string/labels"
+                    android:layout_marginTop="@dimen/spacing_mini"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        
 
     </RelativeLayout>
 

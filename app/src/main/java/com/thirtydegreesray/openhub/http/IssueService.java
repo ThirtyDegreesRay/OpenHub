@@ -2,6 +2,7 @@ package com.thirtydegreesray.openhub.http;
 
 import android.support.annotation.NonNull;
 
+import com.thirtydegreesray.openhub.http.model.IssueRequestModel;
 import com.thirtydegreesray.openhub.mvp.model.Issue;
 import com.thirtydegreesray.openhub.mvp.model.IssueEvent;
 import com.thirtydegreesray.openhub.mvp.model.Label;
@@ -129,7 +130,7 @@ public interface IssueService {
             @Path("owner") String owner,
             @Path("repo") String repo,
             @Path("issueNumber") int issueNumber,
-            @Body Issue body
+            @Body IssueRequestModel body
     );
 
     @NonNull @POST("repos/{owner}/{repo}/issues")

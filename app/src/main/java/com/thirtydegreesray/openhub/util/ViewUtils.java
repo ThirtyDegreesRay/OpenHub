@@ -15,7 +15,9 @@ import android.graphics.drawable.VectorDrawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.text.SpannableStringBuilder;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -24,6 +26,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
+import com.thirtydegreesray.openhub.mvp.model.Label;
+import com.thirtydegreesray.openhub.ui.widget.IssueLabelSpan;
+
+import java.util.ArrayList;
 
 /**
  * Created on 2017/8/1.
@@ -246,6 +252,23 @@ public class ViewUtils {
         } else {
             return context.getResources().getColor(R.color.material_light_white);
         }
+    }
+
+    @NonNull
+    public static SpannableStringBuilder getLabelsSpan(@NonNull Context context,
+                                                       @Nullable ArrayList<Label> labels){
+        SpannableStringBuilder labelsText  = new SpannableStringBuilder("");
+        if(labels == null){
+            return labelsText;
+        }
+        int start;
+        for(int i = 0; i < labels.size(); i++){
+            Label label = labels.get(i);
+            start = labelsText.length();
+            labelsText.append(label.getName());
+            labelsText.setSpan(new IssueLabelSpan(context, label), start, start + label.getName().length(), 0);
+        }
+        return labelsText;
     }
 
 }

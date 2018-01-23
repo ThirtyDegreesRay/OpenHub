@@ -113,7 +113,7 @@
         <activity android:name=".ui.activity.IssuesActivity"/>
         <activity android:name=".ui.activity.IssueDetailActivity"/>
         <activity android:name=".ui.activity.MarkdownEditorActivity" android:windowSoftInputMode="stateVisible"/>
-        <activity android:name=".ui.activity.EditIssueActivity" android:windowSoftInputMode="stateVisible"/>
+        <activity android:name=".ui.activity.EditIssueActivity" android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ui.activity.CommitDetailActivity"/>
         <activity android:name=".ui.activity.CommitsListActivity"/>
         <activity android:name=".ui.activity.NotificationsActivity"/>

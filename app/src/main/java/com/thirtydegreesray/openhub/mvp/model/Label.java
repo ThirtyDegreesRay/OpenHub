@@ -109,4 +109,12 @@ public class Label implements Parcelable {
             return new Label[size];
         }
     };
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null && obj instanceof Label){
+            return ((Label) obj).getId() == id;
+        }
+        return super.equals(obj);
+    }
 }

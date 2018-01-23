@@ -8,6 +8,7 @@ import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpProgressSubscriber;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
+import com.thirtydegreesray.openhub.http.model.IssueRequestModel;
 import com.thirtydegreesray.openhub.mvp.contract.IIssueDetailContract;
 import com.thirtydegreesray.openhub.mvp.model.Issue;
 import com.thirtydegreesray.openhub.mvp.model.IssueEvent;
@@ -148,7 +149,8 @@ public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.Vie
                 }
         );
         generalRxHttpExecute(getIssueService().editIssue(issue.getRepoAuthorName(),
-                issue.getRepoName(), issue.getNumber(), issue), subscriber);
+                issue.getRepoName(), issue.getNumber(),
+                IssueRequestModel.generateFromIssue(issue)), subscriber);
     }
 
     public String getOwner() {
