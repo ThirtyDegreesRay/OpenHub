@@ -5,6 +5,7 @@ package com.thirtydegreesray.openhub.inject.component;
 import com.thirtydegreesray.openhub.inject.FragmentScope;
 import com.thirtydegreesray.openhub.inject.module.FragmentModule;
 import com.thirtydegreesray.openhub.ui.fragment.CollectionsFragment;
+import com.thirtydegreesray.openhub.ui.fragment.LabelManageFragment;
 import com.thirtydegreesray.openhub.ui.fragment.LanguagesEditorFragment;
 import com.thirtydegreesray.openhub.ui.fragment.ActivityFragment;
 import com.thirtydegreesray.openhub.ui.fragment.BookmarksFragment;
@@ -54,4 +55,5 @@ public interface FragmentComponent {
     void inject(WikiFragment fragment);
     void inject(CollectionsFragment fragment);
     void inject(TopicsFragment fragment);
+    void inject(LabelManageFragment fragment);
 }

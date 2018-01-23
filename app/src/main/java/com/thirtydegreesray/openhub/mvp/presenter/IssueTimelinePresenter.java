@@ -103,11 +103,13 @@ public class IssueTimelinePresenter extends BasePresenter<IIssueTimelineContract
             @Override
             public void onSuccess(HttpResponse<ArrayList<IssueEvent>> response) {
                 mView.hideLoading();
+                ArrayList<IssueEvent> result = response.body();
+                result = filterTimeLine(result);
                 if (isReload || timeline == null || readCacheFirst) {
-                    timeline = response.body();
+                    timeline = result;
                     timeline.add(0, getFirstComment());
                 } else {
-                    timeline.addAll(response.body());
+                    timeline.addAll(result);
                 }
                 if(response.body().size() == 0 && timeline.size() != 0){
                     mView.setCanLoadMore(false);
@@ -119,35 +121,18 @@ public class IssueTimelinePresenter extends BasePresenter<IIssueTimelineContract
         generalRxHttpExecute(new IObservableCreator<ArrayList<IssueEvent>>() {
             @Override
             public Observable<Response<ArrayList<IssueEvent>>> createObservable(boolean forceNetWork) {
-                return getIssueService().getIssueComments(forceNetWork, issue.getRepoAuthorName(),
+//                return getIssueService().getIssueComments(forceNetWork, issue.getRepoAuthorName(),
+//                        issue.getRepoName(), issue.getNumber(), page);
+                return getIssueService().getIssueTimeline(forceNetWork, issue.getRepoAuthorName(),
                         issue.getRepoName(), issue.getNumber(), page);
             }
         }, httpObserver, readCacheFirst);
     }
 
-    private void loadEvents() {
-        HttpObserver<ArrayList<IssueEvent>> httpObserver
-                = new HttpObserver<ArrayList<IssueEvent>>() {
-            @Override
-            public void onError(Throwable error) {
-
-            }
-
-            @Override
-            public void onSuccess(HttpResponse<ArrayList<IssueEvent>> response) {
-                events = filterEvents(response.body());
-            }
-        };
-        generalRxHttpExecute(new IObservableCreator<ArrayList<IssueEvent>>() {
-            @Override
-            public Observable<Response<ArrayList<IssueEvent>>> createObservable(boolean forceNetWork) {
-                return getIssueService().getIssueEvents(forceNetWork, issue.getRepoAuthorName(),
-                        issue.getRepoName(), issue.getNumber(), 1);
-            }
-        }, httpObserver);
-    }
-
-    private ArrayList<IssueEvent> filterEvents(ArrayList<IssueEvent> oriEvents){
+    /**
+     * filter unknown event type
+     */
+    private ArrayList<IssueEvent> filterTimeLine(ArrayList<IssueEvent> oriEvents){
         ArrayList<IssueEvent> filteredEvents = new ArrayList<>();
         if(oriEvents == null || oriEvents.size() == 0) return filteredEvents;
         for(IssueEvent event : oriEvents){
@@ -164,6 +149,8 @@ public class IssueTimelinePresenter extends BasePresenter<IIssueTimelineContract
         firstComment.setUser(issue.getUser());
         firstComment.setCreatedAt(issue.getCreatedAt());
         firstComment.setHtmlUrl(issue.getHtmlUrl());
+        firstComment.setType(IssueEvent.Type.commented);
+        firstComment.setParentIssue(issue);
         return firstComment;
     }
 

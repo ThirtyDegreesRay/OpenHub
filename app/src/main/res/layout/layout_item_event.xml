@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/root_lay"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingStart="@dimen/spacing_normal"
+    android:paddingEnd="@dimen/spacing_normal"
+    android:paddingTop="@dimen/spacing_small"
+    android:paddingBottom="@dimen/spacing_small"
+    android:background="?card_background">
+
+    <com.thirtydegreesray.openhub.ui.widget.CircleBackgroundImageView
+        android:id="@+id/event_icon"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:padding="@dimen/spacing_mini"
+        android:src="@drawable/ic_dot"
+        app:background_color="@color/material_green_900"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:layout_marginStart="@dimen/spacing_normal"/>
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_small"
+        android:textSize="@dimen/text_small"/>
+
+</LinearLayout>

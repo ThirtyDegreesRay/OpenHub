@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -160,6 +161,10 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
         errorImage.setVisibility(View.VISIBLE);
         layTip.setVisibility(View.VISIBLE);
         tvTip.setText(errorTip);
+    }
+
+    protected void addVerticalDivider(){
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
     }
 
     /**

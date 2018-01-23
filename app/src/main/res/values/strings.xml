@@ -437,5 +437,38 @@
     <string name="star_num_this_month">%s star this month</string>
     <string name="no_trending_repos">It looks like we don’t have any trending repositories for %s.</string>
 
+    <string name="labels">Labels</string>
+    <string name="label">Label</string>
+    <string name="edit_label">Edit label</string>
+    <string name="create_label">Create label</string>
+    <string name="save">Save</string>
+    <string name="name">Name</string>
+    <string name="color">Color</string>
+    <string name="more">More</string>
+    <string name="custom">Custom</string>
+    <string name="done">Done</string>
+    <string name="presets">Presets</string>
+    <string name="choose_color">Choose color</string>
+    <string name="invalid_color">Invalid color</string>
+    <string name="invalid_name">Invalid name</string>
+
+    <string name="issue_add_label">add the label [label]</string>
+    <string name="issue_remove_label">remove the label [label]</string>
+    <string name="issue_close">close this</string>
+    <string name="issue_reopened">reopened this</string>
+
+    <string name="issue_added_to_milestone">added this to the %s milestone</string>
+    <string name="issue_removed_from_milestone">removed this from the %s milestone</string>
+
+    <string name="issue_locked_conversation">locked and limited conversation to collaborators</string>
+    <string name="issue_unlocked_conversation">unlocked this conversation</string>
+
+    <string name="issue_delete_comment">delete a comment</string>
+    <string name="issue_referenced">referenced this issue in %s</string>
+
+    <string name="issue_assigned">assigned this to %s</string>
+    <string name="issue_unassigned">removed their assignment</string>
+
+
 
 </resources>

@@ -23,8 +23,8 @@
             android:orientation="horizontal">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user_avatar"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:background="?android:selectableItemBackgroundBorderless"/>
             <TextView
                 android:id="@+id/user_name"
@@ -57,6 +57,16 @@
             android:textColor="?android:textColorPrimary"
             android:maxLines="20"
             android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/issue_labels"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="@dimen/text_small"
+            android:paddingTop="@dimen/spacing_small"
+            android:textColor="?android:textColorPrimary"
+            android:gravity="center"/>
 
     </LinearLayout>
 

@@ -39,4 +39,13 @@
         <item name="android:textColor">?android:colorAccent</item>
     </style>
 
+    <style name="label_color">
+        <item name="android:layout_height">36dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">?title_color</item>
+        <item name="android:textSize">@dimen/text_normal</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>

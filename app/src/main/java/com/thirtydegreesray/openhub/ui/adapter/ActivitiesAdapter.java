@@ -244,7 +244,7 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
                 desc.setVisibility(View.GONE);
             }
 
-            actionStr = StringUtils.upCaseFisrtChar(actionStr);
+            actionStr = StringUtils.upCaseFirstChar(actionStr);
             actionStr = actionStr == null ? "" : actionStr;
             SpannableStringBuilder span = new SpannableStringBuilder(actionStr);
             Matcher matcher = GitHubHelper.REPO_FULL_NAME_PATTERN.matcher(actionStr);

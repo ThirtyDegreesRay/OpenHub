@@ -99,7 +99,7 @@ public class StringUtils {
             return getDateStr(date);
     }
 
-    public static String upCaseFisrtChar(String str){
+    public static String upCaseFirstChar(String str){
         if(isBlank(str)) return null;
         return str.substring(0, 1).toUpperCase().concat(str.substring(1));
     }

@@ -121,6 +121,7 @@
         <activity android:name=".ui.activity.BookmarksActivity"/>
         <activity android:name=".ui.activity.LanguagesEditorActivity" android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ui.activity.WikiActivity"/>
+        <activity android:name=".ui.activity.LabelManageActivity"/>
 
     </application>
 

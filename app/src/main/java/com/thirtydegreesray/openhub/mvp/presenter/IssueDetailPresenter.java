@@ -43,6 +43,7 @@ public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.Vie
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
+        initIssueInfo();
         if (issue == null || issue.getBodyHtml() == null) {
             loadIssueInfo();
         } else {
@@ -82,8 +83,7 @@ public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.Vie
         mView.showLoading();
     }
 
-
-    private void loadIssueInfo() {
+    private void initIssueInfo(){
         if (issue != null) {
             owner = issue.getRepoAuthorName();
             repoName = issue.getRepoName();
@@ -96,6 +96,9 @@ public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.Vie
             repoName = arrays[1];
             issueNumber = Integer.parseInt(arrays[3]);
         }
+    }
+
+    private void loadIssueInfo() {
         loadIssueInfo(owner, repoName, issueNumber);
     }
 
@@ -148,5 +151,11 @@ public class IssueDetailPresenter extends BasePresenter<IIssueDetailContract.Vie
                 issue.getRepoName(), issue.getNumber(), issue), subscriber);
     }
 
+    public String getOwner() {
+        return owner;
+    }
 
+    public String getRepoName() {
+        return repoName;
+    }
 }

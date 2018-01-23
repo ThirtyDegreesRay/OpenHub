@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -39,6 +40,12 @@ public class Issue implements Parcelable {
     @SerializedName("author_association") private IssueAuthorAssociation authorAssociation;
     @SerializedName("repository_url") private String repoUrl;
     @SerializedName("html_url") private String htmlUrl;
+
+    private ArrayList<Label> labels;
+    private User assignee;
+    private ArrayList<User> assignees;
+    private Milestone milestone;
+    @SerializedName("closed_by") private User closedBy;
 
     public String getId() {
         return id;
@@ -175,6 +182,49 @@ public class Issue implements Parcelable {
         this.bodyHtml = bodyHtml;
     }
 
+    public ArrayList<Label> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(ArrayList<Label> labels) {
+        this.labels = labels;
+    }
+
+    public User getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(User assignee) {
+        this.assignee = assignee;
+    }
+
+    public ArrayList<User> getAssignees() {
+        return assignees;
+    }
+
+    public void setAssignees(ArrayList<User> assignees) {
+        this.assignees = assignees;
+    }
+
+    public Milestone getMilestone() {
+        return milestone;
+    }
+
+    public void setMilestone(Milestone milestone) {
+        this.milestone = milestone;
+    }
+
+    public User getClosedBy() {
+        return closedBy;
+    }
+
+    public void setClosedBy(User closedBy) {
+        this.closedBy = closedBy;
+    }
+
+    public Issue() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -197,9 +247,11 @@ public class Issue implements Parcelable {
         dest.writeInt(this.authorAssociation == null ? -1 : this.authorAssociation.ordinal());
         dest.writeString(this.repoUrl);
         dest.writeString(this.htmlUrl);
-    }
-
-    public Issue() {
+        dest.writeTypedList(this.labels);
+        dest.writeParcelable(this.assignee, flags);
+        dest.writeTypedList(this.assignees);
+        dest.writeParcelable(this.milestone, flags);
+        dest.writeParcelable(this.closedBy, flags);
     }
 
     protected Issue(Parcel in) {
@@ -223,9 +275,14 @@ public class Issue implements Parcelable {
         this.authorAssociation = tmpAuthorAssociation == -1 ? null : IssueAuthorAssociation.values()[tmpAuthorAssociation];
         this.repoUrl = in.readString();
         this.htmlUrl = in.readString();
+        this.labels = in.createTypedArrayList(Label.CREATOR);
+        this.assignee = in.readParcelable(User.class.getClassLoader());
+        this.assignees = in.createTypedArrayList(User.CREATOR);
+        this.milestone = in.readParcelable(Milestone.class.getClassLoader());
+        this.closedBy = in.readParcelable(User.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<Issue> CREATOR = new Parcelable.Creator<Issue>() {
+    public static final Creator<Issue> CREATOR = new Creator<Issue>() {
         @Override
         public Issue createFromParcel(Parcel source) {
             return new Issue(source);
