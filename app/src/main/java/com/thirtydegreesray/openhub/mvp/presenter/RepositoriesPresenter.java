@@ -123,7 +123,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
     public void loadRepositories(final boolean isReLoad, final int page) {
         filter = getFilter();
         if (type.equals(RepositoriesFragment.RepositoriesType.SEARCH)) {
-
+            searchRepos(page);
             return;
         }
         if (RepositoriesFragment.RepositoriesType.TRACE.equals(type)) {
