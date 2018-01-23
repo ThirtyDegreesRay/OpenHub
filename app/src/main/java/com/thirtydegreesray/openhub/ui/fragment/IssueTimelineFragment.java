@@ -44,6 +44,7 @@ public class IssueTimelineFragment extends ListFragment<IssueTimelinePresenter, 
     protected void initFragment(Bundle savedInstanceState) {
         super.initFragment(savedInstanceState);
         setLoadMoreEnable(true);
+        setAutoJudgeCanLoadMoreEnable(false);
     }
 
     @Override
