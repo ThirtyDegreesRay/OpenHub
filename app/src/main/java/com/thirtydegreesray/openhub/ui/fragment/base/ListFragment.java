@@ -53,7 +53,7 @@ public abstract class ListFragment <P extends IBaseContract.Presenter, A extends
     private boolean refreshEnable = true;
     private boolean loadMoreEnable = false;
     private boolean canLoadMore = false;
-    private boolean autoJudgeCanLoadMoreEnable = false;
+    private boolean autoJudgeCanLoadMoreEnable = true;
     private boolean isLoading = false;
     private final int DEFAULT_PAGE_SIZE = 30;
 
