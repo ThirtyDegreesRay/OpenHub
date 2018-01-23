@@ -235,10 +235,12 @@ public class IssueTimelineAdapter extends BaseAdapter<BaseViewHolder, IssueEvent
                     text.append(getString(R.string.issue_delete_comment));
                     break;
                 case labeled:
-                    text.append(getString(R.string.issue_add_label));
+                    info = String.format(getString(R.string.issue_add_label), "[label]");
+                    text.append(info);
                     break;
                 case unlabeled:
-                    text.append(getString(R.string.issue_remove_label));
+                    info = String.format(getString(R.string.issue_remove_label), "[label]");
+                    text.append(info);
                     break;
                 default:
 //                    eventIcon.setBackgroundColor(context.getResources().getColor(R.color.transparent));

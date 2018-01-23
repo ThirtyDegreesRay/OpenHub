@@ -454,8 +454,8 @@
     <string name="choose_labels">Choose labels</string>
     <string name="manage_labels">Manage labels</string>
 
-    <string name="issue_add_label">add the label [label]</string>
-    <string name="issue_remove_label">remove the label [label]</string>
+    <string name="issue_add_label">add the label %s</string>
+    <string name="issue_remove_label">remove the label %s</string>
     <string name="issue_close">close this</string>
     <string name="issue_reopened">reopened this</string>
     <string name="issue_added_to_milestone">added this to the %s milestone</string>
