@@ -1,8 +1,14 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.novoda.build-properties'
 
-Properties properties = new Properties()
-//read properties
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
+buildProperties {
+    getPublic {
+        file rootProject.file('public.properties')
+    }
+    getLocal {
+        file rootProject.file('local.properties')
+    }
+}
 
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
@@ -17,10 +23,10 @@ android {
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled false
 
-        buildConfigField "String", "OPENHUB_CLIENT_ID", properties.getProperty("openhub_client_id")
-        buildConfigField "String", "OPENHUB_CLIENT_SECRET", properties.getProperty("openhub_client_secret")
-        buildConfigField "String", "BUGLY_ID", properties.getProperty("bugly_appid")
-        buildConfigField "String", "DEBUG_BUGLY_ID", properties.getProperty("debug_bugly_appid")
+        buildConfigField "String", "OPENHUB_CLIENT_ID", (buildProperties.getLocal['openhub_client_id'] | buildProperties.getPublic['openhub_client_id']).string
+        buildConfigField "String", "OPENHUB_CLIENT_SECRET", (buildProperties.getLocal['openhub_client_secret'] | buildProperties.getPublic['openhub_client_secret']).string
+        buildConfigField "String", "BUGLY_ID", (buildProperties.getLocal['bugly_appid'] | buildProperties.getPublic['bugly_appid']).string
+        buildConfigField "String", "DEBUG_BUGLY_ID", (buildProperties.getLocal['debug_bugly_appid'] | buildProperties.getPublic['debug_bugly_appid']).string
 
         ndk {
             abiFilters 'armeabi', 'armeabi-v7a', 'x86'
@@ -30,10 +36,10 @@ android {
 
     signingConfigs  {
         release {
-            storeFile file(properties.getProperty("sign_path"))
-            storePassword properties.getProperty("store_password")
-            keyAlias properties.getProperty("key_alias")
-            keyPassword properties.getProperty("key_password")
+            storeFile(file((buildProperties.getLocal['sign_path'] | buildProperties.getPublic['sign_path']).string))
+            storePassword((buildProperties.getLocal['store_password'] | buildProperties.getPublic['store_password']).string)
+            keyAlias((buildProperties.getLocal['key_alias'] | buildProperties.getPublic['key_alias']).string)
+            keyPassword((buildProperties.getLocal['key_password'] | buildProperties.getPublic['key_password']).string)
         }
     }
 

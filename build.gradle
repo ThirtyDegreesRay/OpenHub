@@ -2,10 +2,11 @@
 buildscript {
     repositories {
         jcenter()
-//        google()
+        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.novoda:gradle-build-properties-plugin:0.3'
     }
 }
 
