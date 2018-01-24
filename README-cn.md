@@ -3,7 +3,7 @@
 [![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
-一个**开源**的GitHub Android客户端应，快速简洁。
+一个**开源**的GitHub Android客户端应用，快速简洁。
 
 [![Coolapk](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/coolapk.png?raw=true)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 [![Google Play](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/google_play.png?raw=true)](https://play.google.com/store/apps/details?id=com.thirtydegreesray.openhub)
@@ -12,16 +12,16 @@
 
 ### App
 * 两种登录方式，(Basic Auth) 和 (OAuth)
-* 支持夜间模式，多重主色调
+* 支持夜间模式，多种主色调
 * 支持Markdown和代码高亮
-* 支持英文、简体中文和希伯来语
+* 支持英文、简体中文、希伯来语和德语
 * 支持离线模式
 * 支持所有语言的最热版本库查看
 * 搜索版本库和用户
 * 支持7.1以上快捷方式创建
 * 支持消息通知
 * 支持添加用户、版本库书签
-* 自动记录浏览过过的用户和版本库
+* 自动记录浏览过的用户和版本库
 * 查看 github 集合(collections)
 * 查看 github 精选主题(featured topics)
 
@@ -38,7 +38,7 @@
 ### 用户
 * 查看用户信息
 * 查看用户的跟随者、跟随的人和属于的组织
-* 查看用户公公的、星标的项目和活动
+* 查看用户公共的、星标的项目和活动
 * 查看你的私有项目
 * 跟随和取消跟随用户
 * 搜索用户
