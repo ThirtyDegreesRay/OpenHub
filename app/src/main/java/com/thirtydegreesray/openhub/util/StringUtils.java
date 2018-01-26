@@ -12,8 +12,10 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * StringUtil
@@ -66,15 +68,18 @@ public class StringUtils {
         return null;
     }
 
+    private final static Map<Locale, String> DATE_REGEX_MAP = new HashMap<>();
+    static {
+        DATE_REGEX_MAP.put(Locale.CHINA, "yyyy-MM-dd");
+        DATE_REGEX_MAP.put(Locale.TAIWAN, "yyyy-MM-dd");
+        DATE_REGEX_MAP.put(Locale.ENGLISH, "MMM d, yyyy");
+        DATE_REGEX_MAP.put(Locale.GERMAN, "dd.MM.yyyy");
+        DATE_REGEX_MAP.put(Locale.GERMANY, "dd.MM.yyyy");
+    }
+
     public static String getDateStr(@NonNull Date date){
         Locale locale = AppUtils.getLocale(PrefUtils.getLanguage());
-        String regex ;
-        regex = "yyyy-MM-dd";
-//        if(locale.equals(Locale.CHINA)){
-//            regex = "yyyy-MM-dd";
-//        }else{
-//            regex = "dd-MM-yyyy";
-//        }
+        String regex = DATE_REGEX_MAP.containsKey(locale) ? DATE_REGEX_MAP.get(locale) : "yyyy-MM-dd";
         SimpleDateFormat format = new SimpleDateFormat(regex, locale);
         return format.format(date);
     }
