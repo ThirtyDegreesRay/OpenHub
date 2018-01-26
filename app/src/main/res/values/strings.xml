@@ -68,10 +68,10 @@
     <string name="theme_accent_color">Theme Accent Color</string>
     <string name="start_page">Start Page</string>
     <string name="cache_controller">Cache Controller</string>
-    <string name="cache_controller_desc">Load cache first if cache available, then load from network.</string>
+    <string name="cache_controller_desc">Load cache first if cache available, then load from network</string>
     <string name="use_system_downloader">Use System Downloader</string>
     <string name="use_custom_tabs">Use Custom Tabs</string>
-    <string name="custom_tabs_desc">Open in custom tabs instead of outer browser(support chrome, firefox…).</string>
+    <string name="custom_tabs_desc">Open in custom tabs instead of outer browser(support chrome, firefox…)</string>
     <string name="use_custom_tabs_tips">If you want to open in outer browser directly, you could change in settings.</string>
     <string name="language">Language</string>
     <string name="logout">Logout</string>
@@ -457,5 +457,8 @@
     <string name="issue_referenced">referenced this issue in %s</string>
     <string name="issue_assigned">assigned this to %s</string>
     <string name="issue_unassigned">removed their assignment</string>
+
+    <string name="disable_loading_image">Disable loading network image</string>
+    <string name="disable_loading_image_desc">Disable loading network image while mobile network</string>
 
 </resources>

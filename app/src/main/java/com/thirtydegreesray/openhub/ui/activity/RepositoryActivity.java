@@ -40,6 +40,7 @@ import com.thirtydegreesray.openhub.ui.fragment.RepoInfoFragment;
 import com.thirtydegreesray.openhub.util.AppOpener;
 import com.thirtydegreesray.openhub.util.AppUtils;
 import com.thirtydegreesray.openhub.util.BundleHelper;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StarWishesHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
@@ -208,6 +209,7 @@ public class RepositoryActivity extends PagerActivity<RepositoryPresenter>
 
             GlideApp.with(getActivity())
                     .load(repo.getOwner().getAvatarUrl())
+                    .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
                     .into(userImageViewBg);
         } else {
             noticeRepositoryUpdated(repo);

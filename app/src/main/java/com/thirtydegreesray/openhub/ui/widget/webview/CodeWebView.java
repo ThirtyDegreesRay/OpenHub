@@ -20,6 +20,7 @@ import android.webkit.WebViewClient;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.util.AppOpener;
 import com.thirtydegreesray.openhub.util.AppUtils;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewUtils;
 
@@ -85,8 +86,9 @@ public class CodeWebView extends WebView {
         settings.setAppCacheEnabled(true);
         settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         settings.setDefaultTextEncodingName("utf-8");
-        settings.setLoadsImagesAutomatically(true);
-        settings.setBlockNetworkImage(false);
+        boolean isLoadImageEnable = PrefUtils.isLoadImageEnable();
+        settings.setLoadsImagesAutomatically(isLoadImageEnable);
+        settings.setBlockNetworkImage(!isLoadImageEnable);
         setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {

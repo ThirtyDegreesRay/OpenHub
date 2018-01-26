@@ -15,6 +15,7 @@ import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import javax.inject.Inject;
@@ -55,7 +56,7 @@ public class IssuesAdapter extends BaseAdapter<IssuesAdapter.ViewHolder, Issue> 
         Issue model = data.get(position);
         GlideApp.with(fragment)
                 .load(model.getUser().getAvatarUrl())
-                .placeholder(R.mipmap.logo)
+                .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
                 .into(holder.userAvatar);
         holder.userName.setText(model.getUser().getLogin());
         holder.issueTitle.setText(model.getTitle());

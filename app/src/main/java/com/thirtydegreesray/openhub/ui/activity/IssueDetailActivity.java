@@ -34,6 +34,7 @@ import com.thirtydegreesray.openhub.ui.widget.ZoomAbleFloatingActionButton;
 import com.thirtydegreesray.openhub.util.AppOpener;
 import com.thirtydegreesray.openhub.util.AppUtils;
 import com.thirtydegreesray.openhub.util.BundleHelper;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -168,7 +169,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
         setToolbarTitle(getString(R.string.issue).concat(" #").concat(String.valueOf(issue.getNumber())));
         GlideApp.with(getActivity())
                 .load(issue.getUser().getAvatarUrl())
-                .placeholder(R.mipmap.logo)
+                .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
                 .into(userImageView);
         issueTitle.setText(issue.getTitle());
         commentBn.setVisibility(issue.isLocked() ? View.GONE : View.VISIBLE);

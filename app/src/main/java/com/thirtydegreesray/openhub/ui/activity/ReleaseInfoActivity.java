@@ -28,6 +28,7 @@ import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;
 import com.thirtydegreesray.openhub.ui.widget.DownloadSourceDialog;
 import com.thirtydegreesray.openhub.ui.widget.webview.CodeWebView;
 import com.thirtydegreesray.openhub.util.BundleHelper;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewUtils;
 
@@ -79,7 +80,7 @@ public class ReleaseInfoActivity extends BaseActivity<ReleaseInfoPresenter>
 
         GlideApp.with(getActivity())
                 .load(release.getAuthor().getAvatarUrl())
-                .placeholder(R.mipmap.logo)
+                .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
                 .into(userAvatar);
 
         String time = StringUtils.getNewsTimeStr(getActivity(), release.getPublishedAt());

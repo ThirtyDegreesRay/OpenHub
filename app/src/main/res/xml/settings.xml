@@ -38,6 +38,13 @@
         android:key="customTabsEnable"
         android:defaultValue="true"/>
 
+    <SwitchPreference
+        android:icon="@drawable/ic_image"
+        android:title="@string/disable_loading_image"
+        android:summary="@string/disable_loading_image_desc"
+        android:key="disableLoadingImage"
+        android:defaultValue="false"/>
+
     <Preference
         android:icon="@drawable/ic_language"
         android:title="@string/language"

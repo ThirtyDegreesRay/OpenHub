@@ -26,7 +26,7 @@
     <string name="title_activity_settings">设置</string>
     <string name="choose_theme">选择主题</string>
     <string name="cache_controller">缓存控制</string>
-    <string name="cache_controller_desc">如果缓存可用，先加载缓存，然后从网络加载。</string>
+    <string name="cache_controller_desc">如果缓存可用，先加载缓存，然后从网络加载</string>
     <string name="language">语言</string>
     <string name="logout">登出</string>
     <string name="daily">每日的</string>
@@ -330,7 +330,7 @@
     </string>
     <string name="bookmarks_tip">您可以向左或向右滑动来删除书签。</string>
     <string name="use_custom_tabs">使用自定义标签</string>
-    <string name="custom_tabs_desc">使用自定义标签来代替在外部浏览器中打开（支持chrome、firefox…）。</string>
+    <string name="custom_tabs_desc">使用自定义标签来代替在外部浏览器中打开（支持chrome、firefox…）</string>
     <string name="use_custom_tabs_tips">如果您想直接在外部浏览器中打开，您可以在设置改变。</string>
     <string name="topic">主题</string>
     <string name="topics">精选主题</string>
@@ -343,5 +343,7 @@
     <string name="no_trending_repos">看起来我们没有%s语言的趋势版本库。</string>
     <string name="all_languages">所有语言</string>
     <string name="unknown_languages">未知语言</string>
+    <string name="disable_loading_image">禁用网络图片加载</string>
+    <string name="disable_loading_image_desc">在移动网络下禁用网络图片加载</string>
 
 </resources>

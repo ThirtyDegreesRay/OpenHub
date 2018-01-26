@@ -20,6 +20,7 @@ import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.util.LanguageColorsHelper;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import javax.inject.Inject;
@@ -108,7 +109,7 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
             holder.sinceStarLay.setVisibility(View.GONE);
             GlideApp.with(fragment)
                     .load(repository.getOwner().getAvatarUrl())
-                    .placeholder(R.mipmap.logo)
+                    .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
                     .into(holder.ivUserAvatar);
         } else {
             holder.ivUserAvatar.setVisibility(View.GONE);

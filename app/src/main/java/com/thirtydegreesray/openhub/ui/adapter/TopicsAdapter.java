@@ -13,6 +13,7 @@ import com.thirtydegreesray.openhub.mvp.model.Topic;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewUtils;
 import com.thirtydegreesray.openhub.util.WindowUtil;
@@ -62,7 +63,7 @@ public class TopicsAdapter extends BaseAdapter<TopicsAdapter.ViewHolder, Topic> 
             holder.image.setImageTintList(null);
             GlideApp.with(fragment)
                     .load(model.getImage())
-                    .placeholder(R.mipmap.logo)
+                    .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
                     .into(holder.image);
         }
     }

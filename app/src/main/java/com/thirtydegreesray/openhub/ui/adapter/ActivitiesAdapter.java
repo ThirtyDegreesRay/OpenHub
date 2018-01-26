@@ -26,6 +26,7 @@ import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.ui.widget.EllipsizeLineSpan;
 import com.thirtydegreesray.openhub.util.GitHubHelper;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.regex.Matcher;
@@ -62,7 +63,7 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
         Event model = data.get(position);
         GlideApp.with(fragment)
                 .load(model.getActor().getAvatarUrl())
-                .placeholder(R.mipmap.logo)
+                .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
                 .into(holder.userAvatar);
         holder.userName.setText(model.getActor().getLogin());
         holder.time.setText(StringUtils.getNewsTimeStr(context, model.getCreatedAt()));

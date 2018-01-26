@@ -71,6 +71,7 @@ public class PrefUtils {
     public final static String BOOKMARKS_TIP_ABLE = "bookmarksTipAble";
     public final static String CUSTOM_TABS_TIPS_ENABLE = "customTabsTipsEnable";
     public final static String TOPICS_TIP_ABLE = "topicsTipAble";
+    public final static String DISABLE_LOADING_IMAGE = "disableLoadingImage";
 
 
     public final static String SEARCH_RECORDS = "searchRecords";
@@ -196,6 +197,14 @@ public class PrefUtils {
 
     public static boolean isTopicsTipEnable(){
         return getDefaultSp(AppApplication.get()).getBoolean(TOPICS_TIP_ABLE, true);
+    }
+
+    public static boolean isDisableLoadingImage(){
+        return getDefaultSp(AppApplication.get()).getBoolean(DISABLE_LOADING_IMAGE, false);
+    }
+
+    public static boolean isLoadImageEnable(){
+        return NetHelper.INSTANCE.getNetStatus() == NetHelper.TYPE_WIFI || !PrefUtils.isDisableLoadingImage();
     }
 
 

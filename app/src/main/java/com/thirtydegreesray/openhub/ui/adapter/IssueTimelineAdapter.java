@@ -21,6 +21,7 @@ import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.ui.widget.CircleBackgroundImageView;
 import com.thirtydegreesray.openhub.ui.widget.IssueLabelSpan;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewUtils;
 import com.thirtydegreesray.openhub.util.WindowUtil;
@@ -145,7 +146,7 @@ public class IssueTimelineAdapter extends BaseAdapter<BaseViewHolder, IssueEvent
         void setData(IssueEvent model) {
             GlideApp.with(fragment)
                     .load(model.getUser().getAvatarUrl())
-                    .placeholder(R.mipmap.logo)
+                    .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
                     .into(userAvatar);
             userName.setText(model.getUser().getLogin());
             time.setText(StringUtils.getNewsTimeStr(context, model.getCreatedAt()));
@@ -183,7 +184,7 @@ public class IssueTimelineAdapter extends BaseAdapter<BaseViewHolder, IssueEvent
         void setData(IssueEvent model, int position) {
             GlideApp.with(fragment)
                     .load(model.getActor().getAvatarUrl())
-                    .placeholder(R.mipmap.logo)
+                    .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
                     .into(userAvatar);
             setEventIcon(model);
             setDesc(model);

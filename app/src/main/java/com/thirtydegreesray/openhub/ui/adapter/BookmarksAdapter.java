@@ -19,6 +19,7 @@ import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.util.LanguageColorsHelper;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ViewUtils;
 
@@ -74,7 +75,7 @@ public class BookmarksAdapter extends BaseAdapter<BaseViewHolder, BookmarkExt> {
             UserViewHolder userViewHolder = (UserViewHolder) holder;
             GlideApp.with(fragment)
                     .load(user.getAvatarUrl())
-                    .placeholder(R.mipmap.logo)
+                    .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
                     .into(userViewHolder.avatar);
             userViewHolder.name.setText(user.getLogin());
             userViewHolder.name.setTextColor(ViewUtils.getAccentColor(context));
@@ -88,7 +89,7 @@ public class BookmarksAdapter extends BaseAdapter<BaseViewHolder, BookmarkExt> {
             repoViewHolder.tvOwnerName.setText(repository.getOwner().getLogin());
             GlideApp.with(fragment)
                     .load(repository.getOwner().getAvatarUrl())
-                    .placeholder(R.mipmap.logo)
+                    .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
                     .into(repoViewHolder.ivUserAvatar);
             repoViewHolder.forkMark.setVisibility(repository.isFork() ? View.VISIBLE : View.GONE);
 

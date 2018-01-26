@@ -14,6 +14,7 @@ import com.thirtydegreesray.openhub.mvp.model.User;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 
 import javax.inject.Inject;
 
@@ -51,7 +52,7 @@ public class UsersAdapter extends BaseAdapter<UsersAdapter.ViewHolder, User> {
         super.onBindViewHolder(holder, position);
         GlideApp.with(fragment)
                 .load(data.get(position).getAvatarUrl())
-                .placeholder(R.mipmap.logo)
+                .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
                 .into(holder.avatar);
         holder.name.setText(data.get(position).getLogin());
     }

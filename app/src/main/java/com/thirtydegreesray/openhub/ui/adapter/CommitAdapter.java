@@ -16,6 +16,7 @@ import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import javax.inject.Inject;
@@ -52,7 +53,7 @@ public class CommitAdapter extends BaseAdapter<CommitAdapter.ViewHolder, RepoCom
         if(model.getAuthor() != null){
             GlideApp.with(fragment)
                     .load(model.getAuthor().getAvatarUrl())
-                    .placeholder(R.mipmap.logo)
+                    .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
                     .into(holder.userAvatar);
         } else {
             holder.userAvatar.setImageResource(R.drawable.ic_question);

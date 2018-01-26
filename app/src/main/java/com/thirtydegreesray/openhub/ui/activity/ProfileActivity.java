@@ -32,6 +32,7 @@ import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.util.AppOpener;
 import com.thirtydegreesray.openhub.util.AppUtils;
 import com.thirtydegreesray.openhub.util.BundleHelper;
+import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
 import butterknife.BindView;
@@ -209,10 +210,11 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
         isAvatarSetted = true;
         GlideApp.with(getActivity())
                 .load(mPresenter.getUserAvatar())
+                .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
                 .into(userImageViewBg);
         GlideApp.with(getActivity())
                 .load(mPresenter.getUserAvatar())
-                .placeholder(R.mipmap.logo)
+                .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
                 .into(userImageView);
     }
 
