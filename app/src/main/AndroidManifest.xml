@@ -11,10 +11,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
-    <meta-data
-        android:name="BUGLY_APP_CHANNEL"
-        android:value="${BUGLY_APP_CHANNEL_VALUE}" />
-
     <application
         android:name=".AppApplication"
         android:allowBackup="true"
@@ -24,6 +20,10 @@
         android:supportsRtl="false"
         android:theme="@style/SplashTheme"
         tools:replace="android:supportsRtl">
+
+        <meta-data
+            android:name="BUGLY_APP_CHANNEL"
+            android:value="${BUGLY_APP_CHANNEL_VALUE}" />
 
         <receiver android:name=".service.NetBroadcastReceiver">
             <intent-filter>

@@ -4,6 +4,8 @@ package com.thirtydegreesray.openhub;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -88,6 +90,7 @@ public class AppApplication extends Application {
 
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
         strategy.setAppVersion(BuildConfig.VERSION_NAME);
+        strategy.setAppChannel(getAppChannel());
         strategy.setAppReportDelay(10 * 1000);
         Bugly.init(getApplicationContext(), AppConfig.BUGLY_APPID, BuildConfig.DEBUG, strategy);
         CrashReport.setIsDevelopmentDevice(getApplicationContext(), BuildConfig.DEBUG);
@@ -100,6 +103,18 @@ public class AppApplication extends Application {
 
     public AppComponent getAppComponent(){
         return mAppComponent;
+    }
+
+    private String getAppChannel(){
+        String channel = "normal";
+        try {
+            ApplicationInfo applicationInfo = getPackageManager()
+                    .getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+            channel = applicationInfo.metaData.getString("BUGLY_APP_CHANNEL", "normal");
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return channel;
     }
 
 }
