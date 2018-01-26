@@ -4,8 +4,11 @@ package com.thirtydegreesray.openhub;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.os.Build;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -16,6 +19,7 @@ import com.tencent.bugly.crashreport.CrashReport;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerAppComponent;
 import com.thirtydegreesray.openhub.inject.module.AppModule;
+import com.thirtydegreesray.openhub.service.NetBroadcastReceiver;
 import com.thirtydegreesray.openhub.ui.activity.AboutActivity;
 import com.thirtydegreesray.openhub.ui.activity.LoginActivity;
 import com.thirtydegreesray.openhub.ui.activity.MainActivity;
@@ -53,10 +57,12 @@ public class AppApplication extends Application {
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
-        NetHelper.INSTANCE.init(this);
+        initNetwork();
         initBugly();
         startTime = System.currentTimeMillis();
         Logger.t(TAG).i("application ok:" + (System.currentTimeMillis() - startTime));
+
+
     }
 
     private void initLogger(){
@@ -95,6 +101,20 @@ public class AppApplication extends Application {
         Bugly.init(getApplicationContext(), AppConfig.BUGLY_APPID, BuildConfig.DEBUG, strategy);
         CrashReport.setIsDevelopmentDevice(getApplicationContext(), BuildConfig.DEBUG);
 
+    }
+
+    private void initNetwork(){
+        NetBroadcastReceiver receiver = new NetBroadcastReceiver();
+        IntentFilter filter;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        } else {
+            filter = new IntentFilter();
+            filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        }
+        registerReceiver(receiver, filter);
+
+        NetHelper.INSTANCE.init(this);
     }
 
     public static AppApplication get(){

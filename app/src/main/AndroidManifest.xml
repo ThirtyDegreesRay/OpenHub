@@ -25,11 +25,7 @@
             android:name="BUGLY_APP_CHANNEL"
             android:value="${BUGLY_APP_CHANNEL_VALUE}" />
 
-        <receiver android:name=".service.NetBroadcastReceiver">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
-            </intent-filter>
-        </receiver>
+        <receiver android:name=".service.NetBroadcastReceiver"/>
         <receiver android:name=".service.ShareBroadcastReceiver"/>
         <receiver android:name=".service.CopyBroadcastReceiver"/>
 
