@@ -41,14 +41,6 @@
     <string name="trending_languages" translatable="false">
         [
             {
-                \"name\": \"All Languages\",
-                \"slug\": \"all\"
-            },
-            {
-                \"name\": \"Unknown Languages\",
-                \"slug\": \"unknown\"
-            },
-            {
                 \"name\": \"JavaScript\",
                 \"slug\": \"javascript\"
             },

@@ -169,8 +169,10 @@ public class LanguagesEditorPresenter extends BasePresenter<ILanguagesEditorCont
                 .list();
         if (StringUtils.isBlankList(myLanguages)) {
             selectedLanguages = JSONUtils.jsonToArrayList(getString(R.string.trending_languages), TrendingLanguage.class);
+            selectedLanguages.addAll(0, getFixedLanguages());
         } else {
             selectedLanguages = TrendingLanguage.generateFromDB(myLanguages);
+            fixFixedLanguagesName(selectedLanguages);
         }
         return selectedLanguages;
     }
@@ -220,9 +222,19 @@ public class LanguagesEditorPresenter extends BasePresenter<ILanguagesEditorCont
 
     private ArrayList<TrendingLanguage> getFixedLanguages(){
         ArrayList<TrendingLanguage> fixedLanguages = new ArrayList<>();
-        fixedLanguages.add(new TrendingLanguage("All Languages", "all"));
-        fixedLanguages.add(new TrendingLanguage("Unknown Languages", "unknown"));
+        fixedLanguages.add(new TrendingLanguage(getString(R.string.all_languages), "all"));
+        fixedLanguages.add(new TrendingLanguage(getString(R.string.unknown_languages), "unknown"));
         return fixedLanguages;
+    }
+
+    private void fixFixedLanguagesName(ArrayList<TrendingLanguage> languages){
+        for(TrendingLanguage language : languages){
+            if(language.getSlug().equals("all")){
+                language.setName(getString(R.string.all_languages));
+            } else  if(language.getSlug().equals("unknown")){
+                language.setName(getString(R.string.unknown_languages));
+            }
+        }
     }
 
 }

@@ -40,9 +40,11 @@ public class TrendingPresenter extends BasePresenter<ITrendingContract.View>
                 .list();
         if(StringUtils.isBlankList(myLanguages)){
             languages = JSONUtils.jsonToArrayList(getString(R.string.trending_languages), TrendingLanguage.class);
+            languages.addAll(0, getFixedLanguages());
             languages = sortLanguages(languages);
         } else {
             languages = TrendingLanguage.generateFromDB(myLanguages);
+            fixFixedLanguagesName(languages);
         }
         return languages;
     }
@@ -57,4 +59,22 @@ public class TrendingPresenter extends BasePresenter<ITrendingContract.View>
     public ArrayList<TrendingLanguage> getLanguages() {
         return languages;
     }
+
+    private ArrayList<TrendingLanguage> getFixedLanguages(){
+        ArrayList<TrendingLanguage> fixedLanguages = new ArrayList<>();
+        fixedLanguages.add(new TrendingLanguage(getString(R.string.all_languages), "all"));
+        fixedLanguages.add(new TrendingLanguage(getString(R.string.unknown_languages), "unknown"));
+        return fixedLanguages;
+    }
+
+    private void fixFixedLanguagesName(ArrayList<TrendingLanguage> languages){
+        for(TrendingLanguage language : languages){
+            if(language.getSlug().equals("all")){
+                language.setName(getString(R.string.all_languages));
+            } else  if(language.getSlug().equals("unknown")){
+                language.setName(getString(R.string.unknown_languages));
+            }
+        }
+    }
+
 }

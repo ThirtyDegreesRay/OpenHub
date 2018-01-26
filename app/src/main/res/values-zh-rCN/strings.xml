@@ -341,5 +341,7 @@
     <string name="star_num_this_week">%s星标本周</string>
     <string name="star_num_this_month">%s星标本月</string>
     <string name="no_trending_repos">看起来我们没有%s语言的趋势版本库。</string>
+    <string name="all_languages">所有语言</string>
+    <string name="unknown_languages">未知语言</string>
 
 </resources>

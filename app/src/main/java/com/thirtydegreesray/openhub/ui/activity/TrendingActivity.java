@@ -152,6 +152,7 @@ public class TrendingActivity extends PagerActivity<TrendingPresenter>
         } else {
             selectedLanguage = languages.get(0);
             notifyLanguageUpdate();
+            updateTitle();
         }
         menu.findItem(selectedLanguage.getOrder()).setChecked(true);
     }

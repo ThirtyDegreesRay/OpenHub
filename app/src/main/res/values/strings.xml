@@ -210,18 +210,6 @@
     <string name="fork_failed">Fork failed</string>
 
     <string name="filter">Filter</string>
-    <!-- unused now -->
-    <string name="filter_all" translatable="false">All</string>
-    <string name="filter_owner" translatable="false">Owner</string>
-    <string name="filter_public" translatable="false">Public</string>
-    <string name="filter_private" translatable="false">Private</string>
-    <string name="filter_member" translatable="false">Member</string>
-
-    <string name="sort_full_name" translatable="false">Full name</string>
-    <string name="sort_created" translatable="false">Created</string>
-    <string name="sort_updated" translatable="false">Updated</string>
-    <string name="sort_pushed" translatable="false">Pushed</string>
-    <!-- unused now -->
 
     <string name="releases">Releases</string>
     <string name="no_releases">No releases</string>
@@ -436,6 +424,9 @@
     <string name="star_num_this_week">%s star this week</string>
     <string name="star_num_this_month">%s star this month</string>
     <string name="no_trending_repos">It looks like we don’t have any trending repositories for %s.</string>
+
+    <string name="all_languages">All languages</string>
+    <string name="unknown_languages">Unknown languages</string>
 
     <string name="labels">Labels</string>
     <string name="label">Label</string>
