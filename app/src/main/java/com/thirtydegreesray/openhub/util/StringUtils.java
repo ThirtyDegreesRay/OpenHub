@@ -86,20 +86,21 @@ public class StringUtils {
 
     public static String getNewsTimeStr(@NonNull Context context, @NonNull Date date){
         long subTime = System.currentTimeMillis() - date.getTime();
-        final long SECONDS_LIMIT = 60 * 1000;
-        final long MINUTES_LIMIT = 60 * SECONDS_LIMIT;
-        final long HOURS_LIMIT = 24 * MINUTES_LIMIT;
-        final long DAYS_LIMIT = 30 * HOURS_LIMIT;
-        if(subTime < 1000){
+        final double MILLIS_LIMIT = 1000.0f;
+        final double SECONDS_LIMIT = 60 * MILLIS_LIMIT;
+        final double MINUTES_LIMIT = 60 * SECONDS_LIMIT;
+        final double HOURS_LIMIT = 24 * MINUTES_LIMIT;
+        final double DAYS_LIMIT = 30 * HOURS_LIMIT;
+        if(subTime < MILLIS_LIMIT){
             return context.getString(R.string.just_now);
         } else if(subTime < SECONDS_LIMIT){
-            return subTime / 1000 + " " + context.getString(R.string.seconds_ago);
+            return Math.round(subTime / MILLIS_LIMIT) + " " + context.getString(R.string.seconds_ago);
         } else if(subTime < MINUTES_LIMIT){
-            return subTime / SECONDS_LIMIT + " " + context.getString(R.string.minutes_ago);
+            return Math.round(subTime / SECONDS_LIMIT) + " " + context.getString(R.string.minutes_ago);
         } else if(subTime < HOURS_LIMIT){
-            return subTime / MINUTES_LIMIT + " " + context.getString(R.string.hours_ago);
+            return Math.round(subTime / MINUTES_LIMIT) + " " + context.getString(R.string.hours_ago);
         } else if(subTime < DAYS_LIMIT){
-            return subTime / HOURS_LIMIT + " " + context.getString(R.string.days_ago);
+            return Math.round(subTime / HOURS_LIMIT) + " " + context.getString(R.string.days_ago);
         } else
             return getDateStr(date);
     }
