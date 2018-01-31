@@ -10,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
+import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -157,7 +158,7 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
                 AppUtils.copyToClipboard(getActivity(), mPresenter.getIssue().getHtmlUrl());
                 return true;
             case R.id.action_issue_toggle:
-                mPresenter.toggleIssueState();
+                showToggleIssueWarning();
                 return true;
         }
 
@@ -298,6 +299,18 @@ public class IssueDetailActivity extends BaseActivity<IssueDetailPresenter>
     @Override
     public void onScrollDown() {
         commentBn.zoomOut();
+    }
+
+    private void showToggleIssueWarning(){
+        String msg = String.format(getString(R.string.toggle_issue_warning),
+                mPresenter.getIssue().getState().equals(Issue.IssueState.open) ?
+                getString(R.string.close) : getString(R.string.reopen));
+        new AlertDialog.Builder(getActivity())
+                .setTitle(R.string.warning_dialog_tile)
+                .setMessage(msg)
+                .setPositiveButton(R.string.confirm, (dialog, which) -> mPresenter.toggleIssueState())
+                .setNegativeButton(R.string.cancel, null)
+                .show();
     }
 
 }

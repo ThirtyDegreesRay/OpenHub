@@ -345,5 +345,6 @@
     <string name="unknown_languages">未知语言</string>
     <string name="disable_loading_image">禁用网络图片加载</string>
     <string name="disable_loading_image_desc">在移动网络下禁用网络图片加载</string>
+    <string name="toggle_issue_warning">确认要%s这个问题？</string>
 
 </resources>

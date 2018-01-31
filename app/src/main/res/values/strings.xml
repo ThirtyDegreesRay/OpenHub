@@ -461,4 +461,6 @@
     <string name="disable_loading_image">Disable loading network image</string>
     <string name="disable_loading_image_desc">Disable loading network image while mobile network</string>
 
+    <string name="toggle_issue_warning">Confirm to %s this issue?</string>
+
 </resources>
