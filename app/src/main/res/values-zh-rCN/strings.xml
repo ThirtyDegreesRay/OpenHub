@@ -1,5 +1,3 @@
-
-
 <resources>
 
     <string name="user_name">用户名</string>
@@ -346,5 +344,34 @@
     <string name="disable_loading_image">禁用网络图片加载</string>
     <string name="disable_loading_image_desc">在移动网络下禁用网络图片加载</string>
     <string name="toggle_issue_warning">确认要%s这个问题？</string>
+    <string name="labels">标签</string>
+    <string name="label">标签</string>
+    <string name="edit_label">编辑标签</string>
+    <string name="create_label">创建标签</string>
+    <string name="save">保存</string>
+    <string name="name">名称</string>
+    <string name="color">颜色</string>
+    <string name="more">更多</string>
+    <string name="custom">自定义</string>
+    <string name="done">完成</string>
+    <string name="presets">上一步</string>
+    <string name="choose_color">选择颜色</string>
+    <string name="invalid_color">无效的颜色</string>
+    <string name="invalid_name">无效的名称</string>
+    <string name="choose_labels">选择标签</string>
+    <string name="manage_labels">管理标签</string>
+    <string name="issue_add_label">添加标签 %s</string>
+    <string name="issue_remove_label">移除标签 %s</string>
+    <string name="issue_close">关闭了这个问题</string>
+    <string name="issue_reopened">重开了这个问题</string>
+    <string name="issue_modified">编辑了这个问题</string>
+    <string name="issue_added_to_milestone">把这个问题添加到里程碑 %s</string>
+    <string name="issue_removed_from_milestone">把这个问题从里程碑 %s 中移除</string>
+    <string name="issue_locked_conversation">锁定了这个会话，只有版本库合作者可以评论</string>
+    <string name="issue_unlocked_conversation">解锁了这个会话</string>
+    <string name="issue_delete_comment">删除了一条评论</string>
+    <string name="issue_referenced">引用了这个问题在 %s</string>
+    <string name="issue_assigned">分配这个问题给 %s</string>
+    <string name="issue_unassigned">取消问题分配</string>
 
 </resources>
