@@ -97,6 +97,8 @@
 ## 贡献
 * [moriel5](https://github.com/moriel5) - 希伯来语翻译
 * [Henry2o1o](https://github.com/Henry2o1o) & [squeezer11](https://github.com/squeezer11) - 德语翻译
+* [Edfgdz](https://github.com/Edfgdz) - 测试与建议
+* [pzhlkj6612](https://github.com/pzhlkj6612) - 改进中文概述的翻译
 
 ## License
     Copyright (C) 2017 ThirtyDegreesRay

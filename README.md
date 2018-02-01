@@ -97,6 +97,8 @@ An **open source** GitHub Android client app, faster and concise.
 ## Contributions
 * [moriel5](https://github.com/moriel5) - Hebrew translation
 * [Henry2o1o](https://github.com/Henry2o1o) & [squeezer11](https://github.com/squeezer11) - German translation
+* [Edfgdz](https://github.com/Edfgdz) - Testing and suggest
+* [pzhlkj6612](https://github.com/pzhlkj6612) - Improve the translation of chinese readme
 
 ## License
     Copyright (C) 2017 ThirtyDegreesRay
