@@ -53,7 +53,7 @@ An **open source** GitHub Android client app, faster and concise.
 * View issue info, comments and events
 * Create, open and close issues
 * Create, edit and delete issue comments
-* Manage your labels
+* Edit, add and delete your labels
 * Write comment with preview
 * View your created, assigned and mentioned issues
 * View repository issues
