@@ -449,6 +449,7 @@
     <string name="issue_remove_label">remove the label %s</string>
     <string name="issue_close">close this</string>
     <string name="issue_reopened">reopened this</string>
+    <string name="issue_modified">modified this issue</string>
     <string name="issue_added_to_milestone">added this to the %s milestone</string>
     <string name="issue_removed_from_milestone">removed this from the %s milestone</string>
     <string name="issue_locked_conversation">locked and limited conversation to collaborators</string>

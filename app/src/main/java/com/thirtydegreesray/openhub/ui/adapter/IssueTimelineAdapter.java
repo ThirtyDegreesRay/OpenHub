@@ -202,6 +202,9 @@ public class IssueTimelineAdapter extends BaseAdapter<BaseViewHolder, IssueEvent
                 case closed:
                     text.append(getString(R.string.issue_close));
                     break;
+                case renamed:
+                    text.append(getString(R.string.issue_modified));
+                    break;
                 case locked:
                     text.append(getString(R.string.issue_locked_conversation));
                     break;
@@ -211,7 +214,7 @@ public class IssueTimelineAdapter extends BaseAdapter<BaseViewHolder, IssueEvent
                 case crossReferenced:
                     if(model.getSource().getType() != null){
                         info = String.format(getString(R.string.issue_referenced),
-                                model.getSource().getIssue().getTitle());
+                                "#" + model.getSource().getIssue().getTitle());
                         text.append(info);
                     }
                     break;
@@ -290,6 +293,12 @@ public class IssueTimelineAdapter extends BaseAdapter<BaseViewHolder, IssueEvent
                     eventIcon.setImageResource(R.drawable.ic_block);
                     eventIcon.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.white)));
                     eventIcon.setBackgroundColor(context.getResources().getColor(R.color.material_red_800));
+                    recoverEventIconPadding();
+                    break;
+                case renamed:
+                    eventIcon.setImageResource(R.drawable.ic_edit);
+                    eventIcon.setImageTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.white)));
+                    eventIcon.setBackgroundColor(context.getResources().getColor(R.color.material_grey_500));
                     recoverEventIconPadding();
                     break;
                 case locked:
