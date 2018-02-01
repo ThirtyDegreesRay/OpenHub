@@ -130,7 +130,8 @@ public class AppOpener {
         shareIntent.setType("text/plain");
         shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try{
-            context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share_to)));
+            context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share_to))
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }catch (ActivityNotFoundException e){
             Toasty.warning(context, context.getString(R.string.no_share_clients)).show();
         }
@@ -142,7 +143,8 @@ public class AppOpener {
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try{
-            context.startActivity(Intent.createChooser(intent, context.getString(R.string.send_email)));
+            context.startActivity(Intent.createChooser(intent, context.getString(R.string.send_email))
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }catch (ActivityNotFoundException e){
             Toasty.warning(context, context.getString(R.string.no_email_clients)).show();
         }
@@ -153,7 +155,8 @@ public class AppOpener {
         Intent intent = new Intent(Intent.ACTION_VIEW,uri);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try{
-            context.startActivity(Intent.createChooser(intent, context.getString(R.string.open_in_market)));
+            context.startActivity(Intent.createChooser(intent, context.getString(R.string.open_in_market))
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }catch (ActivityNotFoundException e){
             Toasty.warning(context, context.getString(R.string.no_market_clients)).show();
         }
