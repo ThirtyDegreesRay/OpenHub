@@ -37,6 +37,7 @@ import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.TopicsFragment;
 import com.thirtydegreesray.openhub.ui.fragment.TraceFragment;
 import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
+import com.thirtydegreesray.openhub.ui.widget.NewYearWishesDialog;
 import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
 
@@ -87,6 +88,8 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
         }
     }
 
+    private NewYearWishesDialog newYearWishesDialog;
+
     /**
      * 依赖注入的入口
      *
@@ -110,6 +113,8 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
 
         setStartDrawerEnable(true);
         setEndDrawerEnable(true);
+        newYearWishesDialog = new NewYearWishesDialog(getActivity());
+        newYearWishesDialog.checkStarWishes();
     }
 
     /**
@@ -360,4 +365,9 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        newYearWishesDialog.cancel();
+    }
 }

@@ -60,6 +60,7 @@ public class PrefUtils {
     public final static String POP_VERSION_TIME = "popVersionTime";
     public final static String LAST_POP_TIME = "lastPopTime";
 
+    public final static String NEW_YEAR_WISHES_TIP_ENABLE = "newYearWishesTipEnable";
     public final static String STAR_WISHES_TIP_TIMES = "starWishesTipFlag";
     public final static String LAST_STAR_WISHES_TIP_TIME = "lastStarWishesTipTime";
 
@@ -207,6 +208,9 @@ public class PrefUtils {
         return NetHelper.INSTANCE.getNetStatus() == NetHelper.TYPE_WIFI || !PrefUtils.isDisableLoadingImage();
     }
 
+    public static boolean isnewYearWishesTipEnable(){
+        return getDefaultSp(AppApplication.get()).getBoolean(NEW_YEAR_WISHES_TIP_ENABLE, true);
+    }
 
     public static SharedPreferences getDefaultSp(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context);

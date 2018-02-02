@@ -464,4 +464,14 @@
 
     <string name="toggle_issue_warning">Confirm to %s this issue?</string>
 
+    <string name="new_year_wishes" formatted="false" translatable="false">
+        Hi %s！今天是您在OpenHub的第%d天，我会成为更适合您的GitHub app。
+        \n\n祝新年快乐，阖家欢乐，工作顺利！
+    </string>
+    <string name="new_year_wishes_with_star" formatted="false" translatable="false">
+        Hi %s！今天是您在OpenHub的第%d天，我会成为更适合您的GitHub app。
+        \n\n祝新年快乐，阖家欢乐，工作顺利！
+        \n\n最后还有一点小期望，如果可以星标来支持我，那就更棒了！
+    </string>
+
 </resources>

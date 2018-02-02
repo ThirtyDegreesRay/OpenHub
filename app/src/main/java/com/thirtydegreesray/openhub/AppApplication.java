@@ -50,6 +50,7 @@ public class AppApplication extends Application {
         application = this;
         //init application
         long startTime = System.currentTimeMillis();
+        AppData.INSTANCE.getSystemDefaultLocal();
         //apply language for application context, bugly used it
         AppUtils.updateAppLanguage(getApplicationContext());
         initLogger();

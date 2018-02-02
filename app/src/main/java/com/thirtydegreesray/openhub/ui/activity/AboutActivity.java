@@ -3,13 +3,10 @@
 package com.thirtydegreesray.openhub.ui.activity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 
 import com.danielstone.materialaboutlibrary.MaterialAboutActivity;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
@@ -18,27 +15,12 @@ import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 import com.tencent.bugly.beta.Beta;
-import com.thirtydegreesray.openhub.AppConfig;
-import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.BuildConfig;
 import com.thirtydegreesray.openhub.R;
-import com.thirtydegreesray.openhub.http.RepoService;
-import com.thirtydegreesray.openhub.http.core.AppRetrofit;
-import com.thirtydegreesray.openhub.http.core.HttpObserver;
-import com.thirtydegreesray.openhub.http.core.HttpResponse;
-import com.thirtydegreesray.openhub.http.core.HttpSubscriber;
 import com.thirtydegreesray.openhub.ui.widget.UpgradeDialog;
 import com.thirtydegreesray.openhub.util.AppOpener;
 import com.thirtydegreesray.openhub.util.AppUtils;
-import com.thirtydegreesray.openhub.util.NetHelper;
-import com.thirtydegreesray.openhub.util.StarWishesHelper;
-import com.thirtydegreesray.openhub.util.StringUtils;
 import com.thirtydegreesray.openhub.util.ThemeHelper;
-
-import es.dmoral.toasty.Toasty;
-import okhttp3.ResponseBody;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by ThirtyDegreesRay on 2017/8/29.
@@ -59,7 +41,6 @@ public class AboutActivity extends MaterialAboutActivity {
         ThemeHelper.applyForAboutActivity(this);
         super.onCreate(savedInstanceState);
         UpgradeDialog.INSTANCE.setShowDialogActivity(this);
-        checkStarWishes();
     }
 
     @NonNull
@@ -194,87 +175,6 @@ public class AboutActivity extends MaterialAboutActivity {
         isAlive = false;
         UpgradeDialog.INSTANCE.setShowDialogActivity(null);
         super.onDestroy();
-    }
-
-    private boolean isStarWishesTipable(){
-        return isAlive && StarWishesHelper.isStarWishesTipable()
-                && NetHelper.INSTANCE.getNetEnabled();
-    }
-
-    private void checkStarWishes(){
-        if(!isStarWishesTipable()) return;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(isStarWishesTipable()) checkStar();
-            }
-        }, 3000);
-    }
-
-    private void checkStar(){
-        HttpSubscriber<ResponseBody> subscriber = new HttpSubscriber<>(
-                new HttpObserver<ResponseBody>() {
-                    @Override
-                    public void onError(Throwable error) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(HttpResponse<ResponseBody> response) {
-                        boolean starred = response.isSuccessful();
-                        if(isAlive && !starred && StarWishesHelper.isStarWishesTipable()){
-                            showStarWishes();
-                        }
-                    }
-                }
-        );
-        String author = getString(R.string.author_login_id);
-        String openHub = getString(R.string.app_name);
-        getRepoService().checkRepoStarred(author, openHub)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(subscriber);
-    }
-
-    public void showStarWishes() {
-        String message = getString(R.string.star_wishes);
-        String user = AppData.INSTANCE.getLoggedUser().getName();
-        user = StringUtils.isBlank(user) ? AppData.INSTANCE.getLoggedUser().getLogin() : user;
-        message = String.format(message, user, StarWishesHelper.getInstalledDays());
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.openhub_wishes)
-                .setMessage(message)
-                .setNegativeButton(R.string.star_next_time, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .setPositiveButton(R.string.star_me, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        starRepo();
-                        Toasty.success(AboutActivity.this, getString(R.string.star_thanks)).show();
-                    }
-                })
-                .setCancelable(false)
-                .show();
-        StarWishesHelper.addStarWishesTipTimes();
-    }
-
-    private void starRepo(){
-        String author = getString(R.string.author_login_id);
-        String openHub = getString(R.string.app_name);
-        getRepoService().starRepo(author, openHub)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new HttpSubscriber<ResponseBody>());
-    }
-
-    private RepoService getRepoService(){
-        return AppRetrofit.INSTANCE
-                .getRetrofit(AppConfig.GITHUB_API_BASE_URL, AppData.INSTANCE.getAccessToken())
-                .create(RepoService.class);
     }
 
 }
