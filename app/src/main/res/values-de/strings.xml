@@ -1,7 +1,5 @@
 <resources>
-
     <!-- colors -->
-
 
     <!-- onLoginClick -->
     <string name="user_name">NutzerName</string>
@@ -82,9 +80,7 @@
     <string name="forked_from">Geforked von</string>
     <string name="wrap_lines">Zeilen umbrechen</string>
     <string name="refresh">Aktualisiere</string>
-
     <string name="success_copied">Kopiert</string>
-
     <string name="stargazers">Sterngucker</string>
     <string name="forks">Gabeln</string>
     <string name="watchers">Beobachter</string>
@@ -125,17 +121,14 @@
     <string name="joined_at">Beigetreten am</string>
     <string name="users">Benutzer</string>
     <string name="activity">Aktivität</string>
-
     <string name="just_now">gerade jetzt</string>
     <string name="seconds_ago">Sekunden vergangen</string>
     <string name="minutes_ago">Minute(n) vergangen</string>
     <string name="hours_ago">Stunden zuvor</string>
     <string name="days_ago">Tag(e) vergangen</string>
-
     <string name="search">Suche</string>
     <string name="sort">Sortieren</string>
     <string name="sort_order">Sortierreihenfolge</string>
-
     <string name="best_match">Bester Treffer</string>
     <string name="most_stars">Die Meisten Sterne</string>
     <string name="fewest_stars">Geringsten Sterne</string>
@@ -143,20 +136,16 @@
     <string name="fewest_forks">Geringste Forks</string>
     <string name="recently_updated">Kürzlich aktualisiert</string>
     <string name="least_recently_updated">Schon länger aktualisiert</string>
-
     <string name="most_followers">Meisten Verfolger</string>
     <string name="fewest_followers">Geringste Verfolger</string>
     <string name="most_recently_joined">Meist zuletzt beigetreten</string>
     <string name="least_recently_joined">Erst kürzlich beigetreten</string>
     <string name="most_repositories">Die Meisten Quellen</string>
     <string name="fewest_repositories">Geringste Quellen</string>
-
     <string name="invalid_query">Ungültiger Abfragetext!</string>
-
     <string name="daily">Täglich</string>
     <string name="weekly">Wöchentlich</string>
     <string name="monthly">Monatlich</string>
-
     <string name="logout_warning">Abmeldung bestätigen?</string>
     <string name="unknown">Unbekannt</string>
     <string name="organizations">Organisationen</string>
@@ -173,7 +162,6 @@
     <string name="follow_on_github" >Folge auf GitHub</string>
     <string name="email" >E-Mail</string>
     <string name="loading">wird geladen</string>
-
     <string name="upgrade">Aktualisierung</string>
     <string name="install">Installieren</string>
     <string name="next_time">Nächstes Mal</string>
@@ -183,12 +171,7 @@
     <string name="upgrade_info">Aktualisierungs-Info:</string>
     <string name="no_upgrade_tip">Sie haben die neueste Version installiert.</string>
     <string name="fork_failed">Fork fehlgeschlagen</string>
-
     <string name="filter">Filter</string>
-    <!-- unused now -->
-
-    <!-- unused now -->
-
     <string name="releases">Veröffentlichungen</string>
     <string name="no_releases">Keine Veröffentlichungen</string>
     <string name="source_code_zip">Quellcode (zip)</string>
@@ -206,32 +189,26 @@
     <string name="download_cancel">Herunterladen abbrechen</string>
     <string name="permission_storage_denied">Zugriff verweigert, erlauben Sie bitte den Speicherzugriff.</string>
     <string name="enable_download_service_tip">Aktivieren Sie zuerst das Herunterladen!</string>
-
     <string name="open">Geöffnet</string>
     <string name="closed">Geschlossene</string>
     <string name="no_issues">Keine Probleme</string>
     <string name="issue">Problem</string>
-
     <string name="type">Art</string>
     <string name="all">Alle</string>
     <string name="created">Erstellt</string>
     <string name="assigned">Zugewiesen</string>
     <string name="mentioned">Erwähnt</string>
     <string name="participating">Teilnehmer</string>
-
     <string name="recently_created">Kürzlich erstellt</string>
     <string name="previously_created">Schon länger erstellt</string>
     <string name="most_comments">Meisten Kommentare</string>
     <string name="fewest_comments">Geringste Kommentare</string>
-
     <string name="comments">Kommentare</string>
     <string name="comment">Kommentar</string>
     <string name="no_description">Keine Beschreibung angegeben.</string>
     <string name="no_comments">Keine Kommentare.</string>
-
     <string name="write">Schreiben</string>
     <string name="preview">Vorschau</string>
-
     <string name="edit">Bearbeiten</string>
     <string name="delete">Löschen</string>
     <string name="comment_null_warning">Kommentar ist Leer!</string>
@@ -240,7 +217,6 @@
     <string name="reopen">Wieder öffnen</string>
     <string name="reopen_success">Wieder öffnen erfolgreich</string>
     <string name="close_success">Erfolgreich beendet</string>
-
     <string name="add_large_header">Fügen Sie eine große Kopfzeile hinzu</string>
     <string name="add_medium_header">Fügen Sie einen mittleren Header hinzu</string>
     <string name="add_small_header">Füge einen kleinen Header hinzu</string>
@@ -252,11 +228,9 @@
     <string name="add_a_bulleted_list">Fügen Sie eine Aufzählungsliste hinzu</string>
     <string name="mention">Erwähnen Sie direkt einen Nutzer oder ein Team</string>
     <string name="nothing_to_preview">Nichts zu sehen</string>
-
     <string name="title">Titel</string>
     <string name="leave_a_comment">Hinterlasse einen Kommentar</string>
     <string name="markdown_editor">Verwenden Sie den Abschriften-Editor</string>
-
     <string name="created_at">Erstellt am</string>
     <string name="forked_at">Geforked am</string>
     <string name="latest_update">Neueste Aktualisierung</string>
@@ -266,28 +240,26 @@
     <string name="create_issue">Problem erstellen</string>
     <string name="edit_issue_success">Bearbeite Problem Erfolg</string>
     <string name="create_issue_success">Problem erstellt</string>
-
     <string name="no_commits">Keine Commits</string>
     <string name="committed">Commit</string>
     <string name="view_file">Datei ansehen</string>
     <string name="failed_to_recognize">Fehler beim Erkennen der Github-URL, bitte im Browser öffnen nachdem man es lange gedrückt hält, kopiert.</string>
     <string name="failed_to_open_url">Fehler beim Öffnen der URL, bitte im Browser öffnen nachdem man es lange gedrückt hält, kopiert.</string>
     <string name="compare">Vergleiche anzeigen</string>
-
     <string name="unread">Ungelesen</string>
     <string name="no_notifications_tip">Keine neuen Benachrichtigungen.</string>
     <string name="feedback_and_share">Teilen &amp; Rückmeldung</string>
     <string name="share_to_friends">Teilen mit Ihren Freunden</string>
     <string name="feedback">Rückmeldung</string>
-
     <string name="openhub_wishes">Wünsche von OpenHub</string>
-    <string name="star_wishes" formatted="false">Hallo %s, heute ist Dein %dth Tag bei OpenHub,        danke für Deine Nutzung. Ich werde mich bemühen, eine noch bessere GitHub App für Sie zu entwickeln. \n
-  \n
-  Wenn Sie mich unterstützen können, wäre es großartig!</string>
+    <string name="star_wishes" formatted="false">
+    Hallo %s, heute ist Dein %dth Tag bei OpenHub,
+    danke für Deine Nutzung. Ich werde mich bemühen, eine noch bessere GitHub App für Sie zu entwickeln. 
+    \n\n Wenn Sie mich unterstützen können, wäre es großartig!
+    </string>
     <string name="star_thanks">Danke für Deine Unterstützung!</string>
     <string name="star_me">Meine Stern(e)</string>
     <string name="star_next_time">In Bewegung bleiben</string>
-
     <string name="owner_repo">Besitzer</string>
     <string name="public_repo">Öffentlich</string>
     <string name="private_repo">Privat</string>
@@ -298,18 +270,15 @@
     <string name="full_name_desc">Vollständigen Namen desc</string>
     <string name="recently_starred">Kürzlich markiert</string>
     <string name="previously_starred">Schön länger markiert</string>
-
     <string name="trace">Spur</string>
     <string name="my_repos">Meine Quellen</string>
     <string name="starred_repos">Repos Sterne</string>
     <string name="trending_repos">Tendenz Repos</string>
-
     <string name="bookmarks">Lesezeichen</string>
     <string name="bookmark">Lesezeichen</string>
     <string name="remove_bookmark">Lesezeichen entfernen</string>
     <string name="bookmark_saved">Lesezeichen gespeichert</string>
     <string name="bookmark_removed">Lesezeichen entfernt</string>
-
     <string name="user">Benutzer</string>
     <string name="repo">Repo</string>
     <string name="issues_list">Liste der Probleme</string>
@@ -317,12 +286,12 @@
     <string name="releases_list">Veröffentlichungsliste</string>
     <string name="release">Veröffentlichung</string>
     <string name="go_to">Gehe nach</string>
-
     <string name="tips">Tipps</string>
-    <string name="activity_click_tip">Sie können auf ein Element klicken, um die Standardseite anzuzeigen, oder auf ein Element klicken, um verfügbare Seiten anzuzeigen.</string>
+    <string name="activity_click_tip">
+        Sie können auf ein Element klicken, um die Standardseite anzuzeigen, oder auf ein Element klicken, um verfügbare Seiten anzuzeigen.
+    </string>
     <string name="double_click_toolbar_tip">Sie können auf den Titel doppelklicken, um in der Listenseite nach oben zurückzukehren.</string>
     <string name="releases_click_tip">Durch längeres gedrückt halten auf einen Artikel, können Sie sich die verfügbaren Downloads anzeigen lassen.</string>
-
     <string name="created_comment_on_commit">Kommentar zu Commit in %s erstellt</string>
     <string name="created_comment_on_issue">Kommentar zum Problem #%d in %s erstellt</string>
     <string name="created_repo">Erstelltes Repository %s</string>
@@ -356,43 +325,71 @@
     <string name="submitted_pull_request_review_at">Eingereichte Pull-Anfrage-Überprüfung unter %s</string>
     <string name="edited_pull_request_review_at">Bearbeitete Pull-Anfrage Rezension unter %s</string>
     <string name="dismissed_pull_request_review_at">Bearbeitung der Pull-Anforderung bei %s wurde abgebrochen</string>
-
     <string name="undo">Rückgängig machen</string>
     <string name="no_bookmarks">Keine Lesezeichen</string>
     <string name="no_trace">Keine Spur</string>
     <string name="trace_deleted">Spur gelöscht</string>
     <string name="today">Heute</string>
     <string name="yesterday">Gestern</string>
-
     <string name="my_languages">Meine Sprachen</string>
     <string name="choose_languages">Wähle Sprachen</string>
     <string name="language_removed">Sprache %s entfernt</string>
     <string name="no_choose_language_warning">Wähle mindestens eine Sprache!</string>
     <string name="languages_editor_tip">Sie können nach links oder rechts wischen, um Elemente zu entfernen. Halten Sie lange gedrückt, um die Sortierung zu verschieben.</string>
     <string name="fullscreen">Vollbild</string>
-
     <string name="public_news">Weltweite Nachrichten</string>
     <string name="recent_wiki_updates">Derzeitige Wiki-Aktualisierungen</string>
     <string name="no_recent_wiki_updates">Keine derzeitigen Wiki-Aktualisierungen</string>
-
     <string name="repo_collections">Quellen-Sammlungen</string>
     <string name="no_repo_collections">Keine Quellen Sammlungen</string>
     <string name="collections_tip">Organisierte Listen und Einblicke in aufstrebende Industrien, Themen und Gemeinschaften.</string>
-    <string name="github_page_parse_error">%s Parsing-Fehler, diese Seite kann von Github geändert werden, bitte aktualisiere Deine App auf die neueste Version, wenn der Fehler weiterhin auftritt, kontaktiere mich bitte, um das Problem zu lösen!</string>
-
+    <string name="github_page_parse_error">
+        %s Parsing-Fehler, diese Seite kann von Github geändert werden,
+        bitte aktualisiere Deine App auf die neueste Version, wenn der Fehler weiterhin auftritt, kontaktiere mich bitte, um das Problem zu lösen!
+    </string>
     <string name="bookmarks_tip">Sie können nach links oder rechts streichen, um das Lesezeichen zu entfernen.</string>
     <string name="mark_all_as_read">Alles als gelesen markieren</string>
     <string name="mark_as_read">Als gelesen markieren</string>
-
     <string name="topic">Thema</string>
     <string name="topics">Ausgewählte Themen</string>
     <string name="topics_tip">Durchsuchen Sie die am häufigsten verwendeten Themen auf GitHub.</string>
     <string name="no_topics">Keine Themen</string>
-
     <string name="star_num_today">%s Stern heute</string>
     <string name="star_num_this_week">%s Stern diese Woche</string>
     <string name="star_num_this_month">%s Stern diesen Monat</string>
     <string name="no_trending_repos">Es sieht so aus, als hätten wir keine angesagten Quellen für %s.</string>
-
-
+    <string name="all_languages">Alle Sprachen</string>
+    <string name="unknown_languages">Unbekannte Sprachen</string>
+    <string name="labels">Labels</string>
+    <string name="label">Label</string>
+    <string name="edit_label">Label bearbeiten</string>
+    <string name="create_label">Label erstellen</string>
+    <string name="save">Speichern</string>
+    <string name="name">Name</string>
+    <string name="color">Farbe</string>
+    <string name="more">Mehr</string>
+    <string name="custom">Benutzerdefiniert</string>
+    <string name="done">Fertig</string>
+    <string name="presets">Voreinstellungen</string>
+    <string name="choose_color">Farbe wählen</string>
+    <string name="invalid_color">Ungültige Farbe</string>
+    <string name="invalid_name">Ungültiger Name</string>
+    <string name="choose_labels">Labels auswählen</string>
+    <string name="manage_labels">Labels verwalten</string>
+    <string name="issue_add_label">Label %s hinzufügen</string>
+    <string name="issue_remove_label">Label %s entfernen</string>
+    <string name="issue_close">schließe dieses</string>
+    <string name="issue_reopened">öffne es wieder</string>
+    <string name="issue_modified">modifiziert diese Ausgabe</string>
+    <string name="issue_added_to_milestone">dem %s Meilenstein hinzugefügt</string>
+    <string name="issue_removed_from_milestone">aus dem  %s milestone entfernt</string>
+    <string name="issue_locked_conversation">Gesperrte und eingeschränkte Konversation mit Mitarbeitern</string>
+    <string name="issue_unlocked_conversation">entsperrte diese Konversation</string>
+    <string name="issue_delete_comment">Kommentar löschen</string>
+    <string name="issue_referenced">hat auf dieses Problem in %s verwiesen</string>
+    <string name="issue_assigned">dies %s wurde zugewiesen</string>
+    <string name="issue_unassigned">Ihre Zuordnung wurde entfernt</string>
+    <string name="disable_loading_image">Deaktivieren Sie das Laden von Bildern</string>
+    <string name="disable_loading_image_desc">Deaktivieren Sie das Laden von Bildern bei Mobilen Daten</string>
+    <string name="toggle_issue_warning">Bestätigen Sie dieses Problem mit %s?</string>
 </resources>
