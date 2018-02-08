@@ -9,6 +9,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +24,7 @@ import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.common.GlideApp;
+import com.thirtydegreesray.openhub.dao.AuthUser;
 import com.thirtydegreesray.openhub.inject.component.AppComponent;
 import com.thirtydegreesray.openhub.inject.component.DaggerActivityComponent;
 import com.thirtydegreesray.openhub.inject.module.ActivityModule;
@@ -55,11 +58,14 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
     @BindView(R.id.tab_layout) TabLayout tabLayout;
     @BindView(R.id.frame_layout_content) FrameLayout frameLayoutContent;
 
+    private AppCompatImageView toggleAccountBn;
+
     private final Map<Integer, String> TAG_MAP = new HashMap<>();
 
     private final int SETTINGS_REQUEST_CODE = 100;
 
     @AutoAccess int selectedPage ;
+    private boolean isAccountsAdded = false;
 
     private final List<Integer> FRAGMENT_NAV_ID_LIST = Arrays.asList(
             R.id.nav_news, R.id.nav_owned, R.id.nav_starred, R.id.nav_bookmarks,
@@ -166,6 +172,11 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
         TextView name = navViewStart.getHeaderView(0).findViewById(R.id.name);
         TextView mail = navViewStart.getHeaderView(0).findViewById(R.id.mail);
 
+        toggleAccountBn = navViewStart.getHeaderView(0).findViewById(R.id.toggle_account_bn);
+        toggleAccountBn.setOnClickListener(v -> {
+            toggleAccountLay();
+        });
+
         User loginUser = AppData.INSTANCE.getLoggedUser();
         GlideApp.with(getActivity())
                 .load(loginUser.getAvatarUrl())
@@ -185,6 +196,12 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
         MenuItem menuItem = menu.findItem(R.id.nav_sort);
         menuItem.setVisible(selectedPage == R.id.nav_owned || selectedPage == R.id.nav_starred);
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        invalidateMainMenu();
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -236,6 +253,13 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
                 break;
             case R.id.nav_about:
                 AboutActivity.show(getActivity());
+                break;
+
+            case R.id.nav_logout:
+                logout();
+                break;
+            case R.id.nav_add_account:
+                showLoginPage();
                 break;
             default:
                 break;
@@ -370,4 +394,60 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
         super.onDestroy();
         newYearWishesDialog.cancel();
     }
+
+    private boolean isManageAccount = false;
+    private void toggleAccountLay(){
+        isManageAccount = !isManageAccount;
+        toggleAccountBn.setImageResource(isManageAccount ? R.drawable.ic_arrow_drop_up : R.drawable.ic_arrow_drop_down);
+        invalidateMainMenu();
+    }
+
+    private void invalidateMainMenu(){
+        if(navViewStart == null){
+            return ;
+        }
+        Menu menu = navViewStart.getMenu();
+
+        if(!isAccountsAdded){
+            isAccountsAdded = true;
+            List<AuthUser> users = mPresenter.getLoggedUserList();
+            for(AuthUser user : users){
+                MenuItem menuItem = menu.add(R.id.manage_accounts, Menu.NONE, 1, user.getLoginId())
+                        .setIcon(R.drawable.ic_menu_person)
+                        .setOnMenuItemClickListener(item -> {
+                            mPresenter.toggleAccount(item.getTitle().toString());
+                            return true;
+                        });
+            }
+        }
+
+        menu.setGroupVisible(R.id.my_account, isManageAccount);
+        menu.setGroupVisible(R.id.manage_accounts, isManageAccount);
+
+        menu.setGroupVisible(R.id.my, !isManageAccount);
+        menu.setGroupVisible(R.id.repositories, !isManageAccount);
+        menu.setGroupVisible(R.id.search, !isManageAccount);
+        menu.setGroupVisible(R.id.setting, !isManageAccount);
+
+    }
+
+    @Override
+    public void restartApp() {
+        getActivity().finishAffinity();
+        Intent intent = new Intent(getActivity(), SplashActivity.class);
+        startActivity(intent);
+    }
+
+    private void logout() {
+        new AlertDialog.Builder(getActivity())
+                .setCancelable(true)
+                .setTitle(R.string.warning_dialog_tile)
+                .setMessage(R.string.logout_warning)
+                .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss())
+                .setPositiveButton(R.string.logout, (dialog, which) -> {
+                    mPresenter.logout();
+                })
+                .show();
+    }
+
 }

@@ -2,28 +2,47 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group
+        android:id="@+id/my_account"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_logout"
+            android:checkable="false"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/logout"/>
+    </group>
+
+    <group
+        android:id="@+id/manage_accounts">
+        <item
+            android:id="@+id/nav_add_account"
+            android:icon="@drawable/ic_add_account"
+            android:title="@string/add_account"
+            android:orderInCategory="1000"/>
+    </group>
+
+    <group
         android:id="@+id/my"
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_profile"
+            android:checkable="false"
             android:icon="@drawable/ic_menu_person"
-            android:title="@string/profile"
-            android:checkable="false"/>
+            android:title="@string/profile"/>
         <item
             android:id="@+id/nav_notifications"
+            android:checkable="false"
             android:icon="@drawable/ic_menu_notifications"
-            android:title="@string/notifications"
-            android:checkable="false"/>
+            android:title="@string/notifications"/>
         <item
             android:id="@+id/nav_news"
             android:icon="@drawable/ic_menu_news"
             android:title="@string/news"/>
         <item
             android:id="@+id/nav_issues"
+            android:checkable="false"
             android:icon="@drawable/ic_issues"
             android:title="@string/issues"
-            android:visible="true"
-            android:checkable="false"/>
+            android:visible="true"/>
 
     </group>
 
@@ -50,18 +69,18 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_search"
+            android:checkable="false"
             android:icon="@drawable/ic_search_title"
-            android:title="@string/search"
-            android:checkable="false"/>
+            android:title="@string/search"/>
         <item
             android:id="@+id/nav_trace"
             android:icon="@drawable/ic_menu_trace"
             android:title="@string/trace"/>
         <item
             android:id="@+id/nav_trending"
+            android:checkable="false"
             android:icon="@drawable/ic_menu_trending"
-            android:title="@string/trending_repos"
-            android:checkable="false"/>
+            android:title="@string/trending_repos"/>
         <item
             android:id="@+id/nav_collections"
             android:icon="@drawable/ic_collections"

@@ -373,5 +373,6 @@
     <string name="issue_referenced">引用了这个问题在 %s</string>
     <string name="issue_assigned">分配这个问题给 %s</string>
     <string name="issue_unassigned">取消问题分配</string>
+    <string name="add_account">添加账户</string>
 
 </resources>

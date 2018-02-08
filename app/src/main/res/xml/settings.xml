@@ -50,8 +50,4 @@
         android:title="@string/language"
         android:key="language"/>
 
-    <Preference
-        android:icon="@drawable/ic_logout"
-        android:title="@string/logout"
-        android:key="logout"/>
 </PreferenceScreen>

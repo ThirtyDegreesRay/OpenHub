@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.AppConfig;
+import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.util.FileUtil;
 import com.thirtydegreesray.openhub.util.NetHelper;
 import com.thirtydegreesray.openhub.util.StringUtils;
@@ -23,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.CacheControl;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -91,13 +93,22 @@ public enum  AppRetrofit {
         public Response intercept(@NonNull Chain chain) throws IOException {
             Request request = chain.request();
 
+            //add unique login id in url to differentiate caches
+            if(AppData.INSTANCE.getLoggedUser() != null){
+                HttpUrl url = request.url().newBuilder()
+                        .addQueryParameter("uniqueLoginId",
+                                AppData.INSTANCE.getLoggedUser().getLogin())
+                        .build();
+                request = request.newBuilder()
+                        .url(url)
+                        .build();
+            }
+
             //add access token
-            String url = request.url().toString();
             if(!StringUtils.isBlank(token)){
                 String auth = token.startsWith("Basic") ? token : "token " + token;
                 request = request.newBuilder()
                         .addHeader("Authorization", auth)
-                        .url(url)
                         .build();
             }
             Log.d(TAG, request.url().toString());

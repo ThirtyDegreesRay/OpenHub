@@ -52,6 +52,14 @@ public class SplashPresenter extends BasePresenter<ISplashContract.View>
 
         AuthUser selectedUser = users != null && users.size() > 0 ? users.get(0) : null;
 
+        //if none selected, choose first account
+        if(selectedUser == null){
+            List<AuthUser> firstAccount = authUserDao.queryBuilder()
+                    .limit(1)
+                    .list();
+            selectedUser = firstAccount != null && firstAccount.size() > 0 ? firstAccount.get(0) : null;
+        }
+
         if (selectedUser != null && isExpired(selectedUser)) {
             authUserDao.delete(selectedUser);
             selectedUser = null;

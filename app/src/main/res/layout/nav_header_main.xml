@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -22,18 +20,44 @@
         android:layout_marginTop="@dimen/spacing_x_large"
         android:src="@mipmap/logo"/>
 
-    <TextView
-        android:id="@+id/name"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
         android:layout_marginTop="@dimen/spacing_large"
-        android:text="OpenHub"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:gravity="center_vertical">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OpenHub"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
-    <TextView
-        android:id="@+id/mail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="An android client for GitHub."/>
+            <TextView
+                android:id="@+id/mail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="An android client for GitHub."
+                android:lines="1"/>
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/toggle_account_bn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_arrow_drop_down"
+            android:tint="?title_color"
+            android:padding="@dimen/spacing_normal"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:layout_marginTop="-12dp"
+            android:layout_marginBottom="-12dp"
+            android:layout_marginEnd="-20dp"/>
+
+    </LinearLayout>
 
 </LinearLayout>

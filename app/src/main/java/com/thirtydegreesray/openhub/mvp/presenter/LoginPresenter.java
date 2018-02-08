@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import com.thirtydegreesray.openhub.AppConfig;
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.dao.AuthUser;
+import com.thirtydegreesray.openhub.dao.AuthUserDao;
 import com.thirtydegreesray.openhub.dao.DaoSession;
 import com.thirtydegreesray.openhub.http.core.HttpObserver;
 import com.thirtydegreesray.openhub.http.core.HttpResponse;
@@ -62,9 +63,9 @@ public class LoginPresenter extends BasePresenter<ILoginContract.View>
                             @Override
                             public void onSuccess(@NonNull HttpResponse<OauthToken> response) {
                                 OauthToken token = response.body();
-                                if(token != null){
+                                if (token != null) {
                                     mView.onGetTokenSuccess(BasicToken.generateFromOauthToken(token));
-                                }else{
+                                } else {
                                     mView.onGetTokenError(response.getOriResponse().message());
                                 }
                             }
@@ -102,7 +103,7 @@ public class LoginPresenter extends BasePresenter<ILoginContract.View>
                             @Override
                             public void onSuccess(@NonNull HttpResponse<BasicToken> response) {
                                 BasicToken token = response.body();
-                                if(token != null){
+                                if (token != null) {
                                     mView.onGetTokenSuccess(token);
                                 } else {
                                     mView.onGetTokenError(response.getOriResponse().message());
@@ -150,7 +151,16 @@ public class LoginPresenter extends BasePresenter<ILoginContract.View>
 
     }
 
-    private void saveAuthUser(BasicToken basicToken, User userInfo){
+    private void saveAuthUser(BasicToken basicToken, User userInfo) {
+        String updateSql = "UPDATE " + daoSession.getAuthUserDao().getTablename()
+                + " SET " + AuthUserDao.Properties.Selected.columnName + " = 0";
+        daoSession.getAuthUserDao().getDatabase().execSQL(updateSql);
+
+        String deleteExistsSql = "DELETE FROM " + daoSession.getAuthUserDao().getTablename()
+                + " WHERE " + AuthUserDao.Properties.LoginId.columnName
+                + " = '" + userInfo.getLogin() + "'";
+        daoSession.getAuthUserDao().getDatabase().execSQL(deleteExistsSql);
+
         AuthUser authUser = new AuthUser();
         String scope = StringUtils.listToString(basicToken.getScopes(), ",");
         Date date = new Date();
