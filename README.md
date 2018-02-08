@@ -17,6 +17,7 @@ An **open source** GitHub Android client app, faster and concise.
 * English, Simplified Chinese, Hebrew and German support
 * Offline mode
 * Support trending repositories of all languages
+* Support multi-account switching
 * Search repos and users
 * Shortcuts support
 * Notifications support
