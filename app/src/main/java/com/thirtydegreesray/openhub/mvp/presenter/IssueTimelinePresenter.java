@@ -113,9 +113,8 @@ public class IssueTimelinePresenter extends BasePresenter<IIssueTimelineContract
                 }
                 if(response.body().size() == 0 && timeline.size() != 0){
                     mView.setCanLoadMore(false);
-                } else {
-                    mView.showTimeline(timeline);
                 }
+                mView.showTimeline(timeline);
             }
         };
         generalRxHttpExecute(new IObservableCreator<ArrayList<IssueEvent>>() {
