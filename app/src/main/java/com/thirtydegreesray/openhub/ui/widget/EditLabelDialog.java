@@ -82,7 +82,7 @@ public class EditLabelDialog implements DialogInterface.OnDismissListener,
                 .setNegativeButton(R.string.cancel, null);
         if (label != null) {
             builder.setNeutralButton(R.string.delete, (dialog, which) -> {
-                deleteLabel();
+                showDeleteLabelWarning();
             });
         }
         dialog = builder.create();
@@ -266,6 +266,15 @@ public class EditLabelDialog implements DialogInterface.OnDismissListener,
             return false;
         }
         return true;
+    }
+
+    private void showDeleteLabelWarning(){
+        new AlertDialog.Builder(activity)
+                .setTitle(R.string.warning_dialog_tile)
+                .setMessage(R.string.delete_label_warning)
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.confirm, (dialog, which) -> deleteLabel())
+                .show();
     }
 
     private void deleteLabel(){

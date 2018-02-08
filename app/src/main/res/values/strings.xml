@@ -475,5 +475,6 @@
     </string>
 
     <string name="add_account">Add account</string>
+    <string name="delete_label_warning">Confirm to delete this label?</string>
 
 </resources>
