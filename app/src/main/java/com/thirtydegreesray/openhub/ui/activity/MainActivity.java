@@ -392,7 +392,9 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        newYearWishesDialog.cancel();
+        if(newYearWishesDialog != null){
+            newYearWishesDialog.cancel();
+        }
     }
 
     private boolean isManageAccount = false;
