@@ -28,7 +28,7 @@ An **open source** GitHub Android client app, faster and concise.
 * Support disable loading network image while mobile network
 
 ### Repositories
-* View repo info 
+* View repo info and repo branches
 * Star, watch and fork repos
 * View repo files, commits and activity
 * Download source code, releases and files
