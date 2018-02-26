@@ -45,7 +45,7 @@ public interface GitHubWebPageService {
     @NonNull @GET("trending/{language}")
     Observable<Response<ResponseBody>> getTrendingRepos(
             @Header("forceNetWork") boolean forceNetWork,
-            @Path("language") String language,
+            @Path(value = "language", encoded = true) String language,
             @Query("since") String since
     );
 

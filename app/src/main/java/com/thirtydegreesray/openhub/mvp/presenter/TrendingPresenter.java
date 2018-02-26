@@ -46,6 +46,7 @@ public class TrendingPresenter extends BasePresenter<ITrendingContract.View>
             languages = TrendingLanguage.generateFromDB(myLanguages);
             fixFixedLanguagesName(languages);
         }
+        fixLanguagesSlug(languages);
         return languages;
     }
 
@@ -73,6 +74,16 @@ public class TrendingPresenter extends BasePresenter<ITrendingContract.View>
                 language.setName(getString(R.string.all_languages));
             } else  if(language.getSlug().equals("unknown")){
                 language.setName(getString(R.string.unknown_languages));
+            }
+        }
+    }
+
+    private void fixLanguagesSlug(ArrayList<TrendingLanguage> languages){
+        for(TrendingLanguage language : languages){
+            String slug = language.getSlug();
+            if(slug.contains("?")){
+                slug = slug.substring(0, slug.indexOf("?"));
+                language.setSlug(slug);
             }
         }
     }
