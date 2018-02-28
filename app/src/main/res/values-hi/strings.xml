@@ -1,11 +1,34 @@
 <resources>
+    <string name="app_github_name" translatable="false">OpenHub</string>
+    <string name="navigation_drawer_open" translatable="false">navigation_drawer_open</string>
+    <string name="navigation_drawer_close" translatable="false">navigation_drawer_close</string>
+
+    <!-- colors -->
+    <string name="light_blue" translatable="false">Light Blue</string>
+    <string name="blue" translatable="false">Blue</string>
+    <string name="indigo" translatable="false">Indigo</string>
+    <string name="orange" translatable="false">Orange</string>
+    <string name="yellow" translatable="false">Yellow</string>
+    <string name="amber" translatable="false">Amber</string>
+    <string name="grey" translatable="false">Grey</string>
+    <string name="brown" translatable="false">Brown</string>
+
+    <string name="cyan" translatable="false">Cyan</string>
+    <string name="teal" translatable="false">Teal</string>
+    <string name="lime" translatable="false">Lime</string>
+    <string name="green" translatable="false">Green</string>
+    <string name="pink" translatable="false">Pink</string>
+    <string name="red" translatable="false">Red</string>
+    <string name="purple" translatable="false">Purple</string>
+    <string name="deep_purple" translatable="false">Deep Purple</string>
+
     <!-- onLoginClick -->
-    <string name="user_name">उपयोगकर्ता</string>
+    <string name="user_name">यूजरनाम</string>
     <string name="password">पासवर्ड</string>
     <string name="login">लॉगिन</string>
     <string name="login_in_browser">ब्राउजर में लॉग इन करें</string>
     <string name="oauth_tip">अपने डिफ़ॉल्ट ब्राउज़र (OAuth) का उपयोग कर लॉगिन करें</string>
-    <string name="user_name_warning">अमान्य उपयोगकर्ता!</string>
+    <string name="user_name_warning">अमान्य यूजरनाम!</string>
     <string name="password_warning">अवैध पासवर्ड!</string>
 
     <!-- menu -->
@@ -18,7 +41,7 @@
     <string name="owned">स्वामित्व</string>
     <string name="starred">तारांकित</string>
     <string name="trending">चर्चित</string>
-    <string name="explore">छान-बीन करे</string>
+    <string name="explore">एक्स्प्लोर करे</string>
 
     <string name="info_and_repositories">जानकारी &#038; प्राथमिकताएं</string>
     <string name="settings">सेटिंग्स</string>
@@ -48,10 +71,10 @@
     <string name="cache_controller_desc">यदि cache उपलब्ध है तो पहले cache लोड करें, फिर नेटवर्क से लोड करें</string>
     <string name="use_system_downloader">सिस्टम डाउनलोडर का उपयोग करें</string>
     <string name="use_custom_tabs">कस्टम टैब का उपयोग करें</string>
-    <string name="custom_tabs_desc">बाहरी ब्राउज़र के बजाय कस्टम टैब में खोलें (support क्रोम, फ़ायरफ़ॉक्स ...)</string>
+    <string name="custom_tabs_desc">बाहरी ब्राउज़र के बजाय कस्टम टैब में खोलें (सपोर्ट क्रोम, फ़ायरफ़ॉक्स ...)</string>
     <string name="use_custom_tabs_tips">अगर आप बाहरी ब्राउज़र में सीधे खोलना चाहते हैं, तो आप सेटिंग्स में बदल सकते हैं।</string>
     <string name="language">भाषा</string>
-    <string name="logout">लोग आउट</string>
+    <string name="logout">लॉगआउट</string>
 
     <!-- Repository -->
     <string name="repository">रिपॉजिटरी</string>
@@ -67,15 +90,15 @@
     <string name="share">शेयर</string>
     <string name="open_in_browser">ब्राउज़र में खोलें</string>
     <string name="copy_url">यूआरएल कॉपी करें</string>
-    <string name="copy_clone_url">क्लोन URL कॉपी करें</string>
-    <string name="watch">देखें</string>
-    <string name="watched">देखा हुआ</string>
-    <string name="unwatch">न देखें</string>
-    <string name="unwatched">न देखा हुआ</string>
+    <string name="copy_clone_url">क्लोन यूआरएल कॉपी करें</string>
+    <string name="watch">नज़र रखें</string>
+    <string name="watched">नज़र रखा हुआ</string>
+    <string name="unwatch">नज़र हटाएँ</string>
+    <string name="unwatched">नज़र हटाया हुआ</string>
     <string name="fork">फॉर्क</string>
     <string name="fork_tag">फॉर्क</string>
     <string name="forked">फॉर्क किया</string>
-    <string name="forked_from">फॉर्क from</string>
+    <string name="forked_from">फॉर्क फ्रॉम</string>
     <string name="wrap_lines">लाइनें व्रैप करें</string>
     <string name="refresh">रिफ्रेश</string>
 
@@ -84,161 +107,161 @@
     <string name="stargazers">स्टारगैज़ेर्स</string>
     <string name="forks">फॉर्क्स</string>
     <string name="watchers">नजर रखने वालों</string>
-    <string name="readme">README</string>
-    <string name="no_readme">NO README</string>
+    <string name="readme">रीडमी</string>
+    <string name="no_readme">नो रीडमी</string>
     <string name="warning_dialog_tile">चेतावनी</string>
     <string name="cancel">रद्द करें</string>
     <string name="close">बंद करे</string>
-    <string name="ok">OK</string>
-    <string name="confirm">OK</string>
+    <string name="ok">ओके</string>
+    <string name="confirm">ओके</string>
     <string name="select_branch">ब्रांच या टैग चुनें</string>
     <string name="share_to">शेयर टू</string>
     <string name="no_share_clients">कोई साझा क्लाइंट इंस्टॉल नहीं हैं</string>
     <string name="no_browser_clients">कोई ब्राउज़र क्लाइंट इंस्टॉल नहीं है।</string>
     <string name="no_download_clients">कोई डाउनलोड क्लाइंट इंस्टॉल नहीं हैं।</string>
     <string name="send_email">ईमेल भेजें</string>
-    <string name="open_in_market">market में खोलें</string>
+    <string name="open_in_market">मार्केट में खोलें</string>
     <string name="no_email_clients">कोई ईमेल क्लाइंट इंस्टॉल नहीं है</string>
-    <string name="no_market_clients">कोई भी market क्लाइंट इंस्टॉल नहीं है</string>
+    <string name="no_market_clients">कोई भी मार्केट क्लाइंट इंस्टॉल नहीं है</string>
     <string name="url_invalid">यूआरएल अमान्य है</string>
-    <string name="view_archive_file_error">archive फ़ाइल समर्थित नहीं है, कृपया फ़ाइल को उसकी content देखने के लिए डाउनलोड करें।</string>
+    <string name="view_archive_file_error">आर्काइव फ़ाइल सपोर्ट नहीं है, कृपया फ़ाइल को उसकी कंटेंट देखने के लिए डाउनलोड करें।</string>
     <string name="fork_warning_msg">इस रिपॉजिटरी का फोर्क करें?</string>
     <string name="invalid_repo_url">अमान्य रिपॉजिटरी यूआरएल!</string>
     <string name="invalid_url">अवैध यूआरएल!</string>
 
     <!-- Profile -->
-    <string name="follow">Follow</string>
-    <string name="followed">Followed</string>
-    <string name="unfollow">Unfollow</string>
-    <string name="unfollowed">Unfollowed</string>
-    <string name="members">Members</string>
-    <string name="view">View</string>
-    <string name="followers">Followers</string>
-    <string name="following">Following</string>
-    <string name="repos">Repos</string>
-    <string name="stars">Stars</string>
-    <string name="gists">Gists</string>
-    <string name="joined_at">Joined at</string>
-    <string name="users">Users</string>
-    <string name="activity">Activity</string>
+    <string name="follow">फॉलो</string>
+    <string name="followed">फॉलो किया</string>
+    <string name="unfollow">अनफॉलो</string>
+    <string name="unfollowed">अनफॉलो किया</string>
+    <string name="members">सदस्य</string>
+    <string name="view">देखें</string>
+    <string name="followers">फॉलोवर्स</string>
+    <string name="following">फॉलोइंग</string>
+    <string name="repos">रिपोस</string>
+    <string name="stars">स्टार्स</string>
+    <string name="gists">जिस्ट्स</string>
+    <string name="joined_at">शामिल हुए</string>
+    <string name="users">यूजर</string>
+    <string name="activity">गतिविधि</string>
 
-    <string name="just_now">just now</string>
-    <string name="seconds_ago">seconds ago</string>
-    <string name="minutes_ago">minutes ago</string>
-    <string name="hours_ago">hours ago</string>
-    <string name="days_ago">days ago</string>
+    <string name="just_now">अभी</string>
+    <string name="seconds_ago">सेकंड्स पहले</string>
+    <string name="minutes_ago">मिनट पहले</string>
+    <string name="hours_ago">घंटे पहले</string>
+    <string name="days_ago">दिन पहले</string>
 
-    <string name="search">Search</string>
-    <string name="sort">Sort</string>
-    <string name="sort_order">Sort order</string>
+    <string name="search">खोज करें</string>
+    <string name="sort">क्रमबद्ध करें</string>
+    <string name="sort_order">क्रमबद्ध आदेश</string>
 
-    <string name="best_match">Best match</string>
-    <string name="most_stars">Most stars</string>
-    <string name="fewest_stars">Fewest stars</string>
-    <string name="most_forks">Most forks</string>
-    <string name="fewest_forks">Fewest forks</string>
-    <string name="recently_updated">Recently updated</string>
-    <string name="least_recently_updated">Least recently updated</string>
+    <string name="best_match">सबसे अच्छा मैच</string>
+    <string name="most_stars">अधिकांश स्टार्स</string>
+    <string name="fewest_stars">सबसे कम स्टार्स</string>
+    <string name="most_forks">अधिकांश फॉर्क्स</string>
+    <string name="fewest_forks">सबसे कम फॉर्क्स</string>
+    <string name="recently_updated">हाल ही में अपडेट</string>
+    <string name="least_recently_updated">सबसे कम हाल ही में अपडेट किया गया</string>
 
-    <string name="most_followers">Most followers</string>
-    <string name="fewest_followers">Fewest followers</string>
-    <string name="most_recently_joined">Most recently joined</string>
-    <string name="least_recently_joined">Least recently joined</string>
-    <string name="most_repositories">Most repositories</string>
-    <string name="fewest_repositories">Fewest repositories</string>
+    <string name="most_followers">अधिकांश फॉलोवर्स</string>
+    <string name="fewest_followers">सबसे कम फॉलोवर्स</string>
+    <string name="most_recently_joined">सबसे हाल ही में शामिल हुए</string>
+    <string name="least_recently_joined">कम से कम हाल ही में शामिल हो गए</string>
+    <string name="most_repositories">अधिकांश रिपॉजिटरीस</string>
+    <string name="fewest_repositories">सबसे कम रिपॉजिटरीस</string>
 
-    <string name="invalid_query">Invalid query text!</string>
+    <string name="invalid_query">अवैध क्वेरी!</string>
 
-    <string name="daily">Daily</string>
-    <string name="weekly">Weekly</string>
-    <string name="monthly">Monthly</string>
+    <string name="daily">रोज</string>
+    <string name="weekly">साप्ताहिक</string>
+    <string name="monthly">महीने</string>
 
-    <string name="logout_warning">Confirm to logout ?</string>
-    <string name="unknown">Unknown</string>
-    <string name="organizations">Organizations</string>
-    <string name="no_user">No users</string>
-    <string name="no_activity">No activities</string>
-    <string name="no_repository">No repositories</string>
-    <string name="no_file">No files</string>
-    <string name="developing">Developing</string>
-    <string name="version" >Version</string>
-    <string name="source_code" >Source code</string>
-    <string name="source_code_wishes" >Star to support me</string>
-    <string name="rate_in_market" >Rate or comment in market</string>
-    <string name="author" >Author</string>
+    <string name="logout_warning">लॉगआउट की पुष्टि करें?</string>
+    <string name="unknown">अनजान</string>
+    <string name="organizations">आर्गेनाइजेशन</string>
+    <string name="no_user">कोई यूजर नहीं</string>
+    <string name="no_activity">कोई गतिविधि नहीं</string>
+    <string name="no_repository">कोई रिपॉजिटरी नहीं</string>
+    <string name="no_file">कोई फ़ाइल नहीं</string>
+    <string name="developing">डेवलपिंग</string>
+    <string name="version" >वर्शन</string>
+    <string name="source_code" >सोर्स कोड</string>
+    <string name="source_code_wishes" >मेरा समर्थन करने के लिए स्टार</string>
+    <string name="rate_in_market" >मार्केट में रेट या कमेंट करें</string>
+    <string name="author" >ऑथर</string>
     <string name="author_name" translatable="false">30度的射线</string>
     <string name="author_location" translatable="false">NanJing,China</string>
     <string name="author_login_id" translatable="false">ThirtyDegreesRay</string>
     <string name="author_avatar_url" translatable="false">https://avatars1.githubusercontent.com/u/9625508?v=4</string>
     <string name="app_copyright" translatable="false">© 2017 ThirtyDegreesRay</string>
-    <string name="follow_on_github" >Follow on GitHub</string>
-    <string name="email" >Email</string>
+    <string name="follow_on_github" >GitHub पर फॉलो करें</string>
+    <string name="email" >ईमेल</string>
     <string name="auth_email_address" translatable="false">rays.yuz@gmail.com</string>
-    <string name="loading">loading</string>
+    <string name="loading">लोड हो रहा है</string>
 
-    <string name="upgrade">Upgrade</string>
-    <string name="install">Install</string>
-    <string name="next_time">Next time</string>
-    <string name="upgrade_version">Version:</string>
-    <string name="upgrade_apk_size">Apk size:</string>
-    <string name="publish_time">Publish time:</string>
-    <string name="upgrade_info">Upgrade info:</string>
-    <string name="no_upgrade_tip">You have installed the latest version.</string>
-    <string name="fork_failed">Fork failed</string>
+    <string name="upgrade">अपग्रेड</string>
+    <string name="install">इंस्टॉल करें</string>
+    <string name="next_time">अगली बार</string>
+    <string name="upgrade_version">वर्शन:</string>
+    <string name="upgrade_apk_size">Apk की साइज़:</string>
+    <string name="publish_time">पपब्लिश करने का समय:</string>
+    <string name="upgrade_info">अपग्रेड की जानकारी:</string>
+    <string name="no_upgrade_tip">आपने नवीनतम वर्शन इंस्टॉल किया है।</string>
+    <string name="fork_failed">फोर्क विफल</string>
 
-    <string name="filter">Filter</string>
+    <string name="filter">फ़िल्टर</string>
 
-    <string name="releases">Releases</string>
-    <string name="no_releases">No releases</string>
-    <string name="source_code_zip">Source code (zip)</string>
-    <string name="source_code_tar">Source code (tar.gz)</string>
-    <string name="download_source_zip">Download source (zip)</string>
-    <string name="download_source_tar">Download source (tar.gz)</string>
-    <string name="released_this">released this</string>
-    <string name="on">on</string>
-    <string name="download">Download</string>
-    <string name="download_complete">Download complete</string>
-    <string name="download_failed">Download failed</string>
-    <string name="downloading">Downloading</string>
-    <string name="download_empty_tip">Url or file name is empty!</string>
-    <string name="download_start">Download start</string>
-    <string name="download_cancel">Download cancel</string>
-    <string name="permission_storage_denied">Permission denied, please allow storage permission.</string>
-    <string name="enable_download_service_tip">Please enable download service first!</string>
+    <string name="releases">रेलीसेस</string>
+    <string name="no_releases">कोई रिलीज़ नहीं</string>
+    <string name="source_code_zip">सोर्स कोड (zip)</string>
+    <string name="source_code_tar">सोर्स कोड (tar.gz)</string>
+    <string name="download_source_zip">सोर्स डाउनलोड (zip)</string>
+    <string name="download_source_tar">सोर्स डाउनलोड (tar.gz)</string>
+    <string name="released_this">रिलीज़ करें</string>
+    <string name="on">ऑन</string>
+    <string name="download">डाउनलोड</string>
+    <string name="download_complete">डाउनलोड पूरा हुआ</string>
+    <string name="download_failed">डाउनलोड विफल</string>
+    <string name="downloading">डाउनलोड हो रहा है</string>
+    <string name="download_empty_tip">यूआरएल या फ़ाइल नाम खाली है!</string>
+    <string name="download_start">डाउनलोड प्रारंभ</string>
+    <string name="download_cancel">डाउनलोड रद्द</string>
+    <string name="permission_storage_denied">इनकार किया गया, कृपया स्टोरेज अनुमति दें</string>
+    <string name="enable_download_service_tip">कृपया पहले डाउनलोड सेवा इनेबल करें!</string>
 
-    <string name="open">Open</string>
-    <string name="closed">Closed</string>
-    <string name="no_issues">No issues</string>
-    <string name="issue">Issue</string>
+    <string name="open">खुला</string>
+    <string name="closed">बंद</string>
+    <string name="no_issues">कोई मुद्दा नहीं</string>
+    <string name="issue">मुद्दा</string>
 
-    <string name="type">Type</string>
-    <string name="all">All</string>
-    <string name="created">Created</string>
-    <string name="assigned">Assigned</string>
-    <string name="mentioned">Mentioned</string>
-    <string name="participating">Participant</string>
+    <string name="type">प्रकार</string>
+    <string name="all">सब</string>
+    <string name="created">बनाया था</string>
+    <string name="assigned">सौंपा गया</string>
+    <string name="mentioned">मेंशंड</string>
+    <string name="participating">प्रतिभागी</string>
 
-    <string name="recently_created">Recently created</string>
-    <string name="previously_created">Previously created</string>
-    <string name="most_comments">Most comments</string>
-    <string name="fewest_comments">Fewest comments</string>
+    <string name="recently_created">हाल ही में बनाया</string>
+    <string name="previously_created">पहले बनाई गई</string>
+    <string name="most_comments">सर्वाधिक कमेंट्स</string>
+    <string name="fewest_comments">सबसे कम कमेंट्स</string>
 
-    <string name="comments">Comments</string>
-    <string name="comment">Comment</string>
-    <string name="no_description">No description provided.</string>
-    <string name="no_comments">No comments.</string>
+    <string name="comments">कमेंट्स</string>
+    <string name="comment">कमेंट</string>
+    <string name="no_description">कोई विवरण उपलब्ध नहीं है</string>
+    <string name="no_comments">कोई कमेंट नहीं।</string>
 
-    <string name="write">Write</string>
-    <string name="preview">Preview</string>
+    <string name="write">लिखें</string>
+    <string name="preview">पूर्वावलोकन</string>
 
-    <string name="edit">Edit</string>
-    <string name="delete">Delete</string>
-    <string name="comment_null_warning">Comment is null!</string>
-    <string name="comment_success">Comment success</string>
-    <string name="delete_comment_warning">Confirm to delete comment?</string>
-    <string name="reopen">Reopen</string>
-    <string name="reopen_success">Reopen success</string>
-    <string name="close_success">Close success</string>
+    <string name="edit">एडिट</string>
+    <string name="delete">डिलीट</string>
+    <string name="comment_null_warning">कमेंट खाली है!</string>
+    <string name="comment_success">कमेंट सफलता</string>
+    <string name="delete_comment_warning">कमेंट हटाने की पुष्टि करें?</string>
+    <string name="reopen">फिर से खोलें</string>
+    <string name="reopen_success">फिर से खोलना सफल</string>
+    <string name="close_success">बंद करना सफल</string>
 
     <string name="add_large_header">Add large header</string>
     <string name="add_medium_header">Add medium header</string>
@@ -361,19 +384,19 @@
     <string name="edited_pull_request_review_at">Edited pull request review at %s</string>
     <string name="dismissed_pull_request_review_at">Dismissed pull request review at %s</string>
 
-    <string name="undo">Undo</string>
-    <string name="no_bookmarks">No bookmarks</string>
-    <string name="no_trace">No trace</string>
-    <string name="trace_deleted">Trace deleted</string>
-    <string name="today">Today</string>
-    <string name="yesterday">Yesterday</string>
+    <string name="undo">अनडू</string>
+    <string name="no_bookmarks">कोई बुकमार्क्स नहीं</string>
+    <string name="no_trace">कोई ट्रेस नहीं</string>
+    <string name="trace_deleted">ट्रेस हटाया गया</string>
+    <string name="today">आज</string>
+    <string name="yesterday">कल</string>
 
-    <string name="my_languages">My languages</string>
-    <string name="choose_languages">Choose languages</string>
-    <string name="language_removed">Language %s removed</string>
-    <string name="no_choose_language_warning">Choose at least one language!</string>
-    <string name="languages_editor_tip">You can swipe left or right to remove items, long click items to drag the sort.</string>
-    <string name="fullscreen">Fullscreen</string>
+    <string name="my_languages">मेरी भाषाएं</string>
+    <string name="choose_languages">भाषा चुनें</string>
+    <string name="language_removed">भाषा %s हटाई गई</string>
+    <string name="no_choose_language_warning">कम से कम एक भाषा चुनें!</string>
+    <string name="languages_editor_tip"> आप आइटम को हटाने के लिए बाएं या दाएं स्वाइप कर सकते हैं, ड्रैग करने के लिए लंबा क्लिक कर सकते हैं।</string>
+    <string name="fullscreen">फुलस्क्रीन</string>
 
     <string name="public_news">Global news</string>
     <string name="wiki" translatable="false">Wiki</string>
@@ -436,12 +459,22 @@
     <string name="issue_assigned">assigned this to %s</string>
     <string name="issue_unassigned">removed their assignment</string>
 
-    <string name="disable_loading_image">Disable loading network image</string>
-    <string name="disable_loading_image_desc">Disable loading network image while mobile network</string>
+    <string name="disable_loading_image">नेटवर्क इमेज को लोड करना डिसेबल करें</string>
+    <string name="disable_loading_image_desc">मोबाइल नेटवर्क में नेटवर्क इमेज लोडिंग को डिसेबल करें</string>
 
-    <string name="toggle_issue_warning">Confirm to %s this issue?</string>
+    <string name="toggle_issue_warning">इस %s समस्या की पुष्टि करें?</string>
 
-    <string name="add_account">Add account</string>
-    <string name="delete_label_warning">Confirm to delete this label?</string>
+    <string name="new_year_wishes" formatted="false" translatable="false">
+        Hi %s！今天是您在OpenHub的第%d天，我会成为更适合您的GitHub app。
+        \n\n祝新年快乐，阖家欢乐，工作顺利！
+    </string>
+    <string name="new_year_wishes_with_star" formatted="false" translatable="false">
+        Hi %s！今天是您在OpenHub的第%d天，我会成为更适合您的GitHub app。
+        \n\n祝新年快乐，阖家欢乐，工作顺利！
+        \n\n最后还有一点小期望，如果可以星标来支持我，那就更棒了！
+    </string>
+
+    <string name="add_account">खाता जोड़ो</string>
+    <string name="delete_label_warning">इस लेबल को हटाने की पुष्टि करें?</string>
 
 </resources>
