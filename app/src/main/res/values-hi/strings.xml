@@ -235,65 +235,65 @@
     <string name="reopen_success">फिर से खोलना सफल</string>
     <string name="close_success">बंद करना सफल</string>
 
-    <string name="add_large_header">Add large header</string>
-    <string name="add_medium_header">Add medium header</string>
-    <string name="add_small_header">Add small header</string>
-    <string name="add_bold_text">Add bold text</string>
-    <string name="add_italic_text">Add italic text</string>
-    <string name="add_a_link">Add a link</string>
-    <string name="insert_code">Insert code</string>
-    <string name="insert_a_quote">Insert a quote</string>
-    <string name="add_a_bulleted_list">Add a bulleted list</string>
-    <string name="mention">Directly mention a user or team</string>
-    <string name="nothing_to_preview">Nothing to preview</string>
+    <string name="add_large_header">बड़े हेडर जोड़ें</string>
+    <string name="add_medium_header">मध्यम हेडर जोड़ें</string>
+    <string name="add_small_header">छोटे हेडर जोड़ें</string>
+    <string name="add_bold_text">बोल्ड टेक्स्ट जोड़ें</string>
+    <string name="add_italic_text">इटैलिक टेक्स्ट जोड़ें</string>
+    <string name="add_a_link">एक लिंक जोड़ें</string>
+    <string name="insert_code">कोड डालें</string>
+    <string name="insert_a_quote">एक क्वोट डालें</string>
+    <string name="add_a_bulleted_list">एक बुलेटेड सूची जोड़ें</string>
+    <string name="mention">सीधे उपयोगकर्ता या टीम को मेंशन करें</string>
+    <string name="nothing_to_preview">प्रीव्यू के लिए कुछ भी नहीं है</string>
 
     <string name="title">Title</string>
-    <string name="leave_a_comment">Leave a comment</string>
-    <string name="markdown_editor">Use markdown editor</string>
+    <string name="leave_a_comment">एक कमेंट छोड़े</string>
+    <string name="markdown_editor">मार्कडाउन एडिटर का उपयोग करें</string>
 
-    <string name="created_at">Created at</string>
-    <string name="forked_at">Forked at</string>
-    <string name="latest_update">Latest update</string>
-    <string name="latest_commit">Latest commit</string>
-    <string name="issue_title_null_tip">Issue title can not be null.</string>
-    <string name="edit_issue">Edit issue</string>
-    <string name="create_issue">Create issue</string>
-    <string name="edit_issue_success">Edit issue success</string>
-    <string name="create_issue_success">Create issue success</string>
+    <string name="created_at">बनाया गया</string>
+    <string name="forked_at">फॉर्क किया गया</string>
+    <string name="latest_update">नवीनतम अपडेट</string>
+    <string name="latest_commit">नवीनतम कमिट</string>
+    <string name="issue_title_null_tip">मुद्दे का शीर्षक रिक्त नहीं हो सकता</string>
+    <string name="edit_issue">मुद्दा एडिट करें</string>
+    <string name="create_issue">मुद्दा बनाएं</string>
+    <string name="edit_issue_success">मुद्दा एडिट करना सफ़ल रहा</string>
+    <string name="create_issue_success">मुद्दा बनाना सफ़ल रहा</string>
 
-    <string name="no_commits">No commits</string>
-    <string name="committed">Committed</string>
-    <string name="view_file">View file</string>
-    <string name="failed_to_recognize">Failed to recognize the github url, please open in browser after long press copied.</string>
-    <string name="failed_to_open_url">Failed to open the url, please open in browser after long press copied.</string>
-    <string name="compare">Compare view</string>
+    <string name="no_commits">कोई कमिट नहीं है</string>
+    <string name="committed">कमिट किया गया</string>
+    <string name="view_file">फाइल दिखाएं</string>
+    <string name="failed_to_recognize">Github यूआरएल पहचानने में विफल रहा, कृपया लंबे समय से प्रेस की गई कॉपी के बाद ब्राउज़र में खोलें।</string>
+    <string name="failed_to_open_url">यूआरएल को खोलने में विफल, कृपया लंबे समय से प्रेस की गई कॉपी के बाद ब्राउज़र में खोलें।</string>
+    <string name="compare">तुलना करें</string>
 
-    <string name="unread">Unread</string>
-    <string name="no_notifications_tip">No new notifications.</string>
-    <string name="feedback_and_share">Share &#038; Feedback</string>
-    <string name="share_to_friends">Share to your friends</string>
-    <string name="feedback">Feedback</string>
+    <string name="unread">अपठित</string>
+    <string name="no_notifications_tip">कोई नयी सूचनाएं नहीं।</string>
+    <string name="feedback_and_share">शेयर &#038; फ़ीडबैक</string>
+    <string name="share_to_friends">अपने दोस्तों से साझा करें</string>
+    <string name="feedback">फ़ीडबैक</string>
 
-    <string name="openhub_wishes">Wishes From OpenHub</string>
+    <string name="openhub_wishes">OpenHub से शुभकामनाएं</string>
     <string name="star_wishes" formatted="false">
-        Hi %s, today is your %dth day at OpenHub,
-        thanks for your using, I will strive to become a more convenient GitHub app for you.
-        \n\nIf you can star to support me, it would be awesome!
+        नमस्ते %s, OpenHub पर आज तुम्हारा %dth दिन है,
+        आपके उपयोग के लिए धन्यवाद, मैं आपके लिए एक अधिक सुविधाजनक GitHub ऐप बनने का प्रयास करूंगा।
+        \n\nयदि आप मुझे समर्थन करने के लिए तारांकित कर सकते हैं, तो यह शानदार होगा!
     </string>
-    <string name="star_thanks">Thank you for your support!</string>
-    <string name="star_me">Star me</string>
-    <string name="star_next_time">Keep moving</string>
+    <string name="star_thanks">आपके सहयोग के लिए धन्यवाद!</string>
+    <string name="star_me">मुझे तारांकित करें</string>
+    <string name="star_next_time">चलते रहे</string>
 
-    <string name="owner_repo">Owner</string>
-    <string name="public_repo">Public</string>
-    <string name="private_repo">Private</string>
-    <string name="member_repo">Member</string>
-    <string name="most_pushed">Most pushed</string>
-    <string name="fewest_pushed">Fewest pushed</string>
-    <string name="full_name_asc">Full name asc</string>
-    <string name="full_name_desc">Full name desc</string>
-    <string name="recently_starred">Recently starred</string>
-    <string name="previously_starred">Previously starred</string>
+    <string name="owner_repo">मालिक</string>
+    <string name="public_repo">सार्वजनिक</string>
+    <string name="private_repo">निजी</string>
+    <string name="member_repo">सदस्य</string>
+    <string name="most_pushed">सबसे अधिक पुशड</string>
+    <string name="fewest_pushed">सबसे कम पुशड</string>
+    <string name="full_name_asc">पूरा नाम asc</string>
+    <string name="full_name_desc">पूरा नाम desc</string>
+    <string name="recently_starred">हाल ही में तारांकित</string>
+    <string name="previously_starred">पहले तारांकित</string>
 
     <string name="trace">ट्रेसेस</string>
     <string name="my_repos">माई रेपोस</string>
@@ -314,12 +314,12 @@
     <string name="release">रिलीज़</string>
     <string name="go_to">गो टू</string>
 
-    <string name="tips">Tips</string>
+    <string name="tips">युक्तियाँ</string>
     <string name="activity_click_tip">
-        You can single click item to view default page, or long click item to view available pages.
+        डिफ़ॉल्ट पृष्ठ देखने के लिए आप आइटम पर एकल क्लिक कर सकते हैं, या उपलब्ध पृष्ठ देखने के लिए  लंबे समय तक आइटम पर क्लिक करे।
     </string>
-    <string name="double_click_toolbar_tip">You can double click title to back top in list page.</string>
-    <string name="releases_click_tip">You can long click item to view available downloads.</string>
+    <string name="double_click_toolbar_tip">सूची पृष्ठ में शीर्ष पर वापस जाने के लिए आप शीर्षक को दोहरा क्लिक कर सकते हैं।</string>
+    <string name="releases_click_tip">उपलब्ध डाउनलोड देखने के लिए आप आइटम पर लंबा क्लिक कर सकते हैं।</string>
 
     <string name="created_comment_on_commit">Created comment on commit in %s</string>
     <string name="created_comment_on_issue">Created comment on issue %d in %s</string>
