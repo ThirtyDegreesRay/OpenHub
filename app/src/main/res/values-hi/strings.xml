@@ -295,24 +295,24 @@
     <string name="recently_starred">Recently starred</string>
     <string name="previously_starred">Previously starred</string>
 
-    <string name="trace">Trace</string>
-    <string name="my_repos">My repos</string>
-    <string name="starred_repos">Starred repos</string>
-    <string name="trending_repos">Trending repos</string>
+    <string name="trace">ट्रेसेस</string>
+    <string name="my_repos">माई रेपोस</string>
+    <string name="starred_repos">स्टार्ड रेपोस</string>
+    <string name="trending_repos">ट्रेन्डिंग रेपोस</string>
 
-    <string name="bookmarks">Bookmarks</string>
-    <string name="bookmark">Bookmark</string>
-    <string name="remove_bookmark">Remove bookmark</string>
-    <string name="bookmark_saved">Bookmark saved</string>
-    <string name="bookmark_removed">Bookmark removed</string>
+    <string name="bookmarks">बुकमार्क्स</string>
+    <string name="bookmark">बुकमार्क</string>
+    <string name="remove_bookmark">बुकमार्क हटाएँ</string>
+    <string name="bookmark_saved">बुकमार्क सेव किया गया</string>
+    <string name="bookmark_removed">बुकमार्क हटाया गया</string>
 
-    <string name="user">User</string>
-    <string name="repo">Repo</string>
-    <string name="issues_list">Issues list</string>
-    <string name="commits_list">Commits list</string>
-    <string name="releases_list">Releases list</string>
-    <string name="release">Release</string>
-    <string name="go_to">Go to</string>
+    <string name="user">यूजर</string>
+    <string name="repo">रेपो</string>
+    <string name="issues_list">मुद्दे सूची</string>
+    <string name="commits_list">कमिट्स सूची</string>
+    <string name="releases_list">रिलीज़ सूची</string>
+    <string name="release">रिलीज़</string>
+    <string name="go_to">गो टू</string>
 
     <string name="tips">Tips</string>
     <string name="activity_click_tip">
@@ -369,65 +369,65 @@
     <string name="languages_editor_tip"> आप आइटम को हटाने के लिए बाएं या दाएं स्वाइप कर सकते हैं, ड्रैग करने के लिए लंबा क्लिक कर सकते हैं।</string>
     <string name="fullscreen">फुलस्क्रीन</string>
 
-    <string name="public_news">Global news</string>
-    <string name="recent_wiki_updates">Recent Wiki Updates</string>
-    <string name="no_recent_wiki_updates">No recent Wiki Updates</string>
+    <string name="public_news">ग्लोबल समाचार</string>
+    <string name="recent_wiki_updates">हाल के wiki अपडेट</string>
+    <string name="no_recent_wiki_updates">हाल ही में कोई wiki अपडेट नहीं है</string>
 
-    <string name="repo_collections">Repo collections</string>
-    <string name="no_repo_collections">No repo collections</string>
+    <string name="repo_collections">रेपो संग्रह</string>
+    <string name="no_repo_collections">कोई रिपो संग्रह नहीं</string>
     <string name="collections_tip">Curated lists and insight into burgeoning industries, topics, and communities.</string>
     <string name="github_page_parse_error">
-        %s page parse error, this page may be changed by github,
-        please update your application to latest version, if error continue, please concat me to solve the problem!
+        %s पेज पार्स त्रुटि, यह पृष्ठ Github  द्वारा बदला हुआ हो सकता है,
+        कृपया अपने एप्लीकेशन को नवीनतम वर्शन पर अपडेट करें, यदि त्रुटि जारी है, तो कृपया मुझे समस्या हल करने के लिए संपर्क करें!
     </string>
 
-    <string name="bookmarks_tip">You can swipe left or right to remove bookmark.</string>
-    <string name="mark_all_as_read">Mark all as read</string>
-    <string name="mark_as_read">Mark as read</string>
+    <string name="bookmarks_tip">आप बुकमार्क को हटाने के लिए बाएं या दाएं स्वाइप कर सकते हैं</string>
+    <string name="mark_all_as_read">सभी को पढ़ा हुआ मार्क करें</string>
+    <string name="mark_as_read">पढ़ा हुआ मार्क करें</string>
 
-    <string name="topic">Topic</string>
-    <string name="topics">Featured topics</string>
-    <string name="topics_tip">Browse the top used topics on GitHub.</string>
-    <string name="no_topics">No topics</string>
+    <string name="topic">विषय</string>
+    <string name="topics">विशेष रुप से प्रदर्शित विषय</string>
+    <string name="topics_tip">GitHub पर टॉप उपयोग किए गए विषयों को ब्राउज़ करें</string>
+    <string name="no_topics">कोई विषय नहीं</string>
 
-    <string name="star_num_today">%s star today</string>
-    <string name="star_num_this_week">%s star this week</string>
-    <string name="star_num_this_month">%s star this month</string>
-    <string name="no_trending_repos">It looks like we don’t have any trending repositories for %s.</string>
+    <string name="star_num_today">आज %s स्टार</string>
+    <string name="star_num_this_week">इस हफ्ते %s स्टार</string>
+    <string name="star_num_this_month">इस महीने %s स्टार</string>
+    <string name="no_trending_repos">ऐसा लगता है कि हमारे पास %s के लिए कोई ट्रेंडिंग रिपॉजिटरी नहीं है</string>
 
-    <string name="all_languages">All languages</string>
-    <string name="unknown_languages">Unknown languages</string>
+    <string name="all_languages">सारी भाषाएँ</string>
+    <string name="unknown_languages">अज्ञात भाषाएं</string>
 
-    <string name="labels">Labels</string>
-    <string name="label">Label</string>
-    <string name="edit_label">Edit label</string>
-    <string name="create_label">Create label</string>
-    <string name="save">Save</string>
-    <string name="name">Name</string>
-    <string name="color">Color</string>
-    <string name="more">More</string>
-    <string name="custom">Custom</string>
-    <string name="done">Done</string>
-    <string name="presets">Presets</string>
-    <string name="choose_color">Choose color</string>
-    <string name="invalid_color">Invalid color</string>
-    <string name="invalid_name">Invalid name</string>
-    <string name="choose_labels">Choose labels</string>
-    <string name="manage_labels">Manage labels</string>
+    <string name="labels">लेबल्स</string>
+    <string name="label">लेबल</string>
+    <string name="edit_label">एडिट लेबल</string>
+    <string name="create_label">लेबल बनाएं</string>
+    <string name="save">सेव करें</string>
+    <string name="name">नाम</string>
+    <string name="color">रंग</string>
+    <string name="more">और</string>
+    <string name="custom">कस्टम</string>
+    <string name="done">कर दिया</string>
+    <string name="presets">प्रीसेट्स</string>
+    <string name="choose_color">रंग पसंद करें</string>
+    <string name="invalid_color">अमान्य रंग</string>
+    <string name="invalid_name">अमान्य नाम</string>
+    <string name="choose_labels">लेबल चुनें</string>
+    <string name="manage_labels">लेबल मैनेज करें</string>
 
-    <string name="issue_add_label">add the label %s</string>
-    <string name="issue_remove_label">remove the label %s</string>
-    <string name="issue_close">close this</string>
-    <string name="issue_reopened">reopened this</string>
-    <string name="issue_modified">modified this issue</string>
-    <string name="issue_added_to_milestone">added this to the %s milestone</string>
-    <string name="issue_removed_from_milestone">removed this from the %s milestone</string>
-    <string name="issue_locked_conversation">locked and limited conversation to collaborators</string>
-    <string name="issue_unlocked_conversation">unlocked this conversation</string>
-    <string name="issue_delete_comment">delete a comment</string>
-    <string name="issue_referenced">referenced this issue in %s</string>
-    <string name="issue_assigned">assigned this to %s</string>
-    <string name="issue_unassigned">removed their assignment</string>
+    <string name="issue_add_label">%s लेबल जोड़ें</string>
+    <string name="issue_remove_label">%s लेबल हटाएं</string>
+    <string name="issue_close">इसे बंद करें</string>
+    <string name="issue_reopened">इसे फिर से खोलें</string>
+    <string name="issue_modified">इस मुद्दे को मॉडिफाई किया गया</string>
+    <string name="issue_added_to_milestone">इसे %s माइलस्टोन में जोड़ दिया गया</string>
+    <string name="issue_removed_from_milestone">इसे %s माइलस्टोन से हटा दिया गया</string>
+    <string name="issue_locked_conversation">वार्तालाप को कलबोरटर्स तक लॉक और सीमित किया</string>
+    <string name="issue_unlocked_conversation">इस वार्तालाप को अनलॉक किया</string>
+    <string name="issue_delete_comment">एक कमेंट को हटाएं</string>
+    <string name="issue_referenced">%s में इस समस्या को रिफरेन्स किया गया</string>
+    <string name="issue_assigned">इसे %s को असाइन किया गया</string>
+    <string name="issue_unassigned">उनकी असाइनमेंट को हटा दिया</string>
 
     <string name="disable_loading_image">नेटवर्क इमेज को लोड करना डिसेबल करें</string>
     <string name="disable_loading_image_desc">मोबाइल नेटवर्क में नेटवर्क इमेज लोडिंग को डिसेबल करें</string>
