@@ -1,26 +1,4 @@
 <resources>
-    <string name="app_github_name" translatable="false">OpenHub</string>
-    <string name="navigation_drawer_open" translatable="false">navigation_drawer_open</string>
-    <string name="navigation_drawer_close" translatable="false">navigation_drawer_close</string>
-
-    <!-- colors -->
-    <string name="light_blue" translatable="false">Light Blue</string>
-    <string name="blue" translatable="false">Blue</string>
-    <string name="indigo" translatable="false">Indigo</string>
-    <string name="orange" translatable="false">Orange</string>
-    <string name="yellow" translatable="false">Yellow</string>
-    <string name="amber" translatable="false">Amber</string>
-    <string name="grey" translatable="false">Grey</string>
-    <string name="brown" translatable="false">Brown</string>
-
-    <string name="cyan" translatable="false">Cyan</string>
-    <string name="teal" translatable="false">Teal</string>
-    <string name="lime" translatable="false">Lime</string>
-    <string name="green" translatable="false">Green</string>
-    <string name="pink" translatable="false">Pink</string>
-    <string name="red" translatable="false">Red</string>
-    <string name="purple" translatable="false">Purple</string>
-    <string name="deep_purple" translatable="false">Deep Purple</string>
 
     <!-- onLoginClick -->
     <string name="user_name">यूजरनाम</string>
@@ -189,14 +167,8 @@
     <string name="source_code_wishes" >मेरा समर्थन करने के लिए स्टार</string>
     <string name="rate_in_market" >मार्केट में रेट या कमेंट करें</string>
     <string name="author" >ऑथर</string>
-    <string name="author_name" translatable="false">30度的射线</string>
-    <string name="author_location" translatable="false">NanJing,China</string>
-    <string name="author_login_id" translatable="false">ThirtyDegreesRay</string>
-    <string name="author_avatar_url" translatable="false">https://avatars1.githubusercontent.com/u/9625508?v=4</string>
-    <string name="app_copyright" translatable="false">© 2017 ThirtyDegreesRay</string>
     <string name="follow_on_github" >GitHub पर फॉलो करें</string>
     <string name="email" >ईमेल</string>
-    <string name="auth_email_address" translatable="false">rays.yuz@gmail.com</string>
     <string name="loading">लोड हो रहा है</string>
 
     <string name="upgrade">अपग्रेड</string>
@@ -300,7 +272,6 @@
     <string name="no_notifications_tip">No new notifications.</string>
     <string name="feedback_and_share">Share &#038; Feedback</string>
     <string name="share_to_friends">Share to your friends</string>
-    <string name="cookapk_download_url" translatable="false">https://www.coolapk.com/apk/com.thirtydegreesray.openhub</string>
     <string name="feedback">Feedback</string>
 
     <string name="openhub_wishes">Wishes From OpenHub</string>
@@ -399,7 +370,6 @@
     <string name="fullscreen">फुलस्क्रीन</string>
 
     <string name="public_news">Global news</string>
-    <string name="wiki" translatable="false">Wiki</string>
     <string name="recent_wiki_updates">Recent Wiki Updates</string>
     <string name="no_recent_wiki_updates">No recent Wiki Updates</string>
 
@@ -463,16 +433,6 @@
     <string name="disable_loading_image_desc">मोबाइल नेटवर्क में नेटवर्क इमेज लोडिंग को डिसेबल करें</string>
 
     <string name="toggle_issue_warning">इस %s समस्या की पुष्टि करें?</string>
-
-    <string name="new_year_wishes" formatted="false" translatable="false">
-        Hi %s！今天是您在OpenHub的第%d天，我会成为更适合您的GitHub app。
-        \n\n祝新年快乐，阖家欢乐，工作顺利！
-    </string>
-    <string name="new_year_wishes_with_star" formatted="false" translatable="false">
-        Hi %s！今天是您在OpenHub的第%d天，我会成为更适合您的GitHub app。
-        \n\n祝新年快乐，阖家欢乐，工作顺利！
-        \n\n最后还有一点小期望，如果可以星标来支持我，那就更棒了！
-    </string>
 
     <string name="add_account">खाता जोड़ो</string>
     <string name="delete_label_warning">इस लेबल को हटाने की पुष्टि करें?</string>
