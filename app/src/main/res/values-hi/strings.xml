@@ -1,12 +1,12 @@
 <resources>
 
     <!-- onLoginClick -->
-    <string name="user_name">यूजरनाम</string>
+    <string name="user_name">यूजरनेम</string>
     <string name="password">पासवर्ड</string>
     <string name="login">लॉगिन</string>
     <string name="login_in_browser">ब्राउजर में लॉग इन करें</string>
     <string name="oauth_tip">अपने डिफ़ॉल्ट ब्राउज़र (OAuth) का उपयोग कर लॉगिन करें</string>
-    <string name="user_name_warning">अमान्य यूजरनाम!</string>
+    <string name="user_name_warning">अमान्य यूजरनेम!</string>
     <string name="password_warning">अवैध पासवर्ड!</string>
 
     <!-- menu -->
@@ -120,7 +120,7 @@
     <string name="stars">स्टार्स</string>
     <string name="gists">जिस्ट्स</string>
     <string name="joined_at">शामिल हुए</string>
-    <string name="users">यूजर</string>
+    <string name="users">यूजर्स</string>
     <string name="activity">गतिविधि</string>
 
     <string name="just_now">अभी</string>
@@ -434,7 +434,7 @@
 
     <string name="toggle_issue_warning">इस %s समस्या की पुष्टि करें?</string>
 
-    <string name="add_account">खाता जोड़ो</string>
+    <string name="add_account">खाता जोड़े</string>
     <string name="delete_label_warning">इस लेबल को हटाने की पुष्टि करें?</string>
 
 </resources>
