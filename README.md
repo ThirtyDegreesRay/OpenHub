@@ -65,19 +65,7 @@ An **open source** GitHub Android client app, faster and concise.
 * View repository commits
 
 ### And more
-- [OpenHub](#openhub)
-    - [Features](#features)
-        - [App](#app)
-        - [Repositories](#repositories)
-        - [Users](#users)
-        - [Organizations](#organizations)
-        - [Issues](#issues)
-        - [Commits](#commits)
-        - [And more](#and-more)
-    - [Screenshots](#screenshots)
-    - [Thanks for open source](#thanks-for-open-source)
-    - [Contributions](#contributions)
-    - [License](#license)
+* OpenHub is growing, try to be better github client.
 
 ## Screenshots
 
