@@ -14,7 +14,7 @@
 * 两种登录方式，(Basic Auth) 和 (OAuth)
 * 支持夜间模式，多种主色调
 * 支持Markdown和代码高亮
-* 支持英文、简体中文、希伯来语和德语
+* 支持英文，印地文，简体中文，希伯来文和德文
 * 支持离线模式
 * 支持所有语言的最热版本库查看
 * 支持多账户切换
@@ -65,7 +65,19 @@
 * 查看版本库提交信息
 
 ### 更多
-* OpenHub正在成长，努力做更好的github客户端。
+- [OpenHub](#openhub)
+    - [特点](#%E7%89%B9%E7%82%B9)
+        - [App](#app)
+        - [版本库](#%E7%89%88%E6%9C%AC%E5%BA%93)
+        - [用户](#%E7%94%A8%E6%88%B7)
+        - [组织](#%E7%BB%84%E7%BB%87)
+        - [问题](#%E9%97%AE%E9%A2%98)
+        - [提交](#%E6%8F%90%E4%BA%A4)
+        - [更多](#%E6%9B%B4%E5%A4%9A)
+    - [截屏](#%E6%88%AA%E5%B1%8F)
+    - [感谢开源](#%E6%84%9F%E8%B0%A2%E5%BC%80%E6%BA%90)
+    - [贡献](#%E8%B4%A1%E7%8C%AE)
+    - [License](#license)
 
 ## 截屏
 
@@ -98,6 +110,7 @@
 * [jsoup](https://github.com/jhy/jsoup) HTML解析器
 
 ## 贡献
+* [hiteshnayak305](https://github.com/hiteshnayak305) - 印地文翻译
 * [moriel5](https://github.com/moriel5) - 希伯来语翻译
 * [Henry2o1o](https://github.com/Henry2o1o) & [squeezer11](https://github.com/squeezer11) - 德语翻译
 * [Edfgdz](https://github.com/Edfgdz) - 测试与建议

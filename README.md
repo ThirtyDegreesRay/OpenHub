@@ -14,7 +14,7 @@ An **open source** GitHub Android client app, faster and concise.
 * Two login types (Basic Auth) and (OAuth)
 * Light and dark theme, multiple accent color
 * Markdown and code highlighting support
-* English, Simplified Chinese, Hebrew and German support
+* English, Hindi, Simplified Chinese, Hebrew and German support
 * Offline mode
 * Support trending repositories of all languages
 * Support multi-account switching
@@ -65,7 +65,19 @@ An **open source** GitHub Android client app, faster and concise.
 * View repository commits
 
 ### And more
-* OpenHub is growing, try to be better github client.
+- [OpenHub](#openhub)
+    - [Features](#features)
+        - [App](#app)
+        - [Repositories](#repositories)
+        - [Users](#users)
+        - [Organizations](#organizations)
+        - [Issues](#issues)
+        - [Commits](#commits)
+        - [And more](#and-more)
+    - [Screenshots](#screenshots)
+    - [Thanks for open source](#thanks-for-open-source)
+    - [Contributions](#contributions)
+    - [License](#license)
 
 ## Screenshots
 
@@ -98,6 +110,7 @@ An **open source** GitHub Android client app, faster and concise.
 * [jsoup](https://github.com/jhy/jsoup) Java HTML Parser, with best of DOM, CSS, and jquery.
 
 ## Contributions
+* [hiteshnayak305](https://github.com/hiteshnayak305) - Hindi translation
 * [moriel5](https://github.com/moriel5) - Hebrew translation
 * [Henry2o1o](https://github.com/Henry2o1o) & [squeezer11](https://github.com/squeezer11) - German translation
 * [Edfgdz](https://github.com/Edfgdz) - Testing and suggest
