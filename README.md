@@ -1,4 +1,4 @@
-English | [中文](/README-cn.md)
+English | [中文](/README-cn.md) | [हिंदी](/README-in.md)
 # OpenHub 
 [![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
@@ -98,7 +98,7 @@ An **open source** GitHub Android client app, faster and concise.
 * [jsoup](https://github.com/jhy/jsoup) Java HTML Parser, with best of DOM, CSS, and jquery.
 
 ## Contributions
-* [hiteshnayak305](https://github.com/hiteshnayak305) - Hindi translation
+* [hiteshnayak305](https://github.com/hiteshnayak305) - Hindi translation and Hindi translation of README 
 * [moriel5](https://github.com/moriel5) - Hebrew translation
 * [Henry2o1o](https://github.com/Henry2o1o) & [squeezer11](https://github.com/squeezer11) - German translation
 * [Edfgdz](https://github.com/Edfgdz) - Testing and suggest
