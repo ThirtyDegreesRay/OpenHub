@@ -24,7 +24,7 @@
 * यूजर्स या रेपो को बुकमार्क करें।
 * आपके द्वारा देखे जाने वाले रिपो या उपयोगकर्ता के रिकॉर्ड
 * Github कलेक्शंस देखें।
-* Github के विशेष विषय देखें।।
+* Github के विशेष विषय देखें।
 * मोबाइल नेटवर्क में नेटवर्क इमेजेज लोडिंग डिसेबल करें।
 
 ### रिपॉजिटरीज़
@@ -79,25 +79,26 @@
 
 ## ओपन सोर्स के लिए धन्यवाद
 
-* [ButterKnife](https://github.com/JakeWharton/butterknife) Bind Android views and callbacks to fields and methods.
-* [GreenDao](https://github.com/greenrobot/greenDAO) A light & fast ORM solution for Android that maps objects to SQLite databases.
-* [EventBus](https://github.com/greenrobot/EventBus) Android optimized event bus that simplifies communication between Activities, Fragments, Threads, Services, etc.
-* [RxJava](https://github.com/ReactiveX/RxJava) A library for composing asynchronous and event-based programs using observable sequences for the Java VM.
-* [RxAndroid](https://github.com/ReactiveX/RxAndroid) RxJava bindings for Android.
-* [Retrofit](https://github.com/square/retrofit) Type-safe HTTP client for Android and Java by Square, Inc.
-* [Dagger](https://github.com/google/dagger) A fast dependency injector for Android and Java. 
-* [Glide](https://github.com/bumptech/glide) An image loading and caching library for Android focused on smooth scrolling.
-* [code-prettify](https://github.com/google/code-prettify) An embeddable script that makes source-code snippets in HTML prettier.
-* [DataAutoAccess](https://github.com/ThirtyDegreesRay/DataAutoAccess) A simple way to access android bundle data.
-* [CircleImageView](https://github.com/hdodenhof/CircleImageView) A circular ImageView for Android.
-* [Toasty](https://github.com/GrenderG/Toasty) The usual Toast, but with steroids 💪.
-* [material-about-library](https://github.com/daniel-stoneuk/material-about-library) Makes it easy to create beautiful about screens for your apps.
-* [material-dialogs](https://github.com/afollestad/material-dialogs) A beautiful, fluid, and customizable dialogs API.
-* [GitHub-Trending](https://github.com/thedillonb/GitHub-Trending) Scrapes GitHub's Trending Pages.
-* [RichText](https://github.com/zzhoujay/RichText) Rich text parser for Android, support markdown and html.
-* [jsoup](https://github.com/jhy/jsoup) Java HTML Parser, with best of DOM, CSS, and jquery.
+* [ButterKnife](https://github.com/JakeWharton/butterknife) एंड्रॉइड व्यूज और कॉलबैकस को फ़ील्ड और मेथड्स से जोड़ें। 
+* [GreenDao](https://github.com/greenrobot/greenDAO) एंड्रॉइड के लिए एक हल्का और तेज़ ORM समाधान जो कि SQLite डेटाबेस से ऑब्जेक्ट को मैप करता है।
+* [EventBus](https://github.com/greenrobot/EventBus) एंड्रॉइड ऑप्टिमाइज़्ड इवेंट बस जो एक्टिविटीज, फ़्रैगमेन्ट्स, थ्रेड्स, सर्विसेज आदि के बीच संचार को सरल करती है।
+* [RxJava](https://github.com/ReactiveX/RxJava) जावा VM के लिए ऑब्सेर्वबलै सीक्वेंसेस का उपयोग करते हुए  एसिंक्रोनस और इवेंट-आधारित प्रोग्राम बनाने के लिए एक लाइब्रेरी।
+* [RxAndroid](https://github.com/ReactiveX/RxAndroid) एंड्रॉइड के लिए RxJava बाइंडिंग।
+* [Retrofit](https://github.com/square/retrofit) Square, Inc. द्वारा एंड्रॉइड और जावा के लिए टाइप सेफ HTTP क्लाइंट।
+* [Dagger](https://github.com/google/dagger) एंड्रॉइड और जावा के लिए एक तेज डिपेंडेंसी इंजेक्टर। 
+* [Glide](https://github.com/bumptech/glide) एंड्रॉइड के लिए एक इमेज लोडिंग और कैशिंग लाइब्रेरी जो कि स्मूथ  स्क्रॉलिंग पर केंद्रित है।
+* [code-prettify](https://github.com/google/code-prettify) एचटीएमएल प्रेट्टिएर में सोर्स-कोड स्निपेट बनाने वाला एक एम्बेडेबल स्क्रिप्ट।
+* [DataAutoAccess](https://github.com/ThirtyDegreesRay/DataAutoAccess) एंड्रॉइड बंडल डेटा एक्सेस करने का एक आसान तरीका।
+* [CircleImageView](https://github.com/hdodenhof/CircleImageView) एंड्राइड के लिए एक सर्कुलर इमेजव्यू। 
+* [Toasty](https://github.com/GrenderG/Toasty) सामान्य Toast, लेकिन steroids के साथ 💪।
+* [material-about-library](https://github.com/daniel-stoneuk/material-about-library) अपने ऐप्स के लिए स्क्रीन के बारे में सुंदर बनाना आसान बनाता है।
+* [material-dialogs](https://github.com/afollestad/material-dialogs) एक सुंदर, फ्लूइड, और कस्टोमीज़ेंबल API।
+* [GitHub-Trending](https://github.com/thedillonb/GitHub-Trending) Github के रुझान वाले पेज स्क्रैप करता है।
+* [RichText](https://github.com/zzhoujay/RichText) एंड्रॉइड, मार्कडाउन और एचटीएमएल सपोर्ट के साथ रिच टेक्स्ट पार्सर।
+* [jsoup](https://github.com/jhy/jsoup) 
+जावा एचटीएमएल पार्सर, जो सबसे अच्छे DOM, CSS और jquery के साथ है। 
 
-## Contributions
+## योगदान
 * [hiteshnayak305](https://github.com/hiteshnayak305) - हिंदी अनुवाद और रीडमी हिंदी अनुवाद
 * [moriel5](https://github.com/moriel5) - हिब्रू अनुवाद
 * [Henry2o1o](https://github.com/Henry2o1o) & [squeezer11](https://github.com/squeezer11) - जर्मन अनुवाद
