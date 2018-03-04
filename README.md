@@ -1,4 +1,4 @@
-English | [中文](/README-cn.md) | [हिंदी](/README-in.md)
+English | [中文](/README-cn.md) | [हिंदी](/README-hi.md)
 # OpenHub 
 [![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
