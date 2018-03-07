@@ -99,7 +99,7 @@ An **open source** GitHub Android client app, faster and concise.
 
 ## Contributions(*Order by commit time*)
 * [moriel5](https://github.com/moriel5) - Hebrew translation
-* [Henry2o1o](https://github.com/Henry2o1o) & [squeezer11](https://github.com/squeezer11) - German translation
+* [Henry2o1o](https://github.com/Henry2o1o), [squeezer11](https://github.com/squeezer11), [ropaha](https://github.com/ropaha) - German translation
 * [Edfgdz](https://github.com/Edfgdz) - Testing and suggest
 * [pzhlkj6612](https://github.com/pzhlkj6612) - Improve the translation of chinese readme
 * [hiteshnayak305](https://github.com/hiteshnayak305) - Hindi translation
