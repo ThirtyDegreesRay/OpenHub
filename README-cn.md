@@ -1,4 +1,4 @@
-[English](/README.md) | 中文
+[English](/README.md) | 中文 | [हिंदी](/README-hi.md)
 # OpenHub 
 [![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
@@ -14,7 +14,7 @@
 * 两种登录方式，(Basic Auth) 和 (OAuth)
 * 支持夜间模式，多种主色调
 * 支持Markdown和代码高亮
-* 支持英文、简体中文、希伯来语和德语
+* 支持英文，印地文，简体中文，希伯来文和德文
 * 支持离线模式
 * 支持所有语言的最热版本库查看
 * 支持多账户切换
@@ -98,6 +98,7 @@
 * [jsoup](https://github.com/jhy/jsoup) HTML解析器
 
 ## 贡献
+* [hiteshnayak305](https://github.com/hiteshnayak305) - README的印地语翻译和印地语翻译
 * [moriel5](https://github.com/moriel5) - 希伯来语翻译
 * [Henry2o1o](https://github.com/Henry2o1o) & [squeezer11](https://github.com/squeezer11) - 德语翻译
 * [Edfgdz](https://github.com/Edfgdz) - 测试与建议
