@@ -254,8 +254,8 @@
     <string name="openhub_wishes">Wünsche von OpenHub</string>
     <string name="star_wishes" formatted="false">
     Hallo %s, heute ist Dein %dth Tag bei OpenHub,
-    danke für Deine Nutzung. Ich werde mich bemühen, eine noch bessere GitHub App für Sie zu entwickeln. 
-    \n\n Wenn Sie mich unterstützen können, wäre es großartig!
+    danke für Deine Nutzung. Ich werde mich bemühen, eine noch bessere GitHub App für Dich zu entwickeln. 
+    \n\n Wenn Du mich unterstützen könntest, wäre es großartig!
     </string>
     <string name="star_thanks">Danke für Deine Unterstützung!</string>
     <string name="star_me">Meine Stern(e)</string>
@@ -297,7 +297,7 @@
     <string name="created_repo">Erstelltes Repository %s</string>
     <string name="forked_to">geforked %s nach %s</string>
     <string name="starred_repo">%s Stern(e)</string>
-    <string name="push_to">Drücke Sie auf %s um %s</string>
+    <string name="push_to">Gepushed zu %s nach %s</string>
     <string name="created_tag_at">Erstellten Tag %s bei %s</string>
     <string name="created_branch_at">%s Gabel(n) in %s erstellt</string>
     <string name="delete_tag_at">Löschen Sie das Tag %s in %s</string>
