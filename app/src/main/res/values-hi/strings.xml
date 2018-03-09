@@ -322,7 +322,7 @@
     <string name="releases_click_tip">उपलब्ध डाउनलोड देखने के लिए आप आइटम पर लंबा क्लिक कर सकते हैं।</string>
 
     <string name="created_comment_on_commit">%s में कमिट पर कमेंट किया गया</string>
-    <string name="created_comment_on_issue">%s में %d के मुद्दे पर कमेंट किया गया</string>
+    <string name="created_comment_on_issue">%d के मुद्दे पर %s में कमेंट किया गया</string>
     <string name="created_repo">रेपॉजिटरी %s बनाया गया</string>
     <string name="forked_to">%s से %s पर फॉर्क किया गया</string>
     <string name="starred_repo">%s को तारांकित किया गया</string>
@@ -339,7 +339,7 @@
     <string name="assigned_issue_at">मुद्दे %d को %s में असाइन किया गया</string>
     <string name="unassigned_issue_at">मुद्दे %d को %s में अनअसाइन किया गया</string>
     <string name="labeled_issue_at">मुद्दे %d को %s में लेबल किया गया</string>
-    <string name="unlabeled_issue_at">मुद्दे % d को % S में अनलेबल किया गया</string>
+    <string name="unlabeled_issue_at">मुद्दे %d को %s में अनलेबल किया गया</string>
     <string name="milestoned_issue_at">मुद्दे %d को %s में माइलस्टोन किया गया</string>
     <string name="demilestoned_issue_at">मुद्दे %d को %s में माइलस्टोन को हटाया गया</string>
     <string name="added_member_to">सदस्य %s को %s में जोड़ा गया</string>
