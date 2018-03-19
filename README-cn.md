@@ -96,6 +96,8 @@
 * [GitHub-Trending](https://github.com/thedillonb/GitHub-Trending) 对GitHub趋势页面进行数据抓取
 * [RichText](https://github.com/zzhoujay/RichText) Android平台下的富文本解析器，支持Html和Markdown
 * [jsoup](https://github.com/jhy/jsoup) HTML解析器
+* [OctoDroid](https://github.com/slapperwan/gh4a) GitHub客户端。
+* [FastHub](https://github.com/k0shk0sh/FastHub) GitHub客户端。
 
 ## 贡献（*按提交时间排序*）
 * [moriel5](https://github.com/moriel5) - 希伯来语翻译

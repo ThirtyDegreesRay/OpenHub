@@ -96,6 +96,8 @@ An **open source** GitHub Android client app, faster and concise.
 * [GitHub-Trending](https://github.com/thedillonb/GitHub-Trending) Scrapes GitHub's Trending Pages.
 * [RichText](https://github.com/zzhoujay/RichText) Rich text parser for Android, support markdown and html.
 * [jsoup](https://github.com/jhy/jsoup) Java HTML Parser, with best of DOM, CSS, and jquery.
+* [OctoDroid](https://github.com/slapperwan/gh4a) This application provides access to GitHub and lets you stay connected with your network.
+* [FastHub](https://github.com/k0shk0sh/FastHub) FastHub the ultimate GitHub client for Android.
 
 ## Contributions(*Order by commit time*)
 * [moriel5](https://github.com/moriel5) - Hebrew translation
