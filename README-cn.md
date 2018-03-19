@@ -107,12 +107,12 @@
 * [hiteshnayak305](https://github.com/hiteshnayak305) - 印地语翻译
 
 ## License
-OpenHub:
+ThirtyDegreesRay:
 > Copyright (C) 2017 ThirtyDegreesRay.
 > Licensed under the [GNU GENERAL PUBLIC LICENSE, Version 3.0 license](https://www.gnu.org/licenses/gpl.html).
 > (See the [LICENSE](https://github.com/ThirtyDegreesRay/OpenHub/blob/master/LICENSE) file for the whole license text.)
 
-FastHub(There are 13 files has some code copied from FastHub):
+Kosh(There are 13 files has some code copied from FastHub):
 > Copyright (C) 2017 Kosh.
 > Licensed under the [GPL-3.0](https://www.gnu.org/licenses/gpl.html) license.
 > (See the [LICENSE](https://github.com/k0shk0sh/FastHub/blob/master/LICENSE) file for the whole license text.)

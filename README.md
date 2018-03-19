@@ -107,12 +107,12 @@ An **open source** GitHub Android client app, faster and concise.
 * [hiteshnayak305](https://github.com/hiteshnayak305) - Hindi translation
 
 ## License
-OpenHub:
+ThirtyDegreesRay:
 > Copyright (C) 2017 ThirtyDegreesRay.
 > Licensed under the [GPL-3.0](https://www.gnu.org/licenses/gpl.html).
 > (See the [LICENSE](https://github.com/ThirtyDegreesRay/OpenHub/blob/master/LICENSE) file for the whole license text.)
 
-FastHub(There are 13 files has some code copied from FastHub):
+Kosh(There are 13 files has some code copied from FastHub):
 > Copyright (C) 2017 Kosh.
 > Licensed under the [GPL-3.0](https://www.gnu.org/licenses/gpl.html) license.
 > (See the [LICENSE](https://github.com/k0shk0sh/FastHub/blob/master/LICENSE) file for the whole license text.)
