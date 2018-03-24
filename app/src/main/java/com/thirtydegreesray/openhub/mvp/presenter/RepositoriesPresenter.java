@@ -387,10 +387,12 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
     }
 
     private Repository parseCollectionsRepositoryData(Element element) throws Exception{
-        String fullName = element.select("div > div > a").attr("href");
-        String owner = fullName.substring(1, fullName.lastIndexOf("/"));
+        String fullName = element.select("div > h1 > a").attr("href");
+        fullName = fullName.substring(1);
+        String owner = fullName.substring(0, fullName.lastIndexOf("/"));
         String repoName = fullName.substring(fullName.lastIndexOf("/") + 1);
-        String ownerAvatar = element.select("div > div > a > img").attr("src");
+//        String ownerAvatar = element.select("div > div > a > img").attr("src");
+        String ownerAvatar = "";
 
         Elements articleElements = element.getElementsByTag("div");
         Element descElement = articleElements.get(articleElements.size() - 2);
