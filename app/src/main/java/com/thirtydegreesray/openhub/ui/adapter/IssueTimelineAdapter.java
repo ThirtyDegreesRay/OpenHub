@@ -183,9 +183,9 @@ public class IssueTimelineAdapter extends BaseAdapter<BaseViewHolder, IssueEvent
 
         void setData(IssueEvent model, int position) {
             GlideApp.with(fragment)
-                    .load(model.getActor().getAvatarUrl())
-                    .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
-                    .into(userAvatar);
+                .load(model.getActor().getAvatarUrl())
+                .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
+                .into(userAvatar);
             setEventIcon(model);
             setDesc(model);
             setMargin(model, position);

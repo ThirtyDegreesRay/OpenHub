@@ -129,14 +129,18 @@ public class IssueTimelinePresenter extends BasePresenter<IIssueTimelineContract
     }
 
     /**
-     * filter unknown event type
+     * filter unknown event type and invalid event
      */
     private ArrayList<IssueEvent> filterTimeLine(ArrayList<IssueEvent> oriEvents){
         ArrayList<IssueEvent> filteredEvents = new ArrayList<>();
         if(oriEvents == null || oriEvents.size() == 0) return filteredEvents;
         for(IssueEvent event : oriEvents){
-            if(event.getType() != null)
-                filteredEvents.add(event);
+            if(event.getType() == null
+                    //if this a issue event, actor can't be null
+                    || (!IssueEvent.Type.commented.equals(event.getType()) && event.getActor() == null)) {
+                continue;
+            }
+            filteredEvents.add(event);
         }
         return filteredEvents;
     }
