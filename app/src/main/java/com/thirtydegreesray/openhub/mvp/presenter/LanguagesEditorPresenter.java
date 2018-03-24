@@ -66,6 +66,9 @@ public class LanguagesEditorPresenter extends BasePresenter<ILanguagesEditorCont
 
     @Override
     public void searchLanguages(String key) {
+        if(languages == null){
+            return;
+        }
         if(StringUtils.isBlank(key)){
             mView.showLanguages(languages);
         } else {
