@@ -22,6 +22,7 @@ import com.thirtydegreesray.openhub.ui.fragment.base.BaseFragment;
 import com.thirtydegreesray.openhub.util.LanguageColorsHelper;
 import com.thirtydegreesray.openhub.util.PrefUtils;
 import com.thirtydegreesray.openhub.util.StringUtils;
+import com.thirtydegreesray.openhub.util.ViewUtils;
 
 import javax.inject.Inject;
 
@@ -87,7 +88,7 @@ public class RepositoriesAdapter extends BaseAdapter<RepositoriesAdapter.ViewHol
         Repository repository = data.get(position);
         boolean hasOwnerAvatar = !StringUtils.isBlank(repository.getOwner().getAvatarUrl());
         holder.tvRepoName.setText(hasOwnerAvatar ? repository.getName(): repository.getFullName());
-        holder.tvRepoDescription.setText(repository.getDescription());
+        ViewUtils.setTextView(holder.tvRepoDescription, repository.getDescription());
         holder.tvStarNum.setText(String.valueOf(repository.getStargazersCount()));
         holder.tvForkNum.setText(String.valueOf(repository.getForksCount()));
         holder.tvOwnerName.setText(repository.getOwner().getLogin());
