@@ -1,4 +1,4 @@
-English | [中文](/README-cn.md) | [한국어](/README-ko.md)
+[English](/README.md) | 中文 | [한국어](/README-ko.md)
 # OpenHub 
 [![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
@@ -8,21 +8,21 @@ An **open source** GitHub Android client app, faster and concise.
 [![Google Play](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/google_play.png?raw=true)](https://play.google.com/store/apps/details?id=com.thirtydegreesray.openhub)
 [![Coolapk](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/coolapk.png?raw=true)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 
-## Features
+## 기능
 
-### App
-* Two login types (Basic Auth) and (OAuth)
-* Light and dark theme, multiple accent color
-* Markdown and code highlighting support
-* English, Simplified Chinese, Hebrew, German, Korean and Hindi support
-* Offline mode
-* Support trending repositories of all languages
-* Support multi-account switching
-* Search repos and users
-* Shortcuts support
-* Notifications support
-* Bookmark users or repos
-* Record trace of the repos or users you have been viewed
+### 앱
+* 두 개의 로그인 방법 (기본 인증) 과 (OAuth)
+* 밝은 테마와 어두운 테마, 다수의 강조 색
+* 마크다운과 코드 하이라이트 지원
+* 영어, 간체자, 히브리어, 독일어, 한국어 그리고 힌디어 지원
+* 오프라인 모드
+* 모든 언어에서 유행하는 리포지토리 지원
+* 다수의 계정끼리의 전환 지원
+* 리포지토리와 유저 검색
+* 단축키 지원
+* 알림 지원
+* 유저나 리포지토리 북마크
+* 본 적 있는 리포지토리나 유저를 추적해서 기록
 * View github collections
 * View github featured topics
 * Support disable loading network image while mobile network

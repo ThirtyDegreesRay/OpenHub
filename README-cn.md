@@ -1,4 +1,4 @@
-[English](/README.md) | 中文
+[English](/README.md) | [中文](/README-cn.md) | 한국어
 # OpenHub 
 [![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
@@ -14,7 +14,7 @@
 * 两种登录方式，(Basic Auth) 和 (OAuth)
 * 支持夜间模式，多种主色调
 * 支持Markdown和代码高亮
-* 支持英文、简体中文、希伯来文、德文和印地文
+* 支持英文、简体中文、希伯来文、韩国语文、 德文和印地文
 * 支持离线模式
 * 支持所有语言的最热版本库查看
 * 支持多账户切换
