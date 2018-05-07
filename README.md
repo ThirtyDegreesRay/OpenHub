@@ -105,6 +105,7 @@ An **open source** GitHub Android client app, faster and concise.
 * [Edfgdz](https://github.com/Edfgdz) - Testing and suggest
 * [pzhlkj6612](https://github.com/pzhlkj6612) - Improve the translation of chinese readme
 * [hiteshnayak305](https://github.com/hiteshnayak305) - Hindi translation
+* [AlexKoala](https://github.com/AlexKoala) - Korean translation
 
 ## License
 ThirtyDegreesRay:

@@ -29,7 +29,7 @@
 
     <string name="no_cache_and_network">네트워크와 캐시가 없습니다.</string>
     <string name="page_no_found">페이지가 존재하지 않습니다.</string>
-    <string name="unauthorized">Unauthorized.</string>
+    <string name="unauthorized">미인증되었습니다.</string>
     <string name="no_network_tip">GitHub에서 데이터를 불러올 수 없습니다.네트워크 연결을 확인하신 후 다시 시도해주세요.</string>
     <string name="load_timeout_tip">GitHub와의 연결 시간이 초과되었습니다.네트워크 연결을 확인하신 후 다시 시도해주세요.</string>
     <string name="tap_to_retry">재시도</string>
@@ -57,8 +57,8 @@
     <string name="repository">리포지토리</string>
     <string name="info">정보</string>
     <string name="files">파일</string>
-    <string name="commits">기여</string>
-    <string name="commit">기여</string>
+    <string name="commits">커밋</string>
+    <string name="commit">커밋</string>
 
     <string name="star">스타</string>
     <string name="unstar">스타 취소</string>
@@ -68,10 +68,10 @@
     <string name="open_in_browser">브라우저로 열기</string>
     <string name="copy_URL">URL 복사</string>
     <string name="copy_clone_URL">복제 URL 복사</string>
-    <string name="watch">보기</string>
-    <string name="watched">보는 중</string>
-    <string name="unwatch">보지 않기</string>
-    <string name="unwatched">보지 않음</string>
+    <string name="watch">주시</string>
+    <string name="watched">주시 중</string>
+    <string name="unwatch">주시하지 않기</string>
+    <string name="unwatched">주시하지 않음</string>
     <string name="fork">포크</string>
     <string name="fork_tag">포크</string>
     <string name="forked">포크함</string>
@@ -109,8 +109,8 @@
     <!-- Profile -->
     <string name="follow">팔로우</string>
     <string name="followed">팔로우함</string>
-    <string name="unfollow">팔로우 취소</string>
-    <string name="unfollowed">팔로우 취소함</string>
+    <string name="unfollow">언팔로우</string>
+    <string name="unfollowed">언팔로우함</string>
     <string name="members">맴버</string>
     <string name="view">보기</string>
     <string name="followers">팔로워</string>
@@ -119,7 +119,7 @@
     <string name="stars">스타</string>
     <string name="gists">기스트</string>
     <string name="joined_at">가입일</string>
-    <string name="users">유저</string>
+    <string name="users">사용자</string>
     <string name="activity">활동</string>
 
     <string name="just_now">지금</string>
@@ -155,8 +155,8 @@
 
     <string name="logout_warning">정말로 로그아웃 하시겠습니까 ?</string>
     <string name="unknown">알 수 없음</string>
-    <string name="organizations">단체</string>
-    <string name="no_user">유저 없음</string>
+    <string name="organizations">그룹</string>
+    <string name="no_user">사용자 없음</string>
     <string name="no_activity">활동 없음</string>
     <string name="no_repository">리포지토리 없음</string>
     <string name="no_file">파일 없음</string>
@@ -243,25 +243,25 @@
     <string name="insert_code">코드 삽입</string>
     <string name="insert_a_quote">인용 삽입</string>
     <string name="add_a_bulleted_list">글머리 기호 추가</string>
-    <string name="mention">유저나 팀에게 직접적으로 멘션하기</string>
+    <string name="mention">사용자나 팀에게 직접적으로 멘션하기</string>
     <string name="nothing_to_preview">미리볼 수 있는 게 없음</string>
 
     <string name="title">제목</string>
     <string name="leave_a_comment">댓글 남기기</string>
-    <string name="markdown_editor">마크다은 편집기 사용</string>
+    <string name="markdown_editor">마크다운 편집기 사용</string>
 
     <string name="created_at">생성됨</string>
     <string name="forked_at">포크됨</string>
     <string name="latest_update">마지막 업데이트</string>
-    <string name="latest_commit">마지막 기여</string>
+    <string name="latest_commit">마지막 커밋</string>
     <string name="issue_title_null_tip">이슈 제목은 없을 수 없습니다.</string>
     <string name="edit_issue">이슈 수정</string>
     <string name="create_issue">이슈 생성</string>
     <string name="edit_issue_success">이슈 수정 성공</string>
     <string name="create_issue_success">이슈 생성 성공</string>
 
-    <string name="no_commits">기여 없음</string>
-    <string name="committed">기여함</string>
+    <string name="no_commits">커밋 없음</string>
+    <string name="committed">커밋함</string>
     <string name="view_file">파일 보기</string>
     <string name="failed_to_recognize">GitHub URL을 인식할 수 없으므로, 길게 눌러서 복사한 후 브라우저에서 열어주세요.</string>
     <string name="failed_to_open_URL">URL을 열 수 없으므로, 길게 눌러서 복사한 후 브라우저에서 열어주세요.</string>
@@ -306,9 +306,9 @@
     <string name="bookmark_removed">북마크 삭제됨</string>
 
     <string name="user">사용자</string>
-    <string name="repo">자장소</string>
+    <string name="repo">리포지토리</string>
     <string name="issues_list">이슈 목록</string>
-    <string name="commits_list">기여 목록</string>
+    <string name="commits_list">커밋 목록</string>
     <string name="releases_list">릴리즈 목록</string>
     <string name="release">릴리즈</string>
     <string name="go_to">이동</string>
@@ -320,8 +320,8 @@
     <string name="double_click_toolbar_tip">제목을 두 번 터치해서 목록으로 돌아갈 수 있습니다.</string>
     <string name="releases_click_tip">길게 클릭해서 다운로드가 가능한지 볼 수 있습니다.</string>
 
-    <string name="created_comment_on_commit">%s 기여 댓글 생성됨</string>
-    <string name="created_comment_on_issue">>%s의 $d 이슈 댓글 생성됨</string>
+    <string name="created_comment_on_commit">%s 커밋 댓글 생성됨</string>
+    <string name="created_comment_on_issue">>%s의 %d 이슈에 댓글 생성됨</string>
     <string name="created_repo">%s 리포지토리 생성됨</string>
     <string name="forked_to">%s에서 %s로 포크됨</string>
     <string name="starred_repo">%s에 스타를 줌</string>
@@ -345,8 +345,8 @@
     <string name="deleted_member_at">%s에서 %s 맴버 삭제됨</string>
     <string name="edited_member_at">%s에서 %s 맴버 수정됨</string>
     <string name="made_repo_public">%s 공개로 전환</string>
-    <string name="org_blocked_user">%s 단체에서 %s 사용자 차단됨</string>
-    <string name="org_unblocked_user">%s 단체에서 %s 사용자 차단 취소됨</string>
+    <string name="org_blocked_user">%s 그룹에서 %s 사용자 차단됨</string>
+    <string name="org_unblocked_user">%s 그룹에서 %s 사용자 차단 취소됨</string>
     <string name="created_pull_request_comment_at">%s 풀 리퀘스트 리뷰 댓글 생성됨</string>
     <string name="deleted_pull_request_comment_at">%s 풀 리퀘스트 리뷰 댓글 삭제됨</string>
     <string name="edited_pull_request_comment_at">%s 풀 요청 리뷰 수정됨</string>
@@ -421,7 +421,7 @@
     <string name="issue_modified">이슈 수정됨</string>
     <string name="issue_added_to_milestone">%s 마일스톤에 추가됨</string>
     <string name="issue_removed_from_milestone">%s 마일스톤에서 삭제됨</string>
-    <string name="issue_locked_conversation">기여자들과의 대화가 잠기고 제한됨</string>
+    <string name="issue_locked_conversation">커밋 기여자들과의 대화가 잠기고 제한됨</string>
     <string name="issue_unlocked_conversation">대화 잠김 해제됨</string>
     <string name="issue_delete_comment">댓글 삭제</string>
     <string name="issue_referenced">%s에서 이슈 참고함</string>
@@ -435,5 +435,4 @@
 
     <string name="add_account">계정 추가</string>
     <string name="delete_label_warning">정말로 라벨을 삭제하시겠습니까?</string>
-
 </resources>

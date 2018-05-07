@@ -105,6 +105,7 @@
 * [Edfgdz](https://github.com/Edfgdz) - 测试与建议
 * [pzhlkj6612](https://github.com/pzhlkj6612) - 改进中文概述的翻译
 * [hiteshnayak305](https://github.com/hiteshnayak305) - 印地语翻译
+* [AlexKoala](https://github.com/AlexKoala) - 韩语翻译
 
 ## License
 ThirtyDegreesRay:
