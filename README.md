@@ -1,4 +1,4 @@
-English | [中文](/README-cn.md)
+English | [中文](/README-cn.md) | [한국어](/README-ko.md)
 # OpenHub 
 [![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
@@ -14,7 +14,7 @@ An **open source** GitHub Android client app, faster and concise.
 * Two login types (Basic Auth) and (OAuth)
 * Light and dark theme, multiple accent color
 * Markdown and code highlighting support
-* English, Simplified Chinese, Hebrew, German and Hindi support
+* English, Simplified Chinese, Hebrew, German, Korean and Hindi support
 * Offline mode
 * Support trending repositories of all languages
 * Support multi-account switching
@@ -105,6 +105,7 @@ An **open source** GitHub Android client app, faster and concise.
 * [Edfgdz](https://github.com/Edfgdz) - Testing and suggest
 * [pzhlkj6612](https://github.com/pzhlkj6612) - Improve the translation of chinese readme
 * [hiteshnayak305](https://github.com/hiteshnayak305) - Hindi translation
+* [AlexKoala](https://github.com/AlexKoala) - Korean translation
 
 ## License
 ThirtyDegreesRay:
