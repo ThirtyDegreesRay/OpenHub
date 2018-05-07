@@ -25,13 +25,13 @@
     <string name="about">정보</string>
 
     <string name="public_repositories">공개 리포지토리</string>
-    <string name="starred_repositories">Star한 리포지토리</string>
+    <string name="starred_repositories">스타를 준 리포지토리</string>
 
     <string name="no_cache_and_network">네트워크와 캐시가 없습니다.</string>
     <string name="page_no_found">페이지가 존재하지 않습니다.</string>
     <string name="unauthorized">미인증되었습니다.</string>
-    <string name="no_network_tip">GitHub에서 데이터를 불러올 수 없습니다.네트워크 연결을 확인하신 후 다시 시도해주세요.</string>
-    <string name="load_timeout_tip">GitHub와의 연결 시간이 초과되었습니다.네트워크 연결을 확인하신 후 다시 시도해주세요.</string>
+    <string name="no_network_tip">GitHub에서 데이터를 불러올 수 없습니다. 네트워크 연결 확인 후 재시도해주세요.</string>
+    <string name="load_timeout_tip">GitHub와의 연결 시간이 초과되었습니다.네트워크 연결 확인 후 재시도해주세요.</string>
     <string name="tap_to_retry">재시도</string>
     <string name="no_data">데이터 없음</string>
 
@@ -49,7 +49,7 @@
     <string name="use_system_downloader">시스템 다운로더 사용</string>
     <string name="use_custom_tabs">커스텀 탭 사용</string>
     <string name="custom_tabs_desc">외부 브라우저를 열 때 커스텀 탭으로 열기(chrome, firefox 등 지원)</string>
-    <string name="use_custom_tabs_tips">외부 브라우저를 열 때 바로 열고 싶다면, 설정을 바꿔주세요.</string>
+    <string name="use_custom_tabs_tips">외부 브라우저로 바로 열고 싶으시다면, 설정에서 바꿀 수 있습니다.</string>
     <string name="language">언어</string>
     <string name="logout">로그아웃</string>
 
@@ -66,8 +66,8 @@
     <string name="branch_tip">브랜치 또는 태그</string>
     <string name="share">공유</string>
     <string name="open_in_browser">브라우저로 열기</string>
-    <string name="copy_URL">URL 복사</string>
-    <string name="copy_clone_URL">복제 URL 복사</string>
+    <string name="copy_url">URL 복사</string>
+    <string name="copy_clone_url">복제 URL 복사</string>
     <string name="watch">주시</string>
     <string name="watched">주시 중</string>
     <string name="unwatch">주시하지 않기</string>
@@ -87,8 +87,8 @@
     <string name="readme">설명</string>
     <string name="no_readme">설명 없음</string>
     <string name="warning_dialog_tile">경고</string>
-    <string name="cancel">최소</string>
-    <string name="close">닫기</string>
+    <string name="cancel">취소</string>
+    <string name="close">닫음</string>
     <string name="ok">확인</string>
     <string name="confirm">확인</string>
     <string name="select_branch">브랜치나 태그 선택</string>
@@ -103,8 +103,8 @@
     <string name="url_invalid">올바르지 않은 Url</string>
     <string name="view_archive_file_error">아카이브 파일은 지원하지 않기 때문에, 내용을 보시려면 파일을 다운로드해주세요.</string>
     <string name="fork_warning_msg">이 리포지토리를 포크하시겠습니까?</string>
-    <string name="invalid_repo_URL">올바르지 않은 리포지토리 URL입니다!</string>
-    <string name="invalid_URL">올바르지 않은 URL입니다!</string>
+    <string name="invalid_repo_url">올바르지 않은 리포지토리 URL입니다!</string>
+    <string name="invalid_url">올바르지 않은 URL입니다!</string>
 
     <!-- Profile -->
     <string name="follow">팔로우</string>
@@ -157,7 +157,7 @@
     <string name="unknown">알 수 없음</string>
     <string name="organizations">그룹</string>
     <string name="no_user">사용자 없음</string>
-    <string name="no_activity">활동 없음</string>
+    <string name="no_activity">소식 없음</string>
     <string name="no_repository">리포지토리 없음</string>
     <string name="no_file">파일 없음</string>
     <string name="developing">개발 중</string>
@@ -194,11 +194,11 @@
     <string name="download_complete">다운로드 완료</string>
     <string name="download_failed">다운로드 실패</string>
     <string name="downloading">다운로드 중</string>
-    <string name="download_empty_tip">Url 또는 파일 이름이 비어 있습니다!</string>
+    <string name="download_empty_tip">URL 또는 파일 이름이 비어 있습니다!</string>
     <string name="download_start">다운로드 시작</string>
     <string name="download_cancel">다운로드 취소</string>
     <string name="permission_storage_denied">권한이 거부되었기 때문에, 리포지토리 접근을 허용해주세요.</string>
-    <string name="enable_download_service_tip">먼저 다운로드 서비스를 허용해주세요!</string>
+    <string name="enable_download_service_tip">다운로드 서비스를 먼저 허용해주세요!</string>
 
     <string name="open">열림</string>
     <string name="closed">닫힘</string>
@@ -250,21 +250,21 @@
     <string name="leave_a_comment">댓글 남기기</string>
     <string name="markdown_editor">마크다운 편집기 사용</string>
 
-    <string name="created_at">생성됨</string>
-    <string name="forked_at">포크됨</string>
+    <string name="created_at">생성 날짜</string>
+    <string name="forked_at">포크 날짜</string>
     <string name="latest_update">마지막 업데이트</string>
     <string name="latest_commit">마지막 커밋</string>
-    <string name="issue_title_null_tip">이슈 제목은 없을 수 없습니다.</string>
+    <string name="issue_title_null_tip">이슈 제목은 반드시 있어야 합니다.</string>
     <string name="edit_issue">이슈 수정</string>
     <string name="create_issue">이슈 생성</string>
     <string name="edit_issue_success">이슈 수정 성공</string>
     <string name="create_issue_success">이슈 생성 성공</string>
 
     <string name="no_commits">커밋 없음</string>
-    <string name="committed">커밋함</string>
+    <string name="committed">커밋 날짜</string>
     <string name="view_file">파일 보기</string>
     <string name="failed_to_recognize">GitHub URL을 인식할 수 없으므로, 길게 눌러서 복사한 후 브라우저에서 열어주세요.</string>
-    <string name="failed_to_open_URL">URL을 열 수 없으므로, 길게 눌러서 복사한 후 브라우저에서 열어주세요.</string>
+    <string name="failed_to_open_url">URL을 열 수 없으므로, 길게 눌러서 복사한 후 브라우저에서 열어주세요.</string>
     <string name="compare">비교</string>
 
     <string name="unread">읽지 않음</string>
@@ -275,7 +275,7 @@
 
     <string name="openhub_wishes">OpenHub의 부탁</string>
     <string name="star_wishes" formatted="false">
-        안녕하세요 %s님, OpenHub을 %dth일 간 사용하셨고,
+        안녕하세요 %s님, OpenHub을 %d일 간 사용하셨고,
         사용해주셔서 감사드리며, 더욱 편리한 GitHub 앱이 될 수 있도록 노력하겠습니다.
         \n\n저에게 star를 주신다면, 정말 감사하겠습니다!
     </string>
@@ -315,44 +315,44 @@
 
     <string name="tips">팁</string>
     <string name="activity_click_tip">
-        기본 페이지를 보려면 한 번 터치하거나, 길게 눌러서 볼 수 있는 페이지를 모두 확인할 수 있습니다.
+        눌러서 기본 페이지, 길게 터치해서 모든 페이지를 확인할 수 있습니다.
     </string>
-    <string name="double_click_toolbar_tip">제목을 두 번 터치해서 목록으로 돌아갈 수 있습니다.</string>
-    <string name="releases_click_tip">길게 클릭해서 다운로드가 가능한지 볼 수 있습니다.</string>
+    <string name="double_click_toolbar_tip">두 번 누르면 목록으로 바로 갈 수 있습니다.</string>
+    <string name="releases_click_tip">길게 누르면 다운로드 가능한지 확인할 수 있습니다.</string>
 
-    <string name="created_comment_on_commit">%s 커밋 댓글 생성됨</string>
-    <string name="created_comment_on_issue">>%s의 %d 이슈에 댓글 생성됨</string>
-    <string name="created_repo">%s 리포지토리 생성됨</string>
-    <string name="forked_to">%s에서 %s로 포크됨</string>
+    <string name="created_comment_on_commit">%s의 커밋에 댓글이 달림</string>
+    <string name="created_comment_on_issue">이슈 %d의 댓글이 %s에서 달림</string>
+    <string name="created_repo">리포지토리 %s 생성</string>
+    <string name="forked_to">%s를 %s로 포크함</string>
     <string name="starred_repo">%s에 스타를 줌</string>
-    <string name="push_to">%s에서 %s로 푸시</string>
-    <string name="created_tag_at">%s에서 %s 태그 생성됨</string>
-    <string name="created_branch_at">%s에서 %s 브랜치 생성됨</string>
-    <string name="delete_tag_at">%s에서 %s 태그 삭제</string>
-    <string name="delete_branch_at">%s에서 %s 브랜치 삭제</string>
-    <string name="published_release_at">%s에서 %s 릴리즈 공개됨</string>
-    <string name="opened_issue_at">%s에서 %d 이슈 열림</string>
-    <string name="closed_issue_at">%s에서 %d 브랜치 닫음</string>
-    <string name="reopened_issue_at">%s에서 %d 이슈 다시 열림</string>
-    <string name="edited_issue_at">%s에서 %d 이슈 수정됨</string>
-    <string name="assigned_issue_at">%s에서 %d 이슈 할당됨</string>
-    <string name="unassigned_issue_at">%s에서 %d 이슈 할당 취소됨</string>
-    <string name="labeled_issue_at">%s에서 %d 이슈 라벨 표시됨</string>
-    <string name="unlabeled_issue_at">%s에서 %d 이슈 라벨 취소됨</string>
-    <string name="milestoned_issue_at">%s에서 %d 이슈 마일스톤 설정됨</string>
-    <string name="demilestoned_issue_at">%s에서 %d 이슈 마일스톤 설정 취소됨</string>
-    <string name="added_member_to">%s에서 %s 맴버 추가됨</string>
-    <string name="deleted_member_at">%s에서 %s 맴버 삭제됨</string>
-    <string name="edited_member_at">%s에서 %s 맴버 수정됨</string>
-    <string name="made_repo_public">%s 공개로 전환</string>
-    <string name="org_blocked_user">%s 그룹에서 %s 사용자 차단됨</string>
-    <string name="org_unblocked_user">%s 그룹에서 %s 사용자 차단 취소됨</string>
-    <string name="created_pull_request_comment_at">%s 풀 리퀘스트 리뷰 댓글 생성됨</string>
-    <string name="deleted_pull_request_comment_at">%s 풀 리퀘스트 리뷰 댓글 삭제됨</string>
-    <string name="edited_pull_request_comment_at">%s 풀 요청 리뷰 수정됨</string>
-    <string name="submitted_pull_request_review_at">%s 풀 요청 리뷰 제출됨</string>
-    <string name="edited_pull_request_review_at">%s 풀 요청 리뷰 수정됨</string>
-    <string name="dismissed_pull_request_review_at">%s 풀 요청 리뷰 검토 취소됨</string>
+    <string name="push_to">%s이(가) %s에 푸시됨</string>
+    <string name="created_tag_at">태그 %s이(가) %s에서 생성됨</string>
+    <string name="created_branch_at">브랜치 %s이(가) %s에서 삭제됨</string>
+    <string name="delete_tag_at">태그 %s이(가) %s에서 삭제됨</string>
+    <string name="delete_branch_at">브랜치 %s이(가) %s 리포지토리에서 삭제됨</string>
+    <string name="published_release_at">릴리즈 %s이(가) %s에서 공개됨</string>
+    <string name="opened_issue_at">이슈 %d이(가) %s에서 열림</string>
+    <string name="closed_issue_at">이슈 %d이(가) %s에서 닫힘</string>
+    <string name="reopened_issue_at">이슈 %d이(가) %s에서 다시 열림</string>
+    <string name="edited_issue_at">이슈 %d이(가) %s에서 수정됨</string>
+    <string name="assigned_issue_at">이슈 %d이(가) %s에서 할당됨</string>
+    <string name="unassigned_issue_at">이슈 %d이(가) %s에서 할당 취소됨</string>
+    <string name="labeled_issue_at">이슈 %d이(가) %s에서 라벨됨</string>
+    <string name="unlabeled_issue_at">이슈 %d이(가) %s에서 라벨 취소됨</string>
+    <string name="milestoned_issue_at">이슈 %d이(가) %s에서 마일스톤됨</string>
+    <string name="demilestoned_issue_at">이슈 %d이(가) %s에서 마일스톤 취소됨</string>
+    <string name="added_member_to">맴버 %s이(가) %s에 추가됨</string>
+    <string name="deleted_member_at">맴버 %s이(가) %s에서 삭제됨</string>
+    <string name="edited_member_at">맴버 %s이(가) %s에서 수정됨</string>
+    <string name="made_repo_public">%s 공개하기</string>
+    <string name="org_blocked_user">그룹 %s이(가) 사용자 %s 차단함</string>
+    <string name="org_unblocked_user">그룹 %s이(가) 사용자 %s 차단 취소함</string>
+    <string name="created_pull_request_comment_at">%s에서 풀 리퀘스트 리뷰 댓글 생성됨</string>
+    <string name="deleted_pull_request_comment_at">%s에서 풀 리퀘스트 리뷰 댓글 삭제됨</string>
+    <string name="edited_pull_request_comment_at">%s에서 풀 리퀘스트 리뷰 댓글 수정됨</string>
+    <string name="submitted_pull_request_review_at">%s에서 풀 리퀘스트 리뷰 통과됨</string>
+    <string name="edited_pull_request_review_at">%s에서 풀 리퀘스트 리뷰 수정됨</string>
+    <string name="dismissed_pull_request_review_at">%s에서 풀 리퀘스트 리뷰 거부됨</string>
 
     <string name="undo">되돌리기</string>
     <string name="no_bookmarks">북마크 없음</string>
@@ -365,7 +365,7 @@
     <string name="choose_languages">언어 선택</string>
     <string name="language_removed">언어 %s 삭제됨</string>
     <string name="no_choose_language_warning">최소 하나 이상의 언어를 선택해주세요!</string>
-    <string name="languages_editor_tip">좌우로 밀어서 삭제할 수 있고, 길게 눌러서 분류를 드래그 할 수 있습니다.</string>
+    <string name="languages_editor_tip">좌우로 밀어서 삭제하고, 길게 눌러서 분류를 이동시킬 수 있습니다.</string>
     <string name="fullscreen">전체 화면</string>
 
     <string name="public_news">전체 소식</string>
@@ -376,8 +376,8 @@
     <string name="no_repo_collections">리포지토리 모음 없음</string>
     <string name="collections_tip">성장하는 산업, 주제 및 커뮤니티에 대한 선정된 목록과 인사이트입니다.</string>
     <string name="gitHub_page_parse_error">
-        %s 페이지 파싱 오류가 발생했고, 이 페이지를 GitHub가 수정했을 수도 있기 때문에,
-        애플리케이션을 업데이트하고, 그래도 오류가 계속 발생한다면, 이 문제를 해결할 수 있도록 알려주세요!
+        %s 페이지 파싱 오류가 발생했으며, 페이지가 GitHub에 의해 수정될 수도 있기 때문에,
+        애플리케이션을 업데이트하고, 그럼에도 불구하고 오류가 계속 발생한다면, 이 문제를 해결할 수 있도록 저희에게 알려주세요!
     </string>
 
     <string name="bookmarks_tip">좌우로 밀어서 북마크를 삭제할 수 있습니다.</string>
@@ -392,7 +392,7 @@
     <string name="star_num_today">오늘 %s개의 스타</string>
     <string name="star_num_this_week">이번 주 %s개의 스타</string>
     <string name="star_num_this_month">이번 달 %s개의 스타</string>
-    <string name="no_trending_repos">%s에 대한 유행하는 리포지토리가 없습니다.</string>
+    <string name="no_trending_repos">%s 에 대한 유행하는 리포지토리가 없습니다.</string>
 
     <string name="all_languages">모든 언어</string>
     <string name="unknown_languages">알 수 없는 언어</string>
@@ -424,14 +424,14 @@
     <string name="issue_locked_conversation">커밋 기여자들과의 대화가 잠기고 제한됨</string>
     <string name="issue_unlocked_conversation">대화 잠김 해제됨</string>
     <string name="issue_delete_comment">댓글 삭제</string>
-    <string name="issue_referenced">%s에서 이슈 참고함</string>
-    <string name="issue_assigned">%s에게 이슈 할당됨</string>
+    <string name="issue_referenced">%s 에서 이슈 참고함</string>
+    <string name="issue_assigned">%s 에게 이슈 할당됨</string>
     <string name="issue_unassigned">이슈 할당 삭제됨</string>
 
     <string name="disable_loading_image">데이터 이미지 불러오기 끄기</string>
     <string name="disable_loading_image_desc">모바일 네트워크에서 이미지 불러오기 끄기</string>
 
-    <string name="toggle_issue_warning">정말로 이슈에 %s를 수행하시겠습니까?</string>
+    <string name="toggle_issue_warning">정말로 이슈에 %s 를 수행하시겠습니까?</string>
 
     <string name="add_account">계정 추가</string>
     <string name="delete_label_warning">정말로 라벨을 삭제하시겠습니까?</string>
