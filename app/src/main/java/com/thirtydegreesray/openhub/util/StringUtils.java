@@ -75,6 +75,7 @@ public class StringUtils {
         DATE_REGEX_MAP.put(Locale.ENGLISH, "MMM d, yyyy");
         DATE_REGEX_MAP.put(Locale.GERMAN, "dd.MM.yyyy");
         DATE_REGEX_MAP.put(Locale.GERMANY, "dd.MM.yyyy");
+        DATE_REGEX_MAP.put(Locale.KOREAN, "yyyy-MM-dd");
     }
 
     public static String getDateStr(@NonNull Date date){
