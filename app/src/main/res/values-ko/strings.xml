@@ -363,7 +363,7 @@
 
     <string name="my_languages">내 언어</string>
     <string name="choose_languages">언어 선택</string>
-    <string name="language_removed">언어 %s 삭제됨</string>
+    <string name="language_removed">%s 언어 삭제됨</string>
     <string name="no_choose_language_warning">최소 하나 이상의 언어를 선택해주세요!</string>
     <string name="languages_editor_tip">좌우로 밀어서 삭제하고, 길게 눌러서 분류를 이동시킬 수 있습니다.</string>
     <string name="fullscreen">전체 화면</string>
@@ -392,7 +392,7 @@
     <string name="star_num_today">오늘 %s개의 스타</string>
     <string name="star_num_this_week">이번 주 %s개의 스타</string>
     <string name="star_num_this_month">이번 달 %s개의 스타</string>
-    <string name="no_trending_repos">%s 에 대한 유행하는 리포지토리가 없습니다.</string>
+    <string name="no_trending_repos">%s에 대한 유행하는 리포지토리가 없습니다.</string>
 
     <string name="all_languages">모든 언어</string>
     <string name="unknown_languages">알 수 없는 언어</string>
@@ -424,14 +424,14 @@
     <string name="issue_locked_conversation">커밋 기여자들과의 대화가 잠기고 제한됨</string>
     <string name="issue_unlocked_conversation">대화 잠김 해제됨</string>
     <string name="issue_delete_comment">댓글 삭제</string>
-    <string name="issue_referenced">%s 에서 이슈 참고함</string>
-    <string name="issue_assigned">%s 에게 이슈 할당됨</string>
+    <string name="issue_referenced">%s에서 이슈 참고됨</string>
+    <string name="issue_assigned">%s에게 이슈 할당됨</string>
     <string name="issue_unassigned">이슈 할당 삭제됨</string>
 
     <string name="disable_loading_image">데이터 이미지 불러오기 끄기</string>
     <string name="disable_loading_image_desc">모바일 네트워크에서 이미지 불러오기 끄기</string>
 
-    <string name="toggle_issue_warning">정말로 이슈에 %s 를 수행하시겠습니까?</string>
+    <string name="toggle_issue_warning">정말로 이슈에 %s를 수행하시겠습니까?</string>
 
     <string name="add_account">계정 추가</string>
     <string name="delete_label_warning">정말로 라벨을 삭제하시겠습니까?</string>
