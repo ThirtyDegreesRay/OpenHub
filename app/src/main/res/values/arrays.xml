@@ -6,6 +6,7 @@
         <item >עִברִית</item>
         <item >Deutsch</item>
 	    <item >Hindi</item>
+        <item >한국어</item>
     </array>
     <array name="language_id_array">
         <item >en</item>
@@ -13,6 +14,7 @@
         <item >iw</item>
         <item >de</item>
 	    <item >hi</item>
+        <item >ko</item>
     </array>
 
     <array name="accent_color_array">
