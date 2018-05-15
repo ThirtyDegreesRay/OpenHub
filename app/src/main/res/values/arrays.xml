@@ -5,6 +5,7 @@
         <item >简体中文</item>
         <item >עִברִית</item>
         <item >Deutsch</item>
+        <item >한국어</item>
 	    <item >Hindi</item>
     </array>
     <array name="language_id_array">
@@ -12,6 +13,7 @@
         <item >zh-rCN</item>
         <item >iw</item>
         <item >de</item>
+	<item >ko</item>
 	    <item >hi</item>
     </array>
 
