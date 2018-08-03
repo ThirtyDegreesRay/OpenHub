@@ -23,12 +23,12 @@
     <string name="deep_purple" translatable="false">Deep Purple</string>
 
     <!-- onLoginClick -->
-    <string name="user_name">UserName</string>
+    <string name="user_name">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="login_in_browser">LOGIN IN BROWSER</string>
+    <string name="login_in_browser">LOGIN WITH BROWSER</string>
     <string name="oauth_tip">Login using your default browser(OAuth)</string>
-    <string name="user_name_warning">Invalid user name!</string>
+    <string name="user_name_warning">Invalid username!</string>
     <string name="password_warning">Invalid password!</string>
 
     <!-- menu -->
@@ -53,8 +53,8 @@
     <string name="no_cache_and_network">Network and cache is unavailable.</string>
     <string name="page_no_found">Page not found.</string>
     <string name="unauthorized">Unauthorized.</string>
-    <string name="no_network_tip">Loading the data from GitHub failed.Please check your network connection and retry.</string>
-    <string name="load_timeout_tip">Loading the data from GitHub timeout.Please check your network connection and retry.</string>
+    <string name="no_network_tip">Loading data from GitHub failed. Please check your network connection and retry.</string>
+    <string name="load_timeout_tip">Loading data from GitHub timed out. Please check your network connection and retry.</string>
     <string name="tap_to_retry">Tap to retry</string>
     <string name="no_data">No data</string>
 
@@ -176,7 +176,7 @@
     <string name="weekly">Weekly</string>
     <string name="monthly">Monthly</string>
 
-    <string name="logout_warning">Confirm to logout ?</string>
+    <string name="logout_warning">Confirm to logout?</string>
     <string name="unknown">Unknown</string>
     <string name="organizations">Organizations</string>
     <string name="no_user">No users</string>
@@ -292,8 +292,8 @@
     <string name="no_commits">No commits</string>
     <string name="committed">Committed</string>
     <string name="view_file">View file</string>
-    <string name="failed_to_recognize">Failed to recognize the github url, please open in browser after long press copied.</string>
-    <string name="failed_to_open_url">Failed to open the url, please open in browser after long press copied.</string>
+    <string name="failed_to_recognize">Failed to recognize the GitHub URL, please open in browser after long press copied.</string>
+    <string name="failed_to_open_url">Failed to open the URL, please open in browser after long press copied.</string>
     <string name="compare">Compare view</string>
 
     <string name="unread">Unread</string>
