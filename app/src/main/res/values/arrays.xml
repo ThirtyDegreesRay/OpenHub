@@ -1,45 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="language_array">
-        <item >English</item>
-        <item >简体中文</item>
-        <item >עִברִית</item>
-        <item >Deutsch</item>
-        <item >Hindi</item>
-        <item >Português</item>
+        <item>English</item>
+        <item>简体中文</item>
+        <item>עִברִית</item>
+        <item>Deutsch</item>
+        <item>Hindi</item>
+        <item>Português</item>
+        <item>한국어</item>
     </array>
     <array name="language_id_array">
-        <item >en</item>
-        <item >zh-rCN</item>
-        <item >iw</item>
-        <item >de</item>
-        <item >hi</item>
-        <item >pt-rPT</item>
+        <item>en</item>
+        <item>zh-rCN</item>
+        <item>iw</item>
+        <item>de</item>
+        <item>hi</item>
+        <item>pt-rPT</item>
+        <item>ko</item>
     </array>
 
     <array name="accent_color_array">
-        <item >@color/material_light_blue_accent_700</item>
-        <item >@color/material_blue_accent_700</item>
-        <item >@color/material_indigo_accent_700</item>
-        <item >@color/material_orange_accent_700</item>
-        <item >@color/material_yellow_accent_700</item>
-        <item >@color/material_amber_accent_700</item>
-        <item >@color/material_grey_700</item>
-        <item >@color/material_brown_700</item>
-        <item >@color/material_cyan_accent_700</item>
-        <item >@color/material_teal_accent_700</item>
-        <item >@color/material_lime_accent_700</item>
-        <item >@color/material_green_accent_700</item>
-        <item >@color/material_pink_accent_700</item>
-        <item >@color/material_red_accent_700</item>
-        <item >@color/material_purple_accent_700</item>
-        <item >@color/material_deep_purple_accent_700</item>
+        <item>@color/material_light_blue_accent_700</item>
+        <item>@color/material_blue_accent_700</item>
+        <item>@color/material_indigo_accent_700</item>
+        <item>@color/material_orange_accent_700</item>
+        <item>@color/material_yellow_accent_700</item>
+        <item>@color/material_amber_accent_700</item>
+        <item>@color/material_grey_700</item>
+        <item>@color/material_brown_700</item>
+        <item>@color/material_cyan_accent_700</item>
+        <item>@color/material_teal_accent_700</item>
+        <item>@color/material_lime_accent_700</item>
+        <item>@color/material_green_accent_700</item>
+        <item>@color/material_pink_accent_700</item>
+        <item>@color/material_red_accent_700</item>
+        <item>@color/material_purple_accent_700</item>
+        <item>@color/material_deep_purple_accent_700</item>
     </array>
 
     <array name="theme_array">
-        <item >Light teal</item>
-        <item >Light indigo</item>
-        <item >Dark</item>
+        <item>Light teal</item>
+        <item>Light indigo</item>
+        <item>Dark</item>
     </array>
 
     <string name="trending_languages" translatable="false">
