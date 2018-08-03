@@ -86,14 +86,11 @@ public class AppUtils {
     @NonNull
     public static Locale getLocale(String language) {
         Locale locale;
-        if (language.equalsIgnoreCase("zh-rCN")) {
-            return Locale.SIMPLIFIED_CHINESE;
-        } else if (language.equalsIgnoreCase("zh-rTW")) {
-            return Locale.TRADITIONAL_CHINESE;
-        }
         String[] array = language.split("-");
         if (array.length > 1) {
-            locale = new Locale(array[0], array[1]);
+            //zh-rCN, zh-rTW", pt-rPT, etc... remove the 'r'
+            String country =  array[1].replaceFirst("r", "");
+            locale = new Locale(array[0], country);
         } else {
             locale = new Locale(language);
         }
