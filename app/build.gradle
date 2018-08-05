@@ -96,80 +96,80 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testCompile 'junit:junit:4.12'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
+        exclude group: 'com.android.support', module: 'support-annotations' })
 
-//    compile "com.android.support:support-annotations:${ANDROID_SUPPORT_VERSION}"
+    testImplementation 'junit:junit:4.12'
 
-    compile "com.android.support:support-v4:${ANDROID_SUPPORT_VERSION}"
-//    compile "com.android.support:support-v13:${ANDROID_SUPPORT_VERSION}"
-    compile "com.android.support:appcompat-v7:${ANDROID_SUPPORT_VERSION}"
-    compile "com.android.support:recyclerview-v7:${ANDROID_SUPPORT_VERSION}"
-    compile "com.android.support:design:${ANDROID_SUPPORT_VERSION}"
-    compile "com.android.support:cardview-v7:${ANDROID_SUPPORT_VERSION}"
-    compile "com.android.support:support-vector-drawable:${ANDROID_SUPPORT_VERSION}"
-    compile "com.android.support:preference-v7:${ANDROID_SUPPORT_VERSION}"
-    compile "com.android.support:preference-v14:${ANDROID_SUPPORT_VERSION}"
-    compile "com.android.support:customtabs:${ANDROID_SUPPORT_VERSION}"
+//    implementation "com.android.support:support-annotations:${ANDROID_SUPPORT_VERSION}"
 
-    compile "com.android.support.constraint:constraint-layout:${CONSTRAINT_VERSION}"
-//    compile "com.android.support:multidex:${MULTIDEX_VERSION}"
+    implementation "com.android.support:support-v4:${ANDROID_SUPPORT_VERSION}"
+//    implementation "com.android.support:support-v13:${ANDROID_SUPPORT_VERSION}"
+    implementation "com.android.support:appcompat-v7:${ANDROID_SUPPORT_VERSION}"
+    implementation "com.android.support:recyclerview-v7:${ANDROID_SUPPORT_VERSION}"
+    implementation "com.android.support:design:${ANDROID_SUPPORT_VERSION}"
+    implementation "com.android.support:cardview-v7:${ANDROID_SUPPORT_VERSION}"
+    implementation "com.android.support:support-vector-drawable:${ANDROID_SUPPORT_VERSION}"
+    implementation "com.android.support:preference-v7:${ANDROID_SUPPORT_VERSION}"
+    implementation "com.android.support:preference-v14:${ANDROID_SUPPORT_VERSION}"
+    implementation "com.android.support:customtabs:${ANDROID_SUPPORT_VERSION}"
 
-    compile "com.thirtydegreesray:dataautoaccess:${DATAAUTOACCESS_VERSION}"
+    implementation "com.android.support.constraint:constraint-layout:${CONSTRAINT_VERSION}"
+//    implementation "com.android.support:multidex:${MULTIDEX_VERSION}"
+
+    implementation "com.thirtydegreesray:dataautoaccess:${DATAAUTOACCESS_VERSION}"
     annotationProcessor "com.thirtydegreesray:dataautoaccess-compiler:${DATAAUTOACCESS_VERSION}"
 
-    compile "com.jakewharton:butterknife:${BUTTERKNIFE_VERSION}"
+    implementation "com.jakewharton:butterknife:${BUTTERKNIFE_VERSION}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_VERSION}"
 
     //数据库工具
-    compile "org.greenrobot:greendao:${GREEN_DAO_VERSION}"
+    implementation "org.greenrobot:greendao:${GREEN_DAO_VERSION}"
     //事件总线
-    compile "org.greenrobot:eventbus:${EVENT_BUS_VERSION}"
+    implementation "org.greenrobot:eventbus:${EVENT_BUS_VERSION}"
     //文件下载
 
     //RxJava
-    compile "io.reactivex:rxjava:${RXJAVA_VERSION}"
-    compile "io.reactivex:rxandroid:${RXJAVA_VERSION}"
+    implementation "io.reactivex:rxjava:${RXJAVA_VERSION}"
+    implementation "io.reactivex:rxandroid:${RXJAVA_VERSION}"
 
     //Type-safe HTTP client for Android and Java by Square, Inc.
-    compile "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
-    compile "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
-    compile "com.squareup.retrofit2:adapter-rxjava:${RETROFIT_VERSION}"
-    compile ("com.squareup.retrofit2:converter-simplexml:${RETROFIT_VERSION}"){
+    implementation "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
+    implementation "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
+    implementation "com.squareup.retrofit2:adapter-rxjava:${RETROFIT_VERSION}"
+    implementation ("com.squareup.retrofit2:converter-simplexml:${RETROFIT_VERSION}"){
         exclude group: 'xpp3', module: 'xpp3'
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'stax', module: 'stax'
     }
 
     //dagger依赖注入
-    compile "com.google.dagger:dagger:${DAGGER_VERSION}"
+    implementation "com.google.dagger:dagger:${DAGGER_VERSION}"
     annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
 
-    compile "com.tbruyelle.rxpermissions:rxpermissions:${RX_PERMISSION_VERSION}"
+    implementation "com.tbruyelle.rxpermissions:rxpermissions:${RX_PERMISSION_VERSION}"
 
-    compile "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
+    implementation "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
     annotationProcessor "com.github.bumptech.glide:compiler:${GLIDE_VERSION}"
 
-//    compile "com.makeramen:roundedimageview:${ROUNDED_IMAGEVIEW_VERSION}"
-    compile "de.hdodenhof:circleimageview:${CIRCLE_IMAGEVIEW_VERSION}"
+//    implementation "com.makeramen:roundedimageview:${ROUNDED_IMAGEVIEW_VERSION}"
+    implementation "de.hdodenhof:circleimageview:${CIRCLE_IMAGEVIEW_VERSION}"
 
-    compile "com.github.GrenderG:Toasty:${TOASTY_VERSION}"
-    compile "com.github.daniel-stoneuk:material-about-library:${MATERIAL_ABOUT_VERSION}"
-    compile "com.unstoppable:submitbutton:${SUBMIT_BUTTON_VERSION}"
+    implementation "com.github.GrenderG:Toasty:${TOASTY_VERSION}"
+    implementation "com.github.daniel-stoneuk:material-about-library:${MATERIAL_ABOUT_VERSION}"
+    implementation "com.unstoppable:submitbutton:${SUBMIT_BUTTON_VERSION}"
 
-    compile "com.afollestad.material-dialogs:core:${MATERIAL_DIALOG_VERSION}"
-    compile "com.afollestad.material-dialogs:commons:${MATERIAL_DIALOG_VERSION}"
+    implementation "com.afollestad.material-dialogs:core:${MATERIAL_DIALOG_VERSION}"
+    implementation "com.afollestad.material-dialogs:commons:${MATERIAL_DIALOG_VERSION}"
 
-    compile (name: 'bugly_crashreport_upgrade-1.3.4', ext: 'aar')
-    compile "com.tencent.bugly:nativecrashreport:${BUGGLY_NATIVE_VERSION}"
-    compile "com.zzhoujay.richtext:richtext:${RICKTEXT_VERSION}"
-    compile 'com.zzhoujay.glideimagegetter:glideimagegetter:1.0.5'
+    implementation (name: 'bugly_crashreport_upgrade-1.3.5', ext: 'aar')
+    implementation "com.tencent.bugly:nativecrashreport:${BUGGLY_NATIVE_VERSION}"
+    implementation "com.zzhoujay.richtext:richtext:${RICKTEXT_VERSION}"
+    implementation 'com.zzhoujay.glideimagegetter:glideimagegetter:1.0.5'
 
-    compile "com.orhanobut:logger:${LOGGER_VERSION}"
-    compile "com.timehop.stickyheadersrecyclerview:library:${STICKY_HEAD_VERSION}"
+    implementation "com.orhanobut:logger:${LOGGER_VERSION}"
+    implementation "com.timehop.stickyheadersrecyclerview:library:${STICKY_HEAD_VERSION}"
 
-    compile "org.jsoup:jsoup:${JSOUP_VERSION}"
+    implementation "org.jsoup:jsoup:${JSOUP_VERSION}"
 }
