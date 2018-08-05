@@ -1,5 +1,3 @@
-
-
 package com.thirtydegreesray.openhub;
 
 import android.app.Application;
@@ -66,14 +64,14 @@ public class AppApplication extends Application {
 
     }
 
-    private void initLogger(){
+    private void initLogger() {
         PrettyFormatStrategy strategy = PrettyFormatStrategy.newBuilder()
                         .showThreadInfo(false)
                         .methodCount(0)
                         .methodOffset(0)
                         .tag("OpenHub_Logger")
                         .build();
-        Logger.addLogAdapter(new AndroidLogAdapter(strategy){
+        Logger.addLogAdapter(new AndroidLogAdapter(strategy) {
             @Override
             public boolean isLoggable(int priority, String tag) {
                 return BuildConfig.DEBUG;
@@ -86,7 +84,7 @@ public class AppApplication extends Application {
         });
     }
 
-    private void initBugly(){
+    private void initBugly() {
 
         Beta.initDelay = 6 * 1000;
         Beta.enableHotfix = false;
@@ -104,7 +102,7 @@ public class AppApplication extends Application {
 
     }
 
-    private void initNetwork(){
+    private void initNetwork() {
         NetBroadcastReceiver receiver = new NetBroadcastReceiver();
         IntentFilter filter;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -118,15 +116,15 @@ public class AppApplication extends Application {
         NetHelper.INSTANCE.init(this);
     }
 
-    public static AppApplication get(){
+    public static AppApplication get() {
         return application;
     }
 
-    public AppComponent getAppComponent(){
+    public AppComponent getAppComponent() {
         return mAppComponent;
     }
 
-    private String getAppChannel(){
+    private String getAppChannel() {
         String channel = "normal";
         try {
             ApplicationInfo applicationInfo = getPackageManager()
@@ -137,5 +135,4 @@ public class AppApplication extends Application {
         }
         return channel;
     }
-
 }
