@@ -1,5 +1,3 @@
-
-
 package com.thirtydegreesray.openhub;
 
 import android.support.annotation.Nullable;
@@ -10,11 +8,7 @@ import com.thirtydegreesray.openhub.mvp.model.User;
 
 import java.util.Locale;
 
-/**
- * Created on 2017/7/14.
- *
- * @author ThirtyDegreesRay
- */
+/* Created on 2017/7/14. @author ThirtyDegreesRay */
 
 public enum  AppData {
     INSTANCE;
@@ -44,7 +38,7 @@ public enum  AppData {
     }
 
     public Locale getSystemDefaultLocal() {
-        if(systemDefaultLocal == null){
+        if(systemDefaultLocal == null) {
             systemDefaultLocal = Locale.getDefault();
         }
         return systemDefaultLocal;
