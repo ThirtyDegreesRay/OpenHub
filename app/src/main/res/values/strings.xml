@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <string name="app_github_name" translatable="false">OpenHub</string>
     <string name="navigation_drawer_open" translatable="false">navigation_drawer_open</string>
@@ -27,7 +28,7 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="login_in_browser">LOGIN WITH BROWSER</string>
-    <string name="oauth_tip">Login using your default browser(OAuth)</string>
+    <string name="oauth_tip">Login using your default browser (OAuth)</string>
     <string name="user_name_warning">Invalid username!</string>
     <string name="password_warning">Invalid password!</string>
 
@@ -53,7 +54,7 @@
     <string name="no_cache_and_network">Network and cache is unavailable.</string>
     <string name="page_no_found">Page not found.</string>
     <string name="unauthorized">Unauthorized.</string>
-    <string name="no_network_tip">Loading data from GitHub failed. Please check your network connection and retry.</string>
+    <string name="no_network_tip">Failed to load data from GitHub. Please check your network connection and retry.</string>
     <string name="load_timeout_tip">Loading data from GitHub timed out. Please check your network connection and retry.</string>
     <string name="tap_to_retry">Tap to retry</string>
     <string name="no_data">No data</string>
@@ -68,11 +69,11 @@
     <string name="theme_accent_color">Theme Accent Color</string>
     <string name="start_page">Start Page</string>
     <string name="cache_controller">Cache Controller</string>
-    <string name="cache_controller_desc">Load cache first if cache available, then load from network</string>
+    <string name="cache_controller_desc">Load cache first if cache is available, then load from network.</string>
     <string name="use_system_downloader">Use System Downloader</string>
     <string name="use_custom_tabs">Use Custom Tabs</string>
-    <string name="custom_tabs_desc">Open in custom tabs instead of outer browser(support chrome, firefox…)</string>
-    <string name="use_custom_tabs_tips">If you want to open in outer browser directly, you could change in settings.</string>
+    <string name="custom_tabs_desc">Open in custom tabs instead of outer browser (supports chrome, firefox, etc…)</string>
+    <string name="use_custom_tabs_tips">If you want to open in outer browser directly, you could change that in settings.</string>
     <string name="language">Language</string>
     <string name="logout">Logout</string>
 
@@ -108,7 +109,7 @@
     <string name="forks">Forks</string>
     <string name="watchers">Watchers</string>
     <string name="readme">README</string>
-    <string name="no_readme">NO README</string>
+    <string name="no_readme">No README</string>
     <string name="warning_dialog_tile">Warning</string>
     <string name="cancel">Cancel</string>
     <string name="close">Close</string>
@@ -176,7 +177,7 @@
     <string name="weekly">Weekly</string>
     <string name="monthly">Monthly</string>
 
-    <string name="logout_warning">Confirm to logout?</string>
+    <string name="logout_warning">Logout?</string>
     <string name="unknown">Unknown</string>
     <string name="organizations">Organizations</string>
     <string name="no_user">No users</string>
@@ -184,18 +185,18 @@
     <string name="no_repository">No repositories</string>
     <string name="no_file">No files</string>
     <string name="developing">Developing</string>
-    <string name="version" >Version</string>
-    <string name="source_code" >Source code</string>
-    <string name="source_code_wishes" >Star to support me</string>
-    <string name="rate_in_market" >Rate or comment in market</string>
-    <string name="author" >Author</string>
+    <string name="version">Version</string>
+    <string name="source_code">Source code</string>
+    <string name="source_code_wishes">Star to support me</string>
+    <string name="rate_in_market">Rate or comment in market</string>
+    <string name="author">Author</string>
     <string name="author_name" translatable="false">30度的射线</string>
-    <string name="author_location" translatable="false">NanJing,China</string>
+    <string name="author_location" translatable="false">Nanjing, China</string>
     <string name="author_login_id" translatable="false">ThirtyDegreesRay</string>
     <string name="author_avatar_url" translatable="false">https://avatars1.githubusercontent.com/u/9625508?v=4</string>
     <string name="app_copyright" translatable="false">© 2017 ThirtyDegreesRay</string>
     <string name="follow_on_github" >Follow on GitHub</string>
-    <string name="email" >Email</string>
+    <string name="email">Email</string>
     <string name="auth_email_address" translatable="false">rays.yuz@gmail.com</string>
     <string name="loading">loading</string>
 
@@ -207,7 +208,7 @@
     <string name="publish_time">Publish time:</string>
     <string name="upgrade_info">Upgrade info:</string>
     <string name="no_upgrade_tip">You have installed the latest version.</string>
-    <string name="fork_failed">Fork failed</string>
+    <string name="fork_failed">Fork failed.</string>
 
     <string name="filter">Filter</string>
 
@@ -218,7 +219,7 @@
     <string name="download_source_zip">Download source (zip)</string>
     <string name="download_source_tar">Download source (tar.gz)</string>
     <string name="released_this">released this</string>
-    <string name="on">on</string>
+    <string name="on">On</string>
     <string name="download">Download</string>
     <string name="download_complete">Download complete</string>
     <string name="download_failed">Download failed</string>
@@ -226,8 +227,8 @@
     <string name="download_empty_tip">Url or file name is empty!</string>
     <string name="download_start">Download start</string>
     <string name="download_cancel">Download cancel</string>
-    <string name="permission_storage_denied">Permission denied, please allow storage permission.</string>
-    <string name="enable_download_service_tip">Please enable download service first!</string>
+    <string name="permission_storage_denied">Permission denied; please allow storage permission.</string>
+    <string name="enable_download_service_tip">Please enable the download service first.</string>
 
     <string name="open">Open</string>
     <string name="closed">Closed</string>
@@ -257,11 +258,11 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="comment_null_warning">Comment is null!</string>
-    <string name="comment_success">Comment success</string>
-    <string name="delete_comment_warning">Confirm to delete comment?</string>
+    <string name="comment_success">Comment successful</string>
+    <string name="delete_comment_warning">Delete comment?</string>
     <string name="reopen">Reopen</string>
-    <string name="reopen_success">Reopen success</string>
-    <string name="close_success">Close success</string>
+    <string name="reopen_success">Reopen successful</string>
+    <string name="close_success">Close successful</string>
 
     <string name="add_large_header">Add large header</string>
     <string name="add_medium_header">Add medium header</string>
@@ -283,7 +284,7 @@
     <string name="forked_at">Forked at</string>
     <string name="latest_update">Latest update</string>
     <string name="latest_commit">Latest commit</string>
-    <string name="issue_title_null_tip">Issue title can not be null.</string>
+    <string name="issue_title_null_tip">Issue title cannot be null.</string>
     <string name="edit_issue">Edit issue</string>
     <string name="create_issue">Create issue</string>
     <string name="edit_issue_success">Edit issue success</string>
@@ -292,8 +293,8 @@
     <string name="no_commits">No commits</string>
     <string name="committed">Committed</string>
     <string name="view_file">View file</string>
-    <string name="failed_to_recognize">Failed to recognize the GitHub URL, please open in browser after long press copied.</string>
-    <string name="failed_to_open_url">Failed to open the URL, please open in browser after long press copied.</string>
+    <string name="failed_to_recognize">Failed to recognize the GitHub URL; please open in a browser after long pressing to copy.</string>
+    <string name="failed_to_open_url">Failed to open the URL; please open in a browser after long pressing to copy.</string>
     <string name="compare">Compare view</string>
 
     <string name="unread">Unread</string>
@@ -305,9 +306,9 @@
 
     <string name="openhub_wishes">Wishes From OpenHub</string>
     <string name="star_wishes" formatted="false">
-        Hi %s, today is your %dth day at OpenHub,
-        thanks for your using, I will strive to become a more convenient GitHub app for you.
-        \n\nIf you can star to support me, it would be awesome!
+        Hi %s, today is your %dth day using OpenHub.
+        Thanks for using! I will strive to make it a more convenient GitHub app for you.
+        \n\nIf you could star the project to support it, that would be awesome!
     </string>
     <string name="star_thanks">Thank you for your support!</string>
     <string name="star_me">Star me</string>
@@ -347,7 +348,7 @@
     <string name="activity_click_tip">
         You can single click item to view default page, or long click item to view available pages.
     </string>
-    <string name="double_click_toolbar_tip">You can double click title to back top in list page.</string>
+    <string name="double_click_toolbar_tip">You can double click title to go back to the top in list page.</string>
     <string name="releases_click_tip">You can long click item to view available downloads.</string>
 
     <string name="created_comment_on_commit">Created comment on commit in %s</string>
@@ -395,7 +396,7 @@
     <string name="choose_languages">Choose languages</string>
     <string name="language_removed">Language %s removed</string>
     <string name="no_choose_language_warning">Choose at least one language!</string>
-    <string name="languages_editor_tip">You can swipe left or right to remove items, long click items to drag the sort.</string>
+    <string name="languages_editor_tip">You can swipe left or right to remove items. Long click items to sort.</string>
     <string name="fullscreen">Fullscreen</string>
 
     <string name="public_news">Global news</string>
@@ -407,8 +408,9 @@
     <string name="no_repo_collections">No repo collections</string>
     <string name="collections_tip">Curated lists and insight into burgeoning industries, topics, and communities.</string>
     <string name="github_page_parse_error">
-        %s page parse error, this page may be changed by github,
-        please update your application to latest version, if error continue, please concat me to solve the problem!
+        %s page parse error, this page may have been changed by GitHub.
+        Please update your application to the latest version.
+        If the error continues, please contact me to help solve the issue.
     </string>
 
     <string name="bookmarks_tip">You can swipe left or right to remove bookmark.</string>
@@ -423,7 +425,7 @@
     <string name="star_num_today">%s star today</string>
     <string name="star_num_this_week">%s star this week</string>
     <string name="star_num_this_month">%s star this month</string>
-    <string name="no_trending_repos">It looks like we don’t have any trending repositories for %s.</string>
+    <string name="no_trending_repos">Looks like we don\'t have any trending repositories for %s.</string>
 
     <string name="all_languages">All languages</string>
     <string name="unknown_languages">Unknown languages</string>
@@ -459,8 +461,8 @@
     <string name="issue_assigned">assigned this to %s</string>
     <string name="issue_unassigned">removed their assignment</string>
 
-    <string name="disable_loading_image">Disable loading network image</string>
-    <string name="disable_loading_image_desc">Disable loading network image while mobile network</string>
+    <string name="disable_loading_image">Disable loading network images</string>
+    <string name="disable_loading_image_desc">Disable loading network imagess while on mobile network</string>
 
     <string name="toggle_issue_warning">Confirm to %s this issue?</string>
 
@@ -475,6 +477,6 @@
     </string>
 
     <string name="add_account">Add account</string>
-    <string name="delete_label_warning">Confirm to delete this label?</string>
+    <string name="delete_label_warning">Delete this label?</string>
 
 </resources>
