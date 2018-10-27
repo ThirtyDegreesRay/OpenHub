@@ -61,7 +61,15 @@ public class IssuesAdapter extends BaseAdapter<IssuesAdapter.ViewHolder, Issue> 
         holder.userName.setText(model.getUser().getLogin());
         holder.issueTitle.setText(model.getTitle());
         holder.commentNum.setText(String.valueOf(model.getCommentNum()));
-        holder.time.setText(StringUtils.getNewsTimeStr(context, model.getCreatedAt()));
+        String temporaryTimeStr = StringUtils.getNewsTimeStr(context, model.getCreatedAt());
+        if (temporaryTimeStr.startsWith("1")
+                && (temporaryTimeStr.charAt(1) == ' ')
+                && temporaryTimeStr.contains("s")) {
+            holder.time.setText(temporaryTimeStr.replace("s", ""));
+        } else {
+            holder.time.setText(StringUtils.getNewsTimeStr(context, model.getCreatedAt()));
+        }
+
         if(isUserIssues) {
             holder.repoFullName.setText(model.getRepoFullName().concat(" #").concat(String.valueOf(model.getNumber())));
         } else {

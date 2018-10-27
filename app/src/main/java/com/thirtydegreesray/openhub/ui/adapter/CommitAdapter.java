@@ -61,7 +61,14 @@ public class CommitAdapter extends BaseAdapter<CommitAdapter.ViewHolder, RepoCom
 
         holder.userName.setText(model.getAuthor() == null ?
                 model.getCommit().getAuthor().getName() : model.getAuthor().getLogin());
-        holder.time.setText(StringUtils.getNewsTimeStr(context, model.getCommit().getAuthor().getDate()));
+        String temporaryTimeStr = StringUtils.getNewsTimeStr(context, model.getCommit().getAuthor().getDate());
+        if (temporaryTimeStr.startsWith("1")
+                && (temporaryTimeStr.charAt(1) == ' ')
+                && temporaryTimeStr.contains("s")) {
+            holder.time.setText(temporaryTimeStr.replace("s", ""));
+        } else {
+            holder.time.setText(StringUtils.getNewsTimeStr(context, model.getCommit().getAuthor().getDate()));
+        }
         holder.commitMessage.setText(model.getCommit().getMessage());
         holder.commitBriefSha.setText(model.getSha().substring(0, 7));
         holder.commentNum.setText(String.valueOf(model.getCommit().getCommentCount()));

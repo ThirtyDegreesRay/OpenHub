@@ -66,8 +66,14 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
                 .onlyRetrieveFromCache(!PrefUtils.isLoadImageEnable())
                 .into(holder.userAvatar);
         holder.userName.setText(model.getActor().getLogin());
-        holder.time.setText(StringUtils.getNewsTimeStr(context, model.getCreatedAt()));
-
+        String temporaryTimeStr = StringUtils.getNewsTimeStr(context, model.getCreatedAt());
+        if (temporaryTimeStr.startsWith("1")
+                && (temporaryTimeStr.charAt(1) == ' ')
+                && temporaryTimeStr.contains("s")) {
+            holder.time.setText(temporaryTimeStr.replace("s", ""));
+        } else {
+            holder.time.setText(StringUtils.getNewsTimeStr(context, model.getCreatedAt()));
+        }
         holder.setActionAndDesc(model);
     }
 

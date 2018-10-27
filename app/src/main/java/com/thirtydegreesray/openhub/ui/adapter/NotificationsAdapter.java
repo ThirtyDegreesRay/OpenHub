@@ -98,7 +98,15 @@ public class NotificationsAdapter extends BaseAdapter<BaseViewHolder,
 //                holder.status.setImageResource(R.drawable.ic_mark_readed);
 //                holder.status.setImageTintList(ColorStateList.valueOf(ViewUtils.getSecondaryTextColor(context)));
             }
-            holder.time.setText(StringUtils.getNewsTimeStr(context, model.getUpdateAt()));
+            String temporaryTimeStr = StringUtils.getNewsTimeStr(context, model.getUpdateAt());
+            if (temporaryTimeStr.startsWith("1")
+                    && (temporaryTimeStr.charAt(1) == ' ')
+                    && temporaryTimeStr.contains("s")) {
+                holder.time.setText(temporaryTimeStr.replace("s", ""));
+            } else {
+                holder.time.setText(StringUtils.getNewsTimeStr(context, model.getUpdateAt()));
+            }
+
 
             int padding = WindowUtil.dipToPx(context, 2);
             if(NotificationSubject.Type.Issue.equals(model.getSubject().getType())){

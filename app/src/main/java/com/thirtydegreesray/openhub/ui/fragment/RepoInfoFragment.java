@@ -112,8 +112,15 @@ public class RepoInfoFragment extends BaseFragment<RepoInfoPresenter>
         String createStr = (repository.isFork() ? getString(R.string.forked_at)
                 : getString(R.string.created_at)) + " " + StringUtils.getDateStr(repository.getCreatedAt());
         if(repository.getPushedAt() != null){
-            String updateStr = getString(R.string.latest_commit) + " "
-                    + StringUtils.getNewsTimeStr(getActivity(), repository.getPushedAt());
+            String temporaryTimeStr = StringUtils.getNewsTimeStr(getActivity(), repository.getPushedAt());
+            if (temporaryTimeStr.startsWith("1")
+                    && (temporaryTimeStr.charAt(1) == ' ')
+                    && temporaryTimeStr.contains("s")) {
+                temporaryTimeStr = temporaryTimeStr.replace("s", "");
+            } else {
+                temporaryTimeStr = StringUtils.getNewsTimeStr(getActivity(), repository.getPushedAt());
+            }
+            String updateStr = getString(R.string.latest_commit) + " " + temporaryTimeStr;
             repoCreatedInfoText.setText(String.format("%s, %s", createStr, updateStr));
         } else {
             repoCreatedInfoText.setText(createStr);

@@ -43,7 +43,14 @@ public class ReleasesAdapter extends BaseAdapter<ReleasesAdapter.ViewHolder, Rel
         super.onBindViewHolder(holder, position);
         Release model = data.get(position);
         holder.releaseName.setText(model.getTagName());
-        holder.time.setText(StringUtils.getNewsTimeStr(context, model.getPublishedAt()));
+        String temporaryTimeStr = StringUtils.getNewsTimeStr(context, model.getPublishedAt());
+        if (temporaryTimeStr.startsWith("1")
+                && (temporaryTimeStr.charAt(1) == ' ')
+                && temporaryTimeStr.contains("s")) {
+            holder.time.setText(temporaryTimeStr.replace("s", ""));
+        } else {
+            holder.time.setText(StringUtils.getNewsTimeStr(context, model.getPublishedAt()));
+        }
         if(!StringUtils.isBlank(model.getBodyHtml())){
             holder.body.setText(Html.fromHtml(model.getBodyHtml()));
             holder.body.setVisibility(View.VISIBLE);
