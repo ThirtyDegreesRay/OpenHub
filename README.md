@@ -1,9 +1,9 @@
 English | [中文](/README-cn.md)
-# OpenHub 
+# OpenHub
 [![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
-An **open source** GitHub Android client app, faster and concise.
+An **open-source** GitHub Android client app, faster and concise.
 
 [![Google Play](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/google_play.png?raw=true)](https://play.google.com/store/apps/details?id=com.thirtydegreesray.openhub)
 [![Coolapk](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/coolapk.png?raw=true)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
@@ -12,60 +12,60 @@ An **open source** GitHub Android client app, faster and concise.
 
 ### App
 * Two login types (Basic Auth) and (OAuth)
-* Light and dark theme, multiple accent color
+* Light and dark theme, multiple accent colors
 * Markdown and code highlighting support
-* English, Simplified Chinese, Hebrew, German and Hindi support
+* English, Simplified Chinese, Hebrew, German, and Hindi support
 * Offline mode
-* Support trending repositories of all languages
-* Support multi-account switching
-* Search repos and users
-* Shortcuts support
-* Notifications support
-* Bookmark users or repos
-* Record trace of the repos or users you have been viewed
-* View github collections
-* View github featured topics
-* Support disable loading network image while mobile network
+* Supports trending repositories page for all languages
+* Supports multi-account switching
+* Search repositories and users
+* Shortcut support
+* Notification support
+* Bookmark users or repositories
+* Record trace of the repositories or users you have viewed
+* View Github collections
+* View Github featured topics
+* Support disable loading network images while using mobile network
 
 ### Repositories
-* View repo info and repo branches
-* Star, watch and fork repos
-* View repo files, commits and activity
-* Download source code, releases and files
-* View your private, public, forked and starred repos
-* View trending repos of daily, weekly and monthly
-* Search repos
+* View repository information and repository branches
+* Star, watch, and fork repositories
+* View repository files, commits, and activity
+* Download source code, releases, and files
+* View your private, public, forked, and starred repositories
+* View trending repositories sorted by day, week, or month
+* Search repositories
 * View recent wiki updates
 
 ### Users
 * View user info
-* View user followers, following, organizations
-* View user public repositories, starred repositories and activity
+* View user followers, following, and organizations
+* View user public repositories, starred repositories, and activity
 * View your private repositories
-* Follow/Unfollow users
+* Follow and unfollow users
 * Search users
 
 ### Organizations
-* View org info
-* View org public repositories and activity
-* View org members
+* View organization information
+* View organization public repositories and activity
+* View organization members
 
 ### Issues
-* View issue info, comments and events
-* Create, open and close issues
-* Create, edit and delete issue comments
-* Edit, add and delete your labels
-* Write comment with preview
-* View your created, assigned and mentioned issues
+* View issue information, comments, and events
+* Create, open, and close issues
+* Create, edit, and delete issue comments
+* Edit, add, and delete your labels
+* Write comments with previews
+* View your created, assigned, and mentioned issues
 * View repository issues
 
 ### Commits
-* View commit info and files
+* View commit information and files
 * View file diff
 * View repository commits
 
 ### And more
-* OpenHub is growing, try to be better github client.
+* OpenHub is growing, and trying to be a better Github client.
 
 ## Screenshots
 
@@ -85,7 +85,7 @@ An **open source** GitHub Android client app, faster and concise.
 * [RxJava](https://github.com/ReactiveX/RxJava) A library for composing asynchronous and event-based programs using observable sequences for the Java VM.
 * [RxAndroid](https://github.com/ReactiveX/RxAndroid) RxJava bindings for Android.
 * [Retrofit](https://github.com/square/retrofit) Type-safe HTTP client for Android and Java by Square, Inc.
-* [Dagger](https://github.com/google/dagger) A fast dependency injector for Android and Java. 
+* [Dagger](https://github.com/google/dagger) A fast dependency injector for Android and Java.
 * [Glide](https://github.com/bumptech/glide) An image loading and caching library for Android focused on smooth scrolling.
 * [code-prettify](https://github.com/google/code-prettify) An embeddable script that makes source-code snippets in HTML prettier.
 * [DataAutoAccess](https://github.com/ThirtyDegreesRay/DataAutoAccess) A simple way to access android bundle data.
