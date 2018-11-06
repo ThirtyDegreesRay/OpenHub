@@ -38,7 +38,7 @@ public class ThemeHelper {
                 return R.style.ThemeLight_AboutActivity;
             case PrefUtils.DARK:
                 return R.style.ThemeDark_AboutActivity;
-            case PrefUtils.AMOLED_Dark:
+            case PrefUtils.AMOLED_DARK:
                 return R.style.ThemeAmoledDark_AboutActivity;
             default:
                 return R.style.ThemeLightTeal_AboutActivity;
@@ -162,7 +162,7 @@ public class ThemeHelper {
                     case PrefUtils.DEEP_PURPLE:
                         return R.style.ThemeDark_DeepPurple;
                 }
-            case PrefUtils.AMOLED_Dark:
+            case PrefUtils.AMOLED_DARK:
                 switch (accentColor){
                     case PrefUtils.LIGHT_BLUE:
                         return R.style.ThemeAmoledDark_LightBlue;

@@ -6,7 +6,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <color name="amoled_dark_color_primary">#26282C</color> //26282C
-    <color name="amoled_dark_color_primary_blur">#000000</color> //#DD2D3035
+    <color name="amoled_dark_color_primary_blur">#DD000000</color> //#DD2D3035
     <color name="amoled_dark_color_primary_dark">#161719</color>
     <color name="amoled_dark_color_accent">@color/material_green_accent_700</color>
     <color name="amoled_dark_color_window_background">#000000</color>

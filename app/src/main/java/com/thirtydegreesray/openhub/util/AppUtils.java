@@ -99,7 +99,7 @@ public class AppUtils {
 
     public static boolean isNightMode() {
         String theme = PrefUtils.getTheme();
-        return PrefUtils.DARK.equals(theme) || PrefUtils.AMOLED_Dark.equals(theme);
+        return PrefUtils.DARK.equals(theme) || PrefUtils.AMOLED_DARK.equals(theme);
     }
 
     public static void copyToClipboard(@NonNull Context context, @NonNull String uri) {
