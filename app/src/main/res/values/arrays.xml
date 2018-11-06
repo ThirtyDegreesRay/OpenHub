@@ -42,6 +42,7 @@
         <item>Light teal</item>
         <item>Light indigo</item>
         <item>Dark</item>
+        <item>AMOLED dark</item>
     </array>
 
     <string name="trending_languages" translatable="false">
