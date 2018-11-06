@@ -38,6 +38,8 @@ public class ThemeHelper {
                 return R.style.ThemeLight_AboutActivity;
             case PrefUtils.DARK:
                 return R.style.ThemeDark_AboutActivity;
+            case PrefUtils.AMOLED_Dark:
+                return R.style.ThemeAmoledDark_AboutActivity;
             default:
                 return R.style.ThemeLightTeal_AboutActivity;
         }
@@ -159,6 +161,41 @@ public class ThemeHelper {
                         return R.style.ThemeDark_Purple;
                     case PrefUtils.DEEP_PURPLE:
                         return R.style.ThemeDark_DeepPurple;
+                }
+            case PrefUtils.AMOLED_Dark:
+                switch (accentColor){
+                    case PrefUtils.LIGHT_BLUE:
+                        return R.style.ThemeAmoledDark_LightBlue;
+                    case PrefUtils.BLUE:
+                        return R.style.ThemeAmoledDark_Blue;
+                    case PrefUtils.INDIGO:
+                        return R.style.ThemeAmoledDark_Indigo;
+                    case PrefUtils.ORANGE:
+                        return R.style.ThemeAmoledDark_Orange;
+                    case PrefUtils.YELLOW:
+                        return R.style.ThemeAmoledDark_Yellow;
+                    case PrefUtils.AMBER:
+                        return R.style.ThemeAmoledDark_Amber;
+                    case PrefUtils.GREY:
+                        return R.style.ThemeAmoledDark_Grey;
+                    case PrefUtils.BROWN:
+                        return R.style.ThemeAmoledDark_Brown;
+                    case PrefUtils.CYAN:
+                        return R.style.ThemeAmoledDark_Cyan;
+                    case PrefUtils.TEAL:
+                        return R.style.ThemeAmoledDark_Teal;
+                    case PrefUtils.LIME:
+                        return R.style.ThemeAmoledDark_Lime;
+                    case PrefUtils.GREEN:
+                        return R.style.ThemeAmoledDark_Green;
+                    case PrefUtils.PINK:
+                        return R.style.ThemeAmoledDark_Pink;
+                    case PrefUtils.RED:
+                        return R.style.ThemeAmoledDark_Red;
+                    case PrefUtils.PURPLE:
+                        return R.style.ThemeAmoledDark_Purple;
+                    case PrefUtils.DEEP_PURPLE:
+                        return R.style.ThemeAmoledDark_DeepPurple;
                 }
         }
         return R.style.ThemeLight_Indigo;
