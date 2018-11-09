@@ -103,8 +103,12 @@ An **open-source** GitHub Android client app, faster and concise.
 * [moriel5](https://github.com/moriel5) - Hebrew translation
 * [Henry2o1o](https://github.com/Henry2o1o), [squeezer11](https://github.com/squeezer11), [ropaha](https://github.com/ropaha) - German translation
 * [Edfgdz](https://github.com/Edfgdz) - Testing and suggest
-* [pzhlkj6612](https://github.com/pzhlkj6612) - Improve the translation of chinese readme
+* [pzhlkj6612](https://github.com/pzhlkj6612) - Improve the translation of Chinese readme
 * [hiteshnayak305](https://github.com/hiteshnayak305) - Hindi translation
+* [KcNirvana](https://github.com/KcNirvana) - Portuguese translation
+* [sclickk](https://github.com/sclickk) - Improve English translation
+* [Zazsona](https://github.com/Zazsona) - Add AMOLED theme
+* [Aqueminivan](https://github.com/Aqueminivan) - Improve the translation of English readme
 
 ## License
 ThirtyDegreesRay:
