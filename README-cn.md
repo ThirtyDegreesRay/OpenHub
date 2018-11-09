@@ -105,6 +105,10 @@
 * [Edfgdz](https://github.com/Edfgdz) - 测试与建议
 * [pzhlkj6612](https://github.com/pzhlkj6612) - 改进中文概述的翻译
 * [hiteshnayak305](https://github.com/hiteshnayak305) - 印地语翻译
+* [KcNirvana](https://github.com/KcNirvana) - 葡萄牙语翻译
+* [sclickk](https://github.com/sclickk) - 改进英语翻译
+* [Zazsona](https://github.com/Zazsona) - 添加AMOLED主题
+* [Aqueminivan](https://github.com/Aqueminivan) - 改进英文概述的翻译
 
 ## License
 ThirtyDegreesRay:
