@@ -65,7 +65,7 @@ An **open-source** GitHub Android client app, faster and concise.
 * View repository commits
 
 ### And more
-* OpenHub is growing, and trying to be a better Github client.
+* OpenHub is growing, and trying to be a better GitHub client.
 
 ## Screenshots
 
