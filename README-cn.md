@@ -1,6 +1,6 @@
 [English](/README.md) | 中文
 # OpenHub 
-[![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
+[![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://play.google.com/store/apps/details?id=com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
 一个**开源**的GitHub Android客户端应用，快速简洁。
@@ -57,7 +57,7 @@
 * 编辑、添加和删除你的标签
 * 编写评论时可以预览
 * 查看你创建的、分配给你的和提到你的问题
-* 查看版本库问题
+.';ij,i.* 查看版本库问题
 
 ### 提交
 * 查看提交信息和文件
