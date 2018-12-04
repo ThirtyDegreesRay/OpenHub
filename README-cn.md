@@ -12,9 +12,9 @@
 
 ### App
 * 两种登录方式，(Basic Auth) 和 (OAuth)
-* 支持夜间模式，多种主色调
+* 支持夜间模式和AMOLED Dark主题，多种主色调
 * 支持Markdown和代码高亮
-* 支持英文、简体中文、希伯来文、德文和印地文
+* 支持英文、简体中文、希伯来文、德文、印地文、葡萄牙文、韩文和西班牙文
 * 支持离线模式
 * 支持所有语言的最热版本库查看
 * 支持多账户切换
@@ -109,7 +109,7 @@
 * [sclickk](https://github.com/sclickk) - 改进英语翻译
 * [Zazsona](https://github.com/Zazsona) - 添加AMOLED主题
 * [Aqueminivan](https://github.com/Aqueminivan) - 改进英文概述的翻译
-* [XF-zhjnc](https://github.com/XF-zhjnc) - 修复WIKI内部链接点击无效和版本库大小显示移除等bug
+* [XF-zhjnc](https://github.com/XF-zhjnc) - 修复WIKI内部链接点击无效和版本库大小显示溢出等bug
 * [fergthh](https://github.com/fergthh) - 西班牙语翻译
 
 ## License
