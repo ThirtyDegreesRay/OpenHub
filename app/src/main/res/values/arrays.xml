@@ -8,6 +8,7 @@
         <item>Hindi</item>
         <item>Português</item>
         <item>한국어</item>
+        <item>Español</item>
     </array>
     <array name="language_id_array">
         <item>en</item>
@@ -17,6 +18,7 @@
         <item>hi</item>
         <item>pt-rPT</item>
         <item>ko</item>
+        <item>es</item>
     </array>
 
     <array name="accent_color_array">
