@@ -101,6 +101,8 @@ class HtmlHelper {
                                  @NonNull String accentColor, boolean wrapCode) {
         String skin = isDark ? "markdown_dark.css" : "markdown_white.css";
         mdSource = StringUtils.isBlank(baseUrl) ? mdSource : fixLinks(mdSource, baseUrl);
+        //fix wiki inner url like this "href="/robbyrussell/oh-my-zsh/wiki/Themes"" 
+        mdSource = fixWikiLinks(mdSource);
         return generateMdHtml(mdSource, skin, backgroundColor, accentColor, wrapCode);
     }
 
@@ -135,6 +137,21 @@ class HtmlHelper {
     private static String formatCode(@NonNull String codeSource) {
         if (StringUtils.isBlank(codeSource)) return codeSource;
         return codeSource.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+    }
+
+    private static String fixWikiLinks(@NonNull String source) {
+        Matcher linksMatcher = LINK_PATTERN.matcher(source);
+        while (linksMatcher.find()) {
+            while (linksMatcher.find()) {
+                String oriUrl = linksMatcher.group(1);
+                String fixedUrl;
+                if (oriUrl.startsWith("/") && oriUrl.contains("/wiki/")) {
+                    fixedUrl = "https://github.com" + oriUrl;
+                    source = source.replace("href=\"" + oriUrl + "\"", "href=\"" + fixedUrl + "\"");
+                }
+            }
+        }
+        return source;
     }
 
     private static String fixLinks(@NonNull String source, @NonNull String baseUrl) {
