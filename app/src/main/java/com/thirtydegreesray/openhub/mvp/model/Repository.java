@@ -41,7 +41,7 @@ public class Repository implements Parcelable {
     @SerializedName("clone_url") private String cloneUrl ;
     @SerializedName("svn_url") private String svnUrl ;
 
-    private int size ;
+    private long size ;
     @SerializedName("stargazers_count") private int stargazersCount ;
     @SerializedName("watchers_count") private int watchersCount ;
     @SerializedName("forks_count") private int forksCount ;
@@ -258,11 +258,11 @@ public class Repository implements Parcelable {
         this.svnUrl = svnUrl;
     }
 
-    public int getSize() {
+    public long getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(long size) {
         this.size = size;
     }
 
@@ -409,7 +409,7 @@ public class Repository implements Parcelable {
         dest.writeString(this.sshUrl);
         dest.writeString(this.cloneUrl);
         dest.writeString(this.svnUrl);
-        dest.writeInt(this.size);
+        dest.writeLong(this.size);
         dest.writeInt(this.stargazersCount);
         dest.writeInt(this.watchersCount);
         dest.writeInt(this.forksCount);
@@ -448,7 +448,7 @@ public class Repository implements Parcelable {
         this.sshUrl = in.readString();
         this.cloneUrl = in.readString();
         this.svnUrl = in.readString();
-        this.size = in.readInt();
+        this.size = in.readLong();
         this.stargazersCount = in.readInt();
         this.watchersCount = in.readInt();
         this.forksCount = in.readInt();
