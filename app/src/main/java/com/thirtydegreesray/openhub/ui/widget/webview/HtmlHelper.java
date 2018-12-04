@@ -100,7 +100,9 @@ class HtmlHelper {
                                  boolean isDark, @NonNull String backgroundColor,
                                  @NonNull String accentColor, boolean wrapCode) {
         String skin = isDark ? "markdown_dark.css" : "markdown_white.css";
-        mdSource = StringUtils.isBlank(baseUrl) ? fixWikiLinks(mdSource) : fixLinks(mdSource, baseUrl);
+        mdSource = StringUtils.isBlank(baseUrl) ? mdSource : fixLinks(mdSource, baseUrl);
+        //fix wiki inner url like this "href="/robbyrussell/oh-my-zsh/wiki/Themes"" 
+        mdSource = fixWikiLinks(mdSource);
         return generateMdHtml(mdSource, skin, backgroundColor, accentColor, wrapCode);
     }
 
