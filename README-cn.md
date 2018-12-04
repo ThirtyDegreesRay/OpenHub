@@ -109,6 +109,8 @@
 * [sclickk](https://github.com/sclickk) - 改进英语翻译
 * [Zazsona](https://github.com/Zazsona) - 添加AMOLED主题
 * [Aqueminivan](https://github.com/Aqueminivan) - 改进英文概述的翻译
+* [XF-zhjnc](https://github.com/XF-zhjnc) - 修复WIKI内部链接点击无效和版本库大小显示移除等bug
+* [fergthh](https://github.com/fergthh) - 西班牙语翻译
 
 ## License
 ThirtyDegreesRay:

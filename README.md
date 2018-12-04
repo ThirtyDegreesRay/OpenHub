@@ -109,6 +109,8 @@ An **open-source** GitHub Android client app, faster and concise.
 * [sclickk](https://github.com/sclickk) - Improve English translation
 * [Zazsona](https://github.com/Zazsona) - Add AMOLED theme
 * [Aqueminivan](https://github.com/Aqueminivan) - Improve the translation of English readme
+* [XF-zhjnc](https://github.com/XF-zhjnc) - Fix bugs
+* [fergthh](https://github.com/fergthh) - Spanish translation
 
 ## License
 ThirtyDegreesRay:
