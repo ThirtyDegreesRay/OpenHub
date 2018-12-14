@@ -1,21 +1,31 @@
-
 buildscript {
     repositories {
         jcenter()
         google()
+        maven { url "https://jitpack.io" }
     }
+
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath 'com.novoda:gradle-build-properties-plugin:0.3'
+        classpath 'com.novoda:gradle-build-properties-plugin:0.4.1'
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        google()
+        maven { url "https://jitpack.io" }
+        flatDir {
+            dirs 'libs' //aar
+        }
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    GREENDAO_VERSION = '3.2.2'
 }

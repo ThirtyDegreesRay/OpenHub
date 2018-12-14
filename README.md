@@ -77,7 +77,7 @@ An **open-source** GitHub Android client app, faster and concise.
 |:-:|:-:|:-:|
 | ![repo](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/repo.png?raw=true) | ![commit](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/commit.png?raw=true) | ![code](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/code.png?raw=true) |
 
-## Thanks for open source
+## Open-source libraries used in this app (thanks!)
 
 * [ButterKnife](https://github.com/JakeWharton/butterknife) Bind Android views and callbacks to fields and methods.
 * [GreenDao](https://github.com/greenrobot/greenDAO) A light & fast ORM solution for Android that maps objects to SQLite databases.
@@ -118,7 +118,7 @@ ThirtyDegreesRay:
 > Licensed under the [GPL-3.0](https://www.gnu.org/licenses/gpl.html).
 > (See the [LICENSE](https://github.com/ThirtyDegreesRay/OpenHub/blob/master/LICENSE) file for the whole license text.)
 
-Kosh(There are 13 files has some code copied from FastHub):
+k0shk0sh (There are 13 files has some code copied from FastHub):
 > Copyright (C) 2017 Kosh.
 > Licensed under the [GPL-3.0](https://www.gnu.org/licenses/gpl.html) license.
 > (See the [LICENSE](https://github.com/k0shk0sh/FastHub/blob/master/LICENSE) file for the whole license text.)

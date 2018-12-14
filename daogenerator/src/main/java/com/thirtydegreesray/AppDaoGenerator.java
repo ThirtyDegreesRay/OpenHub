@@ -1,6 +1,4 @@
-
-
-package com.thirtydereesray;
+package com.thirtydegreesray;
 
 import org.greenrobot.greendao.generator.DaoGenerator;
 import org.greenrobot.greendao.generator.Entity;
@@ -8,7 +6,7 @@ import org.greenrobot.greendao.generator.Schema;
 
 public class AppDaoGenerator {
 
-    public static void main(String...args){
+    public static void main(String... args) {
         Schema rootSchema = new Schema(5, "com.thirtydegreesray.openhub.dao");
         addAuthUser(rootSchema);
         addTraceUser(rootSchema);
@@ -29,9 +27,10 @@ public class AppDaoGenerator {
 
     /**
      * add auth user
+     *
      * @param schema
      */
-    private static void addAuthUser(Schema schema){
+    private static void addAuthUser(Schema schema) {
         Entity entity = schema.addEntity("AuthUser");
         entity.addStringProperty("accessToken").primaryKey().notNull();
         entity.addDateProperty("authTime").notNull();
@@ -44,7 +43,7 @@ public class AppDaoGenerator {
         entity.addStringProperty("avatar");
     }
 
-    private static void addTraceUser(Schema schema){
+    private static void addTraceUser(Schema schema) {
         Entity entity = schema.addEntity("TraceUser");
         entity.addStringProperty("login").primaryKey().notNull();
         entity.addStringProperty("name");
@@ -57,7 +56,7 @@ public class AppDaoGenerator {
         entity.addIntProperty("traceNum");
     }
 
-    private static void addTraceRepo(Schema schema){
+    private static void addTraceRepo(Schema schema) {
         Entity entity = schema.addEntity("TraceRepo");
         entity.addLongProperty("id").primaryKey().notNull();
         entity.addStringProperty("name").notNull();
@@ -76,7 +75,7 @@ public class AppDaoGenerator {
         entity.addIntProperty("traceNum");
     }
 
-    private static void addBookMarkUser(Schema schema){
+    private static void addBookMarkUser(Schema schema) {
         Entity entity = schema.addEntity("BookMarkUser");
         entity.addStringProperty("login").primaryKey().notNull();
         entity.addStringProperty("name");
@@ -87,7 +86,7 @@ public class AppDaoGenerator {
         entity.addDateProperty("markTime");
     }
 
-    private static void addBookMarkRepo(Schema schema){
+    private static void addBookMarkRepo(Schema schema) {
         Entity entity = schema.addEntity("BookMarkRepo");
         entity.addLongProperty("id").primaryKey().notNull();
         entity.addStringProperty("name").notNull();
@@ -104,7 +103,7 @@ public class AppDaoGenerator {
         entity.addDateProperty("markTime");
     }
 
-    private static void addLocalUser(Schema schema){
+    private static void addLocalUser(Schema schema) {
         Entity entity = schema.addEntity("LocalUser");
         entity.addStringProperty("login").primaryKey().notNull();
         entity.addStringProperty("name");
@@ -113,7 +112,7 @@ public class AppDaoGenerator {
         entity.addIntProperty("following");
     }
 
-    private static void addLocalRepo(Schema schema){
+    private static void addLocalRepo(Schema schema) {
         Entity entity = schema.addEntity("LocalRepo");
         entity.addLongProperty("id").primaryKey().notNull();
         entity.addStringProperty("name").notNull();
@@ -128,7 +127,7 @@ public class AppDaoGenerator {
         entity.addStringProperty("ownerAvatarUrl");
     }
 
-    private static void addTrace(Schema schema){
+    private static void addTrace(Schema schema) {
         Entity entity = schema.addEntity("Trace");
         entity.addStringProperty("id").primaryKey().notNull();
         entity.addStringProperty("type");
@@ -140,7 +139,7 @@ public class AppDaoGenerator {
         entity.addIntProperty("traceNum");
     }
 
-    private static void addBookmark(Schema schema){
+    private static void addBookmark(Schema schema) {
         Entity entity = schema.addEntity("Bookmark");
         entity.addStringProperty("id").primaryKey().notNull();
         entity.addStringProperty("type").notNull();
@@ -150,7 +149,7 @@ public class AppDaoGenerator {
         entity.addDateProperty("markTime");
     }
 
-    private static void addMyTrendingLanguage(Schema schema){
+    private static void addMyTrendingLanguage(Schema schema) {
         Entity entity = schema.addEntity("MyTrendingLanguage");
         entity.addStringProperty("slug").primaryKey().notNull();
         entity.addStringProperty("name").notNull();
