@@ -1,3 +1,4 @@
+
 <resources>
 
     <string name="user_name">用户名</string>
@@ -11,9 +12,9 @@
     <string name="notifications">通知</string>
     <string name="news">动态</string>
     <string name="issues">问题</string>
-    <string name="repositories">版本库</string>
+    <string name="repositories">仓库</string>
     <string name="owned">我的</string>
-    <string name="starred">星标</string>
+    <string name="starred">收藏</string>
     <string name="trending">趋势</string>
     <string name="explore">搜索</string>
     <string name="info_and_repositories">信息 &#038; 偏好</string>
@@ -26,19 +27,19 @@
     <string name="cache_controller">缓存控制</string>
     <string name="cache_controller_desc">如果缓存可用，先加载缓存，然后从网络加载</string>
     <string name="language">语言</string>
-    <string name="logout">登出</string>
+    <string name="logout">注销</string>
     <string name="daily">每日的</string>
     <string name="weekly">每周的</string>
     <string name="monthly">每月的</string>
     <string name="page_no_found">页面不存在</string>
     <string name="no_network_tip">从GitHub加载数据失败，请检查网络后重试。</string>
     <string name="load_timeout_tip">从GitHub加载数据超时，请检查网络后重试。</string>
-    <string name="repository">版本库</string>
+    <string name="repository">仓库</string>
     <string name="info">信息</string>
     <string name="files">文件</string>
     <string name="commits">提交</string>
-    <string name="star">星标</string>
-    <string name="branch_tip">分支或标签</string>
+    <string name="star">收藏</string>
+    <string name="branch_tip">选择分支</string>
     <string name="share">分享</string>
     <string name="open_in_browser">在浏览器中打开</string>
     <string name="copy_url">复制链接</string>
@@ -54,16 +55,16 @@
     <string name="url_invalid">链接不可用</string>
     <string name="view_archive_file_error">文件不支持，请下载后查看。</string>
     <string name="invalid_repo_url">版本库链接无效</string>
-    <string name="follow">跟随</string>
-    <string name="followed">已跟随</string>
-    <string name="unfollow">取消跟随</string>
-    <string name="unfollowed">已取消跟随</string>
+    <string name="follow">关注</string>
+    <string name="followed">已关注</string>
+    <string name="unfollow">取消关注</string>
+    <string name="unfollowed">已取消关注</string>
     <string name="members">成员</string>
     <string name="view">查看</string>
-    <string name="followers">跟随者</string>
-    <string name="following">跟随</string>
+    <string name="followers">关注者</string>
+    <string name="following">关注</string>
     <string name="repos">版本库</string>
-    <string name="stars">星标</string>
+    <string name="stars">收藏</string>
     <string name="joined_at">加入时间</string>
     <string name="users">用户</string>
     <string name="activity">活动</string>
@@ -73,7 +74,7 @@
     <string name="days_ago">天前</string>
     <string name="search">搜索</string>
     <string name="sort">排序</string>
-    <string name="logout_warning">确定要登出？</string>
+    <string name="logout_warning">确定要注销？</string>
     <string name="unknown">未知</string>
     <string name="organizations">组织</string>
     <string name="no_user">没有用户</string>
@@ -87,25 +88,25 @@
     <string name="source_code">源代码</string>
     <string name="send_email">发送邮件</string>
     <string name="version">版本</string>
-    <string name="follow_on_github">在GitHub上跟随我</string>
+    <string name="follow_on_github">在GitHub上关注我</string>
     <string name="invalid_query">无效的查询内容</string>
     <string name="no_email_clients">未安装邮件客户端</string>
     <string name="no_share_clients">未安装分享软件</string>
     <string name="tap_to_retry">点击重试</string>
     <string name="loading">加载中</string>
-    <string name="stargazers">星标</string>
+    <string name="stargazers">收藏</string>
     <string name="theme_accent_color">主题强调色</string>
-    <string name="unstar">取消星标</string>
-    <string name="unstarred" >已取消星标</string>
+    <string name="unstar">取消收藏</string>
+    <string name="unstarred" >已取消收藏</string>
     <string name="unwatch" >取消关注</string>
     <string name="unwatched">已取消关注</string>
-    <string name="watch" >关注</string>
-    <string name="watched">已关注</string>
-    <string name="watchers" >关注者</string>
-    <string name="fork" >创建版本库分支</string>
+    <string name="watch" >订阅</string>
+    <string name="watched">已订阅</string>
+    <string name="watchers" >订阅者</string>
+    <string name="fork" >派生</string>
     <string name="fork_tag" >分支</string>
-    <string name="fork_warning_msg">创建版本库分支？</string>
-    <string name="forked">已创建版本库分支</string>
+    <string name="fork_warning_msg">克隆仓库？</string>
+    <string name="forked">克隆仓库完成</string>
     <string name="forks">版本库分支</string>
     <string name="forked_from">版本库分支从</string>
     <string name="gists">主题帖</string>
@@ -163,27 +164,27 @@
     <string name="filter">过滤器</string>
 
     <string name="best_match">最匹配的</string>
-    <string name="most_stars">最多星标的</string>
-    <string name="fewest_stars">最少星标的</string>
-    <string name="most_forks">最多分支的</string>
-    <string name="fewest_forks">最少分支的</string>
+    <string name="most_stars">Stars最多的</string>
+    <string name="fewest_stars">Stars最少的</string>
+    <string name="most_forks">Fork最多的</string>
+    <string name="fewest_forks">Fork最少的</string>
     <string name="recently_updated">最近更新的</string>
     <string name="least_recently_updated">以前更新的</string>
 
-    <string name="most_followers">最多跟随者的</string>
-    <string name="fewest_followers">最少跟随者的</string>
+    <string name="most_followers">关注者最多的</string>
+    <string name="fewest_followers">关注者最少的的</string>
     <string name="most_recently_joined">最近加入的</string>
     <string name="least_recently_joined">以前加入的</string>
-    <string name="most_repositories">最多版本库的</string>
-    <string name="fewest_repositories">最少版本库的</string>
+    <string name="most_repositories">版本库最多的</string>
+    <string name="fewest_repositories">版本库最少的</string>
     <string name="readme">描述</string>
     <string name="source_code_tar">源码 (tar.gz)</string>
     <string name="source_code_zip">源码 (zip)</string>
     <string name="close_success">关闭成功</string>
     <string name="delete_comment_warning">确认要删除评论？</string>
     <string name="just_now">刚刚</string>
-    <string name="reopen">重开</string>
-    <string name="reopen_success">重开成功</string>
+    <string name="reopen">重新打开</string>
+    <string name="reopen_success">重新打开成功</string>
     <string name="add_a_link">添加一个链接</string>
     <string name="add_bold_text">添加加粗文字</string>
     <string name="add_italic_text">添加斜体文字</string>
@@ -220,7 +221,7 @@
     <string name="no_readme">没有描述</string>
     <string name="view_file">查看文件</string>
     <string name="public_repositories">公开的版本库</string>
-    <string name="starred_repositories">星标的版本库</string>
+    <string name="starred_repositories">收藏的版本库</string>
     <string name="use_system_downloader">使用系统默认下载器</string>
     <string name="no_download_clients">未安装下载客户端</string>
     <string name="invalid_url">无效链接</string>
@@ -233,10 +234,10 @@
     <string name="openhub_wishes">来自OpenHub的祝福</string>
     <string name="star_wishes" formatted="false">
         您好%s，今天是您在OpenHub的第%d天，谢谢您的使用，我会努力成为更适合您的GitHub app。
-        \n\n如果您可以星标来支持我，那就太棒了！
+        \n\n如果您可以支持我，那就请您 Star Or Fork！
     </string>
     <string name="star_thanks">谢谢您的支持！</string>
-    <string name="star_me">星标我</string>
+    <string name="star_me">收藏我</string>
     <string name="star_next_time">继续努力</string>
     <string name="owner_repo">自己的</string>
     <string name="public_repo">公开的</string>
@@ -247,19 +248,19 @@
     <string name="full_name_asc">名称升序</string>
     <string name="full_name_desc">名称降序</string>
     <string name="sort_order">排序</string>
-    <string name="recently_starred">最近星标的</string>
-    <string name="previously_starred">以前星标的</string>
+    <string name="recently_starred">最近收藏的</string>
+    <string name="previously_starred">以前收藏的</string>
     <string name="trace">足迹</string>
-    <string name="my_repos">我的版本库</string>
-    <string name="starred_repos">星标版本库</string>
-    <string name="trending_repos">趋势版本库</string>
+    <string name="my_repos">我的仓库</string>
+    <string name="starred_repos">我的收藏</string>
+    <string name="trending_repos">趋势</string>
     <string name="bookmarks">书签</string>
     <string name="bookmark">添加书签</string>
     <string name="remove_bookmark">删除书签</string>
     <string name="bookmark_saved">书签已保存</string>
     <string name="bookmark_removed">书签已删除</string>
     <string name="user">用户</string>
-    <string name="repo">版本库</string>
+    <string name="repo">仓库</string>
     <string name="issues_list">问题列表</string>
     <string name="commits_list">提交列表</string>
     <string name="releases_list">版本列表</string>
@@ -285,7 +286,7 @@
     <string name="published_release_at">发布版本 %s 在 %s</string>
     <string name="opened_issue_at">开放问题 %d 在 %s</string>
     <string name="closed_issue_at">关闭问题 %d 在 %s</string>
-    <string name="reopened_issue_at">重新开放问题 %d 在 %s</string>
+    <string name="reopened_issue_at">重新发布问题 %d 在 %s</string>
     <string name="edited_issue_at">编辑问题 %d 在 %s</string>
     <string name="assigned_issue_at">分配问题 %d 在 %s</string>
     <string name="unassigned_issue_at">取消分配问题 %d 在 %s</string>
@@ -335,9 +336,9 @@
     <string name="topics_tip">浏览GitHub上使用最多的主题。</string>
     <string name="no_topics">没有主题</string>
     <string name="start_page">起始页面</string>
-    <string name="star_num_today">%s星标今日</string>
-    <string name="star_num_this_week">%s星标本周</string>
-    <string name="star_num_this_month">%s星标本月</string>
+    <string name="star_num_today">%s今日收藏</string>
+    <string name="star_num_this_week">%s本周收藏</string>
+    <string name="star_num_this_month">%s本月收藏</string>
     <string name="no_trending_repos">看起来我们没有%s语言的趋势版本库。</string>
     <string name="all_languages">所有语言</string>
     <string name="unknown_languages">未知语言</string>
