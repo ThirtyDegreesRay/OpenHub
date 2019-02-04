@@ -14,26 +14,18 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.customtabs.CustomTabsIntent;
 import android.widget.Toast;
-
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.http.Downloader;
 import com.thirtydegreesray.openhub.mvp.model.GitHubName;
 import com.thirtydegreesray.openhub.service.CopyBroadcastReceiver;
 import com.thirtydegreesray.openhub.service.ShareBroadcastReceiver;
-import com.thirtydegreesray.openhub.ui.activity.CommitDetailActivity;
-import com.thirtydegreesray.openhub.ui.activity.IssueDetailActivity;
-import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
-import com.thirtydegreesray.openhub.ui.activity.ReleaseInfoActivity;
-import com.thirtydegreesray.openhub.ui.activity.ReleasesActivity;
-import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
-import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
+import com.thirtydegreesray.openhub.ui.activity.*;
+import es.dmoral.toasty.Toasty;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import es.dmoral.toasty.Toasty;
 
 /**
  * Created by ThirtyDegreesRay on 2017/10/30 11:18:57
@@ -170,19 +162,20 @@ public class AppOpener {
             return;
         }
         GitHubName gitHubName = GitHubName.fromUrl(url);
-        String userName ;
-        String repoName ;
+
         if(gitHubName == null){
             openInCustomTabsOrBrowser(context, uri.toString());
             return;
-        } else {
-            userName = gitHubName.getUserName();
-            repoName = gitHubName.getRepoName();
         }
 
-        if(GitHubHelper.isUserUrl(url)){
+        String userName = gitHubName.getUserName();
+        String repoName = gitHubName.getRepoName();
+
+        if (userName == null) {
+            context.startActivity(new Intent(context, SplashActivity.class));
+        } else if (GitHubHelper.isUserUrl(url)) {
             ProfileActivity.show((Activity) context, userName);
-        } else if(GitHubHelper.isRepoUrl(url)){
+        } else if (GitHubHelper.isRepoUrl(url)) {
             RepositoryActivity.show(context, userName, repoName);
         } else if (GitHubHelper.isIssueUrl(url)) {
             IssueDetailActivity.show((Activity) context, url);
