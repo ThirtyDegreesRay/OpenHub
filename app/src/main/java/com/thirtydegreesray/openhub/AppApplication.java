@@ -9,6 +9,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
+import android.support.multidex.MultiDex;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -41,7 +42,7 @@ public class AppApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-//        MultiDex.install(this);
+        MultiDex.install(this);
     }
 
     @Override

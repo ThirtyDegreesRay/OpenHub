@@ -84,6 +84,16 @@ android {
     productFlavors.all {
         flavor -> flavor.manifestPlaceholders = [BUGLY_APP_CHANNEL_VALUE: name]
     }
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion '25.4.0'
+                }
+            }
+        }
+    }
 
 }
 
@@ -95,6 +105,10 @@ repositories {
     }
 }
 
+
+
+
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -103,7 +117,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
 //    compile "com.android.support:support-annotations:${ANDROID_SUPPORT_VERSION}"
-
+    implementation 'com.android.support:multidex:1.0.1'
     implementation "com.android.support:support-v4:${ANDROID_SUPPORT_VERSION}"
 //    compile "com.android.support:support-v13:${ANDROID_SUPPORT_VERSION}"
     implementation "com.android.support:appcompat-v7:${ANDROID_SUPPORT_VERSION}"
