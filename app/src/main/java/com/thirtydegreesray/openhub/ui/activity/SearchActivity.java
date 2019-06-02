@@ -10,12 +10,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
@@ -29,6 +29,7 @@ import com.thirtydegreesray.openhub.mvp.contract.ISearchContract;
 import com.thirtydegreesray.openhub.mvp.model.SearchModel;
 import com.thirtydegreesray.openhub.mvp.presenter.SearchPresenter;
 import com.thirtydegreesray.openhub.ui.activity.base.PagerActivity;
+import com.thirtydegreesray.openhub.ui.adapter.SearchAutoCompleteAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.FragmentPagerModel;
 import com.thirtydegreesray.openhub.ui.fragment.RepositoriesFragment;
 import com.thirtydegreesray.openhub.ui.fragment.UserListFragment;
@@ -109,11 +110,31 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
         }
         MenuItemCompat.setOnActionExpandListener(searchItem, this);
 
+        SearchAutoCompleteAdapter.OnSearchItemLongClick searchItemLongClickListener = (adapter, item) -> {
+            if (item != null) {
+                new AlertDialog.Builder(this)
+                        .setCancelable(false)
+                        .setMessage(String.format("Remove %s?", item))
+                        .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                            mPresenter.removeSearchRecord(item);
+                            adapter.clear();
+                            adapter.addAll(mPresenter.getSearchRecordList());
+                        })
+                        .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
+                        .create()
+                        .show();
+            }
+        };
+
         AutoCompleteTextView autoCompleteTextView = searchView
                 .findViewById(android.support.v7.appcompat.R.id.search_src_text);
         autoCompleteTextView.setThreshold(0);
-        autoCompleteTextView.setAdapter(new ArrayAdapter<>(this,
-                R.layout.layout_item_simple_list, mPresenter.getSearchRecordList()));
+        autoCompleteTextView.setAdapter(new SearchAutoCompleteAdapter(
+                this,
+                R.layout.layout_item_simple_list,
+                mPresenter.getSearchRecordList(),
+                searchItemLongClickListener)
+        );
         autoCompleteTextView.setDropDownBackgroundDrawable(new ColorDrawable(ViewUtils.getWindowBackground(getActivity())));
         autoCompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
             onQueryTextSubmit(parent.getAdapter().getItem(position).toString());
