@@ -133,12 +133,10 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
                 this,
                 R.layout.layout_item_simple_list,
                 mPresenter.getSearchRecordList(),
-                searchItemLongClickListener)
+                searchItemLongClickListener,
+                this::onQueryTextSubmit)
         );
         autoCompleteTextView.setDropDownBackgroundDrawable(new ColorDrawable(ViewUtils.getWindowBackground(getActivity())));
-        autoCompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
-            onQueryTextSubmit(parent.getAdapter().getItem(position).toString());
-        });
 
         return super.onCreateOptionsMenu(menu);
     }
