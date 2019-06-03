@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
@@ -168,11 +169,18 @@ public class MainActivity extends BaseDrawerActivity<MainPresenter>
         }
         navViewStart.setCheckedItem(selectedPage);
 
-        ImageView avatar = navViewStart.getHeaderView(0).findViewById(R.id.avatar);
-        TextView name = navViewStart.getHeaderView(0).findViewById(R.id.name);
-        TextView mail = navViewStart.getHeaderView(0).findViewById(R.id.mail);
+        final View navHeader = navViewStart.getHeaderView(0);
+        ViewCompat.setOnApplyWindowInsetsListener(navHeader, (v, insets) -> {
+            navHeader.setPadding(navHeader.getPaddingLeft(), insets.getSystemWindowInsetTop(),
+                    navHeader.getPaddingRight(), navHeader.getPaddingBottom());
+            return insets;
+        });
 
-        toggleAccountBn = navViewStart.getHeaderView(0).findViewById(R.id.toggle_account_bn);
+        ImageView avatar = navHeader.findViewById(R.id.avatar);
+        TextView name = navHeader.findViewById(R.id.name);
+        TextView mail = navHeader.findViewById(R.id.mail);
+
+        toggleAccountBn = navHeader.findViewById(R.id.toggle_account_bn);
         toggleAccountBn.setOnClickListener(v -> {
             toggleAccountLay();
         });

@@ -26,7 +26,7 @@
             app:collapsedTitleGravity="start"
             app:expandedTitleGravity="top"
             app:expandedTitleMarginStart="96dp"
-            app:expandedTitleMarginTop="60dp"
+            app:expandedTitleMarginTop="56dp"
             app:expandedTitleTextAppearance="@style/Toolbar.Expand.TitleText"
             android:paddingTop="0dp"
             android:paddingBottom="@dimen/spacing_normal">
@@ -37,7 +37,7 @@
                 android:layout_gravity="start|top"
                 android:paddingStart="@dimen/spacing_normal"
                 android:paddingEnd="@dimen/spacing_normal"
-                android:layout_marginTop="86dp">
+                android:paddingTop="?attr/actionBarSize">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/user_avatar"
