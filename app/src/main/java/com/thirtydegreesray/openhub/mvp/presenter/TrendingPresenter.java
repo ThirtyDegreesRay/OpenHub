@@ -63,7 +63,7 @@ public class TrendingPresenter extends BasePresenter<ITrendingContract.View>
 
     private ArrayList<TrendingLanguage> getFixedLanguages(){
         ArrayList<TrendingLanguage> fixedLanguages = new ArrayList<>();
-        fixedLanguages.add(new TrendingLanguage(getString(R.string.all_languages), "all"));
+        fixedLanguages.add(new TrendingLanguage(getString(R.string.all_languages), ""));
         fixedLanguages.add(new TrendingLanguage(getString(R.string.unknown_languages), "unknown"));
         return fixedLanguages;
     }
