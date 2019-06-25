@@ -9,16 +9,18 @@
         <item>Português</item>
         <item>한국어</item>
         <item>Español</item>
+        <item>Català</item>
     </array>
     <array name="language_id_array">
         <item>en</item>
         <item>zh-rCN</item>
         <item>iw</item>
         <item>de</item>
+        <item>es</item>
         <item>hi</item>
         <item>pt-rPT</item>
         <item>ko</item>
-        <item>es</item>
+        <item>ca</item>
     </array>
 
     <array name="accent_color_array">
