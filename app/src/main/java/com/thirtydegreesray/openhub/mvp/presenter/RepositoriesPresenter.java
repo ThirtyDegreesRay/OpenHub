@@ -42,6 +42,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -463,7 +464,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
                     ArrayList<Repository> repos = new ArrayList<>();
                     try {
                         Document doc = Jsoup.parse(s, AppConfig.GITHUB_BASE_URL);
-                        Elements elements = doc.getElementsByClass("col-12 d-block width-full py-4 border-bottom");
+                        Elements elements = doc.getElementsByClass("Box-row");
                         if(elements.size() != 0){
                             for (Element element : elements) {
                                 try{
@@ -498,12 +499,12 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
     }
 
     private Repository parseTrendingRepositoryData(Element element) throws Exception{
-        String fullName = element.select("div > h3 > a").attr("href");
+        String fullName = element.select("h1 > a").attr("href");
         fullName = fullName.substring(1);
         String owner = fullName.substring(0, fullName.lastIndexOf("/"));
         String repoName = fullName.substring(fullName.lastIndexOf("/") + 1);
 
-        Element descElement = element.select("div > p").first();
+        Element descElement = element.getElementsByClass("col-9 text-gray my-1 pr-4").first();
         StringBuilder desc = new StringBuilder("");
         for(TextNode textNode : descElement.textNodes()){
             desc.append(textNode.getWholeText());
@@ -517,7 +518,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         }
         String starNumStr =  numElement.select("a").get(0).textNodes().get(1).toString()
                 .replaceAll(" ", "").replaceAll(",", "");
-        String forkNumStr =  numElement.select("a").get(1).textNodes().get(1).toString()
+        String forkNumStr =  numElement.select("a").get(0).textNodes().get(1).toString()
                 .replaceAll(" ", "").replaceAll(",", "");
         Element periodElement =  numElement.getElementsByClass("d-inline-block float-sm-right").first();
         String periodNumStr = "0";
