@@ -24,6 +24,7 @@ public interface ISearchContract {
         SearchModel getSortModel(int page, int sortId);
         @NonNull ArrayList<String> getSearchRecordList();
         void addSearchRecord(@NonNull String record);
+        void removeSearchRecord(@NonNull String record);
     }
 
 }

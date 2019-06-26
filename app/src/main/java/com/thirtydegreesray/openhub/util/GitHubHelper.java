@@ -31,6 +31,7 @@ public class GitHubHelper {
 
     public static final Pattern REPO_FULL_NAME_PATTERN =
             Pattern.compile("([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.|_)*");
+    private static final Pattern HOME_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR + "/");
     private static final Pattern USER_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR
             + "/([a-z]|[A-Z]|\\d|-)*(/)?");
     private static final Pattern REPO_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR
@@ -87,6 +88,10 @@ public class GitHubHelper {
     public static String getExtension(@Nullable String name) {
         if (StringUtils.isBlank(name)) return null;
         return MimeTypeMap.getFileExtensionFromUrl(name);
+    }
+
+    public static boolean isHomeUrl(@NonNull String url) {
+        return HOME_PATTERN.matcher(url).matches();
     }
 
     public static boolean isUserUrl(@NonNull String url){

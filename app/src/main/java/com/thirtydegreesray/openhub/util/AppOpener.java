@@ -26,6 +26,7 @@ import com.thirtydegreesray.openhub.ui.activity.ProfileActivity;
 import com.thirtydegreesray.openhub.ui.activity.ReleaseInfoActivity;
 import com.thirtydegreesray.openhub.ui.activity.ReleasesActivity;
 import com.thirtydegreesray.openhub.ui.activity.RepositoryActivity;
+import com.thirtydegreesray.openhub.ui.activity.SplashActivity;
 import com.thirtydegreesray.openhub.ui.activity.ViewerActivity;
 
 import java.util.ArrayList;
@@ -180,7 +181,9 @@ public class AppOpener {
             repoName = gitHubName.getRepoName();
         }
 
-        if(GitHubHelper.isUserUrl(url)){
+        if (GitHubHelper.isHomeUrl(url)) {
+            context.startActivity(new Intent(context, SplashActivity.class));
+        } else if(GitHubHelper.isUserUrl(url)){
             ProfileActivity.show((Activity) context, userName);
         } else if(GitHubHelper.isRepoUrl(url)){
             RepositoryActivity.show(context, userName, repoName);

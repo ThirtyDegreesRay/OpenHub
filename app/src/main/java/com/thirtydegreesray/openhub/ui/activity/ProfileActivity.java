@@ -9,9 +9,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -129,6 +131,15 @@ public class ProfileActivity extends PagerActivity<ProfilePresenter>
         setToolbarBackEnable();
         setToolbarTitle(mPresenter.getLoginId());
         setUserAvatar();
+        if (toolbar != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(toolbar, (v, insets) -> {
+                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams)
+                        toolbar.getLayoutParams();
+                params.topMargin = insets.getSystemWindowInsetTop();
+                toolbar.setLayoutParams(params);
+                return insets;
+            });
+        }
     }
 
     @Override

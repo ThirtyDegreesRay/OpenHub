@@ -14,6 +14,7 @@ import com.thirtydegreesray.openhub.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -24,7 +25,8 @@ import javax.inject.Inject;
 public class SearchPresenter extends BasePresenter<ISearchContract.View>
         implements ISearchContract.Presenter {
 
-    @AutoAccess ArrayList<SearchModel> searchModels;
+    @AutoAccess
+    ArrayList<SearchModel> searchModels;
 
     @Inject
     public SearchPresenter(DaoSession daoSession) {
@@ -78,27 +80,40 @@ public class SearchPresenter extends BasePresenter<ISearchContract.View>
 
     @Override
     public void addSearchRecord(@NonNull String record) {
-        if(record.contains("$")){
+        if (record.contains("$")) {
             return;
         }
         int MAX_SEARCH_RECORD_SIZE = 30;
         ArrayList<String> recordList = getSearchRecordList();
-        if(recordList.contains(record)){
+        if (recordList.contains(record)) {
             recordList.remove(record);
         }
-        if(recordList.size() >= MAX_SEARCH_RECORD_SIZE){
+        if (recordList.size() >= MAX_SEARCH_RECORD_SIZE) {
             recordList.remove(recordList.size() - 1);
         }
         recordList.add(0, record);
         StringBuilder recordStr = new StringBuilder("");
         String lastRecord = recordList.get(recordList.size() - 1);
-        for(String str : recordList){
+        for (String str : recordList) {
             recordStr.append(str);
-            if(!str.equals(lastRecord)){
+            if (!str.equals(lastRecord)) {
                 recordStr.append("$$");
             }
         }
         PrefUtils.set(PrefUtils.SEARCH_RECORDS, recordStr.toString());
     }
 
+    @Override
+    public void removeSearchRecord(@NonNull String record) {
+        List<String> recordsList = getSearchRecordList();
+        recordsList.remove(record);
+        StringBuilder builder = new StringBuilder();
+        for (String str : recordsList) {
+            builder.append(str);
+            if (!str.equals(recordsList.get(recordsList.size() > 0 ? recordsList.size() - 1 : 0))) {
+                builder.append("$$");
+            }
+        }
+        PrefUtils.set(PrefUtils.SEARCH_RECORDS, builder.toString());
+    }
 }
