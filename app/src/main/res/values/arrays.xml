@@ -2,6 +2,7 @@
 <resources>
     <array name="language_array">
         <item>English</item>
+        <item>Français</item>
         <item>简体中文</item>
         <item>עִברִית</item>
         <item>Deutsch</item>
@@ -13,6 +14,7 @@
     </array>
     <array name="language_id_array">
         <item>en</item>
+        <item>fr</item>
         <item>zh-rCN</item>
         <item>iw</item>
         <item>de</item>

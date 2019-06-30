@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name"></string>
+    <string name="about">A propos</string>
+    <string name="my_repos">Mes dépôts</string>
+    <string name="name">Nom</string>
+    <string name="author">Auteur</string>
+    <string name="cancel">Annuler</string>
+    <string name="choose_theme">Choisir thème</string>
+    <string name="color">Couleur</string>
+    <string name="comment">Commentaire</string>
+    <string name="commit">Commit</string>
+    <string name="commits">Commits</string>
+    <string name="feedback_and_share">Partage et remarque</string>
+    <string name="yesterday">Hier</string>
+    <string name="choose_languages">Choisir langue</string>
+    <string name="settings">Paramètres</string>
+</resources>
