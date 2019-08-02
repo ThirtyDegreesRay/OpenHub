@@ -408,7 +408,7 @@
     <string name="collections_tip">Curated lists and insight into burgeoning industries, topics, and communities.</string>
     <string name="github_page_parse_error">
         %s page parse error, this page may be changed by github,
-        please update your application to latest version, if error continue, please concat me to solve the problem!
+        please update your application to latest version, if error continue, please contact me to solve the problem!
     </string>
 
     <string name="bookmarks_tip">You can swipe left or right to remove bookmark.</string>
