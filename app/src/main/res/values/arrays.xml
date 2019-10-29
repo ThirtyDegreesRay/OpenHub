@@ -9,6 +9,7 @@
         <item>Português</item>
         <item>한국어</item>
         <item>Español</item>
+        <item>Русский</item>
     </array>
     <array name="language_id_array">
         <item>en</item>
@@ -19,6 +20,7 @@
         <item>pt-rPT</item>
         <item>ko</item>
         <item>es</item>
+        <item>ru</item>
     </array>
 
     <array name="accent_color_array">
