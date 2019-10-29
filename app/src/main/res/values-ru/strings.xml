@@ -40,7 +40,7 @@
     <string name="repositories">Репозитории</string>
     <string name="owned">Ваши</string>
     <string name="starred">Избранное</string>
-    <string name="trending">В тренде</string>
+    <string name="trending">Популярное</string>
     <string name="explore">Исследовать</string>
 
     <string name="info_and_repositories">Информация &#038; Предпочтения</string>
@@ -80,8 +80,8 @@
     <string name="repository">Репозиторий</string>
     <string name="info">Информация</string>
     <string name="files">Файлы</string>
-    <string name="commits">Изменения</string>
-    <string name="commit">Изменение</string>
+    <string name="commits">Правки</string>
+    <string name="commit">Правка</string>
 
     <string name="star">Добавить в избранное</string>
     <string name="unstar">Удалить из избранного</string>
@@ -211,8 +211,8 @@
 
     <string name="filter">Фильтр</string>
 
-    <string name="releases">Публикации</string>
-    <string name="no_releases">Без публикаций</string>
+    <string name="releases">Релизы</string>
+    <string name="no_releases">Без релизов</string>
     <string name="source_code_zip">Исходный код (zip)</string>
     <string name="source_code_tar">Исходный код (tar.gz)</string>
     <string name="download_source_zip">Скачать исходный код (zip)</string>
@@ -221,137 +221,137 @@
     <string name="on">в</string>
     <string name="download">Скачать</string>
     <string name="download_complete">Загрузка завершена</string>
-    <string name="download_failed">ЗАгурзка не удалась</string>
+    <string name="download_failed">Загурзка не удалась</string>
     <string name="downloading">Скачивается</string>
     <string name="download_empty_tip">Ссылка или имя файла пусты!</string>
     <string name="download_start">Начало загрузки</string>
     <string name="download_cancel">Отмена загрузки</string>
     <string name="permission_storage_denied">Отказано в доступе, пожалуйста предоставьте доступ к хранилищу</string>
-    <string name="enable_download_service_tip">Please enable download service first!</string>
+    <string name="enable_download_service_tip">Пожалуйста сначала включите сервис загрузки!</string>
 
-    <string name="open">Open</string>
-    <string name="closed">Closed</string>
-    <string name="no_issues">No issues</string>
-    <string name="issue">Issue</string>
+    <string name="open">Открытые</string>
+    <string name="closed">Закрытые</string>
+    <string name="no_issues">Нет проблем</string>
+    <string name="issue">Проблема</string>
 
-    <string name="type">Type</string>
-    <string name="all">All</string>
-    <string name="created">Created</string>
-    <string name="assigned">Assigned</string>
-    <string name="mentioned">Mentioned</string>
-    <string name="participating">Participant</string>
+    <string name="type">Тип</string>
+    <string name="all">Все</string>
+    <string name="created">Создана</string>
+    <string name="assigned">Назначена</string>
+    <string name="mentioned">Упомянута</string>
+    <string name="participating">Участники</string>
 
-    <string name="recently_created">Recently created</string>
-    <string name="previously_created">Previously created</string>
-    <string name="most_comments">Most comments</string>
-    <string name="fewest_comments">Fewest comments</string>
+    <string name="recently_created">Созданы недавно</string>
+    <string name="previously_created">Созданы давно</string>
+    <string name="most_comments">Количество комментариев по убыванию</string>
+    <string name="fewest_comments">Количество комментариев по возрастанию</string>
 
-    <string name="comments">Comments</string>
-    <string name="comment">Comment</string>
-    <string name="no_description">No description provided.</string>
-    <string name="no_comments">No comments.</string>
+    <string name="comments">Комментарии</string>
+    <string name="comment">Комментарий</string>
+    <string name="no_description">Описание не предоствлено.</string>
+    <string name="no_comments">Нет комментариев.</string>
 
-    <string name="write">Write</string>
-    <string name="preview">Preview</string>
+    <string name="write">Написать</string>
+    <string name="preview">Предпросмотр</string>
 
-    <string name="edit">Edit</string>
-    <string name="delete">Delete</string>
-    <string name="comment_null_warning">Comment is null!</string>
-    <string name="comment_success">Comment success</string>
-    <string name="delete_comment_warning">Confirm to delete comment?</string>
-    <string name="reopen">Reopen</string>
-    <string name="reopen_success">Reopen success</string>
-    <string name="close_success">Close success</string>
+    <string name="edit">Редактировать</string>
+    <string name="delete">Удалить</string>
+    <string name="comment_null_warning">Комментарий пуст!</string>
+    <string name="comment_success">Комментарий опубликован</string>
+    <string name="delete_comment_warning">Подтвердить удаление комментария?</string>
+    <string name="reopen">Открыть заново</string>
+    <string name="reopen_success">Повторное открытие успешно</string>
+    <string name="close_success">Успешно закрыто</string>
 
-    <string name="add_large_header">Add large header</string>
-    <string name="add_medium_header">Add medium header</string>
-    <string name="add_small_header">Add small header</string>
-    <string name="add_bold_text">Add bold text</string>
-    <string name="add_italic_text">Add italic text</string>
-    <string name="add_a_link">Add a link</string>
-    <string name="insert_code">Insert code</string>
-    <string name="insert_a_quote">Insert a quote</string>
-    <string name="add_a_bulleted_list">Add a bulleted list</string>
-    <string name="mention">Directly mention a user or team</string>
-    <string name="nothing_to_preview">Nothing to preview</string>
+    <string name="add_large_header">Добавить большой заголовок</string>
+    <string name="add_medium_header">Добавиь средний заголовок</string>
+    <string name="add_small_header">Добавиьть маленький заголовок</string>
+    <string name="add_bold_text">Добавить жирный текст</string>
+    <string name="add_italic_text">Добавить курсивный текст</string>
+    <string name="add_a_link">Добавить ссылку</string>
+    <string name="insert_code">Вставить код</string>
+    <string name="insert_a_quote">Вставить цитату</string>
+    <string name="add_a_bulleted_list">Добавить маркированный список</string>
+    <string name="mention">Напрямую отметить позьвателя или организацию</string>
+    <string name="nothing_to_preview">Нет контента для предпросмотра</string>
 
-    <string name="title">Title</string>
-    <string name="leave_a_comment">Leave a comment</string>
-    <string name="markdown_editor">Use markdown editor</string>
+    <string name="title">Название</string>
+    <string name="leave_a_comment">Оставить комментарий</string>
+    <string name="markdown_editor">Использовать редактор резметки</string>
 
-    <string name="created_at">Created at</string>
-    <string name="forked_at">Forked at</string>
-    <string name="latest_update">Latest update</string>
-    <string name="latest_commit">Latest commit</string>
-    <string name="issue_title_null_tip">Issue title can not be null.</string>
-    <string name="edit_issue">Edit issue</string>
-    <string name="create_issue">Create issue</string>
-    <string name="edit_issue_success">Edit issue success</string>
-    <string name="create_issue_success">Create issue success</string>
+    <string name="created_at">Создано</string>
+    <string name="forked_at">Ответвлено</string>
+    <string name="latest_update">Послденне обновление</string>
+    <string name="latest_commit">Последняя правка</string>
+    <string name="issue_title_null_tip">Название проблемы не может быть пустым.</string>
+    <string name="edit_issue">Редактировать проблему</string>
+    <string name="create_issue">Создать проблему</string>
+    <string name="edit_issue_success">Проблема отредактирована успешно</string>
+    <string name="create_issue_success">Проблема создана успешно</string>
 
-    <string name="no_commits">No commits</string>
-    <string name="committed">Committed</string>
-    <string name="view_file">View file</string>
-    <string name="failed_to_recognize">Failed to recognize the GitHub URL, please open in browser after long press copied.</string>
-    <string name="failed_to_open_url">Failed to open the URL, please open in browser after long press copied.</string>
-    <string name="compare">Compare view</string>
+    <string name="no_commits">Нет правок</string>
+    <string name="committed">Правлено</string>
+    <string name="view_file">Просмотреть файл</string>
+    <string name="failed_to_recognize">Не удалось разпознать ссылку, пожалуйста откройте её в браузере после копирования долгим нажатием.</string>
+    <string name="failed_to_open_url">Не удалось открыть ссылку, пожалуйста откройте её в браузере после копирования долгим нажатием.</string>
+    <string name="compare">Вид сравнения</string>
 
-    <string name="unread">Unread</string>
-    <string name="no_notifications_tip">No new notifications.</string>
-    <string name="feedback_and_share">Share &#038; Feedback</string>
-    <string name="share_to_friends">Share to your friends</string>
+    <string name="unread">Непрочитанные</string>
+    <string name="no_notifications_tip">Новых уведомлений нет.</string>
+    <string name="feedback_and_share">Поделиться &#038; и оставить отзыв</string>
+    <string name="share_to_friends">Поделиться с друзьями</string>
     <string name="cookapk_download_url" translatable="false">https://www.coolapk.com/apk/com.thirtydegreesray.openhub</string>
-    <string name="feedback">Feedback</string>
+    <string name="feedback">Отзывы</string>
 
-    <string name="openhub_wishes">Wishes From OpenHub</string>
+    <string name="openhub_wishes">Пожелания от OpenHub</string>
     <string name="star_wishes" formatted="false">
-        Hi %s, today is your %dth day at OpenHub,
-        thanks for your using, I will strive to become a more convenient GitHub app for you.
-        \n\nIf you can star to support me, it would be awesome!
+        Hi %s, сегодня ваш %dй день на OpenHub,
+        thanks спасибо за использование, я стараюсь постоянно улучшать данный клиент.
+        \n\nIf вы можете добавить репозиторий приложения в избранное, это было бы классно!
     </string>
-    <string name="star_thanks">Thank you for your support!</string>
-    <string name="star_me">Star me</string>
-    <string name="star_next_time">Keep moving</string>
+    <string name="star_thanks">Спасибо за вашу поддержку!</string>
+    <string name="star_me">Добавь меня в избранное</string>
+    <string name="star_next_time">Потом</string>
 
-    <string name="owner_repo">Owner</string>
-    <string name="public_repo">Public</string>
-    <string name="private_repo">Private</string>
-    <string name="member_repo">Member</string>
-    <string name="most_pushed">Most pushed</string>
-    <string name="fewest_pushed">Fewest pushed</string>
-    <string name="full_name_asc">Full name asc</string>
-    <string name="full_name_desc">Full name desc</string>
-    <string name="recently_starred">Recently starred</string>
-    <string name="previously_starred">Previously starred</string>
+    <string name="owner_repo">Владелец</string>
+    <string name="public_repo">Публичный</string>
+    <string name="private_repo">Частный</string>
+    <string name="member_repo">Член</string>
+    <string name="most_pushed">Изменения по убыванию</string>
+    <string name="fewest_pushed">Изменения по возрастанию</string>
+    <string name="full_name_asc">Полное имя по возрастанию</string>
+    <string name="full_name_desc">Полное имя по убыванию</string>
+    <string name="recently_starred">Недавно добавленное в избранное</string>
+    <string name="previously_starred">Раннее добавленное в избранное</string>
 
-    <string name="trace">Trace</string>
-    <string name="my_repos">My repos</string>
-    <string name="starred_repos">Starred repos</string>
-    <string name="trending_repos">Trending repos</string>
+    <string name="trace">Отслеживание</string>
+    <string name="my_repos">Мои репозитории</string>
+    <string name="starred_repos">Избранные репозитории</string>
+    <string name="trending_repos">Популярные репозитории</string>
 
-    <string name="bookmarks">Bookmarks</string>
-    <string name="bookmark">Bookmark</string>
-    <string name="remove_bookmark">Remove bookmark</string>
-    <string name="bookmark_saved">Bookmark saved</string>
-    <string name="bookmark_removed">Bookmark removed</string>
+    <string name="bookmarks">Закладки</string>
+    <string name="bookmark">Добавить в закладки</string>
+    <string name="remove_bookmark">Удалить из закладок</string>
+    <string name="bookmark_saved">Закладка сохранена</string>
+    <string name="bookmark_removed">Закладка удалена</string>
 
-    <string name="user">User</string>
-    <string name="repo">Repo</string>
-    <string name="issues_list">Issues list</string>
-    <string name="commits_list">Commits list</string>
-    <string name="releases_list">Releases list</string>
-    <string name="release">Release</string>
-    <string name="go_to">Go to</string>
+    <string name="user">Пользователь</string>
+    <string name="repo">Репозиторий</string>
+    <string name="issues_list">Список проблем</string>
+    <string name="commits_list">Список правок</string>
+    <string name="releases_list">Список релизов</string>
+    <string name="release">Релиз</string>
+    <string name="go_to">Перейти к</string>
 
-    <string name="tips">Tips</string>
+    <string name="tips">Подсказки</string>
     <string name="activity_click_tip">
-        You can single click item to view default page, or long click item to view available pages.
+        Вы можете перейти на страницу по умолчанию одинарным нажатием, или просмотреть доступные страницы долгим нажатием.
     </string>
-    <string name="double_click_toolbar_tip">You can double click title to back top in list page.</string>
-    <string name="releases_click_tip">You can long click item to view available downloads.</string>
+    <string name="double_click_toolbar_tip">Двойным нажатием на название можно перейти к началу страницы.</string>
+    <string name="releases_click_tip">Длинное нажатие на релиз открывает список доступных загрузок.</string>
 
-    <string name="created_comment_on_commit">Created comment on commit in %s</string>
-    <string name="created_comment_on_issue">Created comment on issue %d in %s</string>
+    <string name="created_comment_on_commit">Создан комментарий в правке %s</string>
+    <string name="created_comment_on_issue">Создан комментарий в проблеме %d %s</string>
     <string name="created_repo">Created repository %s</string>
     <string name="forked_to">Forked %s to %s</string>
     <string name="starred_repo">Starred %s</string>
