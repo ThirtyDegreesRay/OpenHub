@@ -156,77 +156,77 @@
     <string name="sort_order">Порядок сортировки</string>
 
     <string name="best_match">Лучшее совпадение</string>
-    <string name="most_stars">Больше всего добавлений в избранное</string>
-    <string name="fewest_stars">Меньше всего добавлений в избранное</string>
-    <string name="most_forks">Больше всего ответвлений</string>
-    <string name="fewest_forks">Меньше всего ответвлений</string>
-    <string name="recently_updated">По свежести обновления</string>
-    <string name="least_recently_updated">По давности обновления</string>
+    <string name="most_stars">Добавления в избранное по убыванию</string>
+    <string name="fewest_stars">Добавления в избранное по возрастанию</string>
+    <string name="most_forks">Количество ответвлений по убыванию</string>
+    <string name="fewest_forks">Количество ответвлений по возрастанию</string>
+    <string name="recently_updated">Свежесть обновления по убыванию</string>
+    <string name="least_recently_updated">Свежесть обновления по возрастанию</string>
 
-    <string name="most_followers">Больше всего подписчиков</string>
-    <string name="fewest_followers">Меньше всего подписчиков</string>
-    <string name="most_recently_joined">По свежести регистрации</string>
-    <string name="least_recently_joined">По давности регистрации</string>
-    <string name="most_repositories">Больше всего репозиториев</string>
-    <string name="fewest_repositories">Меньше всего </string>
+    <string name="most_followers">Количество подписчиков по убыванию</string>
+    <string name="fewest_followers">Количество подписчиков по возрастанию</string>
+    <string name="most_recently_joined">Давность регистрации по убыванию</string>
+    <string name="least_recently_joined">Давность регистрации по возрастанию</string>
+    <string name="most_repositories">Количество репозиториев по убыванию</string>
+    <string name="fewest_repositories">Количество репозиториев по возрастанию</string>
 
-    <string name="invalid_query">Invalid query text!</string>
+    <string name="invalid_query">Неверный текст запроса!</string>
 
-    <string name="daily">Daily</string>
-    <string name="weekly">Weekly</string>
-    <string name="monthly">Monthly</string>
+    <string name="daily"По дням</string>
+    <string name="weekly">По неделям</string>
+    <string name="monthly">По месяцам</string>
 
-    <string name="logout_warning">Confirm to logout?</string>
-    <string name="unknown">Unknown</string>
-    <string name="organizations">Organizations</string>
-    <string name="no_user">No users</string>
-    <string name="no_activity">No activities</string>
-    <string name="no_repository">No repositories</string>
-    <string name="no_file">No files</string>
-    <string name="developing">Developing</string>
-    <string name="version" >Version</string>
-    <string name="source_code" >Source code</string>
-    <string name="source_code_wishes" >Star to support me</string>
-    <string name="rate_in_market" >Rate or comment in market</string>
-    <string name="author" >Author</string>
+    <string name="logout_warning">Подтвердить выход из аккаунта?</string>
+    <string name="unknown">Неизвестно</string>
+    <string name="organizations">Организации</string>
+    <string name="no_user">нет пользователей</string>
+    <string name="no_activity">Нет активности</string>
+    <string name="no_repository">Нет репозиториев</string>
+    <string name="no_file">Нет файлов</string>
+    <string name="developing">В разработке</string>
+    <string name="version" >Версия</string>
+    <string name="source_code" >Исходный код</string>
+    <string name="source_code_wishes" >Добавь в изьранное чтобы поддержать меня</string>
+    <string name="rate_in_market" >Оценить или оставить отзыв в магазине</string>
+    <string name="author" >Создатель</string>
     <string name="author_name" translatable="false">30度的射线</string>
     <string name="author_location" translatable="false">NanJing,China</string>
     <string name="author_login_id" translatable="false">ThirtyDegreesRay</string>
     <string name="author_avatar_url" translatable="false">https://avatars1.githubusercontent.com/u/9625508?v=4</string>
     <string name="app_copyright" translatable="false">© 2017 ThirtyDegreesRay</string>
-    <string name="follow_on_github" >Follow on GitHub</string>
-    <string name="email" >Email</string>
+    <string name="follow_on_github" >Подписаться на GitHub</string>
+    <string name="email" >Почтовый адрес</string>
     <string name="auth_email_address" translatable="false">rays.yuz@gmail.com</string>
-    <string name="loading">loading</string>
+    <string name="loading">загрузка</string>
 
-    <string name="upgrade">Upgrade</string>
-    <string name="install">Install</string>
-    <string name="next_time">Next time</string>
-    <string name="upgrade_version">Version:</string>
-    <string name="upgrade_apk_size">Apk size:</string>
-    <string name="publish_time">Publish time:</string>
-    <string name="upgrade_info">Upgrade info:</string>
-    <string name="no_upgrade_tip">You have installed the latest version.</string>
-    <string name="fork_failed">Fork failed</string>
+    <string name="upgrade">Обновить</string>
+    <string name="install">Установить</string>
+    <string name="next_time">В следующий раз</string>
+    <string name="upgrade_version">Версия:</string>
+    <string name="upgrade_apk_size">Размер APK:</string>
+    <string name="publish_time">Время публикации:</string>
+    <string name="upgrade_info">Информация о обновлении:</string>
+    <string name="no_upgrade_tip">У вас установлена последняя версия.</string>
+    <string name="fork_failed">Ответвление не удалось</string>
 
-    <string name="filter">Filter</string>
+    <string name="filter">Фильтр</string>
 
-    <string name="releases">Releases</string>
-    <string name="no_releases">No releases</string>
-    <string name="source_code_zip">Source code (zip)</string>
-    <string name="source_code_tar">Source code (tar.gz)</string>
-    <string name="download_source_zip">Download source (zip)</string>
-    <string name="download_source_tar">Download source (tar.gz)</string>
-    <string name="released_this">released this</string>
-    <string name="on">on</string>
-    <string name="download">Download</string>
-    <string name="download_complete">Download complete</string>
-    <string name="download_failed">Download failed</string>
-    <string name="downloading">Downloading</string>
-    <string name="download_empty_tip">Url or file name is empty!</string>
-    <string name="download_start">Download start</string>
-    <string name="download_cancel">Download cancel</string>
-    <string name="permission_storage_denied">Permission denied, please allow storage permission.</string>
+    <string name="releases">Публикации</string>
+    <string name="no_releases">Без публикаций</string>
+    <string name="source_code_zip">Исходный код (zip)</string>
+    <string name="source_code_tar">Исходный код (tar.gz)</string>
+    <string name="download_source_zip">Скачать исходный код (zip)</string>
+    <string name="download_source_tar">Скачать исходный код (tar.gz)</string>
+    <string name="released_this">выпустил это</string>
+    <string name="on">в</string>
+    <string name="download">Скачать</string>
+    <string name="download_complete">Загрузка завершена</string>
+    <string name="download_failed">ЗАгурзка не удалась</string>
+    <string name="downloading">Скачивается</string>
+    <string name="download_empty_tip">Ссылка или имя файла пусты!</string>
+    <string name="download_start">Начало загрузки</string>
+    <string name="download_cancel">Отмена загрузки</string>
+    <string name="permission_storage_denied">Отказано в доступе, пожалуйста предоставьте доступ к хранилищу</string>
     <string name="enable_download_service_tip">Please enable download service first!</string>
 
     <string name="open">Open</string>
