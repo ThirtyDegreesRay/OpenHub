@@ -1,33 +1,10 @@
 <resources>
-    <string name="app_github_name" translatable="false">OpenHub</string>
-    <string name="navigation_drawer_open" translatable="false">navigation_drawer_open</string>
-    <string name="navigation_drawer_close" translatable="false">navigation_drawer_close</string>
-
-    <!-- colors -->
-    <string name="light_blue" translatable="false">Light Blue</string>
-    <string name="blue" translatable="false">Blue</string>
-    <string name="indigo" translatable="false">Indigo</string>
-    <string name="orange" translatable="false">Orange</string>
-    <string name="yellow" translatable="false">Yellow</string>
-    <string name="amber" translatable="false">Amber</string>
-    <string name="grey" translatable="false">Grey</string>
-    <string name="brown" translatable="false">Brown</string>
-
-    <string name="cyan" translatable="false">Cyan</string>
-    <string name="teal" translatable="false">Teal</string>
-    <string name="lime" translatable="false">Lime</string>
-    <string name="green" translatable="false">Green</string>
-    <string name="pink" translatable="false">Pink</string>
-    <string name="red" translatable="false">Red</string>
-    <string name="purple" translatable="false">Purple</string>
-    <string name="deep_purple" translatable="false">Deep Purple</string>
-
     <!-- onLoginClick -->
     <string name="user_name">Имя пользователя</string>
     <string name="password">Пароль</string>
     <string name="login">Логин</string>
     <string name="login_in_browser">Войти через бразуер</string>
-    <string name="oauth_tip">Войти с помощью вашего браузера по умолчанию OAuth)</string>
+    <string name="oauth_tip">Войти с помощью вашего браузера по умолчанию (OAuth)</string>
     <string name="user_name_warning">Неверное имя пользователя!</string>
     <string name="password_warning">Неверный пароль!</string>
 
@@ -189,11 +166,6 @@
     <string name="source_code_wishes" >Добавь в изьранное чтобы поддержать меня</string>
     <string name="rate_in_market" >Оценить или оставить отзыв в магазине</string>
     <string name="author" >Создатель</string>
-    <string name="author_name" translatable="false">30度的射线</string>
-    <string name="author_location" translatable="false">NanJing,China</string>
-    <string name="author_login_id" translatable="false">ThirtyDegreesRay</string>
-    <string name="author_avatar_url" translatable="false">https://avatars1.githubusercontent.com/u/9625508?v=4</string>
-    <string name="app_copyright" translatable="false">© 2017 ThirtyDegreesRay</string>
     <string name="follow_on_github" >Подписаться на GitHub</string>
     <string name="email" >Почтовый адрес</string>
     <string name="auth_email_address" translatable="false">rays.yuz@gmail.com</string>
@@ -300,12 +272,11 @@
     <string name="no_notifications_tip">Новых уведомлений нет.</string>
     <string name="feedback_and_share">Поделиться &#038; и оставить отзыв</string>
     <string name="share_to_friends">Поделиться с друзьями</string>
-    <string name="cookapk_download_url" translatable="false">https://www.coolapk.com/apk/com.thirtydegreesray.openhub</string>
     <string name="feedback">Отзывы</string>
 
     <string name="openhub_wishes">Пожелания от OpenHub</string>
     <string name="star_wishes" formatted="false">
-        Hi %s, сегодня ваш %dй день на OpenHub,
+        Привет %s, сегодня ваш %dй день на OpenHub,
         thanks спасибо за использование, я стараюсь постоянно улучшать данный клиент.
         \n\nIf вы можете добавить репозиторий приложения в избранное, это было бы классно!
     </string>
@@ -463,16 +434,6 @@
     <string name="disable_loading_image_desc">Выключить загрузку картинок при использовании мобильных данных</string>
 
     <string name="toggle_issue_warning">Подтвердить %s этой проблемы?</string>
-
-    <string name="new_year_wishes" formatted="false" translatable="false">
-        Hi %s！今天是您在OpenHub的第%d天，我会成为更适合您的GitHub app。
-        \n\n祝新年快乐，阖家欢乐，工作顺利！
-    </string>
-    <string name="new_year_wishes_with_star" formatted="false" translatable="false">
-        Hi %s！今天是您在OpenHub的第%d天，我会成为更适合您的GitHub app。
-        \n\n祝新年快乐，阖家欢乐，工作顺利！
-        \n\n最后还有一点小期望，如果可以星标来支持我，那就更棒了！
-    </string>
 
     <string name="add_account">Добавить аккаунт</string>
     <string name="delete_label_warning">Подтвердить удаление данной этикетки?</string>
