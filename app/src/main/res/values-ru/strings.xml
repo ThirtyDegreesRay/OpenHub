@@ -324,7 +324,7 @@
     <string name="recently_starred">Недавно добавленное в избранное</string>
     <string name="previously_starred">Раннее добавленное в избранное</string>
 
-    <string name="trace">Отслеживание</string>
+    <string name="trace">След</string>
     <string name="my_repos">Мои репозитории</string>
     <string name="starred_repos">Избранные репозитории</string>
     <string name="trending_repos">Популярные репозитории</string>
@@ -358,72 +358,72 @@
     <string name="push_to">Изменено %s в %s</string>
     <string name="created_tag_at">Создан тег %s на %s</string>
     <string name="created_branch_at">Создана ветвь %s на %s</string>
-    <string name="delete_tag_at">Удалён тег %s at %s</string>
-    <string name="delete_branch_at">Удалена ветвь %s at %s</string>
-    <string name="published_release_at">Published release %s at %s</string>
-    <string name="opened_issue_at">Opened issue %d in %s</string>
-    <string name="closed_issue_at">Closed issue %d in %s</string>
-    <string name="reopened_issue_at">Reopened issue %d in %s</string>
-    <string name="edited_issue_at">Edited issue %d in %s</string>
-    <string name="assigned_issue_at">Assigned issue %d in %s</string>
-    <string name="unassigned_issue_at">Unassigned issue %d in %s</string>
-    <string name="labeled_issue_at">Labeled issue %d in %s</string>
-    <string name="unlabeled_issue_at">Unlabeled issue %d in %s</string>
-    <string name="milestoned_issue_at">Milestoned issue %d in %s</string>
-    <string name="demilestoned_issue_at">Demilestoned issue %d in %s</string>
-    <string name="added_member_to">Added member %s to %s</string>
-    <string name="deleted_member_at">Deleted member %s at %s</string>
-    <string name="edited_member_at">Edited member %s at %s</string>
-    <string name="made_repo_public">Made %s public</string>
-    <string name="org_blocked_user">Org %s blocked user %s</string>
-    <string name="org_unblocked_user">Org %s unblocked user %s</string>
-    <string name="created_pull_request_comment_at">Created pull request review comment at %s</string>
-    <string name="deleted_pull_request_comment_at">Deleted pull request review comment at %s</string>
-    <string name="edited_pull_request_comment_at">Edited pull request review comment at %s</string>
-    <string name="submitted_pull_request_review_at">Submitted pull request review at %s</string>
-    <string name="edited_pull_request_review_at">Edited pull request review at %s</string>
-    <string name="dismissed_pull_request_review_at">Dismissed pull request review at %s</string>
+    <string name="delete_tag_at">Удалён тег %s на %s</string>
+    <string name="delete_branch_at">Удалена ветвь %s на %s</string>
+    <string name="published_release_at">Опубликован релиз %s в %s</string>
+    <string name="opened_issue_at">Открыта проблема %d в %s</string>
+    <string name="closed_issue_at">Открыта проблема %d в %s</string>
+    <string name="reopened_issue_at">Повторно открыта проблема %d в %s</string>
+    <string name="edited_issue_at">Отредактирована проблема %d в %s</string>
+    <string name="assigned_issue_at">Назначена проблема %d в %s</string>
+    <string name="unassigned_issue_at">Удалено назначение проблемы %d в %s</string>
+    <string name="labeled_issue_at">Создана этикетка проблемы %d в %s</string>
+    <string name="unlabeled_issue_at">Удалена этикетка проблемы %d в %s</string>
+    <string name="milestoned_issue_at">Milestoned issue %d в %s</string>
+    <string name="demilestoned_issue_at">Demilestoned issue %d в %s</string>
+    <string name="added_member_to">Добавлен член %s в %s</string>
+    <string name="deleted_member_at">Удалён член %s в %s</string>
+    <string name="edited_member_at">Отредактирован член %s в %s</string>
+    <string name="made_repo_public">Сделано %s публичным</string>
+    <string name="org_blocked_user">Организация %s заблокировала пользователя %s</string>
+    <string name="org_unblocked_user">Организация %s разблокировала пользователя %s</string>
+    <string name="created_pull_request_comment_at">Создан комментарий к запросу на объединение в %s</string>
+    <string name="deleted_pull_request_comment_at">Удалён комментарий к запросу на объединение в %s</string>
+    <string name="edited_pull_request_comment_at">Имзенён комментарий к запросу на объединение в %s</string>
+    <string name="submitted_pull_request_review_at">Послан запрос на рассмотр запроса на объединение в %s</string>
+    <string name="edited_pull_request_review_at">Изменён запрос на рассмотр запроса на объединение в %s</string>
+    <string name="dismissed_pull_request_review_at">Отказано в запросе на рассмотр запроса на объединение в %s</string>
 
-    <string name="undo">Undo</string>
-    <string name="no_bookmarks">No bookmarks</string>
-    <string name="no_trace">No trace</string>
-    <string name="trace_deleted">Trace deleted</string>
-    <string name="today">Today</string>
-    <string name="yesterday">Yesterday</string>
+    <string name="undo">Отменить</string>
+    <string name="no_bookmarks">Нет закладок</string>
+    <string name="no_trace">Нет следа</string>
+    <string name="trace_deleted">След удалён</string>
+    <string name="today">Сегодня</string>
+    <string name="yesterday">Вчера</string>
 
-    <string name="my_languages">My languages</string>
-    <string name="choose_languages">Choose languages</string>
-    <string name="language_removed">Language %s removed</string>
-    <string name="no_choose_language_warning">Choose at least one language!</string>
-    <string name="languages_editor_tip">You can swipe left or right to remove items, long click items to drag the sort.</string>
-    <string name="fullscreen">Fullscreen</string>
+    <string name="my_languages">Мои языки</string>
+    <string name="choose_languages">Выбрать языки</string>
+    <string name="language_removed">%s язык удалён</string>
+    <string name="no_choose_language_warning">Выберите как минимум одимн язык!</string>
+    <string name="languages_editor_tip">Вы можете свайпнуть направо или направо чтобы убрать пункты, а также перемещать сортировку длинным нажатием.</string>
+    <string name="fullscreen">Полноэкранный режим</string>
 
-    <string name="public_news">Global news</string>
+    <string name="public_news">Глобальные новости</string>
     <string name="wiki" translatable="false">Wiki</string>
-    <string name="recent_wiki_updates">Recent Wiki Updates</string>
-    <string name="no_recent_wiki_updates">No recent Wiki Updates</string>
+    <string name="recent_wiki_updates">Недавние обновления Wiki</string>
+    <string name="no_recent_wiki_updates">Нет недавних обновлений Wiki</string>
 
-    <string name="repo_collections">Repo collections</string>
-    <string name="no_repo_collections">No repo collections</string>
-    <string name="collections_tip">Curated lists and insight into burgeoning industries, topics, and communities.</string>
+    <string name="repo_collections">Коллекции репозиториев</string>
+    <string name="no_repo_collections">Нет коллекций репозиториев</string>
+    <string name="collections_tip">Курьирующиеся списки и представление растущих отраслей, тем, и сообществ.</string>
     <string name="github_page_parse_error">
-        %s page parse error, this page may be changed by github,
-        please update your application to latest version, if error continue, please concat me to solve the problem!
+        %s ошибка обработки, эта страница могла быть изменена GitHub,
+        пожалуйста обновите приложение до последней версии и свяжитесь со мной если проблема не устранится!
     </string>
 
-    <string name="bookmarks_tip">You can swipe left or right to remove bookmark.</string>
-    <string name="mark_all_as_read">Mark all as read</string>
-    <string name="mark_as_read">Mark as read</string>
+    <string name="bookmarks_tip">Вы можете свайпнуть направо или налево чтобы убрать закладку.</string>
+    <string name="mark_all_as_read">Отмеить всё как прочитанное</string>
+    <string name="mark_as_read">Отметить как прочитанное</string>
 
-    <string name="topic">Topic</string>
-    <string name="topics">Featured topics</string>
-    <string name="topics_tip">Browse the top used topics on GitHub.</string>
-    <string name="no_topics">No topics</string>
+    <string name="topic">Тема</string>
+    <string name="topics">Популярные темы</string>
+    <string name="topics_tip">Исследуйте самые используемые темы на GitHub.</string>
+    <string name="no_topics">Нет тем</string>
 
-    <string name="star_num_today">%s star today</string>
-    <string name="star_num_this_week">%s star this week</string>
-    <string name="star_num_this_month">%s star this month</string>
-    <string name="no_trending_repos">It looks like we don’t have any trending repositories for %s.</string>
+    <string name="star_num_today">%s добавлений в избранное сегодня</string>
+    <string name="star_num_this_week">%s добавлений в избранное на этой неделе</string>
+    <string name="star_num_this_month">%s добавлений в избранное в этом месяце</string>
+    <string name="no_trending_repos">Похоже нет популярных репозиториев для %s.</string>
 
     <string name="all_languages">Все языки</string>
     <string name="unknown_languages">Неизвестные языки</string>
