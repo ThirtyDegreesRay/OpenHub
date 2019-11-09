@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ ~ Copied from Copyright (C) 2017 Kosh.
+ ~ Modified by Copyright (C) 2017 ThirtyDegreesRay.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <color name="amoled_dark_color_primary">#26282C</color> //26282C
+    <color name="amoled_dark_color_primary_blur">#DD000000</color> //#DD2D3035
+    <color name="amoled_dark_color_primary_dark">#161719</color>
+    <color name="amoled_dark_color_accent">@color/material_green_accent_700</color>
+    <color name="amoled_dark_color_window_background">#000000</color>
+    <color name="amoled_dark_text_color_primary">@color/material_light_white</color>
+    <color name="amoled_dark_text_color_secondary">@color/material_grey_500</color>
+    <color name="amoled_dark_icon_color">@color/material_light_white</color>
+    <color name="amoled_dark_card_background">#1e2023</color>
+    <color name="amoled_dark_title_color">@color/material_light_white</color>
+    <color name="amoled_dark_subtitle_color">@color/material_grey_500</color>
+    <color name="amoled_dark_selected_color">#3f3f3f</color>
+
+    <style name="ThemeAmoledDark" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/amoled_dark_color_primary</item>
+        <item name="colorPrimaryDark">@color/amoled_dark_color_primary_dark</item>
+        <item name="colorAccent">@color/amoled_dark_color_accent</item>
+        <item name="android:windowBackground">@color/amoled_dark_color_window_background</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColorPrimary">@color/amoled_dark_text_color_primary</item>
+        <item name="android:textColorSecondary">@color/amoled_dark_text_color_secondary</item>
+        <item name="android:textColorTertiary">@color/material_grey_200</item>
+        <item name="icon_color">@color/amoled_dark_icon_color</item>
+        <item name="card_background">@color/amoled_dark_card_background</item>
+        <item name="title_color">@color/amoled_dark_title_color</item>
+        <item name="subtitle_color">@color/amoled_dark_subtitle_color</item>
+        <item name="selected_color">@color/amoled_dark_selected_color</item>
+        <item name="color_primary_blur">@color/amoled_dark_color_primary_blur</item>
+        <item name="popup_theme">@style/PopupThemeDark</item>
+        <item name="appbar_theme">@style/AppbarThemeDark</item>
+        <item name="android:contextPopupMenuStyle" tools:targetApi="n">@style/ContextPopupThemeDark</item>
+        <item name="popup_menu_theme">@style/PopupMenuDark</item>
+    </style>
+
+    <style name="DialogThemeAmoledDark" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="icon_color">@color/amoled_dark_icon_color</item>
+        <item name="colorPrimary">@color/amoled_dark_color_primary</item>
+        <item name="colorPrimaryDark">@color/amoled_dark_color_primary_dark</item>
+        <item name="colorAccent">@color/amoled_dark_color_accent</item>
+        <item name="android:windowBackground">@color/amoled_dark_color_window_background</item>
+    </style>
+
+    <style name="AppbarThemeAmoledDark" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    </style>
+
+
+    <style name="PopupMenuAmoledDark" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@color/amoled_dark_color_window_background</item>
+    </style>
+
+    <style name="PopupThemeAmoledDark" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:colorBackground">@color/amoled_dark_color_window_background</item>
+    </style>
+
+    <style name="ContextPopupThemeAmoledDark" parent="PopupThemeDark">
+        <item name="android:popupBackground">@color/amoled_dark_color_window_background</item>
+        <!--
+         ~  Context menu of a RecyclerView is displayed in the wrong location when setting
+         ~  a contextPopupMenuStyle on Android N, set bellow can fix it.
+        -->
+        <item name="android:overlapAnchor">true</item>
+    </style>
+
+    <style name="ThemeAmoledDark.LightBlue" parent="ThemeAmoledDark">
+        <item name="colorAccent">@color/material_light_blue_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.LightBlue</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDark.LightBlue</item>
+    </style>
+
+    <style name="ThemeAmoledDark.Blue" parent="ThemeAmoledDark">
+        <item name="colorAccent">@color/material_blue_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.Blue</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeAmoledDark.Blue</item>
+    </style>
+
+    <style name="ThemeAmoledDark.Indigo" parent="ThemeAmoledDark">
+        <item name="colorAccent">@color/material_indigo_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.Indigo</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeAmoledDark.Indigo</item>
+    </style>
+
+    <style name="ThemeAmoledDark.Orange" parent="ThemeAmoledDark">
+        <item name="colorAccent">@color/material_orange_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.Orange</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeAmoledDark.Orange</item>
+    </style>
+
+    <style name="ThemeAmoledDark.Yellow" parent="ThemeAmoledDark">
+        <item name="colorAccent">@color/material_yellow_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.Yellow</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeAmoledDark.Yellow</item>
+    </style>
+
+    <style name="ThemeAmoledDark.Amber" parent="ThemeAmoledDark">
+        <item name="colorAccent">@color/material_amber_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.Amber</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeAmoledDark.Amber</item>
+    </style>
+
+    <style name="ThemeAmoledDark.Grey" parent="ThemeAmoledDark">
+        <item name="colorAccent">@color/material_grey_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.Grey</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeAmoledDark.Grey</item>
+    </style>
+
+    <style name="ThemeAmoledDark.Brown" parent="ThemeAmoledDark">
+        <item name="colorAccent">@color/material_brown_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.Brown</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeAmoledDark.Brown</item>
+    </style>
+
+    <style name="ThemeAmoledDark.Cyan" parent="ThemeAmoledDark">
+        <item name="colorAccent">@color/material_cyan_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.Cyan</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeAmoledDark.Cyan</item>
+    </style>
+
+    <style name="ThemeAmoledDark.Teal" parent="ThemeAmoledDark">
+        <item name="colorAccent">@color/material_teal_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.Teal</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeAmoledDark.Teal</item>
+    </style>
+
+    <style name="ThemeAmoledDark.Lime" parent="ThemeAmoledDark">
+        <item name="colorAccent">@color/material_lime_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.Lime</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeAmoledDark.Lime</item>
+    </style>
+
+    <style name="ThemeAmoledDark.Green" parent="ThemeAmoledDark">
+        <item name="colorAccent">@color/material_green_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.Green</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeAmoledDark.Green</item>
+    </style>
+
+    <style name="ThemeAmoledDark.Pink" parent="ThemeAmoledDark">
+        <item name="colorAccent">@color/material_pink_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.Pink</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeAmoledDark.Pink</item>
+    </style>
+
+    <style name="ThemeAmoledDark.Red" parent="ThemeAmoledDark">
+        <item name="colorAccent">@color/material_red_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.Red</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeAmoledDark.Red</item>
+    </style>
+
+    <style name="ThemeAmoledDark.Purple" parent="ThemeAmoledDark">
+        <item name="colorAccent">@color/material_purple_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.Purple</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeAmoledDark.Purple</item>
+    </style>
+
+    <style name="ThemeAmoledDark.DeepPurple" parent="ThemeAmoledDark">
+        <item name="colorAccent">@color/material_deep_purple_accent_700</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.DeepPurple</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeAmoledDark.DeepPurple</item>
+    </style>
+
+
+    <style name="DialogThemeAmoledDark.LightBlue" parent="DialogThemeAmoledDark">
+        <item name="colorAccent">@color/material_light_blue_accent_700</item>
+    </style>
+
+    <style name="DialogThemeAmoledDark.Blue" parent="DialogThemeAmoledDark">
+        <item name="colorAccent">@color/material_blue_accent_700</item>
+    </style>
+
+    <style name="DialogThemeAmoledDark.Indigo" parent="DialogThemeAmoledDark">
+        <item name="colorAccent">@color/material_indigo_accent_700</item>
+    </style>
+
+    <style name="DialogThemeAmoledDark.Orange" parent="DialogThemeAmoledDark">
+        <item name="colorAccent">@color/material_orange_accent_700</item>
+    </style>
+
+    <style name="DialogThemeAmoledDark.Yellow" parent="DialogThemeAmoledDark">
+        <item name="colorAccent">@color/material_yellow_accent_700</item>
+    </style>
+
+    <style name="DialogThemeAmoledDark.Amber" parent="DialogThemeAmoledDark">
+        <item name="colorAccent">@color/material_amber_accent_700</item>
+    </style>
+
+    <style name="DialogThemeAmoledDark.Grey" parent="DialogThemeAmoledDark">
+        <item name="colorAccent">#FFFFFF</item> //@color/material_grey_700
+    </style>
+
+    <style name="DialogThemeAmoledDark.Brown" parent="DialogThemeAmoledDark">
+        <item name="colorAccent">@color/material_brown_700</item>
+    </style>
+
+    <style name="DialogThemeAmoledDark.Cyan" parent="DialogThemeAmoledDark">
+        <item name="colorAccent">@color/material_cyan_accent_700</item>
+    </style>
+
+    <style name="DialogThemeAmoledDark.Teal" parent="DialogThemeAmoledDark">
+        <item name="colorAccent">@color/material_teal_accent_700</item>
+    </style>
+
+    <style name="DialogThemeAmoledDark.Lime" parent="DialogThemeAmoledDark">
+        <item name="colorAccent">@color/material_lime_accent_700</item>
+    </style>
+
+    <style name="DialogThemeAmoledDark.Green" parent="DialogThemeAmoledDark">
+        <item name="colorAccent">@color/material_green_accent_700</item>
+    </style>
+
+    <style name="DialogThemeAmoledDark.Pink" parent="DialogThemeAmoledDark">
+        <item name="colorAccent">@color/material_pink_accent_700</item>
+    </style>
+
+    <style name="DialogThemeAmoledDark.Red" parent="DialogThemeAmoledDark">
+        <item name="colorAccent">@color/material_red_accent_700</item>
+    </style>
+
+    <style name="DialogThemeAmoledDark.Purple" parent="DialogThemeAmoledDark">
+        <item name="colorAccent">@color/material_purple_accent_700</item>
+    </style>
+
+    <style name="DialogThemeAmoledDark.DeepPurple" parent="DialogThemeAmoledDark">
+        <item name="colorAccent">@color/material_deep_purple_accent_700</item>
+    </style>
+
+    <style name="ThemeAmoledDark.AboutActivity" parent="ThemeAmoledDark">
+        <item name="mal_toolbarPopupTheme">@style/Theme.Mal.Toolbar.Dark</item>
+        <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Dark</item>
+        <item name="mal_color_primary">@color/amoled_dark_text_color_primary</item>
+        <item name="mal_color_secondary">@color/amoled_dark_text_color_secondary</item>
+        <item name="mal_card_background">@color/amoled_dark_card_background</item>
+        <item name="alertDialogTheme">@style/DialogThemeAmoledDark.Green</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeAmoledDark.Green</item>
+    </style>
+
+</resources>

@@ -22,6 +22,7 @@ public class PrefUtils {
     public final static String LIGHT_INDIGO = "Light indigo";
     public final static String DARK = "Dark";
     public final static String LIGHT_TEAL = "Light teal";
+    public final static String AMOLED_DARK = "AMOLED dark";
 
     public final static int LIGHT_BLUE = 0;
     public final static int BLUE = 1;

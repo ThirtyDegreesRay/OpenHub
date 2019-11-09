@@ -77,7 +77,6 @@ public class TopicsPresenter extends BasePresenter<ITopicsContract.View>
                         Document doc = Jsoup.parse(s, AppConfig.GITHUB_BASE_URL);
                         //top three topics
                         topics.addAll(getTopTopics(doc));
-                        //featured tops
                         topics.addAll(getFeaturedTopics(doc));
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -132,8 +131,8 @@ public class TopicsPresenter extends BasePresenter<ITopicsContract.View>
         for (Element element : topElements) {
             Element idElement = element.select("a").first();
             Element imageElement = element.select("a > img").first();
-            Element titleElement = element.select("a > div > p").get(0);
-            Element descElement = element.select("a > div > p").get(1);
+            Element titleElement = element.select("a > div > div > p").get(0);
+            Element descElement = element.select("a > div > div > p").get(1);
 
             String id = idElement.attr("href");
             id = id.substring(id.lastIndexOf("/") + 1);

@@ -1,6 +1,6 @@
 [English](/README.md) | 中文
 # OpenHub 
-[![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
+[![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://play.google.com/store/apps/details?id=com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
 一个**开源**的GitHub Android客户端应用，快速简洁。
@@ -12,9 +12,9 @@
 
 ### App
 * 两种登录方式，(Basic Auth) 和 (OAuth)
-* 支持夜间模式，多种主色调
+* 支持夜间模式和AMOLED Dark主题，多种主色调
 * 支持Markdown和代码高亮
-* 支持英文、简体中文、希伯来文、德文和印地文
+* 支持英文、简体中文、希伯来文、德文、印地文、葡萄牙文、韩文和西班牙文
 * 支持离线模式
 * 支持所有语言的最热版本库查看
 * 支持多账户切换
@@ -57,7 +57,7 @@
 * 编辑、添加和删除你的标签
 * 编写评论时可以预览
 * 查看你创建的、分配给你的和提到你的问题
-* 查看版本库问题
+.';ij,i.* 查看版本库问题
 
 ### 提交
 * 查看提交信息和文件
@@ -105,6 +105,12 @@
 * [Edfgdz](https://github.com/Edfgdz) - 测试与建议
 * [pzhlkj6612](https://github.com/pzhlkj6612) - 改进中文概述的翻译
 * [hiteshnayak305](https://github.com/hiteshnayak305) - 印地语翻译
+* [KcNirvana](https://github.com/KcNirvana) - 葡萄牙语翻译
+* [sclickk](https://github.com/sclickk) - 改进英语翻译
+* [Zazsona](https://github.com/Zazsona) - 添加AMOLED主题
+* [Aqueminivan](https://github.com/Aqueminivan) - 改进英文概述的翻译
+* [XF-zhjnc](https://github.com/XF-zhjnc) - 修复WIKI内部链接点击无效和版本库大小显示溢出等bug
+* [fergthh](https://github.com/fergthh) - 西班牙语翻译
 
 ## License
 ThirtyDegreesRay:
