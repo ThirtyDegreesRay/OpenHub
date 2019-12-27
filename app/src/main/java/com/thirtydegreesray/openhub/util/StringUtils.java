@@ -64,9 +64,6 @@ public class StringUtils {
         }else if(size < 1024 * 1024 * 1024){
             float sizeM = size / (1024f * 1024f);
             return String.format(Locale.getDefault(), "%.2f MB", sizeM);
-        }else if(size / 1024 < 1024 * 1024 * 1024){
-            float sizeG = size / (1024f * 1024f * 1024f);
-            return String.format(Locale.getDefault(), "%.2f GB", sizeG);
         }
         return null;
     }
