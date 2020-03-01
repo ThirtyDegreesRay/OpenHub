@@ -405,9 +405,9 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         String starNumStr =  numElement.select("a").get(0).textNodes().get(1).toString();
         String forkNumStr =  numElement.select("a").get(1).textNodes().get(1).toString();
         String language = "";
-        Elements languageElements = numElement.select("span > span");
+        Elements languageElements = numElement.select("span > span > span");
         if(languageElements.size() > 0){
-            language = numElement.select("span > span").get(1).textNodes().get(0).toString();
+            language = numElement.select("span > span > span").get(1).textNodes().get(0).toString();
         }
 
         Repository repo = new Repository();
