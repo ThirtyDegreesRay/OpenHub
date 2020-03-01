@@ -131,8 +131,8 @@ public class TopicsPresenter extends BasePresenter<ITopicsContract.View>
         for (Element element : topElements) {
             Element idElement = element.select("a").first();
             Element imageElement = element.select("a > img").first();
-            Element titleElement = element.select("a > div > div > p").get(0);
-            Element descElement = element.select("a > div > div > p").get(1);
+            Element titleElement = element.select("div > a > div > p").get(0);
+            Element descElement = element.select("div > a > div > p").get(1);
 
             String id = idElement.attr("href");
             id = id.substring(id.lastIndexOf("/") + 1);
