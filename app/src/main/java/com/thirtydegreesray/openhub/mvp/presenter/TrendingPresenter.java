@@ -63,7 +63,7 @@ public class TrendingPresenter extends BasePresenter<ITrendingContract.View>
 
     private ArrayList<TrendingLanguage> getFixedLanguages(){
         ArrayList<TrendingLanguage> fixedLanguages = new ArrayList<>();
-        fixedLanguages.add(new TrendingLanguage(getString(R.string.all_languages), ""));
+        fixedLanguages.add(new TrendingLanguage(getString(R.string.all_languages), "all"));
         fixedLanguages.add(new TrendingLanguage(getString(R.string.unknown_languages), "unknown"));
         return fixedLanguages;
     }
@@ -84,6 +84,10 @@ public class TrendingPresenter extends BasePresenter<ITrendingContract.View>
             if(slug.contains("?")){
                 slug = slug.substring(0, slug.indexOf("?"));
                 language.setSlug(slug);
+            }
+            //query all languages trending, should set "" in path, not "all" now.
+            if("all".equals(slug)){
+                language.setSlug("");
             }
         }
     }
