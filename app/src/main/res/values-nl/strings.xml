@@ -1,0 +1,479 @@
+<resources>
+    <string name="app_github_name" translatable="false">OpenHub</string>
+    <string name="navigation_drawer_open" translatable="false">navigation_drawer_open</string>
+    <string name="navigation_drawer_close" translatable="false">navigation_drawer_close</string>
+
+    <!-- colors -->
+    <string name="light_blue" translatable="false">Light Blue</string>
+    <string name="blue" translatable="false">Blue</string>
+    <string name="indigo" translatable="false">Indigo</string>
+    <string name="orange" translatable="false">Orange</string>
+    <string name="yellow" translatable="false">Yellow</string>
+    <string name="amber" translatable="false">Amber</string>
+    <string name="grey" translatable="false">Grey</string>
+    <string name="brown" translatable="false">Brown</string>
+
+    <string name="cyan" translatable="false">Cyan</string>
+    <string name="teal" translatable="false">Teal</string>
+    <string name="lime" translatable="false">Lime</string>
+    <string name="green" translatable="false">Green</string>
+    <string name="pink" translatable="false">Pink</string>
+    <string name="red" translatable="false">Red</string>
+    <string name="purple" translatable="false">Purple</string>
+    <string name="deep_purple" translatable="false">Deep Purple</string>
+
+    <!-- onLoginClick -->
+    <string name="user_name">Gebruikersnaam</string>
+    <string name="password">Wachtwoord</string>
+    <string name="login">Inloggen</string>
+    <string name="login_in_browser">INLOGGEN VIA BROWSER</string>
+    <string name="oauth_tip">Inloggen via de standaardbrowser (OAuth)</string>
+    <string name="user_name_warning">Ongeldige gebruikersnaam!</string>
+    <string name="password_warning">Ongeldig wachtwoord!</string>
+
+    <!-- menu -->
+    <string name="profile">Profiel</string>
+    <string name="notifications">Meldingen</string>
+    <string name="news">Nieuws</string>
+    <string name="issues">Issues</string>
+
+    <string name="repositories">Repo\'s</string>
+    <string name="owned">Mijn repo\'s</string>
+    <string name="starred">Favorieten</string>
+    <string name="trending">Populair</string>
+    <string name="explore">Verkennen</string>
+
+    <string name="info_and_repositories">Informatie en instellingen</string>
+    <string name="settings">Instellingen</string>
+    <string name="about">Over</string>
+
+    <string name="public_repositories">Openbare repo\'s</string>
+    <string name="starred_repositories">Favoriete repo\'s</string>
+
+    <string name="no_cache_and_network">Internet en cache zijn niet beschikbaar.</string>
+    <string name="page_no_found">Pagina niet gevonden.</string>
+    <string name="unauthorized">Niet-geautoriseerd.</string>
+    <string name="no_network_tip">Kan gegevens niet ophalen van GitHub. Controleer je internetverbinding en probeer het opnieuw.</string>
+    <string name="load_timeout_tip">Time-out tijdens ophalen van gegevens. Controleer je internetverbinding en probeer het opnieuw.</string>
+    <string name="tap_to_retry">Druk om opnieuw te proberen</string>
+    <string name="no_data">Geen gegevens</string>
+
+    <string name="title_activity_repository">OpenHub</string>
+    <string name="title_activity_settings">Instellingen</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- settings -->
+    <string name="choose_theme">Thema kiezen</string>
+    <string name="theme_accent_color">Thema-accentkleur</string>
+    <string name="start_page">Startpagina</string>
+    <string name="cache_controller">Cachebeheer</string>
+    <string name="cache_controller_desc">Eerst laden uit cache (indien beschikbaar), daarna ophalen van internet</string>
+    <string name="use_system_downloader">Systeemdownloader gebruiken</string>
+    <string name="use_custom_tabs">Aangepaste tabbladen gebruiken</string>
+    <string name="custom_tabs_desc">Openen in aangepaste tabbladen in plaats van een webbrowser (Chrome, Firefox, …)</string>
+    <string name="use_custom_tabs_tips">Als je in een aangepaste browser wilt laden, dan kun je dit aanpassen in de instellingen.</string>
+    <string name="language">Taal</string>
+    <string name="logout">Uitloggen</string>
+
+    <!-- Repository -->
+    <string name="repository">Repo</string>
+    <string name="info">Informatie</string>
+    <string name="files">Bestanden</string>
+    <string name="commits">Commits</string>
+    <string name="commit">Commit</string>
+
+    <string name="star">Toev. aan favorieten</string>
+    <string name="unstar">Verw. uit favorieten</string>
+    <string name="unstarred">Geen favoriet</string>
+    <string name="branch_tip">Takken of labels</string>
+    <string name="share">Delen</string>
+    <string name="open_in_browser">Openen in browser</string>
+    <string name="copy_url">URL kopiëren</string>
+    <string name="copy_clone_url">Kloon-url kopiëren</string>
+    <string name="watch">Volgen</string>
+    <string name="watched">Volgend</string>
+    <string name="unwatch">Ontvolgen</string>
+    <string name="unwatched">Ontvolgd</string>
+    <string name="fork">Forken</string>
+    <string name="fork_tag">Fork</string>
+    <string name="forked">Geforkt</string>
+    <string name="forked_from">Geforkt van</string>
+    <string name="wrap_lines">Regels omslaan</string>
+    <string name="refresh">Verversen</string>
+
+    <string name="success_copied">Gekopieerd</string>
+
+    <string name="stargazers">Sterrenkijkers</string>
+    <string name="forks">Forks</string>
+    <string name="watchers">Volgers</string>
+    <string name="readme">LEESMIJ</string>
+    <string name="no_readme">GEEN LEESMIJ</string>
+    <string name="warning_dialog_tile">Waarschuwing</string>
+    <string name="cancel">Annuleren</string>
+    <string name="close">Sluiten</string>
+    <string name="ok">Oké</string>
+    <string name="confirm">Oké</string>
+    <string name="select_branch">Kies een tak of label</string>
+    <string name="share_to">Delen met</string>
+    <string name="no_share_clients">Er zijn geen apps geïnstalleerd om mee te delen.</string>
+    <string name="no_browser_clients">Er zijn geen browsers geïnstalleerd.</string>
+    <string name="no_download_clients">Er zijn geen downloadclients geïnstalleerd.</string>
+    <string name="send_email">E-mail verstures</string>
+    <string name="open_in_market">Openen in appwinkel</string>
+    <string name="no_email_clients">Er zijn geen e-mailclients geïnstalleerd.</string>
+    <string name="no_market_clients">Er zijn geen appwinkelclients geïnstalleerd.</string>
+    <string name="url_invalid">Ongeldige url</string>
+    <string name="view_archive_file_error">Dit archiefbestand wordt niet ondersteund. Download het om de inhoud ervan te bekijken.</string>
+    <string name="fork_warning_msg">Wil je deze repo forken?</string>
+    <string name="invalid_repo_url">Ongeldige repo-url!</string>
+    <string name="invalid_url">Ongeldige url!</string>
+
+    <!-- Profile -->
+    <string name="follow">Volgen</string>
+    <string name="followed">Volgend</string>
+    <string name="unfollow">Ontvolgen</string>
+    <string name="unfollowed">Ontvolgd</string>
+    <string name="members">Leden</string>
+    <string name="view">Tonen</string>
+    <string name="followers">Volgers</string>
+    <string name="following">Volgend</string>
+    <string name="repos">Repo\'s</string>
+    <string name="stars">Favorieten</string>
+    <string name="gists">Gists</string>
+    <string name="joined_at">Lid sinds</string>
+    <string name="users">Gebruikers</string>
+    <string name="activity">Activiteit</string>
+
+    <string name="just_now">zojuist</string>
+    <string name="seconds_ago">seconden geleden</string>
+    <string name="minutes_ago">minuten geleden</string>
+    <string name="hours_ago">uur geleden</string>
+    <string name="days_ago">dagen geleden</string>
+
+    <string name="search">Zoeken</string>
+    <string name="sort">Sorteren</string>
+    <string name="sort_order">Sorteervolgorde</string>
+
+    <string name="best_match">Beste overeenkomst</string>
+    <string name="most_stars">Meeste favorieten</string>
+    <string name="fewest_stars">Minste favorieten</string>
+    <string name="most_forks">Meeste forks</string>
+    <string name="fewest_forks">Minste forks</string>
+    <string name="recently_updated">Onlangs bijgewerkt</string>
+    <string name="least_recently_updated">Langst geleden bijgewerkt</string>
+
+    <string name="most_followers">Meeste volgers</string>
+    <string name="fewest_followers">Minste volgers</string>
+    <string name="most_recently_joined">Onlangs lid geworden</string>
+    <string name="least_recently_joined">Langst geleden lid geworden</string>
+    <string name="most_repositories">Meeste repo\'s</string>
+    <string name="fewest_repositories">Minste repo\'s</string>
+
+    <string name="invalid_query">Onjuiste zoekterm!</string>
+
+    <string name="daily">Dagelijks</string>
+    <string name="weekly">Wekelijks</string>
+    <string name="monthly">Maandelijks</string>
+
+    <string name="logout_warning">Weet je zeker dat je wilt uitloggen?</string>
+    <string name="unknown">Onbekend</string>
+    <string name="organizations">Organisaties</string>
+    <string name="no_user">Geen gebruikers</string>
+    <string name="no_activity">Geen activiteit</string>
+    <string name="no_repository">Geen repo\'s</string>
+    <string name="no_file">Geen bestanden</string>
+    <string name="developing">Ontwikkelt</string>
+    <string name="version" >Versie</string>
+    <string name="source_code" >Broncode</string>
+    <string name="source_code_wishes" >Voeg mij toe aan je favorieten</string>
+    <string name="rate_in_market" >Beoordelen in Play Store</string>
+    <string name="author" >Maker</string>
+    <string name="author_name" translatable="false">30度的射线</string>
+    <string name="author_location" translatable="false">NanJing,China</string>
+    <string name="author_login_id" translatable="false">ThirtyDegreesRay</string>
+    <string name="author_avatar_url" translatable="false">https://avatars1.githubusercontent.com/u/9625508?v=4</string>
+    <string name="app_copyright" translatable="false">© 2017 ThirtyDegreesRay</string>
+    <string name="follow_on_github" >Volgen op GitHub</string>
+    <string name="email" >E-mailadres</string>
+    <string name="auth_email_address" translatable="false">rays.yuz@gmail.com</string>
+    <string name="loading">bezig met laden...</string>
+
+    <string name="upgrade">Bijwerken</string>
+    <string name="install">Installeren</string>
+    <string name="next_time">Volgende keer</string>
+    <string name="upgrade_version">Versie:</string>
+    <string name="upgrade_apk_size">APK-grootte:</string>
+    <string name="publish_time">Gebpubliceerd op:</string>
+    <string name="upgrade_info">Update-informatie:</string>
+    <string name="no_upgrade_tip">Je beschikt over de nieuwste versie.</string>
+    <string name="fork_failed">Forken mislukt</string>
+
+    <string name="filter">Filter</string>
+
+    <string name="releases">Uitgaven</string>
+    <string name="no_releases">Geen uitgaven</string>
+    <string name="source_code_zip">Broncode (zip)</string>
+    <string name="source_code_tar">Broncode (tar.gz)</string>
+    <string name="download_source_zip">Broncode downloaden (zip)</string>
+    <string name="download_source_tar">Broncode downloaden (tar.gz)</string>
+    <string name="released_this">heeft dit uitgebracht</string>
+    <string name="on">op</string>
+    <string name="download">Downloaden</string>
+    <string name="download_complete">Downloaden voltooid</string>
+    <string name="download_failed">Downloaden mislukt</string>
+    <string name="downloading">Bezig met downloaden...</string>
+    <string name="download_empty_tip">URL of bestandsnaam ontbreekt!</string>
+    <string name="download_start">Download starten</string>
+    <string name="download_cancel">Download afbreken</string>
+    <string name="permission_storage_denied">Toegang geweigerd. Verleen de opslagmachtiging.</string>
+    <string name="enable_download_service_tip">Schakel de downloaddienst in.</string>
+
+    <string name="open">Geopend</string>
+    <string name="closed">Gesloten</string>
+    <string name="no_issues">Geen issues</string>
+    <string name="issue">Issue</string>
+
+    <string name="type">Soort</string>
+    <string name="all">Alle</string>
+    <string name="created">Aangemaakt</string>
+    <string name="assigned">Toegewezen</string>
+    <string name="mentioned">Vermeld</string>
+    <string name="participating">Deelnemer</string>
+
+    <string name="recently_created">Onlangs aangemaakt</string>
+    <string name="previously_created">Langst geleden aangemaakt</string>
+    <string name="most_comments">Meeste reacties</string>
+    <string name="fewest_comments">Minste reacties</string>
+
+    <string name="comments">Reacties</string>
+    <string name="comment">Reageren</string>
+    <string name="no_description">Geen omschrijving ingevoerd.</string>
+    <string name="no_comments">Geen reacties.</string>
+
+    <string name="write">Opstellen</string>
+    <string name="preview">Voorvertoning</string>
+
+    <string name="edit">Aanpassen</string>
+    <string name="delete">Verwijderen</string>
+    <string name="comment_null_warning">De reactie is blanco!</string>
+    <string name="comment_success">De reactie is geplaatst</string>
+    <string name="delete_comment_warning">Weet je zeker dat je de reactie wilt verwijderen?</string>
+    <string name="reopen">Heropenen</string>
+    <string name="reopen_success">Heropend</string>
+    <string name="close_success">Gesloten</string>
+
+    <string name="add_large_header">Grote kop invoegen</string>
+    <string name="add_medium_header">Middelgrote kop invoegen</string>
+    <string name="add_small_header">Kleine kop invoegen</string>
+    <string name="add_bold_text">Vetgedrukte tekst</string>
+    <string name="add_italic_text">Cursieve tekst</string>
+    <string name="add_a_link">Link invoegen</string>
+    <string name="insert_code">Code invoegen</string>
+    <string name="insert_a_quote">Citaat invoegen</string>
+    <string name="add_a_bulleted_list">Opsommingslijst invoegen</string>
+    <string name="mention">Gebruiker of team vermelden</string>
+    <string name="nothing_to_preview">Er valt niks voor te vertonen</string>
+
+    <string name="title">Naam</string>
+    <string name="leave_a_comment">Reactie achterlaten</string>
+    <string name="markdown_editor">Markdownbewerker gebruiken</string>
+
+    <string name="created_at">Aangemaakt op</string>
+    <string name="forked_at">Geforkt op</string>
+    <string name="latest_update">Recentste update</string>
+    <string name="latest_commit">Recentste commit</string>
+    <string name="issue_title_null_tip">Voer een issuenaam in.</string>
+    <string name="edit_issue">Issue aanpassen</string>
+    <string name="create_issue">Issue aanmaken</string>
+    <string name="edit_issue_success">De issue is aangepast</string>
+    <string name="create_issue_success">De issue is bewerkt</string>
+
+    <string name="no_commits">Geen commits</string>
+    <string name="committed">Gecommit</string>
+    <string name="view_file">Bestand bekijken</string>
+    <string name="failed_to_recognize">De GitHub-url wordt niet herkend. Houdt lang ingedrukt om te kopiëren en open hem in je browser.</string>
+    <string name="failed_to_open_url">De url wordt niet herkend. Houdt lang ingedrukt om te kopiëren en open hem in je browser.</string>
+    <string name="compare">Vergelijken</string>
+
+    <string name="unread">Ongelezen</string>
+    <string name="no_notifications_tip">Geen ongelezen meldingen.</string>
+    <string name="feedback_and_share">Delen en feedback</string>
+    <string name="share_to_friends">Delen met vrienden</string>
+    <string name="feedback">Feedback</string>
+
+    <string name="openhub_wishes">Wens van OpenHub</string>
+    <string name="star_wishes" formatted="false">
+        Hoi %s, sinds vandaag gebruik je OpenHub %d dagen.
+        Hartelijk dank hiervoor. Ik streef er naar een persoonlijker GitHub-app te worden.
+        \n\nVoeg me toe aan je favorieten!
+    </string>
+    <string name="star_thanks">Bedankt voor je ondersteuning!</string>
+    <string name="star_me">Toev. aan favorieten</string>
+    <string name="star_next_time">Ga zo door!</string>
+
+    <string name="owner_repo">Eigenaar</string>
+    <string name="public_repo">Openbaar</string>
+    <string name="private_repo">Privé</string>
+    <string name="member_repo">Deelnemer</string>
+    <string name="most_pushed">Meest gepusht</string>
+    <string name="fewest_pushed">Minst gepusht</string>
+    <string name="full_name_asc">Volledige naam (opl.)</string>
+    <string name="full_name_desc">Volledige naam (afl.)</string>
+    <string name="recently_starred">Onlangs toegev. aan favorieten</string>
+    <string name="previously_starred">Langst geleden toegev. aan favorieten</string>
+
+    <string name="trace">Trace</string>
+    <string name="my_repos">Mijn repo\'s</string>
+    <string name="starred_repos">Favoriete repo\'s</string>
+    <string name="trending_repos">Populaire repo\'s</string>
+
+    <string name="bookmarks">Bladwijzers</string>
+    <string name="bookmark">Toev. aan bladwijzers</string>
+    <string name="remove_bookmark">Bladwijzer verwijderen</string>
+    <string name="bookmark_saved">De bladwijzer is opgeslagen</string>
+    <string name="bookmark_removed">De bladwijzer is verwijderd</string>
+
+    <string name="user">Gebruiker</string>
+    <string name="repo">Repo</string>
+    <string name="issues_list">Lijst met issues</string>
+    <string name="commits_list">Lijst met commits</string>
+    <string name="releases_list">Lijst met uitgaven</string>
+    <string name="release">Uitgave</string>
+    <string name="go_to">Ga naar</string>
+
+    <string name="tips">Tips</string>
+    <string name="activity_click_tip">
+        Druk op een item om de standaardpagina te tonen, of houd ingedrukt om beschikbare pagina\'s te tonen.
+    </string>
+    <string name="double_click_toolbar_tip">Druk tweemal op een titel om terug naar de bovenkant te gaan.</string>
+    <string name="releases_click_tip">Houd een item ingedrukt om beschikbare downloads te tonen.</string>
+
+    <string name="created_comment_on_commit">Reactie geplaatst bij commit in %s</string>
+    <string name="created_comment_on_issue">Reactie geplaatst bij issue %d in %s</string>
+    <string name="created_repo">Repo \'%s\' aangemaakt</string>
+    <string name="forked_to">\'%s\' geforkt naar \'%s\'</string>
+    <string name="starred_repo">\'%s\' is toegevoegd aan je favorieten</string>
+    <string name="push_to">Pushen naar \'%s\' op \'%s\'</string>
+    <string name="created_tag_at">Label gemaakt bij \'%s\' op \'%s\'</string>
+    <string name="created_branch_at">Tak \'%s\' gemaakt op \'%s\'</string>
+    <string name="delete_tag_at">Label \'%s\' weggehaald bij \'%s\'</string>
+    <string name="delete_branch_at">Tak \'%s\' verwijderen op \'%s\'</string>
+    <string name="published_release_at">Uitgave \'%s\' gepubliceerd op \'%s\'</string>
+    <string name="opened_issue_at">Issue \'%d\' geopend in \'%s\'</string>
+    <string name="closed_issue_at">Issue \'%d\' gesloten in \'%s\'</string>
+    <string name="reopened_issue_at">Issue \'%d\' heropend in \'%s\'</string>
+    <string name="edited_issue_at">Issue \'%d\' aangepast in \'%s\'</string>
+    <string name="assigned_issue_at">Issue \'%d\' toegewezen in %s</string>
+    <string name="unassigned_issue_at">Issue \'%d\' niet meer toegewezen in \'%s\'</string>
+    <string name="labeled_issue_at">Issue \'%d\' gelabeld in \'%s\'</string>
+    <string name="unlabeled_issue_at">Label weggehaald bij issue \'%d\' in \'%s\'</string>
+    <string name="milestoned_issue_at">Mijlpaal toegevoegd aan issue \'%d\' in \'%s\'</string>
+    <string name="demilestoned_issue_at">Mijlpaal weggehaald bij issue \'%d\' in \'%s\'</string>
+    <string name="added_member_to">Deelnemer \'%s\' toegevoegd aan \'%s\'</string>
+    <string name="deleted_member_at">Deelnemer \'%s\' verwijderd uit \'%s\'</string>
+    <string name="edited_member_at">Deelnemer \'%s\' aangepast in \'%s\'</string>
+    <string name="made_repo_public">\'%s\' openbaargemaakt</string>
+    <string name="org_blocked_user">Org. \'%s\' heeft gebruiker \'%s\' geblokkeerd</string>
+    <string name="org_unblocked_user">Org. \'%s\' heeft gebruiker \'%s\' gedeblokkeerd</string>
+    <string name="created_pull_request_comment_at">Reactie toegevoegd aan pull request \'%s\'</string>
+    <string name="deleted_pull_request_comment_at">Reactie verwijderd van pull request \'%s\'</string>
+    <string name="edited_pull_request_comment_at">Reactie aangepast bij pull request \'%s\'</string>
+    <string name="submitted_pull_request_review_at">Pull request-beoordeling toegevoegd aan \'%s\'</string>
+    <string name="edited_pull_request_review_at">Pull request-beoordeling aangepast bij \'%s\'</string>
+    <string name="dismissed_pull_request_review_at">Pull request-beoordeling verwijderd van \'%s\'</string>
+
+    <string name="undo">Ongedaan maken</string>
+    <string name="no_bookmarks">Geen bladwijzers</string>
+    <string name="no_trace">Geen spoor</string>
+    <string name="trace_deleted">Spoor verwijderd</string>
+    <string name="today">Vandaag</string>
+    <string name="yesterday">Gisteren</string>
+
+    <string name="my_languages">Mijn talen</string>
+    <string name="choose_languages">Talen kiezen</string>
+    <string name="language_removed">Taal \'%s\' verwijderd</string>
+    <string name="no_choose_language_warning">Kies ten minste één taal!</string>
+    <string name="languages_editor_tip">Veeg naar links of rechts om items te verwijderen; houd items ingedrukt om de volgorde aan te passen.</string>
+    <string name="fullscreen">Beeldvullend</string>
+
+    <string name="public_news">Globaal nieuws</string>
+    <string name="wiki" translatable="false">Wiki</string>
+    <string name="recent_wiki_updates">Recente wiki-updates</string>
+    <string name="no_recent_wiki_updates">Geen recente wiki-updates</string>
+
+    <string name="repo_collections">Repoverzamelingen</string>
+    <string name="no_repo_collections">Geen repoverzamelingen</string>
+    <string name="collections_tip">Samengestelde lijsten en inzicht in levendige industrieën, onderwerpen en gemeenschappen.</string>
+    <string name="github_page_parse_error">
+        %s-paginaverwerkingsfout - deze pagina is mogelijk aangepast door GitHub.
+        Installeer de nieuwste versie van de app. Als de fout blijft optreden, neem dan contact met me op!
+    </string>
+
+    <string name="bookmarks_tip">Veeg naar links of rechts om een bladwijzer te verwijderen.</string>
+    <string name="mark_all_as_read">Alles markeren als gelezen</string>
+    <string name="mark_as_read">Markeren als gelezen</string>
+
+    <string name="topic">Onderwerp</string>
+    <string name="topics">Uitgelichte onderwerpen</string>
+    <string name="topics_tip">Blader door de populairste onderwerpen op GitHub.</string>
+    <string name="no_topics">Geen onderwerpen</string>
+
+    <string name="star_num_today">Vandaag %s keer gefavoriet</string>
+    <string name="star_num_this_week">Deze week %s keer gefavoriet</string>
+    <string name="star_num_this_month">Deze maand %s keer gefavoriet</string>
+    <string name="no_trending_repos">Het lijkt er op dat we geen populaire repo\'s van %s hebben aangetroffen.</string>
+
+    <string name="all_languages">Alle talen</string>
+    <string name="unknown_languages">Onbekende talen</string>
+
+    <string name="labels">Labels</string>
+    <string name="label">Label</string>
+    <string name="edit_label">Label aanpassen</string>
+    <string name="create_label">Label aanmaken</string>
+    <string name="save">Opslaan</string>
+    <string name="name">Naam</string>
+    <string name="color">Kleur</string>
+    <string name="more">Meer</string>
+    <string name="custom">Aangepast</string>
+    <string name="done">Klaar</string>
+    <string name="presets">Voorinstellingen</string>
+    <string name="choose_color">Kleur kiezen</string>
+    <string name="invalid_color">Ongeldige kleur</string>
+    <string name="invalid_name">Onjuiste naam</string>
+    <string name="choose_labels">Labels kiezen</string>
+    <string name="manage_labels">Labels beheren</string>
+
+    <string name="issue_add_label">Label \'%s\' toekennen</string>
+    <string name="issue_remove_label">Label \'%s\' weghalen</string>
+    <string name="issue_close">heeft dit gesloten</string>
+    <string name="issue_reopened">heeft dit heropend</string>
+    <string name="issue_modified">heeft dit aangepast</string>
+    <string name="issue_added_to_milestone">heeft dit toegevoegd aan de mijlpaal \'%s\'</string>
+    <string name="issue_removed_from_milestone">heeft dit weggehaald bij de mijlpaal \'%s\'</string>
+    <string name="issue_locked_conversation">heeft de discussie gesloten voor niet-deelnemers</string>
+    <string name="issue_unlocked_conversation">heeft de discussie heropend</string>
+    <string name="issue_delete_comment">heeft een reactie verwijderd</string>
+    <string name="issue_referenced">heeft verwezen naar deze issue in %s</string>
+    <string name="issue_assigned">heeft dit toegewezen aan %s</string>
+    <string name="issue_unassigned">heeft de toewijzing weggehaald</string>
+
+    <string name="disable_loading_image">Geen afbeeldingen ophalen</string>
+    <string name="disable_loading_image_desc">Geen afbeeldingen ophalen via mobiel internet</string>
+
+    <string name="toggle_issue_warning">Weet je zeker dat je deze issue wilt %s?</string>
+
+    <string name="new_year_wishes" formatted="false" translatable="false">
+        Hi %s！今天是您在OpenHub的第%d天，我会成为更适合您的GitHub app。
+        \n\n祝新年快乐，阖家欢乐，工作顺利！
+    </string>
+    <string name="new_year_wishes_with_star" formatted="false" translatable="false">
+        Hi %s！今天是您在OpenHub的第%d天，我会成为更适合您的GitHub app。
+        \n\n祝新年快乐，阖家欢乐，工作顺利！
+        \n\n最后还有一点小期望，如果可以星标来支持我，那就更棒了！
+    </string>
+
+    <string name="add_account">Account toevoegen</string>
+    <string name="delete_label_warning">Weet je zeker dat je dit label wilt verwijderen?</string>
+
+</resources>
