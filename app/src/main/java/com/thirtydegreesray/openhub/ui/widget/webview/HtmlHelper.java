@@ -2,8 +2,8 @@
 
 package com.thirtydegreesray.openhub.ui.widget.webview;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.thirtydegreesray.openhub.mvp.model.GitHubName;
 import com.thirtydegreesray.openhub.util.GitHubHelper;

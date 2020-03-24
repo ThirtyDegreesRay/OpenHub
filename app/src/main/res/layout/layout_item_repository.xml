@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -54,7 +54,7 @@
                     android:textColor="?android:textColorSecondary"
                     android:layout_marginStart="@dimen/spacing_mini"
                     android:layout_gravity="center_vertical"/>
-                <android.support.v7.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/language_color"
                     android:layout_width="12dp"
                     android:layout_height="12dp"
@@ -84,7 +84,7 @@
                     android:orientation="horizontal"
                     android:layout_weight="2"
                     android:gravity="center_vertical">
-                    <android.support.v7.widget.AppCompatImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="14dp"
                         android:layout_height="14dp"
                         app:srcCompat="@drawable/ic_menu_star"
@@ -104,7 +104,7 @@
                     android:orientation="horizontal"
                     android:layout_weight="2"
                     android:gravity="center_vertical">
-                    <android.support.v7.widget.AppCompatImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="14dp"
                         android:layout_height="14dp"
                         app:srcCompat="@drawable/ic_fork"
@@ -125,7 +125,7 @@
                     android:orientation="horizontal"
                     android:layout_weight="4"
                     android:gravity="center_vertical">
-                    <android.support.v7.widget.AppCompatImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="14dp"
                         android:layout_height="14dp"
                         app:srcCompat="@drawable/ic_menu_person"
@@ -148,7 +148,7 @@
                     android:gravity="center_vertical"
                     android:layout_marginLeft="@dimen/spacing_mini"
                     android:layout_marginRight="@dimen/spacing_mini">
-                    <android.support.v7.widget.AppCompatImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="14dp"
                         android:layout_height="14dp"
                         app:srcCompat="@drawable/ic_fork"
@@ -170,7 +170,7 @@
                     android:layout_weight="4"
                     android:gravity="center_vertical"
                     android:visibility="gone">
-                    <android.support.v7.widget.AppCompatImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="14dp"
                         android:layout_height="14dp"
                         app:srcCompat="@drawable/ic_menu_star"
@@ -191,4 +191,4 @@
     </LinearLayout>
 
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     android:id="@+id/root_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,14 +9,14 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.activity.IssueDetailActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         android:theme="?appbar_theme">
 
-        <android.support.design.widget.CollapsingToolbarLayout
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -56,7 +56,7 @@
                     android:layout_marginTop="@dimen/spacing_x_large"
                     android:gravity="center_vertical">
 
-                    <android.support.v7.widget.AppCompatImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         app:srcCompat="@drawable/ic_change_file"
@@ -73,7 +73,7 @@
                         android:minWidth="36dp"
                         android:layout_marginEnd="@dimen/spacing_mini"/>
 
-                    <android.support.v7.widget.AppCompatImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         app:srcCompat="@drawable/ic_addition"
@@ -90,7 +90,7 @@
                         android:minWidth="36dp"
                         android:layout_marginEnd="@dimen/spacing_mini"/>
 
-                    <android.support.v7.widget.AppCompatImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         app:srcCompat="@drawable/ic_deletion"
@@ -124,7 +124,7 @@
 
             </RelativeLayout>
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -132,9 +132,9 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="?popup_theme"/>
 
-        </android.support.design.widget.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-        <android.support.design.widget.TabLayout
+        <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -144,9 +144,9 @@
             app:tabTextAppearance="@style/TextAppearance.Design.Tab"
             app:tabSelectedTextColor="?title_color"/>
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/comment_bn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -175,4 +175,4 @@
         android:indeterminate="true"
         android:visibility="gone"/>
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

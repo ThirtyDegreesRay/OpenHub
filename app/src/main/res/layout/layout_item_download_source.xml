@@ -12,7 +12,7 @@
     android:paddingEnd="@dimen/spacing_x_large"
     android:paddingTop="@dimen/spacing_normal"
     android:paddingBottom="@dimen/spacing_normal">
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/icon"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -32,7 +32,7 @@
         android:textSize="@dimen/text_small"
         android:textColor="?android:textColorSecondary"
         android:gravity="end"/>
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/download_bn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -13,8 +13,11 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -22,6 +25,7 @@ import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.R;
 
 import java.util.Locale;
+import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
@@ -58,15 +62,15 @@ public class AppUtils {
         }
     }
 
-
     public static void updateAppLanguage(@NonNull Context context) {
         String lang = PrefUtils.getLanguage();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) updateResources(context, lang);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) ;
+        updateResources(context, lang);
         updateResourcesLegacy(context, lang);
     }
 
     private static void updateResources(Context context, String language) {
-        Locale locale = getLocale(language);
+        Locale locale = getLocale(language);;
         Locale.setDefault(locale);
         Configuration configuration = context.getResources().getConfiguration();
         configuration.setLocale(locale);
@@ -75,7 +79,7 @@ public class AppUtils {
 
     @SuppressWarnings("deprecation")
     private static void updateResourcesLegacy(Context context, String language) {
-        Locale locale = getLocale(language);
+        Locale locale = getLocale(language);;
         Locale.setDefault(locale);
         Resources resources = context.getResources();
         Configuration configuration = resources.getConfiguration();
@@ -89,12 +93,22 @@ public class AppUtils {
         String[] array = language.split("-");
         if (array.length > 1) {
             //zh-rCN, zh-rTW", pt-rPT, etc... remove the 'r'
-            String country =  array[1].replaceFirst("r", "");
+            String country = array[1].replaceFirst("r", "");
             locale = new Locale(array[0], country);
+        } else if(Objects.equals(language, "auto")) {
+            locale = getSystemLocale();
         } else {
             locale = new Locale(language);
         }
         return locale;
+    }
+
+    public static Locale getSystemLocale() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return Resources.getSystem().getConfiguration().getLocales().get(0);
+        } else  {
+            return Resources.getSystem().getConfiguration().locale;
+        }
     }
 
     public static boolean isNightMode() {

@@ -1,7 +1,7 @@
 package com.thirtydegreesray.openhub.ui.widget;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.R;

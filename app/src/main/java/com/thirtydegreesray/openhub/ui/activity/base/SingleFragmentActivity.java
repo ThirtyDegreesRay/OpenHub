@@ -3,7 +3,7 @@
 package com.thirtydegreesray.openhub.ui.activity.base;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.openhub.R;

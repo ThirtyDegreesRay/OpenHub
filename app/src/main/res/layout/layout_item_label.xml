@@ -19,7 +19,7 @@
         android:gravity="center_vertical"
         android:paddingTop="@dimen/spacing_mini"
         android:paddingBottom="@dimen/spacing_mini">
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/color"
             android:layout_width="32dp"
             android:layout_height="32dp"

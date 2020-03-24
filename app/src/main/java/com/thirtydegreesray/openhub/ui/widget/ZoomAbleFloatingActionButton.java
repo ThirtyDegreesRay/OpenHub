@@ -2,7 +2,7 @@ package com.thirtydegreesray.openhub.ui.widget;
 
 import android.animation.AnimatorSet;
 import android.content.Context;
-import android.support.design.widget.FloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.util.AttributeSet;
 
 import com.thirtydegreesray.openhub.util.AnimatorHelper;

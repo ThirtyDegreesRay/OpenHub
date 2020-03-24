@@ -4,10 +4,11 @@ package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceFragmentCompat;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.ui.widget.colorChooser.ColorChooserPreference;
@@ -44,7 +45,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
     private List<String> nameList ;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         callBack = (SettingsCallBack) context;
         idList = Arrays.asList(getResources().getStringArray(R.array.start_pages_id));
@@ -89,6 +90,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
             case PrefUtils.START_PAGE:
                 showChooseStartPageDialog();
                 return true;
+            default:
         }
         return false;
     }

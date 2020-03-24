@@ -11,8 +11,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.customtabs.CustomTabsIntent;
+import androidx.annotation.NonNull;
+import androidx.browser.customtabs.CustomTabsIntent;
 import android.widget.Toast;
 
 import com.thirtydegreesray.openhub.R;

@@ -2,10 +2,11 @@
 
 package com.thirtydegreesray.openhub.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 /**
@@ -14,7 +15,7 @@ import android.util.Log;
  *
  */
 public enum  NetHelper {
-	INSTANCE;
+	@SuppressLint("StaticFieldLeak") INSTANCE;
 
 	public static final int TYPE_DISCONNECT = 0;
 	public static final int TYPE_WIFI = 1;

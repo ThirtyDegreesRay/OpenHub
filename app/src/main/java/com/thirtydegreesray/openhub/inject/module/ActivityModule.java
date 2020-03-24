@@ -3,7 +3,7 @@
 package com.thirtydegreesray.openhub.inject.module;
 
 import android.content.Context;
-import android.support.v4.app.FragmentManager;
+import androidx.fragment.app.FragmentManager;
 
 import com.thirtydegreesray.openhub.inject.ActivityScope;
 import com.thirtydegreesray.openhub.ui.activity.base.BaseActivity;

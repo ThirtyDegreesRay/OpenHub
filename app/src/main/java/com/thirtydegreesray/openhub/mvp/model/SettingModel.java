@@ -2,8 +2,8 @@
 
 package com.thirtydegreesray.openhub.mvp.model;
 
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 
 /**
  * Created on 2017/8/2.

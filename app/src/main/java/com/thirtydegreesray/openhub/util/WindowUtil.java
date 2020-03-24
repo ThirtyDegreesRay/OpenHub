@@ -5,7 +5,7 @@ package com.thirtydegreesray.openhub.util;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * 手机窗口工具类

@@ -2,8 +2,8 @@
 
 package com.thirtydegreesray.openhub.util;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.webkit.MimeTypeMap;
 
 import java.util.regex.Pattern;

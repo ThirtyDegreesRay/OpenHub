@@ -2,7 +2,7 @@
 
 package com.thirtydegreesray.openhub.http;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.http.model.AuthRequestModel;
 import com.thirtydegreesray.openhub.mvp.model.BasicToken;

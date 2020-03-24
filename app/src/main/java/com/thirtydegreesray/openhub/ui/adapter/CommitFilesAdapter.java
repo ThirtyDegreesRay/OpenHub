@@ -4,9 +4,9 @@ package com.thirtydegreesray.openhub.ui.adapter;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.AppCompatImageView;
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.widget.AppCompatImageView;
 import android.view.View;
 import android.widget.TextView;
 

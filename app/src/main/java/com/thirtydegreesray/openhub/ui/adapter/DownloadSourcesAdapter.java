@@ -1,13 +1,12 @@
 package com.thirtydegreesray.openhub.ui.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatImageView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.thirtydegreesray.openhub.R;
-import com.thirtydegreesray.openhub.http.Downloader;
 import com.thirtydegreesray.openhub.mvp.model.DownloadSource;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseAdapter;
 import com.thirtydegreesray.openhub.ui.adapter.base.BaseViewHolder;

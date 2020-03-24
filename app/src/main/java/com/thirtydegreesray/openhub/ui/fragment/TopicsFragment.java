@@ -1,8 +1,8 @@
 package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import android.view.View;
 
 import com.thirtydegreesray.openhub.R;

@@ -2,7 +2,7 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.AppData;
 import com.thirtydegreesray.openhub.dao.AuthUser;

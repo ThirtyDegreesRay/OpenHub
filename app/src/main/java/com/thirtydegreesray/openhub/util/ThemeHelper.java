@@ -3,7 +3,7 @@
 package com.thirtydegreesray.openhub.util;
 
 import android.app.Activity;
-import android.support.annotation.StyleRes;
+import androidx.annotation.StyleRes;
 
 import com.thirtydegreesray.openhub.R;
 import com.thirtydegreesray.openhub.ui.activity.SplashActivity;

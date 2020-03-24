@@ -14,7 +14,7 @@
     android:paddingTop="@dimen/spacing_normal"
     android:paddingBottom="@dimen/spacing_normal">
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/file_type"
         android:layout_width="24dp"
         android:layout_height="24dp"

@@ -1,5 +1,3 @@
-
-
 package com.thirtydegreesray.openhub.ui.activity;
 
 import android.animation.Animator;
@@ -7,7 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 
@@ -87,7 +85,6 @@ public class SettingsActivity extends SingleFragmentActivity<SettingsPresenter, 
         anim.start();
     }
 
-
     @Override
     public void onLogout() {
         /*
@@ -112,9 +109,6 @@ public class SettingsActivity extends SingleFragmentActivity<SettingsPresenter, 
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-//      finish setting activity to avoid  java.io.NotSerializableException
-//      com.thirtydegreesray.openhub.ui.widget.colorChooser.ColorChooserPreference
-//      android.os.Parcel.writeSerializable(Parcel.java:1761)
         if(recreated){
             super.onSaveInstanceState(outState);
         } else {

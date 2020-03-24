@@ -13,7 +13,7 @@
     android:paddingEnd="@dimen/spacing_x_large"
     android:gravity="center_vertical">
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/language_color"
         android:layout_width="16dp"
         android:layout_height="16dp"
@@ -28,7 +28,7 @@
         android:textSize="@dimen/text_normal"
         android:layout_marginStart="@dimen/spacing_large"/>
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/selected_flag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

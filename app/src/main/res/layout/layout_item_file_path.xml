@@ -20,7 +20,7 @@
         android:textColor="?title_color"
         android:layout_marginStart="@dimen/spacing_small"/>
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/arrow"
         android:layout_width="18dp"
         android:layout_height="18dp"

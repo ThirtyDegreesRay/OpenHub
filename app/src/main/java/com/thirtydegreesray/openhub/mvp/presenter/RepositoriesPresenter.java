@@ -2,8 +2,8 @@
 
 package com.thirtydegreesray.openhub.mvp.presenter;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.orhanobut.logger.Logger;
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;

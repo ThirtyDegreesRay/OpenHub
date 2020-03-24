@@ -3,7 +3,7 @@
 package com.thirtydegreesray.openhub.http.core;
 
 import android.app.AlertDialog;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * 网络请求开始时显示dialog，结束取消dialog

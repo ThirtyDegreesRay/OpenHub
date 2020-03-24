@@ -17,7 +17,7 @@
         android:text="@string/my_languages"
         android:textColor="?title_color"
         android:textSize="@dimen/text_large"/>
-    <android.support.v7.widget.AppCompatImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/language_edit_bn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

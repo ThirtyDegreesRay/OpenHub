@@ -5,7 +5,7 @@ package com.thirtydegreesray.openhub.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.AppApplication;
 
@@ -114,7 +114,7 @@ public class PrefUtils {
     }
 
     public static String getLanguage(){
-        return getDefaultSp(AppApplication.get()).getString(LANGUAGE, "en");
+        return getDefaultSp(AppApplication.get()).getString(LANGUAGE, "auto");
     }
 
     public static String getStartPage(){

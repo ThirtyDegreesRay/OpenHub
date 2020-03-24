@@ -2,8 +2,6 @@
 
 package com.thirtydegreesray.openhub.mvp.contract;
 
-import android.support.annotation.NonNull;
-
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseContract;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBaseListContract;
 import com.thirtydegreesray.openhub.mvp.contract.base.IBasePagerContract;

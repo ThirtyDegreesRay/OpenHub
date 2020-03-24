@@ -6,11 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.SearchView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.core.view.MenuItemCompat;
+import androidx.appcompat.widget.SearchView;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -110,7 +110,7 @@ public class SearchActivity extends PagerActivity<SearchPresenter>
         MenuItemCompat.setOnActionExpandListener(searchItem, this);
 
         AutoCompleteTextView autoCompleteTextView = searchView
-                .findViewById(android.support.v7.appcompat.R.id.search_src_text);
+                .findViewById(R.id.search_src_text);
         autoCompleteTextView.setThreshold(0);
         autoCompleteTextView.setAdapter(new ArrayAdapter<>(this,
                 R.layout.layout_item_simple_list, mPresenter.getSearchRecordList()));

@@ -4,7 +4,7 @@ package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.widget.NestedScrollView;
+import androidx.core.widget.NestedScrollView;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;

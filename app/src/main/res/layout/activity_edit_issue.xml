@@ -15,36 +15,36 @@
         android:layout_height="match_parent"
         android:padding="@dimen/spacing_normal">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/title_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_x_large"
             android:hint="@string/title">
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/title_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
                 android:imeOptions="actionNext"
                 android:maxLines="4"/>
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/comment_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_x_large"
             android:hint="@string/leave_a_comment"
             android:layout_below="@id/title_layout">
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/comment_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
                 android:imeOptions="actionSend"
                 android:maxLines="12"/>
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.thirtydegreesray.openhub.ui.widget.ToastAbleImageButton
             android:id="@+id/markdown_editor_bn"
@@ -68,7 +68,7 @@
             android:paddingTop="@dimen/spacing_mini"
             android:paddingBottom="@dimen/spacing_mini">
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_labels"

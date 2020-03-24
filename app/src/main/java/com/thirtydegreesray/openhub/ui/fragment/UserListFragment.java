@@ -3,7 +3,7 @@
 package com.thirtydegreesray.openhub.ui.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 
 import com.thirtydegreesray.openhub.R;

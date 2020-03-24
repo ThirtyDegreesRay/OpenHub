@@ -3,7 +3,7 @@
 package com.thirtydegreesray.openhub.inject.module;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.thirtydegreesray.openhub.AppApplication;
 import com.thirtydegreesray.openhub.AppConfig;

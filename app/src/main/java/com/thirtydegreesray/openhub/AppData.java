@@ -2,7 +2,7 @@
 
 package com.thirtydegreesray.openhub;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.thirtydegreesray.dataautoaccess.annotation.AutoAccess;
 import com.thirtydegreesray.openhub.dao.AuthUser;
