@@ -185,7 +185,7 @@
     <string name="no_releases">Žádná vydání</string>
     <string name="source_code_zip">Zdrojový kód (zip)</string>
     <string name="source_code_tar">Zdrojový kód (tar.gz)</string>
-    <string name="download_source_zip">Stáhnout zdrojíky (zip)</string>
+    <string name="download_source_zip">Stáhnout zdrojáky (zip)</string>
     <string name="download_source_tar">Stáhnout zdrojáky (tar.gz)</string>
     <string name="released_this">uvolnit</string>
     <string name="on">v</string>
