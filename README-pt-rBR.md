@@ -1,4 +1,4 @@
-Inglês | Chinês | Brasil (/README-pt-rBR.md)
+Inglês | Chinês | Brasil (/README-pt-rBR.md/)
 # OpenHub
 [![Lançamentos](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://play.google.com/store/apps/details?id=com.thirtydegreesray.openhub)
 [![Lançamentos](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
@@ -14,7 +14,7 @@ O **código aberto** do cliente do GitHub para Android, mais rápido e conciso.
 * Dois tipos de acesso (autenticação básica) e (OAuth)
 * Tema claro, escuro e preto (AMOLED), várias cores de destaque
 * Suporte para destaque de marcação e código
-* Suporte para inglês, chinês (simplificado), hebraico, alemão, hindi, português, português (brasileiro) coreano e espanhol
+* Suporte para inglês, chinês (simplificado), hebraico, alemão, hindi, português, português (brasileiro), coreano e espanhol
 * Modo off-line
 * Suporta página de repositórios de tendências para todos os idiomas
 * Suporta troca de várias contas
