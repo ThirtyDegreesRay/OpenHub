@@ -1,0 +1,480 @@
+<resources>
+    <string name="app_github_name" translatable="false">OpenHub</string>
+    <string name="navigation_drawer_open" translatable="false">navigation_drawer_open</string>
+    <string name="navigation_drawer_close" translatable="false">navigation_drawer_close</string>
+
+    <!-- colors -->
+    <string name="light_blue" translatable="false">Azul claro</string>
+    <string name="blue" translatable="false">Azul</string>
+    <string name="indigo" translatable="false">Índigo</string>
+    <string name="orange" translatable="false">Laranja</string>
+    <string name="yellow" translatable="false">Amarelo</string>
+    <string name="amber" translatable="false">Âmbar</string>
+    <string name="grey" translatable="false">Cinza</string>
+    <string name="brown" translatable="false">Marrom</string>
+
+    <string name="cyan" translatable="false">Ciano</string>
+    <string name="teal" translatable="false">Cerceta</string>
+    <string name="lime" translatable="false">Lima</string>
+    <string name="green" translatable="false">Verde</string>
+    <string name="pink" translatable="false">Rosa</string>
+    <string name="red" translatable="false">Vermelho</string>
+    <string name="purple" translatable="false">Roxo</string>
+    <string name="deep_purple" translatable="false">Roxo profundo</string>
+
+    <!-- onLoginClick -->
+    <string name="user_name">Nome do usuário</string>
+    <string name="password">Senha</string>
+    <string name="login">Entrar</string>
+    <string name="login_in_browser">ENTRAR COM O NAVEGADOR</string>
+    <string name="oauth_tip">Entrar usando o navegador padrão (OAuth)</string>
+    <string name="user_name_warning">Nome de usuário Inválido!</string>
+    <string name="password_warning">Senha inválida!</string>
+
+    <!-- menu -->
+    <string name="profile">Perfil</string>
+    <string name="notifications">Notificações</string>
+    <string name="news">Notícia</string>
+    <string name="issues">Problemas</string>
+
+    <string name="repositories">Repositórios</string>
+    <string name="owned">Proprietário</string>
+    <string name="starred">Estrelou</string>
+    <string name="trending">Tendências</string>
+    <string name="explore">Explorar</string>
+
+    <string name="info_and_repositories">Informações &#038; Preferências</string>
+    <string name="settings">Configurações</string>
+    <string name="about">Sobre</string>
+
+    <string name="public_repositories">Repositórios públicos</string>
+    <string name="starred_repositories">Repositórios com estrela</string>
+
+    <string name="no_cache_and_network">Rede e cache estão indisponíveis.</string>
+    <string name="page_no_found">página não encontrada.</string>
+    <string name="unauthorized">Não autorizado.</string>
+    <string name="no_network_tip">Falha ao carregar dados do GitHub. Verifique sua conexão de rede e tente novamente.</string>
+    <string name="load_timeout_tip">O tempo limite para carregar dados do GitHub expirou. Verifique sua conexão de rede e tente novamente.</string>
+    <string name="tap_to_retry">Toque para tentar novamente</string>
+    <string name="no_data">Sem dados</string>
+
+    <string name="title_activity_repository">OpenHub</string>
+    <string name="title_activity_settings">Confirmações</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- settings -->
+    <string name="choose_theme">Escolha o Tema</string>
+    <string name="theme_accent_color">Cor de destaque do tema</string>
+    <string name="start_page">Tela inicial</string>
+    <string name="cache_controller">Controlador de cache</string>
+    <string name="cache_controller_desc">Carregar o cache primeiro, se disponível, depois carregue da rede</string>
+    <string name="use_system_downloader">Use o Gerenciador do sistema</string>
+    <string name="use_custom_tabs">Usar guias personalizadas</string>
+    <string name="custom_tabs_desc">Abrir em guias personalizadas em vez do Navegador externo (suporte Chrome, Firefox…)</string>
+    <string name="use_custom_tabs_tips">Se você deseja abrir diretamente no Navegador externo, pode alterar as configurações.</string>
+    <string name="language">Idioma</string>
+    <string name="logout">Sair</string>
+
+    <!-- Repository -->
+    <string name="repository">Repositório</string>
+    <string name="info">Informações</string>
+    <string name="files">Arquivos</string>
+    <string name="commits">Confirma</string>
+    <string name="commit">Confirmar</string>
+
+    <string name="star">Estrela</string>
+    <string name="unstar">Remover estrela</string>
+    <string name="unstarred">Sem estrela</string>
+    <string name="branch_tip">Ramificações ou TAGs</string>
+    <string name="share">Compartilhar</string>
+    <string name="open_in_browser">Abra no Navegador</string>
+    <string name="copy_url">Copiar URL</string>
+    <string name="copy_clone_url">Copiar URL do clone</string>
+    <string name="watch">Ver</string>
+    <string name="watched">Viu</string>
+    <string name="unwatch">Não viu</string>
+    <string name="unwatched">Não visualizado</string>
+    <string name="fork">Bifurcação</string>
+    <string name="fork_tag">Bifurcação</string>
+    <string name="forked">Bifurcado</string>
+    <string name="forked_from">Bifurcado de</string>
+    <string name="wrap_lines">Linhas de resolução automática</string>
+    <string name="refresh">Atualizar</string>
+
+    <string name="success_copied">Copiado</string>
+
+    <string name="stargazers">Observações</string>
+    <string name="forks">Bifurcações</string>
+    <string name="watchers">Observadores</string>
+    <string name="readme">Leia-me</string>
+    <string name="no_readme">NÃO LEIA-ME</string>
+    <string name="warning_dialog_tile">Atenção</string>
+    <string name="cancel">Cancelar</string>
+    <string name="close">Fechar</string>
+    <string name="ok">OK</string>
+    <string name="confirm">OK</string>
+    <string name="select_branch">Selecionar ramificação ou TAG</string>
+    <string name="share_to">Compartilhar com</string>
+    <string name="no_share_clients">Não há clientes compartilhados instalados.</string>
+    <string name="no_browser_clients">Não há clientes de Navegador instalados.</string>
+    <string name="no_download_clients">Não há clientes de Download instalados.</string>
+    <string name="send_email">Enviar e-mail</string>
+    <string name="open_in_market">Abrir na loja</string>
+    <string name="no_email_clients">Não há clientes de e-mail instalados.</string>
+    <string name="no_market_clients">Não há clientes da loja instalados.</string>
+    <string name="url_invalid">O URL é inválido</string>
+    <string name="view_archive_file_error">O arquivo morto não é suportado; faça o Download do arquivo para visualizar seu conteúdo.</string>
+    <string name="fork_warning_msg">Bifurcar este repositório?</string>
+    <string name="invalid_repo_url">URL de repositório inválido!</string>
+    <string name="invalid_url">URL inválida!</string>
+
+    <!-- Profile -->
+    <string name="follow">Seguir</string>
+    <string name="followed">Seguido</string>
+    <string name="unfollow">Deixar de seguir</string>
+    <string name="unfollowed">Deixou de seguir</string>
+    <string name="members">Membros</string>
+    <string name="view">Ver</string>
+    <string name="followers">Seguidores</string>
+    <string name="following">Seguindo</string>
+    <string name="repos">Repositório</string>
+    <string name="stars">Estrelas</string>
+    <string name="gists">Essênciais</string>
+    <string name="joined_at">Se inscreveu</string>
+    <string name="users">Usuários</string>
+    <string name="activity">Atividade</string>
+
+    <string name="just_now">agora mesmo</string>
+    <string name="seconds_ago">segundos atrás</string>
+    <string name="minutes_ago">minutos atrás</string>
+    <string name="hours_ago">horas atrás</string>
+    <string name="days_ago">dias atrás</string>
+
+    <string name="search">Procurar</string>
+    <string name="sort">Ordenar</string>
+    <string name="sort_order">Ordem de classificação</string>
+
+    <string name="best_match">Melhor escolha</string>
+    <string name="most_stars">Mais estrelas</string>
+    <string name="fewest_stars">Menos estrelas</string>
+    <string name="most_forks">Mais bifurcações</string>
+    <string name="fewest_forks">Menos bifurcações</string>
+    <string name="recently_updated">Atualizado recentemente</string>
+    <string name="least_recently_updated">Atualizado recentemente</string>
+
+    <string name="most_followers">Mais seguidores</string>
+    <string name="fewest_followers">Menos seguidores</string>
+    <string name="most_recently_joined">Inscrição mais recentemente</string>
+    <string name="least_recently_joined">Inscrição menos recentemente</string>
+    <string name="most_repositories">Mais repositórios</string>
+    <string name="fewest_repositories">Menos repositórios</string>
+
+    <string name="invalid_query">Texto inválido!</string>
+
+    <string name="daily">Diariamente</string>
+    <string name="weekly">Semanalmente</string>
+    <string name="monthly">Mensalmente</string>
+
+    <string name="logout_warning">Confirmar para sair?</string>
+    <string name="unknown">Desconhecido</string>
+    <string name="organizations">Organizações</string>
+    <string name="no_user">Nenhum usuário</string>
+    <string name="no_activity">Nenhuma atividade</string>
+    <string name="no_repository">Nenhum repositório</string>
+    <string name="no_file">Nenhum arquivo</string>
+    <string name="developing">Dsenvolvimento</string>
+    <string name="version" >Versão</string>
+    <string name="source_code" >Código fonte</string>
+    <string name="source_code_wishes" >Estrela para me apoiar</string>
+    <string name="rate_in_market" >Classifique ou comente na loja</string>
+    <string name="author" >Autor</string>
+    <string name="author_name" translatable="false">30度的射线</string>
+    <string name="author_location" translatable="false">NanJing, China</string>
+    <string name="author_login_id" translatable="false">ThirtyDegreesRay</string>
+    <string name="author_avatar_url" translatable="false">https://avatars1.githubusercontent.com/u/9625508?v=4</string>
+    <string name="app_copyright" translatable="false">© 2017 ThirtyDegreesRay</string>
+    <string name="follow_on_github" >Siga no GitHub</string>
+    <string name="email" >E-mail</string>
+    <string name="auth_email_address" translatable="false">rays.yuz@gmail.com</string>
+    <string name="loading">carregando</string>
+
+    <string name="upgrade">Atualizar</string>
+    <string name="install">Instalar</string>
+    <string name="next_time">Próxima vez</string>
+    <string name="upgrade_version">Versão:</string>
+    <string name="upgrade_apk_size">Tamanho do APK:</string>
+    <string name="publish_time">Tempo de publicação:</string>
+    <string name="upgrade_info">Informações de atualização:</string>
+    <string name="no_upgrade_tip">Você instalou a versão mais recente.</string>
+    <string name="fork_failed">Falha na bifurcação</string>
+
+    <string name="filter">Filtro</string>
+
+    <string name="releases">Lançamentos</string>
+    <string name="no_releases">Sem lançamentos</string>
+    <string name="source_code_zip">Código fonte (ZIP)</string>
+    <string name="source_code_tar">Código fonte (tar.gz)</string>
+    <string name="download_source_zip">Fonte do Download (ZIP)</string>
+    <string name="download_source_tar">Fonte do Download (tar.gz)</string>
+    <string name="released_this">lançou isso</string>
+    <string name="on">ativado</string>
+    <string name="download">Download</string>
+    <string name="download_complete">Download completo</string>
+    <string name="download_failed">Falha no Download</string>
+    <string name="downloading">Baixando</string>
+    <string name="download_empty_tip">O URL ou o nome do arquivo está vazio!</string>
+    <string name="download_start">Início do Download</string>
+    <string name="download_cancel">Download cancelado</string>
+    <string name="permission_storage_denied">Permissão negada, permita acesso ao Armazenamento.</string>
+    <string name="enable_download_service_tip">Ative o serviço de Download primeiro!</string>
+
+    <string name="open">Aberto</string>
+    <string name="closed">Fechada</string>
+    <string name="no_issues">Sem problemas</string>
+    <string name="issue">Questão</string>
+
+    <string name="type">Tipo</string>
+    <string name="all">Todos</string>
+    <string name="created">Criado</string>
+    <string name="assigned">Atribuído</string>
+    <string name="mentioned">Mencionado</string>
+    <string name="participating">Participante</string>
+
+    <string name="recently_created">Recentemente criado</string>
+    <string name="previously_created">Criada anteriormente</string>
+    <string name="most_comments">Mais comentários</string>
+    <string name="fewest_comments">Menos comentários</string>
+
+    <string name="comments">Comentários</string>
+    <string name="comment">Comente</string>
+    <string name="no_description">Nenhuma descrição fornecida.</string>
+    <string name="no_comments">Sem comentários.</string>
+
+    <string name="write">Escreva</string>
+    <string name="preview">Preview</string>
+
+    <string name="edit">Editar</string>
+    <string name="delete">Excluir</string>
+    <string name="comment_null_warning">O comentário é nulo!</string>
+    <string name="comment_success">Comentário concluído</string>
+    <string name="delete_comment_warning">Confirmar para excluir o comentário?</string>
+    <string name="reopen">Reabrir</string>
+    <string name="reopen_success">Reabriu com sucesso</string>
+    <string name="close_success">Fechado com sucesso</string>
+
+    <string name="add_large_header">Adicionar cabeçalho grande</string>
+    <string name="add_medium_header">Adicionar cabeçalho médio</string>
+    <string name="add_small_header">Adicionar cabeçalho pequeno</string>
+    <string name="add_bold_text">Adicionar texto em negrito</string>
+    <string name="add_italic_text">Adicionar texto em itálico</string>
+    <string name="add_a_link">Adicione um link</string>
+    <string name="insert_code">Insira o código</string>
+    <string name="insert_a_quote">Inserir uma cotação</string>
+    <string name="add_a_bulleted_list">Adicionar uma lista com marcadores</string>
+    <string name="mention">Mencione diretamente um usuário ou equipe</string>
+    <string name="nothing_to_preview">Nada para visualizar</string>
+
+    <string name="title">Título</string>
+    <string name="leave_a_comment">Deixe um comentário</string>
+    <string name="markdown_editor">Use o editor de remarcação</string>
+
+    <string name="created_at">Criado em</string>
+    <string name="forked_at">Bifurcado em</string>
+    <string name="latest_update">Última atualização</string>
+    <string name="latest_commit">Confirmação mais recente</string>
+    <string name="issue_title_null_tip">O título do problema não pode ser nulo.</string>
+    <string name="edit_issue">Editar problema</string>
+    <string name="create_issue">Criar problema</string>
+    <string name="edit_issue_success">Editado o problema com sucesso</string>
+    <string name="create_issue_success">Criado problema com sucesso</string>
+
+    <string name="no_commits">Sem comprometimentos</string>
+    <string name="committed">Comprometido</string>
+    <string name="view_file">Visualizar arquivo</string>
+    <string name="failed_to_recognize">Falha ao reconhecer o URL do GitHub. Abra no Navegador depois de pressionar e copiar..</string>
+    <string name="failed_to_open_url">Falha ao abrir o URL. Abra no Navegador depois de pressionar e copiar..</string>
+    <string name="compare">Comparar visualização</string>
+
+    <string name="unread">Não lida</string>
+    <string name="no_notifications_tip">Nenhuma nova notificação.</string>
+    <string name="feedback_and_share">Compartilhar &#038; Comentário</string>
+    <string name="share_to_friends">Compartilhe com seus amigos</string>
+    <string name="cookapk_download_url" translatable="false">https://www.coolapk.com/apk/com.thirtydegreesray.openhub</string>
+    <string name="feedback">Comentário</string>
+
+    <string name="openhub_wishes">Desejos do OpenHub</string>
+    <string name="star_wishes" formatted="false">
+        Oi %s, hoje é seu %d th dia no OpenHub,
+        obrigado pelo seu uso, vou me esforçar para me tornar um aplicativo GitHub mais conveniente para você.
+        \n\nSe você pode estrelar para me apoiar, seria incrível!
+    </string>
+    <string name="star_thanks">Obrigado pelo seu apoio!</string>
+    <string name="star_me">Minha estrela</string>
+    <string name="star_next_time">Continue andando</string>
+
+    <string name="owner_repo">Proprietário</string>
+    <string name="public_repo">Público</string>
+    <string name="private_repo">Privado</string>
+    <string name="member_repo">Membro</string>
+    <string name="most_pushed">Mais empurrado</string>
+    <string name="fewest_pushed">Menos empurrado</string>
+    <string name="full_name_asc">Nome completo (asc)</string>
+    <string name="full_name_desc">Nome completo (descrição)</string>
+    <string name="recently_starred">Estrelou recentemente</string>
+    <string name="previously_starred">Estrelado anteriormente</string>
+
+    <string name="trace">Vestígio</string>
+    <string name="my_repos">Meus repositórios</string>
+    <string name="starred_repos">Repositórios com estrela</string>
+    <string name="trending_repos">Repositórios de tendências</string>
+
+    <string name="bookmarks">Marcadores</string>
+    <string name="bookmark">Marcador</string>
+    <string name="remove_bookmark">Remover marcador</string>
+    <string name="bookmark_saved">Marcador salvo</string>
+    <string name="bookmark_removed">Marcador removido</string>
+
+    <string name="user">Usuário</string>
+    <string name="repo">Repositório</string>
+    <string name="issues_list">Lista de problemas</string>
+    <string name="commits_list">Lista de confirmações</string>
+    <string name="releases_list">Lista de lançamentos</string>
+    <string name="release">Lançamento</string>
+    <string name="go_to">Ir para</string>
+
+    <string name="tips">Dicas</string>
+    <string name="activity_click_tip">
+        Você pode clicar com um único ítem para visualizar a página padrão, ou clique longo no ítem para visualizar as páginas disponíveis.
+    </string>
+    <string name="double_click_toolbar_tip">Você pode clicar duas vezes no título para voltar ao topo da página da lista.</string>
+    <string name="releases_click_tip">Você pode clicar longamente no ítem para visualizar os Downloads disponíveis.</string>
+
+    <string name="created_comment_on_commit">Criado comentário sobre commit em %s</string>
+    <string name="created_comment_on_issue">Comentário criado no problema %d para %s</string>
+    <string name="created_repo">Repositório criado %s</string>
+    <string name="forked_to">Bifurcado %s para %s</string>
+    <string name="starred_repo">Estrelou %s</string>
+    <string name="push_to">Pressione para %s para %s</string>
+    <string name="created_tag_at">TAG criada %s para %s</string>
+    <string name="created_branch_at">Ramificação criada %s para %s</string>
+    <string name="delete_tag_at">Excluir TAG %s para %s</string>
+    <string name="delete_branch_at">Excluir ramificação %s para %s</string>
+    <string name="published_release_at">Versão publicada %s para %s</string>
+    <string name="opened_issue_at">Problema aberto %d para %s</string>
+    <string name="closed_issue_at">Problema encerrado %d para%s</string>
+    <string name="reopened_issue_at">Problema reaberto %d para %s</string>
+    <string name="edited_issue_at">Problema editado %d para %s</string>
+    <string name="assigned_issue_at">Problema atribuído %d para %s</string>
+    <string name="unassigned_issue_at">Problema não atribuído %d para %s</string>
+    <string name="labeled_issue_at">Problema rotulado %d para %s</string>
+    <string name="unlabeled_issue_at">Problema não rotulado %d para %s</string>
+    <string name="milestoned_issue_at">Problema marcado %d para %s</string>
+    <string name="demilestoned_issue_at">Problema em marcado %d para %s</string>
+    <string name="added_member_to">Membro adicionado %s para %s</string>
+    <string name="deleted_member_at">Membro excluído %s para %s</string>
+    <string name="edited_member_at">Membro editado %s para %s</string>
+    <string name="made_repo_public">Tornou %s público</string>
+    <string name="org_blocked_user">Usuário %s bloqueado da organização %s</string>
+    <string name="org_unblocked_user">Usuário %s desbloqueado da organização %s</string>
+    <string name="created_pull_request_comment_at">Comentário de revisão de solicitação de recebimento criada para %s</string>
+    <string name="deleted_pull_request_comment_at">Comentário de revisão de solicitação de recebimento excluído para %s</string>
+    <string name="edited_pull_request_comment_at">Comentário de revisão da solicitação de recebimento editado para %s</string>
+    <string name="submitted_pull_request_review_at">Revisão de solicitação de recebimento enviada para %s</string>
+    <string name="edited_pull_request_review_at">Revisão da solicitação de recebimento editada para %s</string>
+    <string name="dismissed_pull_request_review_at">Revisão de solicitação de recebimento recusada para %s</string>
+
+    <string name="undo">Desfazer</string>
+    <string name="no_bookmarks">Nenhum marcador</string>
+    <string name="no_trace">Sem pistas</string>
+    <string name="trace_deleted">Rastreio excluído</string>
+    <string name="today">Hoje</string>
+    <string name="yesterday">Ontem</string>
+
+    <string name="my_languages">Meus idiomas</string>
+    <string name="choose_languages">Escolha idiomas</string>
+    <string name="language_removed">Idioma %s removido</string>
+    <string name="no_choose_language_warning">Escolha pelo menos um idioma!</string>
+    <string name="languages_editor_tip">Você pode deslizar para a esquerda ou direita para remover ítens, clique com o botão longo nos ítens para arrastar a classificação.</string>
+    <string name="fullscreen">Tela cheia</string>
+
+    <string name="public_news">Notícias globais</string>
+    <string name="wiki" translatable="false">Wiki</string>
+    <string name="recent_wiki_updates">Atualizações recentes do Wiki</string>
+    <string name="no_recent_wiki_updates">Nenhuma atualização recente da Wiki</string>
+
+    <string name="repo_collections">Coleções de repositórios</string>
+    <string name="no_repo_collections">Não há coleções de repositórios</string>
+    <string name="collections_tip">Listas selecionadas e intuições sobre indústrias, tópicos e comunidades em expansão.</string>
+    <string name="github_page_parse_error">
+        %s erro de análise de página, esta página pode ser alterada pelo Github,
+        atualize seu aplicativo para a versão mais recente; se o erro persistir, entre em contato comigo para resolver o problema!
+    </string>
+
+    <string name="bookmarks_tip">Você pode deslizar para a esquerda ou direita para remover os favoritos.</string>
+    <string name="mark_all_as_read">Marcar tudo como lido</string>
+    <string name="mark_as_read">Marcar como Lido</string>
+
+    <string name="topic">Tópico</string>
+    <string name="topics">Tópicos em destaque</string>
+    <string name="topics_tip">Navegue pelos principais tópicos usados ​​no GitHub.</string>
+    <string name="no_topics">Nenhum tópico</string>
+
+    <string name="star_num_today">%s estrela hoje</string>
+    <string name="star_num_this_week">%s estrela esta semana</string>
+    <string name="star_num_this_month">%s estrela este mês</string>
+    <string name="no_trending_repos">Parece que não temos repositórios de tendências para %s.</string>
+
+    <string name="all_languages">Todas os idiomas</string>
+    <string name="unknown_languages">Idiomas desconhecidos</string>
+
+    <string name="labels">Rótulos</string>
+    <string name="label">Rótulo</string>
+    <string name="edit_label">Editar rótulo</string>
+    <string name="create_label">Criar rótulo</string>
+    <string name="save">Salvar</string>
+    <string name="name">Nome</string>
+    <string name="color">Cor</string>
+    <string name="more">Mais</string>
+    <string name="custom">Personalizado</string>
+    <string name="done">Feito</string>
+    <string name="presets">Predefinições</string>
+    <string name="choose_color">Escolha a cor</string>
+    <string name="invalid_color">Cor inválida</string>
+    <string name="invalid_name">Nome inválido</string>
+    <string name="choose_labels">Escolha marcadores</string>
+    <string name="manage_labels">Gerenciar marcadores</string>
+
+    <string name="issue_add_label">adicione o rótulo %s</string>
+    <string name="issue_remove_label">remova a etiqueta %s</string>
+    <string name="issue_close">feche isso</string>
+    <string name="issue_reopened">reabriu isso</string>
+    <string name="issue_modified">modificou este problema</string>
+    <string name="issue_added_to_milestone">adicionou isso ao marco %s</string>
+    <string name="issue_removed_from_milestone">removeu isso do marco %s</string>
+    <string name="issue_locked_conversation">conversa bloqueada e limitada com colaboradores</string>
+    <string name="issue_unlocked_conversation">desbloqueou esta conversa</string>
+    <string name="issue_delete_comment">excluir um comentário</string>
+    <string name="issue_referenced">referenciou esse problema em %s</string>
+    <string name="issue_assigned">atribuiu isso a %s</string>
+    <string name="issue_unassigned">removeu sua atribuição</string>
+
+    <string name="disable_loading_image">Desativar o carregamento da imagem de rede</string>
+    <string name="disable_loading_image_desc">Desativar o carregamento da imagem da rede enquanto a rede móvel</string>
+
+    <string name="toggle_issue_warning">Confirme para %s este problema?</string>
+
+    <string name="new_year_wishes" formatted="false" translatable="false">
+        Oi %s！Hoje é o seu %d dia no OpenHub，vou me tornar um aplicativo GitHub mais adequado para você。
+        \n\nDesejo um feliz ano novo, família feliz e bom trabalho！
+    </string>
+    <string name="new_year_wishes_with_star" formatted="false" translatable="false">
+        Oi %s！Hoje é o seu %d dia no OpenHub, me tornarei um aplicativo GitHub mais adequado para você。
+        \n\nDesejo um feliz ano novo, família feliz e bom trabalho！
+        \n\nFinalmente, há uma pequena esperança, se você puder me apoiar com estrelas, será ainda melhor！
+    </string>
+
+    <string name="add_account">Adicionar conta</string>
+    <string name="delete_label_warning">Confirme para excluir este rótulo?</string>
+
+</resources>
