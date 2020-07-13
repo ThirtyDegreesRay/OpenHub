@@ -45,55 +45,6 @@
                 android:gravity="center_horizontal"
                 android:background="?card_background">
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/user_name_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_x_large"
-                    android:hint="@string/user_name">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/user_name_et"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
-                        android:maxLines="1"
-                        android:imeOptions="actionNext"/>
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/password_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_x_large"
-                    android:hint="@string/password"
-                    app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="?colorAccent">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/password_et"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:maxLines="1"
-                        android:imeOptions="actionSend"/>
-                </android.support.design.widget.TextInputLayout>
-
-                <com.unstoppable.submitbuttonview.SubmitButton
-                    android:id="@+id/login_bn"
-                    android:layout_width="160dp"
-                    android:layout_height="45dp"
-                    android:layout_margin="@dimen/spacing_xx_large"
-                    app:buttonColor="?colorAccent"
-                    app:buttonText="@string/login"
-                    app:buttonTextSize="18sp"/>
-
-
-                <View
-                    style="@style/DividerLine.Horizontal"
-                    android:layout_marginTop="@dimen/spacing_normal"
-                    android:layout_marginBottom="@dimen/spacing_normal"/>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
