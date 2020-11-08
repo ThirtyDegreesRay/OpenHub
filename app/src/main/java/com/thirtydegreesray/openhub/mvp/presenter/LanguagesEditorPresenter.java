@@ -191,10 +191,14 @@ public class LanguagesEditorPresenter extends BasePresenter<ILanguagesEditorCont
                     languages.addAll(getFixedLanguages());
                     try {
                         Document doc = Jsoup.parse(s, AppConfig.GITHUB_BASE_URL);
-                        Elements elements = doc.select(".col-md-3 .select-menu .select-menu-list a.select-menu-item");
+                        Element languageElement = doc.getElementById("select-menu-language");
+                        Elements elements = languageElement.select(".select-menu-modal .select-menu-list a.select-menu-item");
                         for (Element element : elements) {
                             String slug = element.attr("href");
                             slug = slug.substring(slug.lastIndexOf("/") + 1);
+                            if(slug.contains("?")){
+                                slug = slug.substring(0, slug.indexOf("?"));
+                            }
                             Element nameElement = element.select("span").first();
                             String name = nameElement.textNodes().get(0).toString().trim();
                             languages.add(new TrendingLanguage(name, slug));
@@ -207,7 +211,7 @@ public class LanguagesEditorPresenter extends BasePresenter<ILanguagesEditorCont
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(results -> {
-                    if (results.size() != 0) {
+                    if (results.size() > 2) {
                         mView.hideLoading();
                         languages = results;
                         for (TrendingLanguage trendingLanguage : languages) {

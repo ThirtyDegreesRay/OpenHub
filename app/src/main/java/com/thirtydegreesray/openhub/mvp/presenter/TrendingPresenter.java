@@ -85,6 +85,10 @@ public class TrendingPresenter extends BasePresenter<ITrendingContract.View>
                 slug = slug.substring(0, slug.indexOf("?"));
                 language.setSlug(slug);
             }
+            //query all languages trending, should set "" in path, not "all" now.
+            if("all".equals(slug)){
+                language.setSlug("");
+            }
         }
     }
 

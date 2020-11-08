@@ -77,21 +77,8 @@ public class CollectionsPresenter extends BasePresenter<ICollectionsContract.Vie
                     ArrayList<Collection> collections = new ArrayList<>();
                     try {
                         Document doc = Jsoup.parse(s, AppConfig.GITHUB_BASE_URL);
-                        Elements elements = doc.getElementsByClass(
-                                "d-flex border-bottom border-gray-light pb-4 mb-5");
-                        for (Element element : elements) {
-                            Element titleElement = element.select("div > h2 > a").first();
-                            Element descElement = element.select("div").last();
-                            String id = titleElement.attr("href");
-                            id = id.substring(id.lastIndexOf("/") + 1);
-                            String title = titleElement.textNodes().get(0).toString();
-
-                            List<TextNode> descTextNodes = descElement.textNodes();
-                            int descIndex = descTextNodes.size() == 0 ? 0 : descTextNodes.size() - 1;
-                            String desc = descTextNodes.get(descIndex).toString().trim();
-                            Collection collection = new Collection(id, title, desc);
-                            collections.add(collection);
-                        }
+                        collections.addAll(getTopCollections(doc));
+                        collections.addAll(getBellowCollections(doc));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -112,6 +99,48 @@ public class CollectionsPresenter extends BasePresenter<ICollectionsContract.Vie
                         mView.hideLoading();
                     }
                 });
+    }
+
+    private ArrayList<Collection> getTopCollections(Document doc){
+        ArrayList<Collection> collections = new ArrayList<>();
+        Elements elements = doc.getElementsByClass(
+                "col-12 col-sm-6 col-md-4 mb-4");
+        for (Element element : elements) {
+            Element hrefElement = element.select("a").first();
+            Element titleElement = element.select("a > p").first();
+            Element descElement = element.select("a > p").last();
+            String id = hrefElement.attr("href");
+            id = id.substring(id.lastIndexOf("/") + 1);
+            String title = titleElement.textNodes().get(0).toString();
+            String desc = descElement.textNodes().get(0).toString();
+
+//            List<TextNode> descTextNodes = descElement.textNodes();
+//            int descIndex = descTextNodes.size() == 0 ? 0 : descTextNodes.size() - 1;
+//            String desc = descTextNodes.get(descIndex).toString().trim();
+            Collection collection = new Collection(id, title, desc);
+            collections.add(collection);
+        }
+        return collections;
+    }
+
+    private ArrayList<Collection> getBellowCollections(Document doc){
+        ArrayList<Collection> collections = new ArrayList<>();
+        Elements elements = doc.getElementsByClass(
+                "d-flex border-bottom border-gray-light pb-4 mb-5");
+        for (Element element : elements) {
+            Element titleElement = element.select("div > h2 > a").first();
+            Element descElement = element.select("div").last();
+            String id = titleElement.attr("href");
+            id = id.substring(id.lastIndexOf("/") + 1);
+            String title = titleElement.textNodes().get(0).toString();
+
+            List<TextNode> descTextNodes = descElement.textNodes();
+            int descIndex = descTextNodes.size() == 0 ? 0 : descTextNodes.size() - 1;
+            String desc = descTextNodes.get(descIndex).toString().trim();
+            Collection collection = new Collection(id, title, desc);
+            collections.add(collection);
+        }
+        return collections;
     }
 
 }

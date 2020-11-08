@@ -1,0 +1,440 @@
+<resources>
+    <string name="user_name">Login</string>
+    <string name="password">Heslo</string>
+    <string name="login">Přihlásit se</string>
+    <string name="login_in_browser">Přihlásit se v prohlížeči</string>
+    <string name="oauth_tip">Přihlásit se ve výchozím prohlížeči (s OAuth)</string>
+    <string name="user_name_warning">Špatný login!</string>
+    <string name="password_warning">Spatné heslo!</string>
+
+    <!-- menu -->
+    <string name="profile">Profil</string>
+    <string name="notifications">Oznámení</string>
+    <string name="news">Novinky</string>
+    <string name="issues">Připomínky</string>
+
+    <string name="repositories">Repozitáře</string>
+    <string name="owned">Vlastní</string>
+    <string name="starred">Oblíbené</string>
+    <string name="trending">Aktivní</string>
+    <string name="explore">Prozkoumat</string>
+
+    <string name="info_and_repositories">Info a možnosti</string>
+    <string name="settings">Nastavení</string>
+    <string name="about">O aplikaci</string>
+
+    <string name="public_repositories">Veřejné repozitáře</string>
+    <string name="starred_repositories">Oblíbené repozitáře</string>
+
+    <string name="no_cache_and_network">Síťové spojení a cache nejsou k dispozici.</string>
+    <string name="page_no_found">Stránka nenalezena.</string>
+    <string name="unauthorized">Neautorizovaný přístup.</string>
+    <string name="no_network_tip">Selhalo stažení dat z GitHubu. Prosím zkontrolujte síťové spojení a zkuste to znovu.</string>
+    <string name="load_timeout_tip">Time out při stahování dat z GitHubu. Prosím zkontrolujte síťové spojení a zkuste to znovu.</string>
+    <string name="tap_to_retry">Pro aktualizaci stiskněte</string>
+    <string name="no_data">Nejsou data</string>
+
+    <string name="title_activity_repository">OpenHub</string>
+    <string name="title_activity_settings">Nastavení</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- settings -->
+    <string name="choose_theme">Zvolte barevné schéma</string>
+    <string name="theme_accent_color">Barva pro zvýraznění</string>
+    <string name="start_page">Úvodní stránka</string>
+    <string name="cache_controller">Správa mezipaměti</string>
+    <string name="cache_controller_desc">Přednostně použít soubor z mezipaměti</string>
+    <string name="use_system_downloader">Použít systémové stahování</string>
+    <string name="use_custom_tabs">Použít vlastní záložky</string>
+    <string name="custom_tabs_desc">Neotvírat odkazy v externím prohlížeči (podporuje chrome, firefox…), otevřít ve vlastních záložkách</string>
+    <string name="use_custom_tabs_tips">Volbu pro otevření v externím prohlížeči naleznete v nastavení.</string>
+    <string name="language">Jazyky</string>
+    <string name="logout">Odhlásit se</string>
+
+    <!-- Repository -->
+    <string name="repository">Repozitář</string>
+    <string name="info">Náhled</string>
+    <string name="files">Soubory</string>
+    <string name="commits">Commity</string>
+    <string name="commit">Commit</string>
+
+    <string name="star">Označit</string>
+    <string name="unstar">Odznačit</string>
+    <string name="unstarred">Odznačeno</string>
+    <string name="branch_tip">Větve a značky</string>
+    <string name="share">Sdílet</string>
+    <string name="open_in_browser">Otevřít v prohlížeči</string>
+    <string name="copy_url">Kopírovat URL</string>
+    <string name="copy_clone_url">Kopírovat URL pro klonování</string>
+    <string name="watch">Sledovat</string>
+    <string name="watched">Sledováno</string>
+    <string name="unwatch">Nesledovat</string>
+    <string name="unwatched">Nesledováno</string>
+    <string name="fork">Fork</string>
+    <string name="fork_tag">Fork</string>
+    <string name="forked">Forkováno</string>
+    <string name="forked_from">Forkováno z</string>
+    <string name="wrap_lines">Zalamovat řádky</string>
+    <string name="refresh">Obnovit</string>
+
+    <string name="success_copied">Zkopírováno</string>
+
+    <string name="stargazers">Pozorovatelé</string>
+    <string name="forks">Forky</string>
+    <string name="watchers">Sledujících</string>
+    <string name="readme">README</string>
+    <string name="no_readme">BEZ README</string>
+    <string name="warning_dialog_tile">Upozornění</string>
+    <string name="cancel">Zrušit</string>
+    <string name="close">Zavřít</string>
+    <string name="ok">Budiž</string>
+    <string name="confirm">Potvrdit</string>
+    <string name="select_branch">Vyberte si větev nebo tag</string>
+    <string name="share_to">Sdílet do</string>
+    <string name="no_share_clients">Není nainstalován klient pro sdílení.</string>
+    <string name="no_browser_clients">Není nainstalován klient pro prohlížení.</string>
+    <string name="no_download_clients">Není nainstalován klient pro stahování.</string>
+    <string name="send_email">Poslat email</string>
+    <string name="open_in_market">Otevřít v Google Play</string>
+    <string name="no_email_clients">Není nainstalována emailová aplikace.</string>
+    <string name="no_market_clients">Není nainstalována aplikace pro Google Play.</string>
+    <string name="url_invalid">Neplatné URL</string>
+    <string name="view_archive_file_error">Archivní soubory nejsou podporovány, prosím stáhněte soubor pro prohlížení jeho obsahu.</string>
+    <string name="fork_warning_msg">Forkovat tento repozitář?</string>
+    <string name="invalid_repo_url">Chybné URL repozitáře!</string>
+    <string name="invalid_url">Chybné URL!</string>
+
+    <!-- Profile -->
+    <string name="follow">Následovat</string>
+    <string name="followed">Následováno</string>
+    <string name="unfollow">Přestat následovat</string>
+    <string name="unfollowed">Není následováno</string>
+    <string name="members">Lidé</string>
+    <string name="view">Pohled</string>
+    <string name="followers">Sledujících</string>
+    <string name="following">Sleduje</string>
+    <string name="repos">Repozitáře</string>
+    <string name="stars">Označené</string>
+    <string name="gists">Gisty</string>
+    <string name="joined_at">Přihlásil se</string>
+    <string name="users">Uživatelé</string>
+    <string name="activity">Aktivita</string>
+
+    <string name="just_now">právě teď</string>
+    <string name="seconds_ago">sekundy</string>
+    <string name="minutes_ago">minuty</string>
+    <string name="hours_ago">hodiny</string>
+    <string name="days_ago">dny</string>
+
+    <string name="search">Hledat</string>
+    <string name="sort">Třídit</string>
+    <string name="sort_order">Třídit podle</string>
+
+    <string name="best_match">Nejlepší shoda</string>
+    <string name="most_stars">Nejvíce hvezdiček</string>
+    <string name="fewest_stars">Nejméně hvězdiček</string>
+    <string name="most_forks">Nejvíce forkováno</string>
+    <string name="fewest_forks">Nejméně forkováno</string>
+    <string name="recently_updated">Nejnovější</string>
+    <string name="least_recently_updated">Nejstarší</string>
+
+    <string name="most_followers">Nejvíce následujících</string>
+    <string name="fewest_followers">Nejméně následujících</string>
+    <string name="most_recently_joined">Nejnovější registrace</string>
+    <string name="least_recently_joined">Nejstarší registrace</string>
+    <string name="most_repositories">Nejvíce repozitořů</string>
+    <string name="fewest_repositories">Nejméně repozitářů</string>
+
+    <string name="invalid_query">Špatný text dotazu!</string>
+
+    <string name="daily">Denně</string>
+    <string name="weekly">Týdně</string>
+    <string name="monthly">Měsíčně</string>
+
+    <string name="logout_warning">Skutečně se chcete odhlásit?</string>
+    <string name="unknown">Neznámý</string>
+    <string name="organizations">Organizace</string>
+    <string name="no_user">Bez členů</string>
+    <string name="no_activity">Žádné aktivity</string>
+    <string name="no_repository">Zádné repozitáře</string>
+    <string name="no_file">Žádné soubory</string>
+    <string name="developing">Ve vývoji</string>
+    <string name="version">Verze</string>
+    <string name="source_code">Zdrojový kód</string>
+    <string name="source_code_wishes">Dejte mi hvězdičku</string>
+    <string name="rate_in_market">Ohodnotit nebo okomentovat na Google Play</string>
+    <string name="author">Autor</string>
+    <string name="follow_on_github">Zobrazit GitHub</string>
+    <string name="email" >Email</string>
+    <string name="loading">nahrávám</string>
+
+    <string name="upgrade">Aktualizace</string>
+    <string name="install">Instalovat</string>
+    <string name="next_time">Příště</string>
+    <string name="upgrade_version">Verze:</string>
+    <string name="upgrade_apk_size">Velikost apk:</string>
+    <string name="publish_time">Publikováno:</string>
+    <string name="upgrade_info">Aktualizováno:</string>
+    <string name="no_upgrade_tip">Je nainstalovaná nejnovější verze.</string>
+    <string name="fork_failed">Fork selhal</string>
+
+    <string name="filter">Filtrovat</string>
+
+    <string name="releases">Vydání</string>
+    <string name="no_releases">Žádná vydání</string>
+    <string name="source_code_zip">Zdrojový kód (zip)</string>
+    <string name="source_code_tar">Zdrojový kód (tar.gz)</string>
+    <string name="download_source_zip">Stáhnout zdrojáky (zip)</string>
+    <string name="download_source_tar">Stáhnout zdrojáky (tar.gz)</string>
+    <string name="released_this">uvolnit</string>
+    <string name="on">v</string>
+    <string name="download">Stáhnout</string>
+    <string name="download_complete">Stažení dokončeno</string>
+    <string name="download_failed">Stažení selhalo</string>
+    <string name="downloading">Stahuji</string>
+    <string name="download_empty_tip">Prázdné URL nebo název souboru!</string>
+    <string name="download_start">Začalo stahování</string>
+    <string name="download_cancel">Stahování zrušeno</string>
+    <string name="permission_storage_denied">Není možné uložit, prosím povolte ukládání souborů.</string>
+    <string name="enable_download_service_tip">Prosím nejdříve povolte stahování!</string>
+
+    <string name="open">Otevřené</string>
+    <string name="closed">Uzavřené</string>
+    <string name="no_issues">Bez připomínek</string>
+    <string name="issue">Připomínky</string>
+
+    <string name="type">Zobrazit</string>
+    <string name="all">Všechny</string>
+    <string name="created">Vytvořené</string>
+    <string name="assigned">Přidělené</string>
+    <string name="mentioned">Zmíněno</string>
+    <string name="participating">Zůčastněn</string>
+
+    <string name="recently_created">Nejnovější</string>
+    <string name="previously_created">Nejstarší</string>
+    <string name="most_comments">Nejvíce commitů</string>
+    <string name="fewest_comments">Nejméně commitů</string>
+
+    <string name="comments">Komentářů</string>
+    <string name="comment">Komentář</string>
+    <string name="no_description">Bez popisu.</string>
+    <string name="no_comments">Bez komentáře.</string>
+
+    <string name="write">Zapsat</string>
+    <string name="preview">Náhled</string>
+
+    <string name="edit">Upravit</string>
+    <string name="delete">Smazat</string>
+    <string name="comment_null_warning">Komentář je prázdný!</string>
+    <string name="comment_success">Komentář přidán</string>
+    <string name="delete_comment_warning">Opravdu chcete smazat komentář?</string>
+    <string name="reopen">Znovu otevřít</string>
+    <string name="reopen_success">Znovu otevřeno</string>
+    <string name="close_success">Uzavřeno</string>
+
+    <string name="add_large_header">Velký napis</string>
+    <string name="add_medium_header">Střední nadpis</string>
+    <string name="add_small_header">Malý nadpis</string>
+    <string name="add_bold_text">Tučné písmo</string>
+    <string name="add_italic_text">Kurzíva</string>
+    <string name="add_a_link">Vložit odkaz</string>
+    <string name="insert_code">Vložit kód</string>
+    <string name="insert_a_quote">Citovat</string>
+    <string name="add_a_bulleted_list">Vložit list</string>
+    <string name="mention">Odkázat na uživatele nebo tým</string>
+    <string name="nothing_to_preview">Prázdný náhled</string>
+
+    <string name="title">Předmět</string>
+    <string name="leave_a_comment">Komentář</string>
+    <string name="markdown_editor">Použít markdown editor</string>
+
+    <string name="created_at">Vytvořeno</string>
+    <string name="forked_at">Forkováno</string>
+    <string name="latest_update">Poslední aktualizace</string>
+    <string name="latest_commit">Poslední commit</string>
+    <string name="issue_title_null_tip">Předmět připomínky nemůže být prázdný.</string>
+    <string name="edit_issue">Upravit připomínky</string>
+    <string name="create_issue">Vytvořit připomínku</string>
+    <string name="edit_issue_success">Připomínka upravena</string>
+    <string name="create_issue_success">Připomínka vytvořena</string>
+
+    <string name="no_commits">Bez commitů</string>
+    <string name="committed">Commitováno</string>
+    <string name="view_file">Zobrazit soubor</string>
+    <string name="failed_to_recognize">Toto není URL na GitHub, prosím otevřete v prohlížeči po kopírování dlouhým stiskutím.</string>
+    <string name="failed_to_open_url">Není možné otevřít URL, prosím otevřete v prohlížeči po kopírování dlouhým stiskutím.</string>
+    <string name="compare">Zobrazit rozdíly</string>
+
+    <string name="unread">Nepřečtené</string>
+    <string name="no_notifications_tip">Bez nových oznámení.</string>
+    <string name="feedback_and_share">Sdílet a poskytnout zpětnou vazbu</string>
+    <string name="share_to_friends">Sdílet s přátely</string>
+    <string name="feedback">Zpětná vazba</string>
+
+    <string name="openhub_wishes">Blahopřejeme!</string>
+    <string name="star_wishes" formatted="false">
+        Dobrý den %s, dnes jste na OpenHubu %d. den. Děkujeme Vám za poskytnutou důvěru.
+        Vynasnažíme se, aby jsme splinili vaše náročné představy a přání.
+        \n\nBudeme rádi, pokud aplikaci ohodnotíte.
+    </string>
+    <string name="star_thanks">Vážíme si vaší podpory</string>
+    <string name="star_me">Ohodnotit</string>
+    <string name="star_next_time">Někdy příště</string>
+
+    <string name="owner_repo">Vlastní</string>
+    <string name="public_repo">Veřejné</string>
+    <string name="private_repo">Soukromé</string>
+    <string name="member_repo">Člen</string>
+    <string name="most_pushed">Nejvíce příspěvků</string>
+    <string name="fewest_pushed">Nejméně příspěvků</string>
+    <string name="full_name_asc">Celého jména vzestupně</string>
+    <string name="full_name_desc">Celého jména sestupně</string>
+    <string name="recently_starred">Právě sledováno</string>
+    <string name="previously_starred">Posledně sledováno</string>
+
+    <string name="trace">Záznam aktivity</string>
+    <string name="my_repos">Moje repozitáře</string>
+    <string name="starred_repos">Sledované repozitáře</string>
+    <string name="trending_repos">Aktivní repozitáře</string>
+
+    <string name="bookmarks">Záložky</string>
+    <string name="bookmark">Založit</string>
+    <string name="remove_bookmark">Smazat záložku</string>
+    <string name="bookmark_saved">Záložka uložena</string>
+    <string name="bookmark_removed">Záložka smazána</string>
+
+    <string name="user">Uživatel</string>
+    <string name="repo">Repozitář</string>
+    <string name="issues_list">Připomínky</string>
+    <string name="commits_list">Commity</string>
+    <string name="releases_list">Vydání</string>
+    <string name="release">Vydání</string>
+    <string name="go_to">Jít na</string>
+
+    <string name="tips">Nápověda</string>
+    <string name="activity_click_tip">
+        Pro zobrazení výchozí stránky stiskněte dlouze. Pro zobrazení dostupných stránek stiskněte dlouze.
+    </string>
+    <string name="double_click_toolbar_tip">You can double click title to back top in list page.</string>
+    <string name="releases_click_tip">You can long click item to view available downloads.</string>
+
+    <string name="created_comment_on_commit">Vytvořen komentář ke commitu v %s</string>
+    <string name="created_comment_on_issue">Vytvořen komentář pro připomínku %d v %s</string>
+    <string name="created_repo">Vytvořen repozitář %s</string>
+    <string name="forked_to">%s forkováno do %s</string>
+    <string name="starred_repo">Označeno %s</string>
+    <string name="push_to">Pushnuto %s v %s</string>
+    <string name="created_tag_at">Vytvořena značka %s v %s</string>
+    <string name="created_branch_at">Vytvořena větev %s v %s</string>
+    <string name="delete_tag_at">Smazána značka %s v %s</string>
+    <string name="delete_branch_at">Vytvořena větev %s v %s</string>
+    <string name="published_release_at">Vydáno %s v %s</string>
+    <string name="opened_issue_at">Otevřena připomínka %d v %s</string>
+    <string name="closed_issue_at">Uzavřená připomínka %d v %s</string>
+    <string name="reopened_issue_at">Znovu otevřena připomínka %d v %s</string>
+    <string name="edited_issue_at">Upravena připomínka %d v %s</string>
+    <string name="assigned_issue_at">Přidělena připomínka %d v %s</string>
+    <string name="unassigned_issue_at">Odebrána připomínka %d v %s</string>
+    <string name="labeled_issue_at">Označena připomínka %d v %s</string>
+    <string name="unlabeled_issue_at">Odznačena připomínka %d v %s</string>
+    <string name="milestoned_issue_at">Připomínka %d přidána k milníku %s</string>
+    <string name="demilestoned_issue_at">Připomínka %d přidána od milníku %s</string>
+    <string name="added_member_to">Přidán člen %s do %s</string>
+    <string name="deleted_member_at">Smazán člen %s v %s</string>
+    <string name="edited_member_at">Upraveno členství %s v %s</string>
+    <string name="made_repo_public">%s je veřejné</string>
+    <string name="org_blocked_user">Organizace %s zablokovala %s</string>
+    <string name="org_unblocked_user">Organizace %s odblokovala %s</string>
+    <string name="created_pull_request_comment_at">Created pull request review comment at %s</string>
+    <string name="deleted_pull_request_comment_at">Deleted pull request review comment at %s</string>
+    <string name="edited_pull_request_comment_at">Upraven komentář k pull requestu v %s</string>
+    <string name="submitted_pull_request_review_at">Submitted pull request review at %s</string>
+    <string name="edited_pull_request_review_at">Edited pull request review at %s</string>
+    <string name="dismissed_pull_request_review_at">Dismissed pull request review at %s</string>
+
+    <string name="undo">Zpět</string>
+    <string name="no_bookmarks">Žádné záložky</string>
+    <string name="no_trace">No trace</string>
+    <string name="trace_deleted">Trace deleted</string>
+    <string name="today">Dnes</string>
+    <string name="yesterday">Včera</string>
+
+    <string name="my_languages">Můj jazyk</string>
+    <string name="choose_languages">Vybrat jazyk</string>
+    <string name="language_removed">Jazyk %s odstraněn</string>
+    <string name="no_choose_language_warning">Vyberte si nejméně jeden jazyk.</string>
+    <string name="languages_editor_tip">Položky lze odbrat potažení doprava nebo doleva. Pro přemístění je dlouze podržte.</string>
+    <string name="fullscreen">Na celou obrazovku</string>
+
+    <string name="public_news">Všechny novinky</string>
+    <string name="wiki" translatable="false">Wiki</string>
+    <string name="recent_wiki_updates">Nedávné aktualizace Wiki stránek</string>
+    <string name="no_recent_wiki_updates">Neexistují žádné nedávné aktualizace Wiki stránek</string>
+
+    <string name="repo_collections">Kolekce repozitářů</string>
+    <string name="no_repo_collections">Neexistuje kolekce repozitářů</string>
+    <string name="collections_tip">Curated lists and insight into burgeoning industries, topics, and communities.</string>
+    <string name="github_page_parse_error">
+        Chyba %s při parsování stránky. Je možné, že struktura stránky byla
+        zněněna. Prosím zkuste aktualizovat aplikaci. Pokud chyba přetrvává,
+        dejte mi prosím vědět.
+    </string>
+
+    <string name="bookmarks_tip">Záložku můžete odebrat posunutím doprava nebo doleva.</string>
+    <string name="mark_all_as_read">Označit vše jako přečtené</string>
+    <string name="mark_as_read">Označit jako přečtené</string>
+
+    <string name="topic">Témata</string>
+    <string name="topics">Zvýrazněná témata</string>
+    <string name="topics_tip">Prohlížet nejvíce použivaná témata na GitHubu.</string>
+    <string name="no_topics">Žádná témata</string>
+
+    <string name="star_num_today">%s hvězdiček dnes</string>
+    <string name="star_num_this_week">%s hvězdiček tento týden</string>
+    <string name="star_num_this_month">%s hvězdiček tento měsíc</string>
+    <string name="no_trending_repos">Zdá se, že pro %s nemáme žádné aktivní repozitáře.</string>
+
+    <string name="all_languages">Všechny jazyky</string>
+    <string name="unknown_languages">Neznámý jazyk</string>
+
+    <string name="labels">Značky</string>
+    <string name="label">Značka</string>
+    <string name="edit_label">Upravit značku</string>
+    <string name="create_label">Vytvořit značku</string>
+    <string name="save">Uložit</string>
+    <string name="name">Jméno</string>
+    <string name="color">Barva</string>
+    <string name="more">Více</string>
+    <string name="custom">Vlastní</string>
+    <string name="done">Ukončit</string>
+    <string name="presets">Nastavení</string>
+    <string name="choose_color">Vyberte barvu</string>
+    <string name="invalid_color">Neplatná barva</string>
+    <string name="invalid_name">Neplatné jméno</string>
+    <string name="choose_labels">Vyberte značky</string>
+    <string name="manage_labels">Spravovat značky</string>
+
+    <string name="issue_add_label">přidal značku %s</string>
+    <string name="issue_remove_label">odebral značku %s</string>
+    <string name="issue_close">uzavřel</string>
+    <string name="issue_reopened">znovu otevřel</string>
+    <string name="issue_modified">upravil připomínka</string>
+    <string name="issue_added_to_milestone">přidal do milníku %s</string>
+    <string name="issue_removed_from_milestone">odebral z milníku %s</string>
+    <string name="issue_locked_conversation">uzamknul konverzaci pouze pro spolupracovníky</string>
+    <string name="issue_unlocked_conversation">odemknul tuto konverzaci</string>
+    <string name="issue_delete_comment">smazal komentář</string>
+    <string name="issue_referenced">odkazova tuto připomínku v %s</string>
+    <string name="issue_assigned">přidělil %s</string>
+    <string name="issue_unassigned">odebral jejich přidělené úkoly</string>
+
+    <string name="disable_loading_image">Omezit data</string>
+    <string name="disable_loading_image_desc">Zakáže stahování obrázků pokud jste připojeni přes mobilní síť</string>
+
+    <string name="toggle_issue_warning">Opravdu chcete %s tuto připomínku?</string>
+
+    <string name="add_account">Přidat účet</string>
+    <string name="delete_label_warning">Opravdu chcete smazat tuto nálepku?</string>
+
+</resources>
