@@ -1,0 +1,480 @@
+<resources>
+    <string name="app_github_name" translatable="false">OpenHub</string>
+    <string name="navigation_drawer_open" translatable="false">navigation_drawer_open</string>
+    <string name="navigation_drawer_close" translatable="false">navigation_drawer_close</string>
+
+    <!-- colors -->
+    <string name="light_blue" translatable="false">Light Blue</string>
+    <string name="blue" translatable="false">Blue</string>
+    <string name="indigo" translatable="false">Indigo</string>
+    <string name="orange" translatable="false">Orange</string>
+    <string name="yellow" translatable="false">Yellow</string>
+    <string name="amber" translatable="false">Amber</string>
+    <string name="grey" translatable="false">Grey</string>
+    <string name="brown" translatable="false">Brown</string>
+
+    <string name="cyan" translatable="false">Cyan</string>
+    <string name="teal" translatable="false">Teal</string>
+    <string name="lime" translatable="false">Lime</string>
+    <string name="green" translatable="false">Green</string>
+    <string name="pink" translatable="false">Pink</string>
+    <string name="red" translatable="false">Red</string>
+    <string name="purple" translatable="false">Purple</string>
+    <string name="deep_purple" translatable="false">Deep Purple</string>
+
+    <!-- onLoginClick -->
+    <string name="user_name">მომხმარების სახელი</string>
+    <string name="password">პაროლი</string>
+    <string name="login">შესვლა</string>
+    <string name="login_in_browser">ბრაუზერიდან შესვლა</string>
+    <string name="oauth_tip">მთავარი ბრაუზერიდან შესვლა(OAuth)</string>
+    <string name="user_name_warning">არასწორი მომხმარებლის სახელი!</string>
+    <string name="password_warning">არასწორი პაროლი!</string>
+
+    <!-- menu -->
+    <string name="profile">პროფილი</string>
+    <string name="notifications">შეტყობინებები</string>
+    <string name="news">ახალი ამბები</string>
+    <string name="issues">პრობლემები</string>
+
+    <string name="repositories">რეპოზიტერიები</string>
+    <string name="owned">საკუთარი</string>
+    <string name="starred">ფავორიტები</string>
+    <string name="trending">ტრენდული</string>
+    <string name="explore">მონახულება</string>
+
+    <string name="info_and_repositories">ინფორმაცია &#038; პრეფერენციები</string>
+    <string name="settings">პარამეტრები</string>
+    <string name="about">აპის შესახებ</string>
+
+    <string name="public_repositories">საჯარო რეპოზიტორიები</string>
+    <string name="starred_repositories">ფავორიტი რეპოზიტორიები</string>
+
+    <string name="no_cache_and_network">კავშირი და ქეში მიუწვდომელია.</string>
+    <string name="page_no_found">გვერდი ვერ მოიძებნა.</string>
+    <string name="unauthorized">უნებართვო.</string>
+    <string name="no_network_tip">GitHub-იდან მონაცემების ჩატვირთვა ვერ მოხერხდა. შეამოწმეთ კავშირი ინტერნეტთან და სცადეთ თავიდან.</string>
+    <string name="load_timeout_tip">GitHub-იდან მონაცემების ჩატვირთვას დრო გაუვიდა. შეამოწმეთ კავშირი ინტერნეტთან და სცადეთ თავიდან..</string>
+    <string name="tap_to_retry">დააჭირეთ თავიდან საცდელად</string>
+    <string name="no_data">კავშირი არ არის</string>
+
+    <string name="title_activity_repository">OpenHub</string>
+    <string name="title_activity_settings">პარამეტრები</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- settings -->
+    <string name="choose_theme">თემის არჩევა</string>
+    <string name="theme_accent_color">თემის აქცენტი</string>
+    <string name="start_page">საწყისი გვერდი</string>
+    <string name="cache_controller">ქეშის მაკონტროლებელი</string>
+    <string name="cache_controller_desc">ჯერ ქეშიდან ჩატვირთვა, შემდეგ ინტერნეტიდან</string>
+    <string name="use_system_downloader">სისტემის გადმომწერის გამოყენება</string>
+    <string name="use_custom_tabs">Custom Tabs-ის გამოყენება</string>
+    <string name="custom_tabs_desc">აპის შიდა ბრაუზერში გახსნა ჩვეულებრივი ბრაუზერის მაგივრად(chrome, firefox…)</string>
+    <string name="use_custom_tabs_tips">თუ გინდათ რომ თავიდანვე გახსნას ჩვეულებრივმა ბრაუზერმა, შეცვალეთ პარამეტრები.</string>
+    <string name="language">ენა</string>
+    <string name="logout">გამოსვლა</string>
+
+    <!-- Repository -->
+    <string name="repository">რეპოზიტორია</string>
+    <string name="info">ინფორმაცია</string>
+    <string name="files">ფაილები</string>
+    <string name="commits">კომიტები</string>
+    <string name="commit">კომიტი</string>
+
+    <string name="star">ფავორიტებში დამატება</string>
+    <string name="unstar">ფავორიტებიდან ამოგდება</string>
+    <string name="unstarred">ფავორიტებიდან ამოგდებული</string>
+    <string name="branch_tip">ბრენჩები ან ტეგები</string>
+    <string name="share">გაზიარება</string>
+    <string name="open_in_browser">ბრაუზერში გახსნა</string>
+    <string name="copy_url">URL-ის დაკოპირება</string>
+    <string name="copy_clone_url">კლონირების URL-ის დაკოპირება</string>
+    <string name="watch">დევნა</string>
+    <string name="watched">დადევნებულია</string>
+    <string name="unwatch">დევნის შეწყვეტა</string>
+    <string name="unwatched">დევნა შეწყვეტილია</string>
+    <string name="fork">დაფორკება</string>
+    <string name="fork_tag">დაფორკება</string>
+    <string name="forked">დაფორკებულია</string>
+    <string name="forked_from">დაფორკებულია აქედან</string>
+    <string name="wrap_lines">გადაფარვის ხაზები</string>
+    <string name="refresh">დარეფრეშება</string>
+
+    <string name="success_copied">დაკოპირდა</string>
+
+    <string name="stargazers"></string>
+    <string name="forks">ფორკები</string>
+    <string name="watchers">მდევნელები</string>
+    <string name="readme">README</string>
+    <string name="no_readme">NO README</string>
+    <string name="warning_dialog_tile">გაფრთხილება</string>
+    <string name="cancel">გაუქმება</string>
+    <string name="close">დახურვა</string>
+    <string name="ok">OK</string>
+    <string name="confirm">OK</string>
+    <string name="select_branch">აირჩიეთ ბრენჩი ან ტეგი</string>
+    <string name="share_to">გაზიარება</string>
+    <string name="no_share_clients">კლიენტები გასაზიარებლად არ არის დაყენებული.</string>
+    <string name="no_browser_clients">ბრაუზერის კლიენტები არ არის დაყენებული.</string>
+    <string name="no_download_clients">გადმომწერი კლიენტები არ არის დაყენებული.</string>
+    <string name="send_email">იმეილის გაგზავნა</string>
+    <string name="open_in_market">მარკეტში გახსნა</string>
+    <string name="no_email_clients">იმეილის კლიენტები არ არის დაყენებული.</string>
+    <string name="no_market_clients">მარკეტის კლიენტები არ არის დაყენებული.</string>
+    <string name="url_invalid">არასწორი Url</string>
+    <string name="view_archive_file_error">დაარქივებული ფაილების ნახვა შეუძლებელია, გთხოვთ გადმოწეროთ ფაილი მისი შიგთავსის სანახავად.</string>
+    <string name="fork_warning_msg">გნებავთ ამ რეპოზიტორიის დაფორკვა?</string>
+    <string name="invalid_repo_url">არასწორი რეპოზტორიის url!</string>
+    <string name="invalid_url">არასწორი url!</string>
+
+    <!-- Profile -->
+    <string name="follow">დაფოლოვება</string>
+    <string name="followed">დაფოლოვებულია</string>
+    <string name="unfollow">დაფოლოვების გაუქმება</string>
+    <string name="unfollowed">დაფოლოვება გაუქმებულია</string>
+    <string name="members">წევრები</string>
+    <string name="view">ნახვა</string>
+    <string name="followers">ფოლოვერები</string>
+    <string name="following">დაფოლოვებულები</string>
+    <string name="repos">რეპოზიტორიები</string>
+    <string name="stars">ფავორიტები</string>
+    <string name="gists">Gist-ები</string>
+    <string name="joined_at">შემოსვლის თარიღი</string>
+    <string name="users">მომხმარებლები</string>
+    <string name="activity">აქტივობა</string>
+
+    <string name="just_now">ამ წამს</string>
+    <string name="seconds_ago">წამის წინ</string>
+    <string name="minutes_ago">წუთის წინ</string>
+    <string name="hours_ago">საათის წინ</string>
+    <string name="days_ago">დღის წინ</string>
+
+    <string name="search">ძებნა</string>
+    <string name="sort">სორტირება</string>
+    <string name="sort_order">სორტირების თანმიმდევრობა</string>
+
+    <string name="best_match">საუკეთესო დამთხვევა</string>
+    <string name="most_stars">მეტ ვარსკვლავიანი</string>
+    <string name="fewest_stars">ცოტა ვარსკვლავიანი</string>
+    <string name="most_forks">მეტი ფორკები</string>
+    <string name="fewest_forks">ცოტა ფორკები</string>
+    <string name="recently_updated">ყველაზე ახალი</string>
+    <string name="least_recently_updated">ყველაზე ძველი</string>
+
+    <string name="most_followers">მეტ ფოლოვერებიანი</string>
+    <string name="fewest_followers">ცოტა ფოლოვერებიანი</string>
+    <string name="most_recently_joined">ყველაზე ახალბედა</string>
+    <string name="least_recently_joined">ყველაზე ძველი</string>
+    <string name="most_repositories">მეტ რეპოზიტორიანი</string>
+    <string name="fewest_repositories">ცოტა რეპოზიტორიანი</string>
+
+    <string name="invalid_query">არასწორი შეკითხვა!</string>
+
+    <string name="daily">დღიური</string>
+    <string name="weekly">კვირეული</string>
+    <string name="monthly">თვიური</string>
+
+    <string name="logout_warning">ნამდვილად გნებავთ გამოსვლა?</string>
+    <string name="unknown">უცნობი</string>
+    <string name="organizations">ორგანიზაციები</string>
+    <string name="no_user">მოხმარებელი არ არის</string>
+    <string name="no_activity">აქტივობა არ არის</string>
+    <string name="no_repository">რეპოზიტორია არ არის</string>
+    <string name="no_file">ფაილები არ არის</string>
+    <string name="developing">დეველოპინგი</string>
+    <string name="version" >ვერსია</string>
+    <string name="source_code" >წყაროს კოდი</string>
+    <string name="source_code_wishes" >დააფავორიტეთ ჩემს საგულშემატკივროთ</string>
+    <string name="rate_in_market" >მარკეტში შეფასება</string>
+    <string name="author" >ავტორი</string>
+    <string name="author_name" translatable="false">30度的射线</string>
+    <string name="author_location" translatable="false">NanJing,China</string>
+    <string name="author_login_id" translatable="false">ThirtyDegreesRay</string>
+    <string name="author_avatar_url" translatable="false">https://avatars1.githubusercontent.com/u/9625508?v=4</string>
+    <string name="app_copyright" translatable="false">© 2017 ThirtyDegreesRay</string>
+    <string name="follow_on_github" >GitHub-ზე დაფოლოვება</string>
+    <string name="email" >იმეილის გაგზავნა</string>
+    <string name="auth_email_address" translatable="false">rays.yuz@gmail.com</string>
+    <string name="loading">იტვირთება</string>
+
+    <string name="upgrade">განახლება</string>
+    <string name="install">დაინსტალირება</string>
+    <string name="next_time">შემდეგში</string>
+    <string name="upgrade_version">ვერსია:</string>
+    <string name="upgrade_apk_size">აპის ზომა:</string>
+    <string name="publish_time">გამოქვეყნების თარიღი:</string>
+    <string name="upgrade_info">ინფორმაცია განახლებაზე:</string>
+    <string name="no_upgrade_tip">თქვენ ყველაზე ახალი ვერსია გაქვთ.</string>
+    <string name="fork_failed">ფორკირება ჩაიშალა</string>
+
+    <string name="filter">ფილტრაცია</string>
+
+    <string name="releases">რელიზები</string>
+    <string name="no_releases">რელიზები არ არის</string>
+    <string name="source_code_zip">წყაროს კოდი(zip)</string>
+    <string name="source_code_tar">წყაროს კოდი (tar.gz)</string>
+    <string name="download_source_zip">წყაროს გადმოწერა (zip)</string>
+    <string name="download_source_tar">წყაროს გადმოწერა (tar.gz)</string>
+    <string name="released_this">გამოუშვა ეს</string>
+    <string name="on">ამ დროს</string>
+    <string name="download">გადმოწერა</string>
+    <string name="download_complete">გადმოწერა შესრულდა</string>
+    <string name="download_failed">გადმოწერა ჩაიშალა</string>
+    <string name="downloading">მიმდინარეობს გადმოწერა</string>
+    <string name="download_empty_tip">ფაილი ან Url ცარიელია!</string>
+    <string name="download_start">გადმოწერა დაიწყო</string>
+    <string name="download_cancel">გადმოწერა გაუმებულია</string>
+    <string name="permission_storage_denied">წვდომა აკრძალულია, გთხოვთ დართოთ მეხსიერებასთან წვდომის ნებართვა.</string>
+    <string name="enable_download_service_tip">ჯერ გადმოწერის სერვისი ჩართეთ!</string>
+
+    <string name="open">ღია</string>
+    <string name="closed">დახურული</string>
+    <string name="no_issues">არავითარი პრობლემები</string>
+    <string name="issue">პრობლემები</string>
+
+    <string name="type">ტიპი</string>
+    <string name="all">ყველა</string>
+    <string name="created">შექმნილი</string>
+    <string name="assigned">შეთავსებული</string>
+    <string name="mentioned">მოხსენიებული</string>
+    <string name="participating">მონაწილეობრივი</string>
+
+    <string name="recently_created">ახალი შექმნილი</string>
+    <string name="previously_created">ადრე შექმნილი</string>
+    <string name="most_comments">მეტი კომენტარი</string>
+    <string name="fewest_comments">ნაკლები კომენტარი</string>
+
+    <string name="comments">კომენტარები</string>
+    <string name="comment">დაკომენტარება</string>
+    <string name="no_description">აღწერა არ არის.</string>
+    <string name="no_comments">კომენტარები არ არის.</string>
+
+    <string name="write">დაწერა</string>
+    <string name="preview">ესკიზი</string>
+
+    <string name="edit">რედაქტირება</string>
+    <string name="delete">წაშლა</string>
+    <string name="comment_null_warning">კომენტარი ცარიელია!</string>
+    <string name="comment_success">კომენტარი დაიწერა</string>
+    <string name="delete_comment_warning">ნამდვილად გსურთ კომენტარის წაშლა?</string>
+    <string name="reopen">თავიდან გახსნა</string>
+    <string name="reopen_success">წარმატებით გაიხსნა</string>
+    <string name="close_success">წარმატებით დაიხურა</string>
+
+    <string name="add_large_header">დიდი თავსართის დამატება</string>
+    <string name="add_medium_header">საშუალო თავსართის დამატება</string>
+    <string name="add_small_header">პატარა თავსართის დამატება</string>
+    <string name="add_bold_text">მუქი ტექსტის დამატება</string>
+    <string name="add_italic_text">"italic" ტექსტის დამატება</string>
+    <string name="add_a_link">ლინკის დამატება</string>
+    <string name="insert_code">კოდის ჩასმა</string>
+    <string name="insert_a_quote">ბრჭყალების დამატება</string>
+    <string name="add_a_bulleted_list">წერტილიანი ჩამონათვალის დამატება</string>
+    <string name="mention">მომხმარებლის ან გუნდის მოხსენიება</string>
+    <string name="nothing_to_preview">არაფერია ესკიზში</string>
+
+    <string name="title">სათაური</string>
+    <string name="leave_a_comment">კომენტარის დატოვება</string>
+    <string name="markdown_editor">ედიტორის გამოყენება</string>
+
+    <string name="created_at">შექმნის თარიღი</string>
+    <string name="forked_at">ფორკირების თარიღი</string>
+    <string name="latest_update">ბოლო განახლება</string>
+    <string name="latest_commit">ბოლო კომიტი</string>
+    <string name="issue_title_null_tip">პრობლემის სათაური ცარიელი არ უნდა იყოს.</string>
+    <string name="edit_issue">პრობლემის რედაქტირება</string>
+    <string name="create_issue">პრობლემის შექმნა</string>
+    <string name="edit_issue_success">პრობლემა წარმატებით დარედაქტირდა</string>
+    <string name="create_issue_success">პრობლემა წარმატებით შეიქმნა</string>
+
+    <string name="no_commits">კომიტები არ არის</string>
+    <string name="committed">კომიტი შეიქმნა</string>
+    <string name="view_file">ფაილის ნახვა</string>
+    <string name="failed_to_recognize">GitHub URL-ის ამოცნობა ვერ მოხერხდა, გთხოვთ გახსნათ ბრაუზერში.</string>
+    <string name="failed_to_open_url">URL-ის გახსნა ვერ მოხერხდა, გთხოვთ გახსნათ ბრაუზერში.</string>
+    <string name="compare">შედარება</string>
+
+    <string name="unread">წაუკითხავი</string>
+    <string name="no_notifications_tip">არ არის ახალი შტყობინებები.</string>
+    <string name="feedback_and_share">გაზიარება &#038; უკუკავშირი</string>
+    <string name="share_to_friends">მეგობრებთან გაზიარება</string>
+    <string name="cookapk_download_url" translatable="false">https://www.coolapk.com/apk/com.thirtydegreesray.openhub</string>
+    <string name="feedback">უკუკავშირი</string>
+
+    <string name="openhub_wishes">კეთილი სურვილებით OpenHub-ისგან</string>
+    <string name="star_wishes" formatted="false">
+        გამარჯობა %s, დღეს შენი %d დღეა OpenHub-ში,
+        გმადლობ რომ იყენებ ამ პროგრამას, მე ვიბრძოლებ რომ საუკეთესო GitHub-ის კლიენტი გავხდე.
+        \n\nთუ ჩემი დახმარება გინდა, გთხოვ დაამატე ამ პროგრამის რეპოზიტორია ფავორიტებში, მადლობა!
+    </string>
+    <string name="star_thanks">გმადლობ თვენი დახმარებისთვის!</string>
+    <string name="star_me">დამამატე ფავორიტებში</string>
+    <string name="star_next_time">განაგრძე სვლა</string>
+
+    <string name="owner_repo">მფლობელი</string>
+    <string name="public_repo">საჯარო</string>
+    <string name="private_repo">დახურული</string>
+    <string name="member_repo">წევრი</string>
+    <string name="most_pushed">მეტად გაგზავნილი</string>
+    <string name="fewest_pushed">ნაკლებად გაგზავნილი</string>
+    <string name="full_name_asc">სრული სახელი ზრდადობით</string>
+    <string name="full_name_desc">სრული სახელი კლებადოით</string>
+    <string name="recently_starred">ბოლოს დაფავორიტებული</string>
+    <string name="previously_starred">ადრე დაფავორიტებული</string>
+
+    <string name="trace">ქრონოლოგიური კვალი</string>
+    <string name="my_repos">ჩემი რეპოზიტორიები</string>
+    <string name="starred_repos">ფავორიტები</string>
+    <string name="trending_repos">ტრენდული</string>
+
+    <string name="bookmarks">სანიშნეები</string>
+    <string name="bookmark">სანიშნები</string>
+    <string name="remove_bookmark">სანიშნის მოშორება</string>
+    <string name="bookmark_saved">სანიშნის შენახვა</string>
+    <string name="bookmark_removed">სანიშნე წაშლილია</string>
+
+    <string name="user">მომხმარებელი</string>
+    <string name="repo">რეპოზიტორია</string>
+    <string name="issues_list">პრობლემების ჩამონათვალი</string>
+    <string name="commits_list">კომიტების ჩამონათვალი</string>
+    <string name="releases_list">რელიზების ჩამონათვალი</string>
+    <string name="release">რელიზი</string>
+    <string name="go_to">გადასვლა</string>
+
+    <string name="tips">რჩევები</string>
+    <string name="activity_click_tip">
+        შეგიძლიათ ერთხელ დააჭიროთ ფანჯარას მის გვერდზე გადასასვლელად, ან დააყოვნოთ მასზე ჩამონათვლის გამოსაჩენად.
+    </string>
+    <string name="double_click_toolbar_tip">შეგიძლიათ ორმაგად დააჭიროთ სათაურს გვერდის ზემოთ დასაბრუნებლად.</string>
+    <string name="releases_click_tip">შეგიძლიათ დააყოვნოთ განჯარა გადმოსაწერ ოფციების გამოსაჩენად.</string>
+
+    <string name="created_comment_on_commit">კომენტარი შექმნილია კომიტ %s-ში</string>
+    <string name="created_comment_on_issue">კომენტარი შექმნილია %d პრობლემაზე %s-ში</string>
+    <string name="created_repo">შექმნილია %s რეპოზიტორია</string>
+    <string name="forked_to">%s დაფორკდა %s-ად</string>
+    <string name="starred_repo">%s დამატებულია ფავორიტებში</string>
+    <string name="push_to">გაიგზავნა %s-ში %s-ზე</string>
+    <string name="created_tag_at">შექმნილია %s ტაგი %s-ში</string>
+    <string name="created_branch_at">შექმნილია %s ბრენჩი %s-ში</string>
+    <string name="delete_tag_at">ტეგი %s წაშლილია %s-ში</string>
+    <string name="delete_branch_at">ბრენჩი %s წაშლილია %s-ში</string>
+    <string name="published_release_at">გამოქვეყნდა %s რელიზი %s-ში</string>
+    <string name="opened_issue_at">გაიხსნა %d პრობლემა %s-ში</string>
+    <string name="closed_issue_at">დაიხურა %d პრობლემა %s-ში</string>
+    <string name="reopened_issue_at">თავიდან გაიხსნა %d პრობლემა %s-ში</string>
+    <string name="edited_issue_at">დარედაქტირდა %d პრობლემა %s-ში</string>
+    <string name="assigned_issue_at">შეთავსდა %d პრობლემა %s-ში</string>
+    <string name="unassigned_issue_at">განთავსდა %d პრობლემა %s-ში</string>
+    <string name="labeled_issue_at">იარლიყი მიეცა %d პრობლემას %s-ში</string>
+    <string name="unlabeled_issue_at">იარლიყი მოეხსნა %d პრობლემას %s-ში</string>
+    <string name="milestoned_issue_at">დაარქივდა %d პრობლემა %s-ში</string>
+    <string name="demilestoned_issue_at">არქივი მოეხსნა %d პრობლემას %s-ში</string>
+    <string name="added_member_to">დაამატა %s მომხმარებელი %s-ში</string>
+    <string name="deleted_member_at">წაშალა %s მომხმარებელი %s-ში</string>
+    <string name="edited_member_at">შეცვალა %s მომხმარებელი %s-ში</string>
+    <string name="made_repo_public">%s გახდა საჯარო</string>
+    <string name="org_blocked_user">%s-მა დაბლოკა მომმარებელი %s</string>
+    <string name="org_unblocked_user">%s-მა განბლოკა მომხმარებელი %s</string>
+    <string name="created_pull_request_comment_at">დატოვა კომენტარი გადახედვის მოთხვნაზე %s-ში</string>
+    <string name="deleted_pull_request_comment_at">წაშალა კომენტარი გადახედვის მოთხვნაზე %s-ში</string>
+    <string name="edited_pull_request_comment_at">შეცვალა კომენტარი გადახედვის მოთხვნაზე %s-ში</string>
+    <string name="submitted_pull_request_review_at">დაადასტურა გადახედვის მოთხვნა %s-ში</string>
+    <string name="edited_pull_request_review_at">შეცვალა გადახედვის მოთხვნა %s-ში</string>
+    <string name="dismissed_pull_request_review_at">დააიგნორა გადახედვის მოთხვნა %s-ში</string>
+
+    <string name="undo">გაუქმება</string>
+    <string name="no_bookmarks">არ არის სანიშნეები</string>
+    <string name="no_trace">არ არის კვალი</string>
+    <string name="trace_deleted">კვალი წაშლილია</string>
+    <string name="today">დღეს</string>
+    <string name="yesterday">გუშინ</string>
+
+    <string name="my_languages">ჩემი ენები</string>
+    <string name="choose_languages">ენების არჩევა</string>
+    <string name="language_removed">%s ენა წაშლილია</string>
+    <string name="no_choose_language_warning">აირჩიეთ მინიმუმ ერთი ენა!</string>
+    <string name="languages_editor_tip">გაუსვით მარჯვნივ ან მარცხნივ ელემენტის წაშაშლელად, დააყოვნეთ რომ გადაადგილოთ.</string>
+    <string name="fullscreen">სრული ეკრანი</string>
+
+    <string name="public_news">გლობალური ამბები</string>
+    <string name="wiki" translatable="false">Wiki</string>
+    <string name="recent_wiki_updates">Wiki-ს ბოლო განახლბები</string>
+    <string name="no_recent_wiki_updates">Wiki-ს ბოლო განახლება ვერ მოიძებნა</string>
+
+    <string name="repo_collections">რეპოზიტორიების კოლექცია</string>
+    <string name="no_repo_collections">რეპოზიტორიების კოლექცია არ არის აღმოჩენილი</string>
+    <string name="collections_tip">ინსაითები ზრდად ინდუსტრიებზე და მათ საზოგადოებაზე.</string>
+    <string name="github_page_parse_error">
+        %s გვერდის შეცდომა, შესაძლოა ეს გვერდი შეცვლილია GitHub-ის მიერ,
+        გთხოვთ განაახლოთ აპლიკაცია ბოლო ვერსიამდე, თუ შეცდომა ისევ მოხდება, გთხოვთ შემატყობინოთ!
+    </string>
+
+    <string name="bookmarks_tip">სანიშნის მოშორება შეგიძლიათ მარცხნივ ან მარჯვნივ გასმით.</string>
+    <string name="mark_all_as_read">ყველას წაკითულად მონიშვნა</string>
+    <string name="mark_as_read">წაკითხულად მონიშვნა</string>
+
+    <string name="topic">თემები</string>
+    <string name="topics">რჩეული თემები</string>
+    <string name="topics_tip">GitHub-ის რჩეული დავპოპულარული თემები.</string>
+    <string name="no_topics">თემები არ არის</string>
+
+    <string name="star_num_today">%s ვარსკვლავი დღეს</string>
+    <string name="star_num_this_week">%s ვარსკვლავი ამ კვირაში</string>
+    <string name="star_num_this_month">%s ვარსკვლავი ამ თვეში</string>
+    <string name="no_trending_repos">როგორც ჩანს არ გვაქვს ტრენდული რეპზიტორიები %s-სთვის.</string>
+
+    <string name="all_languages">ყველა ენა</string>
+    <string name="unknown_languages">უცნბი ენები</string>
+
+    <string name="labels">იარლიყები</string>
+    <string name="label">იარლიყი</string>
+    <string name="edit_label">იარლიყის შეცვლა</string>
+    <string name="create_label">იარლიყის შექმნა</string>
+    <string name="save">შენახვა</string>
+    <string name="name">სახელი</string>
+    <string name="color">ფერი</string>
+    <string name="more">მეტი</string>
+    <string name="custom">პერსონალიზირებული</string>
+    <string name="done">მზადაა</string>
+    <string name="presets">პრესეტები</string>
+    <string name="choose_color">ფერის არჩევა</string>
+    <string name="invalid_color">არასწორი ფერი</string>
+    <string name="invalid_name">არასწორი სახელი</string>
+    <string name="choose_labels">იარლიყების არჩევა</string>
+    <string name="manage_labels">იარლიყების მართვა</string>
+
+    <string name="issue_add_label">%s იარლიყის დამატება</string>
+    <string name="issue_remove_label">%s იარლიყის წაშლა</string>
+    <string name="issue_close">ამის დახურვა</string>
+    <string name="issue_reopened">თავიდან გახსნა</string>
+    <string name="issue_modified">პრობლემის მოდიფიცირება</string>
+    <string name="issue_added_to_milestone">ეს დამატებულია %s არქივში</string>
+    <string name="issue_removed_from_milestone">ეს წაშლილია %s არქივიდან</string>
+    <string name="issue_locked_conversation">სააუბრო ლიმიტირებულია კოლაბორატორებთან</string>
+    <string name="issue_unlocked_conversation">სასაუბრო გახსნილია</string>
+    <string name="issue_delete_comment">კომენტარის წაშლა</string>
+    <string name="issue_referenced">ეს პრობლემა მითითებულია %s-ში</string>
+    <string name="issue_assigned">ეს პრობლემა შეთავსებულია %s-თან</string>
+    <string name="issue_unassigned">შეთავსება მოშორებულია</string>
+
+    <string name="disable_loading_image">ინტერნეტიდან სურათის ჩატვირთვის გამორთვა</string>
+    <string name="disable_loading_image_desc">თიშავს ინტერნეტიდან სურათის ჩატვირთვას მობილური მონაცემების გამოყენების დროს</string>
+
+    <string name="toggle_issue_warning">გნებავთ ამ პრობლემის %s?</string>
+
+    <string name="new_year_wishes" formatted="false" translatable="false">
+        Hi %s！今天是您在OpenHub的第%d天，我会成为更适合您的GitHub app。
+        \n\n祝新年快乐，阖家欢乐，工作顺利！
+    </string>
+    <string name="new_year_wishes_with_star" formatted="false" translatable="false">
+        Hi %s！今天是您在OpenHub的第%d天，我会成为更适合您的GitHub app。
+        \n\n祝新年快乐，阖家欢乐，工作顺利！
+        \n\n最后还有一点小期望，如果可以星标来支持我，那就更棒了！
+    </string>
+
+    <string name="add_account">ანგარიშის დამატება</string>
+    <string name="delete_label_warning">გსურთ ამ იარლიყის წაშლა?</string>
+
+</resources>

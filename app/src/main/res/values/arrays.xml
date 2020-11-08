@@ -10,6 +10,9 @@
         <item>한국어</item>
         <item>Español</item>
         <item>Polski</item>
+        <item>ქართული</item>
+        <item>Italiano</item>
+        <item>Čeština</item>
     </array>
     <array name="language_id_array">
         <item>en</item>
@@ -21,6 +24,9 @@
         <item>ko</item>
         <item>es</item>
         <item>pl</item>
+        <item>ka</item>
+        <item>it</item>
+        <item>cs</item>
     </array>
 
     <array name="accent_color_array">
