@@ -405,9 +405,9 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         String starNumStr =  numElement.select("a").get(0).textNodes().get(1).toString();
         String forkNumStr =  numElement.select("a").get(1).textNodes().get(1).toString();
         String language = "";
-        Elements languageElements = numElement.select("span > span");
+        Elements languageElements = numElement.select("span > span > span");
         if(languageElements.size() > 0){
-            language = numElement.select("span > span").get(1).textNodes().get(0).toString();
+            language = numElement.select("span > span > span").get(1).textNodes().get(0).toString();
         }
 
         Repository repo = new Repository();
@@ -463,7 +463,7 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
                     ArrayList<Repository> repos = new ArrayList<>();
                     try {
                         Document doc = Jsoup.parse(s, AppConfig.GITHUB_BASE_URL);
-                        Elements elements = doc.getElementsByClass("col-12 d-block width-full py-4 border-bottom");
+                        Elements elements = doc.getElementsByClass("Box-row");
                         if(elements.size() != 0){
                             for (Element element : elements) {
                                 try{
@@ -498,12 +498,12 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
     }
 
     private Repository parseTrendingRepositoryData(Element element) throws Exception{
-        String fullName = element.select("div > h3 > a").attr("href");
+        String fullName = element.select("h1 > a").attr("href");
         fullName = fullName.substring(1);
         String owner = fullName.substring(0, fullName.lastIndexOf("/"));
         String repoName = fullName.substring(fullName.lastIndexOf("/") + 1);
 
-        Element descElement = element.select("div > p").first();
+        Element descElement = element.getElementsByClass("col-9 text-gray my-1 pr-4").first();
         StringBuilder desc = new StringBuilder("");
         for(TextNode textNode : descElement.textNodes()){
             desc.append(textNode.getWholeText());
