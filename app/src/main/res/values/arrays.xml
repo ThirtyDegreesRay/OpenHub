@@ -9,6 +9,7 @@
         <item>Português</item>
         <item>한국어</item>
         <item>Español</item>
+        <item>Italiano</item>
         <item>Čeština</item>
     </array>
     <array name="language_id_array">
@@ -20,6 +21,7 @@
         <item>pt-rPT</item>
         <item>ko</item>
         <item>es</item>
+        <item>it</item>
         <item>cs</item>
     </array>
 
