@@ -1,0 +1,442 @@
+<!-- contributed by [left4j](https://github.com/left4j) -->
+<resources>
+    <!-- onLoginClick -->
+    <string name="user_name">Имя пользователя</string>
+    <string name="password">Пароль</string>
+    <string name="login">Логин</string>
+    <string name="login_in_browser">Войти через бразуер</string>
+    <string name="oauth_tip">Войти с помощью вашего браузера по умолчанию (OAuth)</string>
+    <string name="user_name_warning">Неверное имя пользователя!</string>
+    <string name="password_warning">Неверный пароль!</string>
+
+    <!-- menu -->
+    <string name="profile">Профиль</string>
+    <string name="notifications">Уведомления</string>
+    <string name="news">Новости</string>
+    <string name="issues">Проблемы</string>
+
+    <string name="repositories">Репозитории</string>
+    <string name="owned">Ваши</string>
+    <string name="starred">Избранное</string>
+    <string name="trending">Популярное</string>
+    <string name="explore">Исследовать</string>
+
+    <string name="info_and_repositories">Информация &#038; Предпочтения</string>
+    <string name="settings">Настройки</string>
+    <string name="about">О программе</string>
+
+    <string name="public_repositories">Публичные репозитории</string>
+    <string name="starred_repositories">Избранные репозитории</string>
+
+    <string name="no_cache_and_network">Сетевое подключение и кэш недоступны.</string>
+    <string name="page_no_found">Страница не найдена.</string>
+    <string name="unauthorized">Отказано в доступе.</string>
+    <string name="no_network_tip">Загрузка данных с GitHub не удалась. Пожалуйста проверьте ваше соединение с интернетом и попробуйте снова.</string>
+    <string name="load_timeout_tip">Истекло время ожидания загрузки данных с GitHub. Пожалуйста проверьте ваше соединение с интернетом и попробуйте снова.</string>
+    <string name="tap_to_retry">Нажмите для повторной попытки</string>
+    <string name="no_data">Данные отсутствуют</string>
+
+    <string name="title_activity_repository">OpenHub</string>
+    <string name="title_activity_settings">Настройки</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- settings -->
+    <string name="choose_theme">Выбрать тему</string>
+    <string name="theme_accent_color">Главный цвет темы</string>
+    <string name="start_page">Начальная страница</string>
+    <string name="cache_controller">Управление кэшем</string>
+    <string name="cache_controller_desc">Сначала загружать из кэша, если он доступен, потом использовать сетевое подключение</string>
+    <string name="use_system_downloader">Использовать системный загрузчик</string>
+    <string name="use_custom_tabs">Использовать Custom Tabs</string>
+    <string name="custom_tabs_desc">Открыть в Custom Tabs вместо внешнего бразуера (поддерживаются Chrome, Firefox…)</string>
+    <string name="use_custom_tabs_tips">Если вы желаете использовать внешний бразуер, это можно выбрать в настройках</string>
+    <string name="language">Язык</string>
+    <string name="logout">Выйти из аккаунта</string>
+
+    <!-- Repository -->
+    <string name="repository">Репозиторий</string>
+    <string name="info">Информация</string>
+    <string name="files">Файлы</string>
+    <string name="commits">Правки</string>
+    <string name="commit">Правка</string>
+
+    <string name="star">Добавить в избранное</string>
+    <string name="unstar">Удалить из избранного</string>
+    <string name="unstarred">Удалено из избранного</string>
+    <string name="branch_tip">Ветви или теги</string>
+    <string name="share">Поделиться</string>
+    <string name="open_in_browser">Открыть в браузере</string>
+    <string name="copy_url">Копировать ссылку</string>
+    <string name="copy_clone_url">Копировать ссылку клонирования</string>
+    <string name="watch">Наблюдать</string>
+    <string name="watched">В списке наблюдения</string>
+    <string name="unwatch">Удалить из списка наблюдения</string>
+    <string name="unwatched">Удалено из списка наблюдения</string>
+    <string name="fork">Создать ответвление</string>
+    <string name="fork_tag">Создать ответвление</string>
+    <string name="forked">Ответвление создано</string>
+    <string name="forked_from">Ответвление создано с</string>
+    <string name="wrap_lines">Переносить строки</string>
+    <string name="refresh">Обновить</string>
+
+    <string name="success_copied">Скопировано</string>
+
+    <string name="stargazers">Поклонники</string>
+    <string name="forks">Ответвления</string>
+    <string name="watchers">Наблюдатели</string>
+    <string name="readme">ПРОЧИТАЙМЕНЯ</string>
+    <string name="no_readme">ПРОЧИТАЙМЕНЯ отсутствует</string>
+    <string name="warning_dialog_tile">Предупреждение</string>
+    <string name="cancel">Отменить</string>
+    <string name="close">Закрыть</string>
+    <string name="ok">OK</string>
+    <string name="confirm"> Подтвердить</string>
+    <string name="select_branch">Выбрать ветвь или тег</string>
+    <string name="share_to">Поделиться с</string>
+    <string name="no_share_clients">Нет установленных клиентов чтобы поделиться.</string>
+    <string name="no_browser_clients">Нет установленных клиентов бразуеров.</string>
+    <string name="no_download_clients">Нет установленных загрузочных клиентов.</string>
+    <string name="send_email">Отправить письмо</string>
+    <string name="open_in_market">Открыть в магазине</string>
+    <string name="no_email_clients">Нет установленных почтовых клиентов.</string>
+    <string name="no_market_clients">Нет установленных клиентов магазина.</string>
+    <string name="url_invalid">Неверная ссылка</string>
+    <string name="view_archive_file_error">Архивный файл недоступен для просмотра, пожалуйста скачайте его чтобы увидеть содержимое.</string>
+    <string name="fork_warning_msg">Ответвить этот репозиторий?</string>
+    <string name="invalid_repo_url">Неверная ссылка на репозиторий!</string>
+    <string name="invalid_url">Ссылка неверна!</string>
+
+    <!-- Profile -->
+    <string name="follow">Подписаться</string>
+    <string name="followed">Вы подписаны</string>
+    <string name="unfollow">Отписаться</string>
+    <string name="unfollowed">Вы отписались</string>
+    <string name="members">Члены</string>
+    <string name="view">Просмотр</string>
+    <string name="followers">Подписчики</string>
+    <string name="following">Подписки</string>
+    <string name="repos">Репозитории</string>
+    <string name="stars">Избранное</string>
+    <string name="gists">Кусочки кода</string>
+    <string name="joined_at">Дата регистрации</string>
+    <string name="users">Пользователи</string>
+    <string name="activity">Активность</string>
+
+    <string name="just_now">только что</string>
+    <string name="seconds_ago">несколько секунд назад</string>
+    <string name="minutes_ago">несколько минут назад</string>
+    <string name="hours_ago">несколько часов назад</string>
+    <string name="days_ago">несколько дней назад</string>
+
+    <string name="search">Поиск</string>
+    <string name="sort">Сортировать</string>
+    <string name="sort_order">Порядок сортировки</string>
+
+    <string name="best_match">Лучшее совпадение</string>
+    <string name="most_stars">Добавления в избранное по убыванию</string>
+    <string name="fewest_stars">Добавления в избранное по возрастанию</string>
+    <string name="most_forks">Количество ответвлений по убыванию</string>
+    <string name="fewest_forks">Количество ответвлений по возрастанию</string>
+    <string name="recently_updated">Свежесть обновления по убыванию</string>
+    <string name="least_recently_updated">Свежесть обновления по возрастанию</string>
+
+    <string name="most_followers">Количество подписчиков по убыванию</string>
+    <string name="fewest_followers">Количество подписчиков по возрастанию</string>
+    <string name="most_recently_joined">Давность регистрации по убыванию</string>
+    <string name="least_recently_joined">Давность регистрации по возрастанию</string>
+    <string name="most_repositories">Количество репозиториев по убыванию</string>
+    <string name="fewest_repositories">Количество репозиториев по возрастанию</string>
+
+    <string name="invalid_query">Неверный текст запроса!</string>
+
+    <string name="daily">По дням</string>
+    <string name="weekly">По неделям</string>
+    <string name="monthly">По месяцам</string>
+
+    <string name="logout_warning">Подтвердить выход из аккаунта?</string>
+    <string name="unknown">Неизвестно</string>
+    <string name="organizations">Организации</string>
+    <string name="no_user">нет пользователей</string>
+    <string name="no_activity">Нет активности</string>
+    <string name="no_repository">Нет репозиториев</string>
+    <string name="no_file">Нет файлов</string>
+    <string name="developing">В разработке</string>
+    <string name="version">Версия</string>
+    <string name="source_code">Исходный код</string>
+    <string name="source_code_wishes">Добавь в изьранное чтобы поддержать меня</string>
+    <string name="rate_in_market">Оценить или оставить отзыв в магазине</string>
+    <string name="author">Создатель</string>
+    <string name="follow_on_github">Подписаться на GitHub</string>
+    <string name="email">Почтовый адрес</string>
+    <string name="auth_email_address" translatable="false">rays.yuz@gmail.com</string>
+    <string name="loading">загрузка</string>
+
+    <string name="upgrade">Обновить</string>
+    <string name="install">Установить</string>
+    <string name="next_time">В следующий раз</string>
+    <string name="upgrade_version">Версия:</string>
+    <string name="upgrade_apk_size">Размер APK:</string>
+    <string name="publish_time">Время публикации:</string>
+    <string name="upgrade_info">Информация о обновлении:</string>
+    <string name="no_upgrade_tip">У вас установлена последняя версия.</string>
+    <string name="fork_failed">Ответвление не удалось</string>
+
+    <string name="filter">Фильтр</string>
+
+    <string name="releases">Релизы</string>
+    <string name="no_releases">Без релизов</string>
+    <string name="source_code_zip">Исходный код (zip)</string>
+    <string name="source_code_tar">Исходный код (tar.gz)</string>
+    <string name="download_source_zip">Скачать исходный код (zip)</string>
+    <string name="download_source_tar">Скачать исходный код (tar.gz)</string>
+    <string name="released_this">выпустил это</string>
+    <string name="on">в</string>
+    <string name="download">Скачать</string>
+    <string name="download_complete">Загрузка завершена</string>
+    <string name="download_failed">Загурзка не удалась</string>
+    <string name="downloading">Скачивается</string>
+    <string name="download_empty_tip">Ссылка или имя файла пусты!</string>
+    <string name="download_start">Начало загрузки</string>
+    <string name="download_cancel">Отмена загрузки</string>
+    <string name="permission_storage_denied">Отказано в доступе, пожалуйста предоставьте доступ к хранилищу</string>
+    <string name="enable_download_service_tip">Пожалуйста сначала включите сервис загрузки!</string>
+
+    <string name="open">Открытые</string>
+    <string name="closed">Закрытые</string>
+    <string name="no_issues">Нет проблем</string>
+    <string name="issue">Проблема</string>
+
+    <string name="type">Тип</string>
+    <string name="all">Все</string>
+    <string name="created">Создана</string>
+    <string name="assigned">Назначена</string>
+    <string name="mentioned">Упомянута</string>
+    <string name="participating">Участники</string>
+
+    <string name="recently_created">Созданы недавно</string>
+    <string name="previously_created">Созданы давно</string>
+    <string name="most_comments">Количество комментариев по убыванию</string>
+    <string name="fewest_comments">Количество комментариев по возрастанию</string>
+
+    <string name="comments">Комментарии</string>
+    <string name="comment">Комментарий</string>
+    <string name="no_description">Описание не предоствлено.</string>
+    <string name="no_comments">Нет комментариев.</string>
+
+    <string name="write">Написать</string>
+    <string name="preview">Предпросмотр</string>
+
+    <string name="edit">Редактировать</string>
+    <string name="delete">Удалить</string>
+    <string name="comment_null_warning">Комментарий пуст!</string>
+    <string name="comment_success">Комментарий опубликован</string>
+    <string name="delete_comment_warning">Подтвердить удаление комментария?</string>
+    <string name="reopen">Открыть заново</string>
+    <string name="reopen_success">Повторное открытие успешно</string>
+    <string name="close_success">Успешно закрыто</string>
+
+    <string name="add_large_header">Добавить большой заголовок</string>
+    <string name="add_medium_header">Добавиь средний заголовок</string>
+    <string name="add_small_header">Добавиьть маленький заголовок</string>
+    <string name="add_bold_text">Добавить жирный текст</string>
+    <string name="add_italic_text">Добавить курсивный текст</string>
+    <string name="add_a_link">Добавить ссылку</string>
+    <string name="insert_code">Вставить код</string>
+    <string name="insert_a_quote">Вставить цитату</string>
+    <string name="add_a_bulleted_list">Добавить маркированный список</string>
+    <string name="mention">Напрямую отметить позьвателя или организацию</string>
+    <string name="nothing_to_preview">Нет контента для предпросмотра</string>
+
+    <string name="title">Название</string>
+    <string name="leave_a_comment">Оставить комментарий</string>
+    <string name="markdown_editor">Использовать редактор резметки</string>
+
+    <string name="created_at">Создано</string>
+    <string name="forked_at">Ответвлено</string>
+    <string name="latest_update">Послденне обновление</string>
+    <string name="latest_commit">Последняя правка</string>
+    <string name="issue_title_null_tip">Название проблемы не может быть пустым.</string>
+    <string name="edit_issue">Редактировать проблему</string>
+    <string name="create_issue">Создать проблему</string>
+    <string name="edit_issue_success">Проблема отредактирована успешно</string>
+    <string name="create_issue_success">Проблема создана успешно</string>
+
+    <string name="no_commits">Нет правок</string>
+    <string name="committed">Правлено</string>
+    <string name="view_file">Просмотреть файл</string>
+    <string name="failed_to_recognize">Не удалось разпознать ссылку, пожалуйста откройте её в браузере после копирования долгим нажатием.</string>
+    <string name="failed_to_open_url">Не удалось открыть ссылку, пожалуйста откройте её в браузере после копирования долгим нажатием.</string>
+    <string name="compare">Вид сравнения</string>
+
+    <string name="unread">Непрочитанные</string>
+    <string name="no_notifications_tip">Новых уведомлений нет.</string>
+    <string name="feedback_and_share">Поделиться &#038; и оставить отзыв</string>
+    <string name="share_to_friends">Поделиться с друзьями</string>
+    <string name="feedback">Отзывы</string>
+
+    <string name="openhub_wishes">Пожелания от OpenHub</string>
+    <string name="star_wishes" formatted="false">
+        Привет %s, сегодня ваш %dй день на OpenHub,
+        thanks спасибо за использование, я стараюсь постоянно улучшать данный клиент.
+        \n\nIf вы можете добавить репозиторий приложения в избранное, это было бы классно!
+    </string>
+    <string name="star_thanks">Спасибо за вашу поддержку!</string>
+    <string name="star_me">Добавь меня в избранное</string>
+    <string name="star_next_time">Потом</string>
+
+    <string name="owner_repo">Владелец</string>
+    <string name="public_repo">Публичный</string>
+    <string name="private_repo">Частный</string>
+    <string name="member_repo">Член</string>
+    <string name="most_pushed">Изменения по убыванию</string>
+    <string name="fewest_pushed">Изменения по возрастанию</string>
+    <string name="full_name_asc">Полное имя по возрастанию</string>
+    <string name="full_name_desc">Полное имя по убыванию</string>
+    <string name="recently_starred">Недавно добавленное в избранное</string>
+    <string name="previously_starred">Раннее добавленное в избранное</string>
+
+    <string name="trace">След</string>
+    <string name="my_repos">Мои репозитории</string>
+    <string name="starred_repos">Избранные репозитории</string>
+    <string name="trending_repos">Популярные репозитории</string>
+
+    <string name="bookmarks">Закладки</string>
+    <string name="bookmark">Добавить в закладки</string>
+    <string name="remove_bookmark">Удалить из закладок</string>
+    <string name="bookmark_saved">Закладка сохранена</string>
+    <string name="bookmark_removed">Закладка удалена</string>
+
+    <string name="user">Пользователь</string>
+    <string name="repo">Репозиторий</string>
+    <string name="issues_list">Список проблем</string>
+    <string name="commits_list">Список правок</string>
+    <string name="releases_list">Список релизов</string>
+    <string name="release">Релиз</string>
+    <string name="go_to">Перейти к</string>
+
+    <string name="tips">Подсказки</string>
+    <string name="activity_click_tip">
+        Вы можете перейти на страницу по умолчанию одинарным нажатием, или просмотреть доступные страницы долгим нажатием.
+    </string>
+    <string name="double_click_toolbar_tip">Двойным нажатием на название можно перейти к началу страницы.</string>
+    <string name="releases_click_tip">Длинное нажатие на релиз открывает список доступных загрузок.</string>
+
+    <string name="created_comment_on_commit">Создан комментарий в правке %s</string>
+    <string name="created_comment_on_issue">Создан комментарий в проблеме %d в %s</string>
+    <string name="created_repo">Создан репозиторий %s</string>
+    <string name="forked_to">Ответвлен %s к %s</string>
+    <string name="starred_repo">Добавлено в избранное %s</string>
+    <string name="push_to">Изменено %s в %s</string>
+    <string name="created_tag_at">Создан тег %s на %s</string>
+    <string name="created_branch_at">Создана ветвь %s на %s</string>
+    <string name="delete_tag_at">Удалён тег %s на %s</string>
+    <string name="delete_branch_at">Удалена ветвь %s на %s</string>
+    <string name="published_release_at">Опубликован релиз %s в %s</string>
+    <string name="opened_issue_at">Открыта проблема %d в %s</string>
+    <string name="closed_issue_at">Открыта проблема %d в %s</string>
+    <string name="reopened_issue_at">Повторно открыта проблема %d в %s</string>
+    <string name="edited_issue_at">Отредактирована проблема %d в %s</string>
+    <string name="assigned_issue_at">Назначена проблема %d в %s</string>
+    <string name="unassigned_issue_at">Удалено назначение проблемы %d в %s</string>
+    <string name="labeled_issue_at">Создана этикетка проблемы %d в %s</string>
+    <string name="unlabeled_issue_at">Удалена этикетка проблемы %d в %s</string>
+    <string name="milestoned_issue_at">Milestoned issue %d в %s</string>
+    <string name="demilestoned_issue_at">Demilestoned issue %d в %s</string>
+    <string name="added_member_to">Добавлен член %s в %s</string>
+    <string name="deleted_member_at">Удалён член %s в %s</string>
+    <string name="edited_member_at">Отредактирован член %s в %s</string>
+    <string name="made_repo_public">Сделано %s публичным</string>
+    <string name="org_blocked_user">Организация %s заблокировала пользователя %s</string>
+    <string name="org_unblocked_user">Организация %s разблокировала пользователя %s</string>
+    <string name="created_pull_request_comment_at">Создан комментарий к запросу на объединение в %s</string>
+    <string name="deleted_pull_request_comment_at">Удалён комментарий к запросу на объединение в %s</string>
+    <string name="edited_pull_request_comment_at">Имзенён комментарий к запросу на объединение в %s</string>
+    <string name="submitted_pull_request_review_at">Послан запрос на рассмотр запроса на объединение в %s</string>
+    <string name="edited_pull_request_review_at">Изменён запрос на рассмотр запроса на объединение в %s</string>
+    <string name="dismissed_pull_request_review_at">Отказано в запросе на рассмотр запроса на объединение в %s</string>
+
+    <string name="undo">Отменить</string>
+    <string name="no_bookmarks">Нет закладок</string>
+    <string name="no_trace">Нет следа</string>
+    <string name="trace_deleted">След удалён</string>
+    <string name="today">Сегодня</string>
+    <string name="yesterday">Вчера</string>
+
+    <string name="my_languages">Мои языки</string>
+    <string name="choose_languages">Выбрать языки</string>
+    <string name="language_removed">%s язык удалён</string>
+    <string name="no_choose_language_warning">Выберите как минимум одимн язык!</string>
+    <string name="languages_editor_tip">Вы можете свайпнуть направо или направо чтобы убрать пункты, а также перемещать сортировку длинным нажатием.</string>
+    <string name="fullscreen">Полноэкранный режим</string>
+
+    <string name="public_news">Глобальные новости</string>
+    <string name="wiki" translatable="false">Wiki</string>
+    <string name="recent_wiki_updates">Недавние обновления Wiki</string>
+    <string name="no_recent_wiki_updates">Нет недавних обновлений Wiki</string>
+
+    <string name="repo_collections">Коллекции репозиториев</string>
+    <string name="no_repo_collections">Нет коллекций репозиториев</string>
+    <string name="collections_tip">Курьирующиеся списки и представление растущих отраслей, тем, и сообществ.</string>
+    <string name="github_page_parse_error">
+        %s ошибка обработки, эта страница могла быть изменена GitHub,
+        пожалуйста обновите приложение до последней версии и свяжитесь со мной если проблема не устранится!
+    </string>
+
+    <string name="bookmarks_tip">Вы можете свайпнуть направо или налево чтобы убрать закладку.</string>
+    <string name="mark_all_as_read">Отмеить всё как прочитанное</string>
+    <string name="mark_as_read">Отметить как прочитанное</string>
+
+    <string name="topic">Тема</string>
+    <string name="topics">Популярные темы</string>
+    <string name="topics_tip">Исследуйте самые используемые темы на GitHub.</string>
+    <string name="no_topics">Нет тем</string>
+
+    <string name="star_num_today">%s добавлений в избранное сегодня</string>
+    <string name="star_num_this_week">%s добавлений в избранное на этой неделе</string>
+    <string name="star_num_this_month">%s добавлений в избранное в этом месяце</string>
+    <string name="no_trending_repos">Похоже нет популярных репозиториев для %s.</string>
+
+    <string name="all_languages">Все языки</string>
+    <string name="unknown_languages">Неизвестные языки</string>
+
+    <string name="labels">Этикетки</string>
+    <string name="label">Этикетка</string>
+    <string name="edit_label">Редактировать этикетку</string>
+    <string name="create_label">Создать этикетку</string>
+    <string name="save">Сохранить</string>
+    <string name="name">Имя</string>
+    <string name="color">Цвет</string>
+    <string name="more">Больше</string>
+    <string name="custom">Кастомная</string>
+    <string name="done">Готово</string>
+    <string name="presets">Предустановки</string>
+    <string name="choose_color">Выбрать цвет</string>
+    <string name="invalid_color">Неверный цвет</string>
+    <string name="invalid_name">Неверное имя</string>
+    <string name="choose_labels">Выбрать этикетки</string>
+    <string name="manage_labels">Управлять этикетками</string>
+
+    <string name="issue_add_label">add the label %s</string>
+    <string name="issue_remove_label">remove the label %s</string>
+    <string name="issue_close">close this</string>
+    <string name="issue_reopened">reopened this</string>
+    <string name="issue_modified">modified this issue</string>
+    <string name="issue_added_to_milestone">added this to the %s milestone</string>
+    <string name="issue_removed_from_milestone">removed this from the %s milestone</string>
+    <string name="issue_locked_conversation">locked and limited conversation to collaborators</string>
+    <string name="issue_unlocked_conversation">unlocked this conversation</string>
+    <string name="issue_delete_comment">delete a comment</string>
+    <string name="issue_referenced">referenced this issue in %s</string>
+    <string name="issue_assigned">assigned this to %s</string>
+    <string name="issue_unassigned">removed their assignment</string>
+
+    <string name="disable_loading_image">Выключить загрузку картинок</string>
+    <string name="disable_loading_image_desc">Выключить загрузку картинок при использовании мобильных данных</string>
+
+    <string name="toggle_issue_warning">Подтвердить %s этой проблемы?</string>
+
+    <string name="add_account">Добавить аккаунт</string>
+    <string name="delete_label_warning">Подтвердить удаление данной этикетки?</string>
+
+</resources>

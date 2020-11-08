@@ -9,10 +9,14 @@
         <item>Português</item>
         <item>한국어</item>
         <item>Español</item>
+        <item>繁體中文</item>
+        <item>Русский</item>
         <item>Polski</item>
         <item>ქართული</item>
         <item>Italiano</item>
+        <item>Dutch</item>
         <item>Čeština</item>
+        <item>Portuguese(Brazil)</item>
     </array>
     <array name="language_id_array">
         <item>en</item>
@@ -23,10 +27,14 @@
         <item>pt-rPT</item>
         <item>ko</item>
         <item>es</item>
+        <item>zh-rTW</item>
+        <item>ru</item>
         <item>pl</item>
         <item>ka</item>
         <item>it</item>
+        <item>nl</item>
         <item>cs</item>
+        <item>pt-rBR</item>
     </array>
 
     <array name="accent_color_array">

@@ -53,13 +53,13 @@
     <string name="no_cache_and_network">Network and cache is unavailable.</string>
     <string name="page_no_found">Nie znaleziono strony.</string>
     <string name="unauthorized">Brak dostępu.</string>
-    <string name="no_network_tip">Ładowanie danych z GitHub'a niepowiodło się. Sprawdź połączenie sieciowe i spróbuj ponownie.</string>
-    <string name="load_timeout_tip">Czas ładowania danych z GitHub'a minął. Sprawdź połączenie sieciowe i spróbuj ponownie.</string>
+    <string name="no_network_tip">Ładowanie danych z GitHub\'a niepowiodło się. Sprawdź połączenie sieciowe i spróbuj ponownie.</string>
+    <string name="load_timeout_tip">Czas ładowania danych z GitHub\'a minął. Sprawdź połączenie sieciowe i spróbuj ponownie.</string>
     <string name="tap_to_retry">Kliknij by spróbować ponownie</string>
     <string name="no_data">Brak danych</string>
 
     <string name="title_activity_repository">OpenHub</string>
-    <string name="title_activity_settings">Ustawienia/string>
+    <string name="title_activity_settings">Ustawienia</string>
 
     <!-- Strings related to Settings -->
 
@@ -417,7 +417,7 @@
 
     <string name="topic">Temat</string>
     <string name="topics">Featured topics</string>
-    <string name="topics_tip">Najpopularniejsze tematy na GitHub'ie.</string>
+    <string name="topics_tip">Najpopularniejsze tematy na GitHub\'ie.</string>
     <string name="no_topics">No topics</string>
 
     <string name="star_num_today">%s gwiazdek dzisiaj</string>

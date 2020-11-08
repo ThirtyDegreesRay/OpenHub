@@ -111,7 +111,14 @@ An **open-source** GitHub Android client app, faster and concise.
 * [Aqueminivan](https://github.com/Aqueminivan) - Improve the translation of English readme
 * [XF-zhjnc](https://github.com/XF-zhjnc) - Fix bugs
 * [fergthh](https://github.com/fergthh) - Spanish translation
+* [chiyi4488](https://github.com/chiyi4488) - Traditional Chinese translation
+* [left4j](https://github.com/left4j) - Russian translation
+* [TheParanoik](https://github.com/TheParanoik) - Polish translation
+* [X1nto](https://github.com/X1nto) - Georgian translation
 * [MerkeX](https://github.com/MerkeX) - Italian translation
+* [Vistaus](https://github.com/Vistaus) - Dutch translation
+* [pkubanek](https://github.com/pkubanek) - Czech translation
+* [LouisUnnoficial](https://github.com/LouisUnnoficial) - Portuguese(Brazil) translation
 
 
 ## License

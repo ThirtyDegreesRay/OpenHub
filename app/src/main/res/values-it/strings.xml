@@ -52,7 +52,7 @@
     <string name="use_system_downloader">Utilizza il downloader di sistema</string>
     <string name="use_custom_tabs">Utilizza una nuova scheda</string>
     <string name="custom_tabs_desc">Apri in una nuova scheda anzichè in un browser esterno (supporta Chrome, Firefox,...)</string>
-    <string name="use_custom_tabs_tips">E' possibile impostare tramite il menù impostazioni l'apertura automatica in un browser esterno</string>
+    <string name="use_custom_tabs_tips">E\' possibile impostare tramite il menù impostazioni l\'apertura automatica in un browser esterno</string>
     <string name="language">Lingua</string>
     <string name="logout">Disconnetti</string>
 
@@ -88,7 +88,7 @@
     <string name="forks">Forks</string>
     <string name="watchers">Osservatori</string>
     <string name="readme">Leggimi</string>
-    <string name="no_readme">Nessun file 'leggimi'</string>
+    <string name="no_readme">Nessun file \'leggimi\'</string>
     <string name="warning_dialog_tile">Avvertenza</string>
     <string name="cancel">Cancella</string>
     <string name="close">Chiudi</string>
@@ -156,7 +156,7 @@
     <string name="weekly">Settimanalmente</string>
     <string name="monthly">Mensilmente</string>
 
-    <string name="logout_warning">Confermi l'uscita dalla sessione?</string>
+    <string name="logout_warning">Confermi l\'uscita dalla sessione?</string>
     <string name="unknown">Sconosciuto</string>
     <string name="organizations">Organizzazioni</string>
     <string name="no_user">Nessun utente</string>
@@ -180,7 +180,7 @@
     <string name="upgrade_apk_size">Dimensione del file Apk:</string>
     <string name="publish_time">Data di pubblicazione:</string>
     <string name="upgrade_info">Informazioni di aggiornamento:</string>
-    <string name="no_upgrade_tip">Hai installato l'ultima versione</string>
+    <string name="no_upgrade_tip">Hai installato l\'ultima versione</string>
     <string name="fork_failed">Fork fallito</string>
 
     <string name="filter">Filtra</string>
@@ -197,10 +197,10 @@
     <string name="download_complete">Scaricamento completato</string>
     <string name="download_failed">Scaricamento fallito</string>
     <string name="downloading">Scaricando</string>
-    <string name="download_empty_tip">URL o nome dell'archivio vuoto</string>
+    <string name="download_empty_tip">URL o nome dell\'archivio vuoto</string>
     <string name="download_start">Scaricamento iniziato</string>
     <string name="download_cancel">Annulla lo scaricamento</string>
-    <string name="permission_storage_denied">Permesso negato, per favore consenti l'accesso all'archivio</string>
+    <string name="permission_storage_denied">Permesso negato, per favore consenti l\'accesso all\'archivio</string>
     <string name="enable_download_service_tip">Per favore, consenti il servizio per lo scaricamento</string>
 
     <string name="open">Apri</string>
@@ -232,7 +232,7 @@
     <string name="delete">Elimina</string>
     <string name="comment_null_warning">Commento nullo</string>
     <string name="comment_success">Commento inserito con successo</string>
-    <string name="delete_comment_warning">Conferma l'eliminazione del commento?</string>
+    <string name="delete_comment_warning">Conferma l\'eliminazione del commento?</string>
     <string name="reopen">Riapri</string>
     <string name="reopen_success">Riapertura avvenuta correttamente</string>
     <string name="close_success">Chiusura avvenuta con successo</string>
@@ -256,30 +256,31 @@
     <string name="created_at">Creato il</string>
     <string name="forked_at">Fork effettuato il</string>
     <string name="latest_update">Ultimo aggiornamento</string>
-    <string name="latest_commit">Ultimo commit effettuato/string>
-    <string name="issue_title_null_tip">Il titolo del problema ('Issue') non può essere nullo </string>
-    <string name="edit_issue">Modifica problema ('Issue')</string>
-    <string name="create_issue">Crea un problema ('Issue')</string>
-    <string name="edit_issue_success">Modifica dell'Issue avvenuta correttamente</string>
-    <string name="create_issue_success">Creazione dell'Issue avvenuta correttamente</string>
+    <string name="latest_commit">Ultimo commit effettuato</string>
+    <string name="issue_title_null_tip">Il titolo del problema (\'Issue\') non può essere nullo </string>
+    <string name="edit_issue">Modifica problema (\'Issue\')</string>
+    <string name="create_issue">Crea un problema (\'Issue\')</string>
+    <string name="edit_issue_success">Modifica dell\'Issue avvenuta correttamente</string>
+    <string name="create_issue_success">Creazione dell\'Issue avvenuta correttamente</string>
 
     <string name="no_commits">Nessun commit</string>
     <string name="committed">Commit avvenuto</string>
     <string name="view_file">Vedi file</string>
-    <string name="failed_to_recognize">Fallimento nel riconoscimento dell'URL GitHub, per favore apri nel browser dopo aver copiato l'URL</string>
-    <string name="failed_to_open_url">Errore nell'apertura dell'URL, per favore apri nel browser dopo aver copiato l'URL</string>
+    <string name="failed_to_recognize">Fallimento nel riconoscimento dell\'URL GitHub, per favore apri nel browser dopo aver copiato l\'URL</string>
+    <string name="failed_to_open_url">Errore nell\'apertura dell\'URL, per favore apri nel browser dopo aver copiato l\'URL</string>
     <string name="compare">Cofronta</string>
 
     <string name="unread">Non letto</string>
     <string name="no_notifications_tip">Nessuna nuova notifica</string>
-    <string name="feedback_and_share">Invia feedback &#038 condividi</string>
+    <string name="feedback_and_share">Invia feedback &#038; condividi</string>
     <string name="share_to_friends">Condividi con i tuoi amici </string>
     <string name="feedback">Feedback</string>
 
     <string name="openhub_wishes">Desideri di OpenHub</string>
-    <string name="star_wishes">Ciao %s, oggi è il tuo %d° giorno su OpenHub,
+    <string name="star_wishes" formatted="false">Ciao %s, oggi è il tuo %d° giorno su OpenHub,
         grazie per il tuo supporto, mi impegnerò per diventare un app GitHub migliore per te. 
         \n\nSe potessi assegnarmi tra i preferiti per supportarmi, sarebbe magnifico!
+    </string>
     
     <string name="star_thanks">Grazie per il tuo supporto</string>
     <string name="star_me">Indicami come preferito</string>
@@ -289,8 +290,8 @@
     <string name="public_repo">Pubblico</string>
     <string name="private_repo">Privato</string>
     <string name="member_repo">Membro</string>
-    <string name="most_pushed">Con più 'push' effettuati</string>
-    <string name="fewest_pushed">Con meno 'push' effettuati</string>
+    <string name="most_pushed">Con più \'push\' effettuati</string>
+    <string name="fewest_pushed">Con meno \'push\' effettuati</string>
     <string name="full_name_asc">Nome completo asc</string>
     <string name="full_name_desc">Nome completo desc</string>
     <string name="recently_starred">Recentemente impostato come preferito</string>
@@ -309,7 +310,7 @@
     
     <string name="user">Utente</string>
     <string name="repo">Repository</string>
-    <string name="issues_list">Lista degli 'Issue'</string>
+    <string name="issues_list">Lista degli \'Issue\'</string>
     <string name="commits_list">Lista dei commit</string>
     <string name="releases_list">Lista dei rilasci (release)</string>
     <string name="release">Rilascio (release)</string>
@@ -328,38 +329,38 @@
     </string>
     
     <string name="created_comment_on_commit">Commento creato nel commit %s</string>
-    <string name="created_comment_on_issue">Commento creato nell' 'Issue' %d in %s</string>
+    <string name="created_comment_on_issue" formatted="false">Commento creato nell\' \'Issue\' %d in %s</string>
     <string name="created_repo">Creato repository %s</string>
-    <string name="forked_to">Eseguito il fork %s su %s</string>
+    <string name="forked_to" formatted="false">Eseguito il fork %s su %s</string>
     <string name="starred_repo">Impostato preferito %s</string>
-    <string name="push_to">Push su %s a %s</string>
-    <string name="created_tag_at">Creata etichetta %s su %s</string>
-    <string name="created_branch_at">Creato ramo (branch) %s su %s</string>
-    <string name="delete_tag_at">Rimuovi etichetta (tag) %s su %s</string>
-    <string name="delete_branch_at">Rimuovi ramo (branch) %s su %s</string>
-    <string name="published_release_at">Rilascio (release) pubblicato %s su %s</string>
-    <string name="opened_issue_at">Aperto un issue %d in %s</string>
-    <string name="closed_issue_at">Chiuso un issue %d in %s</string>
-    <string name="reopened_issue_at">Riapertp issue %d in %s</string>
-    <string name="edited_issue_at">Issue modificato %d in %s</string>
-    <string name="assigned_issue_at">Issue assegnato %d in %s</string>
-    <string name="unassigned_issue_at">Issue non assegnato %d in %s</string>
-    <string name="labeled_issue_at">Issue marcato %d in %s</string>
-    <string name="unlabeled_issue_at">Issue non marcato %d in %s</string>
-    <string name="milestoned_issue_at">Aggiunta tappa dell'issue %d in %s</string>
-    <string name="demilestoned_issue_at">Rimossa tappa dell' issue %d in %s</string>
-    <string name="added_member_to">Aggiunto membro %s su %s</string>
-    <string name="deleted_member_at">Rimosso membro %s su %s</string>
-    <string name="edited_member_at">Modificato membro %s su %s</string>
+    <string name="push_to" formatted="false">Push su %s a %s</string>
+    <string name="created_tag_at" formatted="false">Creata etichetta %s su %s</string>
+    <string name="created_branch_at" formatted="false">Creato ramo (branch) %s su %s</string>
+    <string name="delete_tag_at" formatted="false">Rimuovi etichetta (tag) %s su %s</string>
+    <string name="delete_branch_at" formatted="false">Rimuovi ramo (branch) %s su %s</string>
+    <string name="published_release_at" formatted="false">Rilascio (release) pubblicato %s su %s</string>
+    <string name="opened_issue_at" formatted="false">Aperto un issue %d in %s</string>
+    <string name="closed_issue_at" formatted="false">Chiuso un issue %d in %s</string>
+    <string name="reopened_issue_at" formatted="false">Riapertp issue %d in %s</string>
+    <string name="edited_issue_at" formatted="false">Issue modificato %d in %s</string>
+    <string name="assigned_issue_at" formatted="false">Issue assegnato %d in %s</string>
+    <string name="unassigned_issue_at" formatted="false">Issue non assegnato %d in %s</string>
+    <string name="labeled_issue_at" formatted="false">Issue marcato %d in %s</string>
+    <string name="unlabeled_issue_at" formatted="false">Issue non marcato %d in %s</string>
+    <string name="milestoned_issue_at" formatted="false">Aggiunta tappa dell\'issue %d in %s</string>
+    <string name="demilestoned_issue_at" formatted="false">Rimossa tappa dell\' issue %d in %s</string>
+    <string name="added_member_to" formatted="false">Aggiunto membro %s su %s</string>
+    <string name="deleted_member_at" formatted="false">Rimosso membro %s su %s</string>
+    <string name="edited_member_at" formatted="false">Modificato membro %s su %s</string>
     <string name="made_repo_public">Reso %s pubblico</string>
-    <string name="org_blocked_user">Org %s utente bloccato %s</string>
-    <string name="org_unblocked_user">Org %s utente sbloccato %s</string>
-    <string name="created_pull_request_comment_at">Creato un commento sulla revisione della 'pull request' %s</string>
-    <string name="deleted_pull_request_comment_at">Eliminato  uncommento sulla revisione della 'pull request' %s</string>
-    <string name="edited_pull_request_comment_at">Modificato un commento sulla revisione della 'pull request' %s</string>
-    <string name="submitted_pull_request_review_at">Inviato un commento sulla revisione della 'pull request' %s</string>
-    <string name="edited_pull_request_review_at">Revisione della 'pull request' %s modificata</string>
-    <string name="dismissed_pull_request_review_at">Revisione della 'pull request' %s respinta </string>
+    <string name="org_blocked_user" formatted="false">Org %s utente bloccato %s</string>
+    <string name="org_unblocked_user" formatted="false">Org %s utente sbloccato %s</string>
+    <string name="created_pull_request_comment_at">Creato un commento sulla revisione della \'pull request\' %s</string>
+    <string name="deleted_pull_request_comment_at">Eliminato  uncommento sulla revisione della \'pull request\' %s</string>
+    <string name="edited_pull_request_comment_at">Modificato un commento sulla revisione della \'pull request\' %s</string>
+    <string name="submitted_pull_request_review_at">Inviato un commento sulla revisione della \'pull request\' %s</string>
+    <string name="edited_pull_request_review_at">Revisione della \'pull request\' %s modificata</string>
+    <string name="dismissed_pull_request_review_at">Revisione della \'pull request\' %s respinta </string>
     
     <string name="undo">Annulla</string>
     <string name="no_bookmarks">Nessun segnalibro</string>
@@ -377,7 +378,7 @@
     
     <string name="public_news">Notizie globali</string>
     <string name="recent_wiki_updates">Aggiornamenti recenti della Wiki</string>
-    <string name="no_recent_wiki_updates">Nessun aggiornamento recente della Wiki</string>
+    <string name="no_recent_wiki_updates">Nessun <aggi></aggi>ornamento recente della Wiki</string>
     <string name="repo_collections">Collezione di repository</string>
     <string name="no_repo_collections">Nessuna collezione di repository</string>
     <string name="collections_tip">
@@ -385,7 +386,7 @@
         </string>
     <string name="github_page_parse_error">
     %s errore di pagina, questa pagina potrebbe essere stata modificata da GitHub,
-        per favore aggiorna l'app all'ultima versione; se l'errore persistem, per favore contattami!
+        per favore aggiorna l\'app all\'ultima versione; se l\'errore persistem, per favore contattami!
     </string>
     
     <string name="bookmarks_tip">Puoi scorrere a destra o sinistra per rimuovere il Segnalibro</string>
@@ -432,15 +433,15 @@
     <string name="issue_locked_conversation">Conversazione fissata e limitata con i collaboratori</string>
     <string name="issue_unlocked_conversation">Sbloccata questa conversazione</string>
     <string name="issue_delete_comment">Elimina un commento</string>
-    <string name="issue_referenced">Riferimento effettuato all''Issue' %s</string>
+    <string name="issue_referenced" formatted="false">Riferimento effettuato all\'\'Issue\' %s</string>
     <string name="issue_assigned">Assegnato a  %s</string>
     <string name="issue_unassigned">Assegnazione rimossa</string>
     
-    <string name="disable_loading_image">Disattiva l'immagine della rete di caricamento</string>
-    <string name="disable_loading_image_desc">Disattiva l'immagine della rete di caricamento quando utilizzi dati mobili</string>
+    <string name="disable_loading_image">Disattiva l\'immagine della rete di caricamento</string>
+    <string name="disable_loading_image_desc">Disattiva l\'immagine della rete di caricamento quando utilizzi dati mobili</string>
     
-    <string name="toggle_issue_warning">Confermare questo 'Issue' su %s?</string>
+    <string name="toggle_issue_warning">Confermare questo \'Issue\' su %s?</string>
     
     <string name="add_account">Aggiungi account</string>
-    <string name="delete_label_warning">Confermi l'eliminazione di questa etichetta?</string>
+    <string name="delete_label_warning">Confermi l\'eliminazione di questa etichetta?</string>
 </resources>

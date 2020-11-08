@@ -111,6 +111,14 @@
 * [Aqueminivan](https://github.com/Aqueminivan) - 改进英文概述的翻译
 * [XF-zhjnc](https://github.com/XF-zhjnc) - 修复WIKI内部链接点击无效和版本库大小显示溢出等bug
 * [fergthh](https://github.com/fergthh) - 西班牙语翻译
+* [chiyi4488](https://github.com/chiyi4488) - 繁体中文翻译
+* [left4j](https://github.com/left4j) - 俄罗斯语翻译
+* [TheParanoik](https://github.com/TheParanoik) - 波兰语翻译
+* [X1nto](https://github.com/X1nto) - 格鲁吉亚语语翻译
+* [MerkeX](https://github.com/MerkeX) - 意大利语翻译
+* [Vistaus](https://github.com/Vistaus) - 荷兰语翻译
+* [pkubanek](https://github.com/pkubanek) - 捷克语翻译
+* [LouisUnnoficial](https://github.com/LouisUnnoficial) - 葡萄牙语(巴西)翻译
 
 ## License
 ThirtyDegreesRay:
