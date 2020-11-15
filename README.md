@@ -11,10 +11,10 @@ An **open-source** GitHub Android client app, faster and concise.
 ## Features
 
 ### App
-* Two login types (Basic Auth) and (OAuth)
+* One login types (OAuth)
 * Light, dark, and AMOLED dark theme, multiple accent colors
 * Markdown and code highlighting support
-* English, Simplified Chinese, Hebrew, German, Hindi, Portuguese, Korea, and Spanish support
+* English, Simplified Chinese, Hebrew, German, Hindi, Portuguese, Korea, Spanish, Traditional Chinese, Russian, Polish, Georgian, Italian, Dutch, Czech and Portuguese(Brazil) support
 * Offline mode
 * Supports trending repositories page for all languages
 * Supports multi-account switching
