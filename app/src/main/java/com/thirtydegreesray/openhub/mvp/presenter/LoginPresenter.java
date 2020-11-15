@@ -133,7 +133,7 @@ public class LoginPresenter extends BasePresenter<ILoginContract.View>
                     @Override
                     public void onError(Throwable error) {
                         mView.dismissProgressDialog();
-                        mView.showErrorToast(getErrorTip(error));
+                        mView.onGetTokenError(getErrorTip(error));
                     }
 
                     @Override

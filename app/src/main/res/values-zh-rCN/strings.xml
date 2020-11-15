@@ -4,7 +4,7 @@
     <string name="password">密码</string>
     <string name="login">登录</string>
     <string name="login_in_browser">在浏览器中登录</string>
-    <string name="oauth_tip">使用您的默认浏览器登录(OAuth)</string>
+    <string name="oauth_tip">现在我们只支持使用浏览器登录(OAuth)，因为Github将在2020.11.13移除认证API登录。</string>
     <string name="user_name_warning">用户名不可用！</string>
     <string name="password_warning">密码不可用！</string>
     <string name="profile">主页</string>

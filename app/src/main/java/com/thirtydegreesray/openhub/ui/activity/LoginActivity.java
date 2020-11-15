@@ -39,14 +39,14 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
 
     private final String TAG = LoginActivity.class.getSimpleName();
 
-    @BindView(R.id.user_name_et) TextInputEditText userNameEt;
-    @BindView(R.id.user_name_layout) TextInputLayout userNameLayout;
-    @BindView(R.id.password_et) TextInputEditText passwordEt;
-    @BindView(R.id.password_layout) TextInputLayout passwordLayout;
+//    @BindView(R.id.user_name_et) TextInputEditText userNameEt;
+//    @BindView(R.id.user_name_layout) TextInputLayout userNameLayout;
+//    @BindView(R.id.password_et) TextInputEditText passwordEt;
+//    @BindView(R.id.password_layout) TextInputLayout passwordLayout;
     @BindView(R.id.login_bn) SubmitButton loginBn;
 
-    private String userName;
-    private String password;
+//    private String userName;
+//    private String password;
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -102,7 +102,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
      */
     @Override
     protected int getContentView() {
-        return R.layout.activity_login;
+        return R.layout.activity_login_new;
     }
 
     /**
@@ -113,61 +113,61 @@ public class LoginActivity extends BaseActivity<LoginPresenter>
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        loginBn.setOnResultEndListener(new SubmitButton.OnResultEndListener() {
-            @Override
-            public void onResultEnd() {
+//        loginBn.setOnResultEndListener(new SubmitButton.OnResultEndListener() {
+//            @Override
+//            public void onResultEnd() {
+//
+//            }
+//        });
 
-            }
-        });
 
-
-        passwordEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_SEND
-                        || (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER &&
-                        event.getAction() == KeyEvent.ACTION_DOWN)){
-                    if(loginBn.isEnabled())
-                        ViewUtils.virtualClick(loginBn);
-                }
-                return false;
-            }
-        });
+//        passwordEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if(actionId == EditorInfo.IME_ACTION_SEND
+//                        || (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER &&
+//                        event.getAction() == KeyEvent.ACTION_DOWN)){
+//                    if(loginBn.isEnabled())
+//                        ViewUtils.virtualClick(loginBn);
+//                }
+//                return false;
+//            }
+//        });
 
     }
 
 
-    @OnClick(R.id.oauth_login_bn)
+    @OnClick(R.id.login_bn)
     public void onOauthLoginClick(){
         AppOpener.openInCustomTabsOrBrowser(getActivity(), mPresenter.getOAuth2Url());
     }
 
-    @OnClick(R.id.login_bn)
-    public void onLoginClick(){
-        if(loginCheck()){
-            loginBn.setEnabled(false);
-            mPresenter.basicLogin(userName, password);
-        }else{
-            loginBn.reset();
-        }
-    }
+//    @OnClick(R.id.login_bn)
+//    public void onLoginClick(){
+//        if(loginCheck()){
+//            loginBn.setEnabled(false);
+//            mPresenter.basicLogin(userName, password);
+//        }else{
+//            loginBn.reset();
+//        }
+//    }
 
-    private boolean loginCheck(){
-        boolean valid = true;
-        userName = userNameEt.getText().toString();
-        password = passwordEt.getText().toString();
-        if(StringUtils.isBlank(userName)){
-            valid = false;
-            userNameLayout.setError(getString(R.string.user_name_warning));
-        }else{
-            userNameLayout.setErrorEnabled(false);
-        }
-        if(StringUtils.isBlank(password)){
-            valid = false;
-            passwordLayout.setError(getString(R.string.password_warning));
-        }else{
-            passwordLayout.setErrorEnabled(false);
-        }
-        return valid;
-    }
+//    private boolean loginCheck(){
+//        boolean valid = true;
+//        userName = userNameEt.getText().toString();
+//        password = passwordEt.getText().toString();
+//        if(StringUtils.isBlank(userName)){
+//            valid = false;
+//            userNameLayout.setError(getString(R.string.user_name_warning));
+//        }else{
+//            userNameLayout.setErrorEnabled(false);
+//        }
+//        if(StringUtils.isBlank(password)){
+//            valid = false;
+//            passwordLayout.setError(getString(R.string.password_warning));
+//        }else{
+//            passwordLayout.setErrorEnabled(false);
+//        }
+//        return valid;
+//    }
 }
