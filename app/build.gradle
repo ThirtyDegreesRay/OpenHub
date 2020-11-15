@@ -29,8 +29,8 @@ android {
         buildConfigField "String", "DEBUG_BUGLY_ID", (buildProperties.getLocal['debug_bugly_appid'] | buildProperties.getPublic['debug_bugly_appid']).string
 
         ndk {
-            abiFilters 'armeabi', 'armeabi-v7a', 'x86'
-//            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+//            abiFilters 'armeabi', 'armeabi-v7a', 'x86'
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         }
     }
 
