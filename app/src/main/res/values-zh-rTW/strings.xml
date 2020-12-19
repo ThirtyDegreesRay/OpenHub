@@ -306,6 +306,7 @@
     <string name="submitted_pull_request_review_at">提交拉取請求審查於 %s</string>
     <string name="edited_pull_request_review_at">編輯拉取請求審查在 %s</string>
     <string name="dismissed_pull_request_review_at">取消拉取请求审查於 %s</string>
+    <string name="created_pull_request_review_at">創建拉取请求审查於 %s</string>
     <string name="undo">取消</string>
     <string name="no_bookmarks">沒有書籤</string>
     <string name="no_trace">無追蹤</string>

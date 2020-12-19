@@ -271,6 +271,8 @@ public class ActivitiesAdapter extends BaseAdapter<ActivitiesAdapter.ViewHolder,
                     return getString(R.string.edited_pull_request_review_at);
                 case dismissed:
                     return getString(R.string.dismissed_pull_request_review_at);
+                case created:
+                    return getString(R.string.created_pull_request_review_at);
                 default:
                     return getString(R.string.submitted_pull_request_review_at);
             }

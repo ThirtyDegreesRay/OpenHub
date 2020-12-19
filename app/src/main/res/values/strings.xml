@@ -383,6 +383,7 @@
     <string name="submitted_pull_request_review_at">Submitted pull request review at %s</string>
     <string name="edited_pull_request_review_at">Edited pull request review at %s</string>
     <string name="dismissed_pull_request_review_at">Dismissed pull request review at %s</string>
+    <string name="created_pull_request_review_at">Created pull request review at %s</string>
 
     <string name="undo">Undo</string>
     <string name="no_bookmarks">No bookmarks</string>
