@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.READ_LOGS"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
@@ -21,9 +20,6 @@
         android:theme="@style/SplashTheme"
         tools:replace="android:supportsRtl">
 
-        <meta-data
-            android:name="BUGLY_APP_CHANNEL"
-            android:value="${BUGLY_APP_CHANNEL_VALUE}" />
 
         <receiver android:name=".service.NetBroadcastReceiver"/>
         <receiver android:name=".service.ShareBroadcastReceiver"/>
