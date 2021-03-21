@@ -503,28 +503,40 @@ public class RepositoriesPresenter extends BasePagerPresenter<IRepositoriesContr
         String owner = fullName.substring(0, fullName.lastIndexOf("/"));
         String repoName = fullName.substring(fullName.lastIndexOf("/") + 1);
 
-        Element descElement = element.getElementsByClass("col-9 text-gray my-1 pr-4").first();
+        Element descElement = element.getElementsByClass("col-9 color-text-secondary my-1 pr-4").first();
+        Element numElement = element.getElementsByClass("f6 color-text-secondary mt-2").first();
         StringBuilder desc = new StringBuilder("");
-        for(TextNode textNode : descElement.textNodes()){
-            desc.append(textNode.getWholeText());
-        }
-
-        Element numElement = element.getElementsByClass("f6 text-gray mt-2").first();
-        String language = "";
-        Elements languageElements = numElement.select("span > span");
-        if(languageElements.size() > 0){
-            language = numElement.select("span > span").get(1).textNodes().get(0).toString().trim();
-        }
-        String starNumStr =  numElement.select("a").get(0).textNodes().get(1).toString()
-                .replaceAll(" ", "").replaceAll(",", "");
-        String forkNumStr =  numElement.select("a").get(1).textNodes().get(1).toString()
-                .replaceAll(" ", "").replaceAll(",", "");
-        Element periodElement =  numElement.getElementsByClass("d-inline-block float-sm-right").first();
+        String language = "unknown";
+        String starNumStr = "0";
+        String forkNumStr = "0";
         String periodNumStr = "0";
-        if(periodElement != null){
-            periodNumStr = periodElement.childNodes().get(2).toString().trim();
-            periodNumStr = periodNumStr.substring(0, periodNumStr.indexOf(" "))
-                    .replaceAll(",", "");
+
+        try{
+            if(null != descElement){
+                for(TextNode textNode : descElement.textNodes()){
+                    desc.append(textNode.getWholeText());
+                }
+            }
+
+            if(null != numElement){
+                Elements languageElements = numElement.select("span > span");
+                if(null != languageElements && languageElements.size() > 0){
+                    language = numElement.select("span > span").get(1).textNodes().get(0).toString().trim();
+                }
+                starNumStr =  numElement.select("a").get(0).textNodes().get(1).toString()
+                        .replaceAll(" ", "").replaceAll(",", "");
+                forkNumStr =  numElement.select("a").get(1).textNodes().get(1).toString()
+                        .replaceAll(" ", "").replaceAll(",", "");
+                Element periodElement =  numElement.getElementsByClass("d-inline-block float-sm-right").first();
+                if(periodElement != null){
+                    periodNumStr = periodElement.childNodes().get(2).toString().trim();
+                    periodNumStr = periodNumStr.substring(0, periodNumStr.indexOf(" "))
+                            .replaceAll(",", "");
+                }
+            }
+        }catch (Exception e){
+            desc = new StringBuilder("desc parse error.");
+            Logger.e("Trending repo desc or num info parse error.", e);
         }
 
         Repository repo = new Repository();
