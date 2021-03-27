@@ -7,6 +7,8 @@
 
 [![Coolapk](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/coolapk.png?raw=true)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 [![Google Play](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/google_play.png?raw=true)](https://play.google.com/store/apps/details?id=com.thirtydegreesray.openhub)
+[![F-Droid](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/f-droid.png?raw=true)](https://f-droid.org/en/packages/com.thirtydegreesray.openhub)
+
 
 ## 特点
 
