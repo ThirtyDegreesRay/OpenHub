@@ -30,33 +30,25 @@ public class GitHubHelper {
     private static final String GITHUB_BASE_URL_PATTERN_STR = "(https://)?(http://)?(www.)?github.com";
 
     public static final Pattern REPO_FULL_NAME_PATTERN =
-            Pattern.compile("([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.|_)*");
+            Pattern.compile("([a-z]|[A-Z]|\\d|-)+/([a-z]|[A-Z]|\\d|-|\\.|_)+");
     private static final Pattern USER_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR
-            + "/([a-z]|[A-Z]|\\d|-)*(/)?");
+            + "/([a-z]|[A-Z]|\\d|-)+(/)?");
     private static final Pattern REPO_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR
-            + "/([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.|_)*(/)?");
+            + "/([a-z]|[A-Z]|\\d|-)+/([a-z]|[A-Z]|\\d|-|\\.|_)+(/)?");
     private static final Pattern ISSUE_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR
-            + "/([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.|_)*/issues/(\\d)*(/)?");
+            + "/([a-z]|[A-Z]|\\d|-)+/([a-z]|[A-Z]|\\d|-|\\.|_)+/issues/(\\d)*(/)?");
     private static final Pattern RELEASES_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR
-            + "/([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.|_)*/releases(/latest)?(/)?");
+            + "/([a-z]|[A-Z]|\\d|-)+/([a-z]|[A-Z]|\\d|-|\\.|_)+/releases(/latest)?(/)?");
     private static final Pattern RELEASE_TAG_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR
-            + "/([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.|_)*/releases/tag/([^/])*(/)?");
+            + "/([a-z]|[A-Z]|\\d|-)+/([a-z]|[A-Z]|\\d|-|\\.|_)+/releases/tag/([^/])*(/)?");
 
     private static final Pattern COMMIT_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR
-            + "/([a-z]|[A-Z]|\\d|-)*/([a-z]|[A-Z]|\\d|-|\\.|_)*/commit(s)?/([a-z]|\\d)*(/)?");
+            + "/([a-z]|[A-Z]|\\d|-)+/([a-z]|[A-Z]|\\d|-|\\.|_)+/commit(s)?/([a-z]|\\d)*(/)?");
 
     private static final Pattern GITHUB_URL_PATTERN = Pattern.compile(GITHUB_BASE_URL_PATTERN_STR + "(.)*");
 
     public static boolean isImage(@Nullable String name) {
-        if (StringUtils.isBlank(name)) return false;
-        name = name.toLowerCase();
-        for (String value : IMAGE_EXTENSIONS) {
-            String extension = MimeTypeMap.getFileExtensionFromUrl(name);
-            if ((extension != null && value.replace(".", "").equals(extension))
-                    || name.endsWith(value))
-                return true;
-        }
-        return false;
+        return checkFileType(name, IMAGE_EXTENSIONS);
     }
 
     public static boolean isMarkdown(@Nullable String name) {
@@ -72,9 +64,13 @@ public class GitHubHelper {
     }
 
     public static boolean isArchive(@Nullable String name) {
+        return checkFileType(name, ARCHIVE_EXTENSIONS);
+    }
+
+    private static boolean checkFileType(@Nullable String name, String[] extensions) {
         if (StringUtils.isBlank(name)) return false;
         name = name.toLowerCase();
-        for (String value : ARCHIVE_EXTENSIONS) {
+        for (String value : extensions) {
             String extension = MimeTypeMap.getFileExtensionFromUrl(name);
             if ((extension != null && value.replace(".", "").equals(extension))
                     || name.endsWith(value))
