@@ -53,7 +53,7 @@
                     android:layout_marginBottom="@dimen/spacing_huge"
                     app:buttonColor="?colorAccent"
                     app:buttonText="@string/login_in_browser"
-                    app:buttonTextSize="18sp"/>
+                    app:buttonTextSize="18dp"/>
 
                 <View
                     style="@style/DividerLine.Horizontal"
