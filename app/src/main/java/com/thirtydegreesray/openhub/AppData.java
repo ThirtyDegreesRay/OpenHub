@@ -40,6 +40,7 @@ public enum  AppData {
     }
 
     @Nullable public String getAccessToken() {
+        System.out.println("test");
         return authUser == null ? null : authUser.getAccessToken();
     }
 
