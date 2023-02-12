@@ -3,24 +3,32 @@ English | [中文](/README-cn.md)
 [![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://play.google.com/store/apps/details?id=com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
-An **open-source** GitHub Android client app, faster and concise.
-
 [![Google Play](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/google_play.png?raw=true)](https://play.google.com/store/apps/details?id=com.thirtydegreesray.openhub)
 [![Coolapk](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/coolapk.png?raw=true)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 
 # Table of Contents
 
+- [About](#about)
 - [Features](#features)
-  - [App]#app)
+  - [App](#app)
   - [Repositories](#repositories)
   - [Users](#users)
+  - [Organizations](#organizations)
   - [Issues](#issues)
   - [Commits](#commits)
   - [And more](#and-more)
 - [Screenshots](#screenshots)
-- [Thanks for open source](#thanks-for-open-source)
+- [System Requirements](#system-requirements)
+- [How to Contribute](#how-to-contribute)
+  - [Reporting bugs](#reporting-bugs)
+  - [Implementing New Features or Improvements](#implementing-new-features-or-improvements)
+  - [Creating a Pull Request](#creating-a-pull-request)
 - [Contributions](#contributionsorder-by-commit-time)
+- [Thanks for open source](#thanks-for-open-source)
 - [License](#license)
+
+## About
+OpenHub is an **open-source** GitHub Android client app available on Google Play and Coolapk. It provides users with all of the features provided by GitHub in addition to improving quality of life features such as multiple language translations, syntax highlighting, and so much more. Having access to all of your projects, repositories, and code by the click of a button.
 
 ## Features
 
@@ -91,6 +99,49 @@ An **open-source** GitHub Android client app, faster and concise.
 |:-:|:-:|:-:|
 | ![repo](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/repo.png?raw=true) | ![commit](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/commit.png?raw=true) | ![code](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/code.png?raw=true) |
 
+## System Requirements
+Currently supports Android5.0 and above systems.
+
+## How to Contribute
+### Reporting Bugs
+ When reporting bugs, please follow these guidelines: 
+ * The general rule is to only open **one issue for one bug**.
+ * Ensure that the issue has not already been reported by searching in the issue tracker first.
+ * Be sure specify the steps to reproduce the bug and to provide a concise description of the bug.
+### Implementing New Features or Improvements
+ When implementing new features or improvements, please follow these guidelines:
+ * Ensure that you fork the repository, the button in the top right corner.
+ * Implement the new features and/or improvements within your forked repository.
+ * Make sure to test your code.
+### Creating a Pull Request
+ Before creating a pull request, please make sure that:
+ * The created functionality is desired
+ * You've tested your code and reached out to other developers for advice on the best implementation of this feature.
+ 
+When you create a pull request, please make sure to provide a concise name for the pull request. Additionally, please provide a short description of what the new feature/improvement does.
+    
+## Contributions(*Order by commit time*)
+* [JohnnyJokester](https://github.com/JohnnyJokester) - Improved English README
+* [moriel5](https://github.com/moriel5) - Hebrew translation
+* [Henry2o1o](https://github.com/Henry2o1o), [squeezer11](https://github.com/squeezer11), [ropaha](https://github.com/ropaha) - German translation
+* [Edfgdz](https://github.com/Edfgdz) - Testing and suggest
+* [pzhlkj6612](https://github.com/pzhlkj6612) - Improve the translation of Chinese readme
+* [hiteshnayak305](https://github.com/hiteshnayak305) - Hindi translation
+* [KcNirvana](https://github.com/KcNirvana) - Portuguese translation
+* [sclickk](https://github.com/sclickk) - Improve English translation
+* [Zazsona](https://github.com/Zazsona) - Add AMOLED theme
+* [Aqueminivan](https://github.com/Aqueminivan) - Improve the translation of English readme
+* [XF-zhjnc](https://github.com/XF-zhjnc) - Fix bugs
+* [fergthh](https://github.com/fergthh) - Spanish translation
+* [chiyi4488](https://github.com/chiyi4488) - Traditional Chinese translation
+* [left4j](https://github.com/left4j) - Russian translation
+* [TheParanoik](https://github.com/TheParanoik) - Polish translation
+* [X1nto](https://github.com/X1nto) - Georgian translation
+* [MerkeX](https://github.com/MerkeX) - Italian translation
+* [Vistaus](https://github.com/Vistaus) - Dutch translation
+* [pkubanek](https://github.com/pkubanek) - Czech translation
+* [LouisUnnoficial](https://github.com/LouisUnnoficial) - Portuguese(Brazil) translation
+
 ## Thanks for open source
 
 * [ButterKnife](https://github.com/JakeWharton/butterknife) Bind Android views and callbacks to fields and methods.
@@ -112,28 +163,6 @@ An **open-source** GitHub Android client app, faster and concise.
 * [jsoup](https://github.com/jhy/jsoup) Java HTML Parser, with best of DOM, CSS, and jquery.
 * [OctoDroid](https://github.com/slapperwan/gh4a) This application provides access to GitHub and lets you stay connected with your network.
 * [FastHub](https://github.com/k0shk0sh/FastHub) FastHub the ultimate GitHub client for Android.
-
-## Contributions(*Order by commit time*)
-* [moriel5](https://github.com/moriel5) - Hebrew translation
-* [Henry2o1o](https://github.com/Henry2o1o), [squeezer11](https://github.com/squeezer11), [ropaha](https://github.com/ropaha) - German translation
-* [Edfgdz](https://github.com/Edfgdz) - Testing and suggest
-* [pzhlkj6612](https://github.com/pzhlkj6612) - Improve the translation of Chinese readme
-* [hiteshnayak305](https://github.com/hiteshnayak305) - Hindi translation
-* [KcNirvana](https://github.com/KcNirvana) - Portuguese translation
-* [sclickk](https://github.com/sclickk) - Improve English translation
-* [Zazsona](https://github.com/Zazsona) - Add AMOLED theme
-* [Aqueminivan](https://github.com/Aqueminivan) - Improve the translation of English readme
-* [XF-zhjnc](https://github.com/XF-zhjnc) - Fix bugs
-* [fergthh](https://github.com/fergthh) - Spanish translation
-* [chiyi4488](https://github.com/chiyi4488) - Traditional Chinese translation
-* [left4j](https://github.com/left4j) - Russian translation
-* [TheParanoik](https://github.com/TheParanoik) - Polish translation
-* [X1nto](https://github.com/X1nto) - Georgian translation
-* [MerkeX](https://github.com/MerkeX) - Italian translation
-* [Vistaus](https://github.com/Vistaus) - Dutch translation
-* [pkubanek](https://github.com/pkubanek) - Czech translation
-* [LouisUnnoficial](https://github.com/LouisUnnoficial) - Portuguese(Brazil) translation
-
 
 ## License
 ThirtyDegreesRay:
