@@ -1,4 +1,4 @@
-[English](/README.md) | 中文
+[Deutsch](/README-de.md) | [English](/README.md) | 中文
 
 # OpenHub 
 [![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://play.google.com/store/apps/details?id=com.thirtydegreesray.openhub)
