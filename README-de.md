@@ -1,72 +1,72 @@
-[Deutsch](/README-de.md) | English | [中文](/README-cn.md)
+Deutsch | [English](/README.md) | [中文](/README-cn.md)
 
 # OpenHub
 [![Releases](https://img.shields.io/badge/android-5.0%2B-brightgreen.svg)](https://play.google.com/store/apps/details?id=com.thirtydegreesray.openhub)
 [![Releases](https://img.shields.io/github/release/ThirtyDegreesRay/OpenHub.svg)](https://github.com/ThirtyDegreesRay/OpenHub/releases/latest)
 
-An **open-source** GitHub Android client app, faster and concise.
+Eine **quelloffene** GitHub Android Client App, schneller und übersichtlicher.
 
 [![Google Play](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/google_play.png?raw=true)](https://play.google.com/store/apps/details?id=com.thirtydegreesray.openhub)
 [![Coolapk](https://raw.githubusercontent.com/ThirtyDegreesRay/OpenHub/master/art/coolapk.png?raw=true)](https://www.coolapk.com/apk/com.thirtydegreesray.openhub)
 
 
-## Features
+## Funktionen
 ### App
-* Bookmark users or repositories
-* English, Simplified Chinese, Hebrew, German, Hindi, Portuguese, Korea, Spanish, Traditional Chinese, Russian, Polish, Georgian, Italian, Dutch, Czech and Portuguese(Brazil) support
-* Light, dark, and AMOLED dark theme, multiple accent colors
-* Markdown and code highlighting support
-* Notification support
-* Offline mode
-* One login types (OAuth)
-* Record trace of the repositories or users you have viewed
-* Search repositories and users
-* Shortcut support
-* Support disable loading network images while using mobile network
-* Supports multi-account switching
-* Supports trending repositories page for all languages
-* View Github collections
-* View Github featured topics
+* Ansicht von Github Themenschwerpunkten
+* Ansicht von Github-Sammlungen
+* Aufzeichnung der Repositories oder Nutzer, die du angesehen hast
+* Einmalige Anmeldungsarten (OAuth)
+* Helles, dunkles und AMOLED-dunkles Thema, mehrere Akzentfarben
+* Lesezeichen für Benutzer oder Repositories
+* Offline-Modus
+* Suche in Repositories und Benutzern
+* Unterstützt den Wechsel zwischen mehreren Konten
+* Unterstützt die Trending Repositories Seite für alle Sprachen
+* Unterstützung der Deaktivierung des Ladens von Netzwerkbildern bei der Nutzung eines mobilen Netzwerks
+* Unterstützung für Englisch, vereinfachtes Chinesisch, Hebräisch, Deutsch, Hindi, Portugiesisch, Korea, Spanisch, traditionelles Chinesisch, Russisch, Polnisch, Georgisch, Italienisch, Niederländisch, Tschechisch und Portugiesisch (Brasilien)
+* Unterstützung von Benachrichtigungen
+* Unterstützung von Markdown und Code-Hervorhebung
+* Unterstützung von Shortcuts
 
 ### Repositories
-* Download source code, releases, and files
-* Search repositories
-* Star, watch, and fork repositories
-* View recent wiki updates
-* View repository files, commits, and activity
-* View repository information and repository branches
-* View trending repositories sorted by day, week, or month
-* View your private, public, forked, and starred repositories
+* Aktuelle Wiki-Aktualisierungen anzeigen
+* Dateien, Commits und Aktivitäten im Repository einsehen
+* Deine privaten, öffentlichen, geforkten und markierten Repositorys anzeigen
+* Quellcode, Versionen und Dateien herunterladen
+* Repositories durchsuchen
+* Repositories nach Tag, Woche oder Monat sortiert anzeigen
+* Repositories starten, beobachten und forken
+* Repository-Informationen und Repository-Zweige anzeigen
 
-### Users
-* Follow and unfollow users
-* Search users
-* View user followers, following, and organizations
-* View user info
-* View user public repositories, starred repositories, and activity
-* View your private repositories
+### Nutzer
+* Benutzer suchen
+* Benutzerinformationen anzeigen
+* Deine privaten Repositories einsehen
+* Follower, Follower und Organisationen der Nutzer anzeigen
+* Nutzern folgen und nicht folgen
+* Öffentliche Repositories, markierte Repositories und Aktivitäten der Nutzer anzeigen
 
-### Organizations
-* View organization information
-* View organization members
-* View organization public repositories and activity
+### Organisationen
+* Informationen über die Organisation einsehen
+* Mitglieder der Organisation anzeigen
+* Öffentliche Repositories und Aktivitäten der Organisation anzeigen
 
-### Issues
-* Create, edit, and delete issue comments
-* Create, open, and close issues
-* Edit, add, and delete your labels
-* View issue information, comments, and events
-* View repository issues
-* View your created, assigned, and mentioned issues
-* Write comments with previews
+### Probleme
+* Ansicht deiner erstellten, zugewiesenen und erwähnten Problemen
+* Bearbeiten, Hinzufügen und Löschen von Labels
+* Informationen, Kommentare und Ereignisse zu einem Problem anzeigen
+* Issues im Repository anzeigen
+* Kommentare mit Vorschaubildern schreiben
+* Kommentare zu Problemen erstellen, bearbeiten und löschen
+* Themen erstellen, öffnen und schließen
 
 ### Commits
-* View commit information and files
-* View file diff
-* View repository commits
+* Commit-Informationen und Dateien einsehen
+* Dateidiff anzeigen
+* Repository Commits anzeigen
 
-### And more
-* OpenHub is growing, and trying to be a better GitHub client.
+### Und mehr
+* OpenHub wächst und versucht, ein besserer GitHub-Client zu werden.
 
 ## Screenshots
 | News | Drawer | Profile |
@@ -98,7 +98,7 @@ An **open-source** GitHub Android client app, faster and concise.
 * [RxJava](https://github.com/ReactiveX/RxJava) A library for composing asynchronous and event-based programs using observable sequences for the Java VM.
 * [Toasty](https://github.com/GrenderG/Toasty) The usual Toast, but with steroids 💪.
 
-## Contributions (*Order by commit time*)
+## Beiträge (*Angeordnet nach Commit-Zeitpunkt*)
 * [moriel5](https://github.com/moriel5) - Hebrew translation
 * [Henry2o1o](https://github.com/Henry2o1o), [squeezer11](https://github.com/squeezer11), [ropaha](https://github.com/ropaha) - German translation
 * [Edfgdz](https://github.com/Edfgdz) - Testing and suggest
@@ -120,7 +120,7 @@ An **open-source** GitHub Android client app, faster and concise.
 * [LouisUnnoficial](https://github.com/LouisUnnoficial) - Portuguese(Brazil) translation
 
 
-## License
+## Lizenz
 ThirtyDegreesRay:
 > Copyright (C) 2017 ThirtyDegreesRay.
 > Licensed under the [GPL-3.0](https://www.gnu.org/licenses/gpl.html).
