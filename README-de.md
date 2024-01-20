@@ -98,7 +98,7 @@ Eine **quelloffene** GitHub Android Client App, schneller und übersichtlicher.
 * [RxJava](https://github.com/ReactiveX/RxJava) A library for composing asynchronous and event-based programs using observable sequences for the Java VM.
 * [Toasty](https://github.com/GrenderG/Toasty) The usual Toast, but with steroids 💪.
 
-## Beiträge(*Angeordnet nach Commit-Zeitpunkt*)
+## Beiträge (*Angeordnet nach Commit-Zeitpunkt*)
 * [moriel5](https://github.com/moriel5) - Hebrew translation
 * [Henry2o1o](https://github.com/Henry2o1o), [squeezer11](https://github.com/squeezer11), [ropaha](https://github.com/ropaha) - German translation
 * [Edfgdz](https://github.com/Edfgdz) - Testing and suggest
